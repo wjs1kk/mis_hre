@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/task
+                           http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <context:component-scan base-package="egovframework,com.jnv">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Service"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Repository"/>
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:/egovframework/message/message-common</value>
+                <value>classpath:/org/egovframe/rte/fdl/idgnr/messages/idgnr</value>
+                <value>classpath:/org/egovframe/rte/fdl/property/messages/properties</value>
+            </list>
+        </property>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="cacheSeconds" value="60"/>
+    </bean>
+
+    <bean id="leaveaTrace" class="org.egovframe.rte.fdl.cmmn.trace.LeaveaTrace">
+        <property name="traceHandlerServices">
+            <list>
+                <ref bean="traceHandlerService"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="traceHandlerService" class="org.egovframe.rte.fdl.cmmn.trace.manager.DefaultTraceHandleManager">
+        <property name="reqExpMatcher" ref="antPathMatcher"/>
+        <property name="patterns">
+            <list>
+                <value>*</value>
+            </list>
+        </property>
+        <property name="handlers">
+            <list>
+                <ref bean="defaultTraceHandler"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="antPathMatcher" class="org.springframework.util.AntPathMatcher"/>
+    <bean id="defaultTraceHandler" class="org.egovframe.rte.fdl.cmmn.trace.handler.DefaultTraceHandler"/>
+
+    <bean id="ariaPasswordEncoder" class="org.egovframe.rte.fdl.cryptography.EgovPasswordEncoder">
+        <property name="algorithm" value="#{crypto['crypto.password.algorithm']}"/><!-- default : SHA-256 -->
+        <property name="hashedPassword" value="#{crypto['crypto.hashed.password']}"/>
+    </bean>
+
+    <bean id="ariaCryptoService" class="org.egovframe.rte.fdl.cryptography.impl.EgovARIACryptoServiceImpl">
+        <property name="passwordEncoder" ref="ariaPasswordEncoder"/>
+        <property name="blockSize" value="1024"/><!-- default : 1024 -->
+    </bean>
+
+    <bean id="digestService" class="org.egovframe.rte.fdl.cryptography.impl.EgovDigestServiceImpl">
+        <property name="algorithm" value="SHA-256"/><!-- default : SHA-256 -->
+        <property name="plainDigest" value="false"/><!-- default : false -->
+    </bean>
+
+    <bean id="generalCryptoService" class="org.egovframe.rte.fdl.cryptography.impl.EgovGeneralCryptoServiceImpl">
+        <property name="passwordEncoder" ref="ariaPasswordEncoder"/>
+        <property name="algorithm" value="PBEWithSHA1AndDESede"/><!-- default : PBEWithSHA1AndDESede -->
+        <property name="blockSize" value="1024"/><!-- default : 1024 -->
+    </bean>
+
+    <!-- 2023-03-14  자동 채번 서비스의 alias 등록 -->
+    <alias name="seqManageService" alias="idGeneratorService"/>
+
+    <task:executor id="asyncExecutor"/>
+    <task:annotation-driven/>
+</beans>

@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="itemManage_jeoncy" width="1920" height="670" titletext="제품관리 - 전창용" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="49" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="제품목록 - 전창용" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="71" text="" right="50" onkeyup="divSearch_onkeyup">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="1" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="0" top="56" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="39"/>
+              <Static id="sta004" taborder="3" text="사용여부" left="1365" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboUseYn" taborder="2" text="" left="sta004:10" top="15" width="170" height="26" index="-1" innerdataset="dsUseYn" datacolumn="LINE_CODE_NM_KR" codecolumn="LINE_CODE" oncloseup="divSearch_cboUseYn_oncloseup"/>
+              <Static id="sta003" taborder="5" text="제품분류" left="910" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboItemType" taborder="4" text="" left="sta003:10" top="15" width="170" height="26" innerdataset="dsItemType" codecolumn="value" datacolumn="text" oncloseup="divSearch_cboItemType_oncloseup"/>
+              <Static id="sta002" taborder="7" text="제품명" left="455" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtItemName" taborder="6" left="sta002:10" top="15" width="170" height="26"/>
+              <Static id="sta001" taborder="9" text="제품코드" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtItemCode" taborder="8" left="sta001:10" top="15" width="170" height="26" onchanged="divSearch_edtItemCode_onchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divList" taborder="3" text="" left="50" top="divSearch:0" bottom="37" right="50" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle" taborder="0" text="검색결과" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="100" fittocontents="width"/>
+              <Static id="Static04_00_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:10" top="0" width="150" height="45"/>
+              <Grid id="grdList" taborder="3" left="0" top="45" binddataset="dsList" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0" right="0" oncelldblclick="divList_grdList_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40"/>
+                      <Column size="100"/>
+                      <Column size="200"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="500"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" text="제품코드"/>
+                      <Cell col="2" text="제품명"/>
+                      <Cell col="3" text="제품분류"/>
+                      <Cell col="4" text="단가"/>
+                      <Cell col="5" text="수량"/>
+                      <Cell col="6" text="제품설명"/>
+                      <Cell col="7" text="사용여부"/>
+                      <Cell col="8" text="등록일자"/>
+                      <Cell col="9" text="등록자"/>
+                      <Cell col="10" text="수정일자"/>
+                      <Cell col="11" text="수정자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow + 1"/>
+                      <Cell col="1" text="bind:itemCode"/>
+                      <Cell col="2" text="bind:itemName" textAlign="left" tooltiptext="bind:itemName"/>
+                      <Cell col="3" text="bind:itemType" displaytype="combotext" edittype="none" combodataset="dsItemType" combodatacol="text" combocodecol="value" accessibilityenable="false"/>
+                      <Cell col="4" text="bind:itemCost" textAlign="right" displaytype="number"/>
+                      <Cell col="5" text="bind:itemCount" displaytype="number" textAlign="right"/>
+                      <Cell col="6" text="bind:itemDesc" textAlign="left" tooltiptext="bind:itemDesc" tooltiptype="default"/>
+                      <Cell col="7" text="bind:useYn" displaytype="combotext" edittype="none" combodataset="dsUseYn" combocodecol="LINE_CODE" combodatacol="LINE_CODE_NM_KR" accessibilityenable="false"/>
+                      <Cell col="8" text="bind:rgstDt"/>
+                      <Cell col="9" text="bind:rgstId"/>
+                      <Cell col="10" text="bind:updtDt"/>
+                      <Cell col="11" text="bind:updtId"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnAdd" taborder="4" text="추가" height="26" right="0" width="73" cssclass="btn_WF_Row_Add" top="14" onclick="divList_btnAdd_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="itemCode" type="STRING" size="256"/>
+          <Column id="itemName" type="STRING" size="256"/>
+          <Column id="itemType" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="itemCost" type="INT" size="256"/>
+          <Column id="itemCount" type="INT" size="256"/>
+          <Column id="itemDesc" type="STRING" size="3000"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" useclientlayout="true" onrowposchanged="dsRole_onrowposchanged">
+        <ColumnInfo>
+          <Column id="itemCode" type="STRING" size="256"/>
+          <Column id="itemName" type="STRING" size="256"/>
+          <Column id="itemType" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="itemCost" type="INT" size="256"/>
+          <Column id="itemCount" type="INT" size="256"/>
+          <Column id="itemDesc" type="STRING" size="3000"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsItemType">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LINE_CODE_NM_KR">전체</Col>
+            <Col id="LINE_CODE_NM_EN">all</Col>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">Y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN">use</Col>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN">unused</Col>
+            <Col id="LINE_CODE">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  OOO
+*  MenuPath      OOO
+*  FileName      OOO.xfdl 
+*  Creator 	     OOO
+*  CreateDate    0000.00.00
+*  Desction      OOO
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  0000.00.00    OOO 	     최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+var sessionUserName = nexacro.getApplication().gdsUserInfo.getColumn(0, "userNmKr");
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnLoadCombo("loadCombo", "dsItemType=SMP:ITEM_TYPE:A", "fnCallBack");
+	this.fnSearch();
+	
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+this.fnSearch = function()
+{
+	var strSvcId    = "getItemList";
+	var strSvcUrl   = "sam/practice/getItemListJcy.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+// 	"0" : XML 형식
+// 	"1" : Binary 형식
+// 	"2" : SSV 형식
+// 	"3" : JSON 형식
+	//this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, 3);  // json
+	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl, 	    // transaction을 요청할 주소
+						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getItemList":
+			this.gfnRowCount(this.dsList, this.divList.form.staGridRowCnt);
+			trace(this.dsList.rgstDt);
+		break;
+		case "setItemList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.fnSearch();
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	console.log('fnPopupAfter: ', sPopupId, ' || ', vArg);
+	switch(sPopupId){
+		case "itemDetailPopup":
+			var oRtn = this.gfnGetPopupRtn();
+			this.fnSearch();
+			if(oRtn){
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+				console.log('oRtn.popDS : ',  oRtn.popDS);
+			}
+		break;
+	}
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	this.fnSearch();	
+};
+this.divList_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {
+				title : "제품등록",
+				rowStatus : "inserted"
+				};
+//  gfnOpenPopup
+//  * @param {String} sPopupId	- 팝업ID
+//  * @param {String} sUrl	 - 팝업URL
+//  * @param {String} [oArg] - 전달값
+//  * @param {String} [sPopupCallback] - 팝업콜백. 없으면 confirm message 로 간주.
+//  * @param {Object} [oOption] - 팝업옵션 <br>
+	this.gfnOpenPopup("itemDetailPopup", "sam::practice/itemDetailPopup_jeoncy.xfdl", oArg, "fnPopupAfter", "");
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.divList_grdList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var oArg = {			
+				title : "제품상세",
+				rowStatus : "updated",
+				itemCode : obj.getBindDataset().getColumn(e.row, "itemCode"),
+	            itemName : obj.getBindDataset().getColumn(e.row, "itemName"),
+				itemType : obj.getBindDataset().getColumn(e.row, "itemType"),
+				useYn : obj.getBindDataset().getColumn(e.row, "useYn"),
+				itemCost : obj.getBindDataset().getColumn(e.row, "itemCost"),
+				itemCount : obj.getBindDataset().getColumn(e.row, "itemCount"),
+				itemDesc : obj.getBindDataset().getColumn(e.row, "itemDesc")		
+				};
+	this.gfnOpenPopup("itemDetailPopup", "sam::practice/itemDetailPopup_jeoncy.xfdl", oArg, "fnPopupAfter", "");
+};
+
+this.divSearch_cboItemType_oncloseup = function(obj:nexacro.Combo,e:nexacro.ComboCloseUpEventInfo)
+{
+	this.fnSearch();
+};
+
+this.divSearch_cboUseYn_oncloseup = function(obj:nexacro.Combo,e:nexacro.ComboCloseUpEventInfo)
+{
+	this.fnSearch();
+};
+
+this.divSearch_onkeyup = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.btnSearch_onclick();
+	}
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtItemCode" propid="value" datasetid="dsSearch" columnid="itemCode"/>
+      <BindItem id="item1" compid="divSearch.form.edtItemName" propid="value" datasetid="dsSearch" columnid="itemName"/>
+      <BindItem id="item3" compid="divSearch.form.cboUseYn" propid="text" datasetid="dsUseYn" columnid="LINE_CODE_NM_KR"/>
+      <BindItem id="item4" compid="divSearch.form.cboItemType" propid="value" datasetid="dsSearch" columnid="itemType"/>
+      <BindItem id="item2" compid="divSearch.form.cboUseYn" propid="tooltiptype" datasetid="dsUseYn" columnid="LINE_CODE"/>
+      <BindItem id="item5" compid="divSearch.form.cboUseYn" propid="value" datasetid="dsSearch" columnid="useYn"/>
+    </Bind>
+  </Form>
+</FDL>

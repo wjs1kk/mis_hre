@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<MetaInfo version="2.0">
+  <Object id="nexacro.TutorialAlertAction">
+    <ObjectInfo inheritance="nexacro.Action" classname="nexacro.TutorialAlertAction" shorttypename="TutorialAlertAction" csstypename="TutorialAlertAction" csscontrolname="TutorialAlertActionControl" group="Action" subgroup="Action" csspseudo="" container="false" composite="false" tabstop="false" cssstyle="false" contents="true" formats="false" contentseditor="auto" defaultwidth="" defaultheight="" registration="allow" edittype="action" useinitvalue="false" popup="false" edittypecomponent="" dblclickevent="" requirement="IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Windows nexacro Browser,macOS nexacro Browser,Android nexacro Browser,iOS nexacro Browser,Android Default Web Browser,iOS Default Web Browser" description="TutorialAlertAction是根据消息和model执行alert事件的操作。&#13;&#10;&#13;&#10;消息值是将输入的值输出到Alert消息的值。 &#13;&#10;&#13;&#10;可以输出字段参考model的选择值。&#13;&#10;可按消息值和字段参考model的顺序输出消息值和字段参考model的选择值。&#13;&#10;如果仅选择消息值和字段参考model之一，则仅输出一个值。"/>
+    <PropertyInfo>
+      <Property name="id" group="Information" subgroup="" refreshinfo="" edittype="ID" readonly="true" initonly="true" hidden="false" control="false" expr="false" bind="false" deprecated="false" unused="false" mandatory="true" objectinfo="" enuminfo="" enuminfo2="" unitinfo="" delimiter="" requirement="IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Windows nexacro Browser,macOS nexacro Browser,Android nexacro Browser,iOS nexacro Browser,Android Default Web Browser,iOS Default Web Browser" description="该属性用于设置TutorialAlertAction的唯一标识符。" csspropertyname="" csselementname="" normalpropertyname="id"/>
+      <Property name="targetview" group="" subgroup="" refreshinfo="targetview" edittype="ViewObjList" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" deprecated="false" unused="true" mandatory="false" objectinfo="" enuminfo="" enuminfo2="" unitinfo="" delimiter="" requirement="IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Windows nexacro Browser,macOS nexacro Browser,Android nexacro Browser,iOS nexacro Browser,Android Default Web Browser,iOS Default Web Browser" description="该属性用于设置TutorialAlertAction的目标视图。" csspropertyname="" csselementname="" normalpropertyname="targetview"/>
+      <Property name="message" group="" subgroup="" refreshinfo="" edittype="String" defaultvalue="" readonly="false" initonly="false" hidden="false" control="false" expr="false" bind="false" deprecated="false" unused="false" mandatory="false" objectinfo="" enuminfo="" enuminfo2="" unitinfo="" delimiter="" requirement="IE9,IE10,IE11,Chrome,Safari,Firefox,Opera,Windows nexacro Browser,macOS nexacro Browser,Android nexacro Browser,iOS nexacro Browser,Android Default Web Browser,iOS Default Web Browser" description="该属性用于设置TutorialQueryAction的消息。&#13;&#10;消息值是将输入的值输出到Alert消息的值。" csspropertyname="" csselementname="" normalpropertyname="message"/>
+    </PropertyInfo>
+    <CSSInfo>
+      <PropertyInfo/>
+    </CSSInfo>
+    <StatusInfo/>
+    <MethodInfo/>
+    <EventHandlerInfo/>
+  </Object>
+</MetaInfo>

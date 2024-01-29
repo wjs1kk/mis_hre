@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LOG_1040P_02" width="900" titletext="사용자 조회" onload="form_onload" height="500">
+    <Layouts>
+      <Layout>
+        <Div id="divPopup" taborder="0" text="" left="0" top="0" height="500" width="900">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="사용자 조회" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Div id="divSearch" taborder="4" left="30" top="70" height="94" cssclass="div_WF_popup" text="" right="30">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static07_01_01_00" taborder="2" left="21" top="80" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_01_01_00_00" taborder="3" left="21" top="45" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_00_01_00" taborder="4" top="45" height="34" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" right="20"/>
+                    <Static id="staSubTitle" taborder="7" text="검색조건" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" width="169"/>
+                    <Static id="Static07_00_00_00" taborder="5" left="20" top="46" width="1" height="34" onclick="div_Search_Static07_onclick" background="#00388e" text=""/>
+                    <Static id="Static07_01_02_00" taborder="6" left="121" top="45" width="1" height="34" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                    <Static id="sta002" taborder="8" text="사용자명" cssclass="sta_WF_condition02" left="285" top="46" width="100" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                    <Static id="sta001" taborder="9" text="사용자 ID" cssclass="sta_WF_condition02" left="21" top="46" width="100" height="34"/>
+                    <Static id="Static10_00" taborder="10" text="w12" visible="false" left="122" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static10_00_00_00" taborder="11" text="w12" visible="false" left="386" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00_00" taborder="12" text="h 15" onclick="Static31_onclick" visible="false" left="110" top="81" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Edit id="edtMemberId" taborder="13" left="134" top="50" width="120" height="26" maxlength="100" onkeyup="divPopup_divForm_edt_001_onkeyup"/>
+                    <Static id="Static10_00_01_00" taborder="14" text="w12" visible="false" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" top="110" width="12" right="21" bottom="20"/>
+                    <Edit id="edtMemberNm" taborder="15" left="398" top="50" width="120" height="26" maxlength="100" onkeyup="divPopup_divForm_edt_001_onkeyup"/>
+                    <Static id="Static07_00_00_00_00" taborder="16" left="284" top="46" width="1" height="34" onclick="div_Search_Static07_onclick" background="#00388e" text=""/>
+                    <Static id="Static07_01_02_00_00" taborder="17" left="385" top="45" width="1" height="34" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                    <Static id="Static10_00_00" taborder="18" text="w30" visible="false" left="254" top="0" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" onclick="div_Search_Static10_00_onclick" bottom="0"/>
+                    <Static id="Static10_00_00_01" taborder="19" text="w30" visible="false" left="518" top="0" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" onclick="div_Search_Static10_00_onclick" bottom="0"/>
+                    <Static id="Static10_00_00_01_00" taborder="20" text="w20" visible="false" left="818" top="8" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" onclick="div_Search_Static10_00_onclick" height="84"/>
+                    <Button id="btnSearch" text="조회" cssclass="" top="9" width="65" height="28" right="20" taborder="21" onclick="divPopup_divSearch_btnSearch_onclick"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00" taborder="5" text="h 23" onclick="Static31_onclick" visible="false" left="0" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" right="0"/>
+              <Button id="btnPopupClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" right="383" bottom="23" onclick="divPopup_btnPopupClose_onclick"/>
+              <Static id="sta_g001" taborder="8" text="w12" visible="false" left="449" top="443" width="3" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="9" text="h 18" onclick="Static31_onclick" visible="false" left="30" top="164" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="10" text="(총 0건)" cssclass="sta_WF_subResult" left="120" top="176" width="149" height="27"/>
+              <Static id="Static04_00_00_00" taborder="11" text="h 45" onclick="Static31_onclick" visible="false" left="120" top="164" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staTitle" taborder="12" text="검색결과" cssclass="sta_WF_subTitle01" left="30" top="175" height="27" onclick="Static09_onclick" width="169"/>
+              <Grid id="grdMember" taborder="13" binddataset="dsUser" autofittype="col" autoenter="select" autoupdatetype="itemselect" top="209" left="30" bottom="76" right="30" oncelldblclick="divPopup_grdUser_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="120"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="46" band="head"/>
+                      <Row size="33"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="사용자 ID"/>
+                      <Cell col="2" text="사용자명"/>
+                      <Cell col="3" text="부서명"/>
+                      <Cell col="4" text="직급"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="1" text="bind:userId" edittype="none"/>
+                      <Cell col="2" text="bind:userNm" edittype="none"/>
+                      <Cell col="3" text="bind:deptNm"/>
+                      <Cell col="4" text="bind:jobPosition"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnAdd" taborder="1" text="추가" cssclass="btn_WF_icoAdd" top="449" width="65" height="28" left="384" onclick="btnAdd_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="searchUserId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="deptCode" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="jobPosition" type="STRING" size="256"/>
+          <Column id="updtReason" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      statisticsUserPopup.xfdl
+*  Creator 	     cheonsy
+*  CreateDate    2023.03.15
+*  Desction      사용자 조회
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.15    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnUserSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnUserSearch = function()
+{
+	this.gfnTransaction("getUserList", "cms/getUserList.do", "dsSearch", "dsUser", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getUserList":
+			// 총 건수 계산
+			this.gfnRowCount(this.dsUser, this.divPopup.form.staGridRowCnt);
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회 버튼
+*/
+this.divPopup_divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsSearch.setColumn(0, "userId", this.dsSearch.getColumn(0, "searchUserId"));
+	this.fnUserSearch();
+};
+
+/**
+ * description 추가버튼
+*/
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(!this.gfnIsGridChecked(this.dsUser, "rowCheck")){
+		this.gfnAlert("사용자를 체크해주세요");
+		return;
+	}
+
+	this.opener.dsSearch.setColumn(0, "userId", this.dsUser.getColumn(this.dsUser.findRow("rowCheck", 1), "userId"));
+	this.opener.dsSearch.setColumn(0, "userNm", this.dsUser.getColumn(this.dsUser.findRow("rowCheck", 1), "userNm"));
+
+	// pat 3. 임의의 Object Return / dataset 하나의 row는 gfnGetRowObj 이용
+	var oRtn = new Object();
+	oRtn.CONFIRM = "Y";
+	this.gfnPopupClose(oRtn);
+	this.close();
+};
+
+/**
+ * description 행 더블클릭 이벤트
+*/
+this.divPopup_grdUser_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.opener.dsSearch.setColumn(0, "userId", this.dsUser.getColumn(this.dsUser.rowposition, "userId"));
+	this.opener.dsSearch.setColumn(0, "userNm", this.dsUser.getColumn(this.dsUser.rowposition, "userNm"));
+	this.close();
+};
+
+/**
+ * description 엔터키 조회
+*/
+this.divPopup_divForm_edt_001_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.divPopup_divSearch_btnSearch_onclick();
+	}
+};
+
+/**
+ * description 닫기버튼
+*/
+this.divPopup_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.divSearch.form.edtMemberId" propid="value" datasetid="dsSearch" columnid="searchUserId"/>
+      <BindItem id="item1" compid="divPopup.form.divSearch.form.edtMemberNm" propid="value" datasetid="dsSearch" columnid="userNm"/>
+    </Bind>
+  </Form>
+</FDL>

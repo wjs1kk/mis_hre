@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.sam.typetwo.service.TypeTwoDAO">
+
+    <select id="getTypeTwoList" parameterType="map" resultType="typeTwoVO">
+        /*type-two-mapper.getTypeTwoList*/
+        SELECT T.SYS_ID
+             , T.PROG_ID
+             , T.PROG_NM
+             , T.PROG_TY
+             , T.PROG_URL
+             , T.PROG_DC
+             , T.PROG_FILE_NM
+             , T.SUBSTITUTE_URL
+             , T.SUBSTITUTE_USE_YN
+             , T.ATCH_FILE_ID
+             , T.PERMISSION_USE_YN
+             , T.PERMISSION_DC
+             , T.RADIO_USE_YN
+             , T.RGST_ID
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = T.RGST_ID) AS RGST_NM
+             , T.RGST_IP
+             , TO_CHAR(T.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , T.UPDT_ID
+             , T.UPDT_IP
+             , T.UPDT_DT
+          FROM SAM_TYPE_TWO T
+       <where>
+         <if test="progId != null and progId != ''">
+           AND PROG_ID LIKE #{progId} || '%'
+         </if>
+         <if test="progNm != null and progNm != ''">
+           AND PROG_NM LIKE '%' || #{progNm} || '%'
+         </if>
+       </where>
+         ORDER BY T.SYS_ID
+             , T.PROG_ID
+    </select>
+
+    <insert id="insertTypeTwo" parameterType="typeTwoVO">
+        /* type-two-mapper.insertTypeTwo */
+        INSERT
+          INTO SAM_TYPE_TWO ( PROG_ID
+                            , SYS_ID
+                            , PROG_NM
+                            , PROG_TY
+                            , PROG_URL
+                            , PROG_FILE_NM
+                            , SUBSTITUTE_URL
+                            , SUBSTITUTE_USE_YN
+                            , PROG_DC
+                            , PERMISSION_USE_YN
+                            , PERMISSION_DC
+                            , RADIO_USE_YN
+                            , RGST_ID
+                            , RGST_IP
+                            , RGST_DT)
+                     VALUES ( #{progId}
+                            , #{sysId}
+                            , #{progNm}
+                            , #{progTy}
+                            , #{progUrl}
+                            , #{progFileNm}
+                            , #{substituteUrl}
+                            , COALESCE(#{substituteUseYn}, 'N')
+                            , #{progDc}
+                            , COALESCE(#{permissionUseYn}, 'N')
+                            , #{permissionDc}
+                            , COALESCE(#{radioUseYn}, 'N')
+                            , #{sessionUserId}
+                            , #{sessionUserIp}
+                            , NOW())
+    </insert>
+
+    <update id="updateTypeTwo" parameterType="typeTwoVO">
+        /* type-two-mapper.updateTypeTwo */
+        UPDATE SAM_TYPE_TWO
+           SET PROG_NM           = #{progNm}
+             , PROG_TY           = #{progTy}
+             , PROG_URL          = #{progUrl}
+             , SUBSTITUTE_URL    = #{substituteUrl}
+             , SUBSTITUTE_USE_YN = #{substituteUseYn}
+             , PROG_DC           = #{progDc}
+             , ATCH_FILE_ID      = #{atchFileId}
+             , PROG_FILE_NM      = #{progFileNm}
+             , PERMISSION_USE_YN = #{permissionUseYn}
+             , PERMISSION_DC     = #{permissionDc}
+             , RADIO_USE_YN      = #{radioUseYn}
+             , UPDT_ID           = #{sessionUserId}
+             , UPDT_IP           = #{sessionUserIp}
+             , UPDT_DT           = NOW()
+         WHERE SYS_ID = #{sysId}
+           AND PROG_ID = #{progId}
+    </update>
+
+    <delete id="deleteTypeTwo" parameterType="typeTwoVO">
+        /* type-two-mapper.deleteTypeTwo */
+        DELETE
+          FROM SAM_TYPE_TWO
+         WHERE SYS_ID = #{sysId}
+           AND PROG_ID = #{progId}
+    </delete>
+
+    <select id="getDuplicatedKeyCnt" parameterType="typeTwoVO" resultType="int">
+        /* type-two-mapper.getDuplicatedKeyCnt */
+        SELECT COUNT(*)
+          FROM SAM_TYPE_TWO
+         WHERE SYS_ID = #{sysId}
+           AND PROG_ID = #{progId}
+    </select>
+
+</mapper>

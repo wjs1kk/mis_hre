@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.main.businessmain.service.BusinessMenuDAO">
+
+    <select id="selectNexacroMenuList" parameterType="map" resultType="menuVO">
+        /* business-menu-mapper.selectNexacroMenuList */
+        WITH RECURSIVE
+        A(SYS_ID, MENU_ID, UPPER_MENU_ID, MENU_NM, SORT_ORDR, INDCT_YN, ID, PARENT) AS (
+            SELECT CM.SYS_ID
+                 , CM.MENU_ID
+                 , CM.UPPER_MENU_ID
+                 , CM.MENU_NM
+                 , CM.SORT_ORDR
+                 , CM.INDCT_YN
+                 , CM.SYS_ID || '/' || CM.MENU_ID AS ID
+                 , CM.SYS_ID || '/' || CM.UPPER_MENU_ID AS PARENT
+              FROM CMN_MENU CM
+              JOIN CMN_ROLE_MENU_FUNC CRMF
+                ON CRMF.SYS_ID = CM.SYS_ID
+               AND CRMF.MENU_ID = CM.MENU_ID
+              JOIN CMN_PROG CP
+                ON CM.SYS_ID  = CP.SYS_ID
+               AND CM.PROG_ID = CP.PROG_ID
+              JOIN CMN_PROG_FUNC CPF
+                ON CP.SYS_ID = CPF.SYS_ID
+               AND CP.PROG_ID = CPF.PROG_ID
+               AND CRMF.FUNC_ID = CPF.FUNC_ID
+             WHERE CM.MENU_TY IN ('PAGE', 'GROUP')
+               AND CM.SYS_ID = #{sessionSysId}
+               AND CRMF.ROLE_CODE IN (<foreach collection="USER_ROLES" item="item" separator=",">#{item}</foreach>)
+             UNION
+            SELECT CM.SYS_ID
+                 , CM.MENU_ID
+                 , CM.UPPER_MENU_ID
+                 , CM.MENU_NM
+                 , CM.SORT_ORDR
+                 , CM.INDCT_YN
+                 , CM.SYS_ID || '/' || CM.MENU_ID AS ID
+                 , CM.SYS_ID || '/' || CM.UPPER_MENU_ID AS PARENT
+              FROM CMN_MENU CM
+              JOIN A
+                ON CM.SYS_ID = A.SYS_ID
+               AND CM.MENU_ID = A.UPPER_MENU_ID
+             WHERE CM.MENU_TY IN ('PAGE', 'GROUP')
+               AND CM.SYS_ID = #{sessionSysId}
+        ),
+        B(SYS_ID, MENU_ID, UPPER_MENU_ID, MENU_NM, SORT_ORDR, INDCT_YN, LEVEL, MENU_NM_PATH_ARR, ID, PARENT) AS (
+            SELECT A.SYS_ID
+                 , A.MENU_ID
+                 , A.UPPER_MENU_ID
+                 , A.MENU_NM
+                 , A.SORT_ORDR
+                 , A.INDCT_YN
+                 , 0 AS LEVEL
+                 , ARRAY[A.MENU_NM::TEXT] AS MENU_NM_PATH_ARR
+                 , A.ID
+                 , A.PARENT
+              FROM A
+             WHERE A.INDCT_YN = 'Y'
+               AND A.UPPER_MENU_ID IS NULL
+            UNION ALL
+            SELECT A.SYS_ID
+                 , A.MENU_ID
+                 , A.UPPER_MENU_ID
+                 , A.MENU_NM
+                 , A.SORT_ORDR
+                 , A.INDCT_YN
+                 , B.LEVEL + 1 AS LEVEL
+                 , B.MENU_NM_PATH_ARR || A.MENU_NM AS MENU_NM_PATH_ARR
+                 , A.ID
+                 , A.PARENT
+              FROM A
+              JOIN B
+                ON A.SYS_ID = B.SYS_ID
+               AND A.UPPER_MENU_ID = B.MENU_ID
+             WHERE A.INDCT_YN = 'Y'
+        ) SEARCH DEPTH FIRST BY SORT_ORDR, MENU_NM, MENU_ID SET ROW_ORDER
+        SELECT B.SYS_ID
+             , B.MENU_ID
+             , B.UPPER_MENU_ID
+             , B.MENU_NM
+             , CM.MENU_DC
+             , CM.MENU_TY
+             , CM.PROG_ID
+             , CASE CP.SUBSTITUTE_USE_YN
+                   WHEN 'Y' THEN CP.SUBSTITUTE_URL
+                   ELSE CP.PROG_URL
+               END AS URL
+             , CASE B.INDCT_YN
+                   WHEN 'Y' THEN 'true'
+                   ELSE 'false'
+               END AS INDCT_YN
+             , CM.DEFAULT_ROW_CNT
+             , CM.MODULE_ID
+             , CM.MAIN_URL
+             , CASE
+                   WHEN CM.MENU_TY = 'PAGE' AND CFM.MENU_ID IS NOT NULL THEN 'Y'
+                   WHEN CM.MENU_TY = 'PAGE' AND CFM.MENU_ID IS NULL THEN 'N'
+               END AS FAVORITE_YN
+             , B.LEVEL
+             , (ROW_NUMBER() OVER (ORDER BY ROW_ORDER)) - 1 AS ROW_NUM
+             , ARRAY_TO_STRING(B.MENU_NM_PATH_ARR, '>') AS MENU_NM_PATH
+             , B.ID
+             , B.PARENT
+          FROM B
+          JOIN CMN_MENU CM
+            ON B.SYS_ID = CM.SYS_ID
+           AND B.MENU_ID = CM.MENU_ID
+          LEFT JOIN CMN_PROG CP
+            ON CM.SYS_ID = CP.SYS_ID
+           AND CM.PROG_ID = CP.PROG_ID
+          LEFT JOIN CMN_FAVORITE_MENU CFM
+            ON CM.SYS_ID  = CFM.SYS_ID
+           AND CM.MENU_ID = CFM.MENU_ID
+           AND CFM.USER_ID = #{userId}
+         ORDER BY ROW_ORDER
+    </select>
+
+    <select id="selectNexacroMenuLangList" parameterType="map" resultType="menuVO">
+        /* business-menu-mapper.selectNexacroMenuList */
+        WITH RECURSIVE
+        A(SYS_ID, MENU_ID, UPPER_MENU_ID, LANG_ID, MENU_NM, SORT_ORDR, INDCT_YN) AS (
+            SELECT CM.SYS_ID
+                 , CM.MENU_ID
+                 , CM.UPPER_MENU_ID
+                 , CM.LANG_ID
+                 , CM.MENU_NM
+                 , CM.SORT_ORDR
+                 , CM.INDCT_YN
+              FROM CMN_MENU_LANG CM
+             WHERE CM.MENU_TY IN ('PAGE', 'GROUP')
+               AND CM.LANG_ID = #{lang}
+               AND (CM.SYS_ID, CM.MENU_ID) IN
+                   (SELECT CRMF.SYS_ID, CRMF.MENU_ID
+                      FROM CMN_ROLE_MENU_FUNC CRMF
+                      JOIN CMN_MENU_LANG CM
+                        ON CRMF.SYS_ID = CM.SYS_ID
+                       AND CRMF.MENU_ID = CM.MENU_ID
+                      JOIN CMN_PROG CP
+                        ON CM.SYS_ID = CP.SYS_ID
+                       AND CM.PROG_ID = CP.PROG_ID
+                      JOIN CMN_PROG_FUNC CPF
+                        ON CP.SYS_ID = CPF.SYS_ID
+                       AND CP.PROG_ID = CPF.PROG_ID
+                       AND CRMF.FUNC_ID = CPF.FUNC_ID
+                     WHERE CRMF.ROLE_CODE IN (<foreach collection="USER_ROLES" item="item" separator=",">#{item}</foreach>))
+               AND CM.SYS_ID = #{sessionSysId}
+             UNION
+            SELECT CM.SYS_ID
+                 , CM.MENU_ID
+                 , CM.UPPER_MENU_ID
+                 , CM.LANG_ID
+                 , CM.MENU_NM
+                 , CM.SORT_ORDR
+                 , CM.INDCT_YN
+              FROM CMN_MENU_LANG CM
+              JOIN A
+                ON CM.SYS_ID = A.SYS_ID
+               AND CM.MENU_ID = A.UPPER_MENU_ID
+             WHERE CM.MENU_TY IN ('PAGE', 'GROUP')
+               AND CM.SYS_ID = #{sessionSysId}
+               AND CM.LANG_ID = 'en'
+        ),
+        B(SYS_ID, MENU_ID, UPPER_MENU_ID, LANG_ID, MENU_NM, SORT_ORDR, INDCT_YN, LEVEL, MENU_NM_PATH_ARR) AS (
+            SELECT A.SYS_ID
+                 , A.MENU_ID
+                 , A.UPPER_MENU_ID
+                 , A.LANG_ID
+                 , A.MENU_NM
+                 , A.SORT_ORDR
+                 , A.INDCT_YN
+                 , 1 AS LEVEL
+                 , ARRAY[A.MENU_NM::TEXT] AS MENU_NM_PATH_ARR
+              FROM A
+             WHERE A.INDCT_YN = 'Y'
+               AND A.UPPER_MENU_ID IS NULL
+            UNION ALL
+            SELECT A.SYS_ID
+                 , A.MENU_ID
+                 , A.UPPER_MENU_ID
+                 , A.LANG_ID
+                 , A.MENU_NM
+                 , A.SORT_ORDR
+                 , A.INDCT_YN
+                 , B.LEVEL + 1 AS LEVEL
+                 , B.MENU_NM_PATH_ARR || A.MENU_NM AS MENU_NM_PATH_ARR
+              FROM A
+              JOIN B
+                ON A.SYS_ID = B.SYS_ID
+               AND A.UPPER_MENU_ID = B.MENU_ID
+             WHERE A.INDCT_YN = 'Y'
+        ) SEARCH DEPTH FIRST BY SORT_ORDR, MENU_NM, MENU_ID SET ROW_ORDER
+        SELECT B.SYS_ID
+             , B.MENU_ID
+             , B.UPPER_MENU_ID
+             , B.MENU_NM
+             , CM.MENU_DC
+             , CM.MENU_TY
+             , CM.PROG_ID
+             , CASE CP.SUBSTITUTE_USE_YN
+                   WHEN 'Y' THEN CP.SUBSTITUTE_URL
+                   ELSE CP.PROG_URL
+               END AS URL
+             , CASE B.INDCT_YN
+                   WHEN 'Y' THEN 'true'
+                   ELSE 'false'
+               END AS INDCT_YN
+             , CM.DEFAULT_ROW_CNT
+             , CM.MODULE_ID
+             , CM.MAIN_URL
+             , B.LEVEL
+             , ARRAY_TO_STRING(B.MENU_NM_PATH_ARR, '>') AS MENU_NM_PATH
+          FROM B
+          JOIN CMN_MENU_LANG CM
+            ON B.SYS_ID = CM.SYS_ID
+           AND B.MENU_ID = CM.MENU_ID
+           AND B.LANG_ID = CM.LANG_ID
+          LEFT JOIN CMN_PROG CP
+            ON CM.SYS_ID = CP.SYS_ID
+           AND CM.PROG_ID = CP.PROG_ID
+         ORDER BY ROW_ORDER
+    </select>
+
+    <select id="selectNexacroMessageList" resultType="messageVO">
+        /* business-menu-mapper.selectNexacroMessageList */
+        SELECT MSG_ID
+             , MSG
+             , ENG_MSG
+             , MSG_TYPE
+             , USE_YN
+          FROM CMN_MESSAGE
+         ORDER BY MSG_ID
+    </select>
+
+    <select id="selectNexacroCompLangList" resultType="compLangVO">
+        /* business-menu-mapper.selectNexacroCompLangList */
+        SELECT FORM_ID
+             , LANG_ID
+             , COMP_ID
+             , COMP_INDEX
+             , COMP_TEXT
+             , COMP_TYPE
+          FROM CMN_COMP_LANG
+    </select>
+
+    <update id="setFavoriteMenu" parameterType="map">
+        MERGE INTO CMN_FAVORITE_MENU AS TGT
+        USING (SELECT *
+                 FROM (VALUES (#{sessionSysId}, #{menuId}, #{sessionUserId})) T(SYS_ID, MENU_ID, USER_ID)) AS SRC
+        ON (TGT.SYS_ID = SRC.SYS_ID
+            AND TGT.MENU_ID = SRC.MENU_ID
+            AND TGT.USER_ID = SRC.USER_ID)
+        WHEN NOT MATCHED THEN
+        INSERT (SYS_ID, MENU_ID, USER_ID, RGST_ID, RGST_IP, RGST_DT, UPDT_ID, UPDT_IP, UPDT_DT)
+        VALUES (SRC.SYS_ID, SRC.MENU_ID, SRC.USER_ID, SRC.USER_ID, #{sessionUserIp}, NOW(), SRC.USER_ID, #{sessionUserIp}, NOW())
+    </update>
+
+    <delete id="unsetFavoriteMenu" parameterType="map">
+        DELETE FROM CMN_FAVORITE_MENU
+         WHERE SYS_ID = #{sessionSysId}
+           AND MENU_ID = #{menuId}
+           AND USER_ID = #{sessionUserId}
+    </delete>
+
+    <select id="selectFavoriteMenuList" parameterType="map" resultType="menuVO">
+        /* business-menu-mapper.selectFavoriteMenuList */
+          WITH RECURSIVE
+              A(SYS_ID, MENU_ID, UPPER_MENU_ID, MENU_NM, SORT_ORDR, INDCT_YN) AS (
+                  SELECT CM.SYS_ID
+                       , CM.MENU_ID
+                       , CM.UPPER_MENU_ID
+                       , CM.MENU_NM
+                       , CM.SORT_ORDR
+                       , CM.INDCT_YN
+                    FROM CMN_MENU CM
+                    JOIN CMN_ROLE_MENU_FUNC CRMF
+                         ON CRMF.SYS_ID = CM.SYS_ID
+                             AND CRMF.MENU_ID = CM.MENU_ID
+                    JOIN CMN_PROG CP
+                         ON CM.SYS_ID  = CP.SYS_ID
+                             AND CM.PROG_ID = CP.PROG_ID
+                    JOIN CMN_PROG_FUNC CPF
+                         ON CP.SYS_ID = CPF.SYS_ID
+                             AND CP.PROG_ID = CPF.PROG_ID
+                             AND CRMF.FUNC_ID = CPF.FUNC_ID
+                    JOIN CMN_FAVORITE_MENU CFM
+                         ON CM.SYS_ID = CFM.SYS_ID
+                             AND CM.MENU_ID = CFM.MENU_ID
+                   WHERE CM.MENU_TY IN ('PAGE', 'GROUP')
+                     AND CM.SYS_ID = #{sessionSysId}
+                     AND CRMF.ROLE_CODE IN (<foreach collection="USER_ROLES" item="item" separator=",">#{item}</foreach>)
+                     AND CFM.USER_ID = #{userId}
+                   UNION
+                  SELECT CM.SYS_ID
+                       , CM.MENU_ID
+                       , CM.UPPER_MENU_ID
+                       , CM.MENU_NM
+                       , CM.SORT_ORDR
+                       , CM.INDCT_YN
+                    FROM CMN_MENU CM
+                    JOIN A
+                         ON CM.SYS_ID = A.SYS_ID
+                             AND CM.MENU_ID = A.UPPER_MENU_ID
+                   WHERE CM.MENU_TY IN ('PAGE', 'GROUP')
+                     AND CM.SYS_ID = #{sessionSysId}
+              ),
+              B(SYS_ID, MENU_ID, UPPER_MENU_ID, MENU_NM, SORT_ORDR, INDCT_YN, IS_LEAF, LEVEL, MENU_NM_PATH_ARR) AS (
+                  SELECT A.SYS_ID
+                       , A.MENU_ID
+                       , A.UPPER_MENU_ID
+                       , A.MENU_NM
+                       , A.SORT_ORDR
+                       , A.INDCT_YN
+                       , NOT EXISTS (SELECT 1 FROM CMN_MENU CM WHERE CM.SYS_ID = A.SYS_ID AND CM.UPPER_MENU_ID = A.MENU_ID) AS IS_LEAF
+                       , 0 AS LEVEL
+                       , ARRAY[A.MENU_NM::TEXT] AS MENU_NM_PATH_ARR
+                    FROM A
+                   WHERE A.INDCT_YN = 'Y'
+                     AND A.UPPER_MENU_ID IS NULL
+                   UNION ALL
+                  SELECT A.SYS_ID
+                       , A.MENU_ID
+                       , A.UPPER_MENU_ID
+                       , A.MENU_NM
+                       , A.SORT_ORDR
+                       , A.INDCT_YN
+                       , NOT EXISTS (SELECT 1 FROM CMN_MENU CM WHERE CM.SYS_ID = A.SYS_ID AND CM.UPPER_MENU_ID = A.MENU_ID) AS IS_LEAF
+                       , B.LEVEL + 1 AS LEVEL
+                       , B.MENU_NM_PATH_ARR || A.MENU_NM AS MENU_NM_PATH_ARR
+                    FROM A
+                    JOIN B
+                         ON A.SYS_ID = B.SYS_ID
+                             AND A.UPPER_MENU_ID = B.MENU_ID
+                   WHERE A.INDCT_YN = 'Y'
+              ) SEARCH DEPTH FIRST BY SORT_ORDR, MENU_NM, MENU_ID SET ROW_ORDER
+        SELECT B.SYS_ID
+             , B.MENU_ID
+             , B.UPPER_MENU_ID
+             , B.MENU_NM
+             , CM.MENU_DC
+             , CM.MENU_TY
+             , CM.PROG_ID
+             , CASE CP.SUBSTITUTE_USE_YN
+                   WHEN 'Y' THEN CP.SUBSTITUTE_URL
+                   ELSE CP.PROG_URL
+               END AS URL
+             , CASE B.INDCT_YN
+                   WHEN 'Y' THEN 'true'
+                   ELSE 'false'
+               END AS INDCT_YN
+             , CM.DEFAULT_ROW_CNT
+             , CM.MODULE_ID
+             , CM.MAIN_URL
+             , CASE
+                   WHEN CM.MENU_TY = 'PAGE' AND CFM.MENU_ID IS NOT NULL THEN 'Y'
+                   WHEN CM.MENU_TY = 'PAGE' AND CFM.MENU_ID IS NULL THEN 'N'
+               END AS FAVORITE_YN
+             , B.LEVEL
+             , (ROW_NUMBER() OVER (ORDER BY ROW_ORDER)) - 1 AS ROW_NUM
+             , ARRAY_TO_STRING(B.MENU_NM_PATH_ARR, '>') AS MENU_NM_PATH
+          FROM B
+          JOIN CMN_MENU CM
+            ON B.SYS_ID = CM.SYS_ID
+           AND B.MENU_ID = CM.MENU_ID
+          LEFT JOIN CMN_PROG CP
+            ON CM.SYS_ID = CP.SYS_ID
+           AND CM.PROG_ID = CP.PROG_ID
+          LEFT JOIN CMN_FAVORITE_MENU CFM
+            ON CM.SYS_ID  = CFM.SYS_ID
+           AND CM.MENU_ID = CFM.MENU_ID
+           AND CFM.USER_ID = #{userId}
+         WHERE B.IS_LEAF
+         ORDER BY ROW_ORDER
+    </select>
+</mapper>

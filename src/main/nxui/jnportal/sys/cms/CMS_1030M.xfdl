@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_1030M" width="1920" height="810" titletext="담당과제 조회" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="810" screenid="Desktop_screen" stepcount="0">
+        <Button id="btnSearch" taborder="0" text="조회" top="12" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="담당과제 조회" left="50" top="10" height="30" cssclass="sta_WF_compTitle01" width="500"/>
+        <Static id="Static04_00" taborder="2" text="h 12" onclick="Static31_onclick" visible="false" left="50" top="45" width="60" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Div id="divProject" taborder="4" left="50" top="177" height="300" cssclass="" text="" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static10" taborder="1" text="w20" visible="false" left="0" top="-1" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="2" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="129" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staTitle02" taborder="5" text="담당과제 목록" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" onclick="Static09_onclick" width="169"/>
+              <Static id="staGridRowCnt" taborder="6" text="(총 0건)" cssclass="sta_WF_subResult" left="149" top="12" width="149" height="27"/>
+              <Grid id="grdProject" taborder="4" binddataset="dsProject" left="20" top="45" right="20" autofittype="col" tooltiptype="default" autoenter="select" bottom="13" enable="true" oncelldblclick="divProject_grdProject_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="100"/>
+                      <Column size="300"/>
+                      <Column size="100"/>
+                      <Column size="400"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="33"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" text="과제NO" autosizerow="default"/>
+                      <Cell col="2" text="과제명"/>
+                      <Cell col="3" text="사업구분"/>
+                      <Cell col="4" text="과제개요"/>
+                      <Cell col="5" text="시작일"/>
+                      <Cell col="6" text="종료일"/>
+                      <Cell col="7" text="기간"/>
+                      <Cell col="8" text="예산"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1" textAlign="center" expandsize="16" edittype="none"/>
+                      <Cell col="1" displaytype="normal" edittype="none" text="bind:projectNo" expandsize="16" textAlign="center"/>
+                      <Cell col="2" text="bind:projectNm" displaytype="normal" expandsize="16" edittype="none" textAlign="left" tooltiptext="bind:projectNm"/>
+                      <Cell col="3" displaytype="combotext" edittype="none" text="bind:projectType" calendardateformat="yyyy-MM-dd" expandsize="16" textAlign="center" combodataset="dsProjType" combocodecol="value" combodatacol="text"/>
+                      <Cell col="4" text="bind:projectOverview" textAlign="left" edittype="none" tooltiptext="bind:projectOverview"/>
+                      <Cell col="5" text="bind:projectStartDt" textAlign="center" edittype="none"/>
+                      <Cell col="6" text="bind:projectEndDt" textAlign="center" edittype="none"/>
+                      <Cell col="7" text="bind:projectDuration" textAlign="center"/>
+                      <Cell col="8" text="bind:projectBudget" textAlign="center"/>
+                    </Band>
+                  </Format>
+                  <Format id="format_copy"/>
+                </Formats>
+              </Grid>
+              <Static id="Static10_00" taborder="0" text="w20" visible="false" top="0" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="Static04_00_00_01" taborder="5" text="h 10" onclick="Static31_onclick" visible="false" left="70" top="477" width="60" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Div id="divMemberProject" taborder="6" left="50" top="487" height="300" cssclass="" text="" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static10" taborder="1" text="w20" visible="false" left="0" top="-1" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="2" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="129" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staTitle02" taborder="5" text="담당과제별 주요사항" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" onclick="Static09_onclick" width="169"/>
+              <Static id="staGridRowCnt" taborder="6" text="(총 0건)" cssclass="sta_WF_subResult" left="205" top="12" width="149" height="27"/>
+              <Grid id="grdMemberProject" taborder="4" binddataset="dsProjectAlert" left="20" top="45" right="20" autofittype="col" tooltiptype="default" autoenter="select" bottom="13" enable="true" onheadclick="divMemberProject_grdMemberProject_onheadclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="100"/>
+                      <Column size="300"/>
+                      <Column size="70"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="400"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="99"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" text="주요사항NO" autosizerow="default"/>
+                      <Cell col="2" text="주요사항 제목"/>
+                      <Cell col="3" text="순번"/>
+                      <Cell col="4" text="알림 시작일"/>
+                      <Cell col="5" text="알림 종료일"/>
+                      <Cell col="6" text="주요사항 알림 내용"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1" textAlign="center" expandsize="16" edittype="none"/>
+                      <Cell col="1" displaytype="normal" edittype="none" text="bind:projectAlertId" expandsize="16" textAlign="center"/>
+                      <Cell col="2" text="bind:projectAlertTitle" displaytype="normal" expandsize="16" edittype="none" textAlign="left" tooltiptext="bind:projectAlertTitle"/>
+                      <Cell col="3" textAlign="right" text="bind:projectAlertOrdr"/>
+                      <Cell col="4" text="bind:projectAlertStartDt" textAlign="center" edittype="none"/>
+                      <Cell col="5" text="bind:projectAlertEndDt" textAlign="center" edittype="none"/>
+                      <Cell col="6" text="bind:projectAlertCont" textAlign="left" edittype="none" tooltiptext="bind:projectAlertCont" displaytype="normal"/>
+                    </Band>
+                  </Format>
+                  <Format id="format_copy"/>
+                </Formats>
+              </Grid>
+              <Static id="Static10_00" taborder="0" text="w20" visible="false" top="0" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Button id="btnAlert" text="알림" cssclass="btn_WF_icoSelect" top="10" width="65" height="28" taborder="7" right="20" onclick="divMemberProject_btnAlert_onclick"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Div id="divSearch" taborder="7" text="Div00" left="50" top="57" height="110" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle01" taborder="0" text="검색조건" left="20" top="11" width="169" height="27" cssclass="sta_WF_subTitle01" onclick="div_Search_Static05_onclick"/>
+              <Static id="Static04_00_00_00" taborder="1" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00_00" taborder="2" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="3" text="h 12" onclick="Static31_onclick" visible="false" left="0" top="95" width="60" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Div id="divSrch" taborder="4" text="" top="45" cssclass="div_WF_panel" right="20" left="20" height="50">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static15_01_00" taborder="0" text="h 12" onclick="Static31_onclick" visible="false" left="225" top="2" width="50" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Edit id="edtProjectNo" taborder="1" left="125" top="14" width="150" height="26" maxlength="100" onkeyup="cmMyProject_onkeyup"/>
+                    <Static id="sta001" taborder="2" text="과제NO" cssclass="sta_WF_condition01" top="10" width="110" height="34" onclick="div_Search_Static01_onclick" left="15"/>
+                    <Static id="sta002" taborder="3" text="과제명" left="313" top="10" width="110" height="34" cssclass="sta_WF_condition01"/>
+                    <Edit id="edtProjectNm" taborder="4" left="423" top="14" width="150" height="26" onkeyup="cmMyProject_onkeyup"/>
+                    <Static id="sta003" taborder="5" text="사업구분" left="592" top="10" width="110" height="34" cssclass="sta_WF_condition01" fittocontents="width"/>
+                    <Combo id="cboProjectType" taborder="6" left="sta003:0" top="14" width="150" height="26" codecolumn="value" datacolumn="text" innerdataset="dsProjType" index="-1" text="전체" value="" onkeyup="cmMyProject_onkeyup"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Static id="Static10_00" taborder="3" text="w20" visible="false" left="50" top="57" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="466"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+          <Column id="projectNm" type="STRING" size="256"/>
+          <Column id="projectType" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsProjType">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProject" useclientlayout="true" onrowposchanged="dsProject_onrowposchanged">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+          <Column id="projectNm" type="STRING" size="256"/>
+          <Column id="projectType" type="STRING" size="256"/>
+          <Column id="projectOverview" type="STRING" size="256"/>
+          <Column id="projectStartDt" type="STRING" size="256"/>
+          <Column id="projectEndDt" type="STRING" size="256"/>
+          <Column id="projectDuration" type="STRING" size="256"/>
+          <Column id="projectBudget" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="RGST_IP" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProjectAlert" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="mbrNo" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="projectNo" type="STRING" size="256"/>
+          <Column id="projectAlertId" type="STRING" size="256"/>
+          <Column id="projectAlertTitle" type="STRING" size="256"/>
+          <Column id="projectAlertCont" type="STRING" size="256"/>
+          <Column id="projectAlertOrdr" type="STRING" size="256"/>
+          <Column id="projectAlertStartDt" type="STRING" size="256"/>
+          <Column id="projectAlertEndDt" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch2" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+          <Column id="projectNm" type="STRING" size="256"/>
+          <Column id="projectType" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      cmMyProject.xfdl 
+*  Creator 	     Kimjs
+*  CreateDate    2023.03.23
+*  Descrption    담당과제 조회  
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.23    Kimjs  	 최초 생성
+*  2023.04.06    Cheonsy  	 수정
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);	
+    this.gfnLoadCombo("loadCombo", "dsProjType=PMS:TMP:PROJECT_TY:A", "fnCallBack");
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 담당과제 조회
+*/
+this.fnSearch = function()
+{
+	this.gfnTransaction("getSubject", "cms/getSubject.do", "dsSearch", "dsProject", "", "fnCallBack");
+};
+
+/**
+ * description 담당과제별 주요사항 조회
+*/
+this.fnSearch2 = function()
+{
+    this.gfnTransaction("getSubjectImp", "cms/getSubjectImp.do", "dsSearch2", "dsProjectAlert", "", "fnCallBack");
+}   
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getSubject":
+			//총 건수 계산
+			this.gfnRowCount(this.dsProject, this.divProject.form.staGridRowCnt);
+            this.dsProjectAlert.clearData();
+		break;
+        case "getSubjectImp":
+            this.gfnRowCount(this.dsProjectAlert, this.divMemberProject.form.staGridRowCnt);
+            if(this.dsProjectAlert.rowcount == 0) {
+                this.divMemberProject.form.btnAlert.set_enable(false);
+            }else{
+                this.divMemberProject.form.btnAlert.set_enable(true);
+            }
+        break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	switch(sPopupId){
+		case "cmMyProjectInfoPopup":
+			
+		break;
+        case "cmMyProjectAlertPopup":
+			
+		break;
+        default:
+        break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회 버튼
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 엔터키 검색
+*/
+this.cmMyProject_onkeyup = function(obj:nexacro.Form,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * description 담당과제 더블클릭시 
+*/
+this.divProject_grdProject_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var oArg = {projectId: this.dsProject.getColumn(e.row, "projectNo")};
+	this.gfnOpenPopup("cmMyProjectInfoPopup", "sys::cms/CMS_1030P_01.xfdl", oArg, "fnPopupAfter", "");
+};
+
+
+/**
+ * description 알림버튼클릭시
+*/
+this.divMemberProject_btnAlert_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    var oArg = {  projectId : this.dsProjectAlert.getColumn(this.dsProjectAlert.rowposition, "projectNo") };
+	this.gfnOpenPopup("cmMyProjectAlertPopup", "sys::cms/CMS_1030P_02.xfdl", oArg, "fnPopupAfter", "");
+};
+
+/**
+ * description 담당과제 row변경시 주요사항 변경
+*/
+this.dsProject_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+    this.dsSearch2.setColumn(0, "projectNo", this.dsProject.getColumn(this.dsProject.rowposition, "projectNo"));
+	this.fnSearch2();
+};
+
+/**
+ * description 그리드 헤드 클릭
+*/
+this.divMemberProject_grdMemberProject_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item3" compid="divSearch.form.divSrch.form.edt_01" propid="value" datasetid="dsSearch" columnid="moduleId"/>
+      <BindItem id="item4" compid="divSearch.form.divSrch.form.edt_02" propid="value" datasetid="dsSearch" columnid="searchHeaderCode"/>
+      <BindItem id="item5" compid="divSearch.form.divSrch.form.edt_03" propid="value" datasetid="dsSearch" columnid="headerCodeNmKr"/>
+      <BindItem id="item0" compid="divSearch.form.divSrch.form.edtProjectNo" propid="value" datasetid="dsSearch" columnid="projectNo"/>
+      <BindItem id="item1" compid="divSearch.form.divSrch.form.edtProjectNm" propid="value" datasetid="dsSearch" columnid="projectNm"/>
+      <BindItem id="item2" compid="divSearch.form.divSrch.form.cboProjectType" propid="value" datasetid="dsSearch" columnid="projectType"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_0000M_02" width="500" height="147" titletext="배너">
+    <Layouts>
+      <Layout height="147" mobileorientation="landscape" width="500" stepcount="1">
+        <ImageViewer id="ImageViewer00" taborder="0" left="0" top="0" right="0" bottom="0" fittocontents="both" image="url('theme://images/portal/portal_banner1.png')" cssclass="portal_img_banner"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

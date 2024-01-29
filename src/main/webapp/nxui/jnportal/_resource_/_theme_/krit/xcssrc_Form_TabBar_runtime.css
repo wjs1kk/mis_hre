@@ -1,0 +1,120 @@
+﻿
+        
+.nexainput.nexaleftalign
+{
+  text-align:left;
+}
+.nexainput.nexarightalign
+{
+  text-align:right;
+}
+.nexainput.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexacontentsbox.nexaleftalign
+{
+  text-align:left;
+}
+.nexacontentsbox.nexarightalign
+{
+  text-align:right;
+}
+.nexacontentsbox.nexacenteralign
+{
+  text-align:center;
+}
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.nexainput
+{
+  cursor:inherit;
+}
+
+.Form.frm_MDI_tabbar
+{
+	background : #00388E;
+}
+.Button.menu
+{
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.btn_MDI_tabprev
+{
+	border : 0px none, 1px solid #3360a5;
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.btn_MDI_tabnext
+{
+	border : 0px none, 1px solid #3360a5;
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.tabbar-button
+{
+	border : 0px none, 1px solid #3360a5;
+	background : transparent;
+	border-radius : 0px;
+}
+.Tab.tab_MDI_menu .tabbuttonitemTab.tabbuttonitemTabtab_MDI_menu
+{
+	font : normal 700 12px/1 "Malgun Gothic";
+	color : #c9d5e7;
+	background : #4C73B0;
+}
+.Tab.tab_MDI_menu .tabbuttonitemTab.tabbuttonitemTabtab_MDI_menu .extrabutton
+{
+	background : url('./images/tab_MDI_menuClose.png') no-repeat center center;
+}
+.Tab.tab_MDI_menu .tabbuttonitemTab.tabbuttonitemTabtab_MDI_menu[userstatus=selected] .extrabutton
+{
+	background : url('./images/tab_MDI_menuClose_S.png') no-repeat center center;
+}
+.Tab .tabbuttonitemTab[userstatus=selected]
+{
+	color : #00388E;
+	background : #DEE7F1;
+}
+.Button.tabbar-button[status=disabled]
+{
+	opacity : 0.4;
+}

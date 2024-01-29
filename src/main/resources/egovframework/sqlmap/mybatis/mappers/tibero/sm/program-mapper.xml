@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.program.service.ProgramDAO">
+    <select id="selectProgramList" parameterType="map" resultType="programHeaderVO">
+        /* program-mapper.selectProgramList */
+        SELECT DISTINCT PROG.PROG_ID
+             , PROG.SYS_ID
+             , SYS.SYS_NM
+             , PROG.PROG_NM
+             , PROG.PROG_TY
+             , PROG.PROG_URL
+             , PROG.SUBSTITUTE_URL
+             , PROG.SUBSTITUTE_USE_YN
+             , PROG.PROG_DC
+             , PROG.RGST_ID
+             , PROG.RGST_IP
+             , TO_CHAR(PROG.RGST_DT,'YYYY-MM-DD') AS RGST_DT
+             , USR.USER_NM_KR AS RGST_USER_NM_KR
+             , TO_CHAR(PROG.UPDT_DT,'YYYY-MM-DD') AS UPDT_DT
+             , PROG.UPDT_IP
+             , PROG.UPDT_ID
+             , (SELECT COUNT(*)
+                  FROM CMN_MENU
+                 WHERE PROG_ID = PROG.PROG_ID) AS CNT
+             , PROG.ATCH_FILE_ID
+             , CASE WHEN PROG.ATCH_FILE_ID IS NULL THEN <![CDATA['<img src="'|| #{contextNamePath} || '/resources/images/upload_to_cloud_24px.png" onclick="javascript:; onUpload(''' || PROG.PROG_ID ||  ''',''' || PROG.ATCH_FILE_ID ||  ''')">']]>
+                    ELSE <![CDATA['<img src="'|| #{contextNamePath} || '/resources/images/download_from_the_cloud_24px.png" onclick="javascript:; onUpload(''' || PROG.PROG_ID ||  ''',''' || PROG.ATCH_FILE_ID ||  ''')">']]>
+               END AS ATCH_FILE_INFO
+             , <![CDATA['<img src="'|| #{contextNamePath} || '/resources/images/edit_file_24px.png" onclick="javascript:; onDBList(''' || PROG.PROG_ID ||  ''', ''' || PROG.SYS_ID || ''')">']]> AS DB_INFO
+             , PROG.PROG_FILE_NM AS PROG_FILE_NM
+             , (SELECT DISTINCT CU.USER_NM_KR FROM CMN_USER CU WHERE CU.USER_ID = PROG.UPDT_ID) AS UPDT_USER_NM
+             , PROG.PERMISSION_USE_YN AS PERMISSION_AT
+             , PROG.PERMISSION_USE_YN
+             , PROG.PERMISSION_DC
+          FROM CMN_PROG PROG
+          LEFT JOIN CMN_USER USR
+            ON PROG.RGST_ID = USR.USER_ID
+          LEFT JOIN CMN_SYSTEM SYS
+            ON PROG.SYS_ID = SYS.SYS_ID
+        <where>
+            <if test='progId != null and progId != "" and progId != "undefined"'>
+           AND PROG.PROG_ID LIKE '%' || #{progId} || '%'
+            </if>
+            <if test='progTy != null and progTy != "" and progTy != "" and progTy != "undefined"'>
+           AND PROG.PROG_TY = #{progTy}
+            </if>
+            <if test='progNm!= null and progNm != "" and progNm != "undefined"'>
+           AND PROG.PROG_NM LIKE '%' || #{progNm} || '%'
+            </if>
+            <if test='progUrl!= null and progUrl != "" and progUrl != "undefined"'>
+           AND PROG.PROG_URL LIKE '%' || #{progUrl} || '%'
+            </if>
+            <if test='sysId!= null and sysId != "" and sysId != "undefined"'>
+           AND PROG.SYS_ID LIKE '%'|| #{sysId} || '%'
+            </if>
+        </where>
+          ORDER BY PROG.PROG_ID
+    </select>
+
+    <select id="selectFunctionList" parameterType="map" resultType="programDetailVO">
+        /* program-mapper.selectFunctionList */
+        SELECT CPF.FUNC_ID
+             , CPF.PROG_ID
+             , CPF.SYS_ID
+             , CP.PROG_NM
+             , CPF.FUNC_NAME
+             , CPF.FUNC_DESC
+             , CPF.FUNC_PATTERN
+             , CPF.FUNC_PATTERN_TYPE
+             , CPF.FUNC_CODE
+             , CPF.FUNC_TYPE
+             , CPF.SORT_ORDR
+             , CPF.DISPLAY_IMG_URL
+             , CPF.RGST_ID
+             , CPF.RGST_IP
+             , CPF.RGST_DT
+             , CPF.UPDT_ID
+             , CPF.UPDT_IP
+             , CPF.UPDT_DT
+             , CP.ATCH_FILE_ID
+             , CP.PROG_FILE_NM
+          FROM CMN_PROG CP
+          JOIN CMN_PROG_FUNC CPF
+               ON CP.SYS_ID = CPF.SYS_ID
+                   AND CP.PROG_ID  = CPF.PROG_ID
+         WHERE CPF.PROG_ID = #{progId}
+           AND CPF.SYS_ID = #{sysId}
+    </select>
+
+    <insert id="insertProgram" parameterType="programHeaderVO">
+        /* program-mapper.insertProgram */
+        INSERT INTO CMN_PROG (
+            SYS_ID,
+            PROG_ID,
+            PROG_NM,
+            PROG_TY,
+            PROG_URL,
+            PROG_DC,
+            PROG_FILE_NM,
+            SUBSTITUTE_URL,
+            SUBSTITUTE_USE_YN,
+            ATCH_FILE_ID,
+            PERMISSION_USE_YN,
+            PERMISSION_DC,
+            RGST_ID,
+            RGST_IP,
+            RGST_DT,
+            UPDT_ID,
+            UPDT_IP,
+            UPDT_DT
+        ) VALUES (
+            #{sysId},
+            #{progId},
+            #{progNm},
+            #{progTy},
+            #{progUrl},
+            #{progDc},
+            #{progFileNm},
+            #{substituteUrl},
+            #{substituteUseYn},
+            #{atchFileId},
+            #{permissionUseYn},
+            #{permissionDc},
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE,
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE
+        )
+    </insert>
+
+    <update id="updateProgram" parameterType="programHeaderVO">
+        /* program-mapper.updateProgram */
+        UPDATE CMN_PROG
+           SET PROG_NM = #{progNm}
+             , PROG_TY = #{progTy}
+             , PROG_URL = #{progUrl}
+             , PROG_DC = #{progDc}
+             , PROG_FILE_NM = #{progFileNm}
+             , SUBSTITUTE_URL = #{substituteUrl}
+             , SUBSTITUTE_USE_YN = #{substituteUseYn}
+             , ATCH_FILE_ID = #{atchFileId}
+             , PERMISSION_USE_YN = #{permissionUseYn}
+             , PERMISSION_DC = #{permissionDc}
+             , UPDT_ID = #{sessionUserId}
+             , UPDT_IP = #{sessionUserIp}
+             , UPDT_DT = SYSDATE
+         WHERE SYS_ID = #{sysId}
+           AND PROG_ID = #{progId}
+    </update>
+
+    <delete id="deleteProgram" parameterType="programHeaderVO">
+        /* program-mapper.deleteProgram */
+        DELETE FROM CMN_PROG
+         WHERE SYS_ID = #{sysId}
+           AND PROG_ID = #{progId}
+    </delete>
+
+    <delete id="deleteProgramFunction" parameterType="programHeaderVO">
+        /* program-mapper.deleteProgramFunction */
+        DELETE FROM CMN_PROG_FUNC
+         WHERE PROG_ID = #{progId}
+    </delete>
+
+    <insert id="insertFunction" parameterType="programDetailVO">
+        <selectKey keyProperty="funcId" resultType="string" order="BEFORE">
+            SELECT COALESCE(MAX(TO_NUMBER(FUNC_ID)), 0) + 1 AS FUNC_ID
+              FROM CMN_PROG_FUNC
+        </selectKey>
+        /* program-mapper.insertFunction */
+        INSERT INTO CMN_PROG_FUNC (
+            PROG_ID,
+            SYS_ID,
+            FUNC_ID,
+            FUNC_NAME,
+            FUNC_DESC,
+            FUNC_PATTERN,
+            FUNC_PATTERN_TYPE,
+            FUNC_CODE,
+            FUNC_TYPE,
+            DISPLAY_IMG_URL,
+            SORT_ORDR,
+            RGST_ID,
+            RGST_IP,
+            RGST_DT,
+            UPDT_ID,
+            UPDT_IP,
+            UPDT_DT
+        ) VALUES (
+            #{progId},
+            #{sysId},
+            #{funcId},
+            #{funcName},
+            #{funcDesc},
+            #{funcPattern},
+            #{funcPatternType},
+            #{funcCode},
+            #{funcType},
+            #{displayImgUrl},
+            #{sortOrdr},
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE,
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE
+        )
+    </insert>
+
+    <update id="updateFunction" parameterType="programDetailVO">
+        /* program-mapper.updateFunction */
+        UPDATE CMN_PROG_FUNC
+           SET FUNC_NAME = #{funcName}
+             , FUNC_DESC = #{funcDesc}
+             , FUNC_PATTERN = #{funcPattern}
+             , FUNC_PATTERN_TYPE = #{funcPatternType}
+             , FUNC_CODE = #{funcCode}
+             , FUNC_TYPE = #{funcType}
+             , DISPLAY_IMG_URL = #{displayImgUrl}
+             , SORT_ORDR = #{sortOrdr}
+             , UPDT_ID = #{sessionUserId}
+             , UPDT_IP = #{sessionUserIp}
+             , UPDT_DT = SYSDATE
+         WHERE PROG_ID = #{progId}
+           AND FUNC_ID = #{funcId}
+           AND SYS_ID = #{sysId}
+    </update>
+
+    <delete id="deleteFunction" parameterType="programDetailVO">
+        /* program-mapper.deleteFunction */
+        DELETE FROM CMN_PROG_FUNC
+         WHERE PROG_ID = #{progId}
+           AND FUNC_ID = #{funcId}
+           AND SYS_ID = #{sysId}
+    </delete>
+
+    <select id="getAvailableTableList">
+        /** program-mapper.getAvailableTableList **/
+        SELECT #{sysId} AS SYS_ID
+             , #{progId} AS PROG_ID
+             , ATC.OWNER AS TABLE_OWNER
+             , ATC.TABLE_NAME
+             , ATC.COMMENTS AS TABLE_COMMENT
+             , DECODE(ATC.TABLE_TYPE, 'TABLE', '테이블', 'VIEW', '뷰') AS TABLE_TYPE
+          FROM SYSCAT.ALL_TAB_COMMENTS ATC
+         WHERE ATC.OWNER NOT IN ('SYS', 'SYSCAT', 'TIBERO', 'TIBERO1', 'SYSGIS', 'OUTLN')
+           AND (ATC.OWNER, ATC.TABLE_NAME) NOT IN (SELECT TABLE_OWNER, TABLE_NAME
+                                                     FROM CMN_PROG_TABLE
+                                                    WHERE SYS_ID = #{sysId}
+                                                      AND PROG_ID = #{progId})
+         ORDER BY OWNER, TABLE_NAME
+    </select>
+
+    <select id="getSelectedTableList">
+        /** program-mapper.getSelectedTableList **/
+        SELECT CPT.SYS_ID
+             , CPT.PROG_ID
+             , CPT.TABLE_OWNER
+             , CPT.TABLE_NAME
+             , ATC.COMMENTS AS TABLE_COMMENT
+             , DECODE(ATC.TABLE_TYPE, 'TABLE', '테이블', 'VIEW', '뷰') AS TABLE_TYPE
+             , CPT.RGST_ID
+             , CPT.RGST_IP
+             , CPT.RGST_DT
+             , CPT.UPDT_ID
+             , CPT.UPDT_IP
+             , CPT.UPDT_DT
+          FROM CMN_PROG_TABLE CPT
+          JOIN SYSCAT.ALL_TAB_COMMENTS ATC
+            ON CPT.TABLE_OWNER = ATC.OWNER
+           AND CPT.TABLE_NAME = ATC.TABLE_NAME
+         WHERE CPT.SYS_ID = #{sysId}
+           AND CPT.PROG_ID = #{progId}
+         ORDER BY CPT.TABLE_OWNER, CPT.TABLE_NAME
+    </select>
+
+    <delete id="deleteTableList">
+        DELETE FROM CMN_PROG_TABLE
+         WHERE SYS_ID = #{sysId}
+           AND PROG_ID = #{progId}
+    </delete>
+
+    <insert id="setTable">
+        INSERT INTO CMN_PROG_TABLE(
+            SYS_ID,
+            PROG_ID,
+            TABLE_OWNER,
+            TABLE_NAME,
+            RGST_ID,
+            RGST_IP,
+            RGST_DT,
+            UPDT_ID,
+            UPDT_IP,
+            UPDT_DT
+        )
+        VALUES (
+            #{sysId},
+            #{progId},
+            #{tableOwner},
+            #{tableName},
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE,
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE
+        )
+    </insert>
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.faq.service.FaqListDAO">
+
+    <!-- FAQ 목록 조회 -->
+    <select id="getFaqList" parameterType="map" resultType="faqVO">
+        /* faq-list-mapper.getFaqList */
+        SELECT PF.FAQ_ID
+             , PF.CLS_CD
+             , (SELECT LINE_CODE_NM_KR
+                  FROM CMN_CODE_LINE CCL
+                 WHERE CCL.LINE_CODE = PF.CLS_CD
+                  AND CCL.SYS_ID = #{sessionSysId}
+                  AND CCL.MODULE_ID ='PTS'
+                  AND CCL.HEADER_CODE = 'WORK_CATEGORY') AS CLS_NM
+             , PF.QSTN_TTL
+             , PF.QSTN_CN
+             , PF.ANSWR_CN
+             , PF.RDCNT
+             , PF.FAQ_STTS_CD
+             , (SELECT LINE_CODE_NM_KR
+                  FROM CMN_CODE_LINE CCL
+                 WHERE CCL.LINE_CODE = PF.FAQ_STTS_CD
+                 AND CCL.SYS_ID = #{sessionSysId}
+                  and CCL.MODULE_ID ='PTS'
+                  and CCL.HEADER_CODE = 'FAQ_STTS') AS FAQ_STTS_NM
+             , PF.RGST_DT
+             , PF.RGSTR_ID
+             , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PF.RGSTR_ID) AS RGSTR_MEMBER_ID
+             , PF.UPDT_DT
+             , PF.UPDTR_ID
+          FROM PTS_FAQ PF
+          <where>
+            <if test='clsCd != null and clsCd != ""'>
+            AND PF.CLS_CD = #{clsCd}
+            </if>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "TITLE"'>
+            AND PF.QSTN_TTL LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "CONTENT"'>
+            AND PF.QSTN_CN LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "WRITER"'>
+            AND (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PF.RGSTR_ID) LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+            AND (PF.QSTN_TTL LIKE '%' || #{searchKeyword} || '%'
+              OR PF.QSTN_CN LIKE '%' || #{searchKeyword} || '%'
+              OR (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PF.RGSTR_ID) LIKE '%' || #{searchKeyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+          </where>
+      ORDER BY PF.RGST_DT DESC
+    </select>
+
+</mapper>

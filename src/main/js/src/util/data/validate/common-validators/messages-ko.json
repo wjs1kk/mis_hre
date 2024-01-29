@@ -1,0 +1,16 @@
+{
+    "Numeric.NotANumber": "{0}[는|은] 숫자가 아닙니다.",
+    "Numeric.MinValue": "{0}[는|은] {1} 이상이어야 합니다.",
+    "Numeric.MaxValue": "{0}[는|은] {1} 이하여야 합니다.",
+    "Numeric.NotBetween": "{0}[는|은] {1} 이상 {2} 이하여야 합니다.",
+    "Numeric.InvalidRange": "{0}의 최소값이 최대값보다 큽니다.",
+    "Numeric.InvalidRange.WithoutRangeName": "최소값이 최대값보다 큽니다.",
+    "Required": "{0}[를|을] 입력하세요.",
+    "RegExp.NotMatched": "The format of {0} is invalid.",
+    "DateTime.Format": "{0}의 날짜 형식이 올바르지 않습니다.",
+    "DateTime.InvalidRange": "{0}의 종료일이 시작일보다 빠릅니다.",
+    "DateTime.InvalidRange.WithoutRangeName": "종료일이 시작일보다 빠릅니다.",
+    "String.MinLength": "{0}은 {1}{2} 이상이어야 합니다.",
+    "String.MaxLength": "{0}은 {1}{2} 이하여야 합니다.",
+    "String.LengthNotBetween": "{0}은 {1}{3} 이상 {2}{3} 이하여야 합니다."
+}

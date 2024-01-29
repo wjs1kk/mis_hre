@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="BBS_3020P" width="480" height="290" titletext="비밀글-비밀번호 확인" onload="form_onload">
+    <Layouts>
+      <Layout height="290" width="480">
+        <Div id="divPopup" taborder="0" left="0" top="0" height="290" cssclass="div_WF_Area" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="4" cssclass="sta_WF_condition02box" left="30" top="180" right="30" height="34" text=""/>
+              <Static id="Static00" taborder="0" text="비밀번호 확인" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="staLabel" taborder="1" text="비밀글 입니다. 비밀번호를 입력하세요." left="30" top="70" height="90" right="30" font="normal 12pt/normal &quot;Malgun Gothic&quot;" background="url('theme://images/img_WF_alert.png') no-repeat center top" padding="70px 0px 0px" textAlign="center"/>
+              <Static id="Static_basic" taborder="2" text="비밀번호" cssclass="sta_WF_condition02_L" left="30" top="180" width="150" height="34"/>
+              <Edit id="edtPassword" taborder="3" left="190" width="250" height="26" top="184" password="true" onkeydown="divPopup_edtPassword_onkeydown"/>
+              <Button id="btnConfirm" text="확인" cssclass="btn_WF_icoConfirm" top="239" width="63" height="28" taborder="5" left="176" onclick="divPopup_btnConfirm_onclick"/>
+              <Button id="btnCancel" text="닫기" cssclass="btn_WF_icoCancel" top="239" width="63" height="28" taborder="6" left="242" onclick="divPopup_btnCancel_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsPassword">
+        <ColumnInfo>
+          <Column id="oldPasswd" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.edtPassword" propid="value" datasetid="dsPassword" columnid="oldPasswd"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[ /**
+*  비밀번호 확인 PopUp
+*  MenuPath      소통광장 - 게시판 목록 - 상세화면(비밀번호 확인PopUp)
+*  FileName      BBS_3020P.xfdl 
+*  Creator 	     woohj
+*  CreateDate    2023.12.14
+*  Desction      공지사항관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.14    woohj  	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+this.callbackMsg = null;
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/**
+ * description 비밀글 - 비밀번호 검증
+*/
+this.fnCheckPassword = function ()
+{	
+	// 먼지모름
+	this.divPopup.form.edtPassword.updateToDataset();
+
+	var strSvcId    = "checkPassword";
+	var strSvcUrl   = "bbs/noticeBoard/scrtBBSCheckPassword.do";
+	var inData      = "dsPassword";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description Transaction Callback 함수
+*/
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "checkPassword":
+            if (this.callbackMsg === "success") {
+                this.gfnPopupClose({
+                    result: "success"
+                });
+            } else {
+                this.gfnAlert("비밀번호가 틀렸습니다.");
+            }
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * description 확인 버튼
+*/
+this.divPopup_btnConfirm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnCheckPassword();
+};
+
+/**
+ * description 닫기 버튼
+*/
+this.divPopup_btnCancel_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnPopupClose({
+        result: "canceled"
+    });
+};
+
+
+this.divPopup_edtPassword_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+    if (e.keycode == 13) {
+        this.fnCheckPassword();
+    }
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnValidate = function ()
+{
+    const args = [
+        ["oldPasswd", "NULL|MAX_LEN:300", "비밀번호"],
+    ];
+    
+    return this.gfnCheckGrid(this.dsPassword, args, "");
+};
+
+]]></Script>
+  </Form>
+</FDL>

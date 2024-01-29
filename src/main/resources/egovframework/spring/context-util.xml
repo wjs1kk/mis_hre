@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="jnframeProp"
+                     location="classpath:/jnframe.properties,classpath:/jnframe-*.properties"
+                     ignore-resource-not-found="true" />
+
+    <util:properties id="systemProp">
+        <prop key="commonFilePath">/home/kritpms/jn_file/</prop>
+        <prop key="rootFilePath">/jnportal/jn_file/</prop>
+        <prop key="tempFilePath">/jnportal/temp/</prop>
+        <prop key="maxImageSize">5242880</prop> <!-- 5242880 Bytes == 5 MiB -->
+        <!-- <prop key="useDextUploader">false</prop>
+        <prop key="dextTempRepositoryPath">C:/home/kritpms/temp</prop>
+        <prop key="dextDefaultRepositoryPath">C:/home/kritpms/attach</prop>
+        <prop key="dextAutoMakingDirectory">true</prop>
+        <prop key="dextLicenseFilePath">C:/home/kritpms/dextuploadnj.config</prop> -->
+    </util:properties>
+
+    <util:properties id="authProp">
+        <prop key="checkClientIp">true</prop>
+        <prop key="allowIfIpListIsEmpty">true</prop>
+    </util:properties>
+
+    <util:properties id="smtpProp">
+        <prop key="mail.smtp.host">smtp.gmail.com</prop>
+        <prop key="mail.smtp.port">465</prop>
+        <prop key="mail.smtp.auth">true</prop>
+        <prop key="mail.smtp.ssl.enable">true</prop>
+        <prop key="mail.smtp.ssl.trust">true</prop>
+
+        <prop key="mail.smtp.auth.username">cdse06@gmail.com</prop>
+        <prop key="mail.smtp.auth.password">csekietbihpvzpgr</prop>
+        <prop key="mail.smtp.from.address">cdse06@gmail.com</prop>
+        <prop key="mail.smtp.from.name">박상욱</prop>
+    </util:properties>
+
+    <util:properties id="crypto">
+        <prop key="crypto.password.algorithm">SHA-256</prop>
+        <prop key="password">jnvjnv0701</prop>
+        <prop key="crypto.hashed.password">2ZVRQhVykcQ5L2n3tgVRjlFqNCqSaWFWsHBSRPUmceI=</prop><!-- jnvjnv0701 -->
+    </util:properties>
+</beans>

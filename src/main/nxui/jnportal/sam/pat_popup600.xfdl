@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Popup600" width="600" height="687" titletext="Popup600">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="0" text="" left="0" top="0" height="687" width="600" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="레이어 팝업 제목" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0" bottom="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" onclick="Static31_onclick" visible="false" left="249" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Div id="div_Search" taborder="5" left="30" top="70" height="172" cssclass="div_WF_Transparent" text="" right="30">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static00" taborder="2" left="0" top="0" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" bottom="15"/>
+                    <Static id="sch_RQST_NO" taborder="3" text="&lt;fs v='13'&gt;&lt;fc v='#ef4343'&gt;*&lt;/fc&gt;&lt;/fs&gt;신청번호" cssclass="sta_WF_condition01" top="15" width="18.52%" height="26" onclick="div_Search_Static01_onclick" left="20" usedecorate="true"/>
+                    <Static id="sch_RQST_DT" taborder="5" text="신청일" left="20" top="82" width="18.52%" height="26" cssclass="sta_WF_condition01"/>
+                    <Calendar id="SCH_RQST_DT" taborder="6" left="sch_RQST_DT:10" top="82" width="297" height="26" dateformat="yyyy-MM-dd" popuptype="center" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28"/>
+                    <Static id="sch_LAST_UPT_NM" taborder="9" text="&lt;fs v='13'&gt;&lt;fc v='#ef4343'&gt;*&lt;/fc&gt;&lt;/fs&gt;최종수정자" onclick="div_Search_Static01_onclick" cssclass="sta_WF_condition01" top="48" width="18.52%" height="26" left="20" usedecorate="true"/>
+                    <Static id="sch_LAST_UPT_DT" taborder="10" text="최종수정일" cssclass="sta_WF_condition01" left="20" top="116" width="18.52%" height="26"/>
+                    <Calendar id="SCH_LAST_UPT_DT" taborder="8" left="sch_LAST_UPT_DT:10" top="116" width="297" height="26" dateformat="yyyy-MM" value="null" editformat="yyyy-MM" backgroundcolumn="disabled" readonly="false"/>
+                    <Edit id="SCH_RQST_NO" taborder="4" left="sch_RQST_NO:10" top="15" width="359" height="26" oneditclick="div_Search_SCH_RQST_NO_oneditclick" maxlength="100" cssclass="essential"/>
+                    <Edit id="SCH_LAST_UPT_NM" taborder="7" left="sch_LAST_UPT_NM:10" top="49" width="359" height="26" cssclass="essential"/>
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static04_00_00_01" taborder="1" text="h 15" onclick="Static31_onclick" visible="false" left="20" width="100" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static11" taborder="11" text="h 15" visible="false" left="0" top="0" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="0"/>
+                    <Static id="Static14" taborder="12" text="h 8" visible="false" left="0" top="41" height="8" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="0"/>
+                    <Static id="Static15" taborder="13" text="h 15" visible="false" left="0" top="142" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="0"/>
+                    <Static id="Static14_00" taborder="14" text="h 8" visible="false" left="0" top="74" height="8" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="0"/>
+                    <Static id="Static14_00_00" taborder="15" text="h 8" visible="false" left="0" top="108" height="8" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="0"/>
+                    <Static id="Static12" taborder="16" text="w 10" visible="false" left="120" top="15" width="10" height="127" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick"/>
+                    <Static id="Static10_01" taborder="17" text="w20" visible="false" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Div id="div_Search02_00" taborder="6" left="30" top="242" height="162" cssclass="div_WF_popup" text="" right="30">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="sta_dtlInfo" taborder="1" text="과제 정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" height="45" width="169" top="0"/>
+                    <Static id="Static04_00_00_00_00" taborder="2" text="h 15" onclick="Static31_onclick" visible="false" left="110" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static10_00" taborder="3" cssclass="sta_WF_condition02box" left="20" top="45" right="20" height="34" text=""/>
+                    <Static id="Static20" taborder="4" cssclass="sta_WF_condition02box" left="20" top="78" right="20" height="34"/>
+                    <Static id="Static20_00" taborder="5" cssclass="sta_WF_condition02box" left="20" top="111" right="20" height="34"/>
+                    <Static id="in_YY" taborder="6" text="Spinner" cssclass="sta_WF_condition02_L" left="20" top="111" width="27.88%" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                    <Static id="Static11_00" taborder="7" text="신청번호" cssclass="sta_WF_condition02_L" left="20" top="45" width="27.88%" height="34"/>
+                    <Static id="Static23" taborder="8" text="콤보입력" cssclass="sta_WF_condition02_L" left="20" top="78" width="27.88%" height="34"/>
+                    <Static id="Static00" taborder="9" text="ACT02202001-00" left="Static11_00:10" top="45" width="323" height="34"/>
+                    <Static id="Static00_00_00" taborder="10" text="ACT02202001-00" left="in_YY:10" top="111" width="323" height="34"/>
+                    <Static id="Static00_01" taborder="11" text="ACT02202001-00" left="Static23:10" top="78" width="323" height="34"/>
+                    <Static id="Static10_01" taborder="12" text="w20" visible="false" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+                    <Static id="Static04_00_00_00" taborder="13" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Div id="div_Search02_00_00" taborder="7" left="30" top="414" height="197" cssclass="div_WF_popup" text="" right="30">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 22" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="22" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Tab id="Tab00" taborder="2" left="20" top="22" right="20" tabindex="0" scrollbars="autoboth" cssclass="tab_WF_comp" onchanged="Tab00_onchanged" tabbuttonheight="34" bottom="15">
+                      <Tabpages>
+                        <Tabpage id="tabpage1" text="그리드입력">
+                          <Layouts>
+                            <Layout width="1032" height="392">
+                              <Grid id="Grid00" taborder="0" binddataset="ds_list" autoenter="select" left="0" top="0" right="0" autofittype="col" bottom="0">
+                                <Formats>
+                                  <Format id="default">
+                                    <Columns>
+                                      <Column size="40"/>
+                                      <Column size="80"/>
+                                      <Column size="114"/>
+                                      <Column size="80"/>
+                                      <Column size="80"/>
+                                      <Column size="80"/>
+                                      <Column size="80"/>
+                                      <Column size="385"/>
+                                    </Columns>
+                                    <Rows>
+                                      <Row size="30" band="head"/>
+                                      <Row size="34"/>
+                                    </Rows>
+                                    <Band id="head">
+                                      <Cell text="순번"/>
+                                      <Cell col="1" text="신청번호"/>
+                                      <Cell col="2" text="신청일"/>
+                                      <Cell col="3" text="결재상태"/>
+                                      <Cell col="4" text="요청부서"/>
+                                      <Cell col="5" text="신청자"/>
+                                      <Cell col="6" text="신청금액"/>
+                                      <Cell col="7" text="제목"/>
+                                    </Band>
+                                    <Band id="body">
+                                      <Cell text="bind:NUM"/>
+                                      <Cell col="1" text="bind:RQST_NO" displaytype="editcontrol" edittype="text"/>
+                                      <Cell col="2" text="bind:RQST_DT" displaytype="calendarcontrol" edittype="text" calendardateformat="yyyy-MM-dd"/>
+                                      <Cell col="3" text="bind:APV_STAT_NM" displaytype="editcontrol" edittype="text"/>
+                                      <Cell col="4" text="bind:RQST_DEPT_NM" displaytype="combocontrol" edittype="combo"/>
+                                      <Cell col="5" text="bind:RQST_NM" displaytype="none" edittype="text"/>
+                                      <Cell col="6" text="bind:RQST_AMT" displaytype="editcontrol" edittype="text"/>
+                                      <Cell col="7" text="bind:SBJ" displaytype="editcontrol" edittype="text"/>
+                                    </Band>
+                                  </Format>
+                                </Formats>
+                              </Grid>
+                            </Layout>
+                          </Layouts>
+                        </Tabpage>
+                        <Tabpage id="tabpage2" text="일반입력"/>
+                        <Tabpage id="tabpage3" text="파일첨부"/>
+                      </Tabpages>
+                    </Tab>
+                    <Static id="Static04_00_00_00_01" taborder="3" text="h 15" onclick="Static31_onclick" visible="false" left="70" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static07_00" taborder="4" left="20" top="23" width="1" height="42" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                    <Static id="Static10_00" taborder="5" text="w20" visible="false" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00_00" taborder="8" text="h 25" onclick="Static31_onclick" visible="false" left="249" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" width="103"/>
+              <Button id="btn_popClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="9" onclick="btn_registration_onclick" right="267" bottom="23"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static07_00" taborder="1" text="h 10" visible="false" left="30" top="404" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" width="80"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_List" firefirstcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="NUM" type="STRING" size="256"/>
+          <Column id="RQST_NO" type="STRING" size="256"/>
+          <Column id="RQST_DT" type="STRING" size="256"/>
+          <Column id="APV_STAT_NM" type="STRING" size="256"/>
+          <Column id="APV_STAT_CD" type="STRING" size="256"/>
+          <Column id="RQST_DEPT_NM" type="STRING" size="256"/>
+          <Column id="RQST_NM" type="STRING" size="256"/>
+          <Column id="RQST_AMT" type="STRING" size="256"/>
+          <Column id="SBJ" type="STRING" size="256"/>
+          <Column id="FRM_DT" type="STRING" size="256"/>
+          <Column id="TO_DT" type="STRING" size="256"/>
+          <Column id="HEAD_STAT_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="RQST_NO">ACT02202001-0001</Col>
+            <Col id="RQST_DT">20200101</Col>
+            <Col id="APV_STAT_NM">결재중</Col>
+            <Col id="APV_STAT_CD">020-000-0100</Col>
+            <Col id="RQST_DEPT_NM">인사총무팀</Col>
+            <Col id="RQST_NM">홍길동</Col>
+            <Col id="RQST_AMT">100000</Col>
+            <Col id="SBJ">연구활동비 지급신청서활동비 지급신청서활동비 지급신청서활동비 지급신청서</Col>
+            <Col id="NUM">1</Col>
+            <Col id="FRM_DT">20160101</Col>
+            <Col id="TO_DT">20160101</Col>
+            <Col id="HEAD_STAT_CD">D</Col>
+          </Row>
+          <Row/>
+          <Row/>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.div_Search.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="Div00.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="Div00.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="Div00.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="Div00.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="Div00.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="Div00.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="Div00.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="Div00.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="Div00.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="Div00.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="Div00.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="Div00.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="Div00.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="Div00.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="Div00.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="Div00.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="Div00.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="Div00.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="Div00.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="Div00.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="Div00.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="Div00.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="Div00.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="Div00.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="Div00.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="Div00.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="Div00.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="Div00.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="Div00.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="Div00.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="Div00.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="Div00.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+    </Bind>
+  </Form>
+</FDL>

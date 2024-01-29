@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_1030P_02" width="1000" height="460" titletext="과제 주요사항 알림" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="divPop" taborder="0" text="" left="0" top="0" height="460" width="1000">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="과제 주요사항 알림" left="0" top="0" width="1000" height="50" cssclass="sta_WF_popupTitle"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" onclick="Static31_onclick" visible="false" left="449" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Div id="divInfo" taborder="5" left="30" top="70" height="313" cssclass="div_WF_popup" text="" width="940">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="staTitle" taborder="2" text="주요사항" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" width="169"/>
+                    <ListView id="lvProjectInfo" taborder="3" left="19" top="45" binddataset="dsProjectAlert" right="20" bottom="23" bandinitstatus="collapse" bandexpandtype="accordion" cellclickbound="control" scrolltype="both" scrollbartype="indicator indicator" useselcolor="false" oncellclick="divPop_divInfo_lvProjectInfo_oncellclick">
+                      <Formats>
+                        <Format id="default">
+                          <Band id="body" width="100%" height="80" expandbartype="false">
+                            <Cell id="Cell04" left="10" top="10" font="24px &quot;Malgun Gothic&quot;" width="100" bottom="10" textAlign="center" displaytype="normal" background="url('theme://images/btn_WF_Sms_D.png') no-repeat center center /20px 20px"/>
+                            <Cell id="Cell07" left="110" top="10" text="bind:projectAlertTitle" right="10" bottom="10" font="24px &quot;Malgun Gothic&quot;" padding="4px 4px 4px 30px" color="#666666"/>
+                          </Band>
+                          <Band id="detail" width="100%" height="100" background="#ffffff">
+                            <Cell id="Cell00" left="50" top="10" text="bind:projectAlertCont" right="10" font="italic 24px/normal &quot;Malgun Gothic&quot;" wordWrap="english" bottom="10" border="1px solid #ffffff"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </ListView>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="450" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" width="103"/>
+              <Button id="btnClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" right="467" bottom="23" onclick="divPop_btnClose_onclick"/>
+              <Static id="Static15_01_00" taborder="8" text="h 12" onclick="Static31_onclick" visible="false" left="32" top="451" width="50" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsProject" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="projectId" type="STRING" size="256"/>
+          <Column id="projectNm" type="STRING" size="256"/>
+          <Column id="projectType" type="STRING" size="256"/>
+          <Column id="projtectStatus" type="STRING" size="256"/>
+          <Column id="projectOverview" type="STRING" size="256"/>
+          <Column id="projectStartDt" type="STRING" size="256"/>
+          <Column id="projectEndDt" type="STRING" size="256"/>
+          <Column id="projectDuration" type="STRING" size="256"/>
+          <Column id="projectBudget" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="userNmEn" type="STRING" size="256"/>
+          <Column id="applyDt" type="STRING" size="256"/>
+          <Column id="applyStatus" type="STRING" size="256"/>
+          <Column id="applyCont" type="STRING" size="256"/>
+          <Column id="legalYn" type="STRING" size="256"/>
+          <Column id="emailAddr" type="STRING" size="256"/>
+          <Column id="telNo" type="STRING" size="256"/>
+          <Column id="phoneNo" type="STRING" size="256"/>
+          <Column id="UnsubscribeYn" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="userId">1234567</Col>
+            <Col id="memberId">1234567</Col>
+            <Col id="userNmKr">홍길동</Col>
+            <Col id="applyDt">2023-03-01 13:02:02</Col>
+            <Col id="applyStatus">승인요청</Col>
+            <Col id="phoneNo">010-0000-0000</Col>
+            <Col id="userNmEn">Brandon </Col>
+            <Col id="legalYn">아니오</Col>
+            <Col id="telNo">055-000-0000</Col>
+            <Col id="applyCont">000 과제를 위한 회원가입 신청입니다.</Col>
+            <Col id="emailAddr">abcd@efg.com</Col>
+            <Col id="UnsubscribeYn">아니오</Col>
+          </Row>
+          <Row>
+            <Col id="userId">1234578</Col>
+            <Col id="memberId">1234578</Col>
+            <Col id="userNmKr">강감찬</Col>
+            <Col id="applyDt">2023-03-01 12:01:55</Col>
+            <Col id="applyStatus">승인요청</Col>
+            <Col id="phoneNo">010-0000-0000</Col>
+            <Col id="userNmEn">Cooper </Col>
+            <Col id="legalYn">아니오</Col>
+            <Col id="telNo">055-000-0000</Col>
+            <Col id="applyCont">000 과제를 위한 회원가입 신청입니다.</Col>
+            <Col id="emailAddr">abcd@efg.com</Col>
+            <Col id="UnsubscribeYn">아니오</Col>
+          </Row>
+          <Row>
+            <Col id="userId">1245678</Col>
+            <Col id="memberId">1245678</Col>
+            <Col id="userNmKr">제이앤밸류</Col>
+            <Col id="applyDt">2023-03-01 17:12:32</Col>
+            <Col id="applyStatus">승인</Col>
+            <Col id="phoneNo">010-0000-0000</Col>
+            <Col id="userNmEn">Dilan </Col>
+            <Col id="legalYn">예</Col>
+            <Col id="telNo">055-000-0000</Col>
+            <Col id="applyCont">000 과제를 위한 회원가입 신청입니다.</Col>
+            <Col id="emailAddr">abcd@efg.com</Col>
+            <Col id="UnsubscribeYn">예</Col>
+          </Row>
+          <Row>
+            <Col id="userId">1234212</Col>
+            <Col id="memberId">1234212</Col>
+            <Col id="userNmKr">이수영</Col>
+            <Col id="applyDt">2023-03-02 13:02:02</Col>
+            <Col id="applyStatus">반려</Col>
+            <Col id="phoneNo">010-0000-0000</Col>
+            <Col id="userNmEn">Blake </Col>
+            <Col id="legalYn">아니오</Col>
+            <Col id="telNo">055-000-0000</Col>
+            <Col id="applyCont">000 과제를 위한 회원가입 신청입니다.</Col>
+            <Col id="emailAddr">abcd@efg.com</Col>
+            <Col id="UnsubscribeYn">아니오</Col>
+          </Row>
+          <Row>
+            <Col id="userId">1212457</Col>
+            <Col id="memberId">1212457</Col>
+            <Col id="userNmKr">김재홍</Col>
+            <Col id="applyDt">2023-03-02 13:02:02</Col>
+            <Col id="applyStatus">승인</Col>
+            <Col id="phoneNo">010-0000-0000</Col>
+            <Col id="userNmEn">Gunner </Col>
+            <Col id="legalYn">아니오</Col>
+            <Col id="telNo">055-000-0000</Col>
+            <Col id="applyCont">000 과제를 위한 회원가입 신청입니다.</Col>
+            <Col id="emailAddr">abcd@efg.com</Col>
+            <Col id="UnsubscribeYn">아니오</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsProjectAlert" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="projectId" type="STRING" size="256"/>
+          <Column id="projectNm" type="STRING" size="256"/>
+          <Column id="projectAlertId" type="STRING" size="256"/>
+          <Column id="projectAlertTitle" type="STRING" size="256"/>
+          <Column id="projectAlertCont" type="STRING" size="256"/>
+          <Column id="projectAlertStartDt" type="STRING" size="256"/>
+          <Column id="projectAlertEndDt" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item12" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="PopupDiv.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="PopupDiv.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="PopupDiv.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="PopupDiv.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="PopupDiv.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="PopupDiv.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="PopupDiv.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="PopupDiv.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="PopupDiv.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="PopupDiv.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="PopupDiv.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="PopupDiv.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="PopupDiv.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="PopupDiv.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="PopupDiv.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="PopupDiv.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="PopupDiv.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item0" compid="divPop.form.div_Search.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="divPop.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="divPop.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="divPop.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="divPop.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="divPop.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="divPop.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="divPop.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="divPop.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="divPop.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="divPop.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="divPop.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item33" compid="div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item34" compid="div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item35" compid="div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item36" compid="div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item37" compid="div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item38" compid="div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item39" compid="div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item40" compid="div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item41" compid="div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item42" compid="div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item43" compid="div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item44" compid="div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item45" compid="div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item46" compid="div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item47" compid="div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item48" compid="div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item49" compid="div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item50" compid="div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item51" compid="div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item52" compid="div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item53" compid="div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item54" compid="divPop.form.divInfo.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item55" compid="divPop.form.divInfo.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item56" compid="divPop.form.divInfo.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item57" compid="divPop.form.divInfo.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item58" compid="divPop.form.divInfo.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item59" compid="divPop.form.divInfo.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item60" compid="divPop.form.divInfo.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item61" compid="divPop.form.divInfo.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item62" compid="divPop.form.divInfo.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item63" compid="divPop.form.divInfo.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item64" compid="divPop.form.divInfo.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item65" compid="divPop.form.divInfo.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item66" compid="divPop.form.divInfo.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item67" compid="divPop.form.divInfo.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item68" compid="divPop.form.divInfo.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item69" compid="divPop.form.divInfo.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item70" compid="divPop.form.divInfo.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item71" compid="divPop.form.divInfo.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item72" compid="divPop.form.divInfo.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item73" compid="divPop.form.divInfo.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item74" compid="divPop.form.divInfo.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item75" compid="divPop.form.divInfo.form.SCH_RQST_DT00" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item76" compid="divPop.form.divInfo.form.SCH_RQST_DT00_00" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item77" compid="divPop.form.divInfo.form.SCH_RQST_DT00_00_00" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item78" compid="divPop.form.divInfo.form.SCH_RQST_DT00_00_01" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item79" compid="divPop.form.divInfo.form.SCH_RQST_DT00_00_00_00" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item80" compid="divPop.form.divInfo.form.RQST_NM00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item81" compid="divPop.form.divInfo.form.RQST_NM00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item82" compid="divPop.form.divInfo.form.RQST_NM00_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item83" compid="divPop.form.divInfo.form.RQST_NM00_00_01" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item84" compid="divPop.form.divInfo.form.RQST_NM00_00_01_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item85" compid="divPop.form.divInfo.form.RQST_NM00_00_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item86" compid="divPop.form.divInfo.form.RQST_NM00_00_01_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item87" compid="divPop.form.divInfo.form.RQST_NM00_00_01_00_01" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item88" compid="divPop.form.divInfo.form.RQST_NM00_00_00_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item89" compid="divPop.form.divInfo.form.RQST_NM00_00_01_00_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item90" compid="divPop.form.divInfo.form.RQST_NM00_00_02" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      cmMyProjectAlertPopup.xfdl 
+*  Creator 	     Kimjs
+*  CreateDate    2023.03.23
+*  Descrption    담당과제 알림팝업  
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.23    Kimjs  	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);	
+    this.dsSearch.setColumn(0, "projectNo", this.parent.projectId);
+    
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 담당과제 조회
+*/
+this.fnSearch = function()
+{
+	this.gfnTransaction("getProjectAlert", "cms/getProjectAlert.do", "dsSearch", "dsProjectAlert", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getProjectAlert":
+			
+		break;
+		default:
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 닫기버튼
+*/
+this.divPop_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.divPop_divInfo_lvProjectInfo_oncellclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+	obj.showDetailBand(e.row);
+};
+]]></Script>
+  </Form>
+</FDL>

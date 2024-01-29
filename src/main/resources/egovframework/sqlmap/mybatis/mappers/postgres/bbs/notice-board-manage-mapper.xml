@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.service.NoticeBoardManageDAO">
+
+    <!-- 게시물 목록 - 게시물(입력/수정) 조회 -->
+    <select id="getNoticeBoard" parameterType="map" resultType="noticeBoardVO">
+        /* notice-board-manage-mapper.getNoticeBoard */
+         SELECT PB.NTT_NO
+              , PB.BBS_ID
+              , PB.NTT_TTL
+              , PB.NTT_CN
+              , PB.ANSWR_YN
+              , PB.UP_NTT_NO
+              , PB.CMNT_YN
+              , PB.SORT_ORDR
+              , PB.RDCNT
+              , PB.USE_YN
+              , PB.NTC_BGN_YMD
+              , PB.NTC_END_YMD
+              , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PB.NTCR_ID) AS NTCR_ID
+              , PB.NTCR_NM
+              , PB.PASSWD
+              , PB.ATCH_FILE_ID
+              , PB.NOTICE_YN
+              , PB.SJ_BOLD_YN
+              , PB.SCRT_YN
+              , PB.RGST_DT
+              , PB.RGSTR_ID
+              , PB.UPDT_DT
+              , PB.UPDTR_ID
+              , PB.RCMD_CNT
+              , PB.DCMD_CNT
+              FROM PTS_BBS PB
+             WHERE PB.NTT_NO = NULLIF(#{nttNo}, '')::INT
+               AND PB.BBS_ID = #{bbsId}
+               AND PB.NTCR_ID = #{sessionUserId} <!-- #{ntcrId} -->
+    </select>
+
+
+    <!-- 게시물 목록 - 게시물 입력 저장 -->
+    <insert id="insertNoticeBoard" parameterType="noticeBoardVO">
+        /* notice-board-manage-mapper.insertNoticeBoard */
+        <selectKey keyProperty="nttNo" resultType="string" order="BEFORE">
+            SELECT COALESCE(MAX(NTT_NO::INT), 0) + 1 AS NTT_NO
+              FROM PTS_BBS
+        </selectKey>
+        INSERT
+          INTO PTS_BBS ( NTT_NO
+                       , BBS_ID
+                       , NTT_TTL
+                       , NTT_CN
+                       , ANSWR_YN
+                       , UP_NTT_NO
+                       , CMNT_YN
+                       , SORT_ORDR
+                       , RDCNT
+                       , USE_YN
+                       , NTC_BGN_YMD
+                       , NTC_END_YMD
+                       , NTCR_ID
+                       , NTCR_NM
+                       , PASSWD
+                       , ATCH_FILE_ID
+                       , NOTICE_YN
+                       , SJ_BOLD_YN
+                       , SCRT_YN
+                       , RGST_DT
+                       , RGSTR_ID
+                       , UPDT_DT
+                       , UPDTR_ID
+                       , RCMD_CNT
+                       , DCMD_CNT
+                       , POP_YN)
+                values ( #{nttNo}::INT
+                       , 'JNVBBS0001'<!-- NULLIF(#{bbsId},'') -->
+                       , NULLIF(#{nttTtl},'')
+                       , NULLIF(#{nttCn},'')
+                       , NULLIF(#{answrYn},'')
+                       , COALESCE(NULLIF(#{upNttNo},''),'0')::INT
+                       , NULLIF(#{cmntYn},'')
+                       , COALESCE(NULLIF(#{sortOrdr},''),'0')::INT
+                       , COALESCE(NULLIF(#{rdcnt},''),'0')::INT
+                       , 'Y' <!-- useYn -->
+                       , NULLIF(#{ntcBgnYmd},'')
+                       , NULLIF(#{ntcEndYmd},'')
+                       , #{sessionUserId}
+                       , NULLIF(#{ntcrNm},'')
+                       , NULLIF(#{passwd},'')
+                       , NULLIF(#{atchFileId},'')
+                       , NULLIF(#{noticeYn},'')
+                       , NULLIF(#{sjBoldYn},'')
+                       , NULLIF(#{scrtYn},'')
+                       , NOW()
+                       , #{sessionUserId}
+                       , NOW()
+                       , #{sessionUserId}
+                       , COALESCE(NULLIF(#{rcmdCnt},''),'0')::INT
+                       , COALESCE(NULLIF(#{dcmdCnt},''),'0')::INT
+                       , 'N')
+    </insert>
+
+    <!-- 게시물 목록 - 게시물 수정 저장 -->
+    <update id="updateNoticeBoard" parameterType="noticeBoardVO">
+        /* notice-board-manage-mapper.insertNoticeBoard */
+         UPDATE PTS_BBS
+            SET NTT_TTL         = NULLIF(#{nttTtl},'')
+              , NTT_CN          = NULLIF(#{nttCn},'')
+              , ANSWR_YN        = NULLIF(#{answrYn},'')
+              , CMNT_YN         = NULLIF(#{cmntYn},'')
+              , USE_YN          = NULLIF(#{useYn},'')
+              , NTC_BGN_YMD     = NULLIF(#{ntcBgnYmd},'')
+              , NTC_END_YMD     = NULLIF(#{ntcEndYmd},'')
+              , NTCR_ID         = #{sessionUserId}
+              , PASSWD          = NULLIF(#{passwd},'')
+              , ATCH_FILE_ID    = NULLIF(#{atchFileId},'')
+              , NOTICE_YN       = NULLIF(#{noticeYn},'')
+              , SJ_BOLD_YN      = NULLIF(#{sjBoldYn},'')
+              , SCRT_YN         = NULLIF(#{scrtYn},'')
+              , RGST_DT         = NOW()
+              , RGSTR_ID        = #{sessionUserId}
+              , UPDT_DT         = NOW()
+              , UPDTR_ID        = #{sessionUserId}
+         WHERE NTT_NO  = #{nttNo}::INT
+           AND BBS_ID  = #{bbsId}
+           AND NTCR_ID = #{ntcrId}
+    </update>
+
+    <!-- 게시물 목록 - 게시물 삭제 -->
+    <delete id="deleteNoticeBoard" parameterType="noticeBoardVO">
+        /* notice-board-manage-mapper.deleteNoticeBoard */
+        DELETE
+          FROM PTS_BBS
+         WHERE NTT_NO = #{nttNo}::INT
+           AND BBS_ID  = #{bbsId}
+           AND NTCR_ID = #{ntcrId}
+    </delete>
+
+    <!-- 소통광장 - 게시물 상세조회 내용 -댓글내용 삭제 -->
+    <delete id="deleteNoticeBoardComment" parameterType="noticeBoardCommentVO">
+        /* notice-board-comment-mapper.deleteNoticeBoardComment */
+        DELETE
+          FROM PTS_COMMENT
+         WHERE BBS_ID   = #{bbsId}
+           AND NTT_NO   = #{nttNo}::INT
+    </delete>
+
+    <!-- 소통광장 - 게시물 목록 - 게시물 상세조회 (내용) -->
+    <select id="getNoticeBoardDetail" parameterType="map" resultType="noticeBoardVO">
+        /* notice-board-manage-mapper.getNoticeBoardDetail */
+         SELECT P.NTT_NO
+              , P.BBS_ID
+              , P.NTT_NO_PREV
+              , P.NTT_TTL_PREV
+              , P.NTT_TTL
+              , P.NTT_NO_NEXT
+              , P.NTT_TTL_NEXT
+              , P.NTT_CN
+              , P.UP_NTT_NO
+              , P.CMNT_YN
+              , P.RDCNT
+              , P.USE_YN
+              , P.NTC_BGN_YMD
+              , P.NTC_END_YMD
+              , P.NTCR_ID
+              , P.NTCR_NM
+              , P.PASSWD
+              , P.ATCH_FILE_ID
+              , P.NOTICE_YN
+              , P.SJ_BOLD_YN
+              , P.RGST_DT
+              , P.RGSTR_ID
+              , P.UPDT_DT
+              , P.UPDTR_ID
+              , P.RCMD_CNT
+              , P.DCMD_CNT
+            FROM ( SELECT PB.NTT_NO
+                        , PB.BBS_ID
+                        , LAG(PB.NTT_NO) OVER(ORDER BY PB.NTT_NO) AS NTT_NO_PREV
+                        , LAG(PB.NTT_TTL) OVER(ORDER BY PB.NTT_TTL) AS NTT_TTL_PREV
+                        , PB.NTT_TTL
+                        , LEAD(PB.NTT_NO) OVER(ORDER BY PB.NTT_NO) AS NTT_NO_NEXT
+                        , LEAD(PB.NTT_TTL) OVER(ORDER BY PB.NTT_TTL) AS NTT_TTL_NEXT
+                        , PB.NTT_CN
+                        , PB.UP_NTT_NO
+                        , PB.CMNT_YN
+                        , PB.RDCNT
+                        , PB.USE_YN
+                        , PB.NTC_BGN_YMD
+                        , PB.NTC_END_YMD
+                        , (SELECT C.MEMBER_ID
+                             FROM CMN_USER C
+                            WHERE C.USER_ID = PB.NTCR_ID) AS NTCR_ID
+                        , PB.NTCR_NM
+                        , PB.PASSWD
+                        , PB.ATCH_FILE_ID
+                        , PB.NOTICE_YN
+                        , PB.SJ_BOLD_YN
+                        , PB.RGST_DT
+                        , PB.RGSTR_ID
+                        , PB.UPDT_DT
+                        , PB.UPDTR_ID
+                        , PB.RCMD_CNT
+                        , PB.DCMD_CNT
+                     FROM PTS_BBS PB ) P
+           WHERE P.NTT_NO = #{nttNo}::INT
+             AND P.BBS_ID  = #{bbsId}
+    </select>
+
+    <!-- 소통광장 - 게시물 목록 - 게시물 상세조회 (내용) CNT -->
+    <update id="updateDetailReadCount" parameterType="map">
+        /* notice-board-manage-mapper.updateDetailReadCount */
+        UPDATE PTS_BBS
+           SET RDCNT = RDCNT + 1
+          WHERE NTT_NO = #{nttNo}::INT
+            AND BBS_ID  = #{bbsId}
+    </update>
+
+    <!-- 소통광장 - 게시물 상세조회 - 추천 -->
+    <update id="updateNBRecommend" parameterType="noticeBoardVO">
+        /* notice-board-manage-mapper.updateNBRecommend */
+        UPDATE PTS_BBS
+           SET RCMD_CNT = RCMD_CNT + 1
+          WHERE NTT_NO = #{nttNo}::INT
+            AND BBS_ID  = #{bbsId}
+    </update>
+
+    <!-- 소통광장 - 게시물 상세조회 - 비추천 -->
+    <update id="updateNBDisrecommend" parameterType="noticeBoardVO">
+        /* notice-board-manage-mapper.updateNBDisrecommend */
+        UPDATE PTS_BBS
+           SET DCMD_CNT = DCMD_CNT + 1
+          WHERE NTT_NO = #{nttNo}::INT
+            AND BBS_ID  = #{bbsId}
+    </update>
+
+    <!-- 소통광장 - 게시물 상세조회 비밀글- 비밀번호검증 -->
+    <select id="getCheckPassword" parameterType="noticeBoardVO" resultType="string">
+        /* notice-board-manage-mapper.getCheckPassword */
+        SELECT PB.PASSWD
+          FROM PTS_BBS PB
+         WHERE PB.NTT_NO = #{nttNo}::INT
+           AND PB.BBS_ID = #{bbsId}
+    </select>
+
+</mapper>

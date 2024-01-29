@@ -1,0 +1,632 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="FormLeft" width="250" height="850" titletext="New Form" background="#ffffff">
+    <Layouts>
+      <Layout height="850" mobileorientation="landscape" width="250">
+        <Button id="btnMenuAll" taborder="0" text="전체메뉴" left="0" top="0" width="50.00%" height="48" enable="true" onclick="btnMenuAll_onclick" cssclass="btn_LF_menu"/>
+        <Button id="btnMenuFav" taborder="1" text="즐겨찾기" left="50%" top="0" width="50.00%" height="48" onclick="btnMenuFav_onclick" cssclass="btn_LF_favorite"/>
+        <Static id="Static00" taborder="2" left="0" width="250" height="150" bottom="0" cssclass="sta_LF_img1"/>
+        <Grid id="grdFav" taborder="3" left="20" top="48" binddataset="gdsFavoriteMenu" autofittype="col" treeusecheckbox="false" bottom="150" treeinitstatus="expand,all" oncellclick="grdLeft_oncellclick" treeuseimage="false" treeuseline="false" cssclass="grd_LF_treeMenu" visible="false" right="20">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="240"/>
+              </Columns>
+              <Rows>
+                <Row size="32"/>
+              </Rows>
+              <Band id="body">
+                <Cell text="bind:menuNmPath" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:MENU_LVL" tooltiptext="bind:menuNmPath"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grdLeft" taborder="4" left="20" top="48" bottom="150" cssclass="grd_LF_treeMenu" autofittype="col" scrollbartype="autoindicator" treeinitstatus="collapse,null" treeusecheckbox="false" treeuseimage="true" treeuseline="false" binddataset="gdsMenu" oncellclick="grdLeft_oncellclick" treeusebutton="no" right="20">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="158"/>
+                <Column size="36"/>
+              </Columns>
+              <Rows>
+                <Row size="57" band="head"/>
+                <Row size="32"/>
+              </Rows>
+              <Band id="head">
+                <Cell colspan="2" text="전체메뉴"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:menuNm" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:level" cssclass="expr:dataset.parent.fnSetGridCssClass(comp, level, currow,null)" tooltiptext="bind:menuNm"/>
+                <Cell col="1" displaytype="imagecontrol" expr="menuTy == 'PAGE' ? (favoriteYn == 'Y' ? 'theme://images/img_LF_favorite_active.png' : 'theme://images/img_LF_favorite.png')  : ''"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMenu" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="menuId" type="STRING" size="256"/>
+          <Column id="upperMenuId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="menuNm" type="STRING" size="256"/>
+          <Column id="menuTy" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="INT" size="256"/>
+          <Column id="url" type="STRING" size="1000"/>
+          <Column id="level" type="INT" size="256"/>
+          <Column id="indctYn" type="STRING" size="256"/>
+          <Column id="rowNum" type="INT" size="256"/>
+          <Column id="menuNmPath" type="STRING" size="256"/>
+          <Column id="FAV_CHECK" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="menuId">TOP</Col>
+            <Col id="menuNm">기술기획</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="menuNmPath">TOP_TEST</Col>
+            <Col id="rowNum">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern01</Col>
+            <Col id="upperMenuId">Pattern01</Col>
+            <Col id="menuNm">Pattern01</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,000,000</Col>
+            <Col id="url">sam::pat_0001.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트1</Col>
+            <Col id="progId">Pattern01</Col>
+            <Col id="rowNum">1</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern03</Col>
+            <Col id="upperMenuId">Pattern03</Col>
+            <Col id="menuNm">Pattern03</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,100,000</Col>
+            <Col id="url">sam::pat_0003.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트2</Col>
+            <Col id="progId">Pattern03</Col>
+            <Col id="rowNum">2</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern04</Col>
+            <Col id="upperMenuId">Pattern04</Col>
+            <Col id="menuNm">Pattern04</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,200,000</Col>
+            <Col id="url">sam::pat_0004.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트3</Col>
+            <Col id="progId">Pattern04</Col>
+            <Col id="rowNum">3</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern05</Col>
+            <Col id="upperMenuId">Pattern05</Col>
+            <Col id="menuNm">Pattern05</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,300,000</Col>
+            <Col id="url">sam::pat_0005.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트4</Col>
+            <Col id="progId">Pattern05</Col>
+            <Col id="rowNum">4</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern06</Col>
+            <Col id="upperMenuId">Pattern06</Col>
+            <Col id="menuNm">Pattern06</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,400,000</Col>
+            <Col id="url">sam::pat_0006.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트4</Col>
+            <Col id="progId">Pattern06</Col>
+            <Col id="rowNum">5</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Base Components</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">Base Components</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,500,000</Col>
+            <Col id="url">sam::bas_components.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">Base Components</Col>
+            <Col id="progId">BaseComponents</Col>
+            <Col id="rowNum">6</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">pat_popup1000</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">pat_popup1000</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,600,000</Col>
+            <Col id="url">sam::pat_popup1000.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">pat_popup1000</Col>
+            <Col id="progId">pat_popup1000</Col>
+            <Col id="rowNum">7</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">pat_popup800</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">pat_popup800</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,700,000</Col>
+            <Col id="url">sam::pat_popup800.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">pat_popup800</Col>
+            <Col id="progId">pat_popup800</Col>
+            <Col id="rowNum">8</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">pat_popup600</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">pat_popup600</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,800,000</Col>
+            <Col id="url">sam::pat_popup600.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">pat_popup600</Col>
+            <Col id="progId">pat_popup600</Col>
+            <Col id="rowNum">9</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">GUIDE</Col>
+            <Col id="upperMenuId">GUIDE</Col>
+            <Col id="menuNm">GUIDE</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,900,000</Col>
+            <Col id="url">GUIDE::CompGuide02.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">GUIDE</Col>
+            <Col id="progId">GUIDE</Col>
+            <Col id="rowNum">10</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">핵심기술공고</Col>
+            <Col id="sortOrdr">2,000,000</Col>
+            <Col id="menuNm">기획공고</Col>
+            <Col id="level">0</Col>
+            <Col id="rowNum">11</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">방산진흥공모</Col>
+            <Col id="menuNm">방산진흥공모</Col>
+            <Col id="sortOrdr">3,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">1</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">방산진흥공고</Col>
+            <Col id="menuNm">방산진흥공고</Col>
+            <Col id="sortOrdr">4,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">협약관리</Col>
+            <Col id="menuNm">협약관리</Col>
+            <Col id="sortOrdr">5,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">수행관리</Col>
+            <Col id="menuNm">수행관리</Col>
+            <Col id="sortOrdr">6,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">사업비관리</Col>
+            <Col id="menuNm">사업비관리</Col>
+            <Col id="sortOrdr">7,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">성과관리</Col>
+            <Col id="menuNm">성과관리</Col>
+            <Col id="sortOrdr">8,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">이용안내</Col>
+            <Col id="menuNm">이용안내</Col>
+            <Col id="sortOrdr">9,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFavMenu" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="menuId" type="STRING" size="256"/>
+          <Column id="upperMenuId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="menuNm" type="STRING" size="256"/>
+          <Column id="menuTy" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="INT" size="256"/>
+          <Column id="url" type="STRING" size="1000"/>
+          <Column id="level" type="INT" size="256"/>
+          <Column id="indctYn" type="STRING" size="256"/>
+          <Column id="rowNum" type="INT" size="256"/>
+          <Column id="menuNmPath" type="STRING" size="256"/>
+          <Column id="FAV_CHECK" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="menuId">TOP</Col>
+            <Col id="menuNm">기술기획</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="menuNmPath">TOP_TEST</Col>
+            <Col id="rowNum">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern01</Col>
+            <Col id="upperMenuId">Pattern01</Col>
+            <Col id="menuNm">Pattern01</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,000,000</Col>
+            <Col id="url">sam::pat_0001.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트1</Col>
+            <Col id="progId">Pattern01</Col>
+            <Col id="rowNum">1</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern03</Col>
+            <Col id="upperMenuId">Pattern03</Col>
+            <Col id="menuNm">Pattern03</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,100,000</Col>
+            <Col id="url">sam::pat_0003.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트2</Col>
+            <Col id="progId">Pattern03</Col>
+            <Col id="rowNum">2</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern04</Col>
+            <Col id="upperMenuId">Pattern04</Col>
+            <Col id="menuNm">Pattern04</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,200,000</Col>
+            <Col id="url">sam::pat_0004.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트3</Col>
+            <Col id="progId">Pattern04</Col>
+            <Col id="rowNum">3</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern05</Col>
+            <Col id="upperMenuId">Pattern05</Col>
+            <Col id="menuNm">Pattern05</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,300,000</Col>
+            <Col id="url">sam::pat_0005.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트4</Col>
+            <Col id="progId">Pattern05</Col>
+            <Col id="rowNum">4</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Pattern06</Col>
+            <Col id="upperMenuId">Pattern06</Col>
+            <Col id="menuNm">Pattern06</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,400,000</Col>
+            <Col id="url">sam::pat_0006.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">테스트 테스트4</Col>
+            <Col id="progId">Pattern06</Col>
+            <Col id="rowNum">5</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">Base Components</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">Base Components</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,500,000</Col>
+            <Col id="url">sam::bas_components.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">Base Components</Col>
+            <Col id="progId">BaseComponents</Col>
+            <Col id="rowNum">6</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">pat_popup1000</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">pat_popup1000</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,600,000</Col>
+            <Col id="url">sam::pat_popup1000.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">pat_popup1000</Col>
+            <Col id="progId">pat_popup1000</Col>
+            <Col id="rowNum">7</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">pat_popup800</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">pat_popup800</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,700,000</Col>
+            <Col id="url">sam::pat_popup800.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">pat_popup800</Col>
+            <Col id="progId">pat_popup800</Col>
+            <Col id="rowNum">8</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">pat_popup600</Col>
+            <Col id="upperMenuId">TEST</Col>
+            <Col id="menuNm">pat_popup600</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,800,000</Col>
+            <Col id="url">sam::pat_popup600.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">pat_popup600</Col>
+            <Col id="progId">pat_popup600</Col>
+            <Col id="rowNum">9</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">GUIDE</Col>
+            <Col id="upperMenuId">GUIDE</Col>
+            <Col id="menuNm">GUIDE</Col>
+            <Col id="menuTy">GROUP</Col>
+            <Col id="sortOrdr">1,900,000</Col>
+            <Col id="url">GUIDE::CompGuide02.xfdl</Col>
+            <Col id="level">1</Col>
+            <Col id="menuNmPath">GUIDE</Col>
+            <Col id="progId">GUIDE</Col>
+            <Col id="rowNum">10</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">핵심기술공고</Col>
+            <Col id="sortOrdr">2,000,000</Col>
+            <Col id="menuNm">기획공고</Col>
+            <Col id="level">0</Col>
+            <Col id="rowNum">11</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">방산진흥공모</Col>
+            <Col id="menuNm">방산진흥공모</Col>
+            <Col id="sortOrdr">3,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">1</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">방산진흥공고</Col>
+            <Col id="menuNm">방산진흥공고</Col>
+            <Col id="sortOrdr">4,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">협약관리</Col>
+            <Col id="menuNm">협약관리</Col>
+            <Col id="sortOrdr">5,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">수행관리</Col>
+            <Col id="menuNm">수행관리</Col>
+            <Col id="sortOrdr">6,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">사업비관리</Col>
+            <Col id="menuNm">사업비관리</Col>
+            <Col id="sortOrdr">7,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">성과관리</Col>
+            <Col id="menuNm">성과관리</Col>
+            <Col id="sortOrdr">8,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+          <Row>
+            <Col id="menuId">이용안내</Col>
+            <Col id="menuNm">이용안내</Col>
+            <Col id="sortOrdr">9,000,000</Col>
+            <Col id="level">0</Col>
+            <Col id="FAV_CHECK">0</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.resultMsg = null;
+this.menuId = null;
+this.favoriteYn = null;
+
+this.fnSetFavorite = function (menuId, set) {
+    this.gfnTransaction("setFavorite", "cmn/favorite/setFavoriteMenu.do", "", "", "menuId=" + menuId + " setFavorite=" + set, "fnCallback");
+}
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    if (svcId == "setFavorite" && this.resultMsg == "success") {
+        const dataset = nexacro.getApplication().gdsMenu;
+        const index = dataset.findRow("menuId", this.menuId);
+        dataset.setColumn(index, "favoriteYn", this.favoriteYn);
+        this.grdLeft.redrawExprCell();
+    }
+};
+
+/**************************************************************************
+* 각 COMPONENT 별 EVENT 영역
+**************************************************************************/
+/**
+ * @description btnMenuFav onclick event : 즐겨찾기 버튼 클릭
+ */
+this.btnMenuFav_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.grdFav.set_visible(true);
+	this.grdLeft.set_visible(false);
+
+	this.btnMenuAll.set_enable(true);
+	this.btnMenuFav.set_enable(false);
+    nexacro.getApplication().fnReloadFavoriteMenu();
+};
+
+/**
+ * @description btnMenuAll onclick event : 전체메뉴 버튼 클릭
+ */
+this.btnMenuAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.grdFav.set_visible(false);
+	this.grdLeft.set_visible(true);
+
+	this.btnMenuAll.set_enable(false);
+	this.btnMenuFav.set_enable(true);
+};
+
+/**
+ * @description grdLeft oncellclick event : Tree 메뉴 클릭 이벤트
+ */
+this.grdLeft_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sFavCheck =0;
+	var objDs = obj.getBindDataset();
+	//Tree Row Index 가져오기
+	var nTreeRow = obj.getTreeRow(e.row)
+
+	//현재 트리 상태 가져오기
+	var sStatus = obj.getTreeStatus(nTreeRow);
+    
+    if (objDs.getColumn(e.row, "menuTy") === "PAGE") {
+        const url = objDs.getColumn(e.row, "url");
+        const menuId = objDs.getColumn(e.row, "menuId");
+        const title = objDs.getColumn(e.row, "menuNm");
+        const menuPath = objDs.getColumn(e.row, "menuNmPath");
+        const favoriteYn = objDs.getColumn(e.row, "favoriteYn");
+        
+        if (e.col == 1) {
+            this.fnSetFavorite(menuId, (favoriteYn == "Y" ? "N" : "Y"))
+        } else {
+            this.parent.parent.Ani01.play();
+            nexacro.getApplication().openNewTab(menuId, title, url, {}, menuPath, menuId);
+        }
+    }
+
+	//접기상태일 경우
+	if (sStatus == "0")
+	{
+		//펼치기 상태로 변경
+		obj.setTreeStatus(nTreeRow, 1);
+	}
+	//펼치기 상태로 변경
+	else if (sStatus=="1")
+	{
+		//접기 상태로 변경
+		obj.setTreeStatus(nTreeRow, 0);
+	}
+};
+
+/**************************************************************************
+ * 사용자 FUNCTION 영역
+ **************************************************************************/
+
+/**
+* @description 		: Depth별 CSSCLASS를 적용하기 위한 expr용 함수
+* @param objGrid	: 그리드 컴포넌트
+* @param nLevel     : 현재 Row의 Tree Level
+* @param nRow       : 현재 Row Index
+* @return 			: 없음
+*/
+this.fnSetGridCssClass = function(objGrid, nLevel, nRow, fav)
+{
+	//Tree Row Index 가져오기
+	var nTreeRow = objGrid.getTreeRow(nRow)
+
+	//현재 트리 상태 가져오기
+	var sStatus = objGrid.getTreeStatus(nTreeRow);
+
+	var sCssClass = "";
+	var selected = "";
+
+	if(fav == "N")
+	{
+		selected += "_fav";
+	}
+	else if(fav == "Y")
+	{
+		selected += "_fav_S";
+	}
+	//접기 상태일 경우 접기상태 표시를 위한 CSSCLASS 적용
+	if(sStatus=="0")
+	{
+		sCssClass = "treeCellCollapse";
+	}
+	//펼치기 상태일 경우 펼치기 상태 표시를 위한 CSSCLASS 적용
+	else if(sStatus=="1")
+	{
+		sCssClass = "treeCellExpand";
+	}
+
+	if(sStatus!="2")sCssClass +=", ";
+
+	//Tree Level 0을 표현하기 위한 CSSCLASS 적용
+	if(nLevel==0)
+	{
+		sCssClass += "cellTreeLevel0" + selected;
+	}
+	//Tree Level 1을 표현하기 위한 CSSCLASS 적용
+	else if(nLevel==1)
+	{
+		sCssClass += "cellTreeLevel1" + selected;
+	}
+	//Tree Level 2을 표현하기 위한 CSSCLASS 적용
+	else if(nLevel==2)
+	{
+		sCssClass += "cellTreeLevel2" + selected;
+	}
+
+	//설정될 CSSCLASS 리스트 정보를 리턴
+	return sCssClass;
+}
+]]></Script>
+  </Form>
+</FDL>

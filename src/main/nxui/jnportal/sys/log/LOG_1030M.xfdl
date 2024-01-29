@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LOG_1030M" width="1920" height="720" titletext="프로그램 사용 통계" onload="form_onload">
+    <Layouts>
+      <Layout height="720" width="1920">
+        <Static id="sta001" taborder="0" text="프로그램 사용 통계" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="71" cssclass="" text="" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static00" taborder="0" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="sta002" taborder="2" text="접근메뉴명" left="455" top="15" width="100" height="26" cssclass="sta_WF_condition01" onclick="divSearch_sch_RQST_DT00_onclick"/>
+              <Edit id="edtMenuNm" taborder="3" left="sta002:10" top="15" width="165" height="26" onchanged="div_Search_SCH_RQST_ID_onchanged"/>
+              <Static id="sta003" taborder="4" text="기간" cssclass="sta_WF_condition01" top="15" width="100" height="26" onclick="div_Search_Static01_onclick" left="910"/>
+              <Calendar id="calFrom" taborder="5" left="sta003:10" top="15" width="110" height="26" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" readonly="false" onchanged="divSearch_Div00_cal_processDt_from_onchanged"/>
+              <Static id="sta005" taborder="7" text="~" cssclass="sta_WF_condition01" top="15" width="14" height="26" onclick="div_Search_Static01_onclick" left="calFrom:0" textAlign="center"/>
+              <Calendar id="calTo" taborder="6" left="sta005:0" top="15" width="110" height="26" dateformat="yyyy-MM-dd" popuptype="normal" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28"/>
+              <Static id="sta004" taborder="8" text="시스템" left="20" top="15" width="100" height="26" cssclass="sta_WF_condition01" onclick="divSearch_sch_RQST_DT00_onclick"/>
+              <Combo id="cboSysId" taborder="1" text="Combo00" left="sta004:10" top="15" width="170" height="26" innerdataset="dsSysIdCombo" codecolumn="value" datacolumn="text"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Button id="btnSearch" text="조회" cssclass="" top="20" width="65" height="28" right="50" taborder="5" onclick="btnSearch_onclick"/>
+        <Button id="btnExportCompML" taborder="1" text="Export 컴포넌트 언어 Data" top="20" height="28" right="btnSearch:3" width="190" onclick="btnExportCompML_onclick" visible="false"/>
+        <Static id="Static02" taborder="3" text="W&#13;&#10; 50" visible="false" top="0" height="753" onclick="Static02_onclick" background="antiquewhite" color="blue" right="0" width="50"/>
+        <Static id="Static34" taborder="4" text="W 50" onclick="Static02_onclick" visible="false" left="-449" top="1" width="50" height="752" background="antiquewhite" color="blue"/>
+        <Tab id="tabStat" taborder="6" tabindex="0" left="50" top="divSearch:0" right="50" bottom="37" tabbuttonheight="34" cssclass="tab_WF_comp" onchanged="tabStat_onchanged">
+          <Tabpages>
+            <Tabpage id="tabpageUserByMenu" text="메뉴별 사용자">
+              <Layouts>
+                <Layout>
+                  <Static id="staHeader" taborder="0" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Static09_onclick" width="82"/>
+                  <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subTxt" left="92" top="0" width="149" height="45"/>
+                  <Grid id="grdResult" taborder="7" left="0" top="45" right="0" bottom="0" autofittype="col" binddataset="dsUserByMenu">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="120"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="34"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="요청일자"/>
+                          <Cell col="1" text="시스템 ID"/>
+                          <Cell col="2" text="시스템명"/>
+                          <Cell col="3" text="프로그램 ID"/>
+                          <Cell col="4" text="프로그램명"/>
+                          <Cell col="5" text="메뉴 ID"/>
+                          <Cell col="6" text="메뉴명"/>
+                          <Cell col="7" text="접근 횟수"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:accessDate"/>
+                          <Cell col="1" text="bind:sysId"/>
+                          <Cell col="2" text="bind:sysNm"/>
+                          <Cell col="3" textAlign="left" text="bind:progId"/>
+                          <Cell col="4" textAlign="left" text="bind:progNm"/>
+                          <Cell col="5" textAlign="left" text="bind:menuId"/>
+                          <Cell col="6" textAlign="left" text="bind:menuNm"/>
+                          <Cell col="7" textAlign="right" displaytype="mask" maskeditformat="#,##9" text="bind:accessCount"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpageTxByMenu" text="메뉴별 트랜잭션">
+              <Layouts>
+                <Layout>
+                  <Static id="staHeader" taborder="0" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Static09_onclick" width="82"/>
+                  <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subTxt" left="92" top="0" width="149" height="45"/>
+                  <Grid id="grdResult" taborder="8" left="0" top="45" right="0" bottom="0" autofittype="col" binddataset="dsTxByMenu">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="120"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="120"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="34"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="요청일자"/>
+                          <Cell col="1" text="시스템 ID"/>
+                          <Cell col="2" text="시스템명"/>
+                          <Cell col="3" text="프로그램 ID"/>
+                          <Cell col="4" text="프로그램명"/>
+                          <Cell col="5" text="메뉴 ID"/>
+                          <Cell col="6" text="메뉴명"/>
+                          <Cell col="7" text="수행 업무"/>
+                          <Cell col="8" text="접근 횟수"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:accessDate"/>
+                          <Cell col="1" text="bind:sysId"/>
+                          <Cell col="2" text="bind:sysNm"/>
+                          <Cell col="3" textAlign="left" text="bind:progId"/>
+                          <Cell col="4" textAlign="left" text="bind:progNm"/>
+                          <Cell col="5" textAlign="left" text="bind:menuId"/>
+                          <Cell col="6" textAlign="left" text="bind:menuNm"/>
+                          <Cell col="7" textAlign="left" text="bind:actionName"/>
+                          <Cell col="8" textAlign="right" displaytype="mask" maskeditformat="#,##9" text="bind:accessCount"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpageMenuByUser" text="사용자별 메뉴 접근">
+              <Layouts>
+                <Layout>
+                  <Static id="staHeader" taborder="0" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Static09_onclick" width="82"/>
+                  <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subTxt" left="92" top="0" width="149" height="45"/>
+                  <Grid id="grdResult" taborder="9" left="0" top="45" right="0" bottom="0" autofittype="col" binddataset="dsMenuByUser">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="120"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="96"/>
+                          <Column size="96"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="34"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="요청일자"/>
+                          <Cell col="1" text="시스템 ID"/>
+                          <Cell col="2" text="시스템명"/>
+                          <Cell col="3" text="회원 ID"/>
+                          <Cell col="4" text="사용자명"/>
+                          <Cell col="5" text="프로그램 ID"/>
+                          <Cell col="6" text="프로그램명"/>
+                          <Cell col="7" text="메뉴 ID"/>
+                          <Cell col="8" text="메뉴명"/>
+                          <Cell col="9" text="접근 횟수"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:accessDate"/>
+                          <Cell col="1" text="bind:sysId"/>
+                          <Cell col="2" text="bind:sysNm"/>
+                          <Cell col="3" text="bind:memberId"/>
+                          <Cell col="4" text="bind:userNmKr"/>
+                          <Cell col="5" textAlign="left" text="bind:progId"/>
+                          <Cell col="6" textAlign="left" text="bind:progNm"/>
+                          <Cell col="7" textAlign="left" text="bind:menuId"/>
+                          <Cell col="8" textAlign="left" text="bind:menuNm"/>
+                          <Cell col="9" textAlign="right" displaytype="mask" maskeditformat="#,##9" text="bind:accessCount"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="tabpageTxByUser" text="사용자별 트랜잭션">
+              <Layouts>
+                <Layout>
+                  <Static id="staHeader" taborder="0" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Static09_onclick" width="82"/>
+                  <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subTxt" left="92" top="0" width="149" height="45"/>
+                  <Grid id="grdResult" taborder="10" left="0" top="45" right="0" bottom="0" autofittype="col" binddataset="dsTxByUser">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="120"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="96"/>
+                          <Column size="96"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="200"/>
+                          <Column size="120"/>
+                          <Column size="120"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="30" band="head"/>
+                          <Row size="34"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="요청일자"/>
+                          <Cell col="1" text="시스템 ID"/>
+                          <Cell col="2" text="시스템명"/>
+                          <Cell col="3" text="회원 ID"/>
+                          <Cell col="4" text="사용자명"/>
+                          <Cell col="5" text="프로그램 ID"/>
+                          <Cell col="6" text="프로그램명"/>
+                          <Cell col="7" text="메뉴 ID"/>
+                          <Cell col="8" text="메뉴명"/>
+                          <Cell col="9" text="수행 업무"/>
+                          <Cell col="10" text="접근 횟수"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell text="bind:accessDate"/>
+                          <Cell col="1" text="bind:sysId"/>
+                          <Cell col="2" text="bind:sysNm"/>
+                          <Cell col="3" text="bind:memberId"/>
+                          <Cell col="4" text="bind:userNmKr"/>
+                          <Cell col="5" textAlign="left" text="bind:progId"/>
+                          <Cell col="6" textAlign="left" text="bind:progNm"/>
+                          <Cell col="7" textAlign="left" text="bind:menuId"/>
+                          <Cell col="8" textAlign="left" text="bind:menuNm"/>
+                          <Cell col="9" textAlign="left" text="bind:actionName"/>
+                          <Cell col="10" textAlign="right" displaytype="mask" maskeditformat="#,##9" text="bind:accessCount"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  programFuncUse
+*  MenuPath      
+*  FileName      programFuncUse.xfdl 
+*  Creator 	     moonsj
+*  CreateDate    2023.03.09
+*  Desction      프로그램 사용 통계
+********* ***** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.09    moonsj 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+    
+    const today = Ex.util.getToday();
+    this.dsSearch.setColumn(0, "accessToDt", today);
+    this.dsSearch.setColumn(0, "accessFromDt", Eco.date.getFirstDate(today));
+    this.fnLoadCombo();
+};
+
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+this.fnLoadCombo = function ()
+{
+    this.loadCnt = 2;
+	this.gfnLoadCombo("loadCombo", "dsActionRslt=SM:ACTION_RSLT:A", "fnComboCallback");
+	this.gfnTransaction("loadSysIdCombo","sm/getSystemIdCombo.do","","dsSysIdCombo","","fnComboCallback");
+};
+
+this.fnSearchUserByMenuStat = function ()
+{
+    this.gfnTransaction("getUserByMenuStat", "sm/progStat/getUserByMenuStat.do", "dsSearch", "dsUserByMenu", "", "fnCallback");
+};
+
+this.fnSearchTxByMenuStat = function ()
+{
+    this.gfnTransaction("getTxByMenuStat", "sm/progStat/getTxByMenuStat.do", "dsSearch", "dsTxByMenu", "", "fnCallback");
+};
+
+this.fnSearchMenuByUserStat = function ()
+{
+    this.gfnTransaction("getMenuByUserStat", "sm/progStat/getMenuByUserStat.do", "dsSearch", "dsMenuByUser", "", "fnCallback");
+};
+
+this.fnSearchTxByUserStat = function ()
+{
+    this.gfnTransaction("getTxByUserStat", "sm/progStat/getTxByUserStat.do", "dsSearch", "dsTxByUser", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+    this.loadCnt--;
+    if (this.loadCnt === 0) {
+        this.dsSearch.setColumn(0, "sysId", nexacro.getApplication().gdsUserInfo.getColumn(0, "sysId"));
+        this.fnSearch(this.tabStat.tabindex);
+    }
+}
+
+/**
+ * @description Transaction CallBack 함수
+ */
+this.fnCallback = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getUserByMenuStat":
+			this.gfnRowCount(this.dsUserByMenu, this.tabStat.tabpageUserByMenu.form.staGridRowCnt);
+            break;
+        case "getTxByMenuStat":
+            this.gfnRowCount(this.dsTxByMenu, this.tabStat.tabpageTxByMenu.form.staGridRowCnt);
+            break;
+        case "getMenuByUserStat":
+            this.gfnRowCount(this.dsMenuByUser, this.tabStat.tabpageMenuByUser.form.staGridRowCnt);
+            break;
+        case "getTxByUserStat":
+            this.gfnRowCount(this.dsTxByUser, this.tabStat.tabpageTxByUser.form.staGridRowCnt);
+            break;
+		default:
+            break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * @description 조회버튼 클릭
+ */
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSearch(this.tabStat.tabindex);
+};
+
+this.tabStat_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+    this.fnSearch(e.postindex);
+};
+
+this.dsSearch_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    let from, to;
+    
+    switch (e.columnid) {
+        case "accessFromDt":
+            from = e.newvalue;
+            to = obj.getColumn(e.row, "accessToDt");
+            
+            if (!Eco.isEmpty(from) && Eco.isEmpty(to)) {
+                return true;
+            }
+            
+            return this.fnValidateDateRange(from, to);
+        case "accessToDt":
+            from = obj.getColumn(e.row, "accessFromDt");
+            to = e.newvalue;
+            
+            if (Eco.isEmpty(from) && !Eco.isEmpty(to)) {
+                return true;
+            }
+            
+            return this.fnValidateDateRange(from, to);
+        default:
+            return true;
+    }
+};
+
+this.dsSearch_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    switch (e.columnid) {
+        case "sysId":
+            this.btnSearch_onclick();
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.fnSearch = function (tabindex)
+{
+    switch(tabindex) {
+        case 0:
+            this.fnSearchUserByMenuStat();
+            break;
+        case 1:
+            this.fnSearchTxByMenuStat();
+            break;
+        case 2:
+            this.fnSearchMenuByUserStat();
+            break;
+        case 3:
+            this.fnSearchTxByUserStat();
+            break;
+        default:
+            break;
+    }
+}
+
+/**
+ * @description generate multi language Excel 
+ */
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+/**
+ * 검색조건 유효성 체크
+ */
+this.fnValidate = function ()
+{
+    const from = this.dsSearch.getColumn(0, "accessFromDt");
+    const to = this.dsSearch.getColumn(0, "accessToDt");
+    
+    return this.fnValidateDateRange(from, to);
+};
+
+this.fnValidateDateRange = function (from, to)
+{
+    if (Eco.isEmpty(from)) {
+        this.gfnAlert("시작일을 입력하세요.");
+        return false;
+    }
+    
+    if (Eco.isEmpty(to)) {
+        this.gfnAlert("종료일을 입력하세요.");
+        return false;
+    }
+
+    if (Eco.date.getDiffDay(Eco.date.strToDate(from), Eco.date.strToDate(to)) < 0) {
+        this.gfnAlert("CM_MSG_DATE_CHK");
+        return false;
+    }
+    
+    if (Eco.date.getDiffDay(Eco.date.strToDate(to), Eco.date.addMonth(Eco.date.strToDate(from), 3)) < 0) {
+        this.gfnAlert("시작일로부터 3개월 이내까지만 조회할 수 있습니다.");
+        return false;
+    }
+    
+    return true;
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSearch" useclientlayout="true" cancolumnchange="dsSearch_cancolumnchange" oncolumnchanged="dsSearch_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="menuNm" type="STRING" size="256"/>
+          <Column id="accessFromDt" type="STRING" size="256"/>
+          <Column id="accessToDt" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUserByMenu" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="accessDate" type="STRING" size="16"/>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="sysNm" type="STRING" size="30"/>
+          <Column id="progId" type="STRING" size="50"/>
+          <Column id="progNm" type="STRING" size="300"/>
+          <Column id="menuId" type="STRING" size="50"/>
+          <Column id="menuNm" type="STRING" size="300"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNmKr" type="STRING" size="300"/>
+          <Column id="actionName" type="STRING" size="300"/>
+          <Column id="accessCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTxByMenu" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="accessDate" type="STRING" size="16"/>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="sysNm" type="STRING" size="30"/>
+          <Column id="progId" type="STRING" size="50"/>
+          <Column id="progNm" type="STRING" size="300"/>
+          <Column id="menuId" type="STRING" size="50"/>
+          <Column id="menuNm" type="STRING" size="300"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNmKr" type="STRING" size="300"/>
+          <Column id="actionName" type="STRING" size="300"/>
+          <Column id="accessCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsMenuByUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="accessDate" type="STRING" size="16"/>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="sysNm" type="STRING" size="30"/>
+          <Column id="progId" type="STRING" size="50"/>
+          <Column id="progNm" type="STRING" size="300"/>
+          <Column id="menuId" type="STRING" size="50"/>
+          <Column id="menuNm" type="STRING" size="300"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNmKr" type="STRING" size="300"/>
+          <Column id="actionName" type="STRING" size="300"/>
+          <Column id="accessCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsTxByUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="accessDate" type="STRING" size="16"/>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="sysNm" type="STRING" size="30"/>
+          <Column id="progId" type="STRING" size="50"/>
+          <Column id="progNm" type="STRING" size="300"/>
+          <Column id="menuId" type="STRING" size="50"/>
+          <Column id="menuNm" type="STRING" size="300"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNmKr" type="STRING" size="300"/>
+          <Column id="actionName" type="STRING" size="300"/>
+          <Column id="accessCount" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSysIdCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtMenuNm" propid="value" datasetid="dsSearch" columnid="menuNm"/>
+      <BindItem id="item1" compid="divSearch.form.calFrom" propid="value" datasetid="dsSearch" columnid="accessFromDt"/>
+      <BindItem id="item2" compid="divSearch.form.calTo" propid="value" datasetid="dsSearch" columnid="accessToDt"/>
+      <BindItem id="item3" compid="divSearch.form.cboSysId" propid="value" datasetid="dsSearch" columnid="sysId"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LOG_1010M" width="1920" height="670" onload="form_onload" cssclass="frm_WF_comp" titletext="권한 변경 이력 조회">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="권한 변경 이력 조회" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="105" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" left="0" top="0" right="0" cssclass="sta_WF_bg" text="" onclick="div_Search_Static00_onclick" height="90"/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="0" top="90" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="55"/>
+              <Static id="sta001" taborder="2" text="사용자 ID" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtMemberId" taborder="3" left="sta001:10" top="15" width="240" height="26" onkeyup="divSearch_divSrch_edtMemberId_onkeyup"/>
+              <Static id="sta002" taborder="4" text="사용자명" left="455" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtMemberNm" taborder="5" left="sta002:10" top="15" width="240" height="26" onkeyup="divSearch_Div00_edt_userId_onkeyup"/>
+              <Static id="sta006" taborder="13" text="처리일자" cssclass="sta_WF_condition01" left="910" top="49" width="100" height="26" onclick="divSearch_Div00_sch_DEPT_CD_onclick"/>
+              <Calendar id="calProcessDtFrom" taborder="7" left="sta006:10" top="49" width="110" height="26" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" readonly="false" onkeyup="divSearch_Div00_edt_userId_onkeyup" displaynulltext="____-__-__"/>
+              <Static id="sta007" taborder="9" text="~" left="calProcessDtFrom:0" top="49" width="14" height="26" textAlign="center"/>
+              <Calendar id="calProcessDtTo" taborder="6" left="sta007:0" top="49" width="110" height="26" dateformat="yyyy-MM-dd" onkeyup="divSearch_Div00_edt_userId_onkeyup" displaynulltext="____-__-__" weekformat="일 월 화 수 목 금 토"/>
+              <Static id="sta003" taborder="8" text="유형" left="910" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Static id="sta004" taborder="15" text="접근권한 코드" cssclass="sta_WF_condition01" left="20" top="49" width="100" height="26" onclick="divSearch_Div00_sch_DEPT_CD_onclick"/>
+              <Edit id="edtRoleCode" taborder="10" left="sta004:10" top="49" width="240" height="26" onkeyup="divSearch_Div00_edt_userId_onkeyup"/>
+              <Static id="sta005" taborder="12" text="접근권한명" cssclass="sta_WF_condition01" left="455" top="49" width="100" height="26" onclick="divSearch_Div00_sch_DEPT_CD_onclick"/>
+              <Edit id="edtRoleNm" taborder="11" left="sta005:10" top="49" width="240" height="26" onkeyup="divSearch_Div00_edt_userId_onkeyup"/>
+              <Combo id="cboProcessTy" taborder="14" text="" left="sta003:10" top="15" width="234" height="26" innerdataset="dsProcessType" codecolumn="value" datacolumn="text" index="-1" onkeyup="divSearch_Div00_edt_userId_onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divRole" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="37" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Grid id="grdRoleLog" taborder="0" left="0" top="45" binddataset="dsRoleLog" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="Div00_grdMsgManage_onheadclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="96"/>
+                      <Column size="96"/>
+                      <Column size="160"/>
+                      <Column size="120"/>
+                      <Column size="200"/>
+                      <Column size="64"/>
+                      <Column size="96"/>
+                      <Column size="96"/>
+                      <Column size="120"/>
+                      <Column size="400"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" text="사용자 ID"/>
+                      <Cell col="2" text="사용자명"/>
+                      <Cell col="3" text="소속"/>
+                      <Cell col="4" text="접근권한 코드"/>
+                      <Cell col="5" text="접근권한명"/>
+                      <Cell col="6" text="유형"/>
+                      <Cell col="7" text="처리자 ID"/>
+                      <Cell col="8" text="처리자명"/>
+                      <Cell col="9" text="처리일시"/>
+                      <Cell col="10" text="수정사유"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" text="bind:memberId" edittype="none"/>
+                      <Cell col="2" text="bind:userNmKr" edittype="none"/>
+                      <Cell col="3" text="bind:organNm" edittype="none" textAlign="left"/>
+                      <Cell col="4" text="bind:roleCode" edittype="none" textAlign="left"/>
+                      <Cell col="5" text="bind:roleNm" edittype="none" textAlign="left"/>
+                      <Cell col="6" text="bind:processTy" edittype="none" combodataset="dsProcessType" combocodecol="value" combodatacol="text" displaytype="combotext"/>
+                      <Cell col="7" text="bind:processByMemberId" edittype="none" textAlign="center"/>
+                      <Cell col="8" text="bind:processByNmKr"/>
+                      <Cell col="9" text="bind:processDt" edittype="none" textAlign="center"/>
+                      <Cell col="10" text="bind:processReason" edittype="none" textAlign="left"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="staTitle" taborder="1" text="검색결과" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="81"/>
+              <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:10" top="0" width="149" height="45"/>
+              <Static id="Static04_00_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true" cancolumnchange="dsSearch_cancolumnchange">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="processTy" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+          <Column id="processDt" type="STRING" size="256"/>
+          <Column id="processFromDt" type="STRING" size="256"/>
+          <Column id="processToDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRoleLog" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="organCd" type="STRING" size="256"/>
+          <Column id="organNm" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+          <Column id="processTy" type="STRING" size="256"/>
+          <Column id="processDt" type="STRING" size="256"/>
+          <Column id="processById" type="STRING" size="256"/>
+          <Column id="processByMemberId" type="STRING" size="256"/>
+          <Column id="processByNmKr" type="STRING" size="256"/>
+          <Column id="processReason" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProcessType">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  messageManage
+*  MenuPath      -
+*  FileName      messageManage.xfdl 
+*  Creator 	     cheonsy
+*  CreateDate    2023.03.06
+*  Desction      권한 변경 이력 조회
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.06    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnLoadCombo("loadCombo", "dsProcessType=SM:PROCESS_TY:A", "fnCallBack");
+    
+    const today = Ex.util.getToday();
+    this.dsSearch.setColumn(0, "processFromDt", Eco.date.getFirstDate(today));
+    this.dsSearch.setColumn(0, "processToDt", today);
+	
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	this.gfnTransaction("getRoleLog", "sm/getRoleLog.do", "dsSearch", "dsRoleLog", "", "fnCallBack"); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getRoleLog":
+			//총 건수 계산
+			this.gfnRowCount(this.dsRoleLog, this.divRole.form.staGridRowCnt);
+		break;
+		default:
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.fnValidate()) {
+		return;
+    }
+    
+	this.fnSearch();
+};
+
+/**
+ * description 엔터키 조회
+*/
+this.divSearch_divSrch_edtMemberId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * 검색조건 값 변경 이벤트
+ */
+this.dsSearch_cancolumnchange = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    let from, to;
+    
+    switch (e.columnid) {
+        case "processFromDt":
+            from = e.newvalue;
+            to = obj.getColumn(e.row, "processToDt");
+            
+            if (!Eco.isEmpty(from) && Eco.isEmpty(to)) {
+                return true;
+            }
+            
+            return this.fnValidateDateRange(from, to);
+        case "processToDt":
+            from = obj.getColumn(e.row, "processFromDt");
+            to = e.newvalue;
+            
+            if (Eco.isEmpty(from) && !Eco.isEmpty(to)) {
+                return true;
+            }
+            
+            return this.fnValidateDateRange(from, to);
+        default:
+            return true;
+    }
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+/**
+ * 검색조건 유효성 체크
+ */
+this.fnValidate = function ()
+{
+    const from = this.dsSearch.getColumn(0, "accessFromDt");
+    const to = this.dsSearch.getColumn(0, "accessToDt");
+    
+    return this.fnValidateDateRange(from, to);
+};
+
+this.fnValidateDateRange = function (from, to)
+{
+    if (Eco.isEmpty(from)) {
+        this.gfnAlert("시작일을 입력하세요.");
+        return false;
+    }
+    
+    if (Eco.isEmpty(to)) {
+        this.gfnAlert("종료일을 입력하세요.");
+        return false;
+    }
+    
+    if (!this.gfnDateCheck(this.dsSearch.getColumn(0, "processFromDt"))
+            || !this.gfnDateCheck(this.dsSearch.getColumn(0, "processToDt"))) {
+        this.gfnAlert("날짜의 형식을 확인하세요");
+        return;
+    }
+
+    if (Eco.date.getDiffDay(Eco.date.strToDate(from), Eco.date.strToDate(to)) < 0) {
+        this.gfnAlert("CM_MSG_DATE_CHK");
+        return false;
+    }
+    
+    if (Eco.date.getDiffDay(Eco.date.strToDate(to), Eco.date.addMonth(Eco.date.strToDate(from), 3)) < 0) {
+        this.gfnAlert("시작일로부터 3개월 이내까지만 조회할 수 있습니다.");
+        return false;
+    }
+    
+    return true;
+};]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtMemberId" propid="value" datasetid="dsSearch" columnid="userId"/>
+      <BindItem id="item1" compid="divSearch.form.edtMemberNm" propid="value" datasetid="dsSearch" columnid="userNmKr"/>
+      <BindItem id="item2" compid="divSearch.form.calProcessDtTo" propid="value" datasetid="dsSearch" columnid="processToDt"/>
+      <BindItem id="item3" compid="divSearch.form.calProcessDtFrom" propid="value" datasetid="dsSearch" columnid="processFromDt"/>
+      <BindItem id="item4" compid="divSearch.form.edtRoleCode" propid="value" datasetid="dsSearch" columnid="roleCode"/>
+      <BindItem id="item5" compid="divSearch.form.edtRoleNm" propid="value" datasetid="dsSearch" columnid="roleNm"/>
+      <BindItem id="item6" compid="divSearch.form.cboProcessTy" propid="value" datasetid="dsSearch" columnid="processTy"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,917 @@
+(function()
+{
+    return function()
+    {
+        if (!this._is_form)
+            return;
+        
+        var obj = null;
+        
+        this.on_create = function()
+        {
+            this.set_name("fileUpload");
+            this.set_titletext("파일 업로드");
+            if (Form == this.constructor)
+            {
+                this._setFormPosition(560,240);
+            }
+            
+            // Object(Dataset, ExcelExportObject) Initialize
+            obj = new Dataset("dsFileList", this);
+            obj.set_useclientlayout("true");
+            obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"1\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"20\"/><Column id=\"origRowStatus\" type=\"STRING\" size=\"256\"/><Column id=\"pgmId\" type=\"STRING\" size=\"30\"/><Column id=\"fileId\" type=\"STRING\" size=\"50\"/><Column id=\"fileSeq\" type=\"INT\" size=\"256\"/><Column id=\"orgnlFileNm\" type=\"STRING\" size=\"1000\"/><Column id=\"strgFileNm\" type=\"STRING\" size=\"1000\"/><Column id=\"filePath\" type=\"STRING\" size=\"2000\"/><Column id=\"fileSz\" type=\"INT\" size=\"256\"/><Column id=\"fileExtn\" type=\"STRING\" size=\"255\"/><Column id=\"delYn\" type=\"STRING\" size=\"1\"/><Column id=\"rgstId\" type=\"STRING\" size=\"20\"/><Column id=\"rgstIp\" type=\"STRING\" size=\"40\"/><Column id=\"rgstDt\" type=\"DATETIME\" size=\"256\"/><Column id=\"updtId\" type=\"STRING\" size=\"20\"/><Column id=\"updtIp\" type=\"STRING\" size=\"40\"/><Column id=\"updtDt\" type=\"DATETIME\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsSearch", this);
+            obj._setContents("<ColumnInfo><Column id=\"pgmId\" type=\"STRING\" size=\"256\"/><Column id=\"fileId\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+            
+            // UI Components Initialize
+            obj = new Div("divDrop","0","45",null,null,"0","0",null,null,null,null,this);
+            obj.set_taborder("5");
+            obj.set_cssclass("raonkdropzone");
+            obj.set_border("0px none");
+            this.addChild(obj.name, obj);
+
+            obj = new Grid("grdFileList","0","0",null,null,"0","34",null,null,null,null,this.divDrop.form);
+            obj.set_taborder("0");
+            obj.set_binddataset("dsFileList");
+            obj.set_autofittype("col");
+            obj.set_tooltiptype("default");
+            obj.set_autoenter("select");
+            obj.set_enable("true");
+            obj.set_nodatatext("여기에 파일을 끌어다 놓으세요");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"40\" band=\"left\"/><Column size=\"40\" band=\"left\"/><Column size=\"40\" band=\"left\"/><Column size=\"40\" band=\"left\"/><Column size=\"200\"/><Column size=\"64\" band=\"right\"/><Column size=\"56\" band=\"right\"/><Column size=\"56\" band=\"right\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"NO\" autosizecol=\"none\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" textAlign=\"center\" verticalAlign=\"middle\" autosizecol=\"none\"/><Cell col=\"2\" text=\"상태\"/><Cell col=\"3\"/><Cell col=\"4\" text=\"파일명\"/><Cell col=\"5\" text=\"크기\"/><Cell col=\"6\" text=\"다운로드\"/><Cell col=\"7\" text=\"삭제\"/></Band><Band id=\"body\"><Cell text=\"expr:currow+1\" textAlign=\"center\" expandsize=\"16\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:rowCheck\" textAlign=\"center\" verticalAlign=\"middle\" expandsize=\"16\"/><Cell col=\"2\" expr=\"comp.fnRowStatusSymbol(rowStatus)\"/><Cell col=\"3\" expr=\"comp.fnGetFileIcon(orgnlFileNm)\" displaytype=\"imagecontrol\"/><Cell col=\"4\" textAlign=\"left\" text=\"bind:orgnlFileNm\" tooltiptext=\"bind:orgnlFileNm\"/><Cell col=\"5\" textAlign=\"right\" expr=\"comp.fnFormatFileSize(fileSz)\"/><Cell col=\"6\" displaytype=\"imagecontrol\" text=\"theme://images/btn_WF_grdDownload.png\"/><Cell col=\"7\" displaytype=\"imagecontrol\" expr=\"rowStatus == &apos;deleted&apos; ? &apos;theme://images/btn_WF_grdReturn.png&apos; : &apos;theme://images/btn_WF_grdDelete.png&apos;\"/></Band></Format><Format id=\"download\"><Columns><Column size=\"40\" band=\"left\"/><Column size=\"40\" band=\"left\"/><Column size=\"240\"/><Column size=\"64\" band=\"right\"/><Column size=\"56\" band=\"right\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"NO\" autosizecol=\"none\"/><Cell col=\"1\"/><Cell col=\"2\" text=\"파일명\"/><Cell col=\"3\" text=\"크기\"/><Cell col=\"4\" text=\"다운로드\"/></Band><Band id=\"body\"><Cell text=\"expr:currow+1\" textAlign=\"center\" expandsize=\"16\"/><Cell col=\"1\" expr=\"comp.fnGetFileIcon(orgnlFileNm)\" displaytype=\"imagecontrol\"/><Cell col=\"2\" textAlign=\"left\" text=\"bind:orgnlFileNm\" color=\"expr:rowStatus == &apos;deleted&apos; ? &apos;red&apos; : &apos;black&apos;\" textDecoration=\"expr:rowStatus == &apos;deleted&apos; ? &apos;line-through&apos; : &apos;&apos;\" tooltiptext=\"bind:orgnlFileNm\"/><Cell col=\"3\" textAlign=\"right\" expr=\"comp.fnFormatFileSize(fileSz)\"/><Cell col=\"4\" displaytype=\"imagecontrol\" text=\"theme://images/btn_WF_grdDownload.png\"/></Band></Format></Formats>");
+            this.divDrop.addChild(obj.name, obj);
+
+            obj = new Static("staStatus","0",null,null,"34","0","0",null,null,null,null,this.divDrop.form);
+            obj.set_taborder("1");
+            obj.set_cssclass("sta_WF_condition02");
+            obj.set_border("0px none,1px solid #dddddd, 1px solid #dddddd, 1px solid #dddddd");
+            this.divDrop.addChild(obj.name, obj);
+
+            obj = new Button("btnDownloadAll",null,"14","118","26","0",null,null,null,null,null,this);
+            obj.set_taborder("4");
+            obj.set_text("전체 다운로드");
+            obj.set_cssclass("btn_WF_grdDownload");
+            obj.set_visible("false");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnDeleteAll",null,"14","89","26","btnDownloadAll:5",null,null,null,null,null,this);
+            obj.set_taborder("3");
+            obj.set_text("전체삭제");
+            obj.set_cssclass("btn_WF_grdDelete");
+            obj.set_visible("false");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnDelete",null,"14","89","26","btnDeleteAll:5",null,null,null,null,null,this);
+            obj.set_taborder("2");
+            obj.set_text("선택삭제");
+            obj.set_cssclass("btn_WF_grdDelete");
+            obj.set_visible("false");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnAdd",null,"14","63","26","btnDelete:5",null,null,null,null,null,this);
+            obj.set_taborder("1");
+            obj.set_text("추가");
+            obj.set_cssclass("btn_WF_grdAdd");
+            obj.set_visible("false");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("staHeading","0","0",null,"45","btnAdd:15",null,null,null,null,null,this);
+            obj.set_taborder("0");
+            obj.set_cssclass("sta_WF_subTitle01");
+            obj.set_text("첨부 파일");
+            this.addChild(obj.name, obj);
+            // Layout Functions
+            //-- Default Layout : this.divDrop.form
+            obj = new Layout("default","",0,0,this.divDrop.form,function(p){});
+            this.divDrop.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this
+            obj = new Layout("default","",560,240,this,function(p){});
+            this.addLayout(obj.name, obj);
+            
+            // BindItem Information
+
+            
+            // TriggerItem Information
+
+        };
+        
+        this.loadPreloadList = function()
+        {
+
+        };
+        
+        // User Script
+        this.addIncludeScript("fileUpload.xfdl","lib::common.xjs");
+        this.addIncludeScript("fileUpload.xfdl","lib::fileUpload.xjs");
+        this.registerScript("fileUpload.xfdl", function() {
+        /**
+        *  공통 파일 업로드
+        *  MenuPath      -
+        *  FileName      fileUpload.xfdl
+        *  Creator 	     parksw
+        *  CreateDate    2023.01.30
+        *  Desction      공통 파일 업로드
+        ************** 소스 수정 이력 ***********************************************
+        *  date          Modifier    Description
+        *******************************************************************************
+        *  2023.04.06    parksw      최초 생성
+        *******************************************************************************/
+
+        this.executeIncludeScript("lib::common.xjs"); /*include "lib::common.xjs"*/;
+        this.executeIncludeScript("lib::fileUpload.xjs"); /*include "lib::fileUpload.xjs"*/;
+
+        this.fileAddMode = "";
+        this.fileAddCallback = "";
+        this.downCallback = "";
+        this.readonly = false;
+        this.fileNmChk = true;
+
+        let raonkInitialized = false;
+        let formInitialized = false;
+        let newDs = "";
+
+        /*
+         * 예제: sam::fileUploadSample.xfdl
+         *
+         * 사용 방법
+         * 1. Div를 만들고, URL을 이 form으로 설정한다.
+         * 2. init()을 사용하여 파일 업로더를 초기화한다.
+         *    this.divFileUpload.form.init(pgmId, fileId, options);
+         *    - pgmId: 화면의 프로그램 ID
+         *    - fileId: 파일 목록의 파일 ID
+         *    - options: 선택적 초기화 옵션
+         *      - header: 파일 업로더 제목
+         *      - maxCount: 최대 업로드 가능 개수 (기본값 20)
+         *      - maxFileSize: 단일 파일의 최대 크기 제한 (기본값 "50MB")
+         *      - maxTotalSize: 파일 크기 총합 최대 크기 제한 (기본값 "200MB")
+         *      - allowedTypes: 업로드를 허용할 확장자 배열 (기본값 ["jpg", "jpeg", "gif", "png", "bmp", "webp", "heif", "zip", "7z", "rar", "txt", "doc", "docx", "ppt", "pptx", "xls", "xlsx", "pdf", "hwp", "hwpx"])
+         *      - readonly: 읽기 전용 모드 여부 (기본값 false)
+         *      - form: 콜백 함수를 찾을 때 대신 사용할 객체(기본값은 화면에 따라 MDI 탭 또는 팝업)
+         *    예) this.divFileUpload.form.init("fileUploadTest", "20230907000000", { header: "기본 첨부파일 예제", maxCount: 25, maxFileSize: "20MB" });
+         *
+         * 3. searchFileList()를 사용하여 파일 목록을 새로 조회할 수 있다.
+         *
+         * 4. upload()를 사용하여 파일을 업로드할 수 있다.
+         *    this.divFileUpload.form.upload(callback, dsFile, extParam)
+         *    - callback: 업로드 완료 후 실행할 콜백 함수 이름. 매개변수로 업로더 div 이름과 성공 여부가 넘어온다.
+         *    - dsFile: 업로드 완료 후 파일 목록을 받을 데이터셋 이름
+         *    - extParam: 빈 값이면 업로드 완료 후 파일 목록을 저장하고, "U"이면 업로드만 하고 파일 목록을 저장하지 않는다.
+         *    예) this.divFileUpload.form.upload("fnUploadComplete1", "dsFile1");
+         *        this.fnUploadComplete1 = function (name, result)
+         *        {
+         *            if (result === "Y")
+         *                this.gfnAlert("성공적으로 업로드하였습니다.");
+         *        };
+         *
+         * 5. 기타 멤버 함수
+         *    - isUpdated(): 첨부파일 목록이 수정되었는지 확인한다.
+         *    - setReadonly(readonly): 읽기 전용 모드를 설정/해제한다.
+         *    - clearFileList(): 첨부파일 목록을 초기화한다.
+         *
+         * 각 함수의 사용법은 예제 및 각 함수의 jsdoc 주석 참조
+         */
+
+        /***********************************************************************************************
+        * FORM EVENT 영역(onload, onbeforeclose)
+        /***********************************************************************************************/
+
+        /**
+         * @description 화면 oninit
+         * @private
+         */
+        this.fileUpload_oninit = function(obj,e)
+        {
+            const thisObj = this;
+            const ownerFrame = this.getOwnerFrame();
+            if (ownerFrame.formurl === "FrameBase::Form_TabContent.xfdl") {
+                this.ownerForm = ownerFrame.form.contentDiv.form;
+            } else {
+                this.ownerForm = ownerFrame.form;
+            }
+
+            this._fnCreateUploader();
+
+        	this.initExtIconMap();
+
+            this.divDrop.form.grdFileList.fnGetFileIcon = function (fileName) {
+                return thisObj.getFileIcon(fileName);
+            };
+
+            this.divDrop.form.grdFileList.fnFormatFileSize = function (size) {
+                return thisObj.formatFileSize(size);
+            };
+
+            this.divDrop.form.grdFileList.fnRowStatusSymbol = function (rowStatus) {
+                switch (rowStatus) {
+                    case "inserted":
+                        return "C";
+                    case "updated":
+                        return "U";
+                    case "deleted":
+                        return "D";
+                    default:
+                        return rowStatus;
+                }
+            };
+        };
+
+        /**
+         * @description 화면 onload
+         * @private
+         */
+        this.fileUpload_onload = function(obj,e)
+        {
+        };
+
+        /**
+         * @description 화면 onload
+         * @private
+         */
+        this.fileUpload_onclose = function(obj,e)
+        {
+            this._fnDestroyUploader();
+        };
+
+        /************************************************************************************************
+         * TRANSACTION 서비스 호출 처리
+         ************************************************************************************************/
+
+        /**
+         * @description 파일 목록을 조회한다.
+         * @private
+         */
+        this._fnSearch = function ()
+        {
+            if (!raonkInitialized || !formInitialized) {
+                return;
+            }
+            this.dsSearch.setColumn(0, "pgmId", this.pgmId);
+            this.dsSearch.setColumn(0, "fileId", this.fileId);
+            this.gfnTransaction("getList", "cmn/file/getList.do", "dsSearch", "dsFileList", "", "_fnCallback");
+        };
+
+        /**
+         * @description 파일 목록을 저장한다.
+         * @private
+         */
+        this._fnSave = function ()
+        {
+            this.gfnTransaction("setList", "cmn/file/setList.do", "dsFileList", "", "", "_fnCallback");
+        };
+
+        /************************************************************************************************
+         * CALLBACK 콜백 처리부분(Transaction, Popup)
+         ************************************************************************************************/
+
+        /**
+         * @private
+         */
+        this._fnCallback = function (svcId, errorCode, errorMsg)
+        {
+            switch (svcId) {
+                case "getList":
+                    if (this.dsFileList.rowcount > 0) {
+                        this.raonk.ResetUpload();
+                    }
+                    for (let i = 0; i < this.dsFileList.rowcount; i++) {
+                        const orgnlFileNm = this.dsFileList.getColumn(i, "orgnlFileNm");
+                        const strgFileNm = this.dsFileList.getColumn(i, "strgFileNm");
+                        const filePath = this.dsFileList.getColumn(i, "filePath");
+                        const fileSz = this.dsFileList.getColumn(i, "fileSz");
+                        const fileExtn = this.dsFileList.getColumn(i, "fileExtn");
+                        const id = strgFileNm.slice(0, strgFileNm.lastIndexOf("."));
+
+                        this.raonk.AddUploadedFile(id, orgnlFileNm, filePath + strgFileNm, fileSz, "");
+                    }
+                    break;
+                case "setList":
+                    if (this.callbackMsg === "success") {
+                        this.searchFileList();
+                        this._fnInvokeCallback(this.ownerForm, this.fileCallback, ["Y"]);
+                    } else {
+                        this.gfnAlert("업로드 중 오류가 발생하였습니다.");
+                        this._fnInvokeCallback(this.ownerForm, this.fileCallback, ["N"]);
+                    }
+                    break;
+            }
+        };
+
+        /************************************************************************************************
+         * 각 COMPONENT 별 EVENT 영역
+         ************************************************************************************************/
+
+        /**
+         * @private
+         */
+        this.grdFileList_onheadclick = function(obj,e)
+        {
+            this.gfnSetGridCheckAll(obj, e, "rowCheck");
+        };
+
+        /**
+         * @private
+         */
+        this.grdFileList_oncellclick = function(obj,e)
+        {
+            const formatId = obj.formatid;
+            if ((formatId == "default" && e.col == 6) || (formatId == "download" && e.col == 5)) {   // 다운로드
+                this._fnDownloadFile(e.row);
+            } else if (formatId == "default" && e.col == 7) {    // 삭제
+                this._fnDeleteFile(e.row);
+            }
+        };
+
+        /**
+         * @private
+         */
+        this.btnAdd_onclick = function(obj,e)
+        {
+            this.raonk.OpenFileDialog();
+        };
+
+        /**
+         * @private
+         */
+        this.btnDelete_onclick = function(obj,e)
+        {
+            const arr = this.gfnGetCheckedRows(this.dsFileList, "rowCheck").reverse();
+            for (let i of arr) {
+                this._fnDeleteFile(i);
+            }
+        };
+
+        /**
+         * @private
+         */
+        this.btnDownloadAll_onclick = function(obj,e)
+        {
+            this._fnDownloadAllFile();
+        };
+
+        /**
+         * @private
+         */
+        this.btnDeleteAll_onclick = function(obj,e)
+        {
+            if (this.dsFileList.rowcount < 1) {
+                this.gfnAlert("삭제할 파일이 없습니다.");
+                return;
+            }
+
+            for (let i = this.dsFileList.rowcount - 1; i >= 0; i--) {
+                this._fnDeleteFile(i);
+            }
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_CreationComplete = function(obj,  paramObj)
+        {
+            raonkInitialized = true;
+            this.searchFileList();
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_BeforeAddFile = function(obj, paramObj)
+        {
+            return this._fnCheckCanAddFile(paramObj.userdata);
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_BeforeUpload = function(obj, paramObj)
+        {
+            this.raonk.AddFormData("pgmId", this.pgmId);
+            this.raonk.AddFormData("fileId", this.fileId);
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_AgentInstall = function(obj, paramObj)
+        {
+            console.log("RaonK agent 설치됨");
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_AfterAddFile = function(obj, paramObj)
+        {
+            const fileName = paramObj.userdata.strName;
+            const ext = fileName.slice(fileName.lastIndexOf(".") + 1);
+            const size = paramObj.userdata.nSize;
+            const row = this.dsFileList.addRow();
+
+            this.dsFileList.setColumn(row, "rowStatus", "inserted");
+            this.dsFileList.setRowType(row, nexacro.NormalDataset.ROWTYPE_INSERT);
+            this.dsFileList.setColumn(row, "pgmId", this.pgmId);
+            this.dsFileList.setColumn(row, "fileId", this.fileId);
+            this.dsFileList.setColumn(row, "orgnlFileNm", fileName);
+            this.dsFileList.setColumn(row, "fileExtn", ext);
+            this.dsFileList.setColumn(row, "fileSz", size);
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_UploadComplete = function(obj, paramObj)
+        {
+            this.setWaitCursor(false, true);
+
+            const uploadedList = obj.GetNewUploadList();
+            let result = true;
+
+            if (uploadedList != null) {
+                for (const item of uploadedList) {
+                    const row = this.dsFileList.findRowExpr("orgnlFileNm === $0 && rowStatus === 'inserted'", 0, -1, [item.originalName]);
+                    const path = item.uploadPath.slice(0, item.uploadPath.length - item.uploadName.length);
+                    if (row >= 0) {
+                        this.dsFileList.setColumn(row, "strgFileNm", item.uploadName);
+                        this.dsFileList.setColumn(row, "filePath", path);
+                    }
+
+                    if (item.status !== "complete") {
+                        result = false;
+                    }
+                }
+            }
+
+            if (result) {
+                if (this.transMode === "U") {
+                    this._fnAddParentDs(this.dsFileList);
+                    this._fnInvokeCallback(this.ownerForm, this.fileCallback, ["Y"]);
+                } else {
+                    this._fnSave();
+                }
+            } else {
+                this.gfnAlert("업로드가 실패하였습니다.");
+                this._fnInvokeCallback(this.ownerForm, this.fileCallback, ["N"]);
+            }
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_UploadingCancel = function(obj, paramObj)
+        {
+            this.setWaitCursor(false, true);
+        };
+
+        /**
+         * @private
+         */
+        this.raonk_RAONKUPLOAD_OnError = function(obj, paramObj)
+        {
+            console.log("OnError: \n", paramObj);
+            this.setWaitCursor(false, true);
+        };
+
+        /**
+         * @private
+         */
+        this.dsFileList_onvaluechanged = function(obj,e)
+        {
+            this._fnUpdateFooter();
+        };
+
+        /************************************************************************************************
+         * 사용자 FUNCTION 영역
+         ************************************************************************************************/
+
+        /**
+         * @summary 파일 업로더를 초기화한다.
+         *
+         * @public
+         *
+         * @param {string} pgmId 첨부파일 프로그램 ID
+         * @param {string} fileID 첨부파일 ID
+         * @param {object} [options] 첨부파일 옵션
+         * @param {nexacro.Form} [options.form] 콜백을 찾을 Form 객체. 미지정 시 MDI 탭 또는 팝업의 컨텐츠 Form을 사용.
+         * @param {string} [options.header] 첨부파일 영역 제목
+         * @param {number} [options.maxCount = 20] 최대 파일 개수
+         * @param {string} [options.maxFileSize = "50MB"] 최대 파일 크기. 사용 가능한 단위는 B, KB, MB, GB, TB. 예시: 10MB
+         * @param {string} [options.maxTotalSize = "200MB"] 파일 크기 총합 제한. 사용 가능한 단위는 B, KB, MB, GB, TB. 예시: 10MB
+         * @param {string[]} [options.allowedTypes] 업로드 허용 확장자 목록
+         * @param {boolean} [options.readonly = false] 읽기 전용 모드 여부
+         *
+         * @return {void}
+         */
+        this.init = function (pgmId, fileId, options)
+        {
+            this.pgmId = pgmId;
+            this.fileId = fileId;
+
+            if (options == null) {
+                options = {};
+            }
+
+            if (options.form != null) {
+                this.ownerForm = options.form;
+            }
+
+            if (!Eco.isEmpty(options.maxCount)) {
+                this.fileConfig.maxCount = options.maxCount;
+            }
+
+            if (!Eco.isEmpty(options.maxFileSize)) {
+                this.fileConfig.maxSize = options.maxFileSize;
+            }
+
+            if (!Eco.isEmpty(options.maxTotalSize)) {
+                this.fileConfig.maxTotalSize = options.maxTotalSize;
+            }
+
+            if (!Eco.isEmpty(options.allowedTypes)) {
+                this.fileConfig.allowTypes = options.allowedTypes;
+            }
+
+            if (Eco.isEmpty(options.header)) {
+                this.staHeading.set_visible(false);
+                this.staHeading.set_text("");
+            } else {
+                this.staHeading.set_text(options.header);
+            }
+
+            this._fnSetReadonly(options.readonly || false);
+            this.readonly = options.readonly || false;
+            this._fnUpdateFooter();
+
+            this._initFile();
+        };
+
+        /**
+         * @summary 파일 목록이 수정되었는지 확인한다.
+         *
+         * @public
+         *
+         * @return {boolean}
+         */
+        this.isUpdated = function ()
+        {
+            return this.gfnIsUpdated(this.dsFileList);
+        };
+
+        /**
+         * @summary 파일 업로드를 시작한다
+         *
+         * @public
+         *
+         * @param {string} callback 콜백 함수 이름. 미지정시 fnFileCallback 호출
+         * @param {string} dsFile 첨부파일 목록 Dataset 이름
+         * @param {string} extParam 값이 'U'인 경우, 파일 업로드만 하고 부모 form에 파일 목록 데이터셋 생성. 빈 값인 경우 파일 목록도 저장.
+         */
+        this.upload = function (callback, dsFile, extParam)
+        {
+            newDs = dsFile || "";
+
+            this.fileCallback = callback;
+
+            if (!this.isUpdated()) {
+                if (!Eco.isEmpty(dsFile)) {
+                    this._fnAddParentDs(this.dsFileList);
+                }
+                this._fnInvokeCallback(this.ownerForm, callback, ["Y"]);
+                return;
+            }
+
+            this.setWaitCursor(true, true);
+            this.raonk.fromObject = this;
+            this.transMode = extParam || "";
+            this.raonk.Transfer();
+        };
+
+        /**
+         * @summary 파일 목록을 새로 조회한다.
+         *
+         * @param {string} [pgmId] 새로 지정할 프로그램 ID. 미지정 시 이전에 사용한 값을 사용한다.
+         * @param {string} [fileId] 새로 지정할 파일 ID. 미지정 시 이전에 사용한 값을 사용한다.
+         *
+         * @public
+         */
+        this.searchFileList = function (pgmId, fileId)
+        {
+            if (!Eco.isEmpty(pgmId)) {
+                this.pgmId = pgmId;
+            }
+
+            if (!Eco.isEmpty(fileId)) {
+                this.fileId = fileId;
+            }
+
+            this._fnSearch();
+        };
+
+        /**
+         * @summary 파일 목록을 초기화한다.
+         *
+         * @public
+         */
+        this.clearFileList = function ()
+        {
+            this.dsFileList.clearData();
+            this.raonk.DeleteAllFile();
+        };
+
+        /**
+         * @summary 읽기 전용 모드를 설정한다.
+         *
+         * @param {boolean} readonly 읽기 전용으로 변경하는 경우 true로 설정한다.
+         *
+         * @public
+         */
+        this.setReadonly = function (readonly)
+        {
+            this._fnSetReadonly(readonly);
+        }
+
+        /**
+         * @private
+         */
+        this._initFile = function ()
+        {
+            this.raonk.set_ExtensionAllowOrLimit("1");
+            this.raonk.set_ExtensionArr(this.fileConfig.allowTypes.join(","));
+            this.raonk.set_MaxTotalFileSize(this.fileConfig.maxTotalSize);
+            this.raonk.set_MaxOneFileSize(this.fileConfig.maxSize);
+            this.raonk.set_MaxTotalFileCount(this.fileConfig.maxCount);
+
+            formInitialized = true;
+            this.searchFileList();
+        };
+
+        /**
+         * @private
+         */
+        this._fnSetReadonly = function (readonly)
+        {
+            this.btnAdd.set_visible(!readonly);
+            this.btnDelete.set_visible(!readonly);
+            this.btnDeleteAll.set_visible(!readonly);
+            this.btnDownloadAll.set_visible(true);
+            this.staHeading.set_right(readonly ? "btnDownloadAll:15" : "btnAdd:15");
+            this.divDrop.set_cssclass(readonly ? "" : ("raonkdropzone kuid_" + this.raonk.id));
+
+            this.divDrop.form.grdFileList.setFormat(readonly ? "download" : "default");
+        };
+
+        /**
+         * @summary 업로드 가능한 파일인지 확인한다.
+         * @private
+         */
+        this._fnCheckCanAddFile = function (file)
+        {
+            const size = file.nSize;
+            const name = file.strName;
+            const ext = name.slice(name.lastIndexOf(".") + 1);
+            const newTotalSize = size + this.raonk.GetTotalFileSize("total");
+
+            if (this.dsFileList.rowcount == this.fileConfig.maxCount) {
+                this.gfnAlert("최대 " + this.fileConfig.maxCount + "개의 파일만 업로드할 수 있습니다.");
+                return false;
+            }
+
+            if (this.fileNmChk && this.dsFileList.findRowExpr("rowStatus !== 'deleted' && orgnlFileNm == $0", 0, -1, [name]) >= 0) {
+                this.gfnAlert("파일명 '" + name + "'이 중복되었습니다.");
+                return false;
+            }
+
+            if (this.fileConfig.allowTypes.indexOf(ext) < 0) {
+                this.gfnAlert("확장자가 '" + ext + "'인 파일은 업로드할 수 없습니다.\n(" + name + ")");
+                return false;
+            }
+
+            if (size > this.parseFileSize(this.fileConfig.maxSize)) {
+                this.gfnAlert("크기가 " + this.fileConfig.maxSize + "를 초과하는 파일은 업로드할 수 없습니다.");
+                return false;
+            }
+
+            if (newTotalSize > this.parseFileSize(this.fileConfig.maxTotalSize)) {
+                this.gfnAlert("첨부파일 크기 총합이 " + this.fileConfig.maxSize + "를 초과할 수 없습니다.");
+                return false;
+            }
+
+            return true;
+        }
+
+        /**
+         * @private
+         */
+        this._fnDeleteFile = function (row)
+        {
+            const rowStatus = this.dsFileList.getColumn(row, "rowStatus");
+            const fileSeq = this.dsFileList.getColumn(row, "fileSeq");
+            let origRowStatus;
+
+            switch (rowStatus) {
+                case "inserted":
+                    this.raonk.SetSelectFile(row, 0);
+                    this.raonk.DeleteSelectedFile();
+                    this.dsFileList.deleteRow(row);
+                    break;
+                case "deleted":
+                    if (this.fileNmChk) {
+                        const fileNm = this.dsFileList.getColumn(row, "orgnlFileNm");
+                        if (this.dsFileList.findRowExpr("rowStatus !== 'deleted' && orgnlFileNm === $0", 0 , -1, [fileNm]) >= 0) {
+                            this.gfnAlert("파일명 \"" + fileNm + "\"이 중복되었습니다.");
+                            return false;
+                        }
+                    }
+
+                    this.dsFileList.set_enableevent(false);
+                    origRowStatus = this.dsFileList.getColumn(row, "origRowStatus");
+                    this.dsFileList.setColumn(row, "rowStatus", origRowStatus);
+                    this.dsFileList.set_updatecontrol(false);
+                    this.dsFileList.setRowType(row, origRowStatus === "updated" ? nexacro.NormalDataset.ROWTYPE_UPDATE : nexacro.NormalDataset.ROWTYPE_NORMAL);
+                    this.dsFileList.set_updatecontrol(true);
+                    this.dsFileList.set_enableevent(true);
+
+                    break;
+                default:
+                    origRowStatus = this.dsFileList.getColumn(row, "rowStatus");
+                    this.dsFileList.set_enableevent(false);
+                    this.dsFileList.setColumn(row, "rowStatus", "deleted");
+                    this.dsFileList.setColumn(row, "origRowStatus", origRowStatus);
+                    this.dsFileList.set_updatecontrol(false);
+                    this.dsFileList.setRowType(row,nexacro.NormalDataset.ROWTYPE_UPDATE);
+                    this.dsFileList.set_updatecontrol(true);
+                    this.dsFileList.set_enableevent(true);
+                    break;
+            }
+
+            if (!this.gfnIsEmpty(this.fileAddCallback)) {
+                this.ownerForm[this.fileAddCallback](this.name, fileSeq);
+            }
+
+            this.divDrop.form.grdFileList.redraw();
+        }
+
+        /**
+         * @private
+         */
+        this._fnAddParentDs = function (src)
+        {
+            let parentDs = this.ownerForm[newDs];
+
+            if (parentDs == null) {
+                this.ownerForm.addChild(newDs, new nexacro.NormalDataset());
+                parentDs = this.ownerForm[newDs];
+            }
+
+            parentDs.copyData(src);
+        };
+
+        /**
+         * @summary 콜백 함수를 호출한다.
+         * @private
+         * @param {*} context 함수를 호출할 컨텍스트
+         * @param {string} name 함수명
+         * @param {Array} args 파라미터 배열
+         */
+        this._fnInvokeCallback = function (context, name, args)
+        {
+            if (context == null) {
+                context = this.ownerForm;
+            }
+
+            const arr = [this.parent.name];
+            for (let item of args) {
+                arr.push(item);
+            }
+
+            if (typeof context[name] === "function") {
+                context[name].apply(context, arr);
+            }
+        };
+
+        /**
+         * @summary 파일을 다운로드한다.
+         * @private
+         * @param {number} row 데이터셋 상의 행 번호
+         */
+        this._fnDownloadFile = function (row)
+        {
+            this.raonk.SetSelectFile(row, 0);
+            this.raonk.DownloadFile();
+        }
+
+        /**
+         * @summary 전체 파일을 다운로드한다.
+         * @private
+         */
+        this._fnDownloadAllFile = function ()
+        {
+            this.raonk.DownloadAllFile();
+        };
+
+        /**
+         * @summary 푸터를 업데이트한다.
+         * @private
+         */
+        this._fnUpdateFooter = function ()
+        {
+            let total = 0;
+            let count = 0;
+            for (let i = 0; i < this.dsFileList.rowcount; i++) {
+                const rowStatus = this.dsFileList.getColumn(i, "rowStatus");
+                if (rowStatus !== "deleted") {
+                    total += this.dsFileList.getColumn(i, "fileSz");
+                    count++;
+                }
+            }
+
+            const text = [];
+            text.push(count);
+
+            if (this.fileConfig.maxCount != null && this.fileConfig.maxCount > 0) {
+                text.push(" / ");
+                text.push(this.fileConfig.maxCount);
+            }
+
+            text.push("개, ");
+            text.push(this.formatFileSize(total));
+
+            if (this.fileConfig.maxTotalSize != null && this.parseFileSize(this.fileConfig.maxTotalSize) >= 0) {
+                text.push(" / ");
+                text.push(this.fileConfig.maxTotalSize);
+            }
+
+            this.divDrop.form.staStatus.set_text(text.join(""));
+        };
+
+        this._fnCreateUploader = function ()
+        {
+            const id = "raonk_" + Date.now() + "_" + (Math.random() * 1000000).toFixed(0);
+            const raonk = new nexacro.RaonkUpload(id, 0, 45, null, null, 0, 0, null, null, null, null, this);
+            raonk.addEventHandler("RAONKUPLOAD_AfterAddFile", this.raonk_RAONKUPLOAD_AfterAddFile, this);
+            raonk.addEventHandler("RAONKUPLOAD_AgentInstall", this.raonk_RAONKUPLOAD_AgentInstall, this);
+            raonk.addEventHandler("RAONKUPLOAD_BeforeAddFile", this.raonk_RAONKUPLOAD_BeforeAddFile, this);
+            raonk.addEventHandler("RAONKUPLOAD_BeforeUpload", this.raonk_RAONKUPLOAD_BeforeUpload, this);
+            raonk.addEventHandler("RAONKUPLOAD_CreationComplete", this.raonk_RAONKUPLOAD_CreationComplete, this);
+            raonk.addEventHandler("RAONKUPLOAD_OnError", this.raonk_RAONKUPLOAD_OnError, this);
+            raonk.addEventHandler("RAONKUPLOAD_UploadComplete", this.raonk_RAONKUPLOAD_UploadComplete, this);
+            raonk.addEventHandler("RAONKUPLOAD_UploadingCancel", this.raonk_RAONKUPLOAD_UploadingCancel, this);
+            raonk.set_ExtensionAllowOrLimit(1);
+            raonk.set_DisableDeleteConfirm(1);
+            raonk.set_DisableRecoveryConfirm(1);
+            raonk.set_AllowDuplicationFile(1);
+            raonk.set_DeleteUnchosen(1);
+            raonk.set_visible(false);
+            this.insertChild(0, id, raonk);
+            this.raonk = raonk;
+            this.divDrop.uploadId = id;
+            this.divDrop.set_cssclass("raonkdropzone kuid_" + id);
+        };
+
+        this._fnDestroyUploader = function ()
+        {
+            if (this.raonk != null) {
+                this.raonk.removeEventHandler("RAONKUPLOAD_AfterAddFile", this.raonk_RAONKUPLOAD_AfterAddFile, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_AgentInstall", this.raonk_RAONKUPLOAD_AgentInstall, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_BeforeAddFile", this.raonk_RAONKUPLOAD_BeforeAddFile, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_BeforeUpload", this.raonk_RAONKUPLOAD_BeforeUpload, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_CreationComplete", this.raonk_RAONKUPLOAD_CreationComplete, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_OnError", this.raonk_RAONKUPLOAD_OnError, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_UploadComplete", this.raonk_RAONKUPLOAD_UploadComplete, this);
+                this.raonk.removeEventHandler("RAONKUPLOAD_UploadingCancel", this.raonk_RAONKUPLOAD_UploadingCancel, this);
+                this.raonk.DestroyUpload();
+                this.removeChild(this.raonk);
+                this.raonk.destroy();
+                this.raonk = null;
+            }
+        };
+
+        });
+        
+        // Regist UI Components Event
+        this.on_initEvent = function()
+        {
+            this.addEventHandler("onload",this.fileUpload_onload,this);
+            this.addEventHandler("oninit",this.fileUpload_oninit,this);
+            this.addEventHandler("onclose",this.fileUpload_onclose,this);
+            this.divDrop.form.grdFileList.addEventHandler("onheadclick",this.grdFileList_onheadclick,this);
+            this.divDrop.form.grdFileList.addEventHandler("oncellclick",this.grdFileList_oncellclick,this);
+            this.btnDownloadAll.addEventHandler("onclick",this.btnDownloadAll_onclick,this);
+            this.btnDeleteAll.addEventHandler("onclick",this.btnDeleteAll_onclick,this);
+            this.btnDelete.addEventHandler("onclick",this.btnDelete_onclick,this);
+            this.btnAdd.addEventHandler("onclick",this.btnAdd_onclick,this);
+            this.staHeading.addEventHandler("onclick",this.Static09_onclick,this);
+            this.dsFileList.addEventHandler("onvaluechanged",this.dsFileList_onvaluechanged,this);
+        };
+        this.loadIncludeScript("fileUpload.xfdl");
+        this.loadPreloadList();
+        
+        // Remove Reference
+        obj = null;
+    };
+}
+)();

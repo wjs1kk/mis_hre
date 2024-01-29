@@ -1,0 +1,72 @@
+:root {
+    --tabbar-button-background-color: white;
+    --tabbar-button-foreground-color: #333333;
+    --tabbar-button-hover-background-color: #dddddd;
+    --tabbar-button-hover-foreground-color: #333333;
+    --tabbar-button-active-background-color: #00388e;
+    --tabbar-button-active-foreground-color: white;
+    --tabbar-button-disabled-background-color: #bbbbbb;
+    --tabbar-button-disabled-foreground-color: white;
+}
+
+.jn-tabbar {
+    background-color: white;
+
+    & .dhx_tabbar-header__wrapper {
+        border-bottom: 1px solid #cccccc;
+    }
+
+    & .dhx_tabbar-tab-button {
+        border: 1px solid #cccccc;
+        background-color: var(--tabbar-button-background-color);
+        color: var(--tabbar-button-foreground-color);
+        border-bottom: 1px solid var(--tabbar-button-active-background-color) !important;
+        border-radius: 0;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: 700;
+        line-height: 1;
+        padding: 0 15px;
+        height: 100%;
+        cursor: pointer;
+        display: unset;
+
+        &:hover {
+            background-color: var(--tabbar-button-hover-background-color);
+            border: 1px solid var(--tabbar-button-hover-background-color);
+            color: var(--tabbar-button-hover-foreground-color);
+            cursor: pointer;
+        }
+
+        & .dhx_button__text {
+            opacity: 1;
+        }
+    }
+
+    & .dhx_tabbar-tab-button--active {
+        border: 1px solid var(--tabbar-button-active-background-color);
+        background-color: var(--tabbar-button-active-background-color);
+        color: var(--tabbar-button-active-foreground-color);
+        cursor: pointer;
+
+        &:hover {
+            border: 1px solid var(--tabbar-button-active-background-color);
+            background-color: var(--tabbar-button-active-background-color);
+            color: var(--tabbar-button-active-foreground-color);
+            cursor: pointer;
+        }
+    }
+
+    & .dhx_tabbar-tab-button--disabled,
+    & .dhx_tabbar-tab-button--disabled:disabled,
+    & .dhx_tabbar-tab-button:disabled {
+        border: 1px solid var(--tabbar-button-disabled-background-color);
+        background-color: var(--tabbar-button-disabled-background-color);
+        color: var(--tabbar-button-disabled-foreground-color);
+        cursor: pointer;
+    }
+
+    & .dhx_tabbar-header-active {
+        display: none;
+    }
+}

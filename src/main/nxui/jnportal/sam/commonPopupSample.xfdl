@@ -1,0 +1,558 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="commonPopupSample" width="1920" height="1177" titletext="New Form" onload="commonPopupSample_onload">
+    <Layouts>
+      <Layout height="1177" width="1920">
+        <Static id="staTitle" taborder="0" text="공통 팝업 샘플" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" left="50"/>
+        <Div id="divUserList" taborder="1" text="" left="50" top="53" right="50" cssclass="div_WF_Area" height="300">
+          <Layouts>
+            <Layout>
+              <Grid id="grdUserManage" taborder="1" left="0" top="45" binddataset="dsUser" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="Div00_grdUserManage_onheadclick" oncelldblclick="divResult_grdUserManage_oncelldblclick" oncellclick="divResult_grdUserManage_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="96"/>
+                      <Column size="96"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                      <Column size="160"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="회원 ID"/>
+                      <Cell col="3" text="사용자 이름"/>
+                      <Cell col="4" text="부서"/>
+                      <Cell col="5" text="직위"/>
+                      <Cell col="6" text="E-MAIL"/>
+                      <Cell col="7" text="사무실 전화"/>
+                      <Cell col="8" text="휴대전화"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" text="bind:memberId"/>
+                      <Cell col="3" text="bind:userNmKr" edittype="none"/>
+                      <Cell col="4" text="bind:ogdpDeptNm"/>
+                      <Cell col="5" text="bind:jbpsNm" edittype="none" textAlign="center"/>
+                      <Cell col="6" text="bind:emlAddr" edittype="none"/>
+                      <Cell col="7" text="bind:ofcTelno" edittype="none"/>
+                      <Cell col="8" text="bind:mblTelno" edittype="none"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta005" taborder="0" text="사용자 선택 팝업 예제" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="390"/>
+              <Button id="btnAddOnePerson" taborder="2" text="한 명만 선택" top="14" width="109" height="26" cssclass="btn_WF_Row_Add" right="0" onclick="divResult_btnAddOnePerson_onclick"/>
+              <Button id="btnAddMultiplePerson" taborder="3" text="여러 명 선택" top="14" width="109" height="26" cssclass="btn_WF_Row_Add" right="btnAddOnePerson:5" onclick="divResult_btnAddMultiplePerson_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Div id="divUserForm" taborder="2" text="" left="50" top="divUserList:10" right="50" cssclass="div_WF_Area" height="250">
+          <Layouts>
+            <Layout>
+              <Static id="staHeader" taborder="0" text="사용자 선택 팝업 예제" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="390"/>
+              <Static id="sta000" taborder="1" cssclass="sta_WF_condition02box" left="0" top="44" right="0" height="34" text=""/>
+              <Static id="sta001" taborder="2" cssclass="sta_WF_condition02_L" left="0" top="44" width="150" height="34" text="ID"/>
+              <Static id="sta002" taborder="3" text="회원ID" cssclass="sta_WF_condition02" left="33.30%" top="44" width="150" height="34"/>
+              <Static id="staUserId" taborder="4" left="160" top="48" height="26" right="sta002:10"/>
+              <Static id="sta003" taborder="5" text="이름" cssclass="sta_WF_condition02" left="66.65%" top="44" width="150" height="34"/>
+              <Static id="staMemberId" taborder="6" left="sta002:10" top="48" height="26" right="sta003:10"/>
+              <Static id="staUserNmKr" taborder="7" left="sta003:10" top="48" height="26" right="10"/>
+              <Static id="sta000_00" taborder="8" cssclass="sta_WF_condition02box" left="0" top="77" right="0" height="34" text=""/>
+              <Static id="sta004" taborder="9" cssclass="sta_WF_condition02_L" left="0" top="77" width="150" height="34" text="기관명"/>
+              <Static id="sta005" taborder="10" text="부서명" cssclass="sta_WF_condition02" left="33.30%" top="77" width="150" height="34"/>
+              <Static id="staOgdpInstNm" taborder="11" left="160" top="81" height="26" right="1224"/>
+              <Static id="sta006" taborder="12" text="직급" cssclass="sta_WF_condition02" left="66.65%" top="77" width="150" height="34"/>
+              <Static id="staOgdpDeptNm" taborder="13" left="766" top="81" height="26" right="618"/>
+              <Static id="staJbpsNm" taborder="14" left="1373" top="81" height="26" right="11"/>
+              <Static id="sta000_01" taborder="15" cssclass="sta_WF_condition02box" left="0" top="110" right="0" height="34" text=""/>
+              <Static id="sta007" taborder="16" cssclass="sta_WF_condition02_L" left="0" top="110" width="150" height="34" text="사무실 전화번호"/>
+              <Static id="sta008" taborder="17" text="휴대전화번호" cssclass="sta_WF_condition02" left="33.30%" top="110" width="150" height="34"/>
+              <Static id="staOfcTelno" taborder="18" left="160" top="114" height="26" right="1224"/>
+              <Static id="sta009" taborder="19" text="이메일" cssclass="sta_WF_condition02" left="66.65%" top="110" width="150" height="34"/>
+              <Static id="staMblTelno" taborder="20" left="766" top="114" height="26" right="618"/>
+              <Static id="staEmlAddr" taborder="21" left="1373" top="114" height="26" right="11"/>
+              <Static id="sta000_02" taborder="22" cssclass="sta_WF_condition02box" left="0" top="143" right="0" height="54" text=""/>
+              <Static id="sta010" taborder="23" cssclass="sta_WF_condition02_L" left="0" top="143" width="150" height="54" text="주소"/>
+              <Static id="staMbrAddr" taborder="24" left="160" top="147" height="47" right="10"/>
+              <Button id="btnSelectUser" taborder="25" text="선택" top="14" width="63" height="26" cssclass="btn_WF_grdSelect_W" right="0" onclick="divUserForm_btnSelectUser_onclick"/>
+              <Static id="sta000_02_00" taborder="26" cssclass="sta_WF_condition02box" left="0" top="196" right="0" height="54" text=""/>
+              <Static id="sta011" taborder="27" cssclass="sta_WF_condition02_L" left="0" top="196" width="150" height="54" text="사무실 주소"/>
+              <Static id="staOfcAddr" taborder="28" left="160" top="200" height="47" right="10"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Div id="divDeptList" taborder="3" left="50" top="divUserForm:10" height="300" right="50" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="sta005" taborder="0" text="부서 선택 팝업 예제" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="390"/>
+              <Button id="btnAddOneDept" taborder="2" text="한 부서만 선택" top="14" width="121" height="26" cssclass="btn_WF_Row_Add" right="0" onclick="divDeptList_btnAddOneDept_onclick"/>
+              <Button id="btnAddMultipleDept" taborder="1" text="여러 부서 선택" top="14" width="121" height="26" cssclass="btn_WF_Row_Add" right="btnAddOneDept:5" onclick="divDeptList_btnAddMultipleDept_onclick"/>
+              <Grid id="grdDeptList" taborder="3" left="0" top="45" binddataset="dsDeptList" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="Div00_grdUserManage_onheadclick" oncelldblclick="divResult_grdUserManage_oncelldblclick" oncellclick="divResult_grdUserManage_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="96"/>
+                      <Column size="120" band="right"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="부서명"/>
+                      <Cell col="3" text="부서 코드"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" text="bind:deptNmPath" textAlign="left"/>
+                      <Cell col="3" text="bind:deptCd" edittype="none"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divDeptInfo" taborder="4" left="50" top="divDeptList:10" height="244" right="50" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="sta005" taborder="0" text="부서 선택 팝업 예제" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="390"/>
+              <Button id="btnSelectUser" taborder="1" text="선택" top="14" width="63" height="26" cssclass="btn_WF_grdSelect_W" right="0" onclick="divDeptInfo_btnSelectUser_onclick"/>
+              <Static id="sta000" taborder="2" cssclass="sta_WF_condition02box" left="0" top="44" right="0" height="34" text=""/>
+              <Static id="sta001" taborder="3" cssclass="sta_WF_condition02_L" left="0" top="44" width="150" height="34" text="경로"/>
+              <Static id="staUserId" taborder="4" left="160" top="48" height="26" right="10"/>
+              <Static id="staMemberId" taborder="5" left="766" top="48" height="26" right="618"/>
+              <Static id="staUserNmKr" taborder="6" left="1373" top="48" height="26" right="11"/>
+              <Static id="sta000_00" taborder="7" cssclass="sta_WF_condition02box" left="0" top="77" right="0" height="34" text=""/>
+              <Static id="sta004" taborder="8" cssclass="sta_WF_condition02_L" left="0" top="77" width="150" height="34" text="부서명"/>
+              <Static id="sta005_00" taborder="9" text="부서코드" cssclass="sta_WF_condition02" left="33.30%" top="77" width="150" height="34"/>
+              <Static id="staOgdpInstNm" taborder="10" left="160" top="81" height="26" right="1224"/>
+              <Static id="sta006" taborder="11" text="상위부서명" cssclass="sta_WF_condition02" left="66.65%" top="77" width="150" height="34"/>
+              <Static id="staOgdpDeptNm" taborder="12" left="766" top="81" height="26" right="618"/>
+              <Static id="staJbpsNm" taborder="13" left="1373" top="81" height="26" right="11"/>
+              <Static id="sta000_00_00" taborder="14" cssclass="sta_WF_condition02box" left="0" top="110" right="0" height="34" text=""/>
+              <Static id="sta004_00" taborder="15" cssclass="sta_WF_condition02_L" left="0" top="110" width="150" height="34" text="부서장"/>
+              <Static id="sta005_01" taborder="16" text="부서담당자" cssclass="sta_WF_condition02" left="33.30%" top="110" width="150" height="34"/>
+              <Static id="staOgdpInstNm00" taborder="17" left="160" top="114" height="26" right="1224"/>
+              <Static id="sta006_00" taborder="18" text="사용여부" cssclass="sta_WF_condition02" left="66.65%" top="110" width="150" height="34"/>
+              <Static id="staOgdpDeptNm00" taborder="19" left="766" top="114" height="26" right="618"/>
+              <Static id="staJbpsNm00" taborder="20" left="1373" top="114" height="26" right="11"/>
+              <Static id="sta000_02" taborder="22" cssclass="sta_WF_condition02box" left="0" top="143" right="0" height="64" text=""/>
+              <Static id="staMbrAddr" taborder="23" left="160" top="147" height="57" right="10"/>
+              <Static id="sta010" taborder="21" cssclass="sta_WF_condition02_L" left="0" top="143" width="150" height="64" text="설명"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUser" useclientlayout="true" onrowposchanged="dsUser_onrowposchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="1"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNmKr" type="STRING" size="300"/>
+          <Column id="emlAddr" type="STRING" size="320"/>
+          <Column id="ofcTelno" type="STRING" size="20"/>
+          <Column id="mblTelno" type="STRING" size="20"/>
+          <Column id="jbpsNm" type="STRING" size="300"/>
+          <Column id="ogdpDeptNm" type="STRING" size="300"/>
+          <Column id="whdwlYn" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUserInfo" useclientlayout="true" onrowposchanged="dsUser_onrowposchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="1"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNmKr" type="STRING" size="300"/>
+          <Column id="memberNmKr" type="STRING" size="300"/>
+          <Column id="memberNmEn" type="STRING" size="300"/>
+          <Column id="ogdpInstCd" type="STRING" size="20"/>
+          <Column id="ogdpInstNm" type="STRING" size="200"/>
+          <Column id="emlAddr" type="STRING" size="320"/>
+          <Column id="ofcTelno" type="STRING" size="20"/>
+          <Column id="ofcFxno" type="STRING" size="20"/>
+          <Column id="mblTelno" type="STRING" size="20"/>
+          <Column id="joinAplyStts" type="STRING" size="20"/>
+          <Column id="corpYn" type="STRING" size="1"/>
+          <Column id="jbpsCd" type="STRING" size="20"/>
+          <Column id="jbpsNm" type="STRING" size="300"/>
+          <Column id="ogdpDeptCd" type="STRING" size="20"/>
+          <Column id="ogdpDeptNm" type="STRING" size="300"/>
+          <Column id="mbrAddr" type="STRING" size="300"/>
+          <Column id="ofcAddr" type="STRING" size="300"/>
+          <Column id="whdwlYn" type="STRING" size="1"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDeptList">
+        <ColumnInfo>
+          <Column id="deptNmPath" type="STRING" size="2147473647"/>
+          <Column id="deptCd" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDeptInfo" useclientlayout="true" onrowposchanged="dsUser_onrowposchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="1"/>
+          <Column id="deptCd" type="STRING" size="20"/>
+          <Column id="deptNm" type="STRING" size="150"/>
+          <Column id="deptLdrId" type="STRING" size="20"/>
+          <Column id="deptLdrNm" type="STRING" size="300"/>
+          <Column id="deptMngrId" type="STRING" size="20"/>
+          <Column id="deptMngrNm" type="STRING" size="300"/>
+          <Column id="deptDesc" type="STRING" size="300"/>
+          <Column id="useYn" type="STRING" size="1"/>
+          <Column id="ordSn" type="INT" size="20"/>
+          <Column id="upDeptCd" type="STRING" size="20"/>
+          <Column id="upDeptNm" type="STRING" size="150"/>
+          <Column id="level" type="INT" size="20"/>
+          <Column id="matched" type="STRING" size="1"/>
+          <Column id="deptNmPath" type="STRING" size="2147483647"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  공통 팝업 예제
+ *  MenuPath      -
+ *  FileName      sam::commonPopupSample.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.11.30
+ *  Desription    권한 사용자 조회 팝업
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.11.30    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.commonPopupSample_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnPopupClosed = function (popupId, args)
+{
+    const result = this.gfnGetPopupRtn();
+    let user;
+    let users;
+    let dept;
+    let depts;
+    switch (popupId) {
+        case "singleAddUser":       // 단일 사용자 추가
+            if (result.canceled) {
+                this.gfnAlert("취소됨");
+                return;
+            }
+            
+            user = result.user;
+            
+            // 그리드에 행을 추가하고 데이터를 입력한다.
+            this.gfnInsertRow(this.dsUser, "last");
+            this.dsUser.setColumn(this.dsUser.rowposition, "userId", user.userId);
+            this.dsUser.setColumn(this.dsUser.rowposition, "memberId", user.memberId);
+            this.dsUser.setColumn(this.dsUser.rowposition, "userNmKr", user.userNmKr);
+            this.dsUser.setColumn(this.dsUser.rowposition, "ogdpDeptNm", user.ogdpDeptNm);
+            this.dsUser.setColumn(this.dsUser.rowposition, "emlAddr", user.emlAddr);
+            this.dsUser.setColumn(this.dsUser.rowposition, "ofcTelno", user.ofcTelno);
+            this.dsUser.setColumn(this.dsUser.rowposition, "mblTelno", user.mblTelno);
+            break;
+        case "multipleAddUser":     // 여러 사용자 추가
+            if (result.canceled) {
+                this.gfnAlert("취소됨");
+                return;
+            }
+            
+            users = result.users;
+            // 그리드에 행을 추가하고 데이터를 입력한다.
+            for (const user of users) {
+                this.gfnInsertRow(this.dsUser, "last");
+                this.dsUser.setColumn(this.dsUser.rowposition, "userId", user.userId);
+                this.dsUser.setColumn(this.dsUser.rowposition, "memberId", user.memberId);
+                this.dsUser.setColumn(this.dsUser.rowposition, "userNmKr", user.userNmKr);
+                this.dsUser.setColumn(this.dsUser.rowposition, "ogdpDeptNm", user.ogdpDeptNm);
+                this.dsUser.setColumn(this.dsUser.rowposition, "jbpsNm", user.jbpsNm);
+                this.dsUser.setColumn(this.dsUser.rowposition, "emlAddr", user.emlAddr);
+                this.dsUser.setColumn(this.dsUser.rowposition, "ofcTelno", user.ofcTelno);
+                this.dsUser.setColumn(this.dsUser.rowposition, "mblTelno", user.mblTelno);
+            }
+            break;
+        case "selectUser":          // 사용자 선택
+            if (result.canceled) {
+                this.gfnAlert("취소됨");
+                return;
+            }
+            
+            if (result.reset) {
+                // 초기화 버튼 클릭 시 폼의 내용을 초기화
+                this.dsUserInfo.clearData();
+                this.dsUserInfo.addRow();
+                return;
+            }
+            
+            if (this.dsUserInfo.rowcount == 0) {
+                this.dsUserInfo.addRow();
+            }
+            
+            user = result.user;
+            // 선택한 내용을 폼에 설정한다.
+            this.dsUserInfo.setColumn(0, "userId", user.userId);
+            this.dsUserInfo.setColumn(0, "memberId", user.memberId);
+            this.dsUserInfo.setColumn(0, "userNmKr", user.userNmKr);
+            this.dsUserInfo.setColumn(0, "ogdpInstNm", user.ogdpInstNm);
+            this.dsUserInfo.setColumn(0, "ogdpDeptNm", user.ogdpDeptNm);
+            this.dsUserInfo.setColumn(0, "jbpsNm", user.jbpsNm);
+            this.dsUserInfo.setColumn(0, "emlAddr", user.emlAddr);
+            this.dsUserInfo.setColumn(0, "ofcTelno", user.ofcTelno);
+            this.dsUserInfo.setColumn(0, "mblTelno", user.mblTelno);
+            this.dsUserInfo.setColumn(0, "mbrAddr", [user.mbrZip, user.mbrAddr, user.mbrDaddr].join("\n"));
+            this.dsUserInfo.setColumn(0, "ofcAddr", [user.ofcZip, user.ofcAddr, user.ofcDaddr].join("\n"));
+            break;
+        case "singleAddDept":       // 단일 부서 추가
+            if (result.canceled) {
+                return;
+            }
+            
+            dept = result.dept;
+            
+            this.gfnInsertRow(this.dsDeptList, "last");
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptCd", dept.deptCd);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptNm", dept.deptNm);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptLdrId", dept.deptLdrId);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptLdrNm", dept.deptLdrNm);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptMngrId", dept.deptMngrId);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptMngrNm", dept.deptMngrNm);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptDesc", dept.deptDesc);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "useYn", dept.useYn);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "ordSn", dept.ordSn);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "upDeptCd", dept.upDeptCd);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "upDeptNm", dept.upDeptNm);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "level", dept.level);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "matched", dept.matched);
+            this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptNmPath", dept.deptNmPath.join(">"));
+            
+            break;
+        case "multipleAddDept":     // 여러 부서 추가
+            if (result.canceled) {
+                return;
+            }
+            
+            depts = result.depts;
+            
+            for (const dept of depts) {
+                this.gfnInsertRow(this.dsDeptList, "last");
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptCd", dept.deptCd);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptNm", dept.deptNm);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptLdrId", dept.deptLdrId);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptLdrNm", dept.deptLdrNm);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptMngrId", dept.deptMngrId);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptMngrNm", dept.deptMngrNm);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptDesc", dept.deptDesc);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "useYn", dept.useYn);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "ordSn", dept.ordSn);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "upDeptCd", dept.upDeptCd);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "upDeptNm", dept.upDeptNm);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "level", dept.level);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "matched", dept.matched);
+                this.dsDeptList.setColumn(this.dsDeptList.rowposition, "deptNmPath", dept.deptNmPath.join(">"));
+            }
+            
+            break;
+        case "selectDept":          // 부서 선택
+            if (result.canceled) {
+                this.gfnAlert("취소됨");
+                return;
+            }
+            
+            if (result.reset) {
+                this.dsDeptInfo.clearData();
+                this.dsDeptInfo.addRow();
+                return;
+            }
+            
+            if (this.dsDeptInfo.rowcount == 0) {
+                this.dsDeptInfo.addRow();
+            }
+            
+            dept = result.dept;
+            
+            this.dsDeptInfo.setColumn(0, "deptCd", dept.deptCd);
+            this.dsDeptInfo.setColumn(0, "deptNm", dept.deptNm);
+            this.dsDeptInfo.setColumn(0, "deptLdrId", dept.deptLdrId);
+            this.dsDeptInfo.setColumn(0, "deptLdrNm", dept.deptLdrNm);
+            this.dsDeptInfo.setColumn(0, "deptMngrId", dept.deptMngrId);
+            this.dsDeptInfo.setColumn(0, "deptMngrNm", dept.deptMngrNm);
+            this.dsDeptInfo.setColumn(0, "deptDesc", dept.deptDesc);
+            this.dsDeptInfo.setColumn(0, "useYn", dept.useYn);
+            this.dsDeptInfo.setColumn(0, "ordSn", dept.ordSn);
+            this.dsDeptInfo.setColumn(0, "upDeptCd", dept.upDeptCd);
+            this.dsDeptInfo.setColumn(0, "upDeptNm", dept.upDeptNm);
+            this.dsDeptInfo.setColumn(0, "level", dept.level);
+            this.dsDeptInfo.setColumn(0, "matched", dept.matched);
+            this.dsDeptInfo.setColumn(0, "deptNmPath", dept.deptNmPath.join(">"));
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divResult_btnAddMultiplePerson_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnAddUser("multiple");
+};
+
+this.divResult_btnAddOnePerson_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnAddUser("single");
+};
+
+this.divUserForm_btnSelectUser_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSelectUser();
+};
+
+this.divDeptList_btnAddMultipleDept_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnAddDept("multiple");
+};
+
+this.divDeptList_btnAddOneDept_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnAddDept("single");
+};
+
+this.divDeptInfo_btnSelectUser_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSelectDept();
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+/**
+ * 사용자를 추가한다.
+ *
+ * @param {"single" | "multiple"} mode 사용자 선택 모드(single: 단일, multiple: 다중)
+ */
+this.fnAddUser = function (mode)
+{
+    /**
+     * 사용자 검색 팝업을 표시할 옵션
+     *
+     * @property {"single" | "multiple"} mode 사용자 선택 모드(single: 단일, multiple: 다중)
+     * @property {boolean} enableReset 초기화 버튼 사용 여부
+     */
+    const args = {
+        mode: mode,
+        enableReset: false
+    };
+    
+    this.gfnOpenPopup(mode + "AddUser", "cmm::userSearchPopup.xfdl", args, "fnPopupClosed", "");
+};
+
+/**
+ * 사용자를 선택한다.
+ */
+this.fnSelectUser = function ()
+{
+    const args = {
+        mode: "single",
+        enableReset: true
+    };
+    
+    this.gfnOpenPopup("selectUser", "cmm::userSearchPopup.xfdl", args, "fnPopupClosed", "");
+};
+
+/**
+ * 부서를 추가한다.
+ *
+ * @param {"single" | "multiple"} mode 부서선택 모드(single: 단일, multiple: 다중)
+ */
+this.fnAddDept = function (mode)
+{
+    /**
+     * 부서 검색 팝업을 표시할 옵션
+     *
+     * @property {"single" | "multiple"} mode 부서 선택 모드(single: 단일, multiple: 다중)
+     * @property {boolean} enableReset 초기화 버튼 사용 여부
+     */
+    const args = {
+        mode: mode,
+        enableReset: false
+    };
+    
+    this.gfnOpenPopup(mode + "AddDept", "cmm::deptSearchPopup.xfdl", args, "fnPopupClosed", "");
+};
+
+/**
+ * 부서를 선택한다.
+ */
+this.fnSelectDept= function ()
+{
+    const args = {
+        mode: "single",
+        enableReset: true
+    };
+    
+    this.gfnOpenPopup("selectDept", "cmm::deptSearchPopup.xfdl", args, "fnPopupClosed", "");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divUserForm.form.staUserId" propid="text" datasetid="dsUserInfo" columnid="userId"/>
+      <BindItem id="item1" compid="divUserForm.form.staMemberId" propid="text" datasetid="dsUserInfo" columnid="memberId"/>
+      <BindItem id="item2" compid="divUserForm.form.staUserNmKr" propid="text" datasetid="dsUserInfo" columnid="userNmKr"/>
+      <BindItem id="item3" compid="divUserForm.form.staOgdpInstNm" propid="text" datasetid="dsUserInfo" columnid="ogdpInstNm"/>
+      <BindItem id="item4" compid="divUserForm.form.staOgdpDeptNm" propid="text" datasetid="dsUserInfo" columnid="ogdpDeptNm"/>
+      <BindItem id="item5" compid="divUserForm.form.staJbpsNm" propid="text" datasetid="dsUserInfo" columnid="jbpsNm"/>
+      <BindItem id="item6" compid="divUserForm.form.staOfcTelno" propid="text" datasetid="dsUserInfo" columnid="ofcTelno"/>
+      <BindItem id="item7" compid="divUserForm.form.staMblTelno" propid="text" datasetid="dsUserInfo" columnid="mblTelno"/>
+      <BindItem id="item8" compid="divUserForm.form.staEmlAddr" propid="text" datasetid="dsUserInfo" columnid="emlAddr"/>
+      <BindItem id="item9" compid="divUserForm.form.staMbrAddr" propid="text" datasetid="dsUserInfo" columnid="mbrAddr"/>
+      <BindItem id="item10" compid="divUserForm.form.staOfcAddr" propid="text" datasetid="dsUserInfo" columnid="ofcAddr"/>
+      <BindItem id="item11" compid="divDeptInfo.form.staUserId" propid="text" datasetid="dsDeptInfo" columnid="deptNmPath"/>
+      <BindItem id="item12" compid="divDeptInfo.form.staOgdpInstNm" propid="text" datasetid="dsDeptInfo" columnid="deptNm"/>
+      <BindItem id="item13" compid="divDeptInfo.form.staOgdpDeptNm" propid="text" datasetid="dsDeptInfo" columnid="deptCd"/>
+      <BindItem id="item14" compid="divDeptInfo.form.staJbpsNm" propid="text" datasetid="dsDeptInfo" columnid="upDeptNm"/>
+      <BindItem id="item15" compid="divDeptInfo.form.staOgdpInstNm00" propid="text" datasetid="dsDeptInfo" columnid="deptLdrNm"/>
+      <BindItem id="item16" compid="divDeptInfo.form.staOgdpDeptNm00" propid="text" datasetid="dsDeptInfo" columnid="deptMngrNm"/>
+      <BindItem id="item17" compid="divDeptInfo.form.staJbpsNm00" propid="text" datasetid="dsDeptInfo" columnid="useYn"/>
+      <BindItem id="item18" compid="divDeptInfo.form.staMbrAddr" propid="text" datasetid="dsDeptInfo" columnid="deptDesc"/>
+    </Bind>
+  </Form>
+</FDL>

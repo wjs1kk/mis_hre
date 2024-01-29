@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.mi.mypage.service.MemberModifyDAO">
+
+    <select id="getMyPageInfo" parameterType="map" resultType="memberModifyVO">
+        /*member-modify-mapper.getMyPageInfo*/
+        SELECT U.USER_ID
+             , U.MEMBER_ID
+             , M.MEMBER_NM_KR
+             , M.MEMBER_NM_EN
+             , M.EML_ADDR AS OLD_EML_ADDR
+             , M.EML_ADDR
+             , M.MBL_TELNO
+             , M.MBR_ZIP
+             , M.MBR_ADDR
+             , M.MBR_DADDR
+             , M.OGDP_INST_CD
+             , M.OGDP_INST_NM
+             , M.OGDP_DEPT_NM
+             , M.OGDP_DEPT_CD
+             , M.JBPS_CD
+             , M.JBPS_NM
+             , M.OFC_TELNO
+             , M.OFC_FXNO
+             , M.OFC_ZIP
+             , M.OFC_ADDR
+             , M.OFC_DADDR
+             , M.WHDWL_YN
+          FROM CMN_USER U
+          JOIN PTS_MEMBER M
+            ON U.MEMBER_ID = M.MEMBER_ID
+         WHERE U.USER_ID = #{userId}
+         ORDER BY U.MEMBER_ID
+    </select>
+
+    <update id="updateMemberInfo" parameterType="memberModifyVO">
+        /*member-modify-mapper.updateMemberInfo*/
+        UPDATE PTS_MEMBER
+           SET MEMBER_NM_KR = NULLIF(#{memberNmKr}, '')
+             , MEMBER_NM_EN = NULLIF(#{memberNmEn}, '')
+        <if test='emlAddr != oldEmlAddr'>
+             , EML_ADDR     = NULLIF(#{emlAddr}, '')
+        </if>
+             , OFC_TELNO    = NULLIF(#{ofcTelno}, '')
+             , MBL_TELNO    = NULLIF(#{mblTelno}, '')
+             , OFC_FXNO     = NULLIF(#{ofcFxno}, '')
+             , JBPS_NM      = NULLIF(#{jbpsNm}, '')
+             , OGDP_DEPT_NM = NULLIF(#{ogdpDeptNm}, '')
+             , OGDP_INST_NM = NULLIF(#{ogdpInstNm}, '')
+             , MBR_ZIP      = NULLIF(#{mbrZip}, '')
+             , MBR_ADDR     = NULLIF(#{mbrAddr}, '')
+             , MBR_DADDR    = NULLIF(#{mbrDaddr}, '')
+             , OFC_ZIP      = NULLIF(#{ofcZip}, '')
+             , OFC_ADDR     = NULLIF(#{ofcAddr}, '')
+             , OFC_DADDR    = NULLIF(#{ofcDaddr}, '')
+             , UPDT_ID      = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP      = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT      = NOW()
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <update id="updateUserInfo" parameterType="memberModifyVO">
+        /*member-modify-mapper.updateUserInfo*/
+        UPDATE CMN_USER
+           SET USER_NM_KR   = NULLIF(#{memberNmKr}, '')
+        <if test='passwd != null and passwd != ""'>
+             , PW_EXPIRE_DT = DATE_TRUNC('day', NOW()) + INTERVAL '3 months'
+        </if>
+             , UPDT_ID      = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP      = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT      = NOW()
+         WHERE USER_ID      = #{userId}
+    </update>
+
+    <select id="getPasswordHash" parameterType="memberModifyVO" resultType="string">
+        /** member-modify-mapper.getPasswordHash **/
+        SELECT PASSWD
+          FROM PTS_MEMBER
+         WHERE MEMBER_ID = #{memberId}
+    </select>
+
+    <update id="updatePassword" parameterType="memberModifyVO">
+        /** member-modify-mapper.updatePassword **/
+        UPDATE PTS_MEMBER
+           SET PASSWD    = NULLIF(#{passwd}, '')
+             , UPDT_ID   = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP   = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT   = NOW()
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <delete id="deleteMember" parameterType="map">
+        /** member-modify-mapper.deleteMember **/
+        DELETE FROM PTS_MEMBER
+         WHERE MEMBER_ID = (SELECT MEMBER_ID FROM CMN_USER WHERE USER_ID = #{userId});
+    </delete>
+
+    <update id="updateWithdrawState" parameterType="map">
+        UPDATE CMN_USER
+           SET WHDWL_YN = 'Y'
+             , USE_YN = 'N'
+             , MEMBER_ID = NULL
+         WHERE USER_ID = #{userId}
+    </update>
+</mapper>

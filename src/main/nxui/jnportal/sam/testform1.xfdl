@@ -1,0 +1,478 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="testform1" width="1280" height="670" titletext="Type2 템플릿" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1280" height="670" screenid="Desktop_screen">
+        <Static id="sta_01" taborder="0" text="Type 2 템플릿" left="50" top="10" height="30" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divResult" taborder="1" text="" left="50" top="150" height="520" right="50">
+          <Layouts>
+            <Layout>
+              <Grid id="grdTypeTwo" taborder="2" left="20" top="45" binddataset="dsTypeTwo" right="20" bottom="26" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="grdTypeTwo_onheadclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="150"/>
+                      <Column size="150"/>
+                      <Column size="100"/>
+                      <Column size="150"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="100"/>
+                      <Column size="150"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="23" band="head"/>
+                      <Row size="23" band="head"/>
+                      <Row size="33"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="순번"/>
+                      <Cell col="1" rowspan="2" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" rowspan="2" text="상태"/>
+                      <Cell col="3" colspan="2" text="아이디"/>
+                      <Cell col="5" rowspan="2" text="프로그램명"/>
+                      <Cell col="6" rowspan="2" text="프로그램유형"/>
+                      <Cell col="7" rowspan="2" text="URL"/>
+                      <Cell col="8" rowspan="2" text="프로그램 설명"/>
+                      <Cell col="9" rowspan="2" text="프로그램 파일명"/>
+                      <Cell col="10" colspan="2" text="대체URL"/>
+                      <Cell col="12" rowspan="2" text="첨부파일"/>
+                      <Cell col="13" colspan="2" text="권한레벨"/>
+                      <Cell col="15" colspan="2" text="라디오"/>
+                      <Cell col="17" rowspan="2" text="등록자"/>
+                      <Cell col="18" rowspan="2" text="등록일"/>
+                      <Cell row="1" col="3" text="시스템ID"/>
+                      <Cell row="1" col="4" text="프로그램ID"/>
+                      <Cell row="1" col="10" text="URL"/>
+                      <Cell row="1" col="11" text="사용여부"/>
+                      <Cell row="1" col="13" text="사용여부"/>
+                      <Cell row="1" col="14" text="사용설명"/>
+                      <Cell row="1" col="15" text="사용"/>
+                      <Cell row="1" col="16" text="미사용"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" text="bind:sysId" edittype="text" textAlign="center"/>
+                      <Cell col="4" text="bind:progId" edittype="text"/>
+                      <Cell col="5" text="bind:progNm" edittype="text"/>
+                      <Cell col="6" text="bind:progTy" edittype="combo" displaytype="combocontrol"/>
+                      <Cell col="7" text="bind:progUrl" edittype="text"/>
+                      <Cell col="8" text="bind:progDc" edittype="text"/>
+                      <Cell col="9" text="bind:progFileNm" edittype="text"/>
+                      <Cell col="10" text="bind:substituteUrl" edittype="text"/>
+                      <Cell col="11" text="bind:substituteUseYn" edittype="combo" displaytype="combocontrol" combodataset="dsUseYn" combocodecol="LINE_CODE" combodatacol="LINE_CODE_NM_KR" comboautoselect="true"/>
+                      <Cell col="12" text="bind:atchFileId" edittype="text"/>
+                      <Cell col="13" text="bind:permissionUseYn" edittype="checkbox" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                      <Cell col="14" text="bind:permissionDc" edittype="text"/>
+                      <Cell col="15" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="Y" text="bind:radioUseYn"/>
+                      <Cell col="16" text="bind:radioUseYn" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="N"/>
+                      <Cell col="17" text="bind:rgstNm" edittype="none" textAlign="center"/>
+                      <Cell col="18" text="bind:rgstDt" edittype="none" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static10" taborder="1" text="w20" visible="false" left="0" top="-1" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="2" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static09" taborder="4" text="검색결과" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" onclick="Static09_onclick" width="100"/>
+              <Static id="staGridRowCnt" taborder="5" text="(총 0건)" cssclass="sta_WF_subResult" left="Static09:20" top="11" width="100" height="27"/>
+              <Button id="btnAddRow" taborder="6" text="행추가" cssclass="btn_WF_Row_Add" top="14" right="91" width="66" height="26" onclick="btnAddRow_onclick"/>
+              <Button id="btnDeleteRow" taborder="7" text="행삭제" cssclass="btn_WF_Row_Delete" top="14" right="20" width="66" height="26" onclick="btnDeleteRow_onclick" enable="true"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Button id="btnExportCompML" taborder="2" text="Export 컴포넌트 언어 Data" top="19" height="28" right="186" width="160" onclick="btnExportCompML_onclick"/>
+        <Div id="divSearch" taborder="3" left="50" top="57" height="83" cssclass="" text="" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static00" taborder="3" left="20" top="18" height="50" cssclass="sta_WF_bg" right="20" onclick="div_Search_Static00_onclick"/>
+              <Static id="sta_001" taborder="4" text="프로그램ID" cssclass="sta_WF_condition01" top="26" width="110" height="34" onclick="div_Search_Static01_onclick" left="20"/>
+              <Static id="sch_RQST_DT" taborder="5" text="프로그램명" left="440" top="26" width="110" height="34" cssclass="sta_WF_condition01"/>
+              <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="20" height="146" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="2" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="6" text="w60" visible="false" left="380" top="12" width="60" height="71" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" onclick="div_Search_Static10_00_onclick"/>
+              <Static id="Static15_01_00" taborder="7" text="h 12" onclick="Static31_onclick" visible="false" left="230" top="18" width="50" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Edit id="SCH_RQST_ID00" taborder="8" left="130" top="30" width="250" height="26" onchanged="div_Search_SCH_RQST_ID_onchanged"/>
+              <Edit id="SCH_RQST_ID00_00" taborder="9" left="550" top="30" width="250" height="26" onchanged="div_Search_SCH_RQST_ID_onchanged"/>
+              <Static id="Static15_01_00_00" taborder="10" text="h 12" onclick="Static31_onclick" visible="false" left="230" top="56" width="50" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="sch_RQST_DT00" taborder="11" text="사용여부" left="805" top="26" width="110" height="34" cssclass="sta_WF_condition01"/>
+              <Combo id="cbo001" taborder="12" left="898" top="30" width="8.90%" height="26" codecolumn="LINE_CODE" datacolumn="LINE_CODE_NM_KR" ondropdown="div_Search_sch_apv_stat_cd_ondropdown" oncloseup="div_Search_sch_apv_stat_cd_oncloseup" onitemchanged="div_Search_sch_apv_stat_cd_onitemchanged" innerdataset="dsUseYnSch" index="0" text="전체" value=""/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="Static02" taborder="4" text="W&#13;&#10; 50" visible="false" top="0" height="753" onclick="Static02_onclick" background="antiquewhite" color="blue" right="0" width="50"/>
+        <Static id="Static04_00_00" taborder="5" text="h 10" onclick="Static31_onclick" visible="false" left="50" top="140" width="60" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Static id="Static34" taborder="6" text="W 50" onclick="Static02_onclick" visible="false" left="0" top="0" width="50" height="752" background="antiquewhite" color="blue"/>
+        <Static id="Static04_00_00_01" taborder="7" text="h 15" onclick="Static31_onclick" visible="false" left="70" top="125" width="100" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="19" width="65" height="28" right="50" taborder="8" onclick="btnSave_onclick"/>
+        <Button id="btnSearch" text="조회" cssclass="" top="19" width="65" height="28" right="118" taborder="9" onclick="btnSearch_onclick"/>
+        <Button id="btn_registration" taborder="10" text="신규등록" top="19" width="90" height="28" cssclass="btn_WF_icoRegistration" onclick="btn_registration_onclick" right="349"/>
+        <Button id="btn_001" taborder="11" text="NullPoint" top="19" width="90" height="28" cssclass="btn_WF_icoContDelete" right="442" onclick="btn_001_onclick"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsTypeTwo" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+          <Column id="radioUseYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LINE_CODE">Y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN">use</Col>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">N</Col>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN">unused</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <FileDialog id="FileDialog00"/>
+      <Dataset id="dsUseYnSch">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LINE_CODE_NM_KR">전체</Col>
+            <Col id="LINE_CODE_NM_EN">ALL</Col>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">Y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN">USE</Col>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">N</Col>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN">UNUSED</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Type2 Template
+*  MenuPath      -
+*  FileName      testform1.xfdl 
+*  Creator 	     parkmg
+*  CreateDate    2023.01.30
+*  Desction      스크립트 표준 및 주석 표준 정의
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.01.30    parkmg 	 최초 생성
+*  2023.02.08    parkmg 	 rowType 적용
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	// generate multi language Excel 
+	//this.gfnGenerateML(this);
+	
+	
+	var fUrl = e.url;
+	
+	var gMenu = nexacro.getApplication().gdsMenu;
+	
+	var app = nexacro.getApplication();
+	
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getTypeTwoList";
+	var strSvcUrl   = "sam/getTypeTwoList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsTypeTwo";
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+// 	"0" : XML 형식
+// 	"1" : Binary 형식
+// 	"2" : SSV 형식
+// 	"3" : JSON 형식
+	
+	//this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, 3);  // json
+	
+	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl, 	    // transaction을 요청할 주소
+						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	var strSvcId    = "setTypeTwoList";
+	var strSvcUrl   = "sam/setTypeTwoList.do";
+	var inData      = "dsTypeTwo";  
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl, 	    // transaction을 요청할 주소
+						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]	
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getTypeTwoList":
+			
+		break;
+		case "setTypeTwoList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.fnSearch();
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	console.log('fnPopupAfter: ', sPopupId, ' || ', vArg);
+	switch(sPopupId){
+		case "testPopup":
+			var oRtn = this.gfnGetPopupRtn();
+			
+			// pat 1. variable one
+// 			this.gfnAlert(oRtn);
+			
+			// pat 2. Array
+// 			if(oRtn){
+// 				for(var i = 0; i < oRtn.length; i++){
+// 					console.log('oRtn Array: ', i, ' : ', oRtn[i]);
+// 				}
+// 			}
+			
+			// pat 3. Object
+			if(oRtn){
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+				console.log('oRtn.popDS : ',  oRtn.popDS);
+			}
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 저장버튼 클릭
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsTypeTwo.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+		return;
+	}
+	if (!this.gfnDsIsUpdated(this.dsTypeTwo)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	// msgId, args(치환), popupId, Confirm Callback Function({확인 trueFunc, 취소: falseFunc})
+	// confirm 이후 스크립트가 실행되기때문에 return; 처리 or 가장 마지막 위치
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/**
+ * description 행추가 클릭
+*/
+this.btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsTypeTwo, "last");
+	this.dsTypeTwo.setColumn(this.dsTypeTwo.rowposition, "substituteUseYn", "Y");
+	this.dsTypeTwo.setColumn(this.dsTypeTwo.rowposition, "radioUseYn", "N");
+};
+
+/**
+ * description 행삭제 클릭
+*/
+this.btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsTypeTwo);
+};
+
+/**
+ * description 그리드해드 클릭
+*/
+this.grdTypeTwo_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+/**
+ * description Popup sample
+*/
+this.btn_registration_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {sysId : "PMS",
+	            progId : "sampleProgram",
+				progNm : "샘플프로그램"};
+//  gfnOpenPopup
+//  * @param {String} sPopupId	- 팝업ID
+//  * @param {String} sUrl	 - 팝업URL
+//  * @param {String} [oArg] - 전달값
+//  * @param {String} [sPopupCallback] - 팝업콜백. 없으면 confirm message 로 간주.
+//  * @param {Object} [oOption] - 팝업옵션 <br>
+	this.gfnOpenPopup("testPopup", "sam::testform1Popup.xfdl", oArg, "fnPopupAfter", "");
+};
+
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+};
+
+/**
+ * description NullPoint Excpetion
+*/
+this.btn_001_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var strSvcId    = "genNullPointExcpetion";
+	var strSvcUrl   = "sam/genNullPointExcpetion.do";
+	var inData      = "dsSearch";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.SCH_RQST_ID00" propid="value" datasetid="dsSearch" columnid="progId"/>
+      <BindItem id="item1" compid="divSearch.form.SCH_RQST_ID00_00" propid="value" datasetid="dsSearch" columnid="progNm"/>
+      <BindItem id="item2" compid="divSearch.form.cbo001" propid="value" datasetid="dsSearch" columnid="substituteUseYn"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:egov-security="http://www.egovframe.go.kr/schema/egov-security"
+    xmlns:security="http://www.springframework.org/schema/security"
+    xmlns:c="http://www.springframework.org/schema/c"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.egovframe.go.kr/schema/egov-security http://maven.egovframe.go.kr/schema/egov-security/egov-security.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http pattern="/css/**" security="none"/>
+    <security:http pattern="/html/**" security="none"/>
+    <security:http pattern="/images/**" security="none"/>
+    <security:http pattern="/js/**" security="none"/>
+    <security:http pattern="/resources/**" security="none"/>
+    <security:http pattern="/simpleLogin.do" security="none"/>
+    <security:http pattern="/loginFailure.do" security="none"/>
+    <security:http pattern="/logoutSuccess.do" security="none"/>
+    <security:http pattern="/concurrentExpired.do" security="none"/>
+    <security:http pattern="/services/*/**" security="none"/>
+    <security:http pattern="/checkReadEmail.do" security="none" />
+    <security:http pattern="/findPassword.do" security="none" />
+    <security:http pattern="/checkUserTelno.do" security="none" />
+    <security:http pattern="/checkUserEml.do" security="none" />
+    <security:http pattern="/updateNewPassword.do" security="none" />
+    <security:http pattern="/invalidatePreviousSession.do" security="none" />
+    <security:http pattern="/goLoginTest.do" security="none" />
+
+    <security:http pattern="\A/WEB-INF/jsp/.*\Z" request-matcher="regex" security="none"/>
+
+    <security:http auto-config="true">
+        <security:headers>
+            <security:frame-options policy="SAMEORIGIN"/>
+        </security:headers>
+        <security:csrf disabled="true"/>
+        <security:intercept-url pattern="/downloadFile.do" access="permitAll"/>
+        <security:intercept-url pattern="/attach/download.do" access="permitAll"/>
+        <security:intercept-url pattern="/**" access="hasRole('USER')"/>
+        <security:anonymous enabled="true" />
+        <security:form-login
+            login-page="/simpleLogin.do"
+            login-processing-url="/j_spring_security_check"
+            authentication-failure-handler-ref="loginFailureHandler"
+            authentication-success-handler-ref="loginSuccessHandler"
+            username-parameter="j_username"
+            password-parameter="j_password"/>
+        <security:logout
+            logout-success-url="/logoutSuccess.do"
+            invalidate-session="true"/>
+        <security:access-denied-handler error-page="/accessDenied.do"/>
+        <security:session-management
+            invalid-session-url="/concurrentExpired.do"
+            session-authentication-error-url="/concurrentExpired.do">
+            <security:concurrency-control
+                max-sessions="1"
+                session-registry-ref="sessionRegistry"
+                error-if-maximum-exceeded="true"
+                expired-url="/concurrentExpired.do"/>
+        </security:session-management>
+    </security:http>
+
+    <bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+    <security:authentication-manager>
+        <security:authentication-provider ref="ipCheckingAuthProvider" />
+    </security:authentication-manager>
+
+    <bean name="ipCheckingAuthProvider" class="com.jnv.common.security.IPCheckingAuthenticaionProvider">
+        <property name="passwordEncoder" ref="passwordEncoder" />
+        <property name="userDetailsService" ref="jdbcUserService" />
+    </bean>
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.password.MessageDigestPasswordEncoder">
+        <constructor-arg>
+            <value>SHA-256</value>
+        </constructor-arg>
+        <property name="encodeHashAsBase64" value="false" />
+    </bean>
+
+    <bean id="jdbcUserService" class="egovframework.rte.fdl.security.userdetails.jdbc.EgovJdbcUserDetailsManager">
+        <property name="usersByUsernameQuery">
+            <value>
+                SELECT A.USER_ID
+                     , A.MEMBER_ID
+                     , A.USER_NM_KR
+                     , A.USER_NM_EN
+                     , A.PASSWD
+                     , A.EMAIL_ADDR
+                     , A.TEL_NO
+                     , A.PHONE_NO
+                     , A.USE_YN
+                     , A.RGST_ID
+                     , A.RGST_IP
+                     , A.RGST_DT
+                     , A.UPDT_ID
+                     , A.UPDT_IP
+                     , A.UPDT_DT
+                     , A.PW_EXPIRE_DT
+                     , COALESCE((SELECT STRING_AGG(B.ROLE_CODE, ',') AS ROLE_CODE FROM CM_ROLE_USER B WHERE B.USER_ID = A.USER_ID GROUP BY B.USER_ID), 'ROLE_USER') AS ROLE_CODE
+                  FROM CM_USER A
+                 WHERE 1=1
+                   AND A.MEMBER_ID = ?
+            </value>
+        </property>
+        <property name="authoritiesByUsernameQuery">
+            <value>
+<!--             SELECT B.USER_ID -->
+<!--                  , CASE      -->
+<!--                     WHEN B.ROLE_CODE IS NULL -->
+<!--                      THEN 'ROLE_USER' -->
+<!--                     ELSE B.ROLE_CODE || ',ROLE_USER' -->
+<!--                    END AS ROLE_CODE -->
+<!--               FROM -->
+<!--                      ( -->
+<!--                    SELECT A.USER_ID -->
+<!--                         , LISTAGG(A.ROLE_CODE, ',') WITHIN GROUP (ORDER BY A.USER_ID) AS ROLE_CODE   -->
+<!--                      FROM CMTA_ROLE_USER A  -->
+<!--                     WHERE 1=1 -->
+<!--                       AND A.USER_ID = ?   -->
+<!--                     GROUP BY A.USER_ID -->
+<!--                    ) B -->
+              SELECT A.USER_ID , A.ROLE_CODE
+                FROM CM_ROLE_USER A
+               WHERE 1=1
+                 AND A.USER_ID = ?
+               UNION ALL
+              SELECT 'SYSTEM' AS USER_ID
+                   , 'ROLE_USER' AS ROLE_CODE
+            </value>
+        </property>
+        <property name="roleHierarchy" ref="roleHierarchy"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapClass" value="com.jnv.jncore.security.EgovSecurityUserVOMapping" />
+    </bean>
+
+    <bean id="roleHierarchy"
+        class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl" >
+        <property name="hierarchy" ref="hierarchyStrings"/>
+    </bean>
+
+    <bean id="hierarchyStrings" class="egovframework.rte.fdl.security.userdetails.hierarchicalroles.HierarchyStringsFactoryBean" init-method="init">
+        <property name="securedObjectService" ref="securedObjectService"/>
+    </bean>
+
+    <bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">
+        <property name="authenticationManager" ref="org.springframework.security.authenticationManager" />
+        <property name="accessDecisionManager" ref="org.springframework.security.access.vote.AffirmativeBased#0" />
+        <property name="securityMetadataSource" ref="databaseSecurityMetadataSource" />
+    </bean>
+
+    <bean id="databaseSecurityMetadataSource" class="egovframework.rte.fdl.security.intercept.EgovReloadableFilterInvocationSecurityMetadataSource">
+        <constructor-arg ref="requestMap" />
+        <property name="securedObjectService" ref="securedObjectService"/>
+    </bean>
+
+    <!--  url  -->
+    <bean id="requestMap"     class="egovframework.rte.fdl.security.intercept.UrlResourcesMapFactoryBean" init-method="init">
+        <property name="securedObjectService" ref="securedObjectService"/>
+    </bean>
+
+    <bean id="securedObjectService" class="egovframework.rte.fdl.security.securedobject.impl.SecuredObjectServiceImpl">
+        <property name="securedObjectDAO" ref="securedObjectDAO"/>
+        <property name="requestMatcherType" value="regex"/>   <!--  default : ant -->
+    </bean>
+
+    <bean id="loginSuccessHandler"  class="com.jnv.main.login.controller.LoginSuccessHandler">
+        <property name="defaultUrl" value="/businessMain.do" />
+    </bean>
+
+    <bean id="loginFailureHandler"  class="com.jnv.main.login.controller.LoginFailureHandler">
+        <property name="defaultUrl" value="/loginFailure.do" />
+    </bean>
+
+    <bean id="securedObjectDAO" class="egovframework.rte.fdl.security.securedobject.impl.SecuredObjectDAO" >
+        <property name="dataSource" ref="dataSource"/>
+        <property name="sqlHierarchicalRoles">
+            <value>
+                   SELECT A.PARENT_ROLE PARENT
+                        , A.CHILD_ROLE CHILD
+                     FROM CM_ROLE_HIERARCHY A
+                LEFT JOIN CM_ROLE_HIERARCHY B
+                       ON A.CHILD_ROLE = B.PARENT_ROLE
+            </value>
+        </property>
+        <property name="sqlRolesAndMethod">
+            <value>
+                SELECT DISTINCT
+                       PF.FUNC_PATTERN AS METHOD
+                     , RF.ROLE_CODE AUTHORITY
+                  FROM CM_MENU MN
+                     , CM_PROG_FUNC PF
+                     , CM_ROLE_MENU_FUNC RF
+                 WHERE MN.MENU_ID = RF.MENU_ID
+                   AND PF.FUNC_ID = RF.FUNC_ID
+                   AND PF.FUNC_PATTERN_TYPE = 'METHOD'
+                   AND PF.FUNC_PATTERN IS NOT NULL
+                   and 1=2
+            </value>
+        </property>
+        <property name="sqlRolesAndUrl">
+            <value>
+                SELECT DISTINCT
+                       '\A/' || PF.FUNC_PATTERN || '.*\Z' AS URL
+                     , RF.ROLE_CODE AUTHORITY
+                  FROM CM_ROLE_MENU_FUNC RF
+                     , CM_PROG_FUNC PF
+                     , CM_MENU MN
+                 WHERE MN.MENU_ID = RF.MENU_ID
+                   AND PF.FUNC_ID = RF.FUNC_ID
+                   AND PF.FUNC_PATTERN_TYPE = 'URL'
+                   AND PF.FUNC_PATTERN IS NOT NULL
+                   and 1=2
+            </value>
+        </property>
+    </bean>
+
+</beans>

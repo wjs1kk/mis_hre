@@ -1,0 +1,74 @@
+.jn-grid {
+    font-size: var(--dhx-font-size-small);
+
+    --dhx-border: 1px solid #dddddd;
+    --dhx-s-grid-header-background: #F9FAFC;
+
+    --grid-button-background-color: white;
+    --grid-button-border-color: #b1b1b1;
+    --grid-button-disabled-background-color: #eeeeee;
+    --grid-button-foreground-color: black;
+
+    .dhx_grid-content {
+        border-top: 1px solid #00388e;
+    }
+
+    .dhx_grid-cell {
+        padding: 4px 10px;
+    }
+
+    .dhx_grid-cell__editable {
+        padding: 0;
+
+        &>.dhx_cell-editor {
+            font-size: var(--dhx-font-size-small);
+        }
+    }
+
+    .dhx_grid-header-cell {
+        padding: 4px;
+    }
+
+    .dhx_footer-wrapper,
+    .dhx_header-wrapper,
+    .dhx_grid-cell {
+        font-size: var(--dhx-font-size-small);
+        line-height: 1;
+    }
+
+    .dhx_grid-cell button {
+        line-height: 0.875rem;
+        justify-content: center;
+
+        background-color: var(--grid-button-background-color);
+        border-color: var(--grid-button-border-color);
+        border-style: solid;
+        border-width: 1px;
+        color: var(--grid-button-foreground-color);
+
+        width: 100%;
+        height: 25px !important;
+        padding: 4px 6px !important;
+
+        &.search {
+            align-items: center;
+
+            &::before {
+                content: url(./images/btn_WF_Grdexpand.png);
+            }
+        }
+
+        &:hover,
+        &:focus,
+        &:active,
+        &:disabled {
+            border-color: var(--grid-button-border-color);
+            border-style: solid;
+            border-width: 1px;
+        }
+
+        &:disabled {
+            background-color: var(--grid-button-disabled-background-color);
+        }
+    }
+}

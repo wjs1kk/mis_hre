@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.mi.common.service.MailVerificationDAO">
+
+    <select id="isMailAddressUsed" parameterType="mailVerificationVO" resultType="_boolean">
+        /* mail-verification-mapper.isMailAddressUsed */
+        SELECT CASE
+                   WHEN COUNT(*) > 0 THEN 1
+                   ELSE 0
+               END AS VAL
+          FROM PTS_MEMBER PM
+          JOIN CMN_USER CU
+            ON PM.MEMBER_ID = CU.MEMBER_ID
+         WHERE PM.USE_YN = 'Y'
+           AND CU.USE_YN = 'Y'
+           AND PM.WHDWL_YN <![CDATA[<>]]> 'Y'
+           AND PM.EML_ADDR = #{emailAddr}
+        <if test='userId != null and userId != ""'>
+           AND CU.USER_ID <![CDATA[<>]]> #{userId}
+        </if>
+    </select>
+</mapper>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="erp_hre_ui_3050m" width="1280" height="720" titletext="New Form">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Static id="staTitle" taborder="0" text="평가비중 기준 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="staTitle_onclick"/>
+        <Static id="Static00" taborder="1" left="20" top="68" height="50" cssclass="sta_WF_bg" right="120" onclick="div_Search_Static00_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+  </Form>
+</FDL>

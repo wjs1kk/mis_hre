@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.main.businessmain.service.BusinessMenuDAO">
+
+    <select id="selectNexacroMenuList" parameterType="map" resultType="menuVO">
+        /* business-menu-mapper.selectNexacroMenuList */
+        SELECT X.MENU_ID
+             , X.UPPER_MENU_ID
+             , X.MENU_NM
+             , X.MENU_NM AS TEXT
+             , X.MENU_DC
+             , X.MENU_TY
+             , X.PROG_ID
+             , CASE Y.SUBSTITUTE_USE_YN
+                   WHEN 'Y' THEN
+                       Y.SUBSTITUTE_URL
+                   ELSE
+                       Y.PROG_URL
+               END AS URL
+             , X.SORT_ORDR
+             , SUBSTR(SYS_CONNECT_BY_PATH(X.MENU_NM, '>'), 2) AS MENU_NM_PATH
+             , CASE X.INDCT_YN
+                   WHEN 'Y' THEN
+                       'true'
+                   ELSE
+                       'false'
+               END AS INDCT_YN
+             , X.DEFAULT_ROW_CNT
+             , X.MODULE_ID
+             , LEVEL - 1 AS "LEVEL"
+             , ROWNUM - 1 AS ROW_NUM
+             , X.SYS_ID
+          FROM (SELECT DISTINCT A.MENU_ID
+                     , A.UPPER_MENU_ID
+                     , A.MENU_NM
+                     , A.MENU_DC
+                     , A.MENU_TY
+                     , A.PROG_ID
+                     , A.SORT_ORDR
+                     , A.INDCT_YN
+                     , A.DEFAULT_ROW_CNT
+                     , A.MODULE_ID
+                     , A.SYS_ID
+                  FROM CMN_MENU A
+                 WHERE A.MENU_TY IN ('PAGE', 'GROUP')
+                   AND A.SYS_ID = #{sessionSysId}
+                START WITH (A.MENU_ID, A.SYS_ID) IN (SELECT B.MENU_ID, B.SYS_ID
+                                                       FROM CMN_ROLE_MENU_FUNC B
+                                                       JOIN CMN_MENU C
+                                                         ON B.MENU_ID = C.MENU_ID
+                                                        AND B.SYS_ID = C.SYS_ID
+                                                       JOIN CMN_PROG D
+                                                         ON C.PROG_ID = D.PROG_ID
+                                                        AND C.SYS_ID = D.SYS_ID
+                                                       JOIN CMN_PROG_FUNC E
+                                                         ON D.PROG_ID = E.PROG_ID
+                                                        AND B.FUNC_ID = E.FUNC_ID
+                                                        AND D.SYS_ID = E.SYS_ID
+                                                      WHERE B.ROLE_CODE IN (
+        <foreach collection="USER_ROLES" item="item" separator=",">
+                                                            #{item}
+        </foreach>
+                                                    ))
+                CONNECT BY A.MENU_ID = PRIOR A.UPPER_MENU_ID) X
+          LEFT JOIN CMN_PROG Y
+            ON X.PROG_ID = Y.PROG_ID
+           AND X.SYS_ID = Y.SYS_ID
+         WHERE X.INDCT_YN = 'Y'
+        START WITH X.UPPER_MENU_ID IS NULL
+        CONNECT BY PRIOR X.MENU_ID = X.UPPER_MENU_ID
+        ORDER SIBLINGS BY X.SORT_ORDR, X.MENU_NM, X.MENU_ID
+    </select>
+
+    <select id="selectNexacroMenuLangList" parameterType="map" resultType="menuVO">
+        /* business-menu-mapper.selectNexacroMenuList */
+        SELECT X.MENU_ID
+             , X.UPPER_MENU_ID
+             , X.MENU_NM
+             , X.MENU_NM AS TEXT
+             , X.MENU_DC
+             , X.MENU_TY
+             , X.PROG_ID
+             , CASE Y.SUBSTITUTE_USE_YN
+                   WHEN 'Y' THEN
+                       Y.SUBSTITUTE_URL
+                   ELSE
+                       Y.PROG_URL
+               END AS URL
+             , X.SORT_ORDR
+             , SUBSTR(SYS_CONNECT_BY_PATH(X.MENU_NM, 'CHR(10)'), 2) AS MENU_NM_PATH
+             , CASE X.INDCT_YN
+                   WHEN 'Y' THEN
+                       'true'
+                   ELSE
+                       'false'
+               END AS INDCT_YN
+             , X.DEFAULT_ROW_CNT
+             , X.MODULE_ID
+             , LEVEL - 1 AS "LEVEL"
+             , ROWNUM - 1 AS ROW_NUM
+          FROM (SELECT DISTINCT A.MENU_ID
+                     , A.UPPER_MENU_ID
+                     , A.MENU_NM
+                     , A.MENU_DC
+                     , A.MENU_TY
+                     , A.PROG_ID
+                     , A.SORT_ORDR
+                     , A.INDCT_YN
+                     , A.DEFAULT_ROW_CNT
+                     , A.MODULE_ID
+                  FROM CMN_MENU_LANG A
+                 WHERE A.MENU_TY IN ('PAGE', 'GROUP')
+                   AND A.LANG_ID = #{lang}
+                START WITH A.MENU_ID IN (SELECT B.MENU_ID
+                                           FROM CMN_ROLE_MENU_FUNC B
+                                           JOIN CMN_MENU_LANG C
+                                             ON B.MENU_ID = C.MENU_ID
+                                           JOIN CMN_PROG D
+                                             ON C.PROG_ID = D.PROG_ID
+                                           JOIN CMN_PROG_FUNC E
+                                             ON D.PROG_ID = E.PROG_ID
+                                            AND B.FUNC_ID = E.FUNC_ID
+                                          WHERE B.ROLE_CODE IN (
+        <foreach collection="USER_ROLES" item="item" separator=",">
+                                              #{item}
+        </foreach>
+                                          ))
+                CONNECT BY A.MENU_ID = PRIOR A.UPPER_MENU_ID) X
+          LEFT JOIN CMN_PROG Y
+            ON X.PROG_ID = Y.PROG_ID
+         WHERE X.INDCT_YN = 'Y'
+        START WITH X.UPPER_MENU_ID IS NULL
+        CONNECT BY PRIOR X.MENU_ID = X.UPPER_MENU_ID
+        ORDER SIBLINGS BY X.SORT_ORDR, X.MENU_NM, X.MENU_ID
+    </select>
+
+    <select id="selectNexacroMessageList" resultType="messageVO">
+        /* business-menu-mapper.selectNexacroMessageList */
+        SELECT MSG_ID
+             , MSG
+             , ENG_MSG
+             , MSG_TYPE
+             , USE_YN
+          FROM CMN_MESSAGE
+         ORDER BY MSG_ID
+    </select>
+
+    <select id="selectNexacroCompLangList" resultType="compLangVO">
+        /* business-menu-mapper.selectNexacroCompLangList */
+        SELECT FORM_ID
+             , LANG_ID
+             , COMP_ID
+             , COMP_INDEX
+             , COMP_TEXT
+             , COMP_TYPE
+          FROM CMN_COMP_LANG
+    </select>
+
+</mapper>

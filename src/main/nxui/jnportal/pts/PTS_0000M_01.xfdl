@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Pattern01" width="1920" height="214" titletext="Pattern01" onload="Pattern01_onload" background="#ffffff">
+    <Layouts>
+      <Layout>
+        <Static id="Static34" taborder="0" text="W 180" onclick="Static02_onclick" visible="false" left="0" top="0" width="180" background="antiquewhite" color="blue" bottom="0"/>
+        <Static id="Static02" taborder="1" text="W 180" visible="false" top="0" onclick="Static02_onclick" background="antiquewhite" color="blue" width="180" right="0" bottom="0"/>
+        <Div id="Div00" taborder="2" text="Div00" left="180" top="32" formscrollbartype="none none" width="500" bottom="0" url="pts::PTS_0000M_02.xfdl"/>
+        <Div id="Div01" taborder="3" left="740" top="0" width="485" bottom="0">
+          <Layouts>
+            <Layout>
+              <Grid id="Grid00" taborder="2" left="0" top="80" right="0" bottom="0" cssclass="portal_grd_bdmList" binddataset="dsNotice" autofittype="col" autosizingtype="none">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="401"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="37"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:title" textAlign="left" color="#001010" padding="0px 10px 0px 0px"/>
+                      <Cell col="1" text="bind:date" color="#a7a7a7"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static01" taborder="0" text="공지사항" left="0" top="0" width="76" height="80" cssclass="portal_sta_bdTitle"/>
+              <Button id="btn_Notice" taborder="1" top="28" width="30" height="30" cssclass="portal_btn_more" right="0" onclick="Div01_btn_Notice_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="4" left="1255" top="0" bottom="0" width="485" text="">
+          <Layouts>
+            <Layout>
+              <Static id="Static01" taborder="0" text="자료실" left="0" top="0" width="57" height="80" cssclass="portal_sta_bdTitle"/>
+              <Button id="btn_Notice" taborder="1" top="28" width="30" height="30" cssclass="portal_btn_more" right="0" onclick="Div02_btn_Notice_onclick"/>
+              <Grid id="Grid00" taborder="2" left="0" top="80" right="0" bottom="0" cssclass="portal_grd_bdmList" binddataset="dsDataroom" autofittype="col" autosizingtype="none">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="404"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="37"/>
+                    </Rows>
+                    <Band id="body">
+                      <Cell text="bind:title" textAlign="left" padding="0px 10px 0px 0px"/>
+                      <Cell col="1" text="bind:date" color="#a7a7a7"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="country" type="STRING" size="256"/>
+          <Column id="value" type="FLOAT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="country">과제공고</Col>
+            <Col id="value">1</Col>
+          </Row>
+          <Row>
+            <Col id="country">과제기획</Col>
+            <Col id="value">2</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsNotice">
+        <ColumnInfo>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="date" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="title">2023년도 국방핵심기술 과제공모(상향식)검토 결과 안내</Col>
+            <Col id="date">2022-12-01</Col>
+          </Row>
+          <Row>
+            <Col id="title">2022년 국방핵심기술 과제공모(상향식) 진행현황 안내(3)</Col>
+            <Col id="date">2022-10-11</Col>
+          </Row>
+          <Row>
+            <Col id="date">2022-07-29</Col>
+            <Col id="title">2022년 국방핵심기술 과제공모(상향식) 진행 현황 안내(2)</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDataroom">
+        <ColumnInfo>
+          <Column id="title" type="STRING" size="256"/>
+          <Column id="date" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="title">"빅데이터기반 미래국방 신기술 예측" 책자 발간</Col>
+            <Col id="date">2023-02-27</Col>
+          </Row>
+          <Row>
+            <Col id="title">국기연, "국방활용가능 민간보유기술" 책자 발간</Col>
+            <Col id="date">2023-02-06</Col>
+          </Row>
+          <Row>
+            <Col id="date">2023-01-27</Col>
+            <Col id="title">국기연, 미래 신기술 군수품에 적극 도입 (장비,물자류 연구...</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Pattern01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+};
+this.Div01_btn_Notice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMenuId = "PTS_4010M_01";
+	var url = "pts::PTS_4010M_01.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+
+this.Div02_btn_Notice_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMenuId = "PTS_3030M_01";
+	var url = "pts::PTS_3030M_01.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+]]></Script>
+  </Form>
+</FDL>

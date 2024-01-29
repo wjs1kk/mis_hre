@@ -1,0 +1,461 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MAL_1020M" width="1920" height="1000" titletext="메일발송" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="divTop" taborder="0" text="Div01" left="50" top="73" cssclass="div_WF_Area" right="50" height="434">
+          <Layouts>
+            <Layout>
+              <Static id="staTop" taborder="0" cssclass="sta_WF_condition02box" left="0" top="0" height="34" text="" right="0"/>
+              <Static id="staMid" taborder="1" cssclass="sta_WF_condition02box" left="0" top="staTop:0" height="400" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staEmlId" taborder="2" text="메일 ID" cssclass="sta_WF_condition02_LEssential" left="0" top="0" width="150" height="34"/>
+              <Edit id="edtEmlId" taborder="3" left="staEmlId:10" width="200" height="26" top="4" enable="true" readonly="true"/>
+              <Static id="staEmlTtl" taborder="4" text="메일제목" cssclass="sta_WF_condition02" left="455" top="0" width="150" height="34"/>
+              <Edit id="edtEmlTtl" taborder="5" left="staEmlTtl:10" top="4" height="26" width="600" readonly="false"/>
+              <Static id="staSndCn" taborder="6" text="발송내용" cssclass="sta_WF_condition02_LEssential" left="0" top="34" width="150" height="400"/>
+              <TextArea id="textSndCn" taborder="7" oneditclick="TextArea01_oneditclick" left="staSndCn:10" top="38" onchanged="Div01_TextArea01_00_onchanged" right="20" height="392"/>
+              <Static id="staTmpltNm" taborder="8" text="템플릿 명" cssclass="sta_WF_condition02" left="1284" top="0" width="150" height="34"/>
+              <Edit id="edtTmpltNm" taborder="9" left="staTmpltNm:10" top="4" height="26" width="250" readonly="true"/>
+              <Button id="Button04" taborder="10" top="4" height="26" cssclass="btn_WF_frmSearch" text="" width="26" left="edtTmpltNm:5" onclick="divTop_Button04_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staTitle" taborder="1" text="메일발송" top="0" cssclass="sta_WF_compTitle01" left="50" onclick="sta_title_onclick" height="58" right="1420"/>
+        <Button id="btnInit" text="초기화" cssclass="btn_WF_Delete" visible="true" top="20" height="28" taborder="3" width="65" right="50" onclick="btnInit_onclick"/>
+        <Button id="btnSnd" text="발송" cssclass="btn_WF_Save" visible="true" top="20" width="65" height="28" right="btnInit:3" taborder="2" onclick="btnSnd_onclick"/>
+        <Static id="staHeading" taborder="5" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="50" top="divTop:10" height="45" text="첨부 파일" width="171"/>
+        <Div id="divDrop" taborder="4" top="staHeading:0" cssclass="raonkdropzone" border="0px none" height="195" left="50" right="50">
+          <Layouts>
+            <Layout>
+              <Grid id="grdFileList" taborder="0" binddataset="dsFileList" left="0" top="0" right="0" autofittype="col" tooltiptype="default" autoenter="select" bottom="34" enable="true" onheadclick="grdFileList_onheadclick" oncellclick="grdFileList_oncellclick" nodatatext="여기에 파일을 끌어다 놓으세요">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="200"/>
+                      <Column size="64" band="right"/>
+                      <Column size="56" band="right"/>
+                      <Column size="56" band="right"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO" autosizecol="none"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" verticalAlign="middle" autosizecol="none"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3"/>
+                      <Cell col="4" text="파일명"/>
+                      <Cell col="5" text="크기"/>
+                      <Cell col="6" text="다운로드"/>
+                      <Cell col="7" text="삭제"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1" textAlign="center" expandsize="16"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck" textAlign="center" verticalAlign="middle" expandsize="16"/>
+                      <Cell col="2" expr="comp.fnRowStatusSymbol(rowStatus)"/>
+                      <Cell col="3" expr="comp.fnGetFileIcon(orgnlFileNm)" displaytype="imagecontrol"/>
+                      <Cell col="4" textAlign="left" text="bind:orgnlFileNm" tooltiptext="bind:orgnlFileNm"/>
+                      <Cell col="5" textAlign="right" expr="comp.fnFormatFileSize(fileSz)"/>
+                      <Cell col="6" displaytype="imagecontrol" text="theme://images/btn_WF_grdDownload.png"/>
+                      <Cell col="7" displaytype="imagecontrol" expr="rowStatus == 'deleted' ? 'theme://images/btn_WF_grdReturn.png' : 'theme://images/btn_WF_grdDelete.png'"/>
+                    </Band>
+                  </Format>
+                  <Format id="download">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="240"/>
+                      <Column size="64" band="right"/>
+                      <Column size="56" band="right"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO" autosizecol="none"/>
+                      <Cell col="1"/>
+                      <Cell col="2" text="파일명"/>
+                      <Cell col="3" text="크기"/>
+                      <Cell col="4" text="다운로드"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1" textAlign="center" expandsize="16"/>
+                      <Cell col="1" expr="comp.fnGetFileIcon(orgnlFileNm)" displaytype="imagecontrol"/>
+                      <Cell col="2" textAlign="left" text="bind:orgnlFileNm" color="expr:rowStatus == 'deleted' ? 'red' : 'black'" textDecoration="expr:rowStatus == 'deleted' ? 'line-through' : ''" tooltiptext="bind:orgnlFileNm"/>
+                      <Cell col="3" textAlign="right" expr="comp.fnFormatFileSize(fileSz)"/>
+                      <Cell col="4" displaytype="imagecontrol" text="theme://images/btn_WF_grdDownload.png"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="staStatus" taborder="1" left="0" height="34" bottom="0" right="0" cssclass="sta_WF_condition02" border="0px none,1px solid #dddddd, 1px solid #dddddd, 1px solid #dddddd"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divBottom" taborder="6" text="divBottom" left="50" top="divDrop:0" height="700" right="50" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staHeading00" taborder="0" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="10" height="45" text="대상검색" width="171"/>
+              <Grid id="grdList" taborder="1" left="0" top="staHeading00:0" binddataset="dsList2" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="50" oncelldblclick="divResult_grdList_oncelldblclick" width="1000" onheadclick="divBottom_grdList_onheadclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="300"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="150"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="부서"/>
+                      <Cell col="2" text="아이디"/>
+                      <Cell col="3" text="이름"/>
+                      <Cell col="4" text="이메일주소"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="1" text="bind:deptNm"/>
+                      <Cell col="2" text="bind:memberId"/>
+                      <Cell col="3" text="bind:memberNmKr"/>
+                      <Cell col="4" text="bind:emlAddr"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnLeft" taborder="3" height="26" cssclass="btn_WF_frmSearch" text="" width="26" left="grdList:10" top="293"/>
+              <Grid id="grdList00" taborder="2" top="55" binddataset="dsList3" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="50" oncelldblclick="divResult_grdList_oncelldblclick" left="btnLeft:10" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="300"/>
+                      <Column size="150"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" displaytype="normal" edittype="none" text="순번"/>
+                      <Cell col="2" text="이메일주소"/>
+                      <Cell col="3" text="메일서버"/>
+                      <Cell col="4" text="받는사람"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck"/>
+                      <Cell col="1" displaytype="normal" edittype="none" textAlign="center" text="expr:currow+1" expr="currow+1"/>
+                      <Cell col="2" text="bind:rcvEmlAddr" displaytype="normal" edittype="text"/>
+                      <Cell col="3" text="bind:emlSvr" displaytype="normal" edittype="text"/>
+                      <Cell col="4" text="bind:rcvUserNm" displaytype="normal" edittype="text"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Combo id="cboSearch" taborder="4" left="staHeading00:0" width="140" height="26" codecolumn="codecolumn" datacolumn="datacolumn" index="-1" innerdataset="innerdataset" text="" bottom="grdList:5" onkeyup="onkeyup">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">부서</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">아이디</Col>
+                      <Col id="codecolumn">rcvUserId</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">이름</Col>
+                      <Col id="codecolumn">rcvUserNm</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">이메일주소</Col>
+                      <Col id="codecolumn">emlAddr</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtSearch" taborder="5" left="cboSearch:5" width="610" bottom="grdList:5" height="26" onkeyup="onkeyup"/>
+              <Button id="btn_search" text="조회" cssclass="" width="65" height="28" taborder="6" left="edtSearch:5" onclick="divBottom_btn_search_onclick" bottom="grdList:5"/>
+              <Button id="btnAddRow" taborder="7" text="행추가" cssclass="btn_WF_Row_Add" right="78" width="73" height="26" bottom="grdList00:4" onclick="divBottom_btnAddRow_onclick"/>
+              <Button id="btnDeleteRow" taborder="8" text="행삭제" cssclass="btn_WF_Row_Delete" width="73" height="26" bottom="grdList00:5" left="btnAddRow:5" onclick="divBottom_btnDeleteRow_onclick"/>
+              <Static id="staHeading00_00" taborder="9" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="1051" top="10" text="발송대상" width="171" bottom="grdList00:0"/>
+              <Button id="Button04_00_00" taborder="10" left="grdList:10" top="334" width="26" height="26" text="&gt;&gt;" onclick="divBottom_btnRight_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="emlId" type="STRING" size="256"/>
+          <Column id="emlTtl" type="STRING" size="256"/>
+          <Column id="emlTmpltNm" type="STRING" size="256"/>
+          <Column id="sndCn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="emlTmpltId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="rcvUserId" type="STRING" size="256"/>
+          <Column id="rcvUserNm" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList2" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="deptCd" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="memberNmKr" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList3" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rcvEmlAddr" type="STRING" size="256"/>
+          <Column id="emlSvr" type="STRING" size="256"/>
+          <Column id="rcvUserNm" type="STRING" size="256"/>
+          <Column id="rcvUserId" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="emlId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  메일발송
+*  MenuPath      메일발송관리 - 메일발송
+*  FileName      MAL_1020M.xfdl 
+*  Creator 	     kangjw
+*  CreateDate    2023.12.12
+*  Desction      메일발송
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.12   kangjw	 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 검색대상 조회
+*/
+this.fnSearch = function ()
+{
+	var strSvcId    = "getEmlSndUser";
+	var strSvcUrl   = "mal/emlSndMaster/getEmlSndUser.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList2";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSndMal  = function ()
+{
+	var strSvcId    = "getEmlSnd";
+	var strSvcUrl   = "mal/emlSndMaster/getEmlSnd.do";
+	var inData      = "dsList dsList3";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description Transaction CallBack
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getEmlSndUser":
+            break;
+		case "getEmlSnd":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");
+			} else {
+				this.gfnAlert("CM_MSG_TEST_3");
+			}
+            break;
+		default:	
+            break;
+    }
+};
+
+ /**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	switch(sPopupId){
+		case "malTmpltSearch":
+			var oRtn = this.gfnGetPopupRtn();
+		break;
+		default:
+		break;
+	}
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+this.divBottom_btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+this.divBottom_btnRight_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	for( var i = 0; i < this.dsList2.rowcount; i++){
+		for( var j = 0; j < this.dsList3.rowcount; j++){
+			if(this.dsList2.getColumn(i, "rowCheck") > 0 ){
+				if((this.dsList2.getColumn(i, "emlAddr") == this.dsList3.getColumn(j, "rcvEmlAddr"))){
+					this.gfnAlert("CM_MSG_INVALID_DUPLICATION", ["이메일"]);  
+					return false;
+				}
+			}
+		}
+	}
+
+	for( var i = 0; i < this.dsList2.rowcount; i++){
+		if(this.dsList2.getColumn(i, "rowCheck") > 0 ){
+			this.gfnInsertRow(this.dsList3, "last");
+			
+			var nRow = this.dsList3.rowcount-1;
+			var arr = this.dsList2.getColumn(i, "emlAddr").split("@");
+
+			this.dsList3.setColumn(nRow, "rcvEmlAddr", this.dsList2.getColumn(i, "emlAddr"));
+			this.dsList3.setColumn(nRow, "emlSvr", arr[1]);
+			this.dsList3.setColumn(nRow, "rcvUserNm", this.dsList2.getColumn(i, "memberNmKr"));
+			this.dsList3.setColumn(nRow, "rcvUserId", this.dsList2.getColumn(i, "memberId"));
+			
+			this.dsList2.deleteRow(i);
+		}
+	}
+};
+
+this.divBottom_btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsList3, "last");
+};
+
+this.divBottom_btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsList3);
+};
+
+this.divBottom_grdList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+this.btnInit_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.divTop.form.edtEmlTtl.set_value("");
+	this.divTop.form.edtTmpltNm.set_value("");
+	this.divTop.form.textSndCn.set_value("");
+	this.divBottom.form.edtSearch.set_value("");
+	this.dsList2.clearData();
+	this.dsList3.clearData();
+};
+
+this.btnSnd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnValidation();
+};
+
+this.divTop_Button04_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var oArg = {  };
+
+	this.gfnOpenPopup("malTmpltSearch", "pts::mal/MAL_1020P.xfdl", oArg, "fnPopupAfter", "");
+};
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.fnValidation = function ()
+{
+	if(this.dsList3.rowcount == 0){
+		this.gfnAlert("CM_MSG_SND_NORCV");
+		return false;
+	}
+	for(var i = 0; i < this.dsList3.rowcount; i++){
+		if(this.dsList3.getColumn(i, "rcvEmlAddr") == null){
+			this.gfnAlert("CM_MSG_SAVE_REQUIRE", ["이메일"]);
+			return false;
+		}
+	}
+	
+	this.fnSndMal();
+};
+
+/**
+ * description 엔터키 이벤트
+*/
+this.onkeyup = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.divBottom_btn_search_onclick();
+	}
+};]]></Script>
+    <Bind>
+      <BindItem id="item8" compid="divBottom.form.edtSearch" propid="value" datasetid="dsSearch" columnid="searchKeyword"/>
+      <BindItem id="item0" compid="divBottom.form.cboSearch" propid="value" datasetid="dsSearch" columnid="searchType"/>
+      <BindItem id="item1" compid="divTop.form.edtEmlId" propid="value" datasetid="dsList" columnid="emlId"/>
+      <BindItem id="item2" compid="divTop.form.edtEmlTtl" propid="value" datasetid="dsList" columnid="emlTtl"/>
+      <BindItem id="item3" compid="divTop.form.edtTmpltNm" propid="value" datasetid="dsList" columnid="emlTmpltNm"/>
+      <BindItem id="item4" compid="divTop.form.textSndCn" propid="value" datasetid="dsList" columnid="sndCn"/>
+    </Bind>
+  </Form>
+</FDL>

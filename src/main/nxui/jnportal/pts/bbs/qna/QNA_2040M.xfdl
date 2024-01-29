@@ -1,0 +1,292 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="QNA_2040M" width="1920" height="720" titletext="QNA 질문등록" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="DivBnrForm" taborder="0" text="Div01" left="50" top="73" cssclass="div_WF_Area" right="50" height="617">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="0" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="34" height="34" text="" right="0"/>
+              <Static id="Static10_00_00_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" top="68" height="490" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staQstnTtl" taborder="3" text="제목" cssclass="sta_WF_condition02_LEssential" left="0" top="0" width="150" height="34"/>
+              <Edit id="edtQstnTtl" taborder="4" left="staQstnTtl:10" width="740" height="26" top="4"/>
+              <Static id="staCls" taborder="5" text="분류" cssclass="sta_WF_condition02_LEssential" left="0" top="34" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="staQstnCn" taborder="6" text="내용" cssclass="sta_WF_condition02_LEssential" left="0" top="68" width="150" height="490"/>
+              <TextArea id="textQstnCn" taborder="7" oneditclick="TextArea01_oneditclick" left="staQstnCn:10" top="73" height="480" onchanged="Div01_TextArea01_00_onchanged" right="20"/>
+              <Static id="staRgstrId" taborder="8" text="작성자" cssclass="sta_WF_condition02" left="50%" top="34" width="150" height="34"/>
+              <Edit id="edtRgstr" taborder="9" left="staRgstrId:10" top="38" height="26" width="250" readonly="true"/>
+              <Combo id="ComboCls" taborder="10" left="staCls:10" top="38" width="250" height="26" codecolumn="value" datacolumn="text" onkeyup="divSearch_edt_schMenuId_onkeyup" innerdataset="dsClsCombo"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staTitle" taborder="1" text="QNA 질문등록" top="0" cssclass="sta_WF_compTitle01" left="50" onclick="sta_title_onclick" height="58" right="1420"/>
+        <Button id="btnDelete" text="삭제" cssclass="btn_WF_Delete" visible="true" top="20" height="28" taborder="3" width="65" right="50" onclick="btnDelete_onclick"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="20" width="65" height="28" right="btnDelete:3" taborder="2" onclick="btnSave_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="qnaId" type="STRING" size="256"/>
+          <Column id="qstnTtl" type="STRING" size="256"/>
+          <Column id="qstnCn" type="STRING" size="256"/>
+          <Column id="rdcnt" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstrId" type="STRING" size="256"/>
+          <Column id="rgstrMemberId" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtrId" type="STRING" size="256"/>
+          <Column id="qnaPrcSttsCd" type="STRING" size="256"/>
+          <Column id="qnaPrcSttsNm" type="STRING" size="256"/>
+          <Column id="answrId" type="STRING" size="256"/>
+          <Column id="answrMemberId" type="STRING" size="256"/>
+          <Column id="answrCn" type="STRING" size="256"/>
+          <Column id="wrtePasswd" type="STRING" size="256"/>
+          <Column id="answrDt" type="STRING" size="256"/>
+          <Column id="emlAnswrYn" type="STRING" size="256"/>
+          <Column id="clsCd" type="STRING" size="256"/>
+          <Column id="clsNm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsClsCombo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="qnaId" type="STRING" size="256"/>
+          <Column id="clsCd" type="STRING" size="256"/>
+          <Column id="isRead" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  QNA 질문등록
+*  MenuPath      소통광장 - 게시물 관리 - QNA 질문등록
+*  FileName      QNA_2040M.xfdl 
+*  Creator 	     woohj
+*  CreateDate    2023.11.29
+*  Desction      QNA 질문등록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.11.29   woohj	 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+this.qnaId = ""; // 초기화
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+
+	this.dsSearch.setColumn(0 , "isRead" , "Y");
+	
+	// 작성자 id 셋팅
+	var memberId = nexacro.getApplication().gdsUserInfo.getColumn(0, "memberId");   // Application에 있는 로그인한 멤버id
+	this.dsList.setColumn(0, "rgstrMemberId", memberId);
+	
+	this.fnLoadCombo();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/**
+ * description 콤보 loadCombo
+*/
+this.fnLoadCombo = function ()
+{
+	this.gfnLoadCombo("loadCombo", "dsClsCombo=PTS:WORK_CATEGORY:C", "fnComboCallback"); 
+};
+
+/**
+ * description 상세 조회
+ */
+this.fnSearch = function ()
+{
+	var strSvcId    = "getQnaManage";
+	var strSvcUrl   = "bbs/qna/getQnaManage.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function ()
+{
+	var strSvcId    = "setQnaManage";
+	var strSvcUrl   = "bbs/qna/setQnaManage.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+
+/**
+ * description 삭제
+*/
+this.fnDelete = function ()
+{
+	var strSvcId    = "deleteQnaManage";
+	var strSvcUrl   = "bbs/qna/deleteQnaManage.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ /**
+ * description 콤보 loadCombo
+*/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+	var param = this.getOwnerFrame().tabArgs.param;
+	var qnaId = (param == null || Eco.isEmpty(param.qnaId)) ? null : param.qnaId;
+	
+	switch(svcId) {
+		case "loadCombo":
+			if(qnaId != null && qnaId != "") {
+				this.dsSearch.setColumn(0, "qnaId", qnaId);
+				this.fnSearch();
+			} 
+			break;
+		default:
+			break;
+		}
+	
+};
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getQnaManage":
+            break;
+		case "setQnaManage":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+				this.dsSearch.setColumn(0, "qnaId", this.qnaId);
+				this.dsSearch.setColumn(0 , "isRead" , "N");
+				this.fnSearch();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+		case "deleteQnaManage":
+			if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_DELETE_SUCCESS");  // 삭제 되었습니다.
+			nexacro.getApplication().closeTab(this.getOwnerFrame().tabArgs.tabId);
+            }
+            break;
+		default:	
+            break;
+    }
+};
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 저장 버튼
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnBeforeSave();
+};
+
+/**
+ * description 삭제 버튼
+*/
+this.btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description 저장 전 확인
+*/
+this.fnBeforeSave = function ()
+{
+	if(this.dsList.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  	// 저장할 데이터가 없습니다.
+		return;
+	}
+	
+	if (!this.gfnDsIsUpdated(this.dsList)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+    if (!this.fnValidation()) {
+        return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+
+/**
+ * description 유효성 체크
+*/
+this.fnValidation = function ()
+{
+	var args = [
+		["qstnTtl", "NULL|MAX_LEN:100", "질문제목"],
+        ["clsCd", "NULL", "질문 분류"],
+		["qstnCn", "NULL", "질문 내용"]
+    ];
+
+	if(!this.gfnCheckGrid(this.dsList, args, "")) {
+		return false;
+	}
+	
+    return true;
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="DivBnrForm.form.ComboCls" propid="value" datasetid="dsList" columnid="clsCd"/>
+      <BindItem id="item1" compid="DivBnrForm.form.edtQstnTtl" propid="value" datasetid="dsList" columnid="qstnTtl"/>
+      <BindItem id="item2" compid="DivBnrForm.form.textQstnCn" propid="value" datasetid="dsList" columnid="qstnCn"/>
+      <BindItem id="item3" compid="DivBnrForm.form.edtRgstr" propid="value" datasetid="dsList" columnid="rgstrMemberId"/>
+    </Bind>
+  </Form>
+</FDL>

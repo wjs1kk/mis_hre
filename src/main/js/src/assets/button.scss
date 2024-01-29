@@ -1,0 +1,279 @@
+@import 'base';
+
+:root {
+    --button-background-color: var(--secondary-color);
+    --button-foreground-color: var(--on-secondary-color);
+    --button-font-family: var(--default-font-family);
+
+    --button-disabled-background-color: #dddddd;
+    --button-disabled-foreground-color: #888888;
+
+    --save-button-background-color: var(--primary-color);
+    --delete-button-background-color: var(--tertiary-color);
+
+    --form-button-background-color: white;
+    --form-button-foreground-color: black;
+    --form-button-border-color: #b1b1b1;
+
+    --form-accent-button-background-color: #1e375f;
+    --form-accent-button-border-color: #1e375f;
+    --form-accent-button-foreground-color: white;
+
+    --form-button-disabled-background-color: #eeeeee;
+}
+
+@mixin button-icon($icon-name, $file_name, $add-normal, $add-form, $add-form-accent) {
+    @if($add-normal) {
+        &.icon-#{$icon-name}::before {
+            content: url("/src/assets/images/btn_WF_#{$file_name}.png");
+        }
+
+        &.icon-#{$icon-name}:disabled::before {
+            content: url("/src/assets/images/btn_WF_#{$file_name}_D.png");
+        }
+    }
+
+    @if ($add-form) {
+        &.jn-btn-form.icon-#{$icon-name}::before {
+            content: url("/src/assets/images/btn_WF_grd#{$file_name}.png");
+        }
+
+        &.jn-btn-form.icon-#{$icon-name}:disabled::before {
+            content: url("/src/assets/images/btn_WF_grd#{$file_name}_D.png");
+        }
+
+        @if($add-form-accent) {
+            &.jn-btn-form-accent.icon-#{$icon-name}::before {
+                content: url("/src/assets/images/btn_WF_grd#{$file_name}_W.png");
+            }
+
+            &.jn-btn-form-accent.icon-#{$icon-name}:disabled::before {
+                content: url("/src/assets/images/btn_WF_grd#{$file_name}_D.png");
+            }
+        }
+    }
+}
+
+.jn-page,
+.jn-container {
+
+    & button,
+    & input[type=button],
+    & input[type=submit],
+    & input[type=reset] {
+        background-color: var(--button-background-color);
+        border: 0 none;
+        border-radius: var(--border-radius-small);
+        box-sizing: border-box;
+        color: var(--button-foreground-color);
+        cursor: pointer;
+        display: inline-flex;
+        font-family: var(--button-font-family);
+        font-size: 0.75rem;
+        height: 28px;
+        line-height: 1rem;
+        padding: 6px 8px;
+        vertical-align: middle;
+
+        &.jn-btn-save {
+            background-color: var(--save-button-background-color);
+        }
+
+        &.jn-btn-delete {
+            background-color: var(--delete-button-background-color);
+        }
+
+        &.jn-btn-form,
+        &.jn-btn-form-accent {
+            border-style: solid;
+            border-width: 1px;
+            height: 25px;
+            line-height: 0.875rem;
+            padding: 4px 7px;
+
+            &:hover,
+            &:focus,
+            &:active,
+            &:disabled {
+                border-style: solid;
+                border-width: 1px;
+            }
+        }
+
+        &.jn-btn-form {
+            background-color: var(--form-button-background-color);
+            border-color: var(--form-button-border-color);
+            color: var(--form-button-foreground-color);
+
+            &:hover,
+            &:focus,
+            &:active,
+            &:disabled {
+                border-color: var(--form-button-border-color);
+            }
+
+            &:disabled {
+                background-color: var(--form-button-disabled-background-color);
+            }
+        }
+
+        &.jn-btn-form-accent {
+            background-color: var(--form-accent-button-background-color);
+            border-color: var(--form-accent-button-border-color);
+            color: var(--form-accent-button-foreground-color);
+
+            &:hover,
+            &:focus,
+            &:active {
+                border-color: var(--form-accent-button-border-color);
+            }
+
+            &:disabled {
+                border-color: var(--form-button-disabled-background-color);
+                background-color: var(--form-button-disabled-background-color);
+            }
+        }
+
+        &:not([class^="icon-"]):not([class*=" icon-"]):not(.jn-btn-form):not(.jn-btn-form-accent) {
+            padding: 6px 15px;
+        }
+
+        &:hover,
+        &:focus,
+        &:active {
+            border: 0 none;
+            outline: none;
+        }
+
+        &:disabled {
+            background-color: var(--button-disabled-background-color);
+            color: var(--button-disabled-foreground-color);
+        }
+
+        &[class^="icon-"],
+        &[class*=" icon-"] {
+            &::before {
+                display: inline-block;
+                flex: none;
+                height: 28px;
+                margin: -6px 5px -6px 0;
+                width: 16px;
+            }
+
+            &:empty {
+                padding: 6px;
+
+                &::before {
+                    margin-right: 0;
+                }
+            }
+
+            &.jn-btn-form,
+            &.jn-btn-form-accent {
+                &::before {
+                    height: 24px;
+                    margin: -5px 5px -5px 0;
+                }
+
+                &:empty {
+                    padding: 5px 4px;
+
+                    &::before {
+                        margin-right: 0;
+                    }
+                }
+            }
+        }
+
+        @include button-icon("accept", "Accept", true, true, true);
+        @include button-icon("add", "Add", true, true, true);
+        @include button-icon("application", "Application", true, true, true);
+        @include button-icon("approbation", "Approbation", true, true, true);
+        @include button-icon("approval", "Approval", true, true, true);
+        @include button-icon("arr-down", "ArrDown", true, true, false);
+        @include button-icon("arr-up", "ArrUp", true, true, false);
+        @include button-icon("arr-left", "ArrLeft", true, true, false);
+        @include button-icon("arr-right", "ArrRight", true, true, false);
+        @include button-icon("calendar", "Calendar", true, true, false);
+        @include button-icon("cancel", "Cancel", true, true, true);
+        @include button-icon("check", "Check", true, true, true);
+        @include button-icon("close", "icoClose", true, false, false);
+        @include button-icon("close", "Close", false, true, true);
+        @include button-icon("conclusion", "Conclusion", true, true, true);
+        @include button-icon("confirm", "Confirm", true, false, false);
+        @include button-icon("cont-delete", "ContDelete", true, true, true);
+        @include button-icon("decision", "Decision", true, true, true);
+        @include button-icon("delete", "Delete", true, true, true);
+        @include button-icon("download", "Download", true, true, true);
+        @include button-icon("etc", "Etc", true, true, false);
+        @include button-icon("evaluation", "Evaluation", true, true, true);
+        @include button-icon("excel", "Excel", true, true, true);
+        @include button-icon("exe", "icoExe", true, true, false);
+        @include button-icon("exit", "icoExit", true, true, false);
+        @include button-icon("help", "Help", true, true, true);
+        @include button-icon("list", "List", true, true, true);
+        @include button-icon("mail", "Mail", true, true, true);
+        @include button-icon("modify", "Modify", true, true, true);
+        @include button-icon("notify", "Notify", true, true, true);
+        @include button-icon("print", "Print", true, true, true);
+        @include button-icon("registration", "Registration", true, true, true);
+        @include button-icon("reject", "Reject", true, true, true);
+        @include button-icon("report", "Report", true, true, true);
+        @include button-icon("report", "Report", true, true, true);
+        @include button-icon("rescission", "Rescission", true, true, true);
+        @include button-icon("return", "Return", true, true, true);
+        @include button-icon("review", "Review", true, true, true);
+        @include button-icon("row-add", "RowAdd", false, true, false);
+        @include button-icon("row-delete", "RowDelete", false, true, false);
+        @include button-icon("save", "Save", true, true, true);
+        @include button-icon("search", "Search", true, true, true);
+        @include button-icon("select", "Select", true, true, true);
+        @include button-icon("setting", "Setting", true, true, false);
+        @include button-icon("sms", "Sms", true, true, true);
+        @include button-icon("sort", "Sort", true, true, true);
+        @include button-icon("submit", "Submit", true, true, true);
+        @include button-icon("termination", "Termination", true, true, true);
+        @include button-icon("text", "icoTxt", true, false, false);
+        @include button-icon("text", "Txt", false, true, true);
+        @include button-icon("upload", "Upload", true, true, true);
+
+        &.jn-btn-form.icon-tree-expand::before {
+            content: url("/src/assets/images/img_WF_Treeexpand.png");
+            margin: 1px 3px 0 1px;
+        }
+
+        &.jn-btn-form.icon-tree-expand:disabled::before {
+            content: url("/src/assets/images/img_WF_Treeexpand.png");
+            margin: 1px 3px 0 1px;
+        }
+
+        &.jn-btn-form.icon-tree-collapse::before {
+            content: url("/src/assets/images/img_WF_Treecollapse.png");
+            margin: 1px 3px 0 1px;
+        }
+
+        &.jn-btn-form.icon-tree-collapse:disabled::before {
+            content: url("/src/assets/images/img_WF_Treecollapse.png");
+            margin: 1px 3px 0 1px;
+        }
+    }
+}
+
+.jn-title~.jn-btn-group {
+    flex: none;
+    margin: 20px 0 10px;
+
+    &>* {
+        flex: none;
+    }
+}
+
+.jn-sub-title-01~.jn-btn-group,
+.jn-sub-title-02~.jn-btn-group {
+    flex: none;
+    margin: 14px 0 5px;
+
+    &>* {
+        flex: none;
+    }
+}

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.ast.resources.service.ResourcesManageDAO">
+
+    <!-- 자원 등록 상세 조회 -->
+    <select id="getResourcesItem" parameterType="map" resultType="resourcesAddVO">
+       /* resources-manage-mapper.getResourcesItem */
+        SELECT AI.AST_NO
+             , AI.AST_NM
+             , AI.AST_ALIAS
+             , (SELECT SC.CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = AI.AST_DIV_CD) AS AST_DIV_CD_NM
+             , TO_CHAR(AI.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , (SELECT PD.DEPT_NM
+                  FROM PTS_DEPT PD
+                 WHERE PD.DEPT_CD = AI.AST_MNG_DEPT_CD) AS AST_MNG_DEPT_CD_NM
+             , AI.AST_MNG_DEPT_CD
+             , AI.AST_MNG_PIC_ID
+             , (SELECT CU.USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID =  AI.AST_MNG_PIC_ID) AS AST_MNG_PIC_ID_NM
+             , AI.AST_MFTR_NM
+             , AI.AST_QTY
+             , AI.AST_DESC
+             , AI.AST_RMK
+             , AI.AST_DIV_CD
+             , AI.ATCH_FILE_ID
+             , AI.AST_QTY
+             , AI.AST_UOM
+          FROM PTS_AST_INFO AI
+         WHERE AI.AST_NO = #{astNo}
+    </select>
+
+
+    <!-- 자원 상세 등록 조회 -->
+    <select id="getResourcesDetailItem" parameterType="map" resultType="ResourcesDetailAddVO">
+       /* resources-manage-mapper.getResourcesItem */
+        SELECT AI.AST_DIV_CD
+             , (SELECT SC.CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = AI.AST_DIV_CD) AS AST_DIV_CD_NM
+             , AD.AST_SRL_NO
+             , AD.AST_AQSTN_YMD
+             , AD.AST_USE_DEPT_CD
+             , (SELECT PD.DEPT_NM
+                  FROM PTS_DEPT PD
+                 WHERE PD.DEPT_CD = AD.AST_USE_DEPT_CD) AS AST_USE_DEPT_CD_NM
+             , AD.AST_USE_USER_ID
+             , (SELECT CU.USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = AD.AST_USE_USER_ID) AS AST_USE_USER_ID_NM
+             , AD.AST_STTS_CD
+             , AD.USE_YN
+             , AD.AST_NO
+          FROM PTS_AST_DTL AD
+          JOIN PTS_AST_INFO AI
+            ON AD.AST_NO = AI.AST_NO
+         WHERE AD.AST_NO = #{astNo}
+    </select>
+
+    <!-- 자원 등록 입력-->
+    <insert id = "insertResourcesManage" parameterType="resourcesAddVO">
+       /* resources-manage-mapper.insertResourcesManage */
+
+        INSERT
+          INTO PTS_AST_INFO ( AST_NO
+                            , AST_NM
+                            , AST_ALIAS
+                            , AST_DIV_CD
+                            , AST_MNG_DEPT_CD
+                            , AST_MNG_PIC_ID
+                            , AST_MFTR_NM
+                            , AST_QTY
+                            , AST_UOM
+                            , AST_DESC
+                            , AST_RMK
+                            , ATCH_FILE_ID
+                            , RGSTR_ID
+                            , RGST_DT)
+                      VALUES( NULLIF(#{astNo},'')
+                            , NULLIF(#{astNm},'')
+                            , NULLIF(#{astAlias},'')
+                            , NULLIF(#{astDivCd},'')
+                            , NULLIF(#{astMngDeptCd},'')
+                            , NULLIF(#{astMngPicId},'')
+                            , NULLIF(#{astMftrNm},'')
+                            , #{astQty}::INT
+                            , NULLIF(#{astUom},'')
+                            , NULLIF(#{astDesc},'')
+                            , NULLIF(#{astRmk},'')
+                            , NULLIF(#{atchFileId},'')
+                            , #{sessionUserId}
+                            , NOW());
+    </insert>
+
+  <!-- 자원 등록 수정-->
+    <update id="updateResourcesManage" parameterType="resourcesAddVO">
+        UPDATE PTS_AST_INFO
+           SET AST_NM          = NULLIF(#{astNm}, '')
+             , AST_ALIAS       = NULLIF(#{astAlias}, '')
+             , AST_DIV_CD      = NULLIF(#{astDivCd}, '')
+             , AST_MNG_DEPT_CD = NULLIF(#{astMngDeptCd}, '')
+             , AST_MNG_PIC_ID  = NULLIF(#{astMngPicId}, '')
+             , AST_MFTR_NM     = NULLIF(#{astMftrNm}, '')
+             , AST_QTY         = #{astQty}::INT
+             , AST_UOM         = NULLIF(#{astUom}, '')
+             , AST_DESC        = NULLIF(#{astDesc}, '')
+             , AST_RMK         = NULLIF(#{astRmk}, '')
+             , ATCH_FILE_ID    = NULLIF(#{atchFileId}, '')
+             , UPDTR_ID     = #{sessionUserId}
+             , UPDT_DT      = NOW()
+        WHERE AST_NO = #{astNo}
+    </update>
+
+    <!-- 자원 등록 상세 입력-->
+    <insert id = "insertDetailResManage" parameterType="resourcesAddVO">
+       <selectKey keyProperty="astSrlNo" resultType="string" order="BEFORE">
+            SELECT COALESCE(MAX(AST_SRL_NO::INT), 0) + 1 AS AST_SRL_NO
+              FROM PTS_AST_DTL
+             WHERE AST_NO = #{astNo}
+        </selectKey>
+        INSERT
+          INTO PTS_AST_DTL ( AST_SRL_NO
+                           , AST_NO
+                           , AST_AQSTN_YMD
+                           , AST_USE_DEPT_CD
+                           , AST_USE_USER_ID
+                           , AST_STTS_CD
+                           , USE_YN
+                           , RGSTR_ID
+                           , RGST_DT)
+                     VALUES( #{astSrlNo}::INT
+                           , #{astNo}
+                           , TO_CHAR(TO_DATE(#{astAqstnYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+                           , NULLIF(#{astUseDeptCd},'')
+                           , NULLIF(#{astUseUserId},'')
+                           , 'AST-030-020' <!-- 등록 -->
+                           , NULLIF(#{useYn},'')
+                           , #{sessionUserId}
+                           , NOW())
+    </insert>
+
+  <!-- 자원 상세등록 수정-->
+    <update id="updateDetailResManage" parameterType="ResourcesDetailAddVO">
+        UPDATE PTS_AST_DTL
+           SET AST_AQSTN_YMD    = TO_CHAR(TO_DATE(#{astAqstnYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+             , AST_USE_DEPT_CD  = NULLIF(#{astUseDeptCd},'')
+             , AST_USE_USER_ID  = NULLIF(#{astUseUserId},'')
+             , USE_YN           = NULLIF(#{useYn},'')
+             , AST_STTS_CD      = 'AST-030-020' <!-- 등록 -->
+             , UPDTR_ID         = #{sessionUserId}
+             , UPDT_DT          = NOW()
+         WHERE AST_NO           = #{astNo}
+           AND AST_SRL_NO       = #{astSrlNo}::INT
+    </update>
+
+    <!-- 자원 등록 삭제 -->
+    <delete id = "deleteResourcesManage" parameterType="resourcesAddVO">
+        DELETE
+          FROM PTS_AST_INFO
+         WHERE AST_NO  =  #{astNo}
+    </delete>
+
+    <!-- 자원 상세정보 삭제 -->
+    <delete id = "deleteDetailResManage" parameterType="ResourcesDetailAddVO">
+        DELETE
+          FROM PTS_AST_DTL
+         WHERE AST_NO  =  #{astNo}
+    </delete>
+
+    <!-- 자원 상세 한줄 삭제 -->
+    <delete id = "deleteOneDetailResManage" parameterType="ResourcesDetailAddVO">
+        DELETE
+          FROM PTS_AST_DTL
+         WHERE AST_NO     = #{astNo}
+           AND AST_SRL_NO = #{astSrlNo}::INT
+    </delete>
+</mapper>

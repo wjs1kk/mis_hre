@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+
+
+                           http://www.springframework.org/schema/util
+                           http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <util:properties id="jnframeProp"
+                     location="classpath:/jnframe.properties,classpath:/jnframe-*.properties"
+                     ignore-resource-not-found="true" />
+
+    <!-- 개발이나 운영 사용 util.xml -->
+    <util:properties id="systemProp">
+      <prop key="commonFilePath">/home/jn-file/javaFileDownload/</prop>
+      <prop key="rootFilePath">/jnplaza_pms/jn_file/</prop>
+    </util:properties>
+
+    <util:properties id="smtpProp">
+        <prop key="mail.smtp.host"></prop>
+        <prop key="mail.smtp.port"></prop>
+        <prop key="mail.smtp.auth"></prop>
+        <prop key="mail.smtp.ssl.enable"></prop>
+        <prop key="mail.smtp.ssl.trust"></prop>
+
+        <prop key="username"></prop>
+        <prop key="password"></prop>
+    </util:properties>
+</beans>

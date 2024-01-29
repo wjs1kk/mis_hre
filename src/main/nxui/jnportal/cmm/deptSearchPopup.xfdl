@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="deptSearchPopup" width="600" height="720" titletext="부서 검색" onload="deptSearchPopup_onload">
+    <Layouts>
+      <Layout height="720" width="600">
+        <Div id="divPopup" taborder="0" left="0" top="0" height="720" cssclass="div_WF_Area" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="3" text="부서 조회" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Div id="divSearch" taborder="1" left="30" top="70" height="116" cssclass="div_WF_popup" right="30">
+                <Layouts>
+                  <Layout>
+                    <Static id="staSubTitle" text="검색조건" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" width="169" taborder="0"/>
+                    <Static id="staBg" left="20" top="45" height="56" cssclass="sta_WF_bg" right="20" taborder="1"/>
+                    <Static id="sta003" text="부서명" cssclass="sta_WF_condition01" left="40" top="60" width="100" height="26" taborder="2"/>
+                    <Edit id="edtDeptNm" left="150" top="60" width="300" height="26" maxlength="100" taborder="3" onkeyup="divPopup_divSearch_edtDeptNm_onkeyup"/>
+                    <Button id="btnSearch" taborder="4" text="조회" top="14" width="63" height="26" cssclass="btn_WF_grdSearch_W" right="20" onclick="divPopup_divSearch_btnSearch_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="divDeptList" taborder="2" left="30" top="divSearch:10" height="448" cssclass="div_WF_popup" right="30">
+                <Layouts>
+                  <Layout>
+                    <Static id="staTitle" taborder="0" text="검색결과" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" onclick="Static09_onclick" width="81"/>
+                    <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subResult" left="staTitle:10" top="0" width="149" height="45"/>
+                    <Grid id="grdDeptList" taborder="2" left="20" top="45" right="20" bottom="15" autofittype="col" binddataset="dsDept" oncellclick="divPopup_divDeptList_grdDeptList_oncellclick" oncelldblclick="divPopup_divDeptList_grdDeptList_oncelldblclick" onheadclick="divPopup_divDeptList_grdDeptList_onheadclick" treeinitstatus="expand,null" treeusecheckbox="false">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="240"/>
+                            <Column size="160"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                            <Cell col="1" text="부서명"/>
+                            <Cell col="2" text="부서코드"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck"/>
+                            <Cell col="1" text="bind:deptNm" textAlign="left" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:level" treestartlevel="1" cssclass="expr:matched == 'Y' ? 'matched' : ''"/>
+                            <Cell col="2" text="bind:deptCd" cssclass="expr:matched == 'Y' ? 'matched' : ''"/>
+                          </Band>
+                        </Format>
+                        <Format id="single">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="240"/>
+                            <Column size="160"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell displaytype="none"/>
+                            <Cell col="1" text="부서명"/>
+                            <Cell col="2" text="부서코드"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell displaytype="imagecontrol" expr="rowCheck === '1'  ? 'theme://images/rdo_WF_Radio_S.png' : 'theme://images/rdo_WF_Radio.png'"/>
+                            <Cell col="1" text="bind:deptNm" displaytype="treeitemcontrol" edittype="tree" treestartlevel="1" treelevel="bind:level" textAlign="left" font="expr:matched == 'Y' ? '700 12px/1 &quot;Malgun Gothic&quot;' : 'normal 12px/1 &quot;Malgun Gothic&quot;'" color="expr:matched=='Y'?'#003880':'#666666'" cssclass="expr:matched == 'Y' ? 'matched' : ''"/>
+                            <Cell col="2" text="bind:deptCd" color="expr:matched=='Y'?'#003880':'#666666'" font="expr:matched == 'Y' ? '700 12px/1 &quot;Malgun Gothic&quot;' : 'normal 12px/1 &quot;Malgun Gothic&quot;'" cssclass="expr:matched == 'Y' ? 'matched' : ''"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                    <Button id="btnCollapse" taborder="3" text="전체닫힘" top="14" height="26" cssclass="btn_WF_grdCollapse" width="85" right="20" onclick="divPopup_divDeptList_btnCollapse_onclick"/>
+                    <Button id="btnExpand" taborder="4" text="전체펼침" top="14" width="85" height="26" cssclass="btn_WF_grdExpand" right="btnCollapse:5" onclick="divPopup_divDeptList_btnExpand_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="divBtns" taborder="3" left="30" height="28" right="30" top="669">
+                <Layouts>
+                  <Layout type="horizontal" horizontalgap="3" flexmainaxisalign="center">
+                    <Button id="btnAdd" taborder="0" text="추가" cssclass="btn_WF_icoAdd" width="65" height="28" left="384" top="0" visible="false" onclick="divPopup_divBtns_btnAdd_onclick"/>
+                    <Button id="btnSelect" taborder="2" text="선택" cssclass="btn_WF_icoSelect" width="65" height="28" left="384" top="0" visible="false" onclick="divPopup_divBtns_btnSelect_onclick"/>
+                    <Button id="btnReset" text="초기화" cssclass="btn_WF_icoReturn" top="549" width="79" height="28" taborder="3" left="461" visible="false" onclick="divPopup_divBtns_btnReset_onclick"/>
+                    <Button id="btnPopupClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="1" right="423" top="0" onclick="divPopup_divBtns_btnPopupClose_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="jbpsNm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsDept" useclientlayout="true" onrowposchanged="dsUser_onrowposchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="1"/>
+          <Column id="deptCd" type="STRING" size="20"/>
+          <Column id="deptNm" type="STRING" size="150"/>
+          <Column id="deptLdrId" type="STRING" size="20"/>
+          <Column id="deptLdrNm" type="STRING" size="300"/>
+          <Column id="deptMngrId" type="STRING" size="20"/>
+          <Column id="deptMngrNm" type="STRING" size="300"/>
+          <Column id="deptDesc" type="STRING" size="300"/>
+          <Column id="useYn" type="STRING" size="1"/>
+          <Column id="ordSn" type="INT" size="20"/>
+          <Column id="upDeptCd" type="STRING" size="20"/>
+          <Column id="upDeptNm" type="STRING" size="150"/>
+          <Column id="level" type="INT" size="20"/>
+          <Column id="matched" type="STRING" size="1"/>
+          <Column id="deptNmPath" type="STRING" size="2147483647"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.divSearch.form.edtDeptNm" propid="value" datasetid="dsSearch" columnid="deptNm"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  부서 선택 팝업
+ *  MenuPath      -
+ *  FileName      cmm::deptSearchPopup.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.11.30
+ *  Desription    부서 조회 팝업
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.11.30    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.deptSearchPopup_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+    
+    this.mode = this.parent.mode || "multiple";
+    this.enableReset = (this.parent.enableReset == null) ? true : this.parent.enableReset;
+    this.searchParams = this.parent.searchParams || {};
+    
+    this.dsSearch.setColumn(0, "memberId", this.searchParams.memberId);
+    this.dsSearch.setColumn(0, "userNm", this.searchParams.userNm);
+    this.dsSearch.setColumn(0, "deptNm", this.searchParams.deptNm);
+    this.dsSearch.setColumn(0, "jbpsNm", this.searchParams.jbpsNm);
+    
+    if (this.mode === "single") {
+        this.divPopup.form.divDeptList.form.grdDeptList.set_formatid("single");
+        this.divPopup.form.divDeptList.form.grdDeptList.setCellProperty("head", 0, "text", "선택");
+        this.divPopup.form.divBtns.form.btnAdd.set_visible(false);
+        this.divPopup.form.divBtns.form.btnSelect.set_visible(true);
+        this.divPopup.form.divBtns.form.btnReset.set_visible(this.enableReset);
+    } else {
+        this.divPopup.form.divBtns.form.btnAdd.set_visible(true);
+        this.divPopup.form.divBtns.form.btnSelect.set_visible(false);
+        this.divPopup.form.divBtns.form.btnReset.set_visible(false);
+    }
+    
+    this.fnSearch();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnSearch = function ()
+{
+    this.gfnTransaction("getDeptList", "cmn/popup/deptSearch/getDeptList.do", "dsSearch", "dsDept", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "getDeptList":
+            this.gfnRowCount(this.dsDept, this.divPopup.form.divDeptList.form.staGridRowCnt);
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divPopup_divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSearch();
+};
+
+this.divPopup_divDeptList_grdDeptList_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if (this.mode !== "single") {
+        this.gfnSetGridCheckAll(obj, e, "rowCheck");
+    }
+};
+
+this.divPopup_divDeptList_grdDeptList_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if (this.mode === "single") {
+        this.fnSetChecked(this.dsDept, e.row);
+    }
+};
+
+this.divPopup_divDeptList_grdDeptList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+    if (this.mode === "single") {
+        this.fnSetChecked(this.dsDept, e.row);
+        this.fnCloseWithResult();
+    }
+};
+
+this.divPopup_divBtns_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnCloseWithResult();
+};
+
+this.divPopup_divBtns_btnSelect_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnCloseWithResult();
+};
+
+this.divPopup_divBtns_btnReset_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnPopupClose({
+        reset: true
+    });
+};
+
+this.divPopup_divBtns_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnPopupClose({
+        canceled: true
+    });
+};
+
+this.divPopup_divDeptList_btnCollapse_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.divPopup.form.divDeptList.form.grdDeptList.set_treeinitstatus("collapse,all");
+};
+
+this.divPopup_divDeptList_btnExpand_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.divPopup.form.divDeptList.form.grdDeptList.set_treeinitstatus("expand,all");
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnCloseWithResult = function ()
+{
+    var indices = this.gfnGetCheckedRows(this.dsDept , "rowCheck");
+    var result = {};
+    
+    if (this.mode === "single") {
+        const length = indices.length;
+        if (length < 1) {
+            this.gfnAlert("부서를 선택하세요.");
+            return;
+        }
+
+        result.dept = this.fnConvertToObject(this.dsDept, indices[0]);
+        result.dept.deptNmPath = this.fnSplitDeptPath(result.dept.deptNmPath, "\\");
+    } else {
+        result.depts = indices.map(i => this.fnConvertToObject(this.dsDept, i));
+        
+        for (const dept of result.depts) {
+            dept.deptNmPath =this.fnSplitDeptPath(dept.deptNmPath, "\\");
+        }
+    }
+    
+    this.gfnPopupClose(result);
+};
+
+this.fnConvertToObject = function (dataset, row)
+{
+    const cols = Array.from(dataset.colinfos);
+    const entries = cols.map(e => e.name)
+        .filter(n => n != "rowCheck" && n != "rowStatus" && n != "matched")
+        .map(n => [n, dataset.getColumn(row, n)]);
+
+    return Object.fromEntries(entries);
+}
+
+this.fnSetChecked = function (ds, r) {
+    ds.set_enableevent(false);
+    
+    for (var i = 0; i < ds.rowcount; i++) {
+        if (i != r) {
+            ds.setColumn(i, "rowCheck", 0);
+        } else {
+            ds.setColumn(i, "rowCheck", 1);
+        }
+    }
+    
+    ds.set_enableevent(true);
+};
+
+this.fnSplitDeptPath = function (path, delim) {
+    if (Eco.isEmpty(path)) {
+        return [];
+    }
+    
+    return String(path || "").split(delim);
+};
+
+this.divPopup_divSearch_edtDeptNm_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode === 13) {
+        this.fnSearch();
+    }
+};
+]]></Script>
+  </Form>
+</FDL>

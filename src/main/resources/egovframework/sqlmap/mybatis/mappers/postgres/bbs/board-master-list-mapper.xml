@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.service.BoardMasterDAO">
+
+    <!-- 게시판관리 - 게시판 마스터 조회 -->
+    <select id="getBoardMasterList" parameterType="map" resultType="boardMasterVO">
+        /* board-master-list-mapper.getBoardMasterList */
+        SELECT PBM.BBS_ID
+             , PBM.BBS_NM
+             , PBM.BBS_INTRCN
+             , PBM.BBS_TY_CD
+             , (SELECT PSC.CODE_NM
+                  FROM PTS_STD_CODE PSC
+                 WHERE PSC.CODE_CD = PBM.BBS_TY_CD) AS BBS_TY_NM
+             , PBM.REPLY_YN
+             , PBM.FILE_ATCH_YN
+             , PBM.USE_YN
+             , PBM.RGSTR_ID
+             , PBM.RGST_DT
+             , PBM.UPDTR_ID
+             , PBM.UPDT_DT
+             , PBMO.ANSWR_YN
+             , PBMO.RCMD_YN
+          FROM PTS_BBS_MST PBM
+          JOIN PTS_BBS_MST_OPTN PBMO
+            ON PBM.BBS_ID  = PBMO.BBS_ID
+         <where>
+            <if test='bbsTyCd != null and bbsTyCd !=""'>
+            AND PBM.BBS_TY_CD = #{bbsTyCd}
+            </if>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "BBSMST_ID"'>
+            AND PBM.BBS_ID LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "BBSMST_TTL"'>
+            AND PBM.BBS_NM LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+            AND (PBM.BBS_ID LIKE '%' || #{searchKeyword} || '%'
+              OR PBM.BBS_NM LIKE '%' || #{searchKeyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+         </where>
+       ORDER BY PBM.RGST_DT DESC
+    </select>
+
+    <!-- 게시판관리 - 게시판 MST 입력 -->
+    <insert id="insertBoardMaster" parameterType="boardMasterVO">
+        /* board-master-list-mapper.insertBoardMaster */
+        INSERT
+          INTO pts_bbs_mst ( BBS_ID
+                           , BBS_NM
+                           , BBS_INTRCN
+                           , BBS_TY_CD
+                           , REPLY_YN
+                           , FILE_ATCH_YN
+                           , USE_YN
+                           , RGSTR_ID
+                           , RGST_DT
+                           , UPDTR_ID
+                           , UPDT_DT)
+                     VALUES( NULLIF(#{bbsId}, '')
+                           , NULLIF(#{bbsNm}, '')
+                           , NULLIF(#{bbsIntrcn}, '')
+                           , NULLIF(#{bbsTyCd}, '')
+                           , COALESCE(NULLIF(#{replyYn},''),'N')
+                           , COALESCE(NULLIF(#{fileAtchYn},''),'N')
+                           , NULLIF(#{useYn}, '')
+                           , #{sessionUserId}
+                           , NOW()
+                           , #{sessionUserId}
+                           , NOW())
+    </insert>
+
+    <!-- 게시판관리 - 게시판 MST Option 입력 -->
+    <insert id="insertBoardMSTOption" parameterType="boardMasterVO">
+        /* board-master-list-mapper.insertBoardMSTOption */
+        INSERT
+          INTO PTS_BBS_MST_OPTN ( BBS_ID
+                                , ANSWR_YN
+                                , RCMD_YN
+                                , RGST_DT
+                                , UPDT_DT
+                                , RGSTR_ID
+                                , UPDTR_ID)
+                          VALUES( NULLIF(#{bbsId}, '')
+                                , COALESCE(NULLIF(#{answrYn},''),'N')
+                                , COALESCE(NULLIF(#{rcmdYn},''),'N')
+                                , NOW()
+                                , NOW()
+                                , #{sessionUserId}
+                                , #{sessionUserId})
+    </insert>
+
+    <!-- 게시판관리 - 게시판 MST 수정 -->
+    <update id="updateBoardMaster" parameterType="boardMasterVO">
+        /* board-master-list-mapper.updateBoardMaster */
+        UPDATE PTS_BBS_MST
+           SET BBS_NM       = NULLIF(#{bbsNm}, '')
+             , BBS_INTRCN   = NULLIF(#{bbsIntrcn}, '')
+             , BBS_TY_CD    = NULLIF(#{bbsTyCd}, '')
+             , REPLY_YN     = COALESCE(NULLIF(#{replyYn},''),'N')
+             , FILE_ATCH_YN = COALESCE(NULLIF(#{fileAtchYn},''),'N')
+             , USE_YN       = NULLIF(#{useYn}, '')
+             , RGSTR_ID     = #{sessionUserId}
+             , RGST_DT      = NOW()
+             , UPDTR_ID     = #{sessionUserId}
+             , UPDT_DT      = NOW()
+        WHERE BBS_ID = #{bbsId}
+    </update>
+
+    <!-- 게시판관리 - 게시판 MST Option 수정 -->
+    <update id="updateBoardMSTOption" parameterType="boardMasterVO">
+        /* board-master-list-mapper.updateBoardMSTOption */
+        UPDATE PTS_BBS_MST_OPTN
+           SET ANSWR_YN     = COALESCE(NULLIF(#{answrYn},''),'N')
+             , RCMD_YN      = COALESCE(NULLIF(#{rcmdYn},''),'N')
+             , RGST_DT      = #{sessionUserId}
+             , UPDT_DT      = NOW()
+             , RGSTR_ID     = #{sessionUserId}
+             , UPDTR_ID     = NOW()
+        WHERE BBS_ID = #{bbsId}
+    </update>
+
+    <!-- 게시판관리 - 게시판 MST 삭제 -->
+    <delete id="deleteBoardMaster" parameterType="boardMasterVO">
+        /* board-master-list-mapper.deleteBoardMaster */
+        DELETE
+          FROM PTS_BBS_MST
+         WHERE BBS_ID = #{bbsId}
+    </delete>
+
+    <!-- 게시판관리 - 게시판 MST Option 삭제 -->
+    <delete id="deleteBoardMSTOption" parameterType="boardMasterVO">
+        /* board-master-list-mapper.deleteBoardMSTOption */
+        DELETE
+          FROM PTS_BBS_MST_OPTN
+         WHERE BBS_ID = #{bbsId}
+    </delete>
+
+    <!-- 게시판 MST 중복체크 -->
+    <select id="getDuplicateKeyCnt" parameterType="boardMasterVO">
+        /* board-master-list-mapper.getDuplicateKeyCnt*/
+        SELECT COUNT(*)
+          FROM PTS_BBS_MST
+         WHERE BBS_ID = #{bbsId}
+    </select>
+</mapper>

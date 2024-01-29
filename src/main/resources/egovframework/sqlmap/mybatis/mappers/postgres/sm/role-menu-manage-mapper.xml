@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.role.service.RoleMenuManageDAO">
+
+    <select id="getRole" parameterType="map" resultType="roleMenuManageVO">
+        /* role-menu-manage-mapper.getRole */
+        SELECT R.ROLE_CODE
+             , R.SYS_ID
+             , R.MODULE_ID
+             , R.ROLE_NM
+             , R.ROLE_DC
+             , R.ROLE_PERMIT
+             , R.WORK_GRP_ID
+             , R.USE_YN
+             , TO_CHAR(R.USE_YMD, 'YYYY-MM-DD') AS USE_YMD
+             , TO_CHAR(R.END_YMD, 'YYYY-MM-DD') AS END_YMD
+             , R.UPDT_ID
+             , R.UPDT_IP
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = R.UPDT_ID) AS UPDT_NM
+             , TO_CHAR(R.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+          FROM CMN_ROLE R
+        <where>
+            <if test="searchRoleCode != null and searchRoleCode != ''">
+           AND R.ROLE_CODE LIKE '%' || #{searchRoleCode} || '%'
+            </if>
+            <if test="roleNm != null and roleNm != ''">
+           AND R.ROLE_NM LIKE '%' || #{roleNm} || '%'
+            </if>
+            <if test="moduleId != null and moduleId != ''">
+           AND R.MODULE_ID = #{moduleId}
+            </if>
+           AND R.USE_YN = 'Y'
+        </where>
+         ORDER BY R.MODULE_ID NULLS FIRST
+             , R.ROLE_PERMIT
+             , R.ROLE_CODE
+    </select>
+
+    <select id="getRoleMenuSearch" parameterType="map" resultType="roleMenuManageVO">
+        /* role-menu-manage-mapper.getRoleMenuSearch */
+        WITH RECURSIVE
+            MENU_FUNC_LIST AS (
+                SELECT SYS_ID
+                     , MENU_ID
+                     , UPPER_MENU_ID
+                     , MENU_NM
+                     , PROG_ID
+                     , NULL AS FUNC_ID
+                     , NULL AS FUNC_NM
+                     , 'M/' || SYS_ID || '/' || MENU_ID AS TREE_KEY
+                     , 'M/' || SYS_ID || '/' || UPPER_MENU_ID AS UPPER_TREE_KEY
+                     , MENU_NM AS TREE_TEXT
+                     , SORT_ORDR
+                     , INDCT_YN
+                     , 0 AS FUNC_AT
+                     , 0 AS AUTH_YN
+                  FROM CMN_MENU
+                 WHERE SYS_ID = #{sysId}
+                 UNION ALL
+                SELECT CM.SYS_ID
+                     , CM.MENU_ID
+                     , CM.UPPER_MENU_ID
+                     , CM.MENU_NM
+                     , CM.PROG_ID
+                     , CPF.FUNC_ID
+                     , CPF.FUNC_NAME AS FUNC_NM
+                     , 'F/' || CM.SYS_ID || '/' || CM.MENU_ID || '/' || CPF.FUNC_ID AS TREE_KEY
+                     , 'M/' || CM.SYS_ID || '/' || CM.MENU_ID AS UPPER_TREE_KEY
+                     , FUNC_NAME AS TREE_TEXT
+                     , CPF.SORT_ORDR
+                     , CM.INDCT_YN
+                     , 1 AS FUNC_AT
+                     , CASE
+                           WHEN CRMF.ROLE_CODE IS NULL THEN 0
+                           ELSE 1
+                       END AS AUTH_YN
+                  FROM CMN_PROG_FUNC CPF
+                  JOIN CMN_MENU CM
+                    ON CPF.SYS_ID = CM.SYS_ID
+                   AND CPF.PROG_ID = CM.PROG_ID
+                  LEFT JOIN CMN_ROLE_MENU_FUNC CRMF
+                    ON CRMF.SYS_ID = CPF.SYS_ID
+                        AND CRMF.MENU_ID = CM.MENU_ID
+                        AND CRMF.FUNC_ID = CPF.FUNC_ID
+                        AND CRMF.ROLE_CODE = #{roleCode}
+                 WHERE CM.SYS_ID = #{sysId}
+            ),
+            MENU_FUNC_TREE(SYS_ID, MENU_ID, FUNC_ID, TREE_KEY, UPPER_TREE_KEY,
+                TREE_TEXT, FUNC_AT, AUTH_YN, INDCT_YN, SORT_ORDR, LEVEL,
+                KEY_PATH) AS (
+                SELECT MF.SYS_ID, MF.MENU_ID, MF.FUNC_ID, MF.TREE_KEY
+                     , MF.UPPER_TREE_KEY, MF.TREE_TEXT, MF.FUNC_AT, MF.AUTH_YN
+                     , MF.INDCT_YN, MF.SORT_ORDR
+                     , 0 AS LEVEL
+                     , ARRAY[TREE_KEY::TEXT] AS KEY_TEXT
+                  FROM MENU_FUNC_LIST MF
+                 WHERE UPPER_TREE_KEY IS NULL
+                 UNION ALL
+                SELECT MF.SYS_ID, MF.MENU_ID, MF.FUNC_ID, MF.TREE_KEY
+                     , MF.UPPER_TREE_KEY, MF.TREE_TEXT, MF.FUNC_AT, MF.AUTH_YN
+                     , MF.INDCT_YN, MF.SORT_ORDR
+                     , MFT.LEVEL + 1 AS LEVEL
+                     , MFT.KEY_PATH || MF.TREE_KEY AS KEY_PATH
+                  FROM MENU_FUNC_LIST MF
+                  JOIN MENU_FUNC_TREE MFT
+                    ON MF.UPPER_TREE_KEY = MFT.TREE_KEY
+            ) SEARCH DEPTH FIRST BY FUNC_AT, SORT_ORDR, TREE_TEXT, TREE_KEY SET ROW_ORDER
+        SELECT MFT.TREE_KEY
+             , MFT.UPPER_TREE_KEY AS TREE_UPPER
+             , MFT.TREE_KEY AS ID
+             , MFT.UPPER_TREE_KEY AS PARENT
+             , MFT.TREE_TEXT
+             , MFT.SYS_ID
+             , MFT.MENU_ID
+             , MFT.FUNC_ID
+             , MFT.SORT_ORDR
+             , MFT.INDCT_YN
+             , CASE MFT.FUNC_AT
+                   WHEN 1 THEN 'Y'
+                   ELSE 'N'
+               END AS FUNC_AT
+             , CASE MFT.FUNC_AT
+                   WHEN 1 THEN
+                       CASE MFT.AUTH_YN
+                           WHEN 1 THEN 'Y'
+                           ELSE 'N'
+                       END
+                   ELSE
+                       (SELECT CASE
+                                   WHEN SUM(MFT2.FUNC_AT) = 0 THEN 'N'
+                                   WHEN SUM(MFT2.FUNC_AT) = SUM(MFT2.AUTH_YN) THEN 'Y'
+                                   ELSE 'N'
+                               END
+                          FROM MENU_FUNC_TREE MFT2
+                         WHERE MFT2.KEY_PATH[:ARRAY_LENGTH(MFT.KEY_PATH, 1)] = MFT.KEY_PATH
+                           AND MFT2.FUNC_AT = 1)
+               END AS AUTH_YN
+             , #{roleCode} AS ROLE_CODE
+             , MFT.LEVEL
+             , (SELECT COUNT(*)
+                  FROM MENU_FUNC_TREE MFT2
+                 WHERE MFT2.KEY_PATH[:ARRAY_LENGTH(MFT.KEY_PATH, 1)] = MFT.KEY_PATH
+                   AND MFT2.FUNC_AT = 1) AS FUNC_CNT
+             , (SELECT COUNT(*)
+                  FROM MENU_FUNC_TREE MFT2
+                 WHERE MFT2.KEY_PATH[:ARRAY_LENGTH(MFT.KEY_PATH, 1)] = MFT.KEY_PATH
+                   AND MFT2.FUNC_AT = 1
+                   AND MFT2.AUTH_YN = 1) AS AUTH_CNT
+          FROM MENU_FUNC_TREE MFT
+         ORDER BY ROW_ORDER
+    </select>
+
+    <select id="getDuplicateRoleMenuFunc" parameterType="roleMenuManageVO" resultType="int">
+        /* role-menu-manage-mapper.getDuplicateRoleMenuFunc */
+        SELECT COUNT(ROLE_CODE)
+          FROM CMN_ROLE_MENU_FUNC
+         WHERE ROLE_CODE = #{roleCode}
+           AND MENU_ID   = #{menuId}
+           AND FUNC_ID   = #{funcId}
+           AND SYS_ID    = #{sysId}
+    </select>
+
+    <!-- 역할별 메뉴 기능 맵핑 저장 -->
+    <insert id="insertRoleMenuFunc" parameterType="roleMenuManageVO">
+        /* role-menu-manage-mapper.insertRoleMenuFunc */
+        INSERT INTO CMN_ROLE_MENU_FUNC (ROLE_CODE,
+                                        SYS_ID,
+                                        MENU_ID,
+                                        FUNC_ID,
+                                        RGST_ID,
+                                        RGST_IP,
+                                        RGST_DT,
+                                        UPDT_ID,
+                                        UPDT_IP,
+                                        UPDT_DT
+        )
+        VALUES (
+                   NULLIF(#{roleCode}, ''),
+                   NULLIF(#{sysId}, ''),
+                   NULLIF(#{menuId}, ''),
+                   NULLIF(#{funcId}, ''),
+                   NULLIF(#{sessionUserId}, ''),
+                   NULLIF(#{sessionUserIp}, ''),
+                   NOW(),
+                   NULLIF(#{sessionUserId}, ''),
+                   NULLIF(#{sessionUserIp}, ''),
+                   NOW()
+               )
+    </insert>
+
+    <delete id="deleteRoleMenuFunc" parameterType="roleMenuManageVO">
+        /* role-menu-manage-mapper.deleteRoleMenuFunc */
+        DELETE FROM CMN_ROLE_MENU_FUNC
+         WHERE ROLE_CODE = #{roleCode}
+           AND MENU_ID   = #{menuId}
+           AND FUNC_ID   = #{funcId}
+           AND SYS_ID    = #{sysId}
+    </delete>
+
+</mapper>

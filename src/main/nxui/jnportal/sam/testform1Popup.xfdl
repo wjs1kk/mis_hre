@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="testform1Popup" width="600" height="312" titletext="팝업 템플릿" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="divPopup" taborder="1" text="" left="0" top="0" height="312" width="600">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="프로그램 등록" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Div id="divForm" taborder="4" left="30" top="70" height="166" cssclass="div_WF_popup" text="" right="30">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static07_01_01_00" taborder="2" left="21" top="80" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_01_01_00_00" taborder="3" left="21" top="45" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_01_01_00_01" taborder="4" left="21" top="115" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_00_01_00" taborder="5" top="45" height="105" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" right="20"/>
+                    <Static id="staSubTitle" taborder="8" text="과제 정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" width="169"/>
+                    <Static id="Static07_00_00_00" taborder="6" left="20" top="45" width="1" height="105" onclick="div_Search_Static07_onclick" background="#00388e" text=""/>
+                    <Static id="Static07_01_02_00" taborder="7" left="171" top="45" width="1" height="105" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                    <Static id="in_YY" taborder="9" text="프로그램명" cssclass="sta_WF_condition02" left="21" top="116" width="150" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                    <Static id="sta_001" taborder="10" text="시스템ID" cssclass="sta_WF_condition02" left="21" top="46" width="150" height="34"/>
+                    <Static id="Static23" taborder="11" text="프로그램ID" cssclass="sta_WF_condition02" left="21" top="81" width="150" height="34"/>
+                    <Static id="Static10_00" taborder="12" text="w12" visible="false" left="172" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static10_00_00_00" taborder="13" text="w12" visible="false" left="172" top="116" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static10_00_01" taborder="14" text="w12" visible="false" left="172" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00_00" taborder="15" text="h 15" onclick="Static31_onclick" visible="false" left="110" top="150" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static07_01_01_00_01_00" taborder="16" left="20" top="150" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="22"/>
+                    <Edit id="edt_001" taborder="17" left="184" top="50" width="321" height="26" oneditclick="div_Search_SCH_RQST_NO_oneditclick" maxlength="100" cssclass="essential"/>
+                    <Static id="Static10_00_01_00" taborder="18" text="w12" visible="false" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" top="110" width="12" right="21" bottom="20"/>
+                    <Edit id="edt_002" taborder="19" left="184" top="85" width="321" height="26" oneditclick="div_Search_SCH_RQST_NO_oneditclick" maxlength="100" cssclass="essential"/>
+                    <Edit id="edt_003" taborder="20" left="184" top="120" width="321" height="26" oneditclick="div_Search_SCH_RQST_NO_oneditclick" maxlength="100"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00" taborder="5" text="h 23" onclick="Static31_onclick" visible="false" left="249" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="249" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" width="103"/>
+              <Button id="btnPopupClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" right="233" bottom="23" onclick="divPopup_btnPopupClose_onclick"/>
+              <Button id="btnPopupSave" text="저장" cssclass="btn_WF_icoSave" top="261" width="65" height="28" taborder="8" left="234" onclick="divPopup_btnPopupSave_onclick"/>
+              <Static id="sta_g001" taborder="9" text="w12" visible="false" left="299" top="253" width="3" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsTypeTwo" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+          <Column id="radioUseYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      testform1Popup.xfdl 
+*  Creator 	     parkmg
+*  CreateDate    2023.02.27
+*  Desction      팝업 샘플
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.02.27    parkmg 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.dsTypeTwo.setColumn(0, "sysId", this.parent.sysId);
+	this.dsTypeTwo.setColumn(0, "progId", this.parent.progId);
+	this.dsTypeTwo.setColumn(0, "progNm", this.parent.progNm);
+	
+	//this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 저장
+*/
+this.divPopup_btnPopupSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// pat 1. variable one
+	// pat 2. Array
+	// pat 3. Object
+	
+	// pat 1. return string
+// 	var oRtn = "variable one";
+// 	this.gfnPopupClose(oRtn);
+	
+	// pat 2. Return Array
+// 	var oRtn = new Array();
+// 	oRtn[0] = "arr 1";
+// 	oRtn[1] = "arr 2";
+// 	oRtn[2] = "arr 3";
+// 	this.gfnPopupClose(oRtn);	
+	
+	// pat 3. 임의의 Object Return / dataset 하나의 row는 gfnGetRowObj 이용
+	var oRtn = new Object();
+	oRtn.CONFIRM = "Y";
+	oRtn.popDS = this.dsTypeTwo;
+	this.gfnPopupClose(oRtn);
+};
+
+/**
+ * description close
+*/
+this.divPopup_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.div_Search.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="divPopup.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="divPopup.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="divPopup.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="divPopup.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="divPopup.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="divPopup.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="divPopup.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="divPopup.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="divPopup.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="divPopup.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="divPopup.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="divPopup.form.divForm.form.edt_001" propid="value" datasetid="dsTypeTwo" columnid="sysId"/>
+      <BindItem id="item13" compid="divPopup.form.divForm.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="divPopup.form.divForm.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="divPopup.form.divForm.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="divPopup.form.divForm.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="divPopup.form.divForm.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="divPopup.form.divForm.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="divPopup.form.divForm.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="divPopup.form.divForm.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="divPopup.form.divForm.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="divPopup.form.divForm.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="divPopup.form.divForm.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="divPopup.form.divForm.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="divPopup.form.divForm.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="divPopup.form.divForm.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="divPopup.form.divForm.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="divPopup.form.divForm.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="divPopup.form.divForm.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="divPopup.form.divForm.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="divPopup.form.divForm.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="divPopup.form.divForm.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item33" compid="divPopup.form.divForm.form.edt_002" propid="value" datasetid="dsTypeTwo" columnid="progId"/>
+      <BindItem id="item34" compid="divPopup.form.divForm.form.edt_003" propid="value" datasetid="dsTypeTwo" columnid="progNm"/>
+    </Bind>
+  </Form>
+</FDL>
