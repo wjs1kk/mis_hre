@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="testform2" width="1280" height="720" titletext="엑셀 내보내기 템플릿" onload="testform1_onload">
+    <Layouts>
+      <Layout height="720" width="1280" type="vertical" spacing="30px 50px" verticalgap="10">
+        <Div id="row0" taborder="1" text="Header" left="218" top="63" width="100%" height="28" flexgrow="0" flexshrink="0">
+          <Layouts>
+            <Layout type="horizontal" horizontalgap="3">
+              <Static id="Static00" taborder="0" text="다운로드 테스트 데이터" left="0" top="0" width="120" height="100%" flexgrow="1" font="normal bold 16px/normal &quot;Arial&quot;" color="#00388e"/>
+              <Button id="btnRefresh" taborder="2" text="새로고침" left="460" top="47" width="80" height="100%" flexgrow="0" flexshrink="0" onclick="row0_btnRefresh_onclick"/>
+              <Button id="btnDownload" taborder="1" text="다운로드" left="460" top="47" width="80" height="100%" flexgrow="0" flexshrink="0" onclick="row0_btnDownload_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="grdSample" taborder="0" left="0" top="0" binddataset="dsSample" width="100%" autofittype="col" autoenter="select" autoupdatetype="itemselect" flexgrow="1" flexshrink="0" minwidth="1" maxwidth="" minheight="1" maxheight="" height="1">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="48" band="left"/>
+                <Column size="48" band="left"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="200"/>
+                <Column size="200"/>
+                <Column size="100"/>
+                <Column size="200"/>
+                <Column size="100"/>
+                <Column size="80"/>
+                <Column size="100"/>
+                <Column size="200"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="순번"/>
+                <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="2" text="시스템ID"/>
+                <Cell col="3" text="프로그램ID"/>
+                <Cell col="4" text="프로그램명"/>
+                <Cell col="5" text="프로그램유형"/>
+                <Cell col="6" text="URL"/>
+                <Cell col="7" text="프로그램 설명"/>
+                <Cell col="8" text="프로그램 파일명"/>
+                <Cell col="9" text="대체URL"/>
+                <Cell col="10" text="대체URL 사용여부"/>
+                <Cell col="11" text="첨부파일"/>
+                <Cell col="12" text="권한레벨 사용여부"/>
+                <Cell col="13" text="권한레벨 사용설명"/>
+                <Cell col="14" text="등록자"/>
+                <Cell col="15" text="등록일"/>
+              </Band>
+              <Band id="body">
+                <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                <Cell col="2" text="bind:sysId" edittype="text" textAlign="center"/>
+                <Cell col="3" text="bind:progId" edittype="text"/>
+                <Cell col="4" text="bind:progNm" edittype="text"/>
+                <Cell col="5" text="bind:progTy" edittype="combo" displaytype="combocontrol"/>
+                <Cell col="6" text="bind:progUrl" edittype="text"/>
+                <Cell col="7" text="bind:progDc" edittype="text"/>
+                <Cell col="8" text="bind:progFileNm" edittype="text"/>
+                <Cell col="9" text="bind:substituteUrl" edittype="text"/>
+                <Cell col="10" text="bind:substituteUseYn" edittype="combo" displaytype="combocontrol" combodataset="dsUseYn" combocodecol="LINE_CODE" combodatacol="LINE_CODE_NM_KR" comboautoselect="true"/>
+                <Cell col="11" text="bind:atchFileId" edittype="text"/>
+                <Cell col="12" text="bind:permissionUseYn" edittype="checkbox" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                <Cell col="13" text="bind:permissionDc" edittype="text"/>
+                <Cell col="14" text="bind:rgstNm" edittype="none" textAlign="center"/>
+                <Cell col="15" text="bind:rgstDt" edittype="none" textAlign="center"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSample" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  샘플 관리
+*  MenuPath      -
+*  FileName      testform2.xfdl 
+*  Creator 	     parksw
+*  CreateDate    2023.02.13
+*  Desction      엑셀 다운로드
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.02.13    parksw 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.testform1_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+this.fnSearch = function ()
+{
+	this.gfnTransaction("sampleData", "sam/getExcelSampleData.do", "", "dsSample=dsTypeTwo", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function ()
+{
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+this.row0_btnRefresh_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+this.row0_btnDownload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnExportExcel(this.grdSample, { type: "xlsx", filename: "테스트" });
+};
+]]></Script>
+  </Form>
+</FDL>

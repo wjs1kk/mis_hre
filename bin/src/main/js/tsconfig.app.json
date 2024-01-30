@@ -1,0 +1,31 @@
+{
+    "extends": "@vue/tsconfig/tsconfig.dom.json",
+    "include": [
+        "env.d.ts",
+        "src/**/*",
+        "src/**/*.vue"
+    ],
+    "exclude": [
+        "src/**/__tests__/*"
+    ],
+    "compilerOptions": {
+        "composite": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": [
+                "./src/*"
+            ]
+        },
+        "isolatedModules": false,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "disableSizeLimit": true,
+        "target": "ES2022",
+        "strict": false,
+        "allowJs": true,
+        "lib": [
+            "ES2022",
+            "DOM"
+        ]
+    }
+}

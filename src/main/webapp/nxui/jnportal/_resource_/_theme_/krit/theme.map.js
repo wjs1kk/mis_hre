@@ -1229,7 +1229,28 @@
             									{
             										"color" : nexacro.ColorObject("#999999")
             									}
-            								}
+            								},
+            								"class" :
+            								[
+            									{
+            										"matched" :
+            										{
+            											"self" :
+            											{
+            												"enabled" :
+            												{
+            													"font" : nexacro.FontObject("bold 12px \"Noto Sans KR\""),
+            													"color" : nexacro.ColorObject("#00388e")
+            												},
+            												"disabled" :
+            												{
+            													"font" : nexacro.FontObject("bold 12px \"Noto Sans KR\""),
+            													"color" : nexacro.ColorObject("#999999")
+            												}
+            											}
+            										}
+            									}
+            								]
             							}
             						}
             					}

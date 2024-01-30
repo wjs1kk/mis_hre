@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.faq.service.FaqManageDAO">
+
+    <!-- FAQ 상세 조회 -->
+    <select id="getFaqManage" parameterType="map" resultType="faqVO">
+        /* faq-manage-mapper.getFaqManage */
+        SELECT PF.FAQ_ID
+             , PF.CLS_CD
+             , (SELECT LINE_CODE_NM_KR
+                  FROM CMN_CODE_LINE CCL
+                 WHERE CCL.LINE_CODE = PF.CLS_CD
+                   AND CCL.SYS_ID = #{sessionSysId}
+                   AND CCL.MODULE_ID ='PTS'
+                   AND CCL.HEADER_CODE = 'WORK_CATEGORY') AS CLS_NM
+             , PF.QSTN_TTL
+             , PF.QSTN_CN
+             , PF.ANSWR_CN
+             , PF.RDCNT
+             , PF.FAQ_STTS_CD
+             , (SELECT LINE_CODE_NM_KR
+                  FROM CMN_CODE_LINE CCL
+                 WHERE CCL.LINE_CODE = PF.FAQ_STTS_CD
+                   AND CCL.SYS_ID = #{sessionSysId}) AS FAQ_STTS_NM
+             , PF.RGST_DT
+             , PF.RGSTR_ID
+             , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PF.RGSTR_ID) AS RGSTR_MEMBER_ID
+             , PF.UPDT_DT
+             , PF.UPDTR_ID
+          FROM PTS_FAQ PF
+         WHERE PF.FAQ_ID = #{faqId}
+    </select>
+
+    <!-- FAQ 상세 입력 저장 -->
+    <insert id="insertFaqManage" parameterType="faqVO">
+        /* faq-manage-mapper.insertFaqManage */
+        INSERT
+          INTO PTS_FAQ ( FAQ_ID
+                       , CLS_CD
+                       , QSTN_TTL
+                       , QSTN_CN
+                       , ANSWR_CN
+                       , RDCNT
+                       , ATCH_FILE_ID
+                       , FAQ_STTS_CD
+                       , RGST_DT
+                       , RGSTR_ID
+                       , UPDT_DT
+                       , UPDTR_ID)
+                VALUES ( NULLIF(#{faqId},'')
+                       , NULLIF(#{clsCd},'')
+                       , NULLIF(#{qstnTtl},'')
+                       , NULLIF(#{qstnCn},'')
+                       , NULLIF(#{answrCn},'')
+                       , 0
+                       , NULLIF(#{atchFileId},'')
+                       , 'WRITING' <!-- 신규저장시 작성중 -->
+                       , NOW()
+                       , #{sessionUserId}
+                       , NOW()
+                       , #{sessionUserId})
+    </insert>
+
+    <!-- FAQ 상세 수정 저장 -->
+    <update id="updateFaqManage" parameterType="faqVO">
+        /* faq-manage-mapper.updateFaqManage */
+        UPDATE PTS_FAQ
+           SET CLS_CD       = NULLIF(#{clsCd},'')
+             , QSTN_TTL     = NULLIF(#{qstnTtl},'')
+             , QSTN_CN      = NULLIF(#{qstnCn},'')
+             , ANSWR_CN     = NULLIF(#{answrCn},'')
+             , ATCH_FILE_ID = NULLIF(#{atchFileId},'')
+             , FAQ_STTS_CD  = NULLIF(#{faqSttsCd},'')
+             , RGST_DT      = NOW()
+             , RGSTR_ID     = #{sessionUserId}
+             , UPDT_DT      = NOW()
+             , UPDTR_ID     = #{sessionUserId}
+         WHERE FAQ_ID       = #{faqId}
+    </update>
+
+    <!-- FAQ 읽기 CNT -->
+    <update id="updateFaqReadCount" parameterType="map">
+        /* faq-manage-mapper.updateFaqReadCount */
+        UPDATE PTS_FAQ
+           SET RDCNT = RDCNT + 1
+         WHERE FAQ_ID = #{faqId}
+    </update>
+
+    <!-- FAQ 상세 삭제 -->
+    <delete id="deleteFaqManage" parameterType="faqVO">
+        /* faq-manage-mapper.updateFaqReadCount */
+        DELETE
+          FROM PTS_FAQ
+         WHERE FAQ_ID = #{faqId}
+    </delete>
+
+    <!-- FAQ 상태변경 -->
+    <update id="updateFaqSttsCd" parameterType="faqVO">
+        /* faq-manage-mapper.updateFaqSttsCd */
+        UPDATE PTS_FAQ
+           SET FAQ_STTS_CD  = NULLIF(#{faqSttsCd},'')
+         WHERE FAQ_ID       = #{faqId}
+    </update>
+
+</mapper>

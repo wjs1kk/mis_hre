@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_1010M" width="1920" height="670" onload="form_onload" cssclass="frm_WF_comp" titletext="회원가입">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Static id="staTitle" taborder="0" text="회원가입" left="50" top="10" height="30" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divMemberJoin" taborder="1" text="" left="50" top="50" right="50" bottom="30">
+          <Layouts>
+            <Layout>
+              <Static id="Static04_00_00_00_00" taborder="0" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staTitle" taborder="15" text="회원 정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" width="250"/>
+              <Static id="Static04_00_00_00" taborder="16" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static07_01_01_00_00" taborder="17" left="20" top="45" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="sta001" taborder="18" text="회원 ID" cssclass="sta_WF_condition02" left="20" top="46" height="34" width="200" fittocontents="none" onclick="divMemberJoin_sta001_onclick"/>
+              <Edit id="edtMemberId" taborder="1" left="228" top="50" width="200" height="26" cssclass="essential" password="false" onchanged="DivMemberJoin_edtMemberId_onchanged"/>
+              <Static id="Static07_01_01_00" taborder="20" left="20" top="80" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="sta002" taborder="21" text="회원명(한글)" cssclass="sta_WF_condition02" left="20" top="81" width="200" height="34"/>
+              <Static id="sta003" taborder="22" text="회원명(영문)" cssclass="sta_WF_condition02" left="20" top="116" height="34" width="200"/>
+              <Static id="Static07_01_01_01" taborder="23" left="20" top="219" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="Static07_01_01_00_01" taborder="25" left="20" top="115" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="Static07_01_01_00_01_00" taborder="26" left="20" top="150" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="Static10_00" taborder="19" text="w8" visible="false" left="220" top="46" width="8" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="80"/>
+              <Static id="Static10_01" taborder="28" text="w20" visible="false" top="0" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" width="20" right="0"/>
+              <Static id="Static07_01_01_00_01_01" taborder="29" left="20" top="359" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="Static07_01_01_01_00" taborder="30" left="20" top="510" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="sta010" taborder="31" text="개인정보 수집 및 이용 동의" cssclass="sta_WF_condition02" left="20" top="360" height="150" width="200" wordWrap="english"/>
+              <Static id="sta009" taborder="32" text="휴대폰 전화번호" cssclass="sta_WF_condition02" left="20" top="325" width="200" height="34"/>
+              <Radio id="rdPrvc" taborder="11" codecolumn="codecolumn" datacolumn="datacolumn" value="N" direction="vertical" left="228" top="365" width="136" height="26" innerdataset="innerdataset" text="비동의" index="1">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">Y</Col>
+                      <Col id="datacolumn">동의</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">N</Col>
+                      <Col id="datacolumn">비동의</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <TextArea id="taPrvc" taborder="12" left="228" top="399" height="106" right="40" value="가. 개인정보의 수집 및 이용 목적&#10;① 과제관리시스템은 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며, 이용 목적이 변경되는 경우에는 개인정보 보호법 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.&#10;1. 과제관리시스템 서비스 제공을 위한 회원관리&#10;1) 공간정보 다운로드, 오픈API 신청 및 활용 등 포털 서비스 제공과 서비스 부정이용 방지를 목적으로 개인정보를&#10;   처리합니다.&#10;&#10;나. 정보주체와 법정대리인의 권리ㆍ의무 및 행사방법&#10;① 정보주체(만 14세 미만인 경우에는 법정대리인을 말함)는 언제든지 개인정보 열람·정정·삭제·처리정지 요구 등의 권리를 행사할 수 있습니다.&#10;② 제1항에 따른 권리 행사는 개인정보보호법 시행규칙 별지 제8호 서식에 따라 작성 후 서면, 전자우편 등을 통하여 하실 수 있으며, 기관은 이에 대해 지체 없이 조치하겠습니다.&#10;③ 제1항에 따른 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수 있습니다. 이 경우 개인정보 보호법 시행규칙 별지 제11호 서식에 따른 위임장을 제출하셔야 합니다.&#10;④ 개인정보 열람 및 처리정지 요구는 개인정보 보호법 제35조 제5항, 제37조 제2항에 의하여 정보주체의 권리가 제한 될 수 있습니다.&#10;⑤ 개인정보의 정정 및 삭제 요구는 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는 그 삭제를 요구할 수 없습니다.&#10;⑥ 정보주체 권리에 따른 열람의 요구, 정정ㆍ삭제의 요구, 처리정지의 요구 시 열람 등 요구를 한 자가 본인이거나 정당한 대리인인지를 확인합니다.&#10;&#10;다. 수집하는 개인정보의 항목&#10;① 과제관리시스템 회원정보(필수): 이름, 이메일(아이디), 비밀번호&#10;&#10;라. 개인정보의 보유 및 이용기간&#10;① 과제관리시스템은 법령에 따른 개인정보 보유ㆍ이용기간 또는 정보주체로부터 개인정보를 수집 시에 동의 받은 개인정보 보유ㆍ이용기간 내에서 개인정보를 처리ㆍ보유합니다.&#10;1. 과제관리시스템 회원정보&#10;- 수집근거: 정보주체의 동의&#10;- 보존기간: 회원 탈퇴 요청 전까지(1년 경과 시 재동의)&#10;- 보존근거: 정보주체의 동의&#10;&#10;마. 동의 거부 권리 및 동의 거부에 따른 불이익&#10;위 개인정보의 수집 및 이용에 대한 동의를 거부할 수 있으나, 동의를 거부할 경우 회원 가입이 제한됩니다." scrolltype="vertical" wordWrap="char" readonly="true"/>
+              <Edit id="edtMemberNmEng" taborder="3" left="228" top="120" width="200" height="26" cssclass="essential" inputtype="english" imemode="alpha" inputfilter="space,symbol"/>
+              <Static id="sta004" taborder="33" text="비밀번호" cssclass="sta_WF_condition02" left="20" top="151" height="34" width="200"/>
+              <Edit id="edtPasswd" taborder="4" left="228" top="155" width="200" height="26" cssclass="essential" maxlength="0" password="false" text="null" oninput="divMemberJoin_edtPasswd_oninput"/>
+              <Edit id="edtPasswd2" taborder="5" left="228" top="189" width="200" height="26" cssclass="essential" maxlength="0" password="false" oninput="divMemberJoin_edtPasswd_oninput"/>
+              <Static id="sta005" taborder="35" text="비밀번호(확인)" cssclass="sta_WF_condition02" left="20" top="185" height="34" width="200"/>
+              <Static id="Static07_01_01_00_01_00_01" taborder="34" left="20" top="185" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="sta006" taborder="36" text="소속기관" cssclass="sta_WF_condition02" left="20" top="220" height="34" width="200"/>
+              <Edit id="edtOgdpNm" taborder="7" left="354" top="224" width="200" height="26" cssclass="essential"/>
+              <Static id="Static07_01_01_01_01" taborder="37" left="20" top="254" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="sta007" taborder="38" text="이메일주소" cssclass="sta_WF_condition02" left="20" top="255" height="34" width="200"/>
+              <Edit id="edtEmail" taborder="8" left="228" top="259" width="326" height="26" cssclass="essential"/>
+              <Static id="Static07_01_01_01_01_00" taborder="39" left="20" top="289" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="sta008" taborder="40" text="사무실 전화번호" cssclass="sta_WF_condition02" left="20" top="290" height="34" width="200"/>
+              <Edit id="edtOfcNo" taborder="9" left="228" top="294" width="200" height="26" cssclass="essential"/>
+              <Static id="Static07_01_01_01_01_00_00" taborder="41" left="20" top="324" height="1" onclick="div_Search_Static07_onclick" text="" right="20" cssclass="sta_WF_borCondition02"/>
+              <Static id="Static10" taborder="27" text="w20" visible="false" left="0" top="-1" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static07_00_00_00" taborder="24" left="20" top="45" onclick="div_Search_Static07_onclick" width="1" cssclass="sta_WF_borCondition02_v" height="466"/>
+              <Edit id="edtMemberNmKr" taborder="2" left="228" top="85" width="200" height="26" cssclass="essential" imemode="hangul" inputfilter="space,symbol"/>
+              <Edit id="edtHpNo" taborder="10" left="228" top="329" width="200" height="26" cssclass="essential"/>
+              <Static id="sta011" taborder="42" text="*" left="22" top="46" height="34" cssclass="essential" tooltiptext="필수입력" fittocontents="none" maxwidth="100" minwidth="" width="25"/>
+              <Static id="sta012" taborder="43" text="*" left="22" top="81" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta013" taborder="44" text="*" left="22" top="116" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta014" taborder="45" text="*" left="22" top="151" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta015" taborder="46" text="*" left="22" top="186" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta016" taborder="47" text="*" left="22" top="220" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta017" taborder="48" text="*" left="22" top="255" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta018" taborder="49" text="*" left="22" top="290" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta019" taborder="50" text="*" left="22" top="325" width="25" height="34" cssclass="essential" tooltiptext="필수입력"/>
+              <Static id="sta020" taborder="51" text="*" left="22" top="418" height="34" cssclass="essential" tooltiptext="필수입력" width="25"/>
+              <Button id="btnInsttNm" taborder="52" cssclass="btn_WF_frmSearch" left="323" top="224" width="26" height="26" onclick="divMemberJoin_btnInsttNm_onclick"/>
+              <Edit id="edtOgdpCd" taborder="6" left="228" top="224" width="90" height="26" readonly="true" cssclass="essential"/>
+              <Static id="Static10_00_00" taborder="53" text="w8" visible="false" left="318" top="220" width="5" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" height="35"/>
+              <Static id="Static10_00_00_00" taborder="54" text="w8" visible="false" left="349" top="220" width="5" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" height="35"/>
+              <Static id="staText01" taborder="55" text="n ~ m자의 영문, 숫자만 사용해 주세요." left="602" top="50" width="416" height="26" color="darkgray" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="staText02" taborder="56" text="8~16자리 영문 대소문자, 숫자, 특수문자 중 3가지 이상 조합으로 만들어주세요." left="445" top="155" width="416" height="26" color="darkgray" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00_00" taborder="57" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="54" right="0"/>
+              <Static id="sta_g001" taborder="58" text="w12" visible="false" left="904" width="12" height="28" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="26"/>
+              <Button id="btnClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="14" bottom="26" onclick="divPopup_btnPopupClose_onclick" left="916"/>
+              <Button id="btnApplication" text="신청" cssclass="btn_WF_icoApplication" width="65" taborder="13" left="840" bottom="26" height="28" onclick="divMemberJoin_btnApplication_onclick"/>
+              <Static id="staText03" taborder="59" text="전화번호 양식에 맞추어 입력해주세요. ex) 11 자리 012-3456-7890, 10~9자리 012-345-6789 01-234-5678 02-1234-5678, 8자리 1234-5678, 7자리 123-4567, 4자리 1234" left="445" top="294" width="910" height="26" color="darkgray" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Static id="staText04" taborder="60" text="휴대폰번호 양식에 맞추어 입력해주세요. ex) 11 자리 012-3456-7890, 10자리 012-345-6789" left="445" top="329" width="471" height="26" color="darkgray" font="normal 8pt/normal &quot;Arial&quot;"/>
+              <Button id="btnCheckId" text="아이디 중복확인" cssclass="btn_WF_icoModify" width="152" taborder="61" left="436" height="26" top="50" onclick="divMemberJoin_btnCheckId_onclick"/>
+              <Static id="Static10_00_00_00_00" taborder="62" text="w8" visible="false" left="428" top="45" width="8" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" height="35"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Static id="Static04_00_00_01_00_00" taborder="2" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="31" right="0"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUserInfo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="memberNmKr" type="STRING" size="256"/>
+          <Column id="memberNmEn" type="STRING" size="256"/>
+          <Column id="passwd" type="STRING" size="256"/>
+          <Column id="ogdpInstCd" type="STRING" size="256"/>
+          <Column id="ogdpInstNm" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="ofcTelno" type="STRING" size="256"/>
+          <Column id="mblTelno" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="prvcClctAgreYn" type="STRING" size="256"/>
+          <Column id="prvcPvsnAgreYn" type="STRING" size="256"/>
+          <Column id="passwd2" type="STRING" size="256"/>
+          <Column id="applyDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  messageManage
+*  MenuPath      -
+*  FileName      memberJoin.xfdl 
+*  Creator 	     cheonsy
+*  CreateDate    2023.03.21
+*  Desction      회원가입
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.21    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+// 아이디 자릿수 설정 5 ~ 19
+var min = 5;
+var max = 19;
+var idCheck = false;
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.divMemberJoin.form.staText01.set_text(min + ' ~ ' + max + '자의 영문, 숫자만 사용해 주세요.');
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 시스템 로그 조회
+*/
+this.fnSave = function()
+{
+	this.gfnTransaction("saveUser", "cms/saveUser.do", "dsUserInfo", "", "", "fnCallBack");
+};
+
+/**
+ * description 아이디 중복 체크
+*/
+this.fnCheckId = function()
+{
+	this.gfnTransaction("checkId", "cms/checkId.do", "dsUserInfo", "", "", "fnCallBack");
+}
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "saveUser":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_JOIN_SUCCESS");  // 회원가입이 완료되었습니다.
+				this.dsUserInfo.clearData();
+				this.dsUserInfo.addRow();
+				this.divMemberJoin.form.rdPrvc.set_index(1);
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+		break;
+		case "checkId":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("사용할 수 있는 아이디입니다.");
+				idCheck = true;
+			}else{
+				this.gfnAlert("이미 사용중인 아이디입니다.");
+				idCheck = false;
+				return;
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	console.log('fnPopupAfter: ', sPopupId, ' || ', vArg);
+	switch(sPopupId){
+		case "memberInsttPopup":	// 사용자 조회 팝업
+			var oRtn = this.gfnGetPopupRtn();
+			if(oRtn){
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 패스워드 입력창 암호화 처리
+*/
+this.divMemberJoin_edtPasswd_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+	this.divMemberJoin.form.edtPasswd.set_password(true);
+	this.divMemberJoin.form.edtPasswd2.set_password(true);
+};
+
+/**
+ * description 저장버튼 클릭
+*/
+this.divMemberJoin_btnApplication_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(idCheck == false){
+		this.gfnAlert("아이디 중복확인을 진행해주세요.");
+		return false;
+	}
+	
+	if (!this.fnIdValidation()) {// 아이디 체크 및 ID null체크
+		return;
+    }
+	if (!this.fnNullValidation()) {// null 체크
+		return;
+    }
+	
+	if (!this.fnPasswdValidation()) {// 비번 체크
+		return;
+    }
+	
+	if (!this.fnEmailValidation()) {// 이메일 형식 체크
+		this.gfnAlert("이메일 형식을 확인해주세요.");
+		return;
+    }
+	
+	if (!this.fnOfficeValidation()) {// 전화번호 체크
+		this.gfnAlert("전화번호 양식을 확인해주세요.");
+		return;
+    }
+	
+	if (!this.fnHpValidation()) {// 핸드폰번호 체크
+		this.gfnAlert("휴대폰 전화번호 양식을 확인해주세요.");
+		return;
+    }
+	
+	if (!this.fnPrvcValidation()) {// 개인정보 수집 및 이용동의 체크
+		this.gfnAlert("개인정보 수집 및 이용동의를 확인해주세요.");
+		return;
+    }
+	this.fnSave();
+};
+
+/**
+ * description 소속기관 조회 버튼클릭
+*/
+this.divMemberJoin_btnInsttNm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnOpenPopup("memberInsttPopup", "sys::cms/CMS_1010P.xfdl", "", "fnPopupAfter", "");
+};
+
+/**
+ * description 아이디 중복체크 버튼 클릭
+*/
+
+this.divMemberJoin_btnCheckId_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.fnIdValidation()) {// 아이디 체크 및 ID null체크
+		return;
+    }
+	
+	this.fnCheckId();
+};
+
+this.divMemberJoin_edtMemberId_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	idCheck = false;
+};
+
+/**
+ * description 닫기버튼
+*/
+this.divPopup_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description null값 체크
+*/
+this.fnNullValidation = function ()
+{  
+	// null값 체크
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "memberNmKr"))) {
+		this.gfnAlert("회원명(한글)을 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "memberNmEn"))) {
+		this.gfnAlert("회원명(영문)을 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "passwd"))) {
+		this.gfnAlert("비밀번호를 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "passwd2"))) {
+		this.gfnAlert("비밀번호(확인)을 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "ogdpInstNm"))) {
+		this.gfnAlert("소속기관명을 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "emlAddr"))) {
+		this.gfnAlert("이메일을 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "ofcTelno"))) {
+		this.gfnAlert("사무실 전화번호를 입력해주세요.");
+		return false;
+    }
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "mblTelno"))) {
+		this.gfnAlert("휴대폰 전화번호를 입력해주세요.");
+		return false;
+    }
+	return true;
+};
+
+/**
+ * description 아이디 체크
+*/
+this.fnIdValidation = function ()
+{
+	// 아이디 체크
+	if(this.gfnIsNull(this.dsUserInfo.getColumn(0, "memberId"))) {
+		this.gfnAlert("아이디를 입력해주세요.");
+		return;
+    }else{
+		// ID 자릿수 체크
+		var id = this.dsUserInfo.getColumn(0, "memberId");
+		var id2 = id.length;
+		var rslt = false;	
+		
+		// 영어와 숫자만 입력 가능
+		var sRegExp = "[a-z0-9]{"+(min-1)+","+max+"}";
+		var objRegExp = new RegExp(sRegExp, "i"); 
+        var objResult = objRegExp.exec(id);
+		if (objResult == id){
+			id2 >= min ?  (id2 <= max ? rslt = true : rslt = false) : rslt = false;
+		} else{
+			rslt = false;
+		}
+		if(rslt == false){
+			this.gfnAlert("아이디는 "+min+"~"+max+"자의 영문, 숫자만 사용해 주세요.");
+		}
+		return rslt;
+	}
+}
+
+/**
+ * description 비밀번호 체크	숫자, 영어, 특수기호 체크
+*/
+this.fnPasswdValidation = function ()
+{
+	var pass = this.dsUserInfo.getColumn(0, "passwd");
+	var pass2 = this.dsUserInfo.getColumn(0, "passwd2");
+	var passLength = pass.length;
+	// 비밀번호 값 체크
+	if(pass != pass2){
+		this.gfnAlert("비밀번호와 비밀번호 확인 값이 다릅니다.");
+		return;
+	}else{
+		//최소 8 자, 최대16재 최소 하나의 문자, 하나의 숫자 및 하나의 특수 문자
+		var rslt = false;
+		var sRegExp = "[a-zA-Z]";	// 영문
+		var sRegExp2 = "[0-9]";	// 숫자
+		var sRegExp3 = "[$@$!%*#?&]";	// 특수기호
+		var objRegExp = new RegExp(sRegExp, "i");	// i가 대소문자 허용
+		var objRegExp2 = new RegExp(sRegExp2, "i");
+		var objRegExp3 = new RegExp(sRegExp3, "i");
+		var objResult = objRegExp.exec(pass);
+		var objResult2 = objRegExp2.exec(pass);
+		var objResult3 = objRegExp3.exec(pass);
+		
+		if (objResult != null){
+			if (objResult2 != null){
+				if (objResult3 != null){
+					// 길이 8 ~ 16 체크
+					passLength >= 8 ?  (passLength <= 16 ? rslt = true : rslt = false) : rslt = false;					
+				}
+			}
+		}else{
+			rslt = false;
+		}
+		if(rslt == false){
+			this.gfnAlert("비밀번호는 8~16자리 영문 대소문자, 숫자,\n 특수문자 중 3가지 이상 조합으로 만들어주세요.");
+		}
+		return rslt;
+	}
+}
+
+/**
+ * description 이메일 체크
+*/
+this.fnEmailValidation = function()
+{
+	var email = this.dsUserInfo.getColumn(0, "emlAddr");
+	var vChk = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-._@";
+    var i, pos, vEmailFirst, vEmailLast;
+
+    if (this.fn_checkNull(email))
+    {
+        return false;
+    }
+
+    for (var i = 0 ; i < email.length ; i++)
+    {
+        if (vChk.indexOf(email.charAt(i)) < 0) 
+        {
+            return false;
+        }
+    }
+    
+    pos = this.fn_pos(email, "@");
+
+    if (pos < 0)
+    {
+        return false;
+    }
+        
+    vEmailFirst = email.substr(0, pos);
+    vEmailLast  = email.substr(pos+1);
+
+    if (vEmailFirst.length <= 0 || vEmailLast.length <= 0)
+    {
+        return false;
+    }
+
+    if (this.fn_pos(vEmailLast, ".") <= 0 
+     || this.fn_pos(vEmailLast, "..") >= 0 
+     || this.fn_right(vEmailLast, 1) == ".")
+    {
+        return false;
+    }
+
+    if (this.fn_pos(vEmailLast, "@") >= 0)
+    {
+        return false;
+    }
+        
+    return true;
+
+}
+
+this.fn_checkNull = function(sValue)
+{
+    if (String(sValue).valueOf() == "undefined") 
+    {
+        return true;
+    }
+
+    if (sValue == null)
+    {
+        return true;
+    }
+
+    if (("x"+sValue == "xNaN") && ( new String(sValue.length).valueOf() == "undefined" ))
+    {
+        return true;
+    }
+
+    if (sValue.length == 0)
+    {
+        return true;
+    }
+
+    return false;
+}
+
+this.fn_pos = function(sOrg, sFind, nStart)
+{
+    if (this.fn_checkNull(sOrg) || this.fn_checkNull(sFind))
+    {
+        return -1;
+    }
+
+    if (this.fn_checkNull(nStart))
+    {
+        nStart = 0;
+    }
+        
+    return sOrg.indexOf(sFind, nStart);
+}
+
+this.fn_right = function(sOrg, nSize)
+{
+    if (this.fn_checkNull(sOrg) || this.fn_checkNull(nSize))		
+    {
+        return "";
+    }
+
+    if (sOrg.length < nSize)
+    {
+        return sOrg;
+    }
+    else
+    {
+        return sOrg.substr(sOrg.length-nSize, nSize);
+    }
+}	
+
+/**
+ * description 전화번호 체크
+*/
+this.fnOfficeValidation = function ()
+{
+	//11 자리 012-3456-7890, 10~9자리 012-345-6789 01-234-5678 02-1234-5678, 8자리 1234-5678, 4자리 1234
+	var ofcTelno = this.dsUserInfo.getColumn(0, "ofcTelno");
+	var ofcPhone = ofcTelno.trim();
+
+	var match = ofcPhone.match(/^\d{2,3}-\d{3,4}-\d{4}$/);
+	var match2 = ofcPhone.match(/^\d{4}-\d{4}$/);
+	var match3 = ofcPhone.match(/^\d{3}-\d{4}$/);
+	var match4 = ofcPhone.match(/^\d{4}$/);
+			
+	if(match == null && match2 == null && match3 == null && match4 == null){
+		return false;
+	} else{
+		return true;
+	}
+}
+	
+/**
+ * description 핸드폰번호 체크
+*/	
+this.fnHpValidation = function ()
+{
+	//11 자리 012-3456-7890, 10자리 012-345-6789
+	var mblTelno = this.dsUserInfo.getColumn(0, "mblTelno");
+    var phone = mblTelno.trim();
+	
+	var match = phone.match(/^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/);
+	
+	if(match == null){
+		return false;
+	} else{
+		return true;
+	}
+}
+
+/**
+ * description 개인정보 수집 제공동의 체크
+*/
+this.fnPrvcValidation = function ()
+{
+	var radio = this.divMemberJoin.form.rdPrvc.index;
+	if(radio == 0){
+		this.dsUserInfo.setColumn(0, "prvcClctAgreYn", "Y");	// 개인정보 수집동의 여부
+		this.dsUserInfo.setColumn(0, "prvcPvsnAgreYn", "Y");	// 개인정보 제공동의 여부
+		return true;
+	}else{
+		return false;
+	}
+}]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divMemberJoin.form.edtMemberId" propid="value" datasetid="dsUserInfo" columnid="memberId"/>
+      <BindItem id="item1" compid="divMemberJoin.form.edtMemberNmKr" propid="value" datasetid="dsUserInfo" columnid="memberNmKr"/>
+      <BindItem id="item2" compid="divMemberJoin.form.edtMemberNmEng" propid="value" datasetid="dsUserInfo" columnid="memberNmEn"/>
+      <BindItem id="item3" compid="divMemberJoin.form.edtPasswd" propid="value" datasetid="dsUserInfo" columnid="passwd"/>
+      <BindItem id="item4" compid="divMemberJoin.form.edtOgdpCd" propid="value" datasetid="dsUserInfo" columnid="ogdpInstCd"/>
+      <BindItem id="item5" compid="divMemberJoin.form.edtOgdpNm" propid="value" datasetid="dsUserInfo" columnid="ogdpInstNm"/>
+      <BindItem id="item6" compid="divMemberJoin.form.edtEmail" propid="value" datasetid="dsUserInfo" columnid="emlAddr"/>
+      <BindItem id="item7" compid="divMemberJoin.form.edtOfcNo" propid="value" datasetid="dsUserInfo" columnid="ofcTelno"/>
+      <BindItem id="item8" compid="divMemberJoin.form.edtHpNo" propid="value" datasetid="dsUserInfo" columnid="mblTelno"/>
+      <BindItem id="item10" compid="divMemberJoin.form.edtPasswd2" propid="value" datasetid="dsUserInfo" columnid="passwd2"/>
+    </Bind>
+  </Form>
+</FDL>

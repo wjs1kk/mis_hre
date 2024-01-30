@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="96px"
+    height="96px"
+    viewBox="0 0 120 120">
+    <defs>
+        <linearGradient
+            id="border-gradient"
+            gradientTransform="rotate(90)">
+            <stop
+                offset="0%"
+                stop-color="rgba(0,0,0,0.085)" />
+            <stop
+                offset="85%"
+                stop-color="rgba(0,0,0,0.085)" />
+            <stop
+                offset="90%"
+                stop-color="rgba(0,0,0,0.145)" />
+        </linearGradient>
+    </defs>
+    <rect
+        width="120"
+        height="120"
+        rx="16"
+        fill="white"
+        stroke-width="8"
+        stroke="url(#border-gradient)" />
+    <path
+        d="M60,24 a36,36,90,0,1,36,36"
+        fill="none"
+        stroke="rgba(0, 0, 0, 0.3)"
+        stroke-width="8"
+        stroke-linecap="round">
+        <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 60 60"
+            to="360 60 60"
+            begin="0s"
+            dur="1.5s"
+            fill="freeze"
+            repeatCount="indefinite" />
+    </path>
+</svg>

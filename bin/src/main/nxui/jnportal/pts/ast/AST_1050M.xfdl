@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="AST_1050M" width="1920" height="720" titletext="자원현황목록" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="720" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="47" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="자원현황" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="staTitle_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="70" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="3" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static15_01_00_00" taborder="1" text="h 15" onclick="Static31_onclick" visible="false" left="20" top="55" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="40"/>
+              <Static id="staSearch" taborder="5" text="구분" left="20" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboAstDiv" taborder="4" text="Combo00" left="staSearch:10" top="15" width="140" height="26" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onitemchanged="divSearch_systemIdCombo_onitemchanged" onkeyup="divSearch_edtSearchNm_onchanged">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">회의실</Col>
+                      <Col id="codecolumn">AST-020-010</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">서버</Col>
+                      <Col id="codecolumn">AST-020-020</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">AST-020-030</Col>
+                      <Col id="datacolumn">컴퓨터</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">AST-020-040</Col>
+                      <Col id="datacolumn">사무실비품</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Combo id="cboAstSearch" taborder="6" text="Combo00" left="cboAstDiv:5" top="15" width="140" height="26" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" onkeyup="divSearch_edtSearchNm_onchanged" onitemchanged="divSearch_cboAstSearch_onitemchanged">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">자원명</Col>
+                      <Col id="codecolumn">AST_NM</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">관리부서</Col>
+                      <Col id="codecolumn">AST_MNG_DEPT_CD</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">관리담당자</Col>
+                      <Col id="codecolumn">AST_MNG_PIC_ID</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtSearchNm" taborder="2" left="cboAstSearch:5" top="15" width="500" height="26" onkeyup="divSearch_edtSearchNm_onchanged" onchanged="divSearch_edtSearchNm_onchanged"/>
+              <Static id="staSearch00" taborder="7" text="반납예정일자" left="1365" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Calendar id="calStrYmd" taborder="8" left="1475" top="15" width="118" height="26" dateformat="yyyy-MM-dd" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28" enable="true"/>
+              <Calendar id="calEndYmd" taborder="9" left="1618" top="15" width="112" height="26" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" backgroundcolumn="disabled" readonly="false" enable="true"/>
+              <Static id="staSearch00_00" taborder="10" text="신청자" left="1040" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtSearchNm00" taborder="11" left="staSearch00_00:10" top="15" width="118" height="26" onkeyup="divSearch_edtSearchNm_onchanged" onchanged="divSearch_edtSearchNm_onchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divDirectorResult" taborder="3" text="" left="50" top="divSearch:0" right="50" cssclass="div_WF_Area" bottom="37">
+          <Layouts>
+            <Layout>
+              <Grid id="grdDirectorList" taborder="0" left="0" top="45" binddataset="dsList" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0" oncelldblclick="divDirectorResult_grdDirectorList_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="58" band="left"/>
+                      <Column size="121"/>
+                      <Column size="150"/>
+                      <Column size="195"/>
+                      <Column size="98"/>
+                      <Column size="85"/>
+                      <Column size="89"/>
+                      <Column size="82"/>
+                      <Column size="108"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" text="구분"/>
+                      <Cell col="2" text="자원번호"/>
+                      <Cell col="3" text="자원명"/>
+                      <Cell col="4" text="신청자"/>
+                      <Cell col="5" text="수량"/>
+                      <Cell col="6" text="사용기간"/>
+                      <Cell col="7" text="반납예정일자"/>
+                      <Cell col="8" text="신청일자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="normal" edittype="none" text="bind:astDivCdNm" combodataset="dsWorkKindListCbo" combodatacol="text" textAlign="center" combocodecol="value"/>
+                      <Cell col="2" text="bind:astNo" textAlign="center" editmaxlength="-1" displaytype="normal" edittype="none" expandshow="hide" expandsize="16"/>
+                      <Cell col="3" text="bind:astNm" editmaxlength="20" textAlign="center" displaytype="normal"/>
+                      <Cell col="4" text="bind:rgstrIdNm" edittype="none" displaytype="normal" combodataset="dsPowCbo" combodatacol="text" textAlign="center" combocodecol="value"/>
+                      <Cell col="5" text="bind:astQty" edittype="none" displaytype="normal" combodataset="dsUseYn" combocodecol="value" combodatacol="text" textAlign="center"/>
+                      <Cell col="6" text="bind:astUseYmd"/>
+                      <Cell col="7" text="bind:astRtnDueYmd" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="8" text="bind:rgstDt"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static04_00_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="90" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="2" text="총 0건" cssclass="sta_WF_subTxt" left="0" top="0" width="150" height="45"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="astDivCd" type="STRING" size="256"/>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="astNo" type="STRING" size="256"/>
+          <Column id="astUseBgnYmd" type="STRING" size="256"/>
+          <Column id="astRtnDueStrYmd" type="STRING" size="256"/>
+          <Column id="rgstrIdNm" type="STRING" size="256"/>
+          <Column id="astRtnDueEndYmd" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="astNo" type="STRING" size="256"/>
+          <Column id="astNm" type="STRING" size="256"/>
+          <Column id="astQty" type="STRING" size="256"/>
+          <Column id="rgstrId" type="STRING" size="256"/>
+          <Column id="astRtnDueYmd" type="STRING" size="256"/>
+          <Column id="astUseYmd" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstrIdNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearchCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  사이트 관리
+*  MenuPath      자원  > 자원 목록
+*  FileName      AST_1050M.xfdl 
+*  Creator 	     yuyr
+*  CreateDate    2023.12.15
+*  Desction      자원 현황 목록 
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.15    yuyr 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	// 이달 1일 세팅, 현재날짜 세팅
+	var currDate = new Date();
+	var year = currDate.getFullYear().toString().padLeft(4, "0");
+	var month = (currDate.getMonth() + 1).toString().padLeft(2, "0");
+	var day = 1;
+
+	this.dsSearch.setColumn(0,"astRtnDueStrYmd",(year + month + day));
+	this.dsSearch.setColumn(0,"astRtnDueEndYmd",(new Date()).getFullYear() + "1231");
+	
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 자원 목록 조회
+*/
+this.fnSearch = function ()
+{
+	var strSvcId    = "getResourcesList";
+	var strSvcUrl   = "ast/resources/getResourcesStatusList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getResourcesList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsList, this.divDirectorResult.form.staGridRowCnt);
+            break;
+		default:
+		break;	
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 그리드 더블클릭 - 상세페이지 이동
+*/
+
+this.divDirectorResult_grdDirectorList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+		var param = {
+		astNo: this.dsList.getColumn(e.row, "astNo")
+	}
+	
+	nexacro.getApplication().openNewTab("AST_1060M", "자원현황상세", "pts::ast/AST_1060M.xfdl", param , "자원 > 자원현황목록 > 자원 현황상세", "");
+};
+
+/**
+ * description 엔터키 이벤트
+*/
+this.divSearch_edtSearchNm_onchanged = function(obj:nexacro.Edit,e:nexacro.ChangeEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * description 구분 콤보박스 변경
+*/
+this.divSearch_systemIdCombo_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+/**
+ * description 검색 콤보박스 변경
+*/
+this.divSearch_cboAstSearch_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboAstSearch" propid="value" datasetid="dsSearch" columnid="searchType"/>
+      <BindItem id="item1" compid="divSearch.form.edtSearchNm" propid="value" datasetid="dsSearch" columnid="searchKeyword"/>
+      <BindItem id="item2" compid="divSearch.form.cboAstDiv" propid="value" datasetid="dsSearch" columnid="astDivCd"/>
+      <BindItem id="item3" compid="divSearch.form.calStrYmd" propid="value" datasetid="dsSearch" columnid="astRtnDueStrYmd"/>
+      <BindItem id="item4" compid="divSearch.form.calEndYmd" propid="value" datasetid="dsSearch" columnid="astRtnDueEndYmd"/>
+      <BindItem id="item5" compid="divSearch.form.edtSearchNm00" propid="value" datasetid="dsSearch" columnid="rgstrIdNm"/>
+    </Bind>
+  </Form>
+</FDL>

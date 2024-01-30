@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.sm.log.service.RoleUserLogDAO">
+
+    <select id="getRoleLog" parameterType="map" resultType="roleUserLogVO">
+        /** role-user-log-mapper.getRoleLog **/
+        SELECT L.USER_ID
+             , L.MEMBER_ID
+             , L.USER_NM_KR
+             , L.ORGAN_CD
+             , L.ORGAN_NM
+             , L.ROLE_CODE
+             , L.ROLE_NM
+             , L.PROCESS_TY
+             , TO_CHAR(L.PROCESS_DT, 'YYYY-MM-DD HH24:MI') AS PROCESS_DT
+             , L.PROCESS_BY_ID
+             , L.PROCESS_BY_MEMBER_ID
+             , L.PROCESS_BY_NM_KR
+             , L.PROCESS_REASON
+          FROM CMN_ROLE_LOG L
+         WHERE TRUE
+        <if test="userId != null and userId != ''">
+           AND USER_ID LIKE '%' || #{userId} || '%'
+        </if>
+        <if test="userNmKr != null and userNmKr != ''">
+           AND USER_NM_KR LIKE '%' || #{userNmKr} || '%'
+        </if>
+        <if test="roleCode != null and roleCode != ''">
+           AND ROLE_CODE LIKE '%' || #{roleCode} || '%'
+        </if>
+        <if test="roleNm != null and roleNm != ''">
+           AND ROLE_NM LIKE '%' || #{roleNm} || '%'
+        </if>
+        <if test="processTy != null and processTy != '' and processTy != 'undefined'">
+           AND PROCESS_TY = #{processTy}
+        </if>
+        <if test="processFromDt != null and processFromDt != ''">
+           AND PROCESS_DT >= TO_DATE(#{processFromDt}, 'YYYYMMDD')
+        </if>
+        <if test="processToDt != null and processToDt != ''">
+            <![CDATA[
+           AND PROCESS_DT < TO_DATE(#{processToDt}, 'YYYYMMDD') + 1
+            ]]>
+        </if>
+        ORDER BY PROCESS_DT DESC
+    </select>
+
+    <insert id="insertRoleLog" parameterType="roleUserManageVO">
+        /* role-user-log-mapper.insertRoleLog */
+        INSERT INTO CMN_ROLE_LOG ( USER_ID
+                                , MEMBER_ID
+                                , USER_NM_KR
+                                , ORGAN_CD
+                                , ORGAN_NM
+                                , ROLE_CODE
+                                , ROLE_NM
+                                , PROCESS_TY
+                                , PROCESS_DT
+                                , PROCESS_BY_ID
+                                , PROCESS_BY_MEMBER_ID
+                                , PROCESS_BY_NM_KR
+                                , PROCESS_REASON
+                                )
+                         VALUES ( NULLIF(#{userId}, '')
+                                , (SELECT MEMBER_ID FROM CMN_USER WHERE USER_ID = #{userId})
+                                , NULLIF(#{userNm}, '')
+                                , NULLIF(#{deptCode}, '')
+                                , NULLIF(#{deptNm}, '')
+                                , NULLIF(#{roleCode}, '')
+                                , NULLIF(#{roleNm}, '')
+                                , NULLIF(#{processTy}, '')
+                                , NOW()
+                                , NULLIF(#{sessionUserId}, '')
+                                , (SELECT MEMBER_ID FROM CMN_USER WHERE USER_ID = #{sessionUserId})
+                                , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = #{sessionUserId})
+                                , NULLIF(#{updtReason}, '')
+                                )
+    </insert>
+
+    <update id="updateRoleLog" parameterType="roleUserManageVO">
+        /* role-user-log-mapper.updateRoleLog */
+        UPDATE CMN_ROLE_LOG
+           SET PROCESS_REASON    = NULLIF(#{updtReason}, '')
+         WHERE USER_ID           = #{userId}
+           AND ROLE_CODE         = #{roleCode}
+           AND PROCESS_TY        = 'GRANT'
+    </update>
+
+</mapper>

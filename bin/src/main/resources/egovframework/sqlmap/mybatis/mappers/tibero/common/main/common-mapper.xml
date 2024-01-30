@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.main.common.service.CommonDAO">
+
+    <select id="userComboSearch" parameterType="map" resultType="comboVO">
+        <if test='type != null and type != "" and type != "undefined"'>
+            SELECT 'ALL' AS VALUE
+            <if test='type.equals("FORM")'>
+                 , '전체' AS TEXT
+            </if>
+            <if test='type.equals("GRID")'>
+                 , '선택' AS TEXT
+            </if>
+              FROM DUAL
+             UNION ALL
+        </if>
+        SELECT  USER_ID AS VALUE
+             ,  USER_NM_KR AS TEXT
+          FROM
+               (
+                SELECT USER_ID
+                     , USER_NM_KR
+                  FROM CMN_USER
+                 WHERE 1=1
+                 ORDER BY USER_NM_KR
+                 ) A
+    </select>
+
+    <!-- 사용가능 기능 목록 -->
+    <!-- 메뉴관리 권한에 따른 버튼 추가 -->
+    <select id="selectFuncList" parameterType="map" resultType="functionVO">
+        /** common-mapper.selectFuncList **/
+        SELECT DISTINCT
+               A.FUNC_ID
+             , B.FUNC_TYPE
+             , B.FUNC_CODE
+             , B.FUNC_NAME
+             , B.FUNC_PATTERN
+             , B.FUNC_PATTERN_TYPE
+             , B.FUNC_DESC
+             , B.SORT_ORDR
+          FROM CMN_ROLE_MENU_FUNC A
+             , CMN_PROG_FUNC B
+             , CMN_MENU C
+         WHERE A.FUNC_ID = B.FUNC_ID
+           AND A.MENU_ID = C.MENU_ID
+           AND B.PROG_ID = C.PROG_ID
+           AND B.FUNC_TYPE != 'APPROCH'
+           AND A.MENU_ID = #{menuId}
+           <choose>
+             <when test='roleCodeList != null and roleCodeList != "" and roleCodeList != "undefined"'>
+           AND A.ROLE_CODE IN
+               <foreach item="roleCode" index="index" collection="roleCodeList" open="(" separator="," close=")">
+               #{roleCode}
+               </foreach>
+             </when>
+             <when test='(roleCodeList == null or roleCodeList == "" or roleCodeList == "undefined") and roleCode != null and roleCode != "undefined" and roleCode != ""'>
+           AND A.ROLE_CODE = #{roleCode}
+             </when>
+          </choose>
+         ORDER BY B.SORT_ORDR, FUNC_TYPE
+    </select>
+
+    <!-- 사람조회 div 팝업 -->
+    <select id="selectUserList" parameterType="map" resultType="HashMap">
+        /** common-mapper.selectUserList **/
+        SELECT CU.USER_ID
+             , CU.USER_NM_KR
+             , CU.TEL_NO
+             , SUBSTR(CU.TEL_NO,0,3) || '-' || SUBSTR(CU.TEL_NO,4,4) || '-' || SUBSTR(CU.TEL_NO,8,4) AS TEL_NUMBER
+          FROM CMN_USER CU
+         WHERE 1 = 1
+        <if test="searchKey != null and searchKey != ''">
+           AND (CU.USER_ID       LIKE #{searchKey} || '%'
+                OR CU.USER_NM_KR LIKE #{searchKey} || '%')
+           AND USE_YN = 'Y'
+        </if>
+    </select>
+
+    <!-- 권한 사람조회  div 팝업 -->
+    <select id="selectRoleUserList" parameterType="map" resultType="HashMap">
+          /** common-mapper.selectRoleUserList **/
+          SELECT DISTINCT
+                 A.USER_ID
+               , A.USER_NAME_KR
+               , A.DEPT_CODE
+               , B.DEPT_NAME_KR
+               , A.REGION_CD
+               , A.JOB_POSITION_CODE
+               , C.REGION_NM
+                 , A.TELNO
+                 , SUBSTR(A.TELNO,0,3) || '-' || SUBSTR(A.TELNO,4,4) || '-' || SUBSTR(A.TELNO,8,4) AS TEL_NUMBER
+                 , A.JOB_POSITION_NM_KR
+              FROM CMTN_USER  A
+                 , CMTN_DEPT B
+                 , AS_REGION_CODE C
+                 , CMTN_ROLE CR
+                 , CMTA_ROLE_USER CRU
+             WHERE 1=1
+               AND A.DEPT_CODE   = B.DEPT_CODE
+               AND A.REGION_CD   = C.REGION_CD(+)
+               AND C.USE_FLAG    = 'Y'
+               AND CR.ROLE_CODE  = CRU.ROLE_CODE
+               AND CRU.USER_ID   = A.USER_ID
+        <if test="searchKey != null and searchKey != ''">
+             AND ( A.USER_ID LIKE #{searchKey} || '%'
+                OR A.USER_NAME_KR LIKE #{searchKey} || '%'
+               AND RETIRE_DATE IS NULL)
+        </if>
+        <if test="roleCodeList != null and roleCodeList != '' and roleCodeList == 'AS_REPAIR_MANAGER'">
+             and CR.ROLE_CODE IN ('ROLE_ADMIN', 'ROLE_AS_ADMIN', 'ROLE_AS_REPAIR_MANAGER')
+        </if>
+    </select>
+
+    <!-- 부서조회 div 팝업 -->
+    <select id="selectDeptList" parameterType="map" resultType="HashMap">
+        /** common-mapper.selectDeptList **/
+          SELECT SD.DEPT_NAME_KR
+               , SD.DEPT_CODE
+            FROM CMN_DEPT SD
+           WHERE 1=1
+<!--               AND (SD.USE_FLAG = 'Y' OR SD.USE_FLAG IS NULL)  -->
+         <if test="searchKey != null and searchKey != ''">
+             AND (SD.DEPT_NAME_KR LIKE #{searchKey} || '%'
+                  OR SD.DEPT_CODE LIKE #{searchKey} || '%')
+       </if>
+    </select>
+
+    <!-- 부서 콤보 조회 -->
+    <select id="selectDeptCdCombo" parameterType="map" resultType="comboVO">
+        /** common-mapper.selectDeptCdCombo **/
+        <if test="type == 'FORM'">
+        SELECT NULL   AS VALUE
+             , '전체' AS TEXT
+         UNION ALL
+        </if>
+        SELECT VALUE
+             , TEXT
+          FROM (SELECT DEPT_CODE    AS VALUE
+                     , DEPT_NAME_KR AS TEXT
+                  FROM CMN_DEPT
+                 WHERE UPPER_DEPT_CODE IS NOT NULL
+                   AND USE_YN = '1'
+               <if test="searchKey != undefined and searchKey != ''" >
+                   AND DEPT_CODE = #{searchKey}
+               </if>
+                 ORDER BY SORT_ORDR)
+    </select>
+
+    <select id="selectMenuId" parameterType="map" resultType="functionVO">
+        SELECT DISTINCT C.MENU_ID
+             , C.MENU_NM
+             , B.FUNC_TYPE
+             , B.FUNC_NAME
+          FROM CMN_ROLE_MENU_FUNC A
+             , CMN_PROG_FUNC B
+             , CMN_MENU C
+         WHERE A.FUNC_ID = B.FUNC_ID
+           AND A.MENU_ID = C.MENU_ID
+           AND B.PROG_ID = C.PROG_ID
+           AND B.FUNC_TYPE = #{funcId}
+           AND A.MENU_ID   = #{menuId}
+           <choose>
+             <when test='roleCodeList != null and roleCodeList != "" and roleCodeList != "undefined"'>
+           AND A.ROLE_CODE IN
+               <foreach item="roleCode" index="index" collection="roleCodeList" open="(" separator="," close=")">
+               #{roleCode}
+               </foreach>
+             </when>
+             <when test='(roleCodeList == null or roleCodeList == "" or roleCodeList == "undefined") and roleCode != null and roleCode != "undefined" and roleCode != ""'>
+           AND A.ROLE_CODE = #{roleCode}
+             </when>
+          </choose>
+    </select>
+
+    <insert id="insertConnectLog" parameterType="map">
+        INSERT INTO CMN_CONNECT_LOG  (
+                                      USER_ID
+                                    , CNTN_DT
+                                    , CNTN_IP
+                                    , USER_NM_KR
+                                    , LGN_STATUS
+                                    , MENU_ID
+                                    , MENU_NM
+                                    , FUNC_ID
+                                    , FUNC_NAME
+                                    , CNTN_CONTR_YN
+                            )VALUES(
+                                      #{userId}
+                                    , NOW()
+                                    , #{sessionUserIp}
+                                    , #{userNm}
+                                    , #{lgnStatus}
+                                    , #{menuId}
+                                    , (SELECT MENU_NM
+                                         FROM CMN_MENU
+                                        WHERE 1=1
+                                          AND MENU_ID = #{menuId})
+                                    , #{funcType}
+                                    , (SELECT CPF.FUNC_NAME
+                                         FROM CMN_PROG_FUNC CPF
+                                            , CMN_MENU CM
+                                        WHERE 1=1
+                                          AND CPF.PROG_ID   = CM.PROG_ID
+                                          AND CM.MENU_ID    = #{menuId}
+                                          AND CPF.FUNC_TYPE = #{funcType}   )
+                                    , #{cntnContrYn}
+                            )
+    </insert>
+
+    <select id="checkPassword" parameterType="map" resultType="boolean">
+        SELECT PASSWD
+          FROM PTS_MEMBER
+         WHERE MEMBER_ID = (SELECT MEMBER_ID FROM CMN_USER WHERE USER_ID = #{userId})
+    </select>
+
+    <select id="selectPasswordExpiredDays" parameterType="map" resultType="int">
+        SELECT 0 AS VALUE
+          FROM CMN_USER
+         WHERE USER_ID = #{userId}
+    </select>
+
+    <select id="selectCommonCodeCombo" parameterType="map" resultType="comboVO">
+        /* common-mapper.selectCommonCodeCombo */
+        <choose>
+            <when test='"a".equalsIgnoreCase(type)'>
+        SELECT '전체' AS "TEXT"
+             , NULL AS "VALUE"
+          FROM DUAL
+        UNION ALL
+            </when>
+            <when test='"c".equalsIgnoreCase(type)'>
+        SELECT '선택' AS "TEXT"
+             , NULL AS "VALUE"
+          FROM DUAL
+        UNION ALL
+            </when>
+        </choose>
+        SELECT "TEXT", "VALUE"
+          FROM (SELECT LINE_CODE_NM_KR AS "TEXT"
+                     , LINE_CODE       AS "VALUE"
+                  FROM CMN_CODE_LINE
+                 WHERE HEADER_CODE = #{headerCode}
+        <if test='sysId != null and sysId != ""'>
+                   AND SYS_ID = #{sysId}
+        </if>
+        <if test='moduleId != null and moduleId != ""'>
+                   AND MODULE_ID = #{moduleId}
+        </if>
+                 ORDER BY SORT_ORDR)
+    </select>
+</mapper>

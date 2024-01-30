@@ -191,10 +191,33 @@
             obj.set_taborder("5");
             obj.set_color("white");
             this.addChild(obj.name, obj);
+
+            obj = new Div("Div00","1103","13","403","42",null,null,null,null,null,null,this);
+            obj.set_taborder("6");
+            obj.set_text("Div00");
+            this.addChild(obj.name, obj);
+
+            obj = new Button("btnSave",null,"10","65","28","30",null,null,null,null,null,this.Div00.form);
+            obj.set_text("1");
+            obj.set_cssclass("btn_WF_Save");
+            obj.set_visible("true");
+            obj.set_taborder("0");
+            this.Div00.addChild(obj.name, obj);
+
+            obj = new Button("btnSave00",null,"7","65","28","101",null,null,null,null,null,this.Div00.form);
+            obj.set_text("2");
+            obj.set_cssclass("btn_WF_Save");
+            obj.set_visible("true");
+            obj.set_taborder("1");
+            this.Div00.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this.DivBnrForm.form
             obj = new Layout("default","",0,0,this.DivBnrForm.form,function(p){});
             this.DivBnrForm.form.addLayout(obj.name, obj);
+
+            //-- Default Layout : this.Div00.form
+            obj = new Layout("default","",0,0,this.Div00.form,function(p){});
+            this.Div00.form.addLayout(obj.name, obj);
 
             //-- Default Layout : this
             obj = new Layout("default","",this._adjust_width,this._adjust_height,this,function(p){});

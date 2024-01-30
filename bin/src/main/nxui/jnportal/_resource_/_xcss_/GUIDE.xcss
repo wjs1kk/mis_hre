@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.1">
+  <Predefines/>
+  <CSSData><![CDATA[.Static.sta_WF_GTitle
+{
+	background : #00388E;
+	color : #ffffff;
+	-nexa-padding : 0px 20px;
+	font : normal 700 18px/normal "Malgun Gothic";
+}
+.Static.sta_WF_GLabel
+{
+	background : #dee0ef;
+	color : #000000;
+	-nexa-padding : 0px 20px;
+	-nexa-border : 1px solid #b3b5b8;
+}
+.Static.sta_WF_GArea
+{
+	background : #ffffff;
+	-nexa-border : 1px solid #b3b5b8;
+}
+.Static.sta_WF_G
+{
+	color : #ff0000;
+	font : 12px "Malgun Gothic";
+	-nexa-border : 0px none,0px none,0px none,1px solid #ff0000;
+	-nexa-padding : 0px 20px;
+}
+.Static.sta_WF_GTxt
+{
+	font : 12px "Noto Sans KR";
+	color : #ff0000;
+}
+.Static.sta_WF_GSize
+{
+	color : #ff0000;
+	font : 12px "Malgun Gothic";
+	-nexa-border : 0px none,0px none,0px none,1px solid #ff0000;
+	-nexa-padding : 0px 20px;
+}
+.Static.sta_WF_GLineV
+{
+	-nexa-edge : url('theme://images/sta_WF_GLineV.png') 5px 2px;
+}
+.Static.sta_WF_GLineH
+{
+	-nexa-edge 	: URL('theme://images/sta_WF_GLineH.png') 5px 2px;
+}
+]]></CSSData>
+</XCSS>

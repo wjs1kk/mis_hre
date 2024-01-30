@@ -1,0 +1,869 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_6020U_02" width="1920" height="1070" titletext="관심 게시물" onload="Pattern01_onload">
+    <Layouts>
+      <Layout>
+        <Div id="Div00" taborder="1" text="Div00" left="180" top="0" height="923" right="180">
+          <Layouts>
+            <Layout>
+              <Static id="Static10" taborder="4" text="북마크 게시물" left="559" top="43" height="50" enable="true" onclick="Static_onclick" width="156" cssclass="portal_sta_bdCategory"/>
+              <Static id="Static01" taborder="0" text="전체 &lt;fc v='#213878'&gt;32&lt;/fc&gt;건" left="0" top="Static10:-3" height="88" enable="true" onclick="Static_onclick" font="normal normal 14px/normal &quot;맑은고딕&quot;" width="62" cssclass="portal_sta_bdTotal" usedecorate="true"/>
+              <Button id="btnSearch" taborder="1" cssclass="portal_btn" top="122" height="38" width="60" right="0" onclick="btnSearch_onclick" text="검색"/>
+              <Edit id="Edit07" taborder="2" top="122" width="150" height="38" right="btnSearch:10" displaynulltext="검색어 입력" cssclass="portal_edi_search"/>
+              <Static id="Static12" taborder="6" text="나의 Q&amp;A" left="874" top="43" height="50" enable="true" onclick="Static_onclick" width="127" cssclass="portal_sta_bdCategory"/>
+              <Combo id="Combo00" taborder="3" displaynulltext="선택" top="Static12:29" width="100" height="38" right="Edit07:10" index="0" innerdataset="dsCombo02" codecolumn="value" datacolumn="text" text="공모명" value="0" cssclass="portal_cmb_bd"/>
+              <Static id="Static11" taborder="5" text="관심 게시물" left="725" top="43" height="50" enable="true" onclick="Static_onclick" width="139" cssclass="portal_sta_bdCategory_on"/>
+              <Grid id="Grid01_00" taborder="7" binddataset="dsList" left="0" top="Static01:0" right="0" tooltiptype="default" autofittype="col" bottom="65" cssclass="portal_grd_bdList" oncellclick="Div00_Grid01_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="70"/>
+                      <Column size="180"/>
+                      <Column size="850"/>
+                      <Column size="120"/>
+                      <Column size="220"/>
+                      <Column size="120"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="67" band="head"/>
+                      <Row size="61"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" text="구분"/>
+                      <Cell col="2" text="공고명"/>
+                      <Cell col="3" text="진행상태"/>
+                      <Cell col="4" text="기간"/>
+                      <Cell col="5" text="상세"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:col1"/>
+                      <Cell col="1" text="bind:col6"/>
+                      <Cell col="2" displaytype="text" edittype="none" text="bind:col2" calendardateformat="yyyy-MM-dd" textAlign="left"/>
+                      <Cell col="3" displaytype="normal" edittype="none" text="bind:col3" cssclass="expr:dataset.parent.fnGridStates(col3)"/>
+                      <Cell col="4" displaytype="normal" edittype="normal" text="bind:col4" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="5" cssclass="grd_detail" displaytype="buttoncontrol" edittype="button" text="bind:col5" controlautosizingtype="none"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnSearch00" taborder="8" cssclass="portal_btn2" top="122" height="38" width="138" right="Combo00:10" onclick="btnSearch00_onclick" text="관심키워드 설정"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divPagging" taborder="0" text="divPagging" left="180" height="38" right="180" top="Div00:0"/>
+        <Static id="Static00_00" taborder="2" left="741" top="divPagging:0" width="584" height="50"/>
+        <Static id="Static00_00_00" taborder="3" left="180" top="divPagging:0" width="160" height="42"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsCombo02">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value">0</Col>
+            <Col id="text">제목</Col>
+          </Row>
+          <Row>
+            <Col id="value">1</Col>
+            <Col id="text">내용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsList" firefirstcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="col1" type="STRING" size="256"/>
+          <Column id="col2" type="STRING" size="256"/>
+          <Column id="col3" type="STRING" size="256"/>
+          <Column id="col4" type="STRING" size="256"/>
+          <Column id="col5" type="STRING" size="256"/>
+          <Column id="col6" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="col2">잠수함용 신형 소자장비 설계 기술(시험개발)</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.04.30</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col1">10</Col>
+            <Col id="col6">핵심기슬</Col>
+          </Row>
+          <Row>
+            <Col id="col1">9</Col>
+            <Col id="col2">잠수함 첨단함형 특화연구실</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.05.11</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">핵심기슬</Col>
+          </Row>
+          <Row>
+            <Col id="col1">8</Col>
+            <Col id="col2">미래 기술 적응형 통합수중감시 특화연구센터</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.02.30~2023.05.15</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">방산진흥</Col>
+          </Row>
+          <Row>
+            <Col id="col1">7</Col>
+            <Col id="col2">소형 고속 수중운동체를 위한 소형 고출력 AFPM 전동…</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.05.17</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">방산진흥</Col>
+          </Row>
+          <Row>
+            <Col id="col1">6</Col>
+            <Col id="col2">센서 대역별 환경모델 특화연구실 (기초연구)</Col>
+            <Col id="col3">접수대기</Col>
+            <Col id="col4">2023.03.30~2023.05.17</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">핵심기슬</Col>
+          </Row>
+          <Row>
+            <Col id="col1">5</Col>
+            <Col id="col2">포발사형 유도무기용 정밀 MEMS 항법기술(시험개발)</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.05.17</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">핵심기슬</Col>
+          </Row>
+          <Row>
+            <Col id="col1">4</Col>
+            <Col id="col2">잠수함 연동 어뢰기만기체계 설계기술 개발(응용연구)</Col>
+            <Col id="col3">마감</Col>
+            <Col id="col4">2023.03.30~2023.05.09</Col>
+            <Col id="col5">결과확인</Col>
+            <Col id="col6">방산진흥</Col>
+          </Row>
+          <Row>
+            <Col id="col1">3</Col>
+            <Col id="col2">국방 양자 컴퓨팅 &amp; 센싱 기술 특화연구센터(기초연구)</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.05.09</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">핵심기슬</Col>
+          </Row>
+          <Row>
+            <Col id="col1">2</Col>
+            <Col id="col2">Heli-borne MUMT 개발 기술(무기체계 패키지형)</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.05.16</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">핵심기슬</Col>
+          </Row>
+          <Row>
+            <Col id="col1">1</Col>
+            <Col id="col2">잠수함용 신형 소자장비 설계 기술(시험개발)</Col>
+            <Col id="col3">접수중</Col>
+            <Col id="col4">2023.03.30~2023.05.11</Col>
+            <Col id="col5">상세보기</Col>
+            <Col id="col6">방산진흥</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCombo01" firefirstcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value">0</Col>
+            <Col id="text">접수중</Col>
+          </Row>
+          <Row>
+            <Col id="value">1</Col>
+            <Col id="text">접수대기</Col>
+          </Row>
+          <Row>
+            <Col id="value">2</Col>
+            <Col id="text">마감</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_Button06_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objChild = new ChildFrame("popupCompany", "absolute", 0, 0, 800, 640);
+	objChild.set_formurl("Login::popup_company.xfdl");
+	objChild.set_openalign("center middle");
+	objChild.set_dragmovetype("all");  
+
+    objChild.showModal(this.getOwnerFrame()
+                     , {}
+                     , this
+                     , "fn_callback_pop");
+};
+
+this.fn_callback_pop = function(sPopupId, sReturn)
+{
+
+}
+
+this.Div00_Button07_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objChild = new ChildFrame("popupCompanyRegist", "absolute", 0, 0, 810, 360);
+	objChild.set_formurl("Login::popup_companyRegist.xfdl");
+	objChild.set_openalign("center middle");
+	objChild.set_dragmovetype("all");  
+
+    objChild.showModal(this.getOwnerFrame()
+                     , {}
+                     , this
+                     , "fn_callback_pop");
+};
+
+this.Div00_Grid01_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var sMenuId = "PTS_3030M_02";
+	var url = "pts::PTS_3030M_02.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+
+
+/**************************************************************************
+ * FORM 변수 선언 영역
+ **************************************************************************/
+this.totRowCount = 0;
+
+/**************************************************************************
+ * FORM EVENT 영역(onload)
+ **************************************************************************/
+/**
+ * @description 화면 onload시 처리내역(필수)
+*/
+this.Pattern01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	/*
+	 페이징 처리 값 세팅 함수 호출
+	 1. 페이지 처리 갯수
+	 2. 한번에 출력될 row 갯수
+	 3. 총계및 페이징 이동 활성화 여부
+	 4. transaction 함수
+	*/
+	
+	var objDivPagging	= this.divPagging;
+	 
+	var objConfig = {
+						nPageCount : 10,
+						nPageRowCount : 30,
+						bPageViewActive : true,
+						objPageSearchFunction : this.fnSearchPagging,
+						objSearchButton	: this.Div00.form.btnSearch
+					}
+					
+	this.fnInitPageSet(objDivPagging, objConfig);
+};
+
+/**************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction)
+ **************************************************************************/
+/**
+ * @description Transaction CallBack 함수
+*/
+this.fnCallback = function(sId,errCode,errMsg)
+{	//return val - this.totRowCount
+/*
+	if(errCode<0)
+	{
+		this.btnSearch.set_enable(true);
+	}
+*/	
+	if(sId == "PAGE")
+	{
+		this.divPagging.nTotalRowCount = this.totRowCount;
+		this.fnCallAfter(this.divPagging);
+	}
+}
+
+/**************************************************************************
+ * CRUD 및 TRANSACTION 서비스 호출 처리
+ **************************************************************************/
+/**
+ * @description 조회
+*/
+this.fnSearchPagging = function(nPageNo)
+{
+	//pagging transaction
+	//return callback - this.totRowCount
+	this.Dataset00.clearData();
+
+	var sId 	= "PAGE";
+	var sUrl 	= "http://localhost:8080/service/page_sample.jsp";
+	var sInDs 	= "";
+	var sOutDs 	= "Dataset00=output";
+	var sParam 	= "pageNo=" + nPageNo + " rowCount=" + this.divPagging.config.nSelRowCount;
+	var sCallback 	= "fnCallback";
+	
+	this.transaction(sId, sUrl, sInDs, sOutDs, sParam, sCallback);
+	
+	//local test
+	/*
+	this.divPagging.nTotlaRowCount = 1234;
+	this.fnCallAfter(this.divPagging);
+	*/
+};
+
+/**************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ **************************************************************************/
+/**
+ * @description pagging select
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	--> 조회처리 공통영역으로 변경	
+};
+*/
+
+/**
+*  techtip pagging sample 
+*  @MenuPath   techtip > pagging
+*  @FileName	pagging.xjs 
+*  @Desction	grid pagging sample script library
+*******************************************************************************
+*  2019.03.20		nana			최초 생성
+*******************************************************************************
+*/
+
+/**************************************************************************
+ * 사용자 FUNCTION 영역
+ **************************************************************************/
+/**
+* @description form onload --> define a user variable
+* @param objDiv	: pagging div
+*		 objConfig : {nPageCount, nPageRowCount, bPageViewActive, objPageSearchFunction, objSearchButton}
+* @return
+*/
+this.fnInitPageSet = function (objDiv, objConfig)
+{
+	objConfig.objSearchButton.status = "init";
+
+	objConfig.objSearchButton.addEventHandler("onclick",this.btnSearch_onclick, this);
+
+	objDiv.config = objConfig;
+	//pagging processing variable
+	objDiv.config.nEndPageNo	= objConfig.nPageCount;		//end pagging number
+	objDiv.config.nMaxPageNo	= objConfig.nPageCount;		//max pagging number (not change)
+	objDiv.config.nSelRowCount	= objConfig.nPageRowCount;	//grid row count (not change)
+	objDiv.config.nStartPageNo	= 1;						//start pagging number
+	objDiv.config.nNowPageNo	= 1;						//now pagging number
+	objDiv.config.nPageBlock	= 0;						//block count
+	objDiv.config.nTotalCount	= 0;						//total row count
+	
+	/* component name List
+	-----------------------------------------------------
+	divComm  --> pagging number and move button div
+	.btnFirst	--> first		"<<"
+	.btnPrev	--> previous	"<"
+	.btnNext	--> next		">"
+	.btnLast	--> last		">>"
+	divTotal --> total pagging div
+	.edtNow		--> current page or input number to move
+	.staTotal	--> total page number
+	.btnGo		--> page move button */
+	objDiv.config.arrDivNames  = new Array("divComm","divTotal");						//div names
+	objDiv.config.arrBtnNames  = new Array("portal_btn_PagingFirst","portal_btn_PagingPrev","portal_btn_PagingNext","portal_btn_PagingLast");	//move button names
+	objDiv.config.arrCompNames = new Array("edtNow","staTotal","btnGo");				//div total component names
+
+	//component size in pagging div
+	//objConfig.nMoveBtnTop		= 0;	//button top (common)
+	objDiv.config.nMoveBtnHeight	= 38;	//button height (common)
+	objDiv.config.nMoveBtnWidth		= 38;	//comm move button & edit width
+	objDiv.config.nMoveCountBtnWidth= 38;	//comm number button width
+	objDiv.config.nMoveCountBtnGap	= 5;	//comm button size gap (common)
+	objDiv.config.ntotControlWidth  = 38;	//total button & edit width
+	objDiv.config.ntotStaWidth		= 38;	//total static width
+
+	//css class id
+	objDiv.config.divCommClass	 = "";
+	objDiv.config.divTotalClass	 = "";
+	objDiv.config.btnMoveClass	 = new Array("portal_btn_PagingFirst","portal_btn_PagingPrev","portal_btn_PagingNext","portal_btn_PagingLast");	//first, prev, next, last class (move button) - 각 클래스 별도로 적용 시 text 삭제 필요
+	objDiv.config.btnNumClass	 = "portal_btn_paging";	//comm.page number class
+	objDiv.config.edtNowClass	 = "";	//total.edtNow class
+	objDiv.config.staTotalClass	 = "";	//total.staTotal class
+	objDiv.config.btnGoClass	 = "";	//total.btnGo class
+
+	//go button text
+	objDiv.config.btnGoText = "move";
+	
+	this.fnInitDivFormat(objDiv);
+}
+
+/**
+* @description create div component in pagging Div
+* @param objDiv	: pagging div
+* @return 
+*/
+this.fnInitDivFormat = function(objDiv)
+{
+	var objConfig = objDiv.config;
+	
+	//add pagging div onsize event
+	objDiv.addEventHandler("onsize",this.divpaggingComm_onsize,this);
+	
+	var sThisWidth 	= objDiv.getOffsetWidth();
+	var sThisHeight	= objDiv.getOffsetHeight();
+	
+	objConfig.nMoveBtnTop = Math.floor((sThisHeight - objConfig.nMoveBtnHeight)/2);
+	
+	objDiv.objDivTotal = null;
+	
+	if(objConfig.bPageViewActive)
+	{
+		objDiv.objDivTotal = this.fnCreateDivTotal(objDiv);
+	}
+	
+	objDiv.objDivComm = this.fnCreateDivComm(objDiv);
+}
+
+/**
+* @description create divComm component
+* @param objDiv	: pagging div
+* @return objCreateDiv : divComm
+*/
+this.fnCreateDivComm = function(objDiv)
+{
+	var objConfig = objDiv.config;
+	var nObjWidth = objDiv.getOffsetWidth();
+	var bCommVisible = objConfig.bPageViewActive;
+	
+	if(bCommVisible)
+	{
+		nObjWidth -= objDiv.objDivTotal.getOffsetWidth();
+	}
+	
+	//create divComm
+	var objCreateDiv = new Div();
+	var objCreateDivId = objConfig.arrDivNames[0];
+	objCreateDiv.init(objCreateDivId,0,0,nObjWidth,null,null,0);
+	objCreateDiv.set_cssclass(objConfig.divCommClass);
+	objDiv.addChild(objCreateDivId,objCreateDiv);
+	objCreateDiv.show();
+	
+	var sDivpaggingWidth = (objConfig.nMoveBtnWidth*4+objConfig.nMoveCountBtnGap*4)+(objConfig.nPageCount*objConfig.nMoveCountBtnWidth)+((objConfig.nPageCount-1)*objConfig.nMoveCountBtnGap);
+	
+	//move to center
+	objCreateDiv.setOffsetWidth(sDivpaggingWidth);
+	objCreateDiv.setOffsetLeft(parseInt((nObjWidth-sDivpaggingWidth)/2));
+	
+	//button size
+	var btnLeft	  = objConfig.nMoveBtnWidth+(objConfig.nMoveCountBtnGap*2)+objConfig.nMoveBtnWidth;
+	var btnTop	  = objConfig.nMoveBtnTop;
+	var btnWidth  = objConfig.nMoveCountBtnWidth;
+	var btnHeight = objConfig.nMoveBtnHeight;
+	
+	var objButton;
+	var objBtnId = "";
+	
+	//create page move button in divComm
+	for(var i=0; i<objConfig.nPageCount; i++)
+	{
+		objButton	= new Button();
+		objBtnId	= "btn"+i;
+		objButton.init(objBtnId,btnLeft,btnTop,btnWidth,btnHeight,null,null);		
+		objButton.set_text(i+1);
+		objButton.set_cssclass(objConfig.btnNumClass);
+		objButton.set_enable(false);
+		objButton.addEventHandler("onclick",this.divPaggingNumber_onclick, this);
+		
+		objCreateDiv.addChild(objBtnId,objButton);
+		objButton.show();
+		
+		btnLeft += (btnWidth + objConfig.nMoveCountBtnGap);
+	}
+	
+	btnLeft = 0;
+	btnWidth = objConfig.nMoveBtnWidth;
+	
+	var btnRight = null;	
+	var objBtnText = "";
+	
+	//create page number button in divComm
+	for(var i=0; i<4; i++)
+	{
+		objButton	= new Button();
+		objBtnId	= objConfig.arrBtnNames[i];
+		
+		switch(i)
+		{
+			case 0:
+				btnLeft = 0;
+				btnRight = null;
+				//objBtnText = "";	//first
+				break;
+			case 1:
+				btnLeft = btnWidth+objConfig.nMoveCountBtnGap;
+				btnRight = null;
+				//objBtnText = "";	//prev
+				break;
+			case 2:
+				btnLeft = null;
+				btnRight = btnWidth+objConfig.nMoveCountBtnGap;
+				//objBtnText = "";	//next
+				break;
+			case 3:
+				btnLeft = null;
+				btnRight = 0;
+				//objBtnText = "";	//last
+				break;
+			default:
+		}
+		
+		objButton.init(objBtnId,btnLeft,btnTop,btnWidth,btnHeight,btnRight,null);		
+		//objButton.set_text(objBtnText);
+		objButton.set_cssclass(objConfig.btnMoveClass[i]);
+		objButton.set_enable(false);
+		objButton.addEventHandler("onclick",this.divpaggingButton_onclick, this);
+
+		objCreateDiv.addChild(objBtnId,objButton);
+		objButton.show();	
+	}
+
+	return objCreateDiv;
+}
+
+/**
+* @description create divTotal component
+* @param objDiv	: pagging div
+* @return objCreateDiv : divTotal
+*/
+this.fnCreateDivTotal = function(objDiv)
+{
+	var objConfig = objDiv.config;
+	var divWidth = (objConfig.ntotControlWidth*2) + objConfig.ntotStaWidth + objConfig.nMoveCountBtnGap;
+
+	//create divTotal
+	var objDivCreate = new Div();
+	var objDivCreateId = objConfig.arrDivNames[1];
+	objDivCreate.init(objDivCreateId,null,0,divWidth,null,0,0);
+	objDivCreate.set_cssclass(objConfig.divTotalClass);
+	objDiv.addChild(objDivCreateId,objDivCreate);
+	objDivCreate.show();
+	/*
+	var nRight = 0;
+	
+	//create go button in divTotal
+	var objBtn = new Button();
+	var objBtnId = objConfig.arrCompNames[2];
+	objBtn.init(objBtnId,null,objConfig.nMoveBtnTop,objConfig.ntotControlWidth,objConfig.nMoveBtnHeight,nRight,null);
+	objBtn.set_cssclass(objConfig.btnGoClass);
+	objBtn.set_text(objConfig.btnGoText);
+	objBtn.addEventHandler("onclick",this.btnGo_onclick,this);
+	objDivCreate.addChild(objBtnId,objBtn);
+	objBtn.show();
+	
+	nRight = nRight + objConfig.ntotControlWidth;
+	
+	//create total static in divTotal
+	var objSta = new Static();
+	var objStaId = objConfig.arrCompNames[1];
+	objSta.init(objStaId,null,objConfig.nMoveBtnTop,objConfig.ntotStaWidth,objConfig.nMoveBtnHeight,nRight,null);
+	objSta.set_cssclass(objConfig.staTotalClass);
+	objSta.set_text("/");
+	objDivCreate.addChild(objStaId,objSta);
+	objSta.show();
+	
+	nRight = nRight + objConfig.ntotStaWidth + objConfig.nMoveCountBtnGap;
+	
+	//create now Number edit in divTotal
+	var objEdt = new Edit();
+	var objEdtId = objConfig.arrCompNames[0];
+	objEdt.init(objEdtId,null,objConfig.nMoveBtnTop,objConfig.ntotControlWidth,objConfig.nMoveBtnHeight,nRight,null);
+	objEdt.set_cssclass(objConfig.edtNowClass);
+	objDivCreate.addChild(objEdtId,objEdt);
+	objEdt.show();*/
+	
+	return objDivCreate;
+}
+
+/**
+* @description pagging total div
+* @param objDiv	: pagging div
+* @return 
+*/
+this.fnCallAfter = function (objDiv)
+{
+	var objConfig = objDiv.config;
+	
+	//pagging block & totalCount
+	objConfig.nPageBlock	= Math.ceil(objDiv.nTotalRowCount/objConfig.nSelRowCount);	//ceil : last blobk + 1
+	objConfig.nTotalCount	= objDiv.nTotalRowCount;
+	
+	if(objConfig.bPageViewActive)
+	{
+		var objTemp = objDiv.objDivTotal.form.components[objConfig.arrCompNames[0]];
+		objTemp.set_value(objConfig.nNowPageNo);
+		
+		var objTemp = objDiv.objDivTotal.form.components[objConfig.arrCompNames[1]];
+		objTemp.set_text("/ " + objConfig.nPageBlock);
+	}
+	
+	this.fnSetPageNo(objDiv);
+};
+
+/**
+* @description set start & end pagging number
+* @param objDiv	: pagging div
+* @return 
+*/
+this.fnSetPageIndex = function (objDiv)
+{
+	var objConfig = objDiv.config;
+	var btnText = objConfig.nCurBtnName;
+	var objNum = objConfig.nNowPageNo;
+	if(btnText==objConfig.arrBtnNames[0])
+	{	// btnFirst "<<"
+		objConfig.nStartPageNo = 1;
+		objConfig.nEndPageNo   = 1 + (objConfig.nMaxPageNo-1);
+		
+		objNum = objConfig.nStartPageNo;
+	}
+	else if(btnText==objConfig.arrBtnNames[1])
+	{	// btnPrev "<"
+		objConfig.nStartPageNo = objConfig.nStartPageNo - objConfig.nMaxPageNo;
+		objConfig.nEndPageNo   = objConfig.nStartPageNo + (objConfig.nMaxPageNo-1);
+		
+		objNum = objConfig.nStartPageNo;
+	}else if(btnText==objConfig.arrBtnNames[3]){
+		// btnLast ">>"
+		objConfig.nEndPageNo   = objConfig.nPageBlock;
+		objConfig.nStartPageNo = parseInt(objConfig.nPageBlock/objConfig.nMaxPageNo)*objConfig.nMaxPageNo+ 1;
+		objNum = objConfig.nEndPageNo;
+	}
+	else if(btnText==objConfig.arrBtnNames[2])
+	{	// btnNext ">"
+		objConfig.nStartPageNo = objConfig.nStartPageNo + objConfig.nMaxPageNo;
+		objConfig.nEndPageNo   = objConfig.nStartPageNo + (objConfig.nMaxPageNo-1);
+		
+		if(objConfig.nEndPageNo > objConfig.nPageBlock)
+		{
+			objConfig.nEndPageNo = objConfig.nPageBlock;
+		}
+		
+		objNum = objConfig.nStartPageNo;
+	}
+	else
+	{	//pagging number button
+		objNum = Number(btnText);
+		
+		if(objNum > objConfig.nPageBlock)
+		{
+			objNum = objConfig.nPageBlock;
+		}
+		
+		if (objNum%objConfig.nMaxPageNo == 0)
+		{
+			objConfig.nEndPageNo   = objNum;
+			objConfig.nStartPageNo = objConfig.nEndPageNo - (objConfig.nMaxPageNo-1);
+		}
+		else
+		{
+			objConfig.nStartPageNo = Math.floor(objNum/objConfig.nMaxPageNo)*objConfig.nMaxPageNo+1;
+			objConfig.nEndPageNo  = objConfig.nStartPageNo + (objConfig.nMaxPageNo-1);
+		}
+		
+		if (objConfig.nEndPageNo > objConfig.nPageBlock)
+		{
+			objConfig.nEndPageNo = objConfig.nPageBlock;
+		}	
+	}
+	
+	objConfig.nNowPageNo = objNum;
+	
+	//transaction call
+ 	objConfig.objPageSearchFunction.call(this, objNum);
+};
+
+/**
+* @description set pagging number
+* @param objDiv	: pagging div
+* @return 
+*/
+this.fnSetPageNo = function(objDiv)
+{
+	var objConfig = objDiv.config;
+	
+	var nVStartPageNo = objConfig.nStartPageNo;
+	var sPage   = nVStartPageNo;
+	nVStartPageNo--;	
+
+	// first & previous button enable
+	if (nVStartPageNo < 1)
+	{
+		objDiv.objDivComm.form.btnPrev.set_enable(false);
+		objDiv.objDivComm.form.btnFirst.set_enable(false);
+	} else {
+		objDiv.objDivComm.form.btnPrev.set_enable(true);
+		objDiv.objDivComm.form.btnFirst.set_enable(true);
+	}
+
+	// last & next button enable
+	if (objConfig.nTotalCount <= ((sPage + objConfig.nMaxPageNo) * objConfig.nSelRowCount))
+	{
+		objDiv.objDivComm.form.btnNext.set_enable(false);
+		objDiv.objDivComm.form.btnLast.set_enable(false);
+	}
+	else
+	{
+		objDiv.objDivComm.form.btnNext.set_enable(true);
+		objDiv.objDivComm.form.btnLast.set_enable(true);
+	}
+
+	var nPageNo = objConfig.nStartPageNo;
+	var nPageCurNo = objConfig.nNowPageNo;
+	
+	// pagging number button index enable & visible
+	for (var i = 0; i < objConfig.nMaxPageNo; i++)
+	{
+		if(nPageCurNo==nPageNo)
+		{
+			objDiv.objDivComm.form.components["btn" + i].set_enable(false);
+		}else
+		{
+			objDiv.objDivComm.form.components["btn" + i].set_enable(true);
+		}
+		
+		objDiv.objDivComm.form.components["btn" + i].set_text(nPageNo);		
+		
+		if (objConfig.nTotalCount > ((nPageNo - 1) * objConfig.nSelRowCount))
+		{
+			objDiv.objDivComm.form.components["btn" + i].set_visible(true);
+			nCnt = i;			
+		}
+		else
+		{
+			objDiv.objDivComm.form.components["btn" + i].set_visible(false);
+		}
+		
+		nPageNo++;
+	}
+};
+
+/**************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ **************************************************************************/
+
+ /**
+
+ * @description pagging select
+
+*/
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+
+{
+
+	if(obj.status == "init")
+
+	{		
+
+		obj.status = "list"
+
+		this.fnSearchPagging(1);
+
+	}
+
+	else
+
+	{
+
+		var objParent = obj.parent;
+
+		objParent.divPagging.config.nCurBtnName = 1;
+
+		objParent.fnSetPageIndex(objParent.divPagging);
+
+	}
+
+};
+
+ 
+/**
+ * @description pagging Div onsize event --> pagging control size change (pagging control = divComm + divTotal)
+*/
+this.divpaggingComm_onsize = function(obj:nexacro.Div,e:nexacro.SizeEventInfo)
+{
+	var nWidth  = obj.getOffsetWidth();
+	var nHeight = obj.getOffsetHeight();
+	var nDivControlWidth = obj.objDivComm.getOffsetWidth();
+	var nDivControlLeft  = obj.objDivComm.getOffsetLeft();
+	
+	var bCommVisible = obj.config.bPageViewActive;
+	
+	if(bCommVisible)
+	{
+		nDivControlWidth = obj.objDivComm.getOffsetWidth() + obj.objDivTotal.getOffsetWidth();
+		
+		if(nWidth < nDivControlWidth)
+		{
+			obj.objDivTotal.set_visible(false);
+			nDivControlWidth = obj.objDivComm.getOffsetWidth();
+		}
+		else
+		{
+			obj.objDivTotal.set_visible(true);
+		}		
+	}
+	
+	nDivControlLeft  = Math.ceil((nWidth - nDivControlWidth)/2);
+	obj.objDivComm.setOffsetLeft(nDivControlLeft);
+};
+
+/**
+ * @description pagging move button click event
+*/
+this.divpaggingButton_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objDiv = obj.parent.parent.parent.parent;
+
+	objDiv.config.nCurBtnName = obj.name;
+	this.fnSetPageIndex(objDiv);
+};
+
+/**
+ * @description pagging number button click event
+*/
+this.divPaggingNumber_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objDiv = obj.parent.parent.parent.parent;
+	objDiv.config.nCurBtnName = obj.text;
+	this.fnSetPageIndex(objDiv);
+};
+
+/**
+ * @description move button click event --> move to inputted edit number
+*/
+this.btnGo_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objDiv  = obj.parent.parent.parent.parent;
+	var objTemp = objDiv.objDivTotal.form.components[objDiv.config.arrCompNames[0]];
+	objDiv.config.nCurBtnName = objTemp.value;
+	this.fnSetPageIndex(objDiv);
+};
+
+this.btnSearch00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var objChild = new ChildFrame("PTS_6020U_02P", "absolute", 0, 0, 810, 360);
+	objChild.set_formurl("pts::PTS_6020U_02P.xfdl");
+	objChild.set_openalign("center middle");
+	objChild.set_dragmovetype("all");  
+	objChild.set_showtitlebar(false);
+
+    objChild.showModal(this.getOwnerFrame()
+                     , {}
+                     , this
+                     , "fn_callback_pop");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.Combo00" propid="value" datasetid="Dataset00" columnid="key"/>
+      <BindItem id="item1" compid="Div00.form.Combo00_00" propid="value" datasetid="Dataset00" columnid="key"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_6010P" width="500" height="355" titletext="회원탈퇴신청">
+    <Layouts>
+      <Layout height="355" mobileorientation="landscape" width="500">
+        <Div id="out" taborder="0" text="" left="0" top="0" height="355" width="500" cssclass="div_WF_Area" visible="true">
+          <Layouts>
+            <Layout>
+              <Static id="Static02_00" taborder="3" text="관리자 승인 후 회원탈퇴가 완료되며, &#13;&#10;최대 1~2일이 소요됩니다." left="30" top="141" height="48" cssclass="portal_sta_frmDescription" onclick="Static_onclick" width="440"/>
+              <Static id="Static100" taborder="6" cssclass="portal_sta_memLabelBg" left="30" top="Static02_00:20" right="30" height="51" text=""/>
+              <Static id="Static00" taborder="2" text="회원탈퇴신청" left="0" top="0" height="50" cssclass="portal_sta_popTitle" right="0"/>
+              <Static id="Static01" taborder="1" text="회원탈퇴를 원하시는 경우 &#13;&#10;아래 비밀번호를 입력하시고 확인버튼을 클릭해주세요." left="0" top="Static00:20" height="74" cssclass="portal_sta_popTit" onclick="Static_onclick" width="500"/>
+              <Button id="btn_popClose" text="확인" cssclass="portal_btn" visible="true" height="45" taborder="0" top="Static100:20" left="42.40%" right="42.40%" onclick="out_btn_popClose_onclick"/>
+              <Static id="Static11" taborder="4" text="비밀번호 입력" left="30" top="209" width="150" height="51" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Edit id="Edit01" taborder="5" width="270" height="33" top="218" left="190" cssclass="portal_edi"/>
+              <Button id="btn_popClose00" cssclass="portal_btn_close" visible="true" height="50" taborder="7" width="50" right="0" top="0" onclick="out_btn_popClose00_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="out.form.div_Search.form.Edit01" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="out.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="out.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="out.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="out.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="out.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="out.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="out.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="out.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="out.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="out.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="out.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="out.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="out.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="out.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="out.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="out.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="out.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="out.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="out.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="out.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="out.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="out.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="out.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="out.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="out.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="out.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="out.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="out.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="out.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="out.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="out.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="out.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+this.out_btn_popClose00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.out_btn_popClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

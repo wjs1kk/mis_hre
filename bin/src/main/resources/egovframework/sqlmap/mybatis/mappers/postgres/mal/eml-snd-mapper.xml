@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.mal.service.EmlSndDAO">
+
+    <!-- 메일발송목록 조회 -->
+    <select id="getEmlSndList" parameterType="map" resultType="emlSndVO">
+        SELECT ES.EML_ID
+             , ES.EML_TTL
+             , ES.SND_CN
+             , ES.SND_NM
+             , TO_CHAR(ES.SND_DT, 'YYYY-MM-DD') AS SND_DT
+             , COUNT(RT.RCV_NO) AS SND_TRGT_CNT
+             , (SELECT SC.CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = ES.SND_STTS_CD) AS SND_STTS_NM
+          FROM PTS_EML_SEND ES
+             , PTS_EML_RCV_TRGT RT
+         WHERE ES.EML_ID = RT.EML_ID
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "" or searchType == null'>
+                        AND ES.EML_TTL LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "sndMembNm"'>
+                        AND ES.SND_NM LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                </choose>
+            </if>
+            <if test='sndStrDt != null and sndStrDt !=""'>
+                AND ES.SND_DT >= TO_DATE(#{sndStrDt}, 'YYYYMMDD')
+            </if>
+            <if test='sndEndDt != null and sndEndDt !=""'>
+       <![CDATA[AND ES.SND_DT <= TO_DATE(#{sndEndDt}, 'YYYYMMDD')]]>
+            </if>
+         GROUP BY ES.EML_ID
+    </select>
+
+    <!-- 메일발송대상 조회 -->
+    <select id="getEmlSndUser" parameterType="map" resultType="emlSndVO">
+        SELECT PM.OGDP_DEPT_NM AS DEPT_NM
+             , PM.MEMBER_ID
+             , PM.MEMBER_NM_KR
+             , PM.EML_ADDR
+          FROM PTS_MEMBER PM
+        <where>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "" or searchType == null'>
+                        AND PM.OGDP_DEPT_NM LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "rcvUserId"'>
+                        AND PM.MEMBER_ID LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "rcvUserNm"'>
+                        AND PM.MEMBER_NM_KR LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "emlAddr"'>
+                        AND PM.EML_ADDR LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+    <!-- 메일템플릿 목록 조회 -->
+    <select id="getTmpltList" parameterType="map" resultType="emlSndVO">
+        SELECT ET.EML_TMPLT_ID
+             , ET.EML_TMPLT_NM
+             , ET.EML_TMPLT_CN
+             , CASE WHEN ET.USE_YN = 'Y' THEN '사용'
+               ELSE '미사용'
+                END AS USE_YN
+             , (SELECT CU.USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = ET.RGSTR_ID) AS RGSTR_ID
+             , TO_CHAR(ET.RTST_DT, 'YYYY-MM-DD') AS RTST_DT
+          FROM PTS_EML_TMPLT ET
+        <where>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "" or searchType == null'>
+                        AND ET.EML_TMPLT_NM LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "emlTmpltId"'>
+                        AND ET.EML_TMPLT_ID LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                </choose>
+            </if>
+        </where>
+    </select>
+
+<!-- 메일템플릿 등록 -->
+    <insert id="insertTmpltList" parameterType="emlSndVO">
+        INSERT
+          INTO PTS_EML_TMPLT( EML_TMPLT_ID
+                            , EML_TMPLT_NM
+                            , EML_TMPLT_CN
+                            , USE_YN
+                            , RGSTR_ID
+                            , RTST_DT)
+                      VALUES( #{emlTmpltId}
+                            , NULLIF(#{emlTmpltNm}, '')
+                            , NULLIF(#{emlTmpltCn}, '')
+                            , NULLIF(#{useYn}, '')
+                            , #{sessionUserId}
+                            , NOW())
+    </insert>
+
+    <!-- 메일템플릿 수정 -->
+    <update id="updateTmpltList" parameterType="emlSndVO">
+        UPDATE PTS_EML_TMPLT
+           SET EML_TMPLT_NM = NULLIF(#{emlTmpltNm}, '')
+             , EML_TMPLT_CN = NULLIF(#{emlTmpltCn}, '')
+             , USE_YN       = #{useYn}
+             , UPDTR_ID     = #{sessionUserId}
+             , UPDT_DT      = NOW()
+         WHERE EML_TMPLT_ID = #{emlTmpltId}
+    </update>
+
+    <!-- 메일템플릿 삭제 -->
+    <delete id="deleteTmpltList" parameterType="emlSndVO">
+        DELETE FROM PTS_EML_TMPLT
+         WHERE EML_TMPLT_ID = #{emlTmpltId}
+    </delete>
+
+        <!-- 메일템플릿 상세 조회 -->
+    <select id="setTmpltDtl" parameterType="map" resultType="emlSndVO">
+        SELECT ET.EML_TMPLT_ID
+             , ET.EML_TMPLT_NM
+             , ET.EML_TMPLT_CN
+             , ET.USE_YN
+          FROM PTS_EML_TMPLT ET
+         WHERE ET.EML_TMPLT_ID = #{emlTmpltId}
+
+    </select>
+
+        <!-- 메일발송이력 조회 -->
+    <select id="getEmlSndDtl" parameterType="map" resultType="emlSndVO">
+        SELECT ES.EML_ID
+             , ES.EML_TTL
+             , ES.SND_CN
+             , ET.EML_TMPLT_NM
+          FROM PTS_EML_SEND ES
+          LEFT JOIN PTS_EML_TMPLT ET
+            ON ES.EML_TMPLT_ID = ET.EML_TMPLT_ID
+         WHERE ES.EML_ID = #{emlId}
+    </select>
+
+        <!-- 메일발송이력 조회 -->
+    <select id="getEmlSndDtl2" parameterType="map" resultType="emlSndVO">
+        SELECT ES.EML_ID
+             , ES.EML_TTL
+             , (SELECT ET.EML_TMPLT_NM
+                  FROM PTS_EML_TMPLT ET
+                 WHERE ET.EML_TMPLT_ID = ES.EML_TMPLT_ID) AS EML_TMPLT_ID
+             , ES.SND_CN
+             , (SELECT OGDP_DEPT_NM
+                  FROM PTS_MEMBER PM
+                 WHERE PM.MEMBER_ID = RT.RCV_USER_ID) AS DEPT_NM
+             , RT.RCV_USER_ID
+             , RT.RCV_USER_NM
+             , RT.RCV_EML_ADDR
+             , TO_CHAR(ES.SND_DT, 'YYYY-MM-DD') AS SND_DT
+             , (SELECT SC.CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = ES.SND_STTS_CD) AS SND_STTS_NM
+             , (SELECT SC.CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = RT.RCV_STTS_CD) AS RCV_STTS_NM
+          FROM PTS_EML_RCV_TRGT RT
+             , PTS_EML_SEND ES
+         WHERE RT.EML_ID = ES.EML_ID
+           AND ES.EML_ID = #{emlId}
+
+    </select>
+
+    <!-- 메일 수신 -->
+    <insert id="setEmlRsvInfo" parameterType="emlSndVO">
+        <selectKey keyProperty="rcvNo" resultType="string" order="BEFORE">
+            SELECT COALESCE(MAX(RCV_NO::INT), 0) + 1 AS RCV_NO
+              FROM PTS_EML_RCV_TRGT
+             WHERE EML_ID = #{emlId}
+        </selectKey>
+        INSERT
+          INTO PTS_EML_RCV_TRGT( RCV_NO
+                               , EML_ID
+                               , RCV_USER_ID
+                               , RCV_USER_NM
+                               , DEPT_CD
+                               , RCV_EML_ADDR
+                               , RCV_DT
+                               , RCV_STTS_CD
+                               , RGSTR_ID
+                               , RTST_DT)
+                         VALUES( #{rcvNo}::INT
+                               , #{emlId}
+                               , NULLIF(#{rcvUserId}, '')
+                               , NULLIF(#{rcvUserNm}, '')
+                               , (SELECT PM.OGDP_DEPT_CD
+                                    FROM PTS_MEMBER PM
+                                   WHERE PM.MEMBER_ID = #{rcvUserId})
+                               , NULLIF(#{rcvEmlAddr}, '')
+                               , NOW()
+                               , 'EML-010-040'
+                               , #{sessionUserId}
+                               , NOW())
+    </insert>
+
+    <!-- 메일 발신 -->
+    <insert id="setEmlSndInfo" parameterType="emlSndVO">
+        INSERT
+          INTO PTS_EML_SEND( EML_ID
+                           , EML_TMPLT_ID
+                           , EML_TTL
+                           , SND_CN
+                           , ATCH_FILE_ID
+                           , SND_EML_ADDR
+                           , SND_NM
+                           , RGSTR_ID
+                           , RTST_DT
+                           , SND_DT
+                           , SND_STTS_CD)
+                     VALUES( #{emlId}
+                           , NULLIF(#{emlTmpltId}, '')
+                           , NULLIF(#{emlTtl}, '')
+                           , NULLIF(#{sndCn}, '')
+                           , NULLIF(#{atchFileId}, '')
+                           , NULLIF(#{emlAddr}, '')
+                           , (SELECT CU.USER_NM_KR
+                                FROM CMN_USER CU
+                               WHERE CU.USER_ID = #{sessionUserId})
+                           , #{sessionUserId}
+                           , NOW()
+                           , NOW()
+                           , 'EML-010-030')
+    </insert>
+</mapper>

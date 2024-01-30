@@ -1,0 +1,661 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_6010M" width="1920" height="1040" titletext="회원정보수정" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static34" taborder="0" text="W 180" onclick="Static02_onclick" visible="false" left="0" top="0" width="180" background="antiquewhite" color="blue" bottom="0"/>
+        <Div id="divMain" taborder="1" text="Div00" left="180" top="0" height="487" width="1560">
+          <Layouts>
+            <Layout>
+              <Static id="staNoramlTitle" taborder="0" text="기본정보" left="0" top="0" width="88" height="60" enable="true" cssclass="portal_sta_memTitle" onclick="Static_onclick"/>
+              <Static id="Static100" taborder="1" cssclass="portal_sta_memLabelBg" left="0" top="staNoramlTitle:0" right="0" height="51" text=""/>
+              <Static id="Static101" taborder="2" cssclass="portal_sta_memLabelBg" left="0" top="Static100:-1" right="0" height="51" text=""/>
+              <Static id="Static102" taborder="3" cssclass="portal_sta_memLabelBg" left="0" top="Static101:-1" right="0" height="51" text=""/>
+              <Static id="Static103" taborder="4" cssclass="portal_sta_memLabelBg" left="0" top="Static102:-1" right="0" height="51" text=""/>
+              <Static id="Static104" taborder="5" cssclass="portal_sta_memLabelBg" left="0" top="Static103:-1" right="0" height="51" text=""/>
+              <Static id="Static105" taborder="6" cssclass="portal_sta_memLabelBg" left="0" top="Static104:-1" right="0" height="127" text=""/>
+              <Static id="Static11" taborder="7" text="아이디" left="0" top="60" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Static id="Static12" taborder="8" text="이름" left="53%" top="60" width="200" height="51" enable="true" cssclass="portal_sta_memLabel" onclick="Static_onclick"/>
+              <Static id="Static13" taborder="9" text="기존 비밀번호" left="0" top="110" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L_essential" onclick="Static_onclick"/>
+              <Static id="Static14" taborder="10" text="새 비밀번호" left="0" top="160" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Static id="Static15" taborder="11" text="이메일" left="0" top="210" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L_essential" onclick="Static_onclick"/>
+              <Static id="Static16" taborder="12" text="연락처" left="0" top="260" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L_essential" onclick="Static_onclick"/>
+              <Static id="Static17" taborder="13" text="주소" left="0" top="310" width="200" height="127" enable="true" cssclass="portal_sta_memLabel_L_essential" onclick="Static_onclick"/>
+              <Edit id="edtUserId" taborder="14" width="150" height="33" top="69" left="Static11:10" cssclass="portal_edi" enable="false"/>
+              <Edit id="edutUserNm" taborder="15" left="Static12:10" width="10%" height="33" top="69"/>
+              <Edit id="editUserPw" taborder="16" left="Static13:10" width="150" height="33" top="119" cssclass="portal_edi" password="true"/>
+              <Edit id="editUserRePw" taborder="17" left="Static14:10" width="150" height="33" top="169" cssclass="portal_edi" password="true"/>
+              <Edit id="edtEmlAddrLocal" taborder="18" left="Static15:10" width="150" height="33" top="219" cssclass="portal_edi"/>
+              <Static id="Static20" taborder="19" text="@" left="edtEmlAddrLocal:0" top="219" width="24" height="33" cssclass="portal_frmTxt"/>
+              <Edit id="edtEmlAddrDomain" taborder="20" left="Static20:0" width="140" height="33" top="219" cssclass="portal_edi"/>
+              <Edit id="edtNum" taborder="21" left="Static16:10" width="150" height="33" top="269" cssclass="portal_edi" oninput="divMain_edtNum_oninput"/>
+              <Edit id="edtAddress" taborder="22" left="Static17:10" width="150" height="33" top="319" cssclass="portal_edi" readonly="true"/>
+              <Edit id="edtAddressOne" taborder="23" left="Static17:10" width="500" height="33" top="357" cssclass="portal_edi" readonly="true"/>
+              <Edit id="edtAddressTwo" taborder="24" left="Static17:10" width="500" height="33" top="395" cssclass="portal_edi"/>
+              <Static id="Static09" taborder="25" text="*9~15자 이내 숫자, 문자, 특수문자 조합" left="editUserPw:10" top="Static101:0" width="252" height="51" cssclass="portal_sta_memInfo" onclick="Static_onclick"/>
+              <Button id="btnSearchAddr" taborder="26" text="주소검색" left="edtAddress:5" top="319" width="96" height="33" cssclass="portal_btn_mem" onclick="divMain_btnSearchAddr_onclick"/>
+              <Combo id="cboEmlAddrDomain" taborder="27" text="직접입력" left="edtEmlAddrDomain:5" top="219" width="155" height="33" value="" index="-1" cssclass="portal_cmb" innerdataset="dsEmailCbo" codecolumn="value" datacolumn="text" onitemchanged="divMain_cboEmail_onitemchanged"/>
+              <Button id="btnAskCode" taborder="28" text="인증요청" left="cboEmlAddrDomain:5" top="219" width="96" height="33" cssclass="portal_btn_mem" onclick="divMain_btnAskCode_onclick"/>
+              <Static id="Static14_00" taborder="30" text="비밀번호 확인" left="53%" top="160" width="200" height="51" enable="true" cssclass="portal_sta_memLabel" onclick="Static_onclick"/>
+              <Edit id="editUserRePw00" taborder="29" left="Static14_00:10" width="150" height="33" top="168" cssclass="portal_edi" password="true"/>
+              <Static id="Static02" taborder="31" text="W 180" visible="false" top="-93" onclick="Static02_onclick" background="antiquewhite" color="blue" width="180" right="-381" bottom="-460"/>
+              <Div id="divEmlVerify" taborder="32" left="780" top="210" width="780" height="51" visible="false">
+                <Layouts>
+                  <Layout>
+                    <Static id="staVerificationCode" taborder="3" text="인증번호" left="5.90%" top="0" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_Essential" onclick="Static_onclick"/>
+                    <Edit id="edtVerificationCode" taborder="0" left="staVerificationCode:10" width="149" height="33" top="8" cssclass="portal_edi"/>
+                    <Button id="btnCheckCode" taborder="1" text="확인" left="edtVerificationCode:10" top="8" width="96" height="33" cssclass="portal_btn_mem" onclick="divMain_btnCodeCheck_onclick"/>
+                    <Static id="staTimer" taborder="2" text="(0:00 남음)" left="523" top="0" width="87" height="49" cssclass="portal_sta_memInfo"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divInstInfo" taborder="2" left="180" top="divMain:-30" height="338" cssclass="div_WF_Area" right="180">
+          <Layouts>
+            <Layout>
+              <Static id="Static21" taborder="0" text="업체/기관정보" left="0%" top="0" width="142" height="60" enable="true" cssclass="portal_sta_memTitle" onclick="Static_onclick"/>
+              <Static id="Static107" taborder="1" cssclass="portal_sta_memLabelBg" left="0" top="Static21:0" right="0" height="51" text=""/>
+              <Static id="Static108" taborder="2" cssclass="portal_sta_memLabelBg" left="0" top="Static107:-1" right="0" height="51" text=""/>
+              <Static id="Static109" taborder="3" cssclass="portal_sta_memLabelBg" left="0" top="Static108:-1" right="0" height="51" text=""/>
+              <Static id="Static110" taborder="4" cssclass="portal_sta_memLabelBg" left="0" top="Static109:-1" right="0" height="127" text=""/>
+              <Static id="Static22" taborder="5" text="업체/기관명" left="0" top="60" width="200" height="51" enable="true" onclick="Static_onclick" cssclass="portal_sta_memLabel_L"/>
+              <Static id="Static23" taborder="6" text="부서" left="0.00%" top="110" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Static id="Static25" taborder="7" text="사무실연락처" left="0.00%" top="160" width="200" height="51" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Static id="Static26" taborder="8" text="사무실팩스번호" left="50.00%" top="160" width="200" height="51" enable="true" cssclass="portal_sta_memLabel" onclick="Static_onclick"/>
+              <Static id="Static24" taborder="9" text="직위" left="50.00%" top="110" width="200" height="51" enable="true" cssclass="portal_sta_memLabel" onclick="Static_onclick"/>
+              <Static id="Static27" taborder="10" text="사무실 주소" left="0.00%" top="210" width="200" height="127" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Edit id="edtInstNm" taborder="11" left="Static22:10" width="147" height="33" top="69" cssclass="portal_edi" readonly="true"/>
+              <Edit id="edtDept" taborder="12" left="Static23:10" width="147" height="33" top="119" cssclass="portal_edi"/>
+              <Edit id="edtJbps" taborder="13" left="Static24:10" width="150" height="33" top="119" cssclass="portal_edi"/>
+              <Edit id="edtOfcNum" taborder="14" left="Static25:10" width="147" height="33" top="169" cssclass="portal_edi" oninput="divInstInfo_edtOfcNum_oninput"/>
+              <Edit id="edtOfcFaxNm" taborder="15" left="Static26:10" width="150" height="33" top="169" cssclass="portal_edi"/>
+              <Edit id="edtOfcAddr" taborder="16" left="Static27:10" width="147" height="33" top="218" cssclass="portal_edi" readonly="true"/>
+              <Edit id="edtOffAddrOne" taborder="17" left="Static27:10" width="500" height="33" top="257" cssclass="portal_edi" readonly="true"/>
+              <Edit id="edtOffAddrTwo" taborder="18" left="Static27:10" width="500" height="33" top="295" cssclass="portal_edi"/>
+              <Button id="btnOfcSearchAddr" taborder="19" text="주소검색" left="edtOfcAddr:5" top="218" width="96" height="33" cssclass="portal_btn_mem" onclick="divInstInfo_btnOfcSearchAddr_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="BtnSave" taborder="3" text="저장" left="895" height="45" font="normal 700 16px/normal &quot;맑은고딕&quot;" onclick="divmain_BtnSave_onclick" top="divInstInfo:30" cssclass="portal_btn" right="895"/>
+        <Static id="Static06_00_00_00_00_00" taborder="4" text="H 10" visible="false" left="50" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" height="10" top="divMain:0"/>
+        <Static id="Static00" taborder="5" text="회원탈퇴를 원하신다면" left="180" top="BtnSave:14" width="166" height="26" cssclass="portal_sta_memOut"/>
+        <Button id="btnDropMember" taborder="6" text="회원탈퇴 바로가기" left="Static00:5" top="884" width="134" height="27" cssclass="portal_btn_memOut" onclick="btnDropMember_onclick"/>
+        <Static id="Static01" taborder="7" left="180" top="btnDropMember:0" width="160" height="45"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUserInfo" oncolumnchanged="dsUserInfo_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="memberNmKr" type="STRING" size="256"/>
+          <Column id="memberNmEn" type="STRING" size="256"/>
+          <Column id="passwd" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="mblTelno" type="STRING" size="256"/>
+          <Column id="mbrAddr" type="STRING" size="256"/>
+          <Column id="mbrDaddr" type="STRING" size="256"/>
+          <Column id="ogdpInstNm" type="STRING" size="256"/>
+          <Column id="ogdpInstCd" type="STRING" size="256"/>
+          <Column id="jbpsCd" type="STRING" size="256"/>
+          <Column id="jbpsNm" type="STRING" size="256"/>
+          <Column id="ogdpDeptCd" type="STRING" size="256"/>
+          <Column id="ogdpDeptNm" type="STRING" size="256"/>
+          <Column id="ofcTelno" type="STRING" size="256"/>
+          <Column id="ofcFxno" type="STRING" size="256"/>
+          <Column id="ofcAddr" type="STRING" size="256"/>
+          <Column id="ofcDaddr" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="whdwlYn" type="STRING" size="256"/>
+          <Column id="pwExpireDt" type="STRING" size="256"/>
+          <Column id="newRepasswd" type="STRING" size="256"/>
+          <Column id="mbrZip" type="STRING" size="256"/>
+          <Column id="ofcZip" type="STRING" size="256"/>
+          <Column id="newPasswd" type="STRING" size="256"/>
+          <Column id="checkCode" type="STRING" size="256"/>
+          <Column id="emailVerified" type="STRING" size="256"/>
+          <Column id="oldPasswd" type="STRING" size="256"/>
+          <Column id="passwdCheck" type="STRING" size="256"/>
+          <Column id="emlAddrLocal" type="STRING" size="256"/>
+          <Column id="emlAddrDomain" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsEmailCbo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEmailVerification" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="userName" type="STRING" size="300"/>
+          <Column id="emailAddr" type="STRING" size="320"/>
+          <Column id="rqstId" type="STRING" size="256"/>
+          <Column id="verificationCode" type="STRING" size="256"/>
+          <Column id="expireDt" type="INT" size="256"/>
+          <Column id="verifiedToken" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  messageManage
+*  MenuPath      마이페이지 - 회원정보
+*  FileName      PTS_6010M.xfdl 
+*  Creator 	     yuyr
+*  CreateDate    2023.10.25
+*  Desction      회원정보수정
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.10.25    yuyr 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+this.isEmailVerified = "N";
+this.timer = null;
+this.callbackMsg = null;
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnLoadCombo("loadEmlCombo", "dsEmailCbo=PMS:MI:EML_DOMAIN:", "fnComboCallback");
+	this.fnSearch();
+};
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{	
+	this.gfnTransaction("getMyPageInfo", "mi/myPage/getMemberInfo.do", "", "dsUserInfo", "", "fnCallback");
+};
+
+/**
+ * description 이메일 인증
+*/
+this.fnRequestEmailVerification = function ()
+{
+    this.dsEmailVerification.setColumn(0, "emailAddr", this.dsUserInfo.getColumn(0, "emlAddr"));
+    this.gfnTransaction("requestEmailVerification", "mi/common/mailVerification/sendMail.do", "dsEmailVerification", "dsEmailVerification", "", "fnCallback");
+};
+
+/**
+ * description 이메일 인증코드
+*/
+this.fnCheckVerificationCode = function ()
+{
+    this.dsEmailVerification.setColumn(0, "emailAddr", this.dsUserInfo.getColumn(0, "emlAddr"));
+    this.gfnTransaction("checkVerificationCode", "mi/common/mailVerification/checkVerificationCode.do", "dsEmailVerification", "dsEmailVerification", "", "fnCallback");
+};
+
+/**
+ * description 비밀번호 검증
+*/
+this.fnCheckVerificationPw = function ()
+{
+    this.gfnTransaction("confirmPw", "mi/myPage/confirmPw.do", "dsUserInfo", "", "", "fnCallback");
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	this.gfnTransaction("updateMemberInfo", "mi/myPage/setMyPageInfo.do", "dsUserInfo", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ /**
+ * description Transaction CallBack 함수
+*/
+
+this.fnCallback = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getMyPageInfo":
+			this.fnChangeFomat();
+		break;
+		case "updateMemberInfo":
+			if(this.callbackMsg == "success") {
+				this.gfnAlert("회원정보 수정이 완료되었습니다.");
+				this.dsUserInfo.clearData();
+				this.dsUserInfo.addRow();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+		break;
+		case "requestEmailVerification":
+			if (this.callbackMsg === "success") {
+				this.gfnAlert("인증번호가 메일로 전송되었습니다.");
+				this.divMain.form.divEmlVerify.set_visible(true);
+				let expire = this.dsEmailVerification.getColumn(0, "expireDt");
+				this.fnStartTimer();
+			}
+			break;
+		case "checkVerificationCode":
+			if (this.callbackMsg === "success") {
+				this.gfnAlert("이메일 인증이 완료되었습니다.");
+				this.fnStopTimer();
+				this.divMain.form.edtEmlAddrLocal.set_enable(false);
+				this.divMain.form.edtEmlAddrDomain.set_enable(false);
+				this.divMain.form.cboEmlAddrDomain.set_enable(false);
+				this.divMain.form.divEmlVerify.form.edtVerificationCode.set_enable(false);
+				this.divMain.form.divEmlVerify.form.staTimer.set_visible(false);
+				this.divMain.form.btnAskCode.set_enable(false);
+				this.divMain.form.btnAskCode.set_visible(false);
+				this.divMain.form.divEmlVerify.form.btnCheckCode.set_enable(false);
+				this.divMain.form.divEmlVerify.form.btnCheckCode.set_visible(false);
+				this.dsUserInfo.setColumn(0, "emailVerified", "Y");
+			}
+			break;
+		case "confirmPw":
+			if (this.callbackMsg == "success") {
+				this.fnSave();
+			} else {
+				this.gfnAlert("현재 비밀번호가 일치하지 않습니다.");
+			}
+			break;			
+		case "updatePw":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("비밀번호 변경이 완료되었습니다.");
+				this.close();
+			}else{
+				this.gfnAlert("비밀번호 변경이 실패했습니다.");
+			}
+			break;			
+			default:
+			break;
+			}
+		};
+this.fnPopupCallback = function (popupId, args)
+{
+    const result = this.gfnGetPopupRtn();
+    switch (popupId) {
+        case "addressPopup":
+            if (!result.canceled) {
+                this.dsUserInfo.setColumn(0, "mbrZip", result.data.zonecode);
+                this.dsUserInfo.setColumn(0, "mbrAddr", result.data.roadAddress);
+            }
+            break;
+        case "ofcAddressPopup":
+            if (!result.canceled) {
+                this.dsUserInfo.setColumn(0, "ofcZip", result.data.zonecode);
+                this.dsUserInfo.setColumn(0, "ofcAddr", result.data.roadAddress);
+            }
+            break;
+        default:
+            break;
+    };
+};	
+	
+/**
+ * description 이메일 주소 선택 comboBox
+*/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg) {
+    if (svcId === "loadEmlCombo") {
+        const row = this.dsEmailCbo.addRow();
+        this.dsEmailCbo.setColumn(row, "text", "직접 입력");
+        this.dsEmailCbo.setColumn(row, "value", "");
+        this.divMain.form.cboEmlAddrDomain.set_index(row);
+    }
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	console.log('fnPopupAfter: ', sPopupId, ' || ', vArg);
+	switch(sPopupId){
+		case "memberDropPopup":	//  회원탈퇴 팝업
+			var oRtn = this.gfnGetPopupRtn();
+			if(oRtn){
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+			}
+		break;		
+		default:
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+/**
+ * description 유저 주소 검색 버튼 클릭
+*/
+this.divMain_btnSearchAddr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnOpenPopup("addressPopup", "cmm::addressSearchPopup.xfdl", {}, "fnPopupCallback");	
+};
+
+/**
+ * description 회사 주소 검색 버튼 클릭
+*/
+this.divInstInfo_btnOfcSearchAddr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnOpenPopup("ofcAddressPopup", "cmm::addressSearchPopup.xfdl", {}, "fnPopupCallback");		
+};
+
+/**
+ * description 인증요청 버튼클릭
+*/
+this.divMain_btnAskCode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.fnValidateEmailAddr()) {
+        return;
+    }
+    this.fnRequestEmailVerification();
+};
+
+/**
+ * description 저장버튼 클릭
+*/
+this.divmain_BtnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if (!this.fnValidate()) {
+        return;
+    }
+    
+    this.fnSave();
+};
+
+
+/**
+ * description 인증확인코드 
+*/
+this.divMain_btnCodeCheck_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnCheckVerificationCode();
+};
+
+/**
+ * description 이메일 
+*/
+this.dsUserInfo_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    if (e.columnid === "emlAddrLocal") {
+        obj.setColumn(e.row, "emlAddr", e.newvalue + "@" + obj.getColumn(e.row, "emlAddrDomain"));
+    } else if (e.columnid === "emlAddrDomain") {
+        obj.setColumn(e.row, "emlAddr", obj.getColumn(e.row, "emlAddrLocal") + "@" + e.newvalue);
+    }
+};
+
+/**
+ * description 이메일 도메인 콤보박스 
+*/
+this.divMain_cboEmail_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+    this.dsUserInfo.setColumn(0, "emlAddrDomain", e.postvalue);
+    this.divMain.form.edtEmlAddrDomain.set_enable(Eco.isEmpty(e.postvalue))	
+};
+
+/**
+ * description 소속기관 조회 버튼클릭
+*/
+// this.divMemberInfo_btnInstCode_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+// {
+// 	this.gfnOpenPopup("memberInsttPopup", "sys::cms/CMS_1010P.xfdl", "", "fnPopupAfter", "");
+// };
+
+/**
+ * description 회원탈퇴 클릭 이동 화면 
+*/
+
+this.btnDropMember_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnOpenPopup("memberDropPopup", "sys::pts/PTS_6010P.xfdl", "", "fnPopupAfter", "");	
+};
+
+
+this.divMain_edtNum_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+    var value = obj.value;
+    var formatted = this.fnFormatTelno(obj.value);
+    obj.set_value(formatted);
+    console.log({ oldValue: value, formatted, newValue: obj.value });	
+};
+
+this.divInstInfo_edtOfcNum_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+    var value = obj.value;
+    var formatted = this.fnFormatTelno(obj.value);
+    obj.set_value(formatted);
+    console.log({ oldValue: value, formatted, newValue: obj.value });	
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.fnStartTimer = function ()
+{
+    let time = 300  // 5분
+    this.timer = setInterval(() => {
+        time--;
+        if (time > 0) {
+        	this.divMain.form.divEmlVerify.form.staTimer.set_text("(" + Math.floor(time / 60) + ":" + this.lpad(time % 60, 2, "0") + " 남음)");
+        } else {
+            this.this.divMain.form.divEmlVerify.form.staTimer.set_text("(0:00 남음)");
+            this.stopTimer();
+        }
+    }, 1000);
+};
+
+this.fnStopTimer = function ()
+{
+    if (this.timer != null) {
+        this.divMain.form.divEmlVerify.form.staTimer.set_text("(0:00 남음)");
+        clearInterval(this.timer);
+        this.timer = null;
+		this.divMain.form.divEmlVerify.form.staTimer.set_text("인증이 완료되었습니다.");
+    }
+};
+
+this.lpad = function (text, length, filler) {
+    text = String(text);
+    
+    if (filler == null || filler == "") {
+        filler = " ";
+    }
+    
+    let s = "";
+    while (text.length + s.length < length) {
+        s += filler[0];
+    }
+    
+    return s + text;
+}
+
+/**
+ * description 비밀번호 체크 숫자, 영어, 특수기호 체크
+*/
+
+this.fnValidate = function ()
+{
+    var args = [
+        ["memberNmKr", "NULL|MAX_LEN:300", "이름"],
+        ["oldPasswd", "NULL|MIN_LEN:9|MAX_LEN:20", "기존 비밀번호"],
+        ["passwd", "NULL|MIN_LEN:9|MAX_LEN:20", "새 비밀번호"],
+		["passwdCheck", "NULL|MIN_LEN:9|MAX_LEN:20", "새 비밀번호 확인"],
+        ["mbrZip", "NULL", "주소"],
+        ["mbrAddr", "NULL|MAX_LEN:300", "주소"],
+        ["mbrDaddr", "MAX_LEN:300", "상세주소"],
+    ];
+
+    if (!this.gfnCheckGrid(this.dsUserInfo, args, "")) {
+        return false;
+    }
+    
+    const oldPasswd = this.dsUserInfo.getColumn(0, "oldPasswd");
+    const passwd = this.dsUserInfo.getColumn(0, "passwd");
+	const passwdCheck = this.dsUserInfo.getColumn(0, "passwdCheck");
+
+    let mblTelno = this.dsUserInfo.getColumn(0, "mblTelno");
+    let ofcTelno = this.dsUserInfo.getColumn(0, "ofcTelno");
+
+	// 새 비밀번호가 입력되어져있으면, 비밀번호 체크
+	if (!Eco.isEmpty(passwd)) {
+		if (!this.fnPasswdValidation(passwd)) {
+			this.gfnAlert("비밀번호 형식이 맞지 않습니다.");
+		}
+		
+		if(passwd != passwdCheck) {
+			this.gfnAlert("비밀번호와 비밀번호 확인 값이 다릅니다.");
+			return false;
+		}
+	}
+	
+    this.fnValidateEmailAddr();
+    
+    if (!Eco.isEmpty(mblTelno)) {
+        mblTelno = mblTelno.replace(/-/g, "");
+        if (!/^(0(?:2|1\d|[3-9]\d))(\d{3,4})(\d{4})$/.test(mblTelno)) {
+            this.gfnAlert("전화번호가 올바르지 않습니다.");
+            return false;
+        }
+    }
+    
+    if (!Eco.isEmpty(ofcTelno)) {
+        ofcTelno = ofcTelno.replace(/-/g, "");
+        if (!/^(0(?:2|1\d|[3-9]\d))(\d{3,4})(\d{4})$/.test(ofcTelno)) {
+            this.gfnAlert("전화번호가 올바르지 않습니다.");
+            return false;
+        }
+    }
+
+    if ("Y" !== this.dsUserInfo.getColumn(0, "emailVerified")) {
+        this.gfnAlert("이메일 인증이 필요합니다.");
+        return false;
+    }
+    
+    return true;
+};
+
+
+this.fnValidateEmailAddr = function ()
+{
+    const emailLocal = this.dsUserInfo.getColumn(0, "emlAddrLocal");
+    const emailDomain = this.dsUserInfo.getColumn(0, "emlAddrDomain");
+    if (Eco.isEmpty(emailLocal) || Eco.isEmpty(emailDomain)) {
+        this.gfnAlert("이메일 주소를 입력하세요.");
+        return false;
+    }
+    
+    const localRegEx = /^([\da-zA-Z!#$%&'*+\-\/=?^_`{|}~]{1,64})$/;
+    const domainRegEx = /^((?:[a-zA-Z\d\-]{1,63}\.)*[a-zA-Z\-]{1,63})$/;
+    
+    if (!localRegEx.test(emailLocal) || !domainRegEx.test(emailDomain)) {
+        this.gfnAlert("이메일 주소에 사용할 수 없는 문자가 있습니다.");
+        return false;
+    }
+    return true;
+};
+
+/**
+ * description 비밀번호 체크 숫자, 영어, 특수기호 체크
+*/
+
+this.fnPasswdValidation = function (password)
+{
+    var counts = {
+        alpha: 0,
+        digits: 0,
+        symbols: 0
+    };
+    
+    for (const ch of password) {
+        var cp = ch.codePointAt(0);
+        if (cp >= 0x0030 && cp <= 0x0039) {
+            counts.digits++;
+        } else if ((cp >= 0x0041 && cp <= 0x005a) || (cp >= 0x0061 && cp <= 0x007a)) {
+            counts.alpha++;
+        } else if ((cp >= 0x0021 && cp <= 0x002f) || (cp >= 0x003a && cp <= 0x0040) || (cp >= 0x005B && cp <= 0x0060) || (cp >= 0x007b && cp <= 0x007e)) {
+            counts.symbols++;
+        } else if (cp == 0x0009 || cp == 0x000a || cp == 0x000b || cp == 0x000c || cp == 0x000d || cp == 0x0020) {
+            this.gfnAlert("공백 문자는 비밀번호에 사용할 수 없습니다.");
+            return false;
+        } else if (cp <= 0x001f || cp == 0x007f) {
+            this.gfnAlert("비밀번호에 올바르지 않은 문자가 포함되어 있습니다.");
+            return false;
+        } else {
+            this.gfnAlert("문자 '" + ch + "'는 비밀번호에 사용할 수 없습니다.");
+            return false;
+        }
+    }
+    
+    if (counts.alpha == 0 || counts.digits == 0 || counts.symbols == 0) {
+        this.gfnAlert("비밀번호는 영문자, 숫자, 특수문자를 각각 하나 이상 사용해야 합니다.");
+        return false;
+    } else {
+        return true;
+    }
+};
+
+this.fnFormatTelno = function (input) {
+    if (Eco.isEmpty(input)) {
+        return "";
+    }
+
+    var regex = /^(?:(1[568]\d{2})(\d{0,4}?)|(010)(\d{4})?(\d{0,4})|(0(?:2|[3456]\d|1[15-9]))(\d{3,4}?)?(\d{0,4}))$/;
+    var i = input.replace(/(-|[^\d])/g, '');
+    var match = regex.exec(i);
+    
+    console.log({ input, i, match });
+    
+    if (match == null) {
+        return i;
+    } else {
+        return Array.from(match).slice(1)
+            .filter(s => !Eco.isEmpty(s))
+            .join('-');
+    }
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item1" compid="divMain.form.edtUserId" propid="value" datasetid="dsUserInfo" columnid="memberId"/>
+      <BindItem id="item2" compid="divMain.form.edutUserNm" propid="value" datasetid="dsUserInfo" columnid="memberNmKr"/>
+      <BindItem id="item3" compid="divMain.form.edtNum" propid="value" datasetid="dsUserInfo" columnid="mblTelno"/>
+      <BindItem id="item4" compid="divMain.form.edtAddress" propid="value" datasetid="dsUserInfo" columnid="mbrZip"/>
+      <BindItem id="item5" compid="divMain.form.edtAddressOne" propid="value" datasetid="dsUserInfo" columnid="mbrAddr"/>
+      <BindItem id="item6" compid="divMain.form.edtAddressTwo" propid="value" datasetid="dsUserInfo" columnid="mbrDaddr"/>
+      <BindItem id="item7" compid="divInstInfo.form.edtJbps" propid="value" datasetid="dsUserInfo" columnid="jbpsNm"/>
+      <BindItem id="item8" compid="divInstInfo.form.edtOfcNum" propid="value" datasetid="dsUserInfo" columnid="ofcTelno"/>
+      <BindItem id="item9" compid="divInstInfo.form.edtOfcFaxNm" propid="value" datasetid="dsUserInfo" columnid="ofcFxno"/>
+      <BindItem id="item10" compid="divInstInfo.form.edtDept" propid="value" datasetid="dsUserInfo" columnid="ogdpDeptNm"/>
+      <BindItem id="item11" compid="divInstInfo.form.edtInstNm" propid="value" datasetid="dsUserInfo" columnid="ogdpInstNm"/>
+      <BindItem id="item12" compid="divInstInfo.form.edtOfcAddr" propid="value" datasetid="dsUserInfo" columnid="ofcZip"/>
+      <BindItem id="item13" compid="divInstInfo.form.edtOffAddrOne" propid="value" datasetid="dsUserInfo" columnid="ofcAddr"/>
+      <BindItem id="item14" compid="divInstInfo.form.edtOffAddrTwo" propid="value" datasetid="dsUserInfo" columnid="ofcDaddr"/>
+      <BindItem id="item15" compid="divMain.form.edtEmlAddrLocal" propid="value" datasetid="dsUserInfo" columnid="emlAddrLocal"/>
+      <BindItem id="item16" compid="divMain.form.edtEmlAddrDomain" propid="value" datasetid="dsUserInfo" columnid="emlAddrDomain"/>
+      <BindItem id="item17" compid="divMain.form.editUserPw" propid="value" datasetid="dsUserInfo" columnid="oldPasswd"/>
+      <BindItem id="item18" compid="divMain.form.editUserRePw" propid="value" datasetid="dsUserInfo" columnid="passwd"/>
+      <BindItem id="item19" compid="divMain.form.editUserRePw00" propid="value" datasetid="dsUserInfo" columnid="passwdCheck"/>
+      <BindItem id="item20" compid="divMain.form.editMailCode" propid="value" datasetid="dsEmailVerification" columnid="verificationCode"/>
+      <BindItem id="item0" compid="divMain.form.divEmlVerify.form.edtVerificationCode" propid="value" datasetid="dsEmailVerification" columnid="verificationCode"/>
+      <BindItem id="item21" compid="divMain.form.divEmlVerify00.form.edtVerificationCode" propid="value" datasetid="dsEmailVerification" columnid="verificationCode"/>
+    </Bind>
+  </Form>
+</FDL>

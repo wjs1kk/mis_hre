@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_2030M" width="1920" height="670" titletext="금지단어 관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="12" height="28" right="118" width="65" onclick="btnSearch_onclick"/>
+        <Button id="btnSave" taborder="1" text="저장" top="12" height="28" right="50" width="65" onclick="btnSave_onclick" cssclass="btn_WF_Save"/>
+        <Static id="sta001" taborder="2" text="금지 단어 관리" left="53" top="10" height="30" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
+        <Div id="divSearch" taborder="3" left="50" top="50" text="" right="50" height="120">
+          <Layouts>
+            <Layout>
+              <Div id="Div00" taborder="0" text="" top="46" cssclass="div_WF_panel" right="20" left="20" height="64">
+                <Layouts>
+                  <Layout>
+                    <Static id="sta003" taborder="0" text="금지단어" left="40" top="18" width="100" height="30" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_frmTitle"/>
+                    <Edit id="edt001" taborder="1" left="115" top="22" width="250" height="26" onchanged="divSearch_Div00_edt_01_onchanged"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="sta002" taborder="1" text="검색조건" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="20" top="13" height="27" width="250"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="4" text="" left="50" top="190" right="50" bottom="30">
+          <Layouts>
+            <Layout>
+              <Button id="btnAddRow" taborder="0" text="추가" top="14" height="26" right="79" width="55" onclick="btnAddRow_onclick" cssclass="btn_WF_Row_Add"/>
+              <Button id="btnDeleteRow" taborder="1" text="삭제" top="14" height="26" right="19" width="55" onclick="btnDeleteRow_onclick" cssclass="btn_WF_Row_Delete"/>
+              <Grid id="grdForbiddenWord" taborder="2" left="20" top="45" binddataset="dsForbiddenWord" right="20" bottom="26" autofittype="col" autoenter="select" autoupdatetype="itemselect" oncellclick="Div00_grdForbiddenWord_oncellclick" onexpandup="Div00_grdForbiddenWord_onexpandup">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="80"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="46" band="head"/>
+                      <Row size="99"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="시스템명"/>
+                      <Cell col="4" text="게시판명"/>
+                      <Cell col="5" text="제목"/>
+                      <Cell col="6" text="금지단어 내용(구분자 띄어쓰기)"/>
+                      <Cell col="7" text="사용여부"/>
+                      <Cell col="8" text="등록자"/>
+                      <Cell col="9" text="등록일시"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" text="bind:sysNm" edittype="none" textAlign="center"/>
+                      <Cell col="4" text="bind:boardNm" edittype="none" textAlign="left" expandshow="show" expandsize="25"/>
+                      <Cell col="5" text="bind:fbddnTitle" edittype="text" textAlign="left"/>
+                      <Cell col="6" text="bind:fbddnCont" edittype="textarea" textAlign="left" displaytype="textareacontrol"/>
+                      <Cell col="7" text="bind:useYn" edittype="combo" displaytype="combocontrol" combocodecol="LINE_CODE" combodataset="dsUseYn" combodatacol="LINE_CODE_NM_KR"/>
+                      <Cell col="8" text="bind:userNmKr" edittype="none"/>
+                      <Cell col="9" text="bind:rgstDt" edittype="none" textAlign="center"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta004" taborder="3" text="금지 단어 관리 목록" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" width="250"/>
+              <Static id="staGridRowCnt" taborder="4" text="(총 0건)" cssclass="sta_WF_subResult" left="191" top="11" width="149" height="27"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Button id="btnExportCompML" taborder="5" text="Export 컴포넌트 언어 Data" top="12" height="28" right="186" width="184" onclick="btnExportCompML_onclick"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsForbiddenWord" useclientlayout="true" oncolumnchanged="dsModuleManage_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="sysNm" type="STRING" size="256"/>
+          <Column id="boardId" type="STRING" size="256"/>
+          <Column id="boardNm" type="STRING" size="256"/>
+          <Column id="fbddnId" type="STRING" size="256"/>
+          <Column id="fbddnTitle" type="STRING" size="256"/>
+          <Column id="fbddnCont" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LINE_CODE">Y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN"/>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">N</Col>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  금지 단어 관리
+*  MenuPath      시스템 관리 - 관리메뉴 - 금지 단어 관리
+*  FileName      CMS_2030M.xfdl 
+*  Creator 	     moonsj
+*  CreateDate    2023.04.05
+*  Desction      금지 단어 관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.04.05    moonsj 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getForbiddenWordList";
+	var strSvcUrl   = "cms/getForbiddenWordList.do";
+	var inData      = "dsSearch";  // input1=dsSearch
+	var outData     = "dsForbiddenWord";  // dsgetForbiddenWord=output1
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	var strSvcId    = "setForbiddenWordList";
+	var strSvcUrl   = "cms/setForbiddenWordList.do";
+	var inData      = "dsForbiddenWord";  // input1=dsSearch
+	var outData     = "";  // dsForbiddenWord=output1
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync); 		
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getForbiddenWordList":
+			this.gfnRowCount(this.dsForbiddenWord, this.Div00.form.staGridRowCnt);
+			break;
+		case "setForbiddenWordList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.gfnRowCount(this.dsForbiddenWord, this.Div00.form.staGridRowCnt);
+				this.fnSearch();
+			}
+			break;
+		default:
+			break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	switch(sPopupId){
+		case "CMS_2030P_01":	// 게시판목록 팝업
+			var oRtn = this.gfnGetPopupRtn();
+			if(oRtn){
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+****************************************************
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 저장버튼 클릭
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if(this.dsForbiddenWord.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.(변경된 내역이 없습니다.)
+		return;
+	}
+	// 변경사항 체크
+	if (!this.gfnDsIsUpdated(this.dsForbiddenWord)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	// msgId, args(치환), popupId, Confirm Callback Function({확인 trueFunc, 취소: falseFunc})
+	// confirm 이후 스크립트가 실행되기때문에 return; 처리 or 가장 마지막 위치
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/**
+ * description 행추가 클릭
+*/
+this.btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsForbiddenWord, "last");
+	this.dsForbiddenWord.setColumn(this.dsForbiddenWord.rowposition, "useYn", "Y");
+};
+
+/**
+ * description 행삭제 클릭
+*/
+this.btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsForbiddenWord);
+};
+
+
+/**
+ * @description 그리드 값 변경 이벤트
+ */
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+this.Div00_grdForbiddenWord_onexpandup = function(obj:nexacro.Grid,e:nexacro.GridMouseEventInfo)
+{
+	 if(e.col == 4){
+		var oArg = {  boardNm : this.dsForbiddenWord.getColumn(this.dsForbiddenWord.rowposition, "boardNm")	};
+ 		this.gfnOpenPopup("CMS_2030P_01", "sys::cms/CMS_2030P_01.xfdl", oArg, "fnPopupAfter", "");
+		}
+};
+
+this.Div00_grdForbiddenWord_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.Div00.form.edt001" propid="value" datasetid="dsSearch" columnid="sysId"/>
+      <BindItem id="item1" compid="divSearch.form.Div00.form.edt_02" propid="value" datasetid="dsSearch" columnid="moduleId"/>
+      <BindItem id="item2" compid="divSearch.form.Div00.form.edt_03" propid="value" datasetid="dsSearch" columnid="moduleNm"/>
+    </Bind>
+  </Form>
+</FDL>

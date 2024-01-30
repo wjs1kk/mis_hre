@@ -1,0 +1,125 @@
+:root {
+    --search-form-background-color: #f9fafc;
+    --search-form-border-color: #00388e;
+    --search-form-label-color: #032c6c;
+
+    --table-cell-border-color: #dddddd;
+    --table-cell-border-width: 1px;
+    --table-cell-left-border-color: #00388e;
+    --table-cell-background: white;
+    --table-cell-foreground: black;
+    --table-header-cell-background: #f5f5f5;
+}
+
+.jn-form,
+.jn-search-form {
+    --dhx-background-primary: white;
+    --dhx-background-secondary: white;
+
+    .dhx_layout-cell {
+        & > .dhx_form-group {
+            margin-top: 4px;
+            margin-bottom: 4px;
+        }
+    }
+
+    .dhx_combobox-input-box,
+    .dhx_input {
+        --dhx-border-width: 1px;
+        --dhx-border-color: #cccccc;
+    }
+
+    .dhx_form-group--inline .dhx_label,
+    .dhx_combobox--label-inline .dhx_combobox__label {
+        margin-top: 3px;
+        margin-right: 10px;
+        text-align: start;
+    }
+
+    .dhx_checkbox.dhx_form-group--inline .dhx_label {
+        justify-content: flex-start;
+    }
+
+    .dhx_input {
+        padding: 3px 8px;
+    }
+
+    .dhx_combobox-input-list {
+        min-height: 24px;
+    }
+
+    .dhx_combobox-input {
+        min-height: 24px;
+    }
+
+    & + .jn-container {
+        margin-top: 15px;
+    }
+}
+
+.jn-form .dhx_label {
+    font-weight: 400;
+    --dhx-font-color-primary: black;
+}
+
+.jn-search-form {
+    --dhx-background-primary: var(--search-form-background-color);
+    border-top: 1px solid var(--search-form-border-color);
+    border-bottom: 1px solid #cccccc;
+
+    .dhx_label {
+        font-weight: var(--dhx-font-weight-bold);
+        --dhx-font-color-primary: var(--search-form-label-color);
+    }
+
+    .dhx_layout-cell {
+        & > .dhx_form-group {
+            margin-top: 0;
+            margin-bottom: 8px;
+        }
+
+        &:last-child > .dhx_form-group {
+            margin-bottom: 0;
+        }
+    }
+}
+
+table.jn-form-table {
+    border-collapse: collapse;
+    border: var(--table-cell-border-width) solid var(--table-cell-border-color);
+    border-left-color: var(--table-cell-left-border-color, var(--table-cell-border-color));
+    font-size: 0.75rem;
+    line-height: 1.5;
+    vertical-align: middle;
+    box-sizing: border-box;
+    width: 100%;
+
+    & tr {
+        height: 35px;
+
+        & > th,
+        & > td {
+            padding: 3px 15px;
+            border: var(--table-cell-border-width) solid var(--table-cell-border-color);
+            background-color: var(--table-cell-background);
+        }
+
+        & > th {
+            font-weight: 700;
+            user-select: none;
+            background-color: var(--table-header-cell-background);
+
+            &.essential {
+                background-image: url("./images/sta-essential.png");
+                background-repeat: no-repeat;
+            }
+
+            &:first-child {
+                border-left-color: var(
+                    --table-cell-left-border-color,
+                    var(--table-cell-border-color)
+                );
+            }
+        }
+    }
+}

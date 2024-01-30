@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MAL_1040M" width="1920" height="580" titletext="메일 템플릿 등록" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="divTop" taborder="0" text="Div01" left="50" top="73" cssclass="div_WF_Area" right="50" height="468">
+          <Layouts>
+            <Layout>
+              <Static id="staTop" taborder="0" cssclass="sta_WF_condition02box" left="0" top="0" height="34" text="" right="0"/>
+              <Static id="staMid" taborder="1" cssclass="sta_WF_condition02box" left="0" top="staTop:0" height="400" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staEmlId" taborder="2" text="템플릿 ID" cssclass="sta_WF_condition02_LEssential" left="0" top="0" width="150" height="34"/>
+              <Edit id="edtEmlId" taborder="3" left="staEmlId:10" width="200" height="26" top="4" enable="true" readonly="true"/>
+              <Static id="staEmlTtl" taborder="4" text="템플릿 명" cssclass="sta_WF_condition02" left="455" top="0" width="150" height="34"/>
+              <Edit id="edtEmlTtl" taborder="5" left="staEmlTtl:10" top="4" height="26" width="600" readonly="false"/>
+              <Static id="staSndCn" taborder="6" text="메일 발송 내용" cssclass="sta_WF_condition02_LEssential" left="0" top="34" width="150" height="400"/>
+              <TextArea id="textSndCn" taborder="7" oneditclick="TextArea01_oneditclick" left="staSndCn:10" top="38" onchanged="Div01_TextArea01_00_onchanged" right="20" height="392"/>
+              <Static id="staTop00" taborder="8" cssclass="sta_WF_condition02box" height="34" text="" bottom="0" left="0" right="0"/>
+              <Combo id="cboSearch" taborder="9" left="160" width="200" height="26" codecolumn="codecolumn" datacolumn="datacolumn" index="0" innerdataset="innerdataset" text="사용" bottom="4" value="Y">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">사용</Col>
+                      <Col id="codecolumn">Y</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">N</Col>
+                      <Col id="datacolumn">미사용</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Static id="staEmlId00" taborder="10" text="사용여부" cssclass="sta_WF_condition02_LEssential" left="0" top="434" width="150" height="34"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staTitle" taborder="1" text="메일 템플릿 등록" top="0" cssclass="sta_WF_compTitle01" left="50" onclick="sta_title_onclick" height="58" right="1420"/>
+        <Button id="btnDelete" text="삭제" cssclass="btn_WF_Delete" visible="true" height="28" taborder="3" width="65" right="50" bottom="divTop:5" onclick="btnDelete_onclick" enable="false"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" width="65" right="btnDelete:5" taborder="2" height="28" bottom="divTop:5" onclick="btnSave_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="emlTmpltId" type="STRING" size="256"/>
+          <Column id="emlTmpltNm" type="STRING" size="256"/>
+          <Column id="emlTmpltCn" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="emlTmpltId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  메일템플릿 등록
+*  MenuPath      메일발송관리 - 메일템플릿 등록
+*  FileName      MAL_1040M.xfdl 
+*  Creator 	     kangjw
+*  CreateDate    2023.12.12
+*  Desction      메일템플릿 등록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.12   kangjw	 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+var emlTmpltId = this.getOwnerFrame().tabArgs.param.emlTmpltId;
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.dsList.setColumn(0, "useYn", 'Y');
+	if(emlTmpltId != null){
+		this.dsSearch.setColumn(0, "emlTmpltId", emlTmpltId);
+		this.btnDelete.set_enable(true);
+		this.fnSearch();
+	}
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 저장
+*/
+this.fnSave = function ()
+{
+	var strSvcId    = "setTmpltSave";
+	var strSvcUrl   = "mal/emlSndMaster/setTmpltSave.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 수정
+*/
+this.fnUpdate = function ()
+{
+	var strSvcId    = "setTmpltUpdate";
+	var strSvcUrl   = "mal/emlSndMaster/setTmpltUpdate.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 삭제
+*/
+this.fnDelete = function ()
+{
+	var strSvcId    = "setTmpltDelete";
+	var strSvcUrl   = "mal/emlSndMaster/setTmpltDelete.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 조회
+*/
+this.fnSearch = function ()
+{
+	var strSvcId    = "setTmpltDtl";
+	var strSvcUrl   = "mal/emlSndMaster/setTmpltDtl.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+	var param = this.getOwnerFrame().tabArgs.param;
+	emlTmpltId = (param == null || Eco.isEmpty(param.emlTmpltId)) ? null : param.emlTmpltId;
+	
+    switch (svcId) {
+        case "setTmpltSave":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+				this.dsSearch.setColumn(0, "emlTmpltId", emlTmpltId);
+				this.dsSearch();
+			} else {
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+		case "setTmpltDtl":
+			break;
+		case "setTmpltUpdate":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+			} else {
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+			break;
+		case "setTmpltDelete":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_DELETE_SUCCESS");  	// 삭제
+			}
+			break;
+		default:	
+            break;
+    }
+};
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnValidation();
+};
+
+this.btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""});
+};
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+this.fnValidation = function() {
+
+	if(this.dsList.getColumn(0,"emlTmpltNm") == ""){
+		this.gfnAlert("CM_MSG_SAVE_REQUIRE", ["템플릿 명"]);
+		return false;
+	} else if(this.dsList.getColumn(0,"emlTmpltCn") == ""){
+		this.gfnAlert("CM_MSG_SAVE_REQUIRE", ["메일 발송 내용"]);
+		return false;
+	} else if(this.dsList.getColumn(0,"useYn") == ""){
+		this.gfnAlert("CM_MSG_SAVE_REQUIRE", ["사용여부"]);
+		return false;
+	} else if(this.dsList.getColumn(0,"emlTmpltNm") == ""
+				&& this.dsList.getColumn(0,"emlTmpltCn") == ""
+				&& this.dsList.getColumn(0,"useYn") == ""){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");
+		return false;
+	} else if (!this.gfnIsUpdated(this.dsList)){
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");
+		return false;
+	} else {
+		if(emlTmpltId == null){
+			this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+		} else this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnUpdate", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	}
+	
+}
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item1" compid="divTop.form.edtEmlId" propid="value" datasetid="dsList" columnid="emlTmpltId"/>
+      <BindItem id="item2" compid="divTop.form.edtEmlTtl" propid="value" datasetid="dsList" columnid="emlTmpltNm"/>
+      <BindItem id="item0" compid="divTop.form.cboSearch" propid="value" datasetid="dsList" columnid="useYn"/>
+      <BindItem id="item3" compid="divTop.form.textSndCn" propid="value" datasetid="dsList" columnid="emlTmpltCn"/>
+    </Bind>
+  </Form>
+</FDL>

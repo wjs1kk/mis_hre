@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.code.service.CommonCodeManageDAO">
+
+    <select id="getCodeHeaderList" parameterType="map" resultType="commonCodeHeaderVO">
+        /* common-code-manage-mapper.getCodeHeaderList */
+        SELECT H.SYS_ID
+             , H.MODULE_ID
+             , H.HEADER_CODE
+             , H.HEADER_CODE_NM_KR
+             , H.HEADER_CODE_NM_EN
+             , H.HEADER_CODE_DC
+             , H.USE_YN
+             , H.SORT_ORDR
+             , H.UPDT_ID
+             , H.UPDT_IP
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = H.UPDT_ID) AS UPDT_NM
+             , TO_CHAR(H.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+             , H.CHK_CNT_SQL
+          FROM CMN_CODE_HEADER H
+         WHERE TRUE
+        <if test='searchSysId != null and searchSysId != ""'>
+           AND SYS_ID = #{searchSysId}
+        </if>
+        <if test='searchModuleId != null and searchModuleId != "" and searchModuleId != "undefined"'>
+           AND H.MODULE_ID LIKE '%' || #{searchModuleId} || '%'
+        </if>
+        <if test='searchHeaderCode != null and searchHeaderCode != "" and searchHeaderCode != "undefined"'>
+           AND H.HEADER_CODE LIKE '%' || #{searchHeaderCode} || '%'
+        </if>
+        <if test='headerCodeNmKr != null and headerCodeNmKr != "" and headerCodeNmKr != "undefined"'>
+           AND H.HEADER_CODE_NM_KR LIKE '%' || #{headerCodeNmKr} || '%'
+        </if>
+         ORDER BY H.SYS_ID, H.MODULE_ID, H.HEADER_CODE
+    </select>
+
+    <select id="getCodeLineList" parameterType="map" resultType="commonCodeLineVO">
+        /* common-code-manage-mapper.getCodeLineList */
+        SELECT L.SYS_ID
+             , L.MODULE_ID
+             , L.HEADER_CODE
+             , L.LINE_CODE
+             , L.LINE_CODE_NM_KR
+             , L.LINE_CODE_NM_EN
+             , L.LINE_CODE_DC
+             , L.SORT_ORDR
+             , L.USE_YN
+             , L.USE_YMD
+             , L.END_YMD
+             , L.UPDT_ID
+             , L.UPDT_IP
+             , L.UPDT_DT
+          FROM CMN_CODE_LINE L
+         WHERE L.SYS_ID = #{sysId}
+           AND L.MODULE_ID = #{moduleId}
+           AND L.HEADER_CODE = #{headerCode}
+         ORDER BY L.SORT_ORDR
+    </select>
+
+    <insert id="insertCodeHeader" parameterType="commonCodeHeaderVO">
+        /* common-code-manage-mapper.insertCodeHeader */
+        INSERT
+          INTO CMN_CODE_HEADER ( HEADER_CODE
+                              , HEADER_CODE_NM_KR
+                              , HEADER_CODE_NM_EN
+                              , HEADER_CODE_DC
+                              , USE_YN
+                              , MODULE_ID
+                              , SYS_ID
+                              , RGST_ID
+                              , RGST_DT
+                              , RGST_IP
+                              , UPDT_ID
+                              , UPDT_DT
+                              , UPDT_IP)
+                       VALUES ( NULLIF(#{headerCode}, '')
+                              , NULLIF(#{headerCodeNmKr}, '')
+                              , NULLIF(#{headerCodeNmEn}, '')
+                              , NULLIF(#{headerCodeDc}, '')
+                              , NULLIF(#{useYn}, '')
+                              , NULLIF(#{moduleId}, '')
+                              , NULLIF(#{sessionSysId}, '')
+                              , NULLIF(#{sessionUserId}, '')
+                              , NOW()
+                              , NULLIF(#{sessionUserIp}, '')
+                              , NULLIF(#{sessionUserId}, '')
+                              , NOW()
+                              , NULLIF(#{sessionUserIp}, ''))
+    </insert>
+
+    <update id="updateCodeHeader" parameterType="commonCodeHeaderVO">
+        /* common-code-manage-mapper.updateCodeHeader */
+        UPDATE CMN_CODE_HEADER
+           SET HEADER_CODE       = NULLIF(#{headerCode}, '')
+             , HEADER_CODE_NM_KR = NULLIF(#{headerCodeNmKr}, '')
+             , HEADER_CODE_NM_EN = NULLIF(#{headerCodeNmEn}, '')
+             , HEADER_CODE_DC    = NULLIF(#{headerCodeDc}, '')
+             , USE_YN            = NULLIF(#{useYn}, '')
+             , MODULE_ID         = NULLIF(#{moduleId}, '')
+             , UPDT_ID           = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP           = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT           = NOW()
+         WHERE SYS_ID            = #{sysId}
+           AND MODULE_ID         = #{moduleId}
+           AND HEADER_CODE       = #{headerCode}
+    </update>
+
+    <delete id="deleteCodeHeader" parameterType="commonCodeHeaderVO">
+        /* common-code-manage-mapper.deleteCodeHeader */
+        DELETE
+          FROM CMN_CODE_HEADER
+         WHERE SYS_ID      = #{sysId}
+           AND MODULE_ID   = #{moduleId}
+           AND HEADER_CODE = #{headerCode}
+    </delete>
+
+    <delete id="deleteCodeHeaderLine" parameterType="commonCodeHeaderVO">
+        /* common-code-manage-mapper.deleteCodeHeaderLine */
+        DELETE
+          FROM CMN_CODE_LINE
+         WHERE SYS_ID      = #{sysId}
+           AND MODULE_ID   = #{moduleId}
+           AND HEADER_CODE = #{headerCode}
+    </delete>
+
+    <insert id="insertCodeLine" parameterType="commonCodeLineVO">
+        /* common-code-manage-mapper.insertCodeLine */
+        INSERT
+          INTO CMN_CODE_LINE ( HEADER_CODE
+                              , LINE_CODE
+                              , LINE_CODE_NM_KR
+                              , LINE_CODE_NM_EN
+                              , LINE_CODE_DC
+                              , SORT_ORDR
+                              , USE_YN
+                              , MODULE_ID
+                              , SYS_ID
+                              , RGST_ID
+                              , RGST_DT
+                              , RGST_IP
+                              , UPDT_ID
+                              , UPDT_DT
+                              , UPDT_IP)
+                       VALUES ( NULLIF(#{headerCode}, '')
+                              , NULLIF(#{lineCode}, '')
+                              , NULLIF(#{lineCodeNmKr}, '')
+                              , NULLIF(#{lineCodeNmEn}, '')
+                              , NULLIF(#{lineCodeDc}, '')
+                              , NULLIF(#{sortOrdr}, '')::INT
+                              , NULLIF(#{useYn}, '')
+                              , NULLIF(#{moduleId}, '')
+                              , NULLIF(#{sessionSysId}, '')
+                              , NULLIF(#{sessionUserId}, '')
+                              , NOW()
+                              , NULLIF(#{sessionUserIp}, '')
+                              , NULLIF(#{sessionUserId}, '')
+                              , NOW()
+                              , NULLIF(#{sessionUserIp}, ''))
+    </insert>
+
+    <update id="updateCodeLine" parameterType="commonCodeLineVO">
+        /* common-code-manage-mapper.updateCodeLine */
+        UPDATE CMN_CODE_LINE
+           SET HEADER_CODE     = NULLIF(#{headerCode}, '')
+             , LINE_CODE       = NULLIF(#{lineCode}, '')
+             , LINE_CODE_NM_KR = NULLIF(#{lineCodeNmKr}, '')
+             , LINE_CODE_NM_EN = NULLIF(#{lineCodeNmEn}, '')
+             , LINE_CODE_DC    = NULLIF(#{lineCodeDc}, '')
+             , SORT_ORDR       = NULLIF(#{sortOrdr}, '')::INT
+             , USE_YN          = NULLIF(#{useYn}, '')
+             , UPDT_ID         = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP         = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT         = NOW()
+         WHERE SYS_ID          = #{sysId}
+           AND MODULE_ID       = #{moduleId}
+           AND HEADER_CODE     = #{headerCode}
+           AND LINE_CODE       = #{lineCode}
+    </update>
+
+    <delete id="deleteCodeLine" parameterType="commonCodeLineVO">
+        /* common-code-manage-mapper.deleteCodeLine */
+        DELETE
+          FROM CMN_CODE_LINE
+         WHERE SYS_ID      = #{sysId}
+           AND MODULE_ID   = #{moduleId}
+           AND HEADER_CODE = #{headerCode}
+           AND LINE_CODE   = #{lineCode}
+    </delete>
+
+    <select id="getDuplicatedKeyCnt" parameterType="commonCodeLineVO" resultType="int">
+        /* common-code-mapper.getDuplicatedKeyCnt */
+        SELECT COUNT(*)
+          FROM CMN_CODE_HEADER
+         WHERE SYS_ID       = #{sessionSysId}
+           AND MODULE_ID    = #{moduleId}
+           AND HEADER_CODE  = #{headerCode}
+    </select>
+
+    <select id="getDuplicatedKeyCnt2" parameterType="commonCodeHeaderVO" resultType="int">
+        /* common-code-mapper.getDuplicatedKeyCnt2 */
+        SELECT COUNT(*)
+          FROM CMN_CODE_LINE
+         WHERE SYS_ID       = #{sessionSysId}
+           AND MODULE_ID    = #{moduleId}
+           AND HEADER_CODE  = #{headerCode}
+           AND LINE_CODE    = #{lineCode}
+    </select>
+</mapper>

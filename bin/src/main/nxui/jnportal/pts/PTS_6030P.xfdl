@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_6030P" width="650" height="250" titletext="일간일정">
+    <Layouts>
+      <Layout height="250" mobileorientation="landscape" width="650">
+        <Div id="schedule" taborder="0" text="" left="0" top="0" height="250" cssclass="div_WF_Area" visible="false" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" text="일간일정" left="0" top="0" height="50" cssclass="portal_sta_popTitle" right="0" width="650"/>
+              <Button id="btn_popClose" cssclass="portal_btn_close" visible="true" height="50" taborder="0" onclick="btn_registration_onclick" width="50" right="0" top="0"/>
+              <Static id="Static01" taborder="2" text="2023.03.22" left="30" top="Static00:0" height="46" cssclass="portal_sta_popSchdule" onclick="Static_onclick" right="30"/>
+              <Div id="Div00" taborder="3" text="Div00" left="30" top="96" right="30" cssclass="portal_popBg" bottom="20">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static00" taborder="0" left="20" top="9" height="63" cssclass="portal_sta_popSchduleBg" right="20" text=""/>
+                    <Static id="Static01" taborder="1" text="2023.03.05 ~ 2023.03.25" left="20" top="19" width="191" height="26" cssclass="portal_sta_popSchduleDate"/>
+                    <Static id="Static01_00" taborder="2" text="23-1차 유망수출품목발굴 지원사업 참여기업 모집공고" left="Static01:15" top="19" height="42" cssclass="portal_sta_popSchduleTxt" width="344"/>
+                    <Static id="Static01_01" taborder="3" text="2023.03.05 ~ 2023.03.25" left="20" top="84" width="191" height="26" cssclass="portal_sta_popSchduleDate"/>
+                    <Static id="Static01_00_00" taborder="4" text="250kW급 고출력밀도 시동/발전기 기술 협약일" left="Static01:15" top="84" height="26" cssclass="portal_sta_popSchduleTxt" width="344"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="schedule.form.div_Search.form.Edit01" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="schedule.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="schedule.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="schedule.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="schedule.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="schedule.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="schedule.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="schedule.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="schedule.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="schedule.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="schedule.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="schedule.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="schedule.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="schedule.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="schedule.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="schedule.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="schedule.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="schedule.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="schedule.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="schedule.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="schedule.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="schedule.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="schedule.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="schedule.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="schedule.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="schedule.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="schedule.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="schedule.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="schedule.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="schedule.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="schedule.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="schedule.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="schedule.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item33" compid="schedule.form.Combo00" propid="value" datasetid="Dataset00" columnid="key"/>
+      <BindItem id="item34" compid="Div00.form.Combo00_00" propid="value" datasetid="Dataset00" columnid="key"/>
+    </Bind>
+  </Form>
+</FDL>

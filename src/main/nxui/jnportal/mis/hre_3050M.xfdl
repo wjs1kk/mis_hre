@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="hre_3050M" width="1280" height="720" titletext="New Form" background="white">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1280">
+        <Button id="btn_Save" text="저장" cssclass="btn_WF_icoSave" top="36" width="63" height="28" taborder="0" onclick="btn_search_onclick" left="1150"/>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

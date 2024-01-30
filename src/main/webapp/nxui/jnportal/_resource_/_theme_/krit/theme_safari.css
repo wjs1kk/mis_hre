@@ -1392,7 +1392,7 @@ textarea::-webkit-scrollbar { display: none; }
 	font : bold 12px "Noto Sans KR";
 	color : #999999;
 }
-#nexacontainer .GroupBox .groupboxcontents[data-status=disabled]
+#nexacontainer .GroupBox .groupboxcontents[status=disabled]
 {
 	background : #efefef;
 }

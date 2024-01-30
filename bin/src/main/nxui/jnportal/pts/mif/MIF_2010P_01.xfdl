@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MIF_2010P_01" width="660" titletext="비밀번호 변경" onload="form_onload" height="272">
+    <Layouts>
+      <Layout>
+        <Div id="divPopup" taborder="0" text="" left="0" top="0" height="272" cssclass="div_WF_Area" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="sta000" taborder="7" cssclass="sta_WF_condition02box" left="30" top="96" right="30" height="34" text=""/>
+              <Static id="staPopupTitle" taborder="0" text="비밀번호 변경" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0" bottom="0"/>
+              <Static id="Static04_00_00_01_00" taborder="3" text="h 23" onclick="Static31_onclick" visible="false" left="0" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0" top="249"/>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0" top="196"/>
+              <Button id="btnPopupClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="5" left="332" onclick="divPopup_btnPopupClose_onclick" top="221"/>
+              <Button id="btnSave" taborder="4" text="저장" cssclass="btn_WF_icoSave" width="65" left="264" height="28" onclick="divPopup_btnSave_onclick" top="221"/>
+              <Static id="sta000_00" taborder="8" cssclass="sta_WF_condition02box" left="30" top="129" right="30" height="34" text=""/>
+              <Static id="sta000_00_00" taborder="9" cssclass="sta_WF_condition02box" left="30" top="162" right="30" height="34" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staSubTitle" taborder="4" text="비밀번호 변경" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="30" top="50" height="45" width="169"/>
+        <Edit id="edtOldPasswd" taborder="1" left="194" top="100" width="200" height="26" maxlength="100" cssclass="essential" password="true" onkeydown="Edit_onkeydown"/>
+        <Static id="staText01" taborder="7" text="* 9~15자 이내 숫자, 문자, 특수문자 조합" left="405" top="133" width="197" height="26" color="darkgray" font="normal 8pt/normal &quot;Arial&quot;"/>
+        <Edit id="edtPasswd" taborder="2" left="194" top="133" width="200" height="26" maxlength="100" onkeyup="divPopup_divForm_edt_001_onkeyup" cssclass="essential" password="true" onkeydown="Edit_onkeydown"/>
+        <Edit id="edtPasswdCheck" taborder="3" left="194" top="166" width="200" height="26" maxlength="100" onkeyup="divPopup_divForm_edt_001_onkeyup" cssclass="essential" password="true" onkeydown="Edit_onkeydown"/>
+        <Static id="sta003" taborder="8" text="새 비밀번호(확인)" cssclass="sta_WF_condition02_LEssential" left="30" top="162" width="150" height="34"/>
+        <Static id="sta002" taborder="6" text="새 비밀번호" cssclass="sta_WF_condition02_LEssential" left="30" top="129" width="150" height="34"/>
+        <Static id="sta001" taborder="5" text="현재 비밀번호" cssclass="sta_WF_condition02_LEssential" left="30" top="96" width="150" height="34"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsPasswd" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="oldPasswd" type="STRING" size="256"/>
+          <Column id="passwd" type="STRING" size="256"/>
+          <Column id="passwdCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+/**
+*  messageManage
+*  MenuPath      마이페이지 - 회원정보 - 비밀번호변경 팝업
+*  FileName      MIF_2010P.xfdl 
+*  Creator 	     yuyr
+*  CreateDate    2023.11.03
+*  Desction      비밀번호 변경
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.11.03    yuyr 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+/**
+ * description 화면 onload
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/**
+ * description 저장
+ */
+this.fnSave = function()
+{	
+	this.gfnTransaction("updatePw", "mi/myPage/changePassword.do", "dsPasswd", "", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "updatePw":
+			if (this.callbackMsg === "success") {
+				this.gfnAlert("비밀번호 변경이 완료되었습니다.");
+				this.close();
+			} else if (this.callbackMsg === "oldPasswordNotMatched") {
+				this.gfnAlert("현재 비밀번호가 일치하지 않습니다.");
+            } else {
+				this.gfnAlert("비밀번호 변경이 실패했습니다.");
+			}
+            break;
+		default:
+            break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+/**
+ * description 닫기버튼
+ */
+this.divPopup_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+/**
+ * description 저장버튼
+ */
+this.divPopup_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnBeforeSave();
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnBeforeSave = function ()
+{
+    this.edtOldPasswd.updateToDataset();
+    this.edtPasswd.updateToDataset();
+    this.edtPasswdCheck.updateToDataset();
+
+	if (!this.fnValidate()) {
+        return;
+    }
+    
+    this.fnSave();
+};
+
+this.fnValidate = function ()
+{
+    const args = [
+        ["oldPasswd", "NULL|MAX_LEN:16|MIN_LEN:9", "현재 비밀번호"],
+        ["passwd", "NULL|MAX_LEN:16|MIN_LEN:9", "새 비밀번호"],
+        ["passwdCheck", "NULL|MAX_LEN:16|MIN_LEN:9", "새 비밀번호(확인)"]
+    ];
+
+    if (!this.gfnCheckGrid(this.dsPasswd, args, "")) {
+        return false;
+    }
+    
+    const passwd = this.dsPasswd.getColumn(0, "passwd");
+    const passwdCheck = this.dsPasswd.getColumn(0, "passwdCheck");
+    
+    if (!this.fnCheckPassword(passwd)) {
+        return false;
+    }
+    
+    return passwd === passwdCheck;
+};
+
+/**
+ * description 비밀번호 체크 숫자, 영어, 특수기호 체크
+ */
+this.fnCheckPassword = function (password)
+{
+    var counts = {
+        alpha: 0,
+        digits: 0,
+        symbols: 0
+    };
+    
+    for (const ch of password) {
+        var cp = ch.codePointAt(0);
+        if (cp >= 0x0030 && cp <= 0x0039) {
+            counts.digits++;
+        } else if ((cp >= 0x0041 && cp <= 0x005a) || (cp >= 0x0061 && cp <= 0x007a)) {
+            counts.alpha++;
+        } else if ((cp >= 0x0021 && cp <= 0x002f) || (cp >= 0x003a && cp <= 0x0040) || (cp >= 0x005B && cp <= 0x0060) || (cp >= 0x007b && cp <= 0x007e)) {
+            counts.symbols++;
+        } else if (cp == 0x0009 || cp == 0x000a || cp == 0x000b || cp == 0x000c || cp == 0x000d || cp == 0x0020) {
+            this.gfnAlert("공백 문자는 비밀번호에 사용할 수 없습니다.");
+            return false;
+        } else if (cp <= 0x001f || cp == 0x007f) {
+            this.gfnAlert("비밀번호에 올바르지 않은 문자가 포함되어 있습니다.");
+            return false;
+        } else {
+            this.gfnAlert("문자 '" + ch + "'는 비밀번호에 사용할 수 없습니다.");
+            return false;
+        }
+    }
+    
+    if (counts.alpha == 0 || counts.digits == 0 || counts.symbols == 0) {
+        this.gfnAlert("비밀번호는 영문자, 숫자, 특수문자를 각각 하나 이상 사용해야 합니다.");
+        return false;
+    } else {
+        return true;
+    }
+};
+
+this.Edit_onkeydown = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+        this.fnBeforeSave();
+    }
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="edtOldPasswd" propid="value" datasetid="dsPasswd" columnid="oldPasswd"/>
+      <BindItem id="item1" compid="edtPasswd" propid="value" datasetid="dsPasswd" columnid="passwd"/>
+      <BindItem id="item2" compid="edtPasswdCheck" propid="value" datasetid="dsPasswd" columnid="passwdCheck"/>
+    </Bind>
+  </Form>
+</FDL>

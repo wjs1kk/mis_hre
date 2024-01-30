@@ -1,0 +1,12 @@
+{
+    "Password.InvalidChar": "The character {0} cannot be used in password.",
+    "Password.InvalidChar.Control": "Password contains illegal characters.",
+    "Password.InvalidChar.Whitespace": "Whitespaces cannot be used in password.",
+    "Password.Required": "Password must contain {0}.",
+    "Password.Category.LowerCase": "Lowercases",
+    "Password.Category.UpperCase": "Capitals",
+    "Password.Category.Alpha": "Alphabets",
+    "Password.Category.Digit": "Digits",
+    "Password.Category.Symbol": "Symbols",
+    "Password.And": " and "
+}

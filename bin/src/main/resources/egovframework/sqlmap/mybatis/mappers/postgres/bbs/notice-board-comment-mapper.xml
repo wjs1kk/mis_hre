@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.service.NoticeBoardCommentDAO">
+
+    <!-- 소통광장 - 게시물 상세조회 내용 -댓글내용 조회 -->
+    <select id="getNBDetailComment" parameterType="map" resultType="noticeBoardCommentVO">
+        /* notice-board-comment-mapper.getNBDetailComment */
+        SELECT PC.BBS_ID
+             , PC.NTT_NO
+             , PC.CMNT_NO
+             , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PC.WRTR_ID) AS WRTR_ID
+             , PC.WRTR_NM
+             , PC.CMNT_CN
+             , TO_CHAR(PC.RGST_DT, 'YYYY-MM-DD HH24:MI') AS RGST_DT
+             , PC.RGSTR_ID
+             , PC.UPDT_DT
+             , PC.UPDTR_ID
+          FROM PTS_COMMENT PC
+         WHERE PC.BBS_ID = #{bbsId}
+           AND PC.NTT_NO = #{nttNo}::INT
+      ORDER BY PC.CMNT_NO DESC
+    </select>
+
+    <!-- 소통광장 - 게시물 상세조회 내용 -댓글내용 입력 -->
+    <insert id="insertNBDetailComment" parameterType="noticeBoardCommentVO">
+        /* notice-board-comment-mapper.insertNBDetailComment */
+        <selectKey keyProperty="cmntNo" resultType="string" order="BEFORE">
+            SELECT COALESCE(MAX(CMNT_NO::INT), 0) + 1 AS CMNT_NO
+              FROM PTS_COMMENT
+        </selectKey>
+        INSERT
+          INTO PTS_COMMENT ( BBS_ID
+                           , NTT_NO
+                           , CMNT_NO
+                           , WRTR_ID
+                           , WRTR_NM
+                           , CMNT_CN
+                           , PASSWD
+                           , RGST_DT
+                           , RGSTR_ID
+                           , UPDT_DT
+                           , UPDTR_ID )
+                    VALUES ( NULLIF(#{bbsId},'')
+                           , #{nttNo}::INT
+                           , #{cmntNo}::INT
+                           , #{sessionUserId}
+                           , (SELECT C.USER_NM_KR
+                                FROM CMN_USER C
+                               WHERE USER_ID = #{sessionUserId})
+                           , NULLIF(#{cmntCn},'')
+                           , NULLIF(#{passwd},'')
+                           , NOW()
+                           , #{sessionUserId}
+                           , NOW()
+                           , #{sessionUserId})
+    </insert>
+
+    <!-- 소통광장 - 게시물 상세조회 내용 -댓글내용 삭제 -->
+    <delete id="deleteNBDetailComment" parameterType="noticeBoardCommentVO">
+        /* notice-board-comment-mapper.deleteNBDetailComment */
+        DELETE
+          FROM PTS_COMMENT
+         WHERE BBS_ID   = #{bbsId}
+           AND NTT_NO   = #{nttNo}::INT
+           AND CMNT_NO  = #{cmntNo}::INT
+           AND WRTR_ID   = #{sessionUserId}
+    </delete>
+
+</mapper>

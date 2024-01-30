@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MIF_3020P_02" width="500" height="362" titletext="비밀번호 찾기" onload="MIF_3020P_02_onload">
+    <Layouts>
+      <Layout height="362" width="500">
+        <Div id="divFindPw" taborder="0" text="" left="0" top="0" height="362" width="500" cssclass="div_WF_Area" visible="true">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="4" text="비밀번호 찾기" left="0" top="0" height="50" cssclass="portal_sta_popTitle" width="500"/>
+              <Static id="Static01" taborder="1" text="회원가입시 입력하신 아래 메일로 임시 비밀번호가&#13;&#10;발송되었습니다." left="0" top="Static00:20" height="74" cssclass="portal_sta_popTit" onclick="Static_onclick" width="500"/>
+              <TextArea id="taEmlAddr" taborder="2" left="30" top="Static01:10" height="63" value="id@mail.com" right="30" onchanged="Div00_TextArea00_onchanged" cssclass="portal_txt_login"/>
+              <Static id="Static02" taborder="3" text="메일 수신이 되지 않을 경우 스팸함을 확인해 주세요." left="30" top="taEmlAddr:10" height="40" cssclass="portal_sta_frmDescription" onclick="Static_onclick" right="30"/>
+              <Button id="btn_popClose" text="확인" cssclass="portal_btn" visible="true" width="75" height="45" taborder="0" right="41.20%" top="Static02:20" onclick="pfindPW_btn_popClose_onclick"/>
+              <Button id="btn_popClose00" cssclass="portal_btn_close" visible="true" height="50" taborder="5" width="50" right="0" top="0" onclick="pfindPW_btn_popClose00_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divFindPw.form.div_Search.form.Edit01" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="divFindPw.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="divFindPw.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="divFindPw.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="divFindPw.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="divFindPw.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="divFindPw.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="divFindPw.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="divFindPw.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="divFindPw.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="divFindPw.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="divFindPw.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="divFindPw.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="divFindPw.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="divFindPw.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="divFindPw.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="divFindPw.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="divFindPw.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="divFindPw.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="divFindPw.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="divFindPw.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="divFindPw.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="divFindPw.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="divFindPw.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="divFindPw.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="divFindPw.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="divFindPw.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="divFindPw.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="divFindPw.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="divFindPw.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="divFindPw.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="divFindPw.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="divFindPw.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  비밀번호 찾기 결과
+ *  MenuPath      로그인 - ID/PW찾기
+ *  FileName      MIF_3010M.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.10.31
+ *  Desction      비밀번호 찾기 결과
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.10.31    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.MIF_3020P_02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.divFindPw.form.taEmlAddr.set_value(this.parent.emlAddr);
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.pfindPW_btn_popClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.pfindPW_btn_popClose00_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

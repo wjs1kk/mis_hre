@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.scrp.service.BoardScrpDAO">
+
+    <!-- 소통광장 - 게시판- 스크랩목록 -->
+    <select id="getBoardScrapList" parameterType="map" resultType="boardScrpVO">
+        /* board-scarp-mapper.getBoardScrapList */
+        SELECT PS.SCRP_ID
+             , PS.BBS_ID
+             , PS.NTT_NO
+             , (SELECT PB.NTT_TTL
+                  FROM PTS_BBS PB
+                 WHERE PB.NTT_NO = PS.NTT_NO
+                   AND PB.BBS_ID = PS.BBS_ID)AS SCRP_NM
+             , PS.SCRP_DT
+             , PS.SCRP_USER_ID
+          FROM PTS_SCRP PS
+           <where>
+           AND PS.SCRP_USER_ID = #{sessionUserId}
+            <if test='scrpNm != null and scrpNm != ""'>
+             AND (SELECT PB.NTT_TTL
+                  FROM PTS_BBS PB
+                 WHERE PB.NTT_NO = PS.NTT_NO
+                   AND PB.BBS_ID = PS.BBS_ID) LIKE '%' || #{scrpNm} || '%'
+            </if>
+           </where>
+      ORDER BY PS.SCRP_DT DESC
+    </select>
+
+    <!-- 소통광장 - 게시판- 스크랩 중복체크 -->
+    <select id="getDuplicateKeyCnt" parameterType="boardScrpVO">
+        /* board-scarp-mapper.getDuplicateKeyCnt */
+        SELECT COUNT(*)
+          FROM PTS_SCRP
+         WHERE BBS_ID = #{bbsId}
+           AND NTT_NO = #{nttNo}::INT
+           ANd SCRP_USER_ID = #{sessionUserId}
+    </select>
+
+    <!-- 소통광장 - 게시판- 스크랩 추가 -->
+    <insert id="insertBoardScrap" parameterType="boardScrpVO">
+        /* board-scarp-mapper.insertBoardScrap */
+        INSERT INTO PTS_SCRP
+                  ( SCRP_ID
+                  , BBS_ID
+                  , NTT_NO
+                  , SCRP_NM
+                  , SCRP_DT
+                  , SCRP_USER_ID)
+           VALUES ( NULLIF(#{scrpId},'')
+                  , NULLIF(#{bbsId},'')
+                  , #{nttNo}::INT
+                  , NULLIF(#{scrpNm},'')
+                  , NOW()
+                  , #{sessionUserId})
+    </insert>
+
+    <!-- 소통광장 - 게시판- 스크랩 추가 -->
+    <delete id="deleteBoardScrap" parameterType="boardScrpVO">
+        /* board-scarp-mapper.deleteBoardScrap */
+        DELETE FROM PTS_SCRP
+         WHERE BBS_ID = #{bbsId}
+           AND NTT_NO = #{nttNo}::INT
+           AND SCRP_ID = #{scrpId}
+           AND SCRP_USER_ID = #{sessionUserId}
+    </delete>
+
+</mapper>

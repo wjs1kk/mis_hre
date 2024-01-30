@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.common.attach.service.CmnFileDAO">
+
+    <select id="getList" parameterType="map" resultType="cmnFileVO">
+        /* cmn-file-mapper.getList */
+        SELECT PGM_ID
+             , FILE_ID
+             , FILE_SEQ
+             , ORGNL_FILE_NM
+             , STRG_FILE_NM
+             , FILE_PATH
+             , FILE_SZ
+             , FILE_EXTN
+             , DEL_YN
+             , RGST_ID
+             , RGST_IP
+             , RGST_DT
+             , UPDT_ID
+             , UPDT_IP
+             , UPDT_DT
+          FROM CMN_FILE
+         WHERE DEL_YN = 'N'
+           AND PGM_ID = #{pgmId}
+           AND FILE_ID = #{fileId}
+         ORDER BY FILE_SEQ
+    </select>
+
+    <insert id="setFile">
+        <selectKey keyProperty="fileSeq" resultType="string" order="BEFORE">
+            SELECT NVL(MAX(FILE_SEQ), 0) + 1
+              FROM CMN_FILE
+             WHERE PGM_ID = #{pgmId}
+               AND FILE_ID = #{fileId}
+        </selectKey>
+        /* cmn-file-mapper.setFile */
+        INSERT INTO CMN_FILE (
+            PGM_ID,
+            FILE_ID,
+            FILE_SEQ,
+            ORGNL_FILE_NM,
+            STRG_FILE_NM,
+            FILE_PATH,
+            FILE_SZ,
+            FILE_EXTN,
+            DEL_YN,
+            RGST_ID,
+            RGST_IP,
+            RGST_DT,
+            UPDT_ID,
+            UPDT_IP,
+            UPDT_DT)
+        VALUES(
+            #{pgmId},
+            #{fileId},
+            #{fileSeq},
+            #{orgnlFileNm},
+            #{strgFileNm},
+            #{filePath},
+            #{fileSz},
+            #{fileExtn},
+            'N',
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE,
+            #{sessionUserId},
+            #{sessionUserIp},
+            SYSDATE)
+    </insert>
+
+    <update id="updateFile">
+        /* cmn-file-mapper.updateFile */
+        UPDATE CMN_FILE
+           SET ORGNL_FILE_NM = #{orgnlFileNm}
+             , STRG_FILE_NM = #{strgFileNm}
+             , FILE_PATH = #{filePath}
+             , FILE_SZ = #{fileSz}
+             , FILE_EXTN = #{fileExtn}
+             , UPDT_ID = #{updtId}
+             , UPDT_IP = #{updtId}
+             , UPDT_DT = SYSDATE
+         WHERE PGM_ID = #{pgmId}
+           AND FILE_ID = #{fileId}
+           AND FILE_SEQ = #{fileSeq}
+    </update>
+
+    <delete id="deleteFile">
+        /* cmn-file-mapper.updateFile */
+        UPDATE CMN_FILE
+           SET DEL_YN = 'Y'
+             , UPDT_ID = #{updtId}
+             , UPDT_IP = #{updtId}
+             , UPDT_DT = SYSDATE
+         WHERE PGM_ID = #{pgmId}
+           AND FILE_ID = #{fileId}
+           AND FILE_SEQ = #{fileSeq}
+    </delete>
+</mapper>

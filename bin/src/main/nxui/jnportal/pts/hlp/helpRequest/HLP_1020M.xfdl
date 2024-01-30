@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HLP_1020M" width="1920" height="530" titletext="요청 등록" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static04" taborder="1" text="h 20" onclick="Static31_onclick" visible="false" left="1810" top="0" width="60" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Static id="Static02" taborder="0" text="W&#13;&#10; 50" visible="false" top="0" height="3275" onclick="Static02_onclick" background="antiquewhite" color="blue" width="50" right="0"/>
+        <Static id="Static34" taborder="2" text="W 50" onclick="Static02_onclick" visible="false" left="0" top="-2" width="50" height="512" background="antiquewhite" color="blue"/>
+        <Static id="Static04_00_00_02" taborder="3" text="h 10" onclick="Static31_onclick" visible="false" left="45" top="379" width="60" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Div id="DivRequestForm" taborder="4" text="Div01" left="50" top="29" cssclass="div_WF_Area" height="481" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="44" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="77" height="34" text="" right="0"/>
+              <Static id="Static10_00_00_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" top="110" height="268" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staTitle" taborder="3" text="제목" cssclass="sta_WF_condition02_LEssential" left="0" top="44" width="150" height="34"/>
+              <Static id="Static_essential" taborder="6" text="요청자" cssclass="sta_WF_condition02" left="75%" top="44" width="150" height="34"/>
+              <Edit id="edttitle" taborder="4" left="staTitle:10" height="26" top="48" readonly="false" right="Static_essential:76"/>
+              <Static id="Static_comboBox" taborder="5" text="요청분류" cssclass="sta_WF_condition02_LEssential" left="0" top="77" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="Static07_01_01_00_01_00_00" taborder="7" top="19.55%" height="1" onclick="div_Search_Static07_onclick" text="" cssclass="sta_WF_borCondition02" width="570" right="20"/>
+              <Static id="Static_textarea" taborder="8" text="요청내용" cssclass="sta_WF_condition02_LEssential" left="0" top="109" width="150" height="268"/>
+              <TextArea id="areaRqstCn" taborder="9" oneditclick="TextArea01_oneditclick" left="Static_textarea:10" top="114" height="259" onchanged="Div01_TextArea01_00_onchanged" right="10"/>
+              <Static id="Static_essential03" taborder="24" text="상태" cssclass="sta_WF_condition02" left="75.00%" top="77" width="150" height="34"/>
+              <Edit id="edtStts" taborder="10" left="Static_essential03:10" height="26" top="81" inputtype="english,dot,alpha,number" readonly="true" width="125"/>
+              <Static id="Static10_00_00_00" taborder="11" cssclass="sta_WF_condition02box" left="6" top="376" height="34" text="" right="0"/>
+              <Static id="staFile" taborder="15" text="첨부파일" cssclass="sta_WF_condition02_L" left="0" top="376" width="150" height="34"/>
+              <Edit id="edtFile" taborder="14" left="staFile:10" width="302" height="26" top="380" readonly="true"/>
+              <Button id="btnDownload" taborder="13" text="다운로드" cssclass="btn_WF_grdArrDown" top="380" width="85" height="26" left="edtFile:10"/>
+              <Button id="btnUpload" taborder="12" text="업로드" cssclass="btn_WF_grdUpload" top="380" width="73" height="26" left="btnDownload:5"/>
+              <Static id="staEnrollTitle" taborder="16" text="요청등록" top="-27" cssclass="sta_WF_compTitle01" left="0" onclick="sta_title_onclick" height="58" right="Static10_00:-500"/>
+              <Button id="btnDelete" text="삭제" cssclass="btn_WF_Delete" visible="true" top="4" height="28" taborder="18" onclick="btn_delete_onclick" width="65" right="0"/>
+              <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="4" width="65" height="28" right="btnDelete:5" taborder="17" onclick="btn_save_onclick"/>
+              <Combo id="cboAskKind" taborder="19" left="Static_comboBox:10" top="81" width="215" height="26" value="" index="-1" innerdataset="dsAskKindCbo" codecolumn="value" datacolumn="text"/>
+              <Static id="Static_essential01" taborder="20" text="요청일" cssclass="sta_WF_condition02" left="25%" top="77" width="143" height="34"/>
+              <Edit id="edtRqstDt" taborder="21" left="Static_essential01:10" top="81" height="26" readonly="true" width="182"/>
+              <Static id="Static_essential02" taborder="22" text="요청사유" cssclass="sta_WF_condition02Essential" left="50.00%" top="77" width="150" height="34"/>
+              <Combo id="cboRqstRsn" taborder="23" left="Static_essential02:10" top="81" width="220" height="26" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">선택</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-010</Col>
+                      <Col id="datacolumn">단순문의</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-020</Col>
+                      <Col id="datacolumn">업무문의</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-030</Col>
+                      <Col id="datacolumn">에러처리</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-040</Col>
+                      <Col id="datacolumn">데이터분석</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-050</Col>
+                      <Col id="datacolumn">데이터처리</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-060</Col>
+                      <Col id="datacolumn">프로세스개선</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-070</Col>
+                      <Col id="datacolumn">시스템분석</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">HLP-020-080</Col>
+                      <Col id="datacolumn">시스템개선</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtrequestorId" taborder="25" left="Static_essential:10" height="26" top="48" right="170" inputtype="english,dot,alpha,number" readonly="true"/>
+              <Edit id="edtrequestor" taborder="26" left="edtrequestorId:5" height="26" top="48" right="37" inputtype="english,dot,alpha,number" readonly="true"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="hlpRqstTtl" type="STRING" size="256"/>
+          <Column id="hlpRqstrId" type="STRING" size="256"/>
+          <Column id="hlpRqstrIdNm" type="STRING" size="256"/>
+          <Column id="hlpRqstTypeCd" type="STRING" size="256"/>
+          <Column id="hlpRqstTypeCdNm" type="STRING" size="256"/>
+          <Column id="hlpRqstDt" type="STRING" size="256"/>
+          <Column id="hlpRqstRsnCd" type="STRING" size="256"/>
+          <Column id="hlpSttsCd" type="STRING" size="256"/>
+          <Column id="hlpSttsCdNm" type="STRING" size="256"/>
+          <Column id="hlpRqstCn" type="STRING" size="256"/>
+          <Column id="hlpRqstAtchFileId" type="STRING" size="256"/>
+          <Column id="hlpRqstNo" type="STRING" size="256"/>
+          <Column id="hlpRqstrIdMember" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAskKindCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="hlpRqstNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAskReasonCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  배너 등록
+*  MenuPath      온라인 헬프 > 요청 등록
+*  FileName      HLP_1020M.xfdl
+*  Creator 	     yuyr
+*  CreateDate    2023.12.05
+*  Desction      배너 조회 및 등록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.06   yuyr 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+this.hlpRqstNo = "";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 콤보 loadCombo
+*/
+this.fnLoadCombo = function ()
+{
+	this.gfnLoadCombo("loadCombo", "dsAskKindCbo=PTS:WORK_CATEGORY:C", "fnComboCallback"); 
+};
+
+/**
+ * description 상세 조회
+ */
+this.fnSearch = function()
+{	
+	this.gfnTransaction("getHelpRequestManage", "hlp/helpRequest/getHelpRequestManage.do", "dsSearch", "dsList", "", "fnCallback");
+};
+
+/**
+ * description 저장
+ */
+ this.fnSave = function()
+{	
+    if (!this.fnValidation()) {
+        return;
+    }
+	this.gfnTransaction("setHelpRequestManage", "hlp/helpRequest/setHelpRequestManage.do", "dsList", "", "", "fnCallback");
+};
+
+/**
+ * description 삭제
+ */
+ this.fnDelete = function()
+{	
+	this.gfnTransaction("deleteHelpRequestManage", "hlp/helpRequest/deleteHelpRequestManage", "dsList", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description 콤보 loadCombo
+*/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+	var param = this.getOwnerFrame().tabArgs.param;
+	var hlpRqstNo = (param == null || Eco.isEmpty(param.hlpRqstNo)) ? null : param.hlpRqstNo;
+	
+	switch(svcId) {
+		case "loadCombo":
+			if(hlpRqstNo != null && hlpRqstNo != "") {
+				this.dsSearch.setColumn(0, "hlpRqstNo", hlpRqstNo);
+				this.fnSearch();
+			} 
+			break;
+		default:
+			break;
+		}
+};
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getHelpRequestManage":
+            break;
+        case "setHelpRequestManage":
+            if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.dsSearch.setColumn(0, "hlpRqstNo", this.hlpRqstNo);
+				this.fnSearch();
+            }else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}	
+            break;
+        case "deleteHelpRequestManage":
+            if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_DELETE_SUCCESS");  // 삭제 되었습니다.
+				nexacro.getApplication().closeTab(this.getOwnerFrame().tabArgs.tabId); // 탭 닫기
+            }
+		default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 저장 버튼 클릭
+*/
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+ {
+	this.fnBeforeSave();
+ };
+
+/**
+ * description 삭제 버튼 클릭
+*/
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 행 갯수 count
+	var cnt = 0;
+	
+	for(var i = 0; i < this.dsList.rowcount; i++){
+		if(this.dsList.getColumn(i, "rowCheck") == 1){
+			cnt++;
+		}
+	}
+	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description 저장 전 확인
+*/
+this.fnBeforeSave = function ()
+{
+	if(this.dsList.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  	// 저장할 데이터가 없습니다.
+		return;
+	}
+	
+	if (!this.gfnDsIsUpdated(this.dsList)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+    if (!this.fnValidation()) {
+        return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+/**
+ * description 유효성 체크
+*/
+ this.fnValidation = function ()
+ {
+    var args = [
+ 		["hlpRqstTtl","NULL|MAX_LEN:100","요청제목"],
+		["hlpRqstTypeCd", "NULL|MAX_LEN:20", "요청분류"],
+		["hlpRqstRsnCd", "NULL|MAX_LEN:20", "요청사유"],
+		["hlpRqstCn","NULL|MAX_LEN:2000","요청내용"],
+    ];
+	
+	if (!this.gfnCheckGrid(this.dsList, args, "")) {
+        return false;
+    }
+	return true;
+ };]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="DivRequestForm.form.edttitle" propid="value" datasetid="dsList" columnid="hlpRqstTtl"/>
+      <BindItem id="item1" compid="DivRequestForm.form.edtrequestorId" propid="value" datasetid="dsList" columnid="hlpRqstrIdMember"/>
+      <BindItem id="item2" compid="DivRequestForm.form.edtrequestor" propid="value" datasetid="dsList" columnid="hlpRqstrIdNm"/>
+      <BindItem id="item3" compid="DivRequestForm.form.cboAskKind" propid="value" datasetid="dsList" columnid="hlpRqstTypeCd"/>
+      <BindItem id="item4" compid="DivRequestForm.form.edtRqstDt" propid="value" datasetid="dsList" columnid="hlpRqstDt"/>
+      <BindItem id="item5" compid="DivRequestForm.form.cboRqstRsn" propid="value" datasetid="dsList" columnid="hlpRqstRsnCd"/>
+      <BindItem id="item6" compid="DivRequestForm.form.edtStts" propid="value" datasetid="dsList" columnid="hlpSttsCdNm"/>
+      <BindItem id="item7" compid="DivRequestForm.form.areaRqstCn" propid="value" datasetid="dsList" columnid="hlpRqstCn"/>
+      <BindItem id="item8" compid="DivRequestForm.form.edtFile" propid="value" datasetid="dsList" columnid="hlpRqstAtchFileId"/>
+    </Bind>
+  </Form>
+</FDL>

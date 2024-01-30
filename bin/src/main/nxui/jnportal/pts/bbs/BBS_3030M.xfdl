@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="BBS_3030M" width="1920" height="1768" titletext="게시물 상세-댓글" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="DivForm" taborder="0" text="Div01" left="50" cssclass="div_WF_Area" right="50" height="900" top="153">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="45" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="79" height="34" text="" right="0"/>
+              <Static id="Static10_00_00_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" top="113" height="490" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staNttTtl" taborder="3" text="제목" cssclass="sta_WF_condition02_LEssential" left="0" top="45" width="150" height="34"/>
+              <Edit id="edtNttTtl" taborder="4" left="staNttTtl:10" width="740" height="26" top="49" enable="false"/>
+              <Static id="staNtcrId" taborder="5" text="작성자" cssclass="sta_WF_condition02_L" left="0" top="79" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="staNttCn" taborder="6" text="내용" cssclass="sta_WF_condition02_L" left="0" top="113" width="150" height="490"/>
+              <TextArea id="textNttCn" taborder="7" oneditclick="TextArea01_oneditclick" left="staNttCn:10" top="118" height="480" onchanged="Div01_TextArea01_00_onchanged" right="20" enable="false"/>
+              <Static id="staRgstDt" taborder="8" text="작성일" cssclass="sta_WF_condition02" left="20%" top="79" width="150" height="34"/>
+              <Edit id="edtRgstDt" taborder="9" left="staRgstDt:10" top="83" height="26" width="190" readonly="true"/>
+              <Static id="staSubTitle" taborder="10" text="내용" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="75" onclick="Div00_Static09_onclick"/>
+              <Edit id="edtNtcrId" taborder="11" left="staNtcrId:10" top="83" height="26" width="190" readonly="true"/>
+              <Static id="staRdcnt" taborder="12" text="조회수" cssclass="sta_WF_condition02" left="40.00%" top="79" width="143" height="34"/>
+              <Edit id="edtRdcnt" taborder="13" left="staRdcnt:10" top="83" height="26" width="190" readonly="true"/>
+              <Static id="staAnswr" taborder="14" text="답글수" cssclass="sta_WF_condition02" left="60%" top="79" width="142" height="34"/>
+              <Edit id="edtAnswrCnt" taborder="15" left="staAnswr:10" top="83" height="26" width="190" readonly="true"/>
+              <Static id="staRcm" taborder="16" text="추천수" cssclass="sta_WF_condition02" left="80%" top="79" width="142" height="34"/>
+              <Edit id="edtRcmCnt" taborder="17" left="staRcm:10" top="83" height="26" width="190" readonly="true"/>
+              <Div id="divDrop" taborder="18" left="0" top="658" right="0" cssclass="raonkdropzone" border="0px none" height="195">
+                <Layouts>
+                  <Layout>
+                    <Grid id="grdFileList" taborder="0" binddataset="dsFileList" left="0" top="0" right="0" autofittype="col" tooltiptype="default" autoenter="select" bottom="34" enable="true" onheadclick="grdFileList_onheadclick" oncellclick="grdFileList_oncellclick" nodatatext="여기에 파일을 끌어다 놓으세요">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="40" band="left"/>
+                            <Column size="40" band="left"/>
+                            <Column size="40" band="left"/>
+                            <Column size="40" band="left"/>
+                            <Column size="200"/>
+                            <Column size="64" band="right"/>
+                            <Column size="56" band="right"/>
+                            <Column size="56" band="right"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell text="NO" autosizecol="none"/>
+                            <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" verticalAlign="middle" autosizecol="none"/>
+                            <Cell col="2" text="상태"/>
+                            <Cell col="3"/>
+                            <Cell col="4" text="파일명"/>
+                            <Cell col="5" text="크기"/>
+                            <Cell col="6" text="다운로드"/>
+                            <Cell col="7" text="삭제"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell text="expr:currow+1" textAlign="center" expandsize="16"/>
+                            <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck" textAlign="center" verticalAlign="middle" expandsize="16"/>
+                            <Cell col="2" expr="comp.fnRowStatusSymbol(rowStatus)"/>
+                            <Cell col="3" expr="comp.fnGetFileIcon(orgnlFileNm)" displaytype="imagecontrol"/>
+                            <Cell col="4" textAlign="left" text="bind:orgnlFileNm" tooltiptext="bind:orgnlFileNm"/>
+                            <Cell col="5" textAlign="right" expr="comp.fnFormatFileSize(fileSz)"/>
+                            <Cell col="6" displaytype="imagecontrol" text="theme://images/btn_WF_grdDownload.png"/>
+                            <Cell col="7" displaytype="imagecontrol" expr="rowStatus == 'deleted' ? 'theme://images/btn_WF_grdReturn.png' : 'theme://images/btn_WF_grdDelete.png'"/>
+                          </Band>
+                        </Format>
+                        <Format id="download">
+                          <Columns>
+                            <Column size="40" band="left"/>
+                            <Column size="40" band="left"/>
+                            <Column size="240"/>
+                            <Column size="64" band="right"/>
+                            <Column size="56" band="right"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell text="NO" autosizecol="none"/>
+                            <Cell col="1"/>
+                            <Cell col="2" text="파일명"/>
+                            <Cell col="3" text="크기"/>
+                            <Cell col="4" text="다운로드"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell text="expr:currow+1" textAlign="center" expandsize="16"/>
+                            <Cell col="1" expr="comp.fnGetFileIcon(orgnlFileNm)" displaytype="imagecontrol"/>
+                            <Cell col="2" textAlign="left" text="bind:orgnlFileNm" color="expr:rowStatus == 'deleted' ? 'red' : 'black'" textDecoration="expr:rowStatus == 'deleted' ? 'line-through' : ''" tooltiptext="bind:orgnlFileNm"/>
+                            <Cell col="3" textAlign="right" expr="comp.fnFormatFileSize(fileSz)"/>
+                            <Cell col="4" displaytype="imagecontrol" text="theme://images/btn_WF_grdDownload.png"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                    <Static id="staStatus" taborder="1" left="0" height="34" bottom="0" right="0" cssclass="sta_WF_condition02" border="0px none,1px solid #dddddd, 1px solid #dddddd, 1px solid #dddddd"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Button id="btnDownloadAll" taborder="19" text="전체 다운로드" top="627" width="118" height="26" cssclass="btn_WF_grdDownload" visible="false" right="0" onclick="btnDownloadAll_onclick" enable="false"/>
+              <Button id="btnDeleteAll" taborder="20" text="전체삭제" top="627" width="89" height="26" cssclass="btn_WF_grdDelete" right="126" visible="false" onclick="btnDeleteAll_onclick" enable="false"/>
+              <Button id="btnDelete" taborder="21" text="선택삭제" top="627" height="26" cssclass="btn_WF_grdDelete" width="89" right="220" visible="false" onclick="btnDelete_onclick" enable="false"/>
+              <Button id="btnAdd" taborder="22" text="추가" top="627" height="26" cssclass="btn_WF_grdAdd" width="63" right="314" visible="false" onclick="btnAdd_onclick" enable="false"/>
+              <Static id="staAtchFileld" taborder="23" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="613" height="45" text="첨부 파일(안됨)" width="171"/>
+              <Div id="Div00" taborder="24" text="Div00" left="0" top="divDrop:5" height="26" right="0">
+                <Layouts>
+                  <Layout type="horizontal" flexcrossaxisalign="center" flexmainaxisalign="center" horizontalgap="3">
+                    <Button id="btnScrap" text="스크랩" cssclass="btn_WF_Save" visible="true" top="0" width="65" height="26" right="-159" taborder="0" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="DivForm_Div00_btnScrap_onclick"/>
+                    <Button id="btnRecommend" taborder="2" text="추천" top="0" width="76" height="26" cssclass="btn_WF_grdArrUp" left="1001" color="#e10e62" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="DivForm_Div00_btnRecommend_onclick"/>
+                    <Button id="btnDisrecommend" taborder="1" text="비추천" top="0" height="26" cssclass="btn_WF_grdArrDown" width="76" left="922" color="#0090ff" font="normal bold 10pt/normal &quot;Arial&quot;" onclick="DivForm_Div00_btnDisrecommend_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Button id="btnAnswr" text="답글" cssclass="btn_WF_icoReturn" top="14" width="63" height="28" taborder="26" onclick="btn_search_onclick" right="68" enable="false"/>
+              <Button id="btnModify" text="수정" cssclass="btn_WF_icoModify" top="14" width="63" height="28" taborder="25" right="btnAnswr:5" onclick="DivForm_btnModify_onclick"/>
+              <Button id="btnClose" text="닫기" cssclass="btn_WF_icoCancel" top="14" height="28" taborder="27" width="63" right="0" onclick="DivForm_btnClose_onclick"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="staTitle" taborder="1" text="게시물 상세화면" top="0" cssclass="sta_WF_compTitle01" left="50" onclick="sta_title_onclick" height="58" right="1420"/>
+        <Div id="DivBnrForm00" taborder="2" text="Div01" left="50" top="58" cssclass="div_WF_Area" right="50" height="68">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="0" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="34" height="34" text="" right="0"/>
+              <Static id="staNttNoPrev" taborder="2" text="이전 글" cssclass="sta_WF_condition02_L" left="0" top="0" width="150" height="34"/>
+              <Edit id="edtNttNoPrev" taborder="3" left="staNttNoPrev:10" width="740" height="26" top="4" enable="false"/>
+              <Static id="staCls" taborder="4" text="다음 글" cssclass="sta_WF_condition02_L" left="0" top="34" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Edit id="edtQstnTtl00" taborder="5" left="staCls:10" width="740" height="26" top="38" enable="false"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div00" taborder="3" text="Div00" left="50" top="DivForm:15" height="700" cssclass="div_WF_Area" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staComment" taborder="0" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" text="댓글" width="171"/>
+              <TextArea id="textComment" taborder="1" left="5" right="5" height="110" top="490"/>
+              <Button id="btnComment" text="댓글 등록" cssclass="btn_WF_icoModify" width="93" taborder="2" right="0" bottom="textComment:5" height="28" onclick="Div00_btnComment_onclick"/>
+              <ListView id="ListViewComment" taborder="3" left="0" top="45" height="400" binddataset="dsComment" right="0" useselcolor="false" background="transparent" oncellclick="Div00_ListViewComment_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Band id="body" width="100%" height="80" expandbartype="false">
+                      <Cell id="cmntCn" left="200" top="10" text="bind:cmntCn" right="227" bottom="10" verticalAlign="top" color="black" font="normal 14px/normal &quot;Noto Sans KR&quot;" border="0px none"/>
+                      <Cell id="wrtrNm" left="10" height="24" text="bind:wrtrNm" right="cmntCn:10" verticalAlign="top" color="black" font="normal 700 14px/normal &quot;Noto Sans KR&quot;" border="0px none" bottom="10"/>
+                      <Cell id="rgstDt" left="cmntCn:10" top="44" text="bind:rgstDt" right="10" verticalAlign="top" color="#666666" border="0px none" height="24"/>
+                      <Cell id="delbutton" top="7" displaytype="expr:rgstrId == nexacro.getApplication().gdsUserInfo.getColumn(0, &quot;userId&quot;) ? &quot;buttoncontrol&quot; : &quot;none&quot;" text="삭제" edittype="expr:rgstrId == nexacro.getApplication().gdsUserInfo.getColumn(0, &quot;userId&quot;) ? &quot;button&quot; : &quot;none&quot;" border="0px none" padding="0px" textAlign="center" height="26" width="87" right="10"/>
+                      <Cell id="cmntNo" left="10" height="24" text="bind:cmntNo" right="cmntCn:10" verticalAlign="top" color="#666666" font="normal 700 14px/normal &quot;Noto Sans KR&quot;" border="0px none" top="10"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </ListView>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="nttNo" type="STRING" size="256" description="게시물번호"/>
+          <Column id="bbsId" type="STRING" size="256" description="게시판ID"/>
+          <Column id="ntcrId" type="STRING" size="256" description="게시자 ID"/>
+          <Column id="wrtrId" type="STRING" size="256" description="댓글작성자ID"/>
+          <Column id="cmntNo" type="STRING" size="256" description="댓글번호"/>
+          <Column id="scrpId" type="STRING" size="256"/>
+          <Column id="rcmdCnt" type="STRING" size="256" description="추천"/>
+          <Column id="dcmdCnt" type="STRING" size="256" description="비추천"/>
+          <Column id="isRead" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsComment">
+        <ColumnInfo>
+          <Column id="bbsId" type="STRING" size="256" description="게시판ID"/>
+          <Column id="nttNo" type="STRING" size="256" description="게시물번호"/>
+          <Column id="cmntNo" type="STRING" size="256" description="댓글번호"/>
+          <Column id="wrtrId" type="STRING" size="256" description="작성자ID"/>
+          <Column id="wrtrNm" type="STRING" size="256" description="작성자명"/>
+          <Column id="cmntCn" type="STRING" size="2000" description="댓글"/>
+          <Column id="rgstDt" type="STRING" size="256" description="최초등록시점"/>
+          <Column id="rgstrId" type="STRING" size="256" description="최초등록자ID"/>
+          <Column id="updtDt" type="STRING" size="256" description="최종수정시점"/>
+          <Column id="updtrId" type="STRING" size="256" description="최종수정자ID"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="nttNo" type="STRING" size="256" description="게시물 번호"/>
+          <Column id="bbsId" type="STRING" size="256" description="게시판ID"/>
+          <Column id="nttTtl" type="STRING" size="256" description="게시물 제목"/>
+          <Column id="nttCn" type="STRING" size="256" description="게시물 내용"/>
+          <Column id="answrYn" type="STRING" size="256" description="답글여부"/>
+          <Column id="upNttNo" type="STRING" size="256" description="상위게시글 번호"/>
+          <Column id="cmntYn" type="STRING" size="256" description="댓글여부"/>
+          <Column id="sortOrdr" type="STRING" size="256" description="정렬순서"/>
+          <Column id="rdcnt" type="STRING" size="256" description="조회수"/>
+          <Column id="useYn" type="STRING" size="256" description="사용여부"/>
+          <Column id="ntcBgnYmd" type="STRING" size="256" description="게시시작일"/>
+          <Column id="ntcEndYmd" type="STRING" size="256" description="게시종료일"/>
+          <Column id="ntcrId" type="STRING" size="256" description="게시자 ID"/>
+          <Column id="ntcrNm" type="STRING" size="256" description="게시자명"/>
+          <Column id="passwd" type="STRING" size="256" description="비밀번호"/>
+          <Column id="atchFileId" type="STRING" size="256" description="첨부파일 ID"/>
+          <Column id="noticeYn" type="STRING" size="256" description="공지사항 여부"/>
+          <Column id="sjBoldYn" type="STRING" size="256" description="제목볼드 여뷰"/>
+          <Column id="scrtYn" type="STRING" size="256" description="비밀글 여부"/>
+          <Column id="rgstDt" type="STRING" size="256" description="최초등록일"/>
+          <Column id="rgstrId" type="STRING" size="256" description="최초등장자 ID"/>
+          <Column id="updtDt" type="STRING" size="256" description="최종수정일"/>
+          <Column id="updtrId" type="STRING" size="256" description="최종수정자 ID"/>
+          <Column id="cmntCnt" type="STRING" size="256" description="댓글 개수"/>
+          <Column id="cmntNo" type="STRING" size="256" description="댓글번호"/>
+          <Column id="wrtrId" type="STRING" size="256" description="댓글작성자ID"/>
+          <Column id="nttNoPrev" type="STRING" size="256" description="이전글"/>
+          <Column id="nttTtlPrev" type="STRING" size="256"/>
+          <Column id="nttNoNext" type="STRING" size="256" description="다음글"/>
+          <Column id="nttTtlNext" type="STRING" size="256"/>
+          <Column id="rcmdCnt" type="STRING" size="256" description="추천"/>
+          <Column id="dcmdCnt" type="STRING" size="256" description="비추천"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCommentRgst">
+        <ColumnInfo>
+          <Column id="nttNo" type="STRING" size="256"/>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="cmntCn" type="STRING" size="2000"/>
+          <Column id="passwd" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCommentDel">
+        <ColumnInfo>
+          <Column id="nttNo" type="STRING" size="256"/>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="cmntNo" type="STRING" size="256"/>
+          <Column id="wrtrId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsScrpList">
+        <ColumnInfo>
+          <Column id="scrpId" type="STRING" size="256"/>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="nttNo" type="STRING" size="256"/>
+          <Column id="scrpNm" type="STRING" size="256"/>
+          <Column id="scrpDt" type="STRING" size="256"/>
+          <Column id="scrpUserId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  게시물 상세조회
+*  MenuPath      소통광장 - 게시물 - 게시물 상세조회
+*  FileName      BBS_3030M.xfdl 
+*  Creator 	     woohj
+*  CreateDate    2023.12.07
+*  Desction      게시물 상세조회
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.07   woohj	 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+this.nttNo = ""; // 초기화
+this.bbsId = ""; // 초기화
+
+this.scrpId = "";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	var param = this.getOwnerFrame().tabArgs.param;
+	this.nttNo = (param == null || Eco.isEmpty(param.nttNo)) ? null : param.nttNo;
+	this.bbsId = (param == null || Eco.isEmpty(param.bbsId)) ? null : param.bbsId;
+	
+	this.dsSearch.setColumn(0, "isRead", "Y");
+	
+	this.dsSearch.setColumn(0, "nttNo", this.nttNo); // 게시글
+	this.dsSearch.setColumn(0, "bbsId", this.bbsId);
+	
+	this.dsCommentRgst.setColumn(0, "nttNo", this.nttNo); // 댓글
+	this.dsCommentRgst.setColumn(0, "bbsId", this.bbsId);
+	
+	this.dsScrpList.setColumn(0, "nttNo", this.nttNo); // 스크랩
+	this.dsScrpList.setColumn(0, "bbsId", this.bbsId);
+	
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 상세 조회
+ */
+this.fnSearch = function ()
+{
+	var strSvcId    = "getNoticeBoardDetail";
+	var strSvcUrl   = "bbs/noticeBoard/getNoticeBoardDetail.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+	
+	this.fnCommentSearch();
+};
+
+/**
+ * description 게시물 상세조회 내용 -댓글내용 조회
+ */
+this.fnCommentSearch = function ()
+{
+	var strSvcId    = "getNBDetailComment";
+	var strSvcUrl   = "bbs/noticeBoard/comment/getNBDetailComment.do";
+	var inData      = "dsSearch";
+	var outData     = "dsComment";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 게시물 상세조회 내용 -댓글내용 입력
+ */
+this.fnCommentSet = function ()
+{
+	var strSvcId    = "setNBDetailComment";
+	var strSvcUrl   = "bbs/noticeBoard/comment/setNBDetailComment.do";
+	var inData      = "dsCommentRgst";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 게시물 상세조회 내용 -댓글내용 삭제
+ */
+this.fnCommentDel = function ()
+{
+	var strSvcId    = "deleteNBDetailComment";
+	var strSvcUrl   = "bbs/noticeBoard/comment/deleteNBDetailComment.do";
+	var inData      = "dsCommentDel"; // dsComment
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 게시물 상세조회 - 게시물 스크랩
+ */
+this.fnBoardScrp = function ()
+{
+	var strSvcId    = "setBoardScrapManage";
+	var strSvcUrl   = "bbs/boardScrap/setBoardScrapManage.do";
+	var inData      = "dsScrpList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 게시물 상세조회 - 추천
+ */
+this.fnRecommend = function ()
+{
+	var strSvcId    = "setNBRecommend";
+	var strSvcUrl   = "bbs/noticeBoard/setNBRecommend.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 게시물 상세조회 - 비추천
+ */
+this.fnDisrecommend = function ()
+{
+	var strSvcId    = "setNBDisrecommend";
+	var strSvcUrl   = "bbs/noticeBoard/setNBDisrecommend.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getNoticeBoardDetail":
+		
+            break;
+		case "getNBDetailComment":
+		
+            break;
+		case "setNBDetailComment":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+				this.dsCommentRgst.setColumn(0,"cmntCn", "");
+				this.fnSearch();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+		case "deleteNBDetailComment":
+			if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_DELETE_SUCCESS");  // 삭제 되었습니다.
+            }
+			this.fnCommentSearch();
+            break;
+		case "setBoardScrapManage":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+				this.dsSearch.setColumn(0,"scrpId", this.scrpId);
+				
+				this.dsSearch.setColumn(0, "nttNo", this.nttNo);
+				this.dsSearch.setColumn(0, "bbsId", this.bbsId);
+				
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+        case "setNBRecommend":
+			if(this.callbackMsg == "success"){
+				this.dsSearch.setColumn(0 , "isRead" , "N");
+				this.fnSearch();
+			}
+            break;
+		case "setNBDisrecommend":
+			if(this.callbackMsg == "success"){
+				this.dsSearch.setColumn(0 , "isRead" , "N");
+				this.fnSearch();
+			}
+            break;
+		default:	
+            break;
+    }
+};
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 수정 버튼
+*/
+this.DivForm_btnModify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// ntcrId 게시글작성자 ID, wrtrId 댓글작성자ID,  userId 로그인한 유저
+	
+	var param = {
+			nttNo: this.dsList.getColumn(e.row, "nttNo"),
+			bbsId:  this.dsList.getColumn(e.row, "bbsId")
+		}
+	
+	//var ntcrId = this.dsList.getColumn(e.row, "ntcrId");
+	var rgstrId = this.dsList.getColumn(e.row, "rgstrId");
+	
+	var userId = nexacro.getApplication().gdsUserInfo.getColumn(0, "userId");   // Application에 있는 로그인한 유저id
+		
+	// 확인중
+	if(rgstrId === userId) {
+
+		nexacro.getApplication().openNewTab("BBS_3020M", "게시물 글쓰기", "pts::bbs/BBS_3020M.xfdl", param , "소통광장 > 게시물 > 게시물 등록", "");
+	} else {
+		alert("본인이 등록한 게시물이 아닙니다.");
+		this.DivForm.form.btnModify.set_enable(false);
+		
+	}
+	 
+};
+
+/**
+ * description 닫기 버튼
+*/
+this.DivForm_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().closeTab(this.getOwnerFrame().tabArgs.tabId);
+};
+
+/**
+ * description 댓글 등록 버튼
+*/
+this.Div00_btnComment_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnBeforeSave();
+};
+
+/**
+ * description 리스트뷰 삭제버튼
+*/
+this.Div00_ListViewComment_oncellclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+	var userId = nexacro.getApplication().gdsUserInfo.getColumn(0, "userId");
+	var rgstrId = this.dsComment.getColumn(e.row, "rgstrId") 
+	
+	var cmntNo = this.dsComment.getColumn(e.row, "cmntNo");
+
+	if(rgstrId == userId) {
+		if(cmntNo != null && cmntNo != "") {
+			this.dsCommentDel.setColumn(0, "nttNo", this.nttNo);
+			this.dsCommentDel.setColumn(0, "bbsId", this.bbsId);
+			this.dsCommentDel.setColumn(0, "cmntNo", cmntNo);
+			
+			this.fnCommentDel();
+		}
+	} else {
+		alert("다른사용자의 댓글은 삭제 할 수 없습니다.");
+	}
+	this.fnCommentSearch();
+};
+
+/**
+ * description 게시물 스크랩 버튼
+*/
+this.DivForm_Div00_btnScrap_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnAlert("PTS_BOARD_SCRAP", "", "", {trueFunc: "fnBoardScrp", falseFunc: ""}); // 스크랩 하시겠습니까?
+};
+
+/**
+ * description 추천 버튼
+*/
+this.DivForm_Div00_btnRecommend_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsSearch.setColumn(0, "bbsId", this.bbsId);
+	this.dsSearch.setColumn(0, "nttNo", this.nttNo);
+	
+	this.fnRecommend();
+};
+
+/**
+ * description 비추천 버튼
+*/
+this.DivForm_Div00_btnDisrecommend_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsSearch.setColumn(0, "bbsId", this.bbsId);
+	this.dsSearch.setColumn(0, "nttNo", this.nttNo);
+				
+	this.fnDisrecommend();
+};
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+/**
+ * description 저장 전 확인
+*/
+this.fnBeforeSave = function ()
+{
+	if(this.dsCommentRgst.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  	// 저장할 데이터가 없습니다.
+		return;
+	}
+	
+	if (!this.gfnDsIsUpdated(this.dsCommentRgst)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+	if (!this.fnValidation()) {		// 그리드 필수값 체크
+		return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnCommentSet", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+/**
+ * description 댓글 fnValidation
+*/
+this.fnValidation = function ()
+{
+	var args = [
+        ["cmntCn", "NULL|MAX_LEN:2000", "댓글내용"]
+    ];
+
+	if(!this.gfnCheckGrid(this.dsCommentRgst, args, "")) {
+		return false;
+	}
+	
+    return true;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="DivBnrForm00.form.edtNttNoPrev" propid="value" datasetid="dsList" columnid="nttTtlPrev"/>
+      <BindItem id="item1" compid="DivBnrForm00.form.edtQstnTtl00" propid="value" datasetid="dsList" columnid="nttTtlNext"/>
+      <BindItem id="item2" compid="DivForm.form.edtNttTtl" propid="value" datasetid="dsList" columnid="nttTtl"/>
+      <BindItem id="item3" compid="DivForm.form.edtNtcrId" propid="value" datasetid="dsList" columnid="ntcrId"/>
+      <BindItem id="item4" compid="DivForm.form.edtRgstDt" propid="value" datasetid="dsList" columnid="rgstDt"/>
+      <BindItem id="item5" compid="DivForm.form.edtRdcnt" propid="value" datasetid="dsList" columnid="rdcnt"/>
+      <BindItem id="item6" compid="DivForm.form.textNttCn" propid="value" datasetid="dsList" columnid="nttCn"/>
+      <BindItem id="item8" compid="Div00.form.textComment" propid="value" datasetid="dsCommentRgst" columnid="cmntCn"/>
+      <BindItem id="item7" compid="DivForm.form.edtRcmCnt" propid="value" datasetid="dsList" columnid="rcmdCnt"/>
+      <BindItem id="item9" compid="DivForm.form.chWhdwlYn" propid="value" datasetid="dsSearch" columnid="whdwlYn"/>
+    </Bind>
+  </Form>
+</FDL>

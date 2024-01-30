@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.qna.service.QnaManageDAO">
+
+    <!-- QNA 신규 - QNA질문등록 조회 -->
+    <select id="getQnaManage" parameterType="map" resultType="qnaVO">
+        /* qna-manage-mapper.getQnaManage */
+        SELECT PQ.QNA_ID
+             , PQ.QSTN_TTL
+             , PQ.QSTN_CN
+             , PQ.RDCNT
+             , PQ.EML_ADDR
+             , PQ.RGST_DT
+             , PQ.RGSTR_ID
+             , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PQ.RGSTR_ID) AS RGSTR_MEMBER_ID
+             , PQ.UPDT_DT
+             , PQ.UPDTR_ID
+             , PQ.QNA_PRC_STTS_CD
+             , PQ.ANSWR_ID
+             , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PQ.ANSWR_ID) AS ANSWR_MEMBER_ID
+             , PQ.ANSWR_CN
+             , PQ.WRTE_PASSWD
+             , PQ.ANSWR_DT
+             , PQ.EML_ANSWR_YN
+             , PQ.CLS_CD
+             , (SELECT LINE_CODE_NM_KR
+                  FROM CMN_CODE_LINE CCL
+                 WHERE CCL.LINE_CODE = PQ.CLS_CD
+                   AND CCL.SYS_ID = #{sessionSysId}
+                   AND CCL.MODULE_ID ='PTS'
+                   AND CCL.HEADER_CODE = 'WORK_CATEGORY') AS CLS_NM
+          FROM PTS_QNA PQ
+         WHERE PQ.QNA_ID = #{qnaId}
+    </select>
+
+    <!-- QNA질문등록 입력 -->
+    <insert id="insertQnaManage" parameterType="qnaVO">
+        /* qna-manage-mapper.insertQnaManage */
+         INSERT
+           INTO PTS_QNA ( QNA_ID
+                        , QSTN_TTL
+                        , QSTN_CN
+                        , RDCNT
+                        , EML_ADDR
+                        , RGST_DT
+                        , RGSTR_ID
+                        , UPDT_DT
+                        , UPDTR_ID
+                        , QNA_PRC_STTS_CD
+                        , ANSWR_ID
+                        , ANSWR_CN
+                        , WRTE_PASSWD
+                        , ANSWR_DT
+                        , EML_ANSWR_YN
+                        , CLS_CD)
+                 VALUES ( NULLIF(#{qnaId},'')
+                        , NULLIF(#{qstnTtl},'')
+                        , NULLIF(#{qstnCn},'')
+                        , 0
+                        , NULLIF(#{emlAddr},'')
+                        , NOW()
+                        , #{sessionUserId}
+                        , NOW()
+                        , #{sessionUserId}
+                        , NULLIF(#{qnaPrcSttsCd},'')
+                        , #{sessionUserId}
+                        , NULLIF(#{answrCn},'')
+                        , NULLIF(#{wrtePasswd},'')
+                        , NULL
+                        , NULLIF(#{emlAnswrYn},'')
+                        , NULLIF(#{clsCd},''));
+    </insert>
+
+    <!-- QNA질문등록 수정 -->
+    <update id="updateQnaManage" parameterType="qnaVO">
+        /* qna-manage-mapper.updateQnaManage */
+        UPDATE PTS_QNA
+           SET QSTN_TTL         = NULLIF(#{qstnTtl},'')
+             , QSTN_CN          = NULLIF(#{qstnCn},'')
+             , EML_ADDR         = NULLIF(#{emlAddr},'')
+             , RGST_DT          = NOW()
+             , RGSTR_ID         = #{sessionUserId}
+             , UPDT_DT          = NOW()
+             , UPDTR_ID         = #{sessionUserId}
+             , QNA_PRC_STTS_CD  = NULLIF(#{qnaPrcSttsCd},'')
+             , WRTE_PASSWD      = NULLIF(#{wrtePasswd},'')
+             , EML_ANSWR_YN     = NULLIF(#{emlAnswrYn},'')
+             , CLS_CD           = NULLIF(#{clsCd},'')
+         WHERE QNA_ID           = #{qnaId}
+    </update>
+
+    <!-- QNA질문 - 답변 등록 저장 -->
+    <update id="updateQnaAnswr" parameterType="qnaVO">
+        /* qna-manage-mapper.updateQnaAnswr */
+        UPDATE PTS_QNA
+           SET EML_ADDR         = NULLIF(#{emlAddr},'')
+             , QNA_PRC_STTS_CD  = NULLIF(#{qnaPrcSttsCd},'')
+             , ANSWR_ID         = #{sessionUserId}
+             , ANSWR_CN         = NULLIF(#{answrCn},'')
+             , WRTE_PASSWD      = NULLIF(#{wrtePasswd},'')
+             , ANSWR_DT         = NOW()
+             , EML_ANSWR_YN     = NULLIF(#{emlAnswrYn},'')
+             , CLS_CD           = NULLIF(#{clsCd},'')
+         WHERE QNA_ID           = #{qnaId}
+    </update>
+
+        <!-- QNA질문 - 답변 수정 저장 -->
+    <update id="reUpdateQnaAnswr" parameterType="qnaVO">
+        /* qna-manage-mapper.updateQnaAnswr */
+        UPDATE PTS_QNA
+           SET EML_ADDR         = NULLIF(#{emlAddr},'')
+             , QNA_PRC_STTS_CD  = NULLIF(#{qnaPrcSttsCd},'')
+             , ANSWR_ID         = #{sessionUserId}
+             , ANSWR_CN         = NULLIF(#{answrCn},'')
+             , WRTE_PASSWD      = NULLIF(#{wrtePasswd},'')
+             , ANSWR_DT         = NOW()
+             , EML_ANSWR_YN     = NULLIF(#{emlAnswrYn},'')
+             , CLS_CD           = NULLIF(#{clsCd},'')
+         WHERE QNA_ID           = #{qnaId}
+           AND ANSWR_ID         = #{sessionUserId}
+    </update>
+
+    <!-- QNA질문 - 답변 삭제 -->
+    <update id="delUpdateQnaAnswr" parameterType="qnaVO">
+        /* qna-manage-mapper.updateQnaAnswr */
+        UPDATE PTS_QNA
+           SET EML_ADDR         = NULLIF(#{emlAddr},'')
+             , QNA_PRC_STTS_CD  = NULLIF(#{qnaPrcSttsCd},'')
+             , ANSWR_ID         = NULL
+             , ANSWR_CN         = NULL
+             , WRTE_PASSWD      = NULLIF(#{wrtePasswd},'')
+             , ANSWR_DT         = NULL
+             , EML_ANSWR_YN     = NULLIF(#{emlAnswrYn},'')
+             , CLS_CD           = NULLIF(#{clsCd},'')
+         WHERE QNA_ID           = #{qnaId}
+           AND ANSWR_ID         = #{sessionUserId}
+    </update>
+
+    <!-- QNA질문등록 조회 CNT -->
+    <update id="updateQnaReadCount" parameterType="map">
+        /* qna-manage-mapper.updateQnaReadCount */
+        UPDATE PTS_QNA
+           SET RDCNT = RDCNT + 1
+         WHERE QNA_ID = #{qnaId}
+    </update>
+
+    <!-- QNA질문등록 삭제 -->
+    <delete id="deleteQnaManage" parameterType="qnaVO">
+        /* qna-manage-mapper.deleteQnaManage */
+        DELETE
+          FROM PTS_QNA
+         WHERE QNA_ID   = #{qnaId}
+           AND RGSTR_ID = #{sessionUserId}
+    </delete>
+
+</mapper>

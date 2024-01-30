@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="SEQ_1010M" width="1920" height="720" titletext="채번기준 관리" cssclass="frm_WF_comp" onload="seqManage_onload">
+    <Layouts>
+      <Layout height="720" width="1920">
+        <Static id="sta_01" taborder="0" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" expr="comp.parent.getOwnerFrame().tabArgs.title" text="채번기준 관리"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="71" cssclass="" text="" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="staBg" taborder="0" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="sta001" taborder="1" text="채번 ID" cssclass="sta_WF_condition01" top="15" width="100" height="26" onclick="div_Search_Static01_onclick" left="20"/>
+              <Static id="sta002" taborder="2" text="설명" left="25%" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Edit id="edtSchSeqId" taborder="3" left="sta001:10" top="15" width="250" height="26" onkeyup="divSearch_schSeqId_onkeyup"/>
+              <Edit id="edtSchSeqDesc" taborder="4" left="sta002:10" top="15" width="250" height="26" onkeyup="divSearch_schSeqId_onkeyup"/>
+              <Static id="sta003" taborder="5" text="사용 여부" left="910" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Combo id="edtSchUseYn" taborder="6" left="sta003:10" top="15" width="96" height="26" innerdataset="dsUseYnSch" codecolumn="value" datacolumn="text" onkeyup="divSearch_schSeqId_onkeyup"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Div id="divResult" taborder="1" text="" left="50" top="divSearch:0" right="50" bottom="38" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Grid id="grdSeq" taborder="1" left="0" top="45" binddataset="dsSeqMng" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="grdTypeTwo_onheadclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="120"/>
+                      <Column size="160"/>
+                      <Column size="72"/>
+                      <Column size="72"/>
+                      <Column size="72"/>
+                      <Column size="160"/>
+                      <Column size="96"/>
+                      <Column size="120"/>
+                      <Column size="440"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell rowspan="2" text="순번"/>
+                      <Cell col="1" rowspan="2" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" rowspan="2" text="상태"/>
+                      <Cell col="3" rowspan="2" text="채번 ID"/>
+                      <Cell col="4" rowspan="2" text="접두어"/>
+                      <Cell col="5" colspan="3" text="채번 정보"/>
+                      <Cell col="8" rowspan="2" text="접미어"/>
+                      <Cell col="9" rowspan="2" text="사용 여부"/>
+                      <Cell col="10" rowspan="2" text="현재값"/>
+                      <Cell col="11" rowspan="2" text="설명"/>
+                      <Cell row="1" col="5" text="자릿수"/>
+                      <Cell row="1" col="6" text="증가"/>
+                      <Cell row="1" col="7" text="초기값"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" edittype="expr:rowStatus == &quot;inserted&quot; ? &quot;text&quot; : &quot;none&quot;" text="bind:seqId" textAlign="left" displaytype="expr:rowStatus == &quot;inserted&quot; ? &quot;editcontrol&quot; : &quot;normal&quot;"/>
+                      <Cell col="4" edittype="text" text="bind:seqPrefix" textAlign="left" displaytype="editcontrol"/>
+                      <Cell col="5" edittype="normal" text="bind:seqDigits" displaytype="editcontrol"/>
+                      <Cell col="6" edittype="normal" text="bind:seqInc" displaytype="editcontrol"/>
+                      <Cell col="7" edittype="normal" text="bind:seqMin" displaytype="editcontrol"/>
+                      <Cell col="8" edittype="text" text="bind:seqSuffix" textAlign="left" displaytype="editcontrol"/>
+                      <Cell col="9" displaytype="combocontrol" edittype="combo" combodataset="dsUseYn" combocodecol="value" combodatacol="text" text="bind:useYn"/>
+                      <Cell col="10" textAlign="left" text="bind:seqCurr"/>
+                      <Cell col="11" edittype="text" text="bind:seqDesc" textAlign="left" displaytype="editcontrol"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static04_00_00" taborder="0" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="2" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static09" taborder="3" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Static09_onclick" width="82" fittocontents="width"/>
+              <Static id="staGridRowCnt" taborder="4" text="(총 0건)" cssclass="sta_WF_subTxt" left="Static09:10" top="0" width="149" height="45"/>
+              <Button id="btnDeleteRow" taborder="6" text="행삭제" cssclass="btn_WF_Row_Delete" top="14" right="0" width="73" height="26" enable="true" onclick="divResult_btnDeleteRow_onclick"/>
+              <Button id="btnAddRow" taborder="5" text="행추가" cssclass="btn_WF_Row_Add" top="14" right="btnDeleteRow:5" width="73" height="26" onclick="divResult_btnAddRow_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Static id="Static02" taborder="3" text="W&#13;&#10; 50" visible="false" top="0" height="720" onclick="Static02_onclick" background="antiquewhite" color="blue" right="0" width="50"/>
+        <Static id="Static34" taborder="4" text="W 50" onclick="Static02_onclick" visible="false" left="0" top="0" width="50" height="720" background="antiquewhite" color="blue"/>
+        <Static id="Static04_00_00_01" taborder="5" text="h 15" onclick="Static31_onclick" visible="false" left="60" top="113" width="100" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="20" width="65" height="28" right="50" taborder="6" onclick="btnSave_onclick"/>
+        <Button id="btnSearch" text="조회" cssclass="" top="20" width="65" height="28" right="btnSave:3" taborder="7" onclick="btnSearch_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  채번기준 관리
+*  MenuPath      시스템 관리 - 기준정보 관리 - 채번기준 관리
+*  FileName      SEQ_1010M.xfdl 
+*  Creator       parksw
+*  CreateDate    2023.03.14
+*  Desction      채번기준 관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.14    parksw      최초 생성
+*  2023.04.18    parksw      폼 ID 변경
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+
+this.seqManage_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+    this.gfnLoadCombo("loadCombo", "dsUseYn=PMS:SM:USE_YN dsUseYnSch=PMS:SM:USE_YN:A", "fnComboCallback");
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+this.fnSearch = function ()
+{
+	var strSvcId    = "getSeqManageList";
+	var strSvcUrl   = "sm/getSeqManageList.do";
+	var inData      = "dsSchSeq";
+	var outData     = "dsSeqMng";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+this.fnSave = function ()
+{
+	var strSvcId    = "saveSeqManageList";
+	var strSvcUrl   = "sm/saveSeqManageList.do";
+	var inData      = "dsSeqMng";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    if (svcId == "loadCombo") {
+        this.fnSearch();
+    }
+};
+
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getSeqManageList":
+			this.gfnRowCount(this.dsSeqMng, this.divResult.form.staGridRowCnt);
+            break;
+        case "saveSeqManageList":
+            if (this.callbackMsg == "success") {
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                this.fnSearch();
+            }
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+this.divResult_btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnAddRow();
+};
+
+this.divResult_btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnDeleteRow();
+};
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSearch();
+};
+
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnBeforeSave();
+};
+
+this.divSearch_schSeqId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+        this.fnSearch();
+    }
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.fnAddRow = function ()
+{
+    this.gfnInsertRow(this.dsSeqMng, "last");
+    var i = this.dsSeqMng.rowposition;
+    this.dsSeqMng.setColumn(i, "seqDigits", 4);
+    this.dsSeqMng.setColumn(i, "seqMin", 1);
+    this.dsSeqMng.setColumn(i, "seqInc", 1);
+    this.dsSeqMng.setColumn(i, "useYn", "Y");
+};
+
+this.fnDeleteRow = function ()
+{
+	this.gfnDeleteRow(this.dsSeqMng);
+};
+
+this.fnBeforeSave = function ()
+{
+    if (!this.fnValidate()) {
+        return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+this.fnValidate = function ()
+{
+    if (this.dsSeqMng.rowcount == 0 || !this.gfnDsIsUpdated(this.dsSeqMng)) {
+        this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+        return false;
+    }
+
+	if (!this.gfnDsIsUpdated(this.dsSeqMng)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return false;
+	}
+
+    var args = [
+        ["seqId", "NULL|MAX_LEN:20", ""],
+        ["seqPrefix", "MAX_LEN:50", ""],
+        ["seqSuffix", "MAX_LEN:50", ""],
+        ["seqDigits", "NULL|MIN:0", ""],
+        ["seqMin", "NULL|MIN:0", ""],
+        ["seqInc", "NULL|MIN:1", ""],
+        ["useYn", "NULL", ""],
+        ["seqDesc", "MAX_LEN:1000", ""]
+    ];
+
+    return this.gfnCheckGrid(this.divResult.form.grdSeq, args, "");
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSeqMng">
+        <ColumnInfo>
+          <Column id="seqId" type="STRING" size="20"/>
+          <Column id="seqPrefix" type="STRING" size="50"/>
+          <Column id="seqSuffix" type="STRING" size="50"/>
+          <Column id="seqDigits" type="INT" size="256"/>
+          <Column id="seqMin" type="INT" size="256"/>
+          <Column id="seqInc" type="INT" size="256"/>
+          <Column id="seqCurr" type="STRING" size="150"/>
+          <Column id="seqDesc" type="STRING" size="1000"/>
+          <Column id="useYn" type="STRING" size="1"/>
+          <Column id="rgstId" type="STRING" size="20"/>
+          <Column id="rgstDt" type="DATETIME" size="256"/>
+          <Column id="rgstIp" type="STRING" size="40"/>
+          <Column id="updtId" type="STRING" size="20"/>
+          <Column id="updtDt" type="DATETIME" size="256"/>
+          <Column id="updtIp" type="STRING" size="40"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSchSeq">
+        <ColumnInfo>
+          <Column id="seqId" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="seqDesc" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYnSch">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtSchSeqId" propid="value" datasetid="dsSchSeq" columnid="seqId"/>
+      <BindItem id="item1" compid="divSearch.form.edtSchSeqDesc" propid="value" datasetid="dsSchSeq" columnid="seqDesc"/>
+      <BindItem id="item2" compid="divSearch.form.edtSchUseYn" propid="value" datasetid="dsSchSeq" columnid="useYn"/>
+    </Bind>
+  </Form>
+</FDL>

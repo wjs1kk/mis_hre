@@ -1,0 +1,342 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="BBS_3020M" width="1920" height="720" titletext="게시물 등록" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="DivResult" taborder="0" text="Div01" left="50" top="73" cssclass="div_WF_Area" right="50" height="900">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="0" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="34" height="34" text="" right="0"/>
+              <Static id="Static10_00_00_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" top="102" height="490" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staNttTtl" taborder="3" text="제목" cssclass="sta_WF_condition02_LEssential" left="0" top="0" width="150" height="34"/>
+              <Edit id="edtNttTtl" taborder="4" left="staNttTtl:10" width="550" height="26" top="4"/>
+              <Static id="staScrtYn" taborder="5" text="비밀글" cssclass="sta_WF_condition02_L" left="0" top="34" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="staQstnCn" taborder="6" text="내용" cssclass="sta_WF_condition02_LEssential" left="0" top="102" width="150" height="490"/>
+              <TextArea id="textQstnCn" taborder="7" oneditclick="TextArea01_oneditclick" left="staQstnCn:10" top="107" height="480" onchanged="Div01_TextArea01_00_onchanged" right="20"/>
+              <Static id="staPasswd" taborder="8" text="비밀번호" cssclass="sta_WF_condition02" left="50%" top="34" width="150" height="34"/>
+              <Edit id="edtRgstr" taborder="9" left="staPasswd:10" top="38" height="26" width="250" readonly="false" password="true" enable="false"/>
+              <Static id="staNtcrId" taborder="10" text="작성자" cssclass="sta_WF_condition02" left="50%" top="0" width="150" height="34"/>
+              <Edit id="edtNtcrId" taborder="11" left="staNtcrId:10" top="4" height="26" width="250" readonly="true"/>
+              <CheckBox id="chScrtYn" taborder="12" left="staScrtYn:10" top="39" width="100" height="24" cssclass="" onchanged="DivResult_chScrtYn_onchanged"/>
+              <Static id="Static10_00_00_00" taborder="13" cssclass="sta_WF_condition02box" left="0" top="68" height="34" text="" right="0"/>
+              <Static id="staNoticeYn" taborder="14" text="공지사항" cssclass="sta_WF_condition02_L" left="0" top="68" width="150" height="34"/>
+              <CheckBox id="chNoticeYn" taborder="15" left="staNoticeYn:10" top="73" width="100" height="24" cssclass=""/>
+            </Layout>
+          </Layouts>
+          <InitValue>
+            <CheckBox id="chScrtYn" falsevalue="N" truevalue="Y"/>
+            <CheckBox id="chNoticeYn" falsevalue="N" truevalue="Y"/>
+          </InitValue>
+        </Div>
+        <Static id="staTitle" taborder="1" text="게시물 글쓰기" top="0" cssclass="sta_WF_compTitle01" left="50" onclick="sta_title_onclick" height="58" right="1420"/>
+        <Button id="btnDelete" text="삭제" cssclass="btn_WF_Delete" visible="true" top="20" height="28" taborder="3" width="65" right="50" onclick="btnDelete_onclick"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="20" width="65" height="28" right="btnDelete:3" taborder="2" onclick="btnSave_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="nttNo" type="STRING" size="256" description="게시물 번호"/>
+          <Column id="bbsId" type="STRING" size="256" description="게시판ID"/>
+          <Column id="nttTtl" type="STRING" size="256" description="게시물 제목"/>
+          <Column id="nttCn" type="STRING" size="256" description="게시물 내용"/>
+          <Column id="answrYn" type="STRING" size="256" description="답글여부"/>
+          <Column id="upNttNo" type="STRING" size="256" description="상위게시글 번호"/>
+          <Column id="cmntYn" type="STRING" size="256" description="댓글여부"/>
+          <Column id="sortOrdr" type="STRING" size="256" description="정렬순서"/>
+          <Column id="rdcnt" type="STRING" size="256" description="조회수"/>
+          <Column id="useYn" type="STRING" size="256" description="사용여부"/>
+          <Column id="ntcBgnYmd" type="STRING" size="256" description="게시시작일"/>
+          <Column id="ntcEndYmd" type="STRING" size="256" description="게시종료일"/>
+          <Column id="ntcrId" type="STRING" size="256" description="게시자 ID"/>
+          <Column id="ntcrNm" type="STRING" size="256" description="게시자명"/>
+          <Column id="passwd" type="STRING" size="256" description="비밀번호"/>
+          <Column id="atchFileId" type="STRING" size="256" description="첨부파일 ID"/>
+          <Column id="noticeYn" type="STRING" size="256" description="공지사항 여부"/>
+          <Column id="sjBoldYn" type="STRING" size="256" description="제목볼드 여뷰"/>
+          <Column id="scrtYn" type="STRING" size="256" description="비밀글 여부"/>
+          <Column id="rgstDt" type="STRING" size="256" description="최초등록일"/>
+          <Column id="rgstrId" type="STRING" size="256" description="최초등장자 ID"/>
+          <Column id="updtDt" type="STRING" size="256" description="최종수정일"/>
+          <Column id="updtrId" type="STRING" size="256" description="최종수정자 ID"/>
+          <Column id="cmntCnt" type="STRING" size="256" description="댓글 개수"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="nttNo" type="STRING" size="256"/>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="isRead" type="STRING" size="256"/>
+          <Column id="ntcrId" type="STRING" size="256"/>
+          <Column id="rgstrId" type="STRING" size="256"/>
+          <Column id="cmntNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsComment">
+        <ColumnInfo>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="nttNo" type="STRING" size="256"/>
+          <Column id="cmntNo" type="STRING" size="256"/>
+          <Column id="wrtrId" type="STRING" size="256"/>
+          <Column id="wrtrNm" type="STRING" size="256"/>
+          <Column id="cmntCn" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstrId" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtrId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  게시물 글쓰기
+*  MenuPath      소통광장 - 게시물 목록 - 게시물 등록
+*  FileName      BBS_3020M.xfdl 
+*  Creator 	     woohj
+*  CreateDate    2023.12.06
+*  Desction      게시물 글쓰기
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.06   woohj	 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+this.nttNo = ""; // 초기화
+this.bbsId = ""; // 초기화
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	var param = this.getOwnerFrame().tabArgs.param;
+	var nttNo = (param == null || Eco.isEmpty(param.nttNo)) ? null : param.nttNo;
+	// 3. 얘도 똑같이 this. 로 받아와야함 . var로 하면 지역변수, this로 해야 폼의 상태 적용
+
+	this.bbsId = (param == null || Eco.isEmpty(param.bbsId)) ? null : param.bbsId; // 1.폼 내에서 공유 해야하기 위해
+	
+	// 작성자 id 셋팅
+	var memberId = nexacro.getApplication().gdsUserInfo.getColumn(0, "memberId");   // Application에 있는 로그인한 멤버id
+	this.dsList.setColumn(0, "ntcrId", memberId);
+	
+	// 공지사항을 admin만 할수있게 셋팅
+	//var ntcrId = this.dsList.getColumn(0, "ntcrId");
+	var userId = nexacro.getApplication().gdsUserInfo.getColumn(0, "userId");
+	if(userId != "admin") {
+		this.DivResult.form.chNoticeYn.set_enable(false);
+	} else {
+		this.DivResult.form.chNoticeYn.set_enable(true);
+	}
+
+    if (nttNo != null && nttNo != "") {
+        this.dsSearch.setColumn(0, "nttNo", nttNo);
+		this.dsSearch.setColumn(0, "bbsId", this.bbsId);
+        this.fnSearch();
+	} else {
+		// 기본값을 설정
+		this.dsList.setColumn(0, "useYn", "Y"); 	// 사용여부 기본값
+		this.dsList.setColumn(0, "scrtYn", "N"); 	// 비밀글 여부 기본값
+		this.dsList.setColumn(0, "noticeYn", "N");  // 공지사항 여부 기본값
+		
+		
+		this.dsList.setColumn(0, "bbsId", this.bbsId);
+	}
+
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/**
+ * description 상세 조회
+ */
+this.fnSearch = function ()
+{
+	var strSvcId    = "getNoticeBoard";
+	var strSvcUrl   = "bbs/noticeBoard/getNoticeBoard.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function ()
+{
+	var strSvcId    = "setNoticeBoard";
+	var strSvcUrl   = "bbs/noticeBoard/setNoticeBoard.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+
+/**
+ * description 삭제
+*/
+this.fnDelete = function ()
+{
+	var strSvcId    = "deleteNoticeBoard";
+	var strSvcUrl   = "bbs/noticeBoard/deleteNoticeBoard.do";
+	var inData      = "dsList dsComment";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getNoticeBoard":
+            break;
+		case "setNoticeBoard":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+				// 서버에서 만들어져 받아오는 값 서버 getNtto()로 받아와야함
+				this.dsSearch.setColumn(0, "nttNo", this.nttNo);
+				
+				// 앞 화면에서 받아오는 값
+				this.dsSearch.setColumn(0, "bbsId", this.bbsId);
+
+				this.fnSearch();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+		case "deleteNoticeBoard":
+			if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_DELETE_SUCCESS");  // 삭제 되었습니다.
+				nexacro.getApplication().closeTab(this.getOwnerFrame().tabArgs.tabId);
+            }
+            break;
+		default:	
+            break;
+    }
+};
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 저장 버튼
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnBeforeSave();
+};
+
+/**
+ * description 삭제 버튼
+*/
+this.btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
+};
+
+/**
+ * description 비밀글 체크버튼
+*/
+this.DivResult_chScrtYn_onchanged = function(obj:nexacro.CheckBox,e:nexacro.CheckBoxChangedEventInfo)
+{
+	var scrtYn = this.dsList.getColumn(0, "scrtYn");
+	if(scrtYn == "Y") {
+		this.DivResult.form.edtRgstr.set_enable(true);
+	} else {
+		this.DivResult.form.edtRgstr.set_enable(false);
+	}
+};
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description 저장 전 확인
+*/
+this.fnBeforeSave = function ()
+{
+	if(this.dsList.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  	// 저장할 데이터가 없습니다.
+		return;
+	}
+	
+	if (!this.gfnDsIsUpdated(this.dsList)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+    if (!this.fnValidation()) {
+        return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+
+/**
+ * description 유효성 체크
+*/
+this.fnValidation = function ()
+{
+	var args = [
+		["nttTtl", "NULL|MAX_LEN:100", "제목"],
+		["nttCn", "NULL", "내용"]
+    ];
+
+	if(!this.gfnCheckGrid(this.dsList, args, "")) {
+		return false;
+	}
+	
+    return true;
+};
+
+
+
+
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="DivResult.form.edtNttTtl" propid="value" datasetid="dsList" columnid="nttTtl"/>
+      <BindItem id="item1" compid="DivResult.form.edtNtcrId" propid="value" datasetid="dsList" columnid="ntcrId"/>
+      <BindItem id="item2" compid="DivResult.form.chScrtYn" propid="value" datasetid="dsList" columnid="scrtYn"/>
+      <BindItem id="item3" compid="DivResult.form.edtRgstr" propid="value" datasetid="dsList" columnid="passwd"/>
+      <BindItem id="item4" compid="DivResult.form.textQstnCn" propid="value" datasetid="dsList" columnid="nttCn"/>
+      <BindItem id="item5" compid="DivResult.form.chNoticeYn" propid="value" datasetid="dsList" columnid="noticeYn"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="addressSearchPopup" width="500" height="550" titletext="주소 검색" oninit="AddressSearchPopup_oninit" onload="AddressSearchPopup_onload">
+    <Layouts>
+      <Layout height="550" width="500">
+        <WebBrowser id="wbDaumPostcode" taborder="0" left="0" top="50" bottom="0" right="0" border="0px none" onloadcompleted="wbDaumPostcode_onloadcompleted" onusernotify="wbDaumPostcode_onusernotify"/>
+        <Static id="staPopupTitle" taborder="1" text="우편번호 검색" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+        <Button id="btnClose" taborder="2" top="0" width="50" height="50" background="#00388E" borderRadius="0px" right="0" icon="url('theme://images/btn_WF_Cancel.png')" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  주소 검색
+ *  MenuPath      -
+ *  FileName      cmm::addressSearchPopup.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.10.26
+ *  Desction      주소 검색 팝업
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.10.26    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.AddressSearchPopup_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+    const serviceUrl = nexacro.getEnvironment().services["svcurl"].url;
+    this.wbDaumPostcode.set_url(serviceUrl + "cmm/goPostalSearch.do");
+};
+
+this.AddressSearchPopup_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.wbDaumPostcode_onloadcompleted = function(obj:nexacro.WebBrowser,e:nexacro.WebLoadCompEventInfo)
+{
+    const postSearch = obj.getProperty("window").handle.postSearch;
+    
+    postSearch.once("initialized", this.wbDaumPostcode_oninitialized.bind(this));
+    postSearch.on("completed", this.wbDaumPostcode_oncompleted.bind(this));
+    
+    postSearch.init();
+};
+
+this.wbDaumPostcode_oninitialized = function ()
+{
+};
+
+this.wbDaumPostcode_oncompleted = function (data)
+{
+    console.log(data);
+    this.gfnPopupClose({
+        data: data
+    });
+};
+
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnPopupClose({
+        canceled: true
+    });
+};
+]]></Script>
+  </Form>
+</FDL>

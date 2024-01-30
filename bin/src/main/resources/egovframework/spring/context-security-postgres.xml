@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       profile="postgres">
+    <bean id="userDetailsService" class="org.egovframe.rte.fdl.security.userdetails.jdbc.EgovJdbcUserDetailsManager">
+        <property name="usersByUsernameQuery">
+            <value>
+                SELECT A.USER_ID
+                     , A.MEMBER_ID
+                     , B.MEMBER_NM_KR AS USER_NM_KR
+                     , B.MEMBER_NM_EN AS USER_NM_EN
+                     , B.PASSWD
+                     , B.EML_ADDR AS EMAIL_ADDR
+                     , B.OFC_TELNO AS TEL_NO
+                     , B.MBL_TELNO AS PHONE_NO
+                     , B.JBPS_CD
+                     , B.JBPS_NM
+                     , B.OGDP_INST_CD
+                     , B.OGDP_INST_NM
+                     , B.OGDP_DEPT_CD
+                     , B.OGDP_DEPT_NM
+                     , B.USE_YN
+                     , B.RGST_ID
+                     , B.RGST_IP
+                     , B.RGST_DT
+                     , B.UPDT_ID
+                     , B.UPDT_IP
+                     , B.UPDT_DT
+                     , (SELECT STRING_AGG(B.ROLE_CODE, ',' ORDER BY ROLE_CODE)
+                          FROM (SELECT ROLE_CODE
+                                  FROM CMN_ROLE_USER CRU
+                                 WHERE CRU.USER_ID = A.USER_ID
+                                 UNION
+                                SELECT 'ROLE_USER' AS ROLE_CODE) B) AS ROLE_CODE
+                     , A.PW_EXPIRE_DT
+                     , B.OGDP_INST_CD
+                     , B.OGDP_INST_NM
+                  FROM CMN_USER A
+                  JOIN PTS_MEMBER B
+                    ON A.MEMBER_ID = B.MEMBER_ID
+                 WHERE A.MEMBER_ID = ?
+            </value>
+        </property>
+        <property name="authoritiesByUsernameQuery">
+            <value>
+                SELECT A.USER_ID, A.ROLE_CODE
+                  FROM CMN_ROLE_USER A
+                 WHERE A.USER_ID = ?
+                 UNION ALL
+                SELECT 'SYSTEM' AS USER_ID
+                     , 'ROLE_USER' AS ROLE_CODE
+            </value>
+        </property>
+        <property name="roleHierarchy" ref="roleHierarchy"/>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapClass" value="com.jnv.jncore.security.EgovSecurityUserVOMapping"/>
+    </bean>
+
+    <bean id="securedObjectDAO" class="org.egovframe.rte.fdl.security.securedobject.impl.SecuredObjectDAO">
+        <property name="sqlHierarchicalRoles">
+            <value>
+                SELECT '' AS PARENT
+                     , 'ROLE_USER' AS CHILD
+                 LIMIT 0
+            </value>
+        </property>
+        <property name="sqlRolesAndMethod">
+            <value>
+                SELECT DISTINCT PF.FUNC_PATTERN AS METHOD
+                     , RF.ROLE_CODE AS AUTHORITY
+                  FROM CMN_MENU MN
+                     , CMN_PROG_FUNC PF
+                     , CMN_ROLE_MENU_FUNC RF
+                 WHERE MN.MENU_ID = RF.MENU_ID
+                   AND PF.FUNC_ID = RF.FUNC_ID
+                   AND PF.FUNC_PATTERN_TYPE = 'METHOD'
+                   AND PF.FUNC_PATTERN IS NOT NULL
+                 LIMIT 0
+            </value>
+        </property>
+        <property name="sqlRolesAndUrl">
+            <value>
+                SELECT DISTINCT '\A/' || PF.FUNC_PATTERN || '.*\Z' AS URL
+                     , RF.ROLE_CODE AS AUTHORITY
+                  FROM CMN_ROLE_MENU_FUNC RF
+                     , CMN_PROG_FUNC PF
+                     , CMN_MENU MN
+                 WHERE MN.MENU_ID = RF.MENU_ID
+                   AND PF.FUNC_ID = RF.FUNC_ID
+                   AND PF.FUNC_PATTERN_TYPE = 'URL'
+                   AND PF.FUNC_PATTERN IS NOT NULL
+                 LIMIT 0
+            </value>
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+</beans>

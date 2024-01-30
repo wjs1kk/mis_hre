@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Menu" width="1920" height="235" titletext="New Form" onclose="Form_Men_onclose">
+    <Layouts>
+      <Layout height="235" width="1920">
+        <PopupDiv id="divMenu" text="PopupDiv00" visible="false" left="0" top="0" width="1920" height="235">
+          <Layouts>
+            <Layout>
+              <Static id="staMenuSample2" taborder="0" text="2차 메뉴명" left="50" top="15" width="280" height="40" cssclass="sta_TF_navTitle2" visible="false"/>
+              <Static id="staMenuSample3" taborder="1" text="3차 메뉴명" left="50" top="61" width="85" height="24" cssclass="sta_TF_navText" visible="false" onclick="sta_TF_navText_onclick"/>
+              <Static id="Static28" taborder="2" text="W 50" visible="false" left="0" top="0" width="50" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" bottom="80"/>
+              <Static id="Static11" taborder="3" text="H 15" visible="false" left="50" top="0" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="10"/>
+              <Static id="Static28_00" taborder="4" text="W 50" visible="false" left="1870" top="0" width="50" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" bottom="80"/>
+              <Static id="Static28_01" taborder="5" text="W 20" visible="false" left="330" top="15" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" bottom="110"/>
+              <Static id="Static11_00" taborder="6" text="H 6" visible="false" left="50" top="55" height="6" background="aqua" color="blue" textAlign="center" verticalAlign="middle" width="280"/>
+              <Static id="Static11_01" taborder="7" text="H 30" visible="false" left="50" top="205" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="25" height="30"/>
+            </Layout>
+          </Layouts>
+        </PopupDiv>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

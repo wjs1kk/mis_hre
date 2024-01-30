@@ -1,0 +1,511 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_2020P_02" width="1084" height="880" titletext="게시글 수정" left="0" top="0" onload="CMS_2020P_02_onload" oninit="CMS_2020P_02_oninit" onbeforeclose="CMS_2020P_02_onbeforeclose">
+    <Layouts>
+      <Layout height="880" width="1084">
+        <Div id="popupDiv" taborder="0" text="" left="0" top="50" right="0" bottom="0" formscrollbartype="auto" formscrolltype="vertical">
+          <Layouts>
+            <Layout>
+              <Static id="Static10" taborder="0" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="1" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="2" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="0" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Div id="Div00" taborder="3" text="Div00" left="30" top="20" right="30" bottom="0">
+                <Layouts>
+                  <Layout type="vertical" verticalgap="10">
+                    <Div id="divFormBox" taborder="0" left="0" top="0" height="167" cssclass="div_WF_popup" text="" width="100%" flexgrow="0" flexshrink="0">
+                      <Layouts>
+                        <Layout width="1032" height="72">
+                          <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static07_01_01_00" taborder="2" left="21" top="80" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="20"/>
+                          <Static id="Static07_01_01_00_00" taborder="3" left="21" top="45" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" width="981"/>
+                          <Static id="staVd0" taborder="6" left="20" top="45" width="1" onclick="div_Search_Static07_onclick" background="#00388e" text="" bottom="14"/>
+                          <Static id="staShowYn" taborder="9" text="공개 여부" cssclass="sta_WF_condition02" left="staVd0:0" top="Static07_01_01_00:0" width="150" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                          <Static id="staHd2" taborder="4" left="21" top="staShowYn:0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="20"/>
+                          <Static id="Static07_00_01_00" taborder="5" top="45" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" right="20" bottom="15"/>
+                          <Static id="staBoardNm" taborder="8" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" right="20"/>
+                          <Static id="Static07_01_02_00" taborder="7" left="171" top="45" width="1" onclick="div_Search_Static07_onclick" background="#dddddd" bottom="15"/>
+                          <Static id="staInOutDiv" taborder="10" text="대내외 구분" cssclass="sta_WF_condition02" left="staShowYn:226.67%" top="Static07_01_01_00:0" height="34" width="150"/>
+                          <Static id="staArtclTitle" taborder="11" text="제목" cssclass="sta_WF_condition02" left="21" top="46" width="150" height="34"/>
+                          <Static id="Static10_00" taborder="12" text="w12" visible="false" left="172" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_00_00" taborder="13" text="w12" visible="false" left="172" top="116" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_01" taborder="14" text="w12" visible="false" left="172" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static04_00_00_00_00" taborder="15" text="h 15" onclick="Static31_onclick" visible="false" left="110" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                          <Static id="staShowRange" taborder="17" text="게시 기간" cssclass="sta_WF_condition02" left="21" top="staHd2:0" width="150" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                          <Static id="staHd3" taborder="16" left="21" top="staShowRange:0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="20"/>
+                          <Static id="staVd13" taborder="18" top="81" height="35" onclick="div_Search_Static07_onclick" background="#dddddd" right="staInOutDiv:0" width="1"/>
+                          <Static id="staVd14" taborder="19" left="staInOutDiv:0" top="81" width="1" height="34" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                          <Edit id="edtArtclTitle" taborder="20" cssclass="essential" left="staArtclTitle:13" top="50" width="78.77%" height="26"/>
+                          <Static id="Static10_00_00" taborder="21" text="w12" visible="false" left="989" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Combo id="cbShowYn" taborder="22" displaynulltext="선택" left="staShowYn:13" top="Static07_01_01_00:4" width="17.5%" height="26" codecolumn="value" datacolumn="text" innerdataset="dsShowYnCbo"/>
+                          <Static id="Static10_00_01_00" taborder="23" text="w12" visible="false" top="81" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="staVd13:0" width="12"/>
+                          <Static id="Static10_00_01_00_00" taborder="24" text="w12" visible="false" left="staVd14:0" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_01_00_00_00" taborder="25" text="w12" visible="false" left="989" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Combo id="cbInOutDiv" taborder="26" displaynulltext="선택" left="staInOutDiv:13" top="Static07_01_01_00:4" width="17.38%" height="26" codecolumn="value" datacolumn="text" innerdataset="dsInOutCbo"/>
+                          <Calendar id="calShowStartDt" taborder="27" displaynulltext="____-__-__" left="staShowRange:13" top="staHd2:4" width="153" height="26" cssclass="" dateformat="yyyy-MM-dd"/>
+                          <Static id="staTilde" taborder="28" text="~" left="calShowStartDt:0" top="staHd2:5" width="25" height="24" textAlign="center"/>
+                          <Calendar id="calShowEndDt" taborder="29" displaynulltext="____-__-__" left="staTilde:0" top="staHd2:4" width="153" height="26" cssclass="" dateformat="yyyy-MM-dd"/>
+                          <Static id="staTitleReq" taborder="30" text="*" left="60" top="45" height="34" cssclass="essential" width="25" tooltiptext="필수입력"/>
+                          <Static id="staShowYnReq" taborder="31" text="*" left="88" top="81" height="34" cssclass="essential" width="25" tooltiptext="필수입력"/>
+                          <Static id="staInOutReq" taborder="32" text="*" left="staInOutDiv:-71" top="81" height="34" cssclass="essential" width="25" tooltiptext="필수입력"/>
+                        </Layout>
+                      </Layouts>
+                      <InitValue/>
+                    </Div>
+                    <WebView id="wvEditor" taborder="1" height="1" flexgrow="1" flexshrink="0" minheight="1" left="0" top="0" maxheight="" useurlhistory="false" onloadcompleted="popupDiv_Div00_wvEditor_onloadcompleted" width="100%"/>
+                    <Div id="divAttachBox" taborder="2" left="0" top="0" height="200" cssclass="div_WF_popup" text="" width="100%" url="cmm::fileUpload.xfdl"/>
+                    <Div id="div_btnGroup" taborder="3" left="30" height="66" top="979" width="100%">
+                      <Layouts>
+                        <Layout type="horizontal" horizontalgap="3" flexmainaxisalign="center" spacing="15px 0 23px 0">
+                          <Button id="btnSave" text="저장" cssclass="btn_WF_icoSave" width="65" taborder="1" left="0" top="0" height="28" onclick="popupDiv_Div00_div_btnGroup_btnSave_onclick"/>
+                          <Button id="btnClose" text="닫기" cssclass="" visible="true" height="28" taborder="0" left="0" width="65" top="0" onclick="popupDiv_div_btnGroup_btnClose_onclick"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="1" text="게시글 등록" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  게시글 등록/수정
+*  MenuPath      게시판 - 게시글 등록/수정
+*  FileName      CMS_2020P_01.xfdl 
+*  Creator 	     parksw
+*  CreateDate    2023.04.03
+*  Desction      게시판에 게시글을 등록한다.
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.04.06    parksw 	 최초 생성
+*  2023.04.18    parksw 	 폼 ID 변경
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.CMS_2020P_02_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+    form = this;
+    this.editorLoaded = false;
+    this.articleLoaded = false;
+
+    this.fnResize();
+    var webview = this.popupDiv.form.Div00.form.wvEditor;
+    webview.set_url(nexacro.getEnvironment().services["svcurl"].url + "cms/tinymceEditor.do");
+
+    var that = this;
+    window.addEventListener("resize", this.onResizeHandler);
+
+    this.sysId = this.parent.sysId;
+    this.boardId = this.parent.boardId;
+    this.boardNm = this.parent.boardNm;
+
+    if (this.sysId == null || this.sysId == "" || this.boardId == null || this.boardId == "") {
+        this.gfnAlert("잘못된 접근입니다.");
+        this.fnClose();
+        return;
+    }
+    
+    this.dsArticle.setColumn(0, "sysId", this.sysId);
+    this.dsArticle.setColumn(0, "boardId", this.boardId);
+
+    this.mode = "inserted";
+    this.dsUiStat.setColumn(0, "boardNm", this.boardNm);
+
+    if (this.parent.articleId != null) {
+        this.mode = "updated";
+        this.articleId = this.parent.articleId;
+        this.dsArticle.setColumn(0, "artclId", this.articleId);
+    }
+
+    this.gfnLoadCombo("loadCombo", "dsShowYnCbo=PMS:CMS:BOARD_SHOW_YN dsInOutCbo=PMS:CMS:BOARD_IN_OUT_DIV", "fnComboCallback");
+	this.gfnTransaction("getBoardInfo", "cms/getBoardInfo.do", "", "dsBoard dsBoardRoles", "boardId=" + this.boardId + " sysId=" + this.sysId, "fnCallback");
+};
+
+/**
+ * @description 화면 onload
+ */
+this.CMS_2020P_02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+this.CMS_2020P_02_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	window.removeEventListener("resize", this.onResizeHandler);
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnSearch = function ()
+{
+	var strSvcId    = "getArticle";
+	var strSvcUrl   = "cms/getBoardArticle.do";
+	var inData      = "dsArticle";
+	var outData     = "dsArticle dsAttach";
+	var strArg      = "withContent=true withNeighborLink=false withComment=false type=edit";
+	var callbackFn  = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+};
+
+this.fnSave = function ()
+{
+	var strSvcId    = "saveArticle";
+	var strSvcUrl   = "cms/saveBoardArticle.do";
+	var inData      = "dsArticle dsAttach";
+	var outData     = "";
+	var strArg      = "";
+	var callbackFn  = "fnCallback";
+	var isAsync   	= true;
+    
+    this.dsArticle.setColumn(0, "rowStatus", this.mode);
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+    if (this.mode == "updated") {
+        this.fnSearch();
+    } else {
+        this.articleLoaded = true;
+        this.fnInit();
+    }
+};
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+	switch (svcId) {
+        case "getBoardInfo":
+            if (this.dsBoardRoles.findRow("boardFuncId", "WRITE") < 0) {
+                this.gfnAlert();
+                this.gfnPopupClose(false);
+            }
+            
+            var showYn = this.dsBoard.getColumn(0, "boardType") == "BBST02";
+            var inOut = this.dsBoard.getColumn(0, "boardType") == "BBST02";
+            var showRange = this.dsBoard.getColumn(0, "boardAttr") == "BBSA01";
+            var showAttach = this.dsBoard.getColumn(0, "fileAtchPosblYn") == "Y";
+            
+            this.fnUpdateUiState(showYn, inOut, showRange, showAttach);
+            break;
+        case "getArticle":
+            this.articleLoaded = true;
+            var data = JSON.stringify(this.dsArticle.getColumn(0, "artclCont"));
+            this.fnInit({
+                content: data.substring(1, data.length - 1)
+            });
+            break;
+        case "saveArticle":
+            if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                this.gfnPopupClose(true);
+            }
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.popupDiv_div_btnGroup_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnClose(false);
+};
+
+this.popupDiv_Div00_div_btnGroup_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnBeforeSave();
+};
+
+this.popupDiv_Div00_wvEditor_onloadcompleted = function(obj:nexacro.WebView,e:nexacro.WebLoadCompEventInfo)
+{
+	this.editorLoaded = true;
+    var content = this.dsArticle.getColumn(0, "artclCont");
+    var data = JSON.stringify(Eco.isEmpty(content) ? "" : content);
+    this.fnInit({
+        content: data.substring(1, data.length - 1)
+    });
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnClose = function (result)
+{
+	this.gfnPopupClose(result || false);
+};
+
+this.onResizeHandler = (function ()
+{
+	this.fnResize();
+}).bind(this);
+
+this.fnResize = function ()
+{
+    var viewboxWidth = window.innerWidth;
+    var viewboxHeight = window.innerHeight;
+    var height = Math.min(viewboxHeight - 30, 1080);
+    form.set_height(height);
+    this.parent.resize(form.parent.width, height);
+    this.parent.move((viewboxWidth - form.parent.width) / 2, (viewboxHeight - height) / 2);
+};
+
+this.fnUpdateUiState = function (showYnVisible, inOutDivVisible, periodVisible, attachFileVisible)
+{
+    var formHeight = 167;
+
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowYn.set_visible(showYnVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.cbShowYn.set_visible(showYnVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowYnReq.set_visible(showYnVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staVd13.set_visible(showYnVisible && inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staVd14.set_visible(showYnVisible && inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutDiv.set_left(showYnVisible ? "staShowYn:209.33%" : "staVd0:0");
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutReq.set_right("staInOutDiv:-71");
+    this.popupDiv.form.Div00.form.divFormBox.form.cbInOutDiv.set_left("staInOutDiv:13");
+    
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutDiv.set_visible(inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.cbInOutDiv.set_visible(inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutReq.set_visible(inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staHd2.set_visible(inOutDivVisible);
+    
+    if (!showYnVisible && !inOutDivVisible) {
+        formHeight -= 35;
+    }
+    
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowRange.set_visible(periodVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.calShowStartDt.set_visible(periodVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staTilde.set_visible(periodVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.calShowEndDt.set_visible(periodVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staHd3.set_visible(periodVisible);
+    
+    if (!periodVisible) {
+        formHeight -= 35;
+    }
+    
+    this.popupDiv.form.Div00.form.divFormBox.set_height(formHeight);
+    this.popupDiv.form.Div00.form.divAttachBox.set_visible(attachFileVisible);
+    
+    this.popupDiv.form.Div00.form.divFormBox.form.resetScroll();
+};
+
+this.fnInit = function (args)
+{
+    if (this.editorLoaded && this.articleLoaded) {
+        this.popupDiv.form.Div00.form.wvEditor.callScript("editor.init(" + (arguments.length > 0 ? JSON.stringify(args) : "") + ")");
+    }
+};
+
+this.fnGetContent = function ()
+{
+	return this.popupDiv.form.Div00.form.wvEditor.callScript("editor.content");
+};
+
+this.fnBeforeSave = function ()
+{
+    var content = JSON.parse("\"" + this.fnGetContent() + "\"");
+    this.dsArticle.setColumn(0, "artclCont", content);
+    
+    if (!this.fnValidate()) {
+        return;
+    }
+    
+    this.fnSave();
+};
+
+this.fnValidate = function ()
+{
+    var args = [
+        ["artclTitle", "NULL|MAX_LEN:200", "제목"],
+        ["artclCont", "NULL", "내용"]
+    ];
+
+    if (this.dsBoard.getColumn(0, "boardType") == "BBST02") {
+        args.push(["showYn", "NULL", "공개 여부"]);
+    }
+
+    if (this.dsBoard.getColumn(0, "boardType") == "BBST02") {
+        args.push(["inOutDiv", "NULL", "대내외 구분"]);
+    }
+
+    if (!this.gfnCheckGrid(this.dsArticle, args, "")) {
+        return false;
+    }
+    
+    var from = this.fnToJsDate(this.dsArticle.getColumn(0, "showStartDt"));
+    var to = this.fnToJsDate(this.dsArticle.getColumn(0, "showEndDt"));
+    if (!this.fnValidateDateRange(from, to)) {
+        return false;
+    }
+
+    return true;
+};
+
+/**
+ * @summary 날짜 범위가 올바른지 확인한다.
+ * @param {string | Date | nexacro.Date} from 날짜 범위의 시작
+ * @param {string | Date | nexacro.Date} to 날짜 범위의 끝
+ * @param {boolean} [exclusive=false] 범위의 끝이 범위에 포함되는지 여부
+ * @returns {boolean} 범위의 끝이 시작보다 빠르면 false를, 아니면 true를 반환한다.
+ */
+this.fnValidateDateRange = function (from, to, exclusive)
+{
+    if (typeof from !== "string") {
+        from = this.fnToJsDate(from);
+    }
+
+    if (typeof to !== "string") {
+        to = this.fnToJsDate(to);
+    }
+
+    if (Eco.isEmpty(from) || Eco.isEmpty(to)) {
+        return true;
+    }
+
+    var result = exclusive ? Eco.date.getDiffDay(from, to) > 0 : Eco.date.getDiffDay(from, to) >= 0;
+    if (!result) {
+        this.gfnAlert("CM_MSG_DATE_CHK");
+    }
+
+    return result;
+};
+
+/**
+ * @summary {@link nexacro.Date}를 자바스크립트 {@link Date}로 변환한다.
+ * @param {nexacro.Date} nexacroDate 자바스크립트 Date로 변환할 nexacro.Date 객체
+ * @returns {Date} 주어진 nexacro.Date 객체가 나타내는 일시와 동일한 자바스크립트 Date 객체
+ */
+this.fnToJsDate = function (nexacroDate) {
+    if (Eco.isEmpty(nexacroDate)) {
+        return (void 0);
+    } else if (Object.prototype.toString(nexacroDate) === "[object Date]") {
+        return nexacroDate;
+    } else {
+        return new Date(nexacroDate.getTime());
+    }
+}]]></Script>
+    <Objects>
+      <Dataset id="dsUiStat">
+        <ColumnInfo>
+          <Column id="showYnVisible" type="STRING" size="256"/>
+          <Column id="inOutDivVisible" type="STRING" size="256"/>
+          <Column id="durationVisible" type="STRING" size="256"/>
+          <Column id="boardNm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="showYnVisible">false</Col>
+            <Col id="inOutDivVisible">true</Col>
+            <Col id="durationVisible">true</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsArticle" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="boardId" type="STRING" size="20"/>
+          <Column id="artclId" type="BIGDECIMAL" size="256"/>
+          <Column id="artclTitle" type="STRING" size="200"/>
+          <Column id="artclCont" type="STRING" size="2147483647"/>
+          <Column id="showYn" type="STRING" size="1"/>
+          <Column id="showStartDt" type="DATE" size="256"/>
+          <Column id="showEndDt" type="DATE" size="256"/>
+          <Column id="atchFileId" type="STRING" size="40"/>
+          <Column id="inOutDiv" type="STRING" size="20"/>
+          <Column id="upArtclId" type="BIGDECIMAL" size="256"/>
+          <Column id="viewCount" type="BIGDECIMAL" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstDt" type="DATETIME" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="showYn">Y</Col>
+            <Col id="inOutDiv">IN</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAttach">
+        <ColumnInfo>
+          <Column id="fileId" type="STRING" size="256"/>
+          <Column id="fileSeq" type="STRING" size="256"/>
+          <Column id="fileName" type="STRING" size="256"/>
+          <Column id="fileSize" type="STRING" size="256"/>
+          <Column id="fileMask" type="STRING" size="256"/>
+          <Column id="fileUploadPath" type="STRING" size="256"/>
+          <Column id="fileUploadFullPath" type="STRING" size="256"/>
+          <Column id="link" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsShowYnCbo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsInOutCbo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBoard">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="boardId" type="STRING" size="256"/>
+          <Column id="boardIntro" type="STRING" size="256"/>
+          <Column id="boardNm" type="STRING" size="256"/>
+          <Column id="boardType" type="STRING" size="256"/>
+          <Column id="boardAttr" type="STRING" size="256"/>
+          <Column id="replyPosblYn" type="STRING" size="256"/>
+          <Column id="fileAtchPosblYn" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rgstDt" type="DATE" size="256"/>
+          <Column id="rsgtId" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="updtId" type="DATE" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="upperMenuId" type="STRING" size="256"/>
+          <Column id="upperMenuNm" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBoardRoles">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="boardId" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="boardFuncId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="popupDiv.form.Div00.form.divFormBox.form.edtArtclTitle" propid="value" datasetid="dsArticle" columnid="artclTitle"/>
+      <BindItem id="item1" compid="popupDiv.form.Div00.form.divFormBox.form.cbShowYn" propid="value" datasetid="dsArticle" columnid="showYn"/>
+      <BindItem id="item2" compid="popupDiv.form.Div00.form.divFormBox.form.cbInOutDiv" propid="value" datasetid="dsArticle" columnid="inOutDiv"/>
+      <BindItem id="item3" compid="popupDiv.form.Div00.form.divFormBox.form.calShowStartDt" propid="value" datasetid="dsArticle" columnid="showStartDt"/>
+      <BindItem id="item4" compid="popupDiv.form.Div00.form.divFormBox.form.calShowEndDt" propid="value" datasetid="dsArticle" columnid="showEndDt"/>
+      <BindItem id="item5" compid="popupDiv.form.Div00.form.divFormBox.form.staBoardNm" propid="text" datasetid="dsUiStat" columnid="boardNm"/>
+    </Bind>
+  </Form>
+</FDL>

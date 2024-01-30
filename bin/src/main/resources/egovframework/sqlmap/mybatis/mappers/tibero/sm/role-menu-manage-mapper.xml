@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.role.service.RoleMenuManageDAO">
+
+    <select id="getRole" parameterType="map" resultType="roleMenuManageVO">
+        /* role-menu-manage-mapper.getRole */
+        SELECT R.ROLE_CODE
+             , R.SYS_ID
+             , R.MODULE_ID
+             , R.ROLE_NM
+             , R.ROLE_DC
+             , R.ROLE_PERMIT
+             , R.WORK_GRP_ID
+             , R.USE_YN
+             , TO_CHAR(R.USE_YMD, 'YYYY-MM-DD') AS USE_YMD
+             , TO_CHAR(R.END_YMD, 'YYYY-MM-DD') AS END_YMD
+             , R.UPDT_ID
+             , R.UPDT_IP
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = R.UPDT_ID) AS UPDT_NM
+             , TO_CHAR(R.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+          FROM CMN_ROLE R
+        <where>
+            <if test="searchRoleCode != null and searchRoleCode != ''">
+           AND R.ROLE_CODE LIKE '%' || #{searchRoleCode} || '%'
+            </if>
+            <if test="roleNm != null and roleNm != ''">
+           AND R.ROLE_NM LIKE '%' || #{roleNm} || '%'
+            </if>
+            <if test="moduleId != null and moduleId != ''">
+           AND R.MODULE_ID = #{moduleId}
+            </if>
+           AND R.USE_YN = 'Y'
+        </where>
+         ORDER BY R.MODULE_ID NULLS FIRST
+             , R.ROLE_PERMIT
+             , R.ROLE_CODE
+    </select>
+
+    <select id="getRoleMenuSearch" parameterType="map" resultType="roleMenuManageVO">
+        /* role-menu-manage-mapper.getRoleMenuSearch */
+           WITH AUTH_CNT AS (SELECT CRMF.SYS_ID
+                                  , CRMF.MENU_ID
+                                  , CRMF.ROLE_CODE
+                                  , COUNT(*) AS AUTH_CNT
+                               FROM CMN_ROLE_MENU_FUNC CRMF
+                               JOIN CMN_MENU CM
+                                 ON CRMF.SYS_ID = CM.SYS_ID
+                                AND CRMF.MENU_ID = CM.MENU_ID
+                               JOIN CMN_PROG CP
+                                 ON CRMF.SYS_ID = CP.SYS_ID
+                                AND CM.PROG_ID = CP.PROG_ID
+                               JOIN CMN_PROG_FUNC CPF
+                                 ON CP.SYS_ID = CPF.SYS_ID
+                                AND CP.PROG_ID = CPF.PROG_ID
+                                AND CRMF.FUNC_ID = CPF.FUNC_ID
+                              GROUP BY CRMF.SYS_ID, CRMF.MENU_ID, CRMF.ROLE_CODE),
+                FUNC_CNT AS (SELECT CPF.SYS_ID
+                                  , CM.MENU_ID
+                                  , COUNT(*) AS FUNC_CNT
+                               FROM CMN_PROG_FUNC CPF
+                               JOIN CMN_MENU CM
+                                    ON CPF.SYS_ID = CM.SYS_ID
+                                        AND CPF.PROG_ID = CM.PROG_ID
+                              GROUP BY CPF.SYS_ID, CM.MENU_ID),
+                CNT_TREE AS (SELECT CM.SYS_ID
+                                  , CM.MENU_ID
+                                  , (SELECT NVL(SUM(CNT.AUTH_CNT), 0)
+                                       FROM CMN_MENU CM2
+                                       LEFT JOIN AUTH_CNT CNT
+                                                 ON CM2.SYS_ID = CNT.SYS_ID
+                                                     AND CM2.MENU_ID = CNT.MENU_ID
+                                                     AND CNT.ROLE_CODE = #{roleCode}
+                                    CONNECT BY PRIOR CM2.SYS_ID = CM2.SYS_ID
+                                           AND PRIOR CM2.MENU_ID = CM2.UPPER_MENU_ID
+                                      START WITH CM2.SYS_ID = CM.SYS_ID
+                                             AND CM2.MENU_ID = CM.MENU_ID) AS AUTH_CNT
+                                  , (SELECT NVL(SUM (CNT.FUNC_CNT), 0)
+                                       FROM CMN_MENU CM2
+                                       LEFT JOIN FUNC_CNT CNT
+                                                 ON CM2.SYS_ID = CNT.SYS_ID
+                                                     AND CM2.MENU_ID = CNT.MENU_ID
+                                      START WITH CM2.SYS_ID = CM.SYS_ID
+                                             AND CM2.MENU_ID = CM.MENU_ID
+                                    CONNECT BY PRIOR CM2.SYS_ID = CM2.SYS_ID
+                                           AND PRIOR CM2.MENU_ID = CM2.UPPER_MENU_ID) AS FUNC_CNT
+                               FROM CMN_MENU CM)
+         SELECT T.TREE_KEY
+              , T.TREE_UPPER
+              , T.TREE_KEY AS ID
+              , T.UPPER_TREE_KEY AS PARENT
+              , T.SYS_ID
+              , T.MENU_ID
+              , T.FUNC_ID
+              , T.TREE_TEXT
+              , T.SORT_ORDR
+              , T.INDCT_YN
+              , T.FUNC_AT
+              , T.SORT_ORDR
+              , T.AUTH_YN
+              , T.FUNC_CNT
+              , T.AUTH_CNT
+              , #{roleCode} AS ROLE_CODE
+              , LEVEL - 1 AS "LEVEL"
+           FROM (SELECT 'M/' || CM.MENU_ID AS TREE_KEY
+                      , NVL2(CM.UPPER_MENU_ID, 'M/' || CM.UPPER_MENU_ID, NULL) AS TREE_UPPER
+                      , CM.SYS_ID
+                      , CM.MENU_ID
+                      , NULL AS FUNC_ID
+                      , CM.MENU_NM AS TREE_TEXT
+                      , CM.MENU_DC AS DESCRIPTION
+                      , CM.SORT_ORDR
+                      , CM.INDCT_YN
+                      , 'N' AS FUNC_AT
+                      , CASE
+                            WHEN CNT.FUNC_CNT = 0 THEN 'N'
+                            WHEN CNT.AUTH_CNT = CNT.FUNC_CNT THEN 'Y'
+                            ELSE 'N'
+                        END AS AUTH_YN
+                      , CNT.FUNC_CNT
+                      , CNT.AUTH_CNT
+                   FROM CMN_MENU CM
+                   JOIN CNT_TREE CNT
+                        ON CM.SYS_ID = CNT.SYS_ID
+                            AND CM.MENU_ID = CNT.MENU_ID
+                  UNION
+                 SELECT 'F/' || CPF.FUNC_ID AS TREE_KEY
+                      , 'M/' || CM.MENU_ID AS TREE_UPPER
+                      , CPF.SYS_ID
+                      , CM.MENU_ID
+                      , CPF.FUNC_ID
+                      , CPF.FUNC_NAME AS TREE_TEXT
+                      , CPF.FUNC_DESC AS DESCRIPTION
+                      , CPF.SORT_ORDR
+                      , CM.INDCT_YN
+                      , 'Y' AS FUNC_AT
+                      , CASE
+                            WHEN EXISTS (SELECT 1
+                                           FROM CMN_ROLE_MENU_FUNC CRMF
+                                          WHERE CRMF.SYS_ID = CPF.SYS_ID
+                                            AND CRMF.MENU_ID = CM.MENU_ID
+                                            AND CRMF.FUNC_ID = CPF.FUNC_ID
+                                            AND CRMF.ROLE_CODE = #{roleCode}) THEN 'Y'
+                            ELSE 'N'
+                        END AS AUTH_YN
+                      , 1 AS FUNC_CNT
+                      , CASE
+                            WHEN EXISTS (SELECT 1
+                                           FROM CMN_ROLE_MENU_FUNC CRMF
+                                          WHERE CRMF.SYS_ID = CPF.SYS_ID
+                                            AND CRMF.MENU_ID = CM.MENU_ID
+                                            AND CRMF.FUNC_ID = CPF.FUNC_ID
+                                            AND CRMF.ROLE_CODE = #{roleCode}) THEN 1
+                            ELSE 0
+                        END AS AUTH_YN
+                   FROM CMN_PROG_FUNC CPF
+                   JOIN CMN_MENU CM
+                        ON CPF.SYS_ID = CM.SYS_ID
+                            AND CPF.PROG_ID = CM.PROG_ID) T
+          START WITH T.TREE_UPPER IS NULL
+            AND T.SYS_ID = #{sysId}
+        CONNECT BY PRIOR T.TREE_KEY = T.TREE_UPPER
+          ORDER SIBLINGS BY T.SORT_ORDR
+    </select>
+
+    <select id="getDuplicateRoleMenuFunc" parameterType="roleMenuManageVO" resultType="int">
+        /* role-menu-manage-mapper.getDuplicateRoleMenuFunc */
+        SELECT COUNT(ROLE_CODE)
+          FROM CMN_ROLE_MENU_FUNC
+         WHERE ROLE_CODE = #{roleCode}
+           AND MENU_ID   = #{menuId}
+           AND FUNC_ID   = #{funcId}
+           AND SYS_ID    = #{sysId}
+    </select>
+
+    <!-- 역할별 메뉴 기능 맵핑 저장 -->
+    <insert id="insertRoleMenuFunc" parameterType="roleMenuManageVO">
+        /* role-menu-manage-mapper.insertRoleMenuFunc */
+        INSERT INTO CMN_ROLE_MENU_FUNC (ROLE_CODE,
+                                        SYS_ID,
+                                        MENU_ID,
+                                        FUNC_ID,
+                                        RGST_ID,
+                                        RGST_IP,
+                                        RGST_DT,
+                                        UPDT_ID,
+                                        UPDT_IP,
+                                        UPDT_DT
+        )
+        VALUES (
+                   #{roleCode},
+                   #{sysId},
+                   #{menuId},
+                   #{funcId},
+                   #{sessionUserId},
+                   #{sessionUserIp},
+                   SYSDATE,
+                   #{sessionUserId},
+                   #{sessionUserIp},
+                   SYSDATE
+               )
+    </insert>
+
+    <delete id="deleteRoleMenuFunc" parameterType="roleMenuManageVO">
+        /* role-menu-manage-mapper.deleteRoleMenuFunc */
+        DELETE CMN_ROLE_MENU_FUNC
+         WHERE ROLE_CODE = #{roleCode}
+           AND MENU_ID   = #{menuId}
+           AND FUNC_ID   = #{funcId}
+           AND SYS_ID    = #{sysId}
+    </delete>
+
+</mapper>

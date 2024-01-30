@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MIF_2010P_02" width="500" height="355" titletext="회원탈퇴 신청" onload="MIF_2010P_02_onload">
+    <Layouts>
+      <Layout height="355" mobileorientation="landscape" width="500">
+        <Div id="divPopup" taborder="0" text="" left="0" top="0" height="355" width="500" cssclass="div_WF_Area" visible="true">
+          <Layouts>
+            <Layout>
+              <Static id="sta002" taborder="5" cssclass="portal_sta_memLabelBg" left="30" top="209" right="30" height="51" text=""/>
+              <Static id="staTitle" taborder="2" text="회원탈퇴신청" left="0" top="0" height="50" cssclass="portal_sta_popTitle" right="0" onclick="out_Static00_onclick"/>
+              <Static id="sta001" taborder="1" text="회원탈퇴를 원하시는 경우 &#13;&#10;아래 비밀번호를 입력하시고 확인버튼을 클릭해주세요." left="0" top="staTitle:20" height="74" cssclass="portal_sta_popTit" onclick="Static_onclick" width="500"/>
+              <Button id="btnOk" text="확인" cssclass="portal_btn" visible="true" height="45" taborder="0" top="sta002:20" left="42.40%" right="42.40%" onclick="divPopup_btnOk_onclick"/>
+              <Static id="sta003" taborder="3" text="비밀번호 입력" left="30" top="209" width="150" height="51" enable="true" cssclass="portal_sta_memLabel_L" onclick="Static_onclick"/>
+              <Edit id="edtPassword" taborder="4" width="270" height="33" top="218" left="190" cssclass="portal_edi" password="true" onkeyup="divPopup_edtPassword_onkeyup"/>
+              <Button id="btnClose" cssclass="portal_btn_close" visible="true" height="50" taborder="6" width="50" right="0" top="0" onclick="divPopup_btnClose_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  회원 탈퇴
+ *  MenuPath      마이페이지 - 회원정보 - 회원탈퇴 팝업
+ *  FileName      MIF_2010P_02.xfdl 
+ *  Creator       yuyr
+ *  CreateDate    2023.11.03
+ *  Desction      회원 탈퇴 팝업
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.11.03    yuyr 	      최초 생성
+ *  2023.11.06    parksw      기능 완성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ /***********************************************************************************************/
+
+/**
+ * description 화면 onload
+ */
+this.MIF_2010P_02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnCheckPassword = function ()
+{
+    this.gfnTransaction("checkPassword", "mi/myPage/checkPassword.do", "dsPassword", "", "", "fnCallback");
+};
+
+this.fnWithdraw = function ()
+{
+    this.gfnTransaction("withdraw", "mi/myPage/withdraw.do", "dsPassword", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "checkPassword":
+            if (this.callbackMsg === "success") {
+                this.gfnAlert("정말로 탈퇴하시겠습니까?", [], "", { trueFunc: "fnWithdraw" }, "C");
+            } else {
+                this.gfnAlert("비밀번호가 틀렸습니다.");
+            }
+            break;
+        case "withdraw":
+            this.gfnAlert("탈퇴 처리가 완료되었습니다.");
+            nexacro.getApplication().logout();
+            this.close();
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divPopup_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+this.divPopup_btnOk_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnValidate();
+};
+
+this.divPopup_edtPassword_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+    if (e.keycode == 13) {
+        this.fnValidate();
+    }
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnValidate = function ()
+{
+    this.divPopup.form.edtPassword.updateToDataset();
+    
+    const args = [
+        ["oldPasswd", "NULL|MAX_LEN:300", "비밀번호"],
+    ];
+    
+    if (this.gfnCheckGrid(this.dsPassword, args, "")) {
+        this.fnCheckPassword();
+    }
+};]]></Script>
+    <Objects>
+      <Dataset id="dsPassword" useclientlayout="true" oncolumnchanged="dsMemberInfo_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="oldPasswd" type="STRING" size="72"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.edtPassword" propid="value" datasetid="dsPassword" columnid="oldPasswd"/>
+    </Bind>
+  </Form>
+</FDL>

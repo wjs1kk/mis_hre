@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   version="1.1"
+   id="svg5"
+   xml:space="preserve"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="close-all.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="9.171875"
+     inkscape:cx="15.427598"
+     inkscape:cy="-7.4139693"
+     inkscape:window-width="2560"
+     inkscape:window-height="1377"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" /><defs
+     id="defs2" /><g
+     id="g52445"><path
+       style="fill:#000000;"
+       d="M 3,1 C 1.8920011,1 1,1.8920011 1,3 v 9 c 0,1.107999 0.8920011,2 2,2 h 9 c 1.107999,0 2,-0.892001 2,-2 V 3 C 14,1.8920011 13.107999,1 12,1 Z m 0,1 h 9 c 0.553999,0 1,0.4460006 1,1 v 9 c 0,0.553999 -0.446001,1 -1,1 H 3 C 2.4460006,13 2,12.553999 2,12 V 3 C 2,2.4460006 2.4460006,2 3,2 Z"
+       id="path50619" /><path
+       style="fill:#000000;"
+       d="M 15,4.2675781 V 14 c 0,0.553999 -0.446001,1 -1,1 H 4.2675781 C 4.6125539,15.598077 5.2572251,16 6,16 h 8 c 1.107999,0 2,-0.892001 2,-2 V 6 C 16,5.2572251 15.598077,4.6125539 15,4.2675781 Z"
+       id="path50621" /><path
+       style="color:#000000;"
+       d="m 4.5,4 a 0.5,0.5 0 0 0 -0.3535156,0.1464844 0.5,0.5 0 0 0 0,0.7070312 L 6.7929688,7.5 4.1464844,10.146484 a 0.5,0.5 0 0 0 0,0.707032 0.5,0.5 0 0 0 0.7070312,0 L 7.5,8.2070312 10.146484,10.853516 a 0.5,0.5 0 0 0 0.707032,0 0.5,0.5 0 0 0 0,-0.707032 L 8.2070312,7.5 10.853516,4.8535156 a 0.5,0.5 0 0 0 0,-0.7070312 0.5,0.5 0 0 0 -0.707032,0 L 7.5,6.7929688 4.8535156,4.1464844 A 0.5,0.5 0 0 0 4.5,4 Z"
+       id="path50623" /></g></svg>
