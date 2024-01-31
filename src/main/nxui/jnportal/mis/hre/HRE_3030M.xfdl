@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HRE_3030M" width="1920" height="670" titletext="시스템모듈관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSave" taborder="0" text="저장" top="20" height="28" right="60" width="65" onclick="btnSave_onclick" cssclass="btn_WF_Save"/>
+        <Static id="sta00" taborder="1" text="진행단계 설정" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" text="" right="50" height="71">
+          <Layouts>
+            <Layout>
+              <Static id="staBg00" taborder="4" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="staBg" taborder="3" left="0" top="-254" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="sta_02" taborder="0" text="구분" left="270" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Static id="sta001" taborder="2" text="기준 연도" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cbo01" taborder="1" left="sta001:10" top="15" width="110" height="26" onitemchanged="divSearch_cbo01_onitemchanged" innerdataset="dsEvalYear" codecolumn="evalYear" datacolumn="evalYear"/>
+              <Combo id="cbo02" taborder="5" left="315" top="15" width="110" height="26" innerdataset="dsSysIdComboSearch" codecolumn="value" datacolumn="text"/>
+              <Combo id="cbo003" taborder="6" left="cbo02:5" top="15" width="110" height="26" innerdataset="dsSysIdComboSearch" codecolumn="value" datacolumn="text"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="37" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Button id="btnDeleteRow" taborder="1" text="행삭제" top="14" height="26" right="10" width="73" onclick="btnDeleteRow_onclick" cssclass="btn_WF_Row_Delete"/>
+              <Button id="btnAddRow" taborder="0" text="행추가" top="14" height="26" right="btnDeleteRow:5" width="73" onclick="btnAddRow_onclick" cssclass="btn_WF_Row_Add"/>
+              <Grid id="grdEvalStep" taborder="2" left="0" top="45" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="Div00_grdModuleManage_onheadclick" binddataset="dsEvalStep">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48"/>
+                      <Column size="100"/>
+                      <Column size="120"/>
+                      <Column size="48"/>
+                      <Column size="240"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                      <Column size="48"/>
+                      <Column size="240"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" text="기준연도"/>
+                      <Cell col="2" text="구분"/>
+                      <Cell col="3" text="차수"/>
+                      <Cell col="4" text="단계"/>
+                      <Cell col="5" text="시작"/>
+                      <Cell col="6" text="종료"/>
+                      <Cell col="7" text="사용"/>
+                      <Cell col="8" text="비고"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell textAlign="right" expr="currow+1"/>
+                      <Cell col="1" displaytype="combocontrol" textAlign="left" combodataset="dsEvalYear" combocodecol="evalYear" combodatacol="evalYear" text="bind:evalYear"/>
+                      <Cell col="2" displaytype="combocontrol" textAlign="left" text="bind:evalStepCd"/>
+                      <Cell col="3" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="4" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="5" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" calendardataset="dsEvalStep" calendardatecol="startDt" text="bind:startDt"/>
+                      <Cell col="6" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" calendardataset="dsEvalStep" calendardatecol="endDt" text="bind:endDt"/>
+                      <Cell col="7" edittype="none" textAlign="center" displaytype="checkboxcontrol"/>
+                      <Cell col="8" edittype="none" textAlign="left" displaytype="editcontrol"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta004" taborder="3" text="성과관리 단계별 기간" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="180"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Button id="btnSearch" taborder="4" text="조회" top="73" height="28" right="60" width="65" onclick="btnSearch_onclick"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSysIdComboSearch">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="evalYear" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvalStep">
+        <ColumnInfo>
+          <Column id="evalYear" type="STRING" size="256"/>
+          <Column id="evalStepCd" type="STRING" size="256"/>
+          <Column id="startDt" type="STRING" size="256"/>
+          <Column id="endDt" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsEvalYear">
+        <ColumnInfo>
+          <Column id="evalYear" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  시스템 모듈 관리
+*  MenuPath       -  - 
+*  FileName      
+*  Creator 	     parkkr
+*  CreateDate    2024.01.29
+*  Desction      평가유형 관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2024.01.29    parkkr 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+};
+
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getEvalStepList";
+	var strSvcUrl   = "mis/getEvalStepList.do";
+	var inData      = "dsSearch";  // input1=dsSearch
+	var outData     = "dsEvalStep";  // dsModuleManage=output1
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	var strSvcId    = "setModuleManageList";
+	var strSvcUrl   = "sm/setModuleManageList.do";
+	var inData      = "dsModuleManage";  // input1=dsSearch
+	var outData     = "";  // dsModuleManage=output1
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync); 		
+};
+
+
+/** 평가 단계를 찾는 코드일까..?
+ * Function Name	: fn_callBack
+ * Description		: svcId에 따른 분기처리
+ */ 
+this.fn_callBack = function (sSvcId)
+{
+    switch(sSvcId){
+	    // 인사평가 공통코드 조회 callback
+	    case "getHreCodeList":
+		    this.fn_comboEvalId();
+		    break;
+	    // 평가ID
+	    case "getEvalId":
+		    this.div_Search.form.combo_EVAL_ID.set_index(0);
+			this.fn_search();
+			break;
+	    // 조회
+		case "getData":			
+			this.gfn_rowCount(this.ds_list, this.stc_gridRowCnt);			
+		    break;
+		// 저장
+	    case "setData":			
+			if (this.result == "Y") {
+				this.gfn_showMsg("COM_CRUD_0002", "", "");
+			}
+			this.fn_search();
+		    break;
+	}
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+
+//조회버튼 클릭
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+//행추가 버튼 클릭
+this.btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	const sysId = nexacro.getApplication().gdsUserInfo.getColumn(0, "sysId");
+	this.gfnInsertRow(this.dsModuleManage, "last");
+    this.dsModuleManage.setColumn(this.dsEvaluationStageManage.rowposition, "sysId", sysId);
+	this.dsModuleManage.setColumn(this.dsEvaluationStageManage.rowposition, "useYn", "Y");
+};
+
+//행삭제 버튼 클릭
+this.btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsEvaluationStageManage);
+};
+
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cbo01" propid="value" datasetid="dsSearch" columnid="evalYear"/>
+    </Bind>
+  </Form>
+</FDL>

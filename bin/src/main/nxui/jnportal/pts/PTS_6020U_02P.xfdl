@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_6020U_02P" width="800" height="580" titletext="관심키워드 설정">
+    <Layouts>
+      <Layout height="580" mobileorientation="landscape" width="800">
+        <Div id="keyword" taborder="0" text="" left="0" top="0" height="580" cssclass="div_WF_Area" visible="true" right="0">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" text="관심키워드 설정" left="0" top="0" height="50" cssclass="portal_sta_popTitle" width="800"/>
+              <Static id="Static03" taborder="8" left="30" top="Static00:20" height="118" cssclass="portal_systemBg" right="30" text="* 설정한 관심리스트 내 관심키워드만 표시됩니다.&#13;&#10;* 관심키워드를 설정하지 않을 경우 게시물이 노출되지 않습니다." width="740"/>
+              <Button id="btn_popClose" text="확인" cssclass="portal_btn" visible="true" height="45" taborder="0" left="42.38%" right="42.50%" bottom="30" onclick="keyword_btn_popClose_onclick"/>
+              <Static id="Static01" taborder="2" text="관심리스트 설정" left="0" top="Static03:20" height="53" cssclass="portal_sta_popTit" onclick="Static_onclick" width="500"/>
+              <Button id="btn_list1" taborder="3" text="핵심기술/과제공고" left="31" top="Static01:0" width="158" height="33" cssclass="portal_btn_interest_on"/>
+              <Button id="btn_list2" taborder="4" text="핵심기술/과제기획" left="btn_list1:10" top="Static01:0" width="158" height="33" cssclass="portal_btn_interest"/>
+              <Button id="btn_list3" taborder="5" text="방산진흥/과제기획" left="btn_list2:10" top="Static01:0" width="158" height="33" cssclass="portal_btn_interest"/>
+              <Button id="btn_list4" taborder="6" text="핵심기술/과제공고" left="btn_list3:10" top="Static01:0" width="158" height="33" cssclass="portal_btn_interest"/>
+              <Static id="Static01_00" taborder="7" text="관심코드 설정" left="0" top="btn_list1:20" height="53" cssclass="portal_sta_popTit" onclick="Static_onclick" width="500"/>
+              <Combo id="Combo00" taborder="9" displaynulltext="선택" top="Static01_00:0" width="150" height="38" right="619" index="-1" innerdataset="dsCombo02" codecolumn="value" datacolumn="text" text="선택" value="0" cssclass="portal_cmb_bd"/>
+              <Button id="btnSearch" taborder="10" cssclass="portal_btn" top="367" height="38" width="60" onclick="btnSearch_onclick" text="검색" left="Combo00:5"/>
+              <Button id="btn_code1" taborder="11" text="선택1" left="30" top="Combo00:10" width="91" height="33" cssclass="portal_btn_interestCode"/>
+              <Button id="btn_code2" taborder="12" text="선택2" left="btn_code1:10" top="Combo00:10" width="91" height="33" cssclass="portal_btn_interestCode"/>
+              <Button id="btn_code3" taborder="13" text="선택3" left="btn_code2:10" top="Combo00:10" width="91" height="33" cssclass="portal_btn_interestCode"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="keyword.form.div_Search.form.Edit01" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="keyword.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="keyword.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="keyword.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="keyword.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="keyword.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="keyword.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="keyword.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="keyword.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="keyword.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="keyword.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="keyword.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="keyword.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="keyword.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="keyword.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="keyword.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="keyword.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="keyword.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="keyword.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="keyword.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="keyword.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="keyword.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="keyword.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="keyword.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="keyword.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="keyword.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="keyword.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="keyword.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="keyword.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="keyword.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="keyword.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="keyword.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="keyword.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item33" compid="keyword.form.Combo00" propid="value" datasetid="Dataset00" columnid="key"/>
+      <BindItem id="item34" compid="Div00.form.Combo00_00" propid="value" datasetid="Dataset00" columnid="key"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[
+this.keyword_btn_popClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

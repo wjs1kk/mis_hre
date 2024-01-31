@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ROLE_1030M" width="1920" height="1000" titletext="권한별 사용자관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="1000" screenid="Desktop_screen">
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" top="20" width="65" height="28" taborder="4" right="50" enable="true" escapebutton="false" onclick="btnSave_onclick"/>
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="btnSave:3" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="권한별 사용자관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="70" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="7" left="0" top="0" right="0" cssclass="sta_WF_bg" text="" height="56" onclick="div_Search_Static00_onclick"/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="0" top="55" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="40"/>
+              <Static id="sta001" taborder="1" text="권한코드" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtRoleCd" taborder="2" left="sta001:10" top="15" width="200" height="26" onkeyup="divSearch_divSrch_edtRoleCd_onkeyup"/>
+              <Static id="sta002" taborder="3" text="권한명" left="455" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtRoleNm" taborder="4" left="sta002:10" top="15" width="200" height="26" onkeyup="divSearch_divSrch_edtRoleCd_onkeyup"/>
+              <Static id="sta003" taborder="5" text="사용여부" left="910" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboUseYn" taborder="6" text="" left="sta003:10" top="15" width="120" height="26" innerdataset="dsUseYnSearch" codecolumn="value" datacolumn="text" index="-1" onkeyup="divSearch_divSrch_edtRoleCd_onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divRole" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="30">
+          <Layouts>
+            <Layout>
+              <Div id="divRoleList" taborder="0" text="Div00" left="0" top="0" width="56.25%" bottom="0" cssclass="div_WF_Area">
+                <Layouts>
+                  <Layout>
+                    <Grid id="grdRole" taborder="0" left="0" top="45" binddataset="dsRole" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0" right="0">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="48" band="left"/>
+                            <Column size="150"/>
+                            <Column size="120"/>
+                            <Column size="120"/>
+                            <Column size="100"/>
+                            <Column size="80"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell text="순번"/>
+                            <Cell col="1" displaytype="none"/>
+                            <Cell col="2" text="권한코드"/>
+                            <Cell col="3" text="권한명"/>
+                            <Cell col="4" text="권한등급"/>
+                            <Cell col="5" text="모듈명"/>
+                            <Cell col="6" text="사용여부"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                            <Cell col="1" displaytype="checkboxcontrol" text="bind:rowCheck"/>
+                            <Cell col="2" text="bind:roleCode" edittype="none" textAlign="left"/>
+                            <Cell col="3" text="bind:roleNm" edittype="none" textAlign="left"/>
+                            <Cell col="4" text="bind:rolePermit" edittype="none" textAlign="left" displaytype="combotext" combodisplaynulltype="none" combodataset="dsRolePermit" combocodecol="value" combodatacol="text"/>
+                            <Cell col="5" text="bind:moduleId" edittype="none" combodataset="dsModuleCombo" combocodecol="value" combodatacol="text" displaytype="combotext" combodisplaynulltype="none"/>
+                            <Cell col="6" text="bind:useYn" edittype="none" displaytype="combotext" combodataset="dsUseYn" combocodecol="value" combodatacol="text"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                    <Static id="staTitle" taborder="1" text="권한" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="51" fittocontents="width"/>
+                    <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:10" top="0" width="150" height="45"/>
+                    <Static id="Static04_00_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="90" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                  </Layout>
+                  <Layout name="screen00"/>
+                </Layouts>
+              </Div>
+              <Div id="divMember" taborder="1" text="Div01" top="0" right="0" bottom="0" cssclass="div_WF_Area" left="divRoleList:15">
+                <Layouts>
+                  <Layout>
+                    <Grid id="grdRoleUser" taborder="0" binddataset="dsRoleUser" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="divRole_divRoleList_grdRole_onheadclick" top="45" left="0" bottom="0" right="0.39999999999997726">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="48" band="left"/>
+                            <Column size="48" band="left"/>
+                            <Column size="100"/>
+                            <Column size="100"/>
+                            <Column size="120"/>
+                            <Column size="80"/>
+                            <Column size="150"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell text="순번"/>
+                            <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                            <Cell col="2" text="상태"/>
+                            <Cell col="3" text="회원 ID"/>
+                            <Cell col="4" text="사용자명"/>
+                            <Cell col="5" text="부서명"/>
+                            <Cell col="6" text="직위"/>
+                            <Cell col="7" text="수정사유"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                            <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                            <Cell col="2" text="bind:rowStatus"/>
+                            <Cell col="3" text="bind:memberId" edittype="none"/>
+                            <Cell col="4" text="bind:userNm" edittype="none"/>
+                            <Cell col="5" text="bind:deptNm"/>
+                            <Cell col="6" text="bind:jobPosition"/>
+                            <Cell col="7" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" text="bind:updtReason" editmaxlength="1000" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'none'"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                    <Button id="btnDeleteUser" taborder="2" text="삭제" height="26" right="0" width="61" cssclass="btn_WF_Row_Delete" top="14" onclick="divRole_divMember_btnDeleteUser_onclick"/>
+                    <Button id="btnAddUser" taborder="1" text="추가" height="26" right="btnDeleteUser:5" width="61" cssclass="btn_WF_Row_Add" top="14" onclick="divRole_divMember_btnAddUser_onclick"/>
+                    <Static id="staTitle" taborder="3" text="권한별 사용자" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="117" fittocontents="width"/>
+                    <Static id="Static04_00_00_00_00" taborder="4" text="h 45" onclick="Static31_onclick" visible="false" left="366" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="staGridRowCnt" taborder="5" text="(총 0건)" left="staTitle:10" top="0" width="150" height="45" cssclass="sta_WF_subTxt"/>
+                  </Layout>
+                  <Layout name="screen00"/>
+                </Layouts>
+              </Div>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+          <Column id="moduleId" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="searchRoleCode" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRole" useclientlayout="true" onrowposchanged="dsRole_onrowposchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="moduleId" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+          <Column id="roleDc" type="STRING" size="256"/>
+          <Column id="rolePermit" type="STRING" size="256"/>
+          <Column id="workGrpId" type="STRING" size="256"/>
+          <Column id="useYmd" type="DATE" size="256"/>
+          <Column id="endYmd" type="DATE" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRoleUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="20"/>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="userNm" type="STRING" size="300"/>
+          <Column id="deptCode" type="STRING" size="20"/>
+          <Column id="deptNm" type="STRING" size="300"/>
+          <Column id="jobPosition" type="STRING" size="300"/>
+          <Column id="updtReason" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="useYmd" type="STRING" size="256"/>
+          <Column id="endYmd" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsModuleCombo" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsRolePermit">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYnSearch">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSysIdCombo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  roleManage
+ *  MenuPath      -
+ *  FileName      roleUserManage.xfdl 
+ *  Creator 	     cheonsy
+ *  CreateDate    2023.03.03
+ *  Desction      스크립트 표준 및 주석 표준 정의
+ ************** 소스 수정 이력 *************************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.03.03    cheonsy 	  최초 생성
+ *  2023.08.25    parksw      화면 기능 수정(회원ID, 권한 단일 항목 선택)
+ *******************************************************************************/
+
+include "lib::common.xjs";
+var cnt = 0;
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ /***********************************************************************************************/
+
+/**
+ * description 화면 onload
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/**
+ * description 콤보 통합 조회
+ */
+this.fnLoadCombo = function()
+{
+    this.loadCount = 3;
+	this.gfnLoadCombo("loadCombo", "dsUseYnSearch=SM:USE_YN:A dsUseYn=SM:USE_YN dsRolePermit=SM:ROLE_PERMIT", "fnComboCallback");
+	this.gfnTransaction("getModuleCombo", "sm/getModuleCombo.do", "", "dsModuleCombo", "", "fnComboCallback"); 
+	this.gfnTransaction("getModuleCombo", "sm/getModuleCombo.do", "", "dsModuleCombo", "", "fnComboCallback"); 
+}
+
+/**
+ * description 권한 조회
+ */
+this.fnRoleSearch = function()
+{	
+	this.gfnTransaction("getRoleList", "sm/getRoleList.do", "dsSearch", "dsRole", "", "fnCallback"); 
+};
+
+/**
+ * description 권한별 사용자 조회
+ */
+this.fnRoleUserSearch = function()
+{
+	this.gfnTransaction("getRoleUserSearch", "sm/getRoleUserSearch.do", "dsSearch", "dsRoleUser", "", "fnCallback"); 
+};
+
+/**
+ * description 사용자 저장
+ */
+this.fnSave = function()
+{
+	this.gfnTransaction("setRoleUser", "sm/setRoleUser.do", "dsRoleUser ", "", "", "fnCallback"); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+    this.loadCount--;
+    if (this.loadCount == 0) {
+        this.fnRoleSearch();
+    }
+}
+
+/**
+ * description Transaction CallBack 함수
+ */
+this.fnCallback = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getRoleList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsRole, this.divRole.form.divRoleList.form.staGridRowCnt);
+			this.fnRoleUserSearch();
+            break;
+		case "getRoleUserSearch":
+			//총 건수 계산
+			this.gfnRowCount(this.dsRoleUser, this.divRole.form.divMember.form.staGridRowCnt);
+            break;
+		case "setRoleUser":
+			if (this.callbackMsg == "success") {
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.fnRoleSearch();
+			} else {
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+            break;
+		default:
+            break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+ */
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	console.log('fnPopupAfter: ', sPopupId, ' || ', vArg);
+	switch(sPopupId){
+		case "roleUserPopup":
+			var oRtn = this.gfnGetPopupRtn();
+			if (oRtn) {
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+			}
+            break;
+        default:
+            break;
+	}
+	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+/**
+ * description 조회버튼 클릭
+ */
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnRoleSearch();
+};
+
+/**
+ * description role rowposition change 이벤트
+ */
+this.dsRole_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	this.dsSearch.setColumn(0, "searchRoleCode", this.dsRole.getColumn(this.dsRole.rowposition, "roleCode"));
+	
+	for (var i = 0; i < this.dsRole.getRowCount(); i++) {
+		this.dsRole.setColumn(i,"rowCheck", 0);
+	}
+	this.dsRole.setColumn(e.newrow,"rowCheck", 1);
+	
+	this.fnRoleUserSearch();
+};
+
+/**
+ * description 저장버튼 클릭
+ */
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (this.dsRoleUser.rowcount == 0) {
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+		return;
+	}
+    
+	if (!this.gfnDsIsUpdated(this.dsRoleUser)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+	if (!this.fnValidation()) {		// 그리드 필수값 체크
+		return;
+    }
+	
+	for (var i = 0; i < this.dsRoleUser.rowcount; i++) {
+		if (this.dsRoleUser.getColumn(i,"rowCheck") > 0) {
+			this.dsRoleUser.setColumn(i, "roleCode", this.dsRole.getColumn(this.dsRole.rowposition, "roleCode"));
+			this.dsRoleUser.setColumn(i, "roleNm", this.dsRole.getColumn(this.dsRole.rowposition, "roleNm"));
+		}
+	}
+	
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", { trueFunc: "fnSave", falseFunc: "" });  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/**
+ * description 사용자 추가 클릭
+ */
+this.divRole_divMember_btnAddUser_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.gfnIsGridChecked(this.dsRole, "rowCheck")) {
+		this.gfnAlert("권한을 체크해주세요");
+		return;
+	}
+	
+	var oArg = {
+        roleCode: this.dsRole.getColumn(this.dsRole.findRow("rowCheck", 1), "roleCode"),
+        useYn: this.dsRole.getColumn(this.dsRole.findRow("rowCheck", 1), "useYn"),
+        useYmd: this.dsRole.getColumn(this.dsRole.findRow("rowCheck", 1), "useYmd"),
+        endYmd: this.dsRole.getColumn(this.dsRole.findRow("rowCheck", 1), "endYmd"),
+        roleNm: this.dsRole.getColumn(this.dsRole.findRow("rowCheck", 1), "roleNm")
+    };
+				
+	this.gfnOpenPopup("roleUserPopup", "sys::role/ROLE_1030P.xfdl", oArg, "fnPopupAfter", "");
+};
+
+/**
+ * description 사용자 삭제 클릭
+ */
+this.divRole_divMember_btnDeleteUser_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.gfnIsGridChecked(this.dsRoleUser, "rowCheck")) {
+		this.gfnAlert("삭제할 권한을 체크해주세요");
+		return;
+	}
+	this.gfnDeleteRow(this.dsRoleUser);
+};
+
+/**
+ * description 엔터키 이벤트
+ */
+this.divSearch_divSrch_edtRoleCd_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode == 13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * description generate multi language Excel 
+ */
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+/**
+ * description 밸리데이션
+ */
+this.fnValidation = function ()
+{
+    var args = [
+        ["updtReason", "MAX_LEN:1000", ""]
+    ];
+
+    return this.gfnCheckGrid(this.divRole.form.divMember.form.grdRoleUser, args, "");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item2" compid="divSearch.form.edtRoleCd" propid="value" datasetid="dsSearch" columnid="roleCode"/>
+      <BindItem id="item4" compid="divSearch.form.edtRoleNm" propid="value" datasetid="dsSearch" columnid="roleNm"/>
+      <BindItem id="item5" compid="divSearch.form.cboUseYn" propid="value" datasetid="dsSearch" columnid="useYn"/>
+    </Bind>
+  </Form>
+</FDL>

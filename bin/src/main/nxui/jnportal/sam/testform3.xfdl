@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="testform3" width="1280" height="720" titletext="Form Template" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="Form Template" left="50" top="10" cssclass="sta_WF_compTitle01" width="500" height="30"/>
+        <Div id="divForm" taborder="1" left="50" top="50" right="50" bottom="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="2" left="0" top="0" height="100%" background="#ffffff" text="" right="0" onclick="divForm_Static00_onclick"/>
+              <Static id="sta_01" taborder="0" text="시스템ID" left="20" top="10" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Edit id="edt_01" taborder="1" left="128" top="10" width="120" height="30"/>
+              <Static id="sta_02" taborder="3" text="프로그램ID" left="328" top="10" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Edit id="edt_02" taborder="4" left="435" top="10" width="180" height="30"/>
+              <Static id="sta_02_00" taborder="5" text="프로그램명" left="658" top="10" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Edit id="edt_02_00" taborder="6" top="10" width="389" height="30" left="771"/>
+              <Static id="sta_02_00_00" taborder="7" text="프로그램타입" left="20" top="81" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Static id="sta_01_00" taborder="8" text="프로그램 URL" left="328" top="81" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Edit id="edt_01_00" taborder="9" left="435" top="81" width="174" height="30"/>
+              <Static id="sta_02_01" taborder="10" text="프로그램 설명" left="658" top="81" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Static id="sta_02_00_01" taborder="11" text="프로그램 파일명" left="20" top="185" width="120" height="30" onclick="divForm_sta_01_onclick"/>
+              <Edit id="edt_02_00_01" taborder="12" left="128" top="185" width="180" height="30"/>
+              <Edit id="edt_02_00_00_00" taborder="13" left="435" top="185" width="180" height="30"/>
+              <Static id="sta_02_00_00_00" taborder="14" text="대체URL" left="328" top="185" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Static id="sta_01_00_00" taborder="15" text="대체URL 사용여부" left="658" top="185" width="120" height="30" onclick="divForm_sta_01_onclick"/>
+              <Static id="sta_02_01_00" taborder="16" text="첨부파일" left="20" top="251" width="80" height="30" onclick="divForm_sta_01_onclick"/>
+              <Edit id="edt_02_01_00" taborder="17" left="128" top="251" width="180" height="30"/>
+              <Static id="sta_02_00_01_00" taborder="18" text="권한레벨 사용설명" left="658" top="251" width="108" height="30" onclick="divForm_sta_01_onclick"/>
+              <Static id="sta_02_00_00_00_00" taborder="19" text="권한레벨 사용여부" left="328" top="251" width="110" height="30" onclick="divForm_sta_01_onclick"/>
+              <Static id="sta_01_00_00_00" taborder="20" text="Radio 사용여부" left="20" top="342" width="104" height="30" onclick="divForm_sta_01_onclick"/>
+              <Radio id="Radio00" taborder="21" left="128" top="336" width="127" height="43" innerdataset="dsUseYn" codecolumn="LINE_CODE" datacolumn="LINE_CODE_NM_KR" direction="vertical" onitemchanged="divForm_Radio00_onitemchanged"/>
+              <Combo id="Combo00" taborder="22" left="128" top="80" width="122" height="33" innerdataset="dsUseYn" codecolumn="LINE_CODE" datacolumn="LINE_CODE_NM_KR" index="0" text="사용" value="Y"/>
+              <TextArea id="TextArea00" taborder="23" top="76" width="390" height="89" left="770"/>
+              <CheckBox id="CheckBox00" taborder="24" left="808" top="179" width="73" height="42"/>
+              <TextArea id="TextArea00_00" taborder="25" top="241" width="390" height="89" left="770"/>
+              <Combo id="Combo00_00" taborder="26" left="438" top="250" width="122" height="33" innerdataset="dsUseYn" codecolumn="LINE_CODE" datacolumn="LINE_CODE_NM_KR" index="0" text="사용" value="Y"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Static00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.divForm_Static00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+this.divForm_Radio00_onitemchanged = function(obj:nexacro.Radio,e:nexacro.ItemChangeEventInfo)
+{
+	
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divForm.form.edt_01" propid="value" datasetid="dsTypeOne" columnid="sysId"/>
+      <BindItem id="item1" compid="divForm.form.edt_02" propid="value" datasetid="dsTypeOne" columnid="progId"/>
+      <BindItem id="item2" compid="divForm.form.edt_02_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item3" compid="divForm.form.edt_02_00_00" propid="value" datasetid="dsTypeOne" columnid="progTy"/>
+      <BindItem id="item4" compid="divForm.form.edt_01_00" propid="value" datasetid="dsTypeOne" columnid="progUrl"/>
+      <BindItem id="item5" compid="divForm.form.edt_02_01" propid="value" datasetid="dsTypeOne" columnid="progDc"/>
+      <BindItem id="item6" compid="divForm.form.edt_02_00_01" propid="value" datasetid="dsTypeOne" columnid="progFileNm"/>
+      <BindItem id="item7" compid="divForm.form.edt_02_00_00_00" propid="value" datasetid="dsTypeOne" columnid="substituteUrl"/>
+      <BindItem id="item8" compid="divForm.form.edt_02_01_00" propid="value" datasetid="dsTypeOne" columnid="atchFileId"/>
+      <BindItem id="item9" compid="divForm.form.edt_02_00_01_00" propid="value" datasetid="dsTypeOne" columnid="permissionDc"/>
+      <BindItem id="item10" compid="divForm.form.edt_02_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="permissionUseYn"/>
+      <BindItem id="item11" compid="divForm.form.edt_01_00_00" propid="value" datasetid="dsTypeOne" columnid="substituteUseYn"/>
+      <BindItem id="item12" compid="divForm.form.edt_02_01_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item13" compid="divForm.form.edt_02_00_01_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item14" compid="divForm.form.edt_02_00_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item15" compid="divForm.form.edt_01_00_00_00" propid="value" datasetid="dsTypeOne" columnid="radioUseYn"/>
+      <BindItem id="item16" compid="divForm.form.edt_02_01_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item17" compid="divForm.form.edt_02_00_01_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item18" compid="divForm.form.edt_02_00_00_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item19" compid="divForm.form.edt_01_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progId"/>
+      <BindItem id="item20" compid="divForm.form.edt_02_01_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item21" compid="divForm.form.edt_02_00_01_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item22" compid="divForm.form.edt_02_00_00_00_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progNm"/>
+      <BindItem id="item23" compid="divForm.form.edt_01_00_00_00_00_00" propid="value" datasetid="dsTypeOne" columnid="progId"/>
+      <BindItem id="item24" compid="divForm.form.Radio00" propid="value" datasetid="dsTypeOne" columnid="radioUseYn"/>
+      <BindItem id="item25" compid="divForm.form.TextArea00" propid="value" datasetid="dsTypeOne" columnid="progDc"/>
+      <BindItem id="item26" compid="divForm.form.Combo00" propid="value" datasetid="dsTypeOne" columnid="progTy"/>
+      <BindItem id="item27" compid="divForm.form.TextArea00_00" propid="value" datasetid="dsTypeOne" columnid="permissionDc"/>
+      <BindItem id="item28" compid="divForm.form.Combo00_00" propid="value" datasetid="dsTypeOne" columnid="permissionUseYn"/>
+    </Bind>
+    <Objects>
+      <Dataset id="dsTypeOne" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+          <Column id="radioUseYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="sysId">3</Col>
+            <Col id="progId">3</Col>
+            <Col id="substituteUseYn">Y</Col>
+            <Col id="permissionUseYn">Y</Col>
+            <Col id="radioUseYn">Y</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LINE_CODE">Y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN"/>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">N</Col>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

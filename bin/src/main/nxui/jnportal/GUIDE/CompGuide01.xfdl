@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CompGuide01" left="0" top="0" width="1000" height="4035" titletext="컴포넌트 가이드">
+    <Layouts>
+      <Layout height="4035" width="1000">
+        <Static id="Static00" taborder="0" text="Component" left="0" top="0" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" cssclass="sta_WF_GTitle" textAlign="" right="0"/>
+        <Static id="Static21" taborder="1" text="TextArea" left="0" top="568" width="100" height="177" cssclass="sta_WF_GLabel"/>
+        <Static id="Static07" taborder="2" text="MaskEdit" left="0" top="459" width="100" height="110" cssclass="sta_WF_GLabel"/>
+        <Static id="Static05" taborder="3" text="Edit" left="0" top="350" width="100" height="110" cssclass="sta_WF_GLabel"/>
+        <Static id="Static06" taborder="4" text="" left="99" top="459" cssclass="sta_WF_GArea" height="110" right="0"/>
+        <Static id="Static04" taborder="5" text="" left="99" top="350" cssclass="sta_WF_GArea" height="110" right="0"/>
+        <Static id="Static17" taborder="6" text="" left="99" top="568" cssclass="sta_WF_GArea" height="177" right="0"/>
+        <Static id="Static12" taborder="7" text="[status=enabled]" left="109" top="359" width="107" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static18" taborder="8" text="[status=enabled]" left="109" top="577" width="107" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static19" taborder="9" text="[status=disabled]" left="274" top="577" width="109" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static16" taborder="10" text="[status=disabled]" left="274" top="468" width="109" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static15" taborder="11" text="[status=disabled]" left="274" top="359" width="109" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static13" taborder="12" text="[status=enabled]" left="109" top="468" width="107" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static15_00" taborder="13" text="class = readonly" left="439" top="359" width="110" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static15_00_00" taborder="14" text="class = essential" left="604" top="359" width="150" height="25" cssclass="sta_WF_GStatus" onclick="Static15_00_00_onclick"/>
+        <Static id="Static15_00_01" taborder="15" text="class = readonly" left="439" top="468" width="110" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static15_00_00_00" taborder="16" text="class = essential" left="604" top="468" width="150" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static15_00_01_00" taborder="17" text="class = readonly" left="439" top="577" width="110" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static15_00_00_00_00" taborder="18" text="class = essential" left="604" top="577" width="150" height="25" cssclass="sta_WF_GStatus"/>
+        <Edit id="Edit01" taborder="19" left="109" top="399" width="150" height="26" value="Edit" text="Edit"/>
+        <MaskEdit id="MaskEdit01" taborder="20" left="109" top="508" width="150" height="26" value="12345600" trimtype="none" format="###,###"/>
+        <TextArea id="TextArea01" taborder="21" left="109" top="617" width="150" height="93" value="TextArea 내용이 나오는 곳입니다."/>
+        <Edit id="Edit01_00" taborder="22" left="274" top="399" width="150" height="26" enable="false" value="Edit" text="Edit"/>
+        <Edit id="Edit01_01" taborder="23" left="439" top="399" width="150" height="26" readonly="true" cssclass="readonly" value="Edit" text="Edit"/>
+        <Edit id="Edit01_02" taborder="24" left="604" top="399" width="150" height="26" cssclass="essential" value="Edit" text="Edit"/>
+        <TextArea id="TextArea01_01" taborder="25" left="274" top="617" width="150" height="93" enable="false" value="TextArea 내용이 나오는 곳입니다."/>
+        <MaskEdit id="MaskEdit01_01" taborder="26" left="274" top="508" width="150" height="26" enable="false" value="123456" format="###,###"/>
+        <TextArea id="TextArea01_02" taborder="27" left="439" top="617" width="150" height="93" cssclass="readonly" readonly="true" value="TextArea 내용이 나오는 곳입니다."/>
+        <MaskEdit id="MaskEdit01_02" taborder="28" left="439" top="508" width="150" height="26" cssclass="readonly" readonly="true" value="123456" format="###,###"/>
+        <TextArea id="TextArea01_03" taborder="29" left="604" top="617" width="150" height="93" cssclass="essential" value="TextArea 내용이 나오는 곳입니다."/>
+        <MaskEdit id="MaskEdit01_03" taborder="30" left="604" top="508" width="150" height="26" cssclass="essential" value="123456" format="###,###"/>
+        <Static id="Static02" taborder="31" text="Static" left="0" top="30" width="100" height="320" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static03" taborder="32" text="" left="99" top="30" height="320" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static08" taborder="33" text="[status=enabled]" left="109" top="39" width="130" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static09" taborder="34" text="[status=disabled]" left="335" top="39" width="130" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static10" taborder="35" text="가나다라마바사아자차타카타파하&#13;&#10;1234567890&#13;&#10;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#13;&#10;abcdefghijklmnopqrstuvwxyz" left="109" top="79" width="220" height="70" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick"/>
+        <Static id="Static14" taborder="36" text="Nexacro N" left="335" top="79" width="150" height="30" enable="false"/>
+        <Static id="Static14_00" taborder="37" text="대타이틀" left="110" top="230" width="74" height="58" enable="true" cssclass="sta_WF_compTitle01"/>
+        <Static id="Static09_00" taborder="38" text="class = sta_WF_compTitle01" left="110" top="198" width="177" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static14_00_00" taborder="39" text="중타이틀" left="305" top="242" width="75" height="45" enable="true" cssclass="sta_WF_subTitle01"/>
+        <Static id="Static09_00_00" taborder="40" text="class = sta_WF_subTitle01" left="305" top="197" width="177" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static02_00" taborder="41" text="Button" left="0" top="744" width="100" height="112" cssclass="sta_WF_GLabel" onclick="Static02_onclick"/>
+        <Static id="Static07_00" taborder="42" text="CheckBox" left="0" top="1667" width="100" height="114" cssclass="sta_WF_GLabel"/>
+        <Static id="Static03_00" taborder="43" text="" left="99" top="744" height="112" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static06_00" taborder="44" text="" left="99" top="1667" height="114" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static08_00" taborder="45" text="[status=enabled]" left="109" top="753" width="107" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static09_01" taborder="46" text="[status=disabled]" left="439" top="753" width="109" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static13_00" taborder="47" text="[status=enabled]" left="109" top="1676" width="123" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static14_01" taborder="48" text="[status=disabled]" left="439" top="1676" width="123" height="25" cssclass="sta_WF_GStatus"/>
+        <Button id="Button02" taborder="49" text="Button00" left="109" top="793" width="150" height="28"/>
+        <Button id="Button00" taborder="50" text="Button01" left="439" top="793" width="150" height="28" enable="false"/>
+        <CheckBox id="CheckBox02" taborder="51" text="CheckBox00" left="109" top="1716" width="150" height="26"/>
+        <CheckBox id="CheckBox02_00" taborder="52" text="CheckBox01" left="439" top="1716" width="150" height="26" enable="false"/>
+        <Static id="Static06_01" taborder="53" text="" left="99" top="855" height="110" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static07_01" taborder="54" text="Combo" left="0" top="855" width="100" height="110" cssclass="sta_WF_GLabel"/>
+        <Static id="Static13_01" taborder="55" text="[status=enabled]" left="109" top="864" width="107" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static14_02" taborder="56" text="[status=disabled]" left="274" top="864" width="100" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static14_00_01" taborder="57" text="class = readonly" left="439" top="864" width="120" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static14_00_00_00" taborder="58" text="class = essential" left="604" top="864" width="150" height="25" cssclass="sta_WF_GStatus"/>
+        <Combo id="Combo02" taborder="59" text="" left="439" top="904" width="150" height="26" cssclass="readonly" readonly="true" innerdataset="ds_list" codecolumn="code" datacolumn="data" index="-1" displaynulltext="Combo"/>
+        <Combo id="Combo00" taborder="60" text="" left="109" top="904" width="150" height="26" innerdataset="ds_list" codecolumn="code" datacolumn="data" index="-1" displaynulltext="Combo"/>
+        <Combo id="Combo01" taborder="61" text="" left="274" top="904" width="150" height="26" enable="false" innerdataset="ds_list" codecolumn="code" datacolumn="data" index="-1" displaynulltext="Combo"/>
+        <Combo id="Combo03" taborder="62" text="" left="604" top="904" width="150" height="26" cssclass="essential" innerdataset="ds_list" codecolumn="code" datacolumn="data" index="-1" displaynulltext="Combo"/>
+        <Static id="Static04_01" taborder="63" text="" left="99" top="964" height="213" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static05_01" taborder="64" text="ListBox" left="0" top="964" width="100" height="213" cssclass="sta_WF_GLabel"/>
+        <Static id="Static12_01" taborder="65" text="[status=enabled]" left="109" top="974" width="107" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static10_02" taborder="66" text="[status=disabled]" left="439" top="974" width="100" height="25" cssclass="sta_WF_GStatus"/>
+        <ListBox id="ListBox02" taborder="67" left="109" top="1014" width="202" height="128" innerdataset="ds_list" codecolumn="code" datacolumn="data"/>
+        <ListBox id="ListBox00" taborder="68" left="439" top="1014" width="202" height="128" innerdataset="ds_list" codecolumn="code" datacolumn="data" enable="false"/>
+        <Static id="Static05_00" taborder="69" text="Spin" left="0" top="1175" width="100" height="111" cssclass="sta_WF_GLabel"/>
+        <Static id="Static04_00" taborder="70" text="" left="99" top="1175" height="111" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static10_01" taborder="71" text="[status=disabled]" left="274" top="1185" width="132" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static12_00" taborder="72" text="[status=enabled]" left="109" top="1185" width="107" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static10_00_02" taborder="73" text="class = readonly" left="439" top="1185" width="120" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static10_00_00_01" taborder="74" text="class = essential" left="604" top="1185" width="150" height="25" cssclass="sta_WF_GStatus"/>
+        <Spin id="Spin02" taborder="75" left="109" top="1225" width="150" height="26" value="701" buttonsize="26"/>
+        <Spin id="Spin02_00" taborder="76" left="274" top="1225" width="150" height="26" enable="false" value="701" buttonsize="26"/>
+        <Spin id="Spin02_01" taborder="77" left="439" top="1225" width="150" height="26" readonly="true" value="701" cssclass="readonly" buttonsize="26"/>
+        <Spin id="Spin02_02" taborder="78" left="604" top="1225" width="150" height="26" value="701" cssclass="essential" buttonsize="26"/>
+        <Static id="Static02_01" taborder="79" text="Calendar" left="0" top="1285" width="100" height="383" cssclass="sta_WF_GLabel"/>
+        <Static id="Static06_02" taborder="80" text="" left="99" top="1285" height="383" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static09_02" taborder="81" text="[status=disabled]" left="274" top="1294" width="141" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static12_02" taborder="82" text="Appearance &gt; type=monthonly" left="109" top="1393" width="241" height="25"/>
+        <Static id="Static10_03" taborder="83" text="Appearance &gt; type=spin" left="439" top="1393" width="235" height="25"/>
+        <Static id="Static09_00_01" taborder="84" text="class = readonly" left="439" top="1294" width="151" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static09_00_00_00" taborder="85" text="class = essential" left="604" top="1294" width="191" height="25" cssclass="sta_WF_GStatus"/>
+        <Calendar id="Calendar06" taborder="86" left="109" top="1334" width="150" height="26" value="20230313" dateformat="yyyy-MM-dd" usetrailingday="false" weekformat="일 월 화 수 목 금 토" daysize="28 28" headheight="28" popupsize="220" showyearspin="false" showmonthspin="true"/>
+        <Calendar id="Calendar00" taborder="87" left="274" top="1334" width="150" height="26" enable="false" value="20230313" dateformat="yyyy-MM-dd" daysize="21 21" headheight="28" popupsize="220 170" weekformat="일 월 화 수 목 금 토"/>
+        <Calendar id="Calendar02" taborder="88" left="439" top="1334" width="150" height="26" readonly="true" value="20230313" cssclass="readonly" dateformat="yyyy-MM-dd" daysize="21 21" headheight="28" popupsize="220 170" weekformat="일 월 화 수 목 금 토"/>
+        <Calendar id="Calendar07" taborder="89" left="604" top="1334" width="150" height="26" value="20230313" cssclass="essential" dateformat="yyyy-MM-dd" daysize="21 21" headheight="28" popupsize="220 170" weekformat="일 월 화 수 목 금 토"/>
+        <Calendar id="Calendar08" taborder="90" left="109" top="1433" width="218" height="200" type="monthonly" daysize="28 28" headheight="28" popupsize="220" weekformat="일 월 화 수 목 금 토"/>
+        <Calendar id="Calendar09" taborder="91" left="439" top="1433" width="150" height="26" type="spin" dateformat="yyyy" editformat="yyyy" headformat="yyyy" showyearspin="true" usetrailingday="false" weekformat="일 월 화 수 목 금 토"/>
+        <Static id="Static02_02" taborder="92" text="Div" left="0" top="1780" width="100" height="275" cssclass="sta_WF_GLabel"/>
+        <Static id="Static03_02" taborder="93" text="" left="99" top="1780" height="275" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static08_02" taborder="94" text="[status=enabled] " left="109" top="1781" width="255" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Div id="Div00" taborder="95" text="Div00" left="109" top="1828" width="628" height="192">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Static id="Static02_03" taborder="96" text="Grid " left="0" top="2054" width="100" height="496" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static17_00" taborder="97" text="" left="99" top="2054" height="496" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static08_03" taborder="98" text="Normal" left="109" top="2063" width="255" height="25"/>
+        <Grid id="Grid02" taborder="99" left="109" top="2098" width="561" height="172" autofittype="col" binddataset="ds_grid" selecttype="row">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Edit"/>
+                <Cell col="1" text="MaskEdit"/>
+                <Cell col="2" text="Combo"/>
+                <Cell col="3" text="Calendar"/>
+                <Cell col="4" text="Expand"/>
+                <Cell col="5" text="Normal"/>
+                <Cell col="6" text="Number"/>
+                <Cell col="7" text="Button"/>
+                <Cell col="8" text="ProgressBar"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Edit" displaytype="editcontrol" edittype="text"/>
+                <Cell col="1" text="bind:MaskEdit" displaytype="maskeditcontrol" edittype="mask"/>
+                <Cell col="2" text="bind:Combo" edittype="combo" displaytype="combocontrol"/>
+                <Cell col="3" text="bind:Calendar" displaytype="calendarcontrol" edittype="date" calendardateformat="yyyy-MM-dd" calendarweekformat="일 월 화 수 목 금 토" calendarautoselect="false"/>
+                <Cell col="4" text="bind:Expand" displaytype="editcontrol" expandshow="show" expandsize="26"/>
+                <Cell col="5" text="bind:Normal" edittype="text"/>
+                <Cell col="6" text="bind:Number" displaytype="number"/>
+                <Cell col="7" text="bind:Button" displaytype="buttoncontrol" edittype="button"/>
+                <Cell col="8" text="bind:ProgressBar" displaytype="progressbarcontrol" progressbarsmooth="true"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static02_04" taborder="100" text="GroupBox" left="0" top="2549" width="100" height="184" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static04_03" taborder="101" text="" left="99" top="2549" height="184" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static08_04" taborder="102" text="[status=enabled] " left="109" top="2558" width="255" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static09_03" taborder="103" text="[status=disabled]" left="444" top="2558" width="235" height="25" cssclass="sta_WF_GStatus"/>
+        <GroupBox id="GroupBox00" taborder="104" text="GroupBox00" left="109" top="2598" width="246" height="101"/>
+        <GroupBox id="GroupBox01" taborder="105" text="GroupBox01" left="444" top="2598" width="246" height="101"/>
+        <Grid id="Grid00" taborder="106" left="725" top="2098" width="236" height="417" cssclass="grd_WF_tree" binddataset="ds_tree">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="234"/>
+              </Columns>
+              <Rows>
+                <Row size="32"/>
+              </Rows>
+              <Band id="body">
+                <Cell displaytype="treeitemcontrol" edittype="tree" text="bind:code" treelevel="bind:level"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static08_03_00" taborder="107" text="Tree Grid" left="725" top="2062" width="255" height="25"/>
+        <Static id="Static14_00_00_01" taborder="108" text="소타이틀" left="500" top="242" width="72" height="45" enable="true" cssclass="sta_WF_subTitle02"/>
+        <Static id="Static09_00_00_01" taborder="109" text="class = sta_WF_subTitle02" left="500" top="197" width="177" height="25" cssclass="sta_WF_GStatus"/>
+        <Grid id="Grid02_00" taborder="110" left="109" top="2313" width="561" height="202" autofittype="col" binddataset="ds_grid">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="30" band="head"/>
+                <Row size="34"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Edit"/>
+                <Cell col="1" text="MaskEdit"/>
+                <Cell col="2" text="Combo"/>
+                <Cell col="3" text="Calendar"/>
+                <Cell col="4" text="Expand"/>
+                <Cell col="5" text="Normal"/>
+                <Cell col="6" text="Number"/>
+                <Cell col="7" text="Button"/>
+                <Cell col="8" text="ProgressBar"/>
+                <Cell row="1" text="Image"/>
+                <Cell row="1" col="1" text="Mask"/>
+                <Cell row="1" col="2" text="Checkbox"/>
+                <Cell row="1" col="3" text="Date"/>
+                <Cell row="1" col="4" text="Radio"/>
+                <Cell row="1" col="5"/>
+                <Cell row="1" col="6"/>
+                <Cell row="1" col="7"/>
+                <Cell row="1" col="8"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:Edit" displaytype="editcontrol" edittype="text"/>
+                <Cell col="1" text="bind:MaskEdit" displaytype="maskeditcontrol" edittype="mask"/>
+                <Cell col="2" text="bind:Combo" edittype="combo" displaytype="combocontrol"/>
+                <Cell col="3" text="bind:Calendar" displaytype="calendarcontrol" edittype="button"/>
+                <Cell col="4" text="bind:Expand" displaytype="editcontrol" expandshow="show" expandsize="26"/>
+                <Cell col="5" text="bind:Normal" edittype="text"/>
+                <Cell col="6" text="bind:Number" displaytype="number"/>
+                <Cell col="7" text="bind:Button" displaytype="buttoncontrol" edittype="button"/>
+                <Cell col="8" text="bind:ProgressBar" displaytype="progressbarcontrol" progressbarsmooth="true"/>
+                <Cell row="1" displaytype="imagecontrol" text="bind:Image"/>
+                <Cell row="1" col="1" displaytype="mask" edittype="mask" text="bind:Mask"/>
+                <Cell row="1" col="2" displaytype="checkboxcontrol" edittype="checkbox" text="bind:CheckBox"/>
+                <Cell row="1" col="3" displaytype="date" edittype="date" text="bind:Date"/>
+                <Cell row="1" col="4" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="bind:Edit" text="bind:Radio"/>
+                <Cell row="1" col="5"/>
+                <Cell row="1" col="6"/>
+                <Cell row="1" col="7"/>
+                <Cell row="1" col="8"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="Static08_03_01" taborder="111" text="Head 2단" left="109" top="2278" width="255" height="25"/>
+        <Static id="Static10_00_00_00_00" taborder="112" left="510" top="1814" width="291" height="220" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" cssclass="sta_WF_GTxt" text="Div는 일반적으로 Form을 로드할 때 사용한다.&#13;&#10;디지인 요소가 필요할 경우 class로 지정해서 사용한다."/>
+        <Static id="Static02_02_00" taborder="113" text="PopupDiv" left="0" top="2732" width="100" height="275" cssclass="sta_WF_GLabel"/>
+        <Static id="Static03_02_00" taborder="114" text="" left="99" top="2732" height="275" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static08_02_00" taborder="115" text="[status=enabled] " left="109" top="2732" width="255" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static10_00_00_00_00_00" taborder="116" left="511" top="2766" width="291" height="220" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" cssclass="sta_WF_GTxt" text="PopupDiv는 일반적으로 Form을 로드할 때 사용한다.&#13;&#10;디지인 요소가 필요할 경우 class로 지정해서 사용한다."/>
+        <PopupDiv id="PopupDiv00" text="PopupDiv00" visible="false" left="113" top="2781" width="384" height="194"/>
+        <Static id="Static17_01" taborder="122" text="" left="99" top="3006" height="264" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static13_02" taborder="123" text="[status=enabled]" left="109" top="3015" width="235" height="25" cssclass="sta_WF_GStatus"/>
+        <ImageViewer id="ImageViewer00" taborder="124" text="ImageViewer00" left="109" top="3081" width="180" height="154" onclick="ImageViewer00_onclick"/>
+        <Static id="Static04_04" taborder="125" text="" left="99" top="3419" height="124" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static02_05" taborder="126" text="FileUpload" left="0" top="3269" width="100" height="151" cssclass="sta_WF_GLabel"/>
+        <Static id="Static03_03" taborder="127" text="" left="99" top="3269" height="151" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static05_02" taborder="128" text="FileDownload" left="0" top="3419" width="100" height="124" cssclass="sta_WF_GLabel"/>
+        <Static id="Static08_05" taborder="129" text="[status=enabled] " left="109" top="3278" width="235" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static12_03" taborder="130" text="[status=enabled]" left="109" top="3429" width="235" height="25" cssclass="sta_WF_GStatus"/>
+        <Static id="Static17_02" taborder="131" text="" left="99" top="3542" height="145" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static02_06" taborder="132" text="ProgressBar" left="0" top="3542" width="100" height="145" cssclass="sta_WF_GLabel" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <ProgressBar id="Pgb01" taborder="133" max="100" min="0" text="" left="109" top="3622" width="297" height="30" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" pos="50" smooth="true"/>
+        <ProgressBar id="Pgb02" taborder="134" max="100" min="0" text="" left="455" top="3622" width="297" height="30" pos="50" smooth="true" cssclass="pgb_WF_Image" enable="false"/>
+        <Static id="Static05_03" taborder="135" text="[status=disabled]" left="455" top="3586" width="231" height="26"/>
+        <Static id="Static04_05" taborder="136" text="[status=enabled] " left="109" top="3586" width="396" height="26"/>
+        <Static id="Static02_07" taborder="137" text="Radio" left="0" top="3686" width="100" height="119" cssclass="sta_WF_GLabel"/>
+        <Static id="Static03_04" taborder="138" text="" left="99" top="3686" height="119" cssclass="sta_WF_GArea" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" right="0"/>
+        <Static id="Static08_07" taborder="139" text="[status=enabled] " left="109" top="3695" width="151" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Static id="Static09_04" taborder="140" text="[status=disabled]" left="439" top="3695" width="151" height="25" cssclass="sta_WF_GStatus"/>
+        <Radio id="Radio00" taborder="141" left="109" top="3735" width="195" height="26" innerdataset="ds_radio" codecolumn="code" datacolumn="data" direction="vertical" rowcount="-1" columncount="-1"/>
+        <Radio id="Radio01" taborder="142" left="439" top="3735" width="195" height="26" innerdataset="ds_radio" codecolumn="code" datacolumn="data" enable="false" direction="vertical" rowcount="-1" columncount="-1"/>
+        <Static id="Static02_08" taborder="143" text="Tab" left="0" top="3804" width="100" height="231" cssclass="sta_WF_GLabel" onclick="Static02_onclick"/>
+        <Static id="Static06_04" taborder="144" text="" left="99" top="3804" height="231" cssclass="sta_WF_GArea" right="0"/>
+        <Static id="Static08_08" taborder="145" text="class = tab_WF_comp" left="109" top="3813" width="235" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase=""/>
+        <Tab id="Tab03" taborder="146" tabindex="0" left="109" top="3854" width="594" height="167" tabbuttonheight="34" cssclass="tab_WF_comp">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1"/>
+            <Tabpage id="Tabpage2" text="Tabpage2"/>
+          </Tabpages>
+        </Tab>
+        <FileDownload id="FileDownload00" taborder="147" text="다운로드" left="109" top="3480" width="89" height="28"/>
+        <FileUpload id="FileUpload00" taborder="148" left="109" top="3315" width="255" height="69" onitemchanged="FileUpload00_onitemchanged" itemheight="28" buttontext="업로드" buttonsize="76"/>
+        <Static id="Static07_02" taborder="149" text="ImageViewer" left="0" top="3006" width="100" height="264" cssclass="sta_WF_GLabel" onclick="Static07_onclick"/>
+        <Static id="Static04_00_01" taborder="150" left="640" top="2424" width="136" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="Static08_01" taborder="150" text="[status=selected]" left="774" top="2415" width="100" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static08_01_onclick"/>
+        <Static id="Static08_01_00" taborder="151" text="[status=selected]" left="930" top="2382" width="100" height="25" cssclass="sta_WF_GStatus" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static08_01_onclick"/>
+        <Static id="Static04_00_01_00" taborder="152" left="897" top="2110" width="36" height="9" cssclass="sta_WF_GLineH"/>
+        <Static id="Static14_01_00" taborder="153" text="class = essential" left="765" top="1676" width="135" height="25" cssclass="sta_WF_GStatus"/>
+        <CheckBox id="CheckBox02_00_00" taborder="154" text="CheckBox01" left="765" top="1716" width="150" height="26" cssclass="essential" onclick="CheckBox02_00_00_onclick"/>
+        <Radio id="Radio01_00" taborder="155" left="766" top="3735" width="195" height="26" innerdataset="ds_radio" codecolumn="code" datacolumn="data" enable="true" direction="vertical" rowcount="-1" columncount="-1" cssclass="essential"/>
+        <Static id="Static09_04_00" taborder="156" text="class = essential" left="766" top="3695" width="134" height="25" cssclass="sta_WF_GStatus"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">Static</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">DataSet</Col>
+          </Row>
+          <Row>
+            <Col id="code">2</Col>
+            <Col id="data">Button</Col>
+          </Row>
+          <Row>
+            <Col id="code">3</Col>
+            <Col id="data">Calendar</Col>
+          </Row>
+          <Row>
+            <Col id="code">4</Col>
+            <Col id="data">CheckBox</Col>
+          </Row>
+          <Row>
+            <Col id="code">5</Col>
+            <Col id="data">Radio</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_grid">
+        <ColumnInfo>
+          <Column id="Edit" type="STRING" size="256"/>
+          <Column id="MaskEdit" type="STRING" size="256"/>
+          <Column id="Combo" type="STRING" size="256"/>
+          <Column id="Calendar" type="STRING" size="256"/>
+          <Column id="Expand" type="STRING" size="256"/>
+          <Column id="Normal" type="STRING" size="256"/>
+          <Column id="Number" type="STRING" size="256"/>
+          <Column id="Button" type="STRING" size="256"/>
+          <Column id="ProgressBar" type="STRING" size="256"/>
+          <Column id="Image" type="STRING" size="256"/>
+          <Column id="Mask" type="STRING" size="256"/>
+          <Column id="CheckBox" type="STRING" size="256"/>
+          <Column id="Date" type="STRING" size="256"/>
+          <Column id="Radio" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="Button">버튼</Col>
+            <Col id="Edit">Edit</Col>
+            <Col id="MaskEdit">AA-001</Col>
+            <Col id="Normal">Text</Col>
+            <Col id="Number">713000</Col>
+            <Col id="ProgressBar">50</Col>
+          </Row>
+          <Row>
+            <Col id="Button">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Button">버튼</Col>
+          </Row>
+          <Row>
+            <Col id="Button">버튼</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_tree">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">1 Depth Menu 01</Col>
+            <Col id="level">0</Col>
+          </Row>
+          <Row>
+            <Col id="code">1 Depth Menu 02</Col>
+            <Col id="level">0</Col>
+          </Row>
+          <Row>
+            <Col id="code">2 Depth Menu 01</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="code">3 Depth Menu 01</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="code">3 Depth Menu 02</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="code">3 Depth Menu 03</Col>
+            <Col id="level">2</Col>
+          </Row>
+          <Row>
+            <Col id="level">1</Col>
+            <Col id="code">2 Depth Menu 02</Col>
+          </Row>
+          <Row>
+            <Col id="code">1 Depth Menu 03</Col>
+            <Col id="level">0</Col>
+          </Row>
+          <Row>
+            <Col id="code">1 Depth Menu 04</Col>
+            <Col id="level">0</Col>
+          </Row>
+          <Row>
+            <Col id="code">2 Depth Menu 01</Col>
+            <Col id="level">1</Col>
+          </Row>
+          <Row>
+            <Col id="code">2 Depth Menu 02</Col>
+            <Col id="level">1</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_radio">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">0</Col>
+            <Col id="data">Y</Col>
+          </Row>
+          <Row>
+            <Col id="code">1</Col>
+            <Col id="data">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.common.attach.service.FileUploadDAO">
+    <select id="selectFile" resultType="thumbnailedFileVO">
+        /* file-upload-mapper.selectFile */
+        SELECT JA.FILE_ID
+             , JA.FILE_SEQ
+             , JA.FILE_NAME
+             , JA.FILE_NAME AS NAME
+             , JA.FILE_SIZE AS SIZE
+             , JA.FILE_MASK AS SERVER_NAME
+             , JA.DOWNLOAD_COUNT
+             , JA.DOWNLOAD_EXPIRE_DATE
+             , JA.DOWNLOAD_LIMIT_COUNT
+             , JA.RGST_DT
+             , JA.FILE_UPLOAD_PATH
+             , JA.LINK
+             , JA.FILE_UPLOAD_FULL_PATH
+             , CASE JA.ENCRYPTED
+               WHEN 'Y' THEN
+                   TRUE
+               ELSE
+                   FALSE
+               END AS ENCRYPTED
+          FROM J_ATTACHFILE JA
+         WHERE JA.FILE_ID = #{fileId}
+           AND JA.FILE_SEQ = #{fileSeq}::BIGINT
+           AND (JA.DELETE_YN != 'N' OR JA.DELETE_YN IS NULL)
+         LIMIT 1
+    </select>
+
+    <select id="selectFileList" parameterType="map" resultType="thumbnailedFileVO">
+        /* file-upload-mapper.selectFileList */
+        SELECT JA.FILE_ID
+             , JA.FILE_SEQ
+             , JA.FILE_NAME AS NAME
+             , JA.FILE_SIZE AS "SIZE"
+             , JA.DOWNLOAD_COUNT
+             , JA.DOWNLOAD_EXPIRE_DATE
+             , JA.DOWNLOAD_LIMIT_COUNT
+             , JA.RGST_DT
+             , 'uploaded' AS STATUS
+             , CASE JA.ENCRYPTED
+               WHEN 'Y' THEN
+                   1
+               ELSE
+                   0
+               END AS ENCRYPTED
+             -- 물음표가 파라미터 자리로 인식되는 문제로 인해 별도 처리
+        <choose>
+            <when test="delete">
+             , LINK
+            </when>
+            <when test='contextPath != null and contextPath != ""'>
+             , #{contextPath} || '/attach/download.do' || CHR(63) || 'fileId=' || FILE_ID || '&amp;fileSeq=' || FILE_SEQ AS LINK
+            </when>
+            <otherwise>
+             , 'attach/download.do' || CHR(63) || 'fileId=' || FILE_ID || '&amp;fileSeq=' || FILE_SEQ AS LINK
+            </otherwise>
+        </choose>
+          FROM J_ATTACHFILE JA
+         WHERE 1 = 1
+           AND (JA.DELETE_YN != 'N' OR JA.DELETE_YN IS NULL)
+           AND JA.FILE_ID     = #{fileId}
+        <if test='fileSeq != null and fileSeq != ""'>
+           AND JA.FILE_SEQ    = CAST(#{fileSeq} AS NUMBER)
+        </if>
+        <if test='uploadType != null and uploadType != ""'>
+           AND JA.UPLOAD_TYPE = #{uploadType}
+        </if>
+    </select>
+
+    <select id="selectDextFileList" parameterType="map" resultType="map">
+        /* file-upload-mapper.selectDextFileList */
+        SELECT JA.FILE_ID || '/' || JA.FILE_SEQ AS "vindex"
+             , JA.FILE_ID AS "fileId"
+             , JA.FILE_SEQ AS "fileSeq"
+             , JA.FILE_NAME AS "name"
+             , JA.FILE_SIZE AS "size"
+             , '/attach/download.do' || CHR(63) || 'fileId=' || FILE_ID || '&amp;fileSeq=' || FILE_SEQ AS "url"
+          FROM J_ATTACHFILE JA
+         WHERE 1 = 1
+           AND (JA.DELETE_YN != 'N' OR JA.DELETE_YN IS NULL)
+           AND JA.FILE_ID     = #{fileId}
+        <if test='fileSeq != null and fileSeq != ""'>
+           AND JA.FILE_SEQ    = #{fileSeq}::BIGINT
+        </if>
+        <if test='uploadType != null and uploadType != ""'>
+           AND JA.UPLOAD_TYPE = #{uploadType}
+        </if>
+    </select>
+
+
+    <delete id="deleteFile">
+        /* file-upload-mapper.deleteFile */
+        DELETE FROM J_ATTACHFILE
+         WHERE FILE_ID  = #{fileId}
+           AND FILE_SEQ = #{fileSeq}::BIGINT
+    </delete>
+
+    <delete id="deleteFileList">
+        /* file-upload-mapper.deleteFileList */
+        DELETE FROM J_ATTACHFILE
+         WHERE FILE_ID  = #{fileId}
+    </delete>
+
+    <insert id="insertFile">
+        /* file-upload-mapper.insertFile */
+        <selectKey keyProperty="fileSeq" resultType="String" order="BEFORE">
+            /* file-upload-mapper.selectKey */
+            SELECT COALESCE(MAX(FILE_SEQ),0)+1 FROM J_ATTACHFILE WHERE FILE_ID = #{fileId}
+        </selectKey>
+        INSERT INTO J_ATTACHFILE (
+            FILE_ID,
+            FILE_SEQ,
+            FILE_NAME,
+            FILE_SIZE,
+            FILE_MASK,
+            DOWNLOAD_COUNT,
+            RGST_DT,
+            FILE_UPLOAD_PATH,
+            LINK,
+            UPLOAD_TYPE,
+            RGST_ID,
+            ENCRYPTED
+        ) VALUES (
+            #{fileId},
+            CAST (#{fileSeq} AS BIGINT),
+            #{fileName},
+            #{fileSize} ,
+            #{fileMask} ,
+            0,
+            NOW(),
+            #{fileUploadPath},
+            #{link},
+            #{uploadType},
+            #{userId},
+            CASE #{encrypted}
+            WHEN TRUE THEN
+                'Y'
+            ELSE
+                'N'
+            END
+        )
+    </insert>
+
+    <delete id="deleteMultipleFile">
+        /* file-upload-mapper.deleteMultipleFile */
+        DELETE FROM J_ATTACHFILE
+         WHERE (FILE_ID, FILE_SEQ) IN
+        <trim suffixOverrides=" OR (FILE_ID, FILE_SEQ) IN ()">
+            <foreach collection="list" open="(" close=")" index="i" item="item">
+                <if test="i != 0">
+                    <choose>
+                        <when test="i % 100 == 999">) OR (FILE_ID, FILE_SEQ) IN (</when>
+                        <otherwise>,</otherwise>
+                    </choose>
+                </if>
+                (#{item.fileId}, #{item.fileSeq}::BIGINT)
+            </foreach>
+        </trim>
+    </delete>
+</mapper>

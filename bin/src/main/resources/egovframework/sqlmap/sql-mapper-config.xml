@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties>
+        <property name="contextName" value="/jnplaza_pms"/>
+    </properties>
+    <settings>
+        <setting name="jdbcTypeForNull" value="VARCHAR"/>
+        <setting name="callSettersOnNulls" value="true"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <typeAliases>
+        <package name="com.jnv"/>
+    </typeAliases>
+
+    <!-- 2021-08-26 parksw 배열 타입에 대한 핸들러 추가 -->
+    <typeHandlers>
+        <typeHandler handler="com.jnv.common.util.ListToArrayTypeHandler"/>
+    </typeHandlers>
+
+    <!-- myBatis Inteceptor for get column information  -->
+    <plugins>
+<!--        <plugin interceptor="com.nexacro.uiadapter.spring.dao.mybatis.NexacroMybatisMetaDataProvider" />-->
+<!--        <plugin interceptor="com.nexacro.uiadapter.spring.dao.mybatis.NexacroMybatisResultSetHandler" />-->
+        <plugin interceptor="com.jnv.jncore.argumentresolver.support.JnMetaDataResultSetHandlerInterceptor"/>
+        <plugin interceptor="com.jnv.jncore.argumentresolver.support.JnMetaDataExecutorInterceptor"/>
+        <plugin interceptor="com.jnv.jncore.argumentresolver.support.JnStatementInterceptor" />
+    </plugins>
+
+
+
+    <mappers>
+        <!-- file-mapper 추가
+             2020-08-13 kimkt
+         -->
+        <mapper resource="egovframework/sqlmap/mybatis/mappers/postgres/common/file/common-file-mapper.xml"/>
+        <!-- paging-mapper 추가
+             2020-08-18 kimkt
+         -->
+        <mapper resource="egovframework/sqlmap/mybatis/mappers/postgres/common/paging/common-paging-mapper.xml"/>
+
+        <mapper resource="egovframework/sqlmap/mybatis/mappers/postgres/common/message/message-mapper.xml"/>
+        <mapper resource="egovframework/sqlmap/mybatis/mappers/postgres/common/parameter/parameter-mapper.xml"/>
+    </mappers>
+
+</configuration>

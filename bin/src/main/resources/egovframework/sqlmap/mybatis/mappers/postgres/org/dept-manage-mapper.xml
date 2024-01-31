@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.org.dept.service.DeptManageDAO">
+
+    <!-- 조직관리 - 부서관리 조회 -->
+    <select id="getDeptManageList" parameterType="map" resultType="deptManageVO">
+        /*dept-manage-mapper.getDeptManageList*/
+        WITH RECURSIVE P ( DEPT_CD, DEPT_NM, DEPT_LDR_ID, DEPT_MNGR_ID, DEPT_DESC, USE_YN, ORD_SN,
+                           UP_DEPT_CD, UP_DEPT_NM, LEVEL )
+                      AS ( SELECT DEPT_CD
+                                , DEPT_NM
+                                , DEPT_LDR_ID
+                                , DEPT_MNGR_ID
+                                , DEPT_DESC
+                                , USE_YN
+                                , ORD_SN
+                                , UP_DEPT_CD
+                                , NULL::TEXT AS UP_DEPT_NM
+                                , 0 AS LEVEL
+                             FROM PTS_DEPT PD
+                            WHERE UP_DEPT_CD IS NULL -- start with
+                            UNION ALL
+                           SELECT PD.DEPT_CD
+                                , PD.DEPT_NM
+                                , PD.DEPT_LDR_ID
+                                , PD.DEPT_MNGR_ID
+                                , PD.DEPT_DESC
+                                , PD.USE_YN
+                                , PD.ORD_SN
+                                , PD.UP_DEPT_CD
+                                , P.DEPT_NM AS UP_DEPT_NM
+                                , P.LEVEL + 1 AS LEVEL
+                             FROM PTS_DEPT PD
+                             JOIN P
+                               ON P.DEPT_CD = PD.UP_DEPT_CD -- connect by
+                         ) SEARCH DEPTH FIRST BY ORD_SN SET ROW_ORDER
+                SELECT P.DEPT_CD
+                     , P.DEPT_NM
+                     , P.DEPT_LDR_ID
+                     , (SELECT USER_NM_KR
+                          FROM CMN_USER
+                         WHERE USER_ID = P.DEPT_LDR_ID) AS DEPT_LDR_NM
+                     , P.DEPT_MNGR_ID
+                     , (SELECT USER_NM_KR
+                          FROM CMN_USER
+                         WHERE USER_ID = DEPT_MNGR_ID) AS DEPT_MNGR_NM
+                     , P.DEPT_DESC
+                     , P.USE_YN
+                     , P.ORD_SN
+                     , P.UP_DEPT_CD
+                     , P.UP_DEPT_NM
+                     , P.LEVEL
+                     , P.ROW_ORDER
+                  FROM P
+            <where>
+                <if test='deptNm != null and deptNm != ""'>
+                   AND P.DEPT_NM LIKE '%' || #{deptNm} || '%'
+                </if>
+            </where>
+                 ORDER BY ROW_ORDER
+
+    </select>
+
+    <!-- 조직관리 - 부서관리 - 상위부서코드 팝업 -->
+    <select id="getUpDeptPopupList" parameterType="map" resultType="deptManageVO">
+        /*dept-manage-mapper.getUpDeptPopupList*/
+        WITH RECURSIVE P ( DEPT_CD, DEPT_NM, ORD_SN, UP_DEPT_CD, UP_DEPT_NM, LEVEL )
+                      AS (SELECT DEPT_CD
+                               , DEPT_NM
+                               , ORD_SN
+                               , UP_DEPT_CD
+                               , NULL::TEXT AS UP_DEPT_NM
+                               , 1 AS LEVEL
+                            FROM PTS_DEPT PD
+                           WHERE UP_DEPT_CD IS NULL -- start with
+                           UNION ALL
+                          SELECT PD.DEPT_CD
+                               , PD.DEPT_NM
+                               , PD.ORD_SN
+                               , PD.UP_DEPT_CD
+                               , P.DEPT_NM AS UP_DEPT_NM
+                               , P.LEVEL + 1 AS LEVEL
+                            FROM PTS_DEPT PD
+                            JOIN P
+                              ON P.DEPT_CD = PD.UP_DEPT_CD -- connect by
+                        ) SEARCH DEPTH FIRST BY ORD_SN SET ROW_ORDER
+                 SELECT P.DEPT_CD
+                      , P.DEPT_NM
+                      , P.ORD_SN
+                      , P.UP_DEPT_CD
+                      , P.UP_DEPT_NM
+                      , P.LEVEL
+                      , P.ROW_ORDER
+                   FROM P
+                <where>
+                    <if test='deptNm != null and deptNm != ""'>
+                    AND P.DEPT_NM LIKE '%' || #{deptNm} || '%'
+                    </if>
+                </where>
+               ORDER BY ROW_ORDER
+    </select>
+
+    <!-- 부서관리 추가 저장 -->
+    <insert id="insertDept" parameterType="deptManageVO">
+        /*dept-manage-mapper.insertDept*/
+          INSERT
+            INTO PTS_DEPT ( DEPT_CD
+                          , DEPT_NM
+                          , DEPT_LDR_ID
+                          , DEPT_MNGR_ID
+                          , DEPT_DESC
+                          , USE_YN
+                          , ORD_SN
+                          , UP_DEPT_CD)
+                   values ( NULLIF(#{deptCd}, '')
+                          , NULLIF(#{deptNm}, '')
+                          , NULLIF(#{deptLdrId}, '')
+                          , NULLIF(#{deptMngrId}, '')
+                          , NULLIF(#{deptDesc}, '')
+                          , NULLIF(#{useYn}, '')
+                          , NULLIF(#{ordSn},'')::INT
+                          , NULLIF(#{upDeptCd}, ''))
+    </insert>
+
+    <!-- 부서관리 수정 저장 -->
+    <update id="updateDept" parameterType="deptManageVO">
+        /*dept-manage-mapper.updateDept*/
+        UPDATE PTS_DEPT
+           SET DEPT_NM      = NULLIF(#{deptNm}, '')
+             , DEPT_LDR_ID  = NULLIF(#{deptLdrId}, '')
+             , DEPT_MNGR_ID = NULLIF(#{deptMngrId}, '')
+             , DEPT_DESC    = NULLIF(#{deptDesc}, '')
+             , USE_YN       = NULLIF(#{useYn}, '')
+             , ORD_SN       = NULLIF(#{ordSn},'')::INT
+             , UP_DEPT_CD   = NULLIF(#{upDeptCd}, '')
+         WHERE DEPT_CD      = #{deptCd}
+    </update>
+
+    <!-- 부서관리 삭제 저장 -->
+    <delete id="deleteDept" parameterType="deptManageVO">
+        /*dept-manage-mapper.deleteDept*/
+        DELETE
+          FROM PTS_DEPT
+         WHERE DEPT_CD    = #{deptCd}
+    </delete>
+
+    <!-- 부서코드 중복체크 -->
+    <select id="getDuplicateKeyCnt" parameterType="deptManageVO">
+        /*dept-manage-mapper.getDuplicateKeyCnt*/
+        SELECT COUNT(*)
+          FROM PTS_DEPT
+         WHERE DEPT_CD = #{deptCd}
+    </select>
+
+</mapper>

@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PRM_1010M" width="1920" height="670" titletext="파라미터 관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSave" taborder="4" text="저장" height="28" width="65" cssclass="btn_WF_Save" top="20" right="49" onclick="btnSave_onclick"/>
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="btnSave:3" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="파라미터 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="71" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="6" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="0" top="56" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="39"/>
+              <Static id="sta003" taborder="1" text="모듈" left="1365" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboModuleId" taborder="9" text="" left="sta003:10" top="15" width="200" height="26" innerdataset="dsModuleComboSearch" codecolumn="value" datacolumn="text" index="-1" onkeyup="divSearch_Div00_edt_03_onkeyup"/>
+              <Static id="sta002" taborder="3" text="파라미터명" left="910" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtParamNm" taborder="7" left="sta002:10" top="15" width="200" height="26" onkeyup="divSearch_Div00_edt_03_onkeyup"/>
+              <Static id="sta001" taborder="5" text="파라미터 ID" left="455" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtParamId" taborder="4" left="sta001:10" top="15" width="200" height="26" onkeyup="divSearch_divSrch_edtParamId_onkeyup"/>
+              <Static id="sta_003_00" taborder="8" text="시스템" left="20" top="15" width="100" height="26" cssclass="sta_WF_condition01" onclick="divSearch_sta_003_00_onclick"/>
+              <Combo id="systemIdCombo" taborder="2" left="130" top="15" width="10.99%" height="26" innerdataset="dsSysIdCombo" codecolumn="value" datacolumn="text" onkeyup="divSearch_edt_schMenuId_onkeyup" text="" onitemchanged="divSearch_systemIdCombo_onitemchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divParam" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="37" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Button id="btnDeleteRow" taborder="1" text="행삭제" height="26" right="0" width="73" cssclass="btn_WF_Row_Delete" top="14" onclick="divParam_btnDeleteRow_onclick"/>
+              <Button id="btnAddRow" taborder="0" text="행추가" height="26" right="btnDeleteRow:5" width="73" cssclass="btn_WF_Row_Add" top="14" onclick="divParam_btnAddRow_onclick"/>
+              <Grid id="grdParam" taborder="10" left="0" binddataset="dsParam" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" top="45" bottom="0" onheadclick="divParam_grdParam_onheadclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="120"/>
+                      <Column size="100"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                      <Column size="250"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="100"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="시스템"/>
+                      <Cell col="4" text="파라미터 ID"/>
+                      <Cell col="5" text="파라미터명"/>
+                      <Cell col="6" text="모듈구분"/>
+                      <Cell col="7" text="환경설정대상(경로)"/>
+                      <Cell col="8" text="파라미터 자료"/>
+                      <Cell col="9" text="메세지"/>
+                      <Cell col="10" text="비고"/>
+                      <Cell col="11" text="수정자"/>
+                      <Cell col="12" text="수정일시"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" displaytype="combotext" combodataset="dsSysIdCombo" combocodecol="value" combodatacol="text" text="bind:sysId" textAlign="left"/>
+                      <Cell col="4" text="bind:paramId" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" editmaxlength="100" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'normal'" textAlign="left"/>
+                      <Cell col="5" text="bind:paramNm" edittype="text" editmaxlength="1000" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="6" text="bind:moduleFg" edittype="combo" displaytype="combocontrol" combodataset="dsModuleCombo" combocodecol="value" combodatacol="text"/>
+                      <Cell col="7" text="bind:targetNm" edittype="text" textAlign="left" editmaxlength="300" displaytype="editcontrol"/>
+                      <Cell col="8" text="bind:paramData" edittype="text" editmaxlength="4000" displaytype="editcontrol"/>
+                      <Cell col="9" text="bind:msg" edittype="text" textAlign="left" editmaxlength="1000" displaytype="editcontrol"/>
+                      <Cell col="10" text="bind:rmk" edittype="text" textAlign="left" editmaxlength="4000" displaytype="editcontrol"/>
+                      <Cell col="11" text="bind:updtNm" edittype="none" textAlign="center"/>
+                      <Cell col="12" text="bind:updtDt" edittype="none" displaytype="normal"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="staTitle" taborder="2" text="검색결과" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="81" fittocontents="width"/>
+              <Static id="Static04_00_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="4" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:10" top="0" width="149" height="45"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true" oncolumnchanged="dsSearch_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="paramId" type="STRING" size="256"/>
+          <Column id="paramNm" type="STRING" size="256"/>
+          <Column id="moduleFg" type="STRING" size="256"/>
+          <Column id="searchParamId" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsParam" useclientlayout="true" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="paramId" type="STRING" size="256"/>
+          <Column id="paramNm" type="STRING" size="256"/>
+          <Column id="moduleFg" type="STRING" size="256"/>
+          <Column id="targetNm" type="STRING" size="256"/>
+          <Column id="paramData" type="STRING" size="256"/>
+          <Column id="msg" type="STRING" size="256"/>
+          <Column id="rmk" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsModuleCombo" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsModuleComboSearch" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSysIdCombo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  messageManage
+*  MenuPath      -
+*  FileName      parameterManage.xfdl 
+*  Creator 	     cheonsy
+*  CreateDate    2023.03.06
+*  Desction      파라미터관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.06    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+	this.fnParamSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+this.fnLoadCombo = function ()
+{
+    this.loadCount = 3;
+	this.gfnTransaction("loadSysIdCombo", "sm/getSystemIdCombo.do", "", "dsSysIdCombo", "", "fnComboCallback");
+	this.gfnTransaction("getModuleCombo", "sm/getModuleCombo.do", "", "dsModuleCombo", "", "fnComboCallback"); 
+	this.gfnTransaction("getModuleCombo", "sm/getModuleCombo.do", "", "dsModuleComboSearch=dsModuleCombo", "type=A", "fnComboCallback"); 
+}
+
+/**
+ * description 파라미터 조회
+*/
+this.fnParamSearch = function()
+{	
+	this.gfnTransaction("getParam", "sm/getParam.do", "dsSearch", "dsParam", "", "fnCallBack"); 
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	this.gfnTransaction("setParam", "sm/setParam.do", "dsParam", "", "", "fnCallBack"); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+    this.loadCount--;
+    if (this.loadCount == 0) {
+        this.dsSearch.setColumn(0, "sysId", nexacro.getApplication().gdsUserInfo.getColumn(0, "sysId"))
+        this.fnParamSearch();
+    }
+};
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getParam":
+			this.gfnRowCount(this.dsParam, this.divParam.form.staGridRowCnt);
+            break;
+		case "setParam":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.fnParamSearch();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+            break;
+		default:
+            break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsSearch.setColumn(0, "paramId", this.dsSearch.getColumn(0, "searchParamId"));
+	this.fnParamSearch();
+};
+
+/**
+ * description 저장버튼 클릭
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsParam.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+		return;
+	}
+	if (!this.gfnDsIsUpdated(this.dsParam)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+	if (!this.fnValidation()) {	// 그리드 필수값 체크
+		return;
+    }
+	
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/**
+ * description 행추가 클릭
+*/
+this.divParam_btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsParam, "last");
+    this.dsParam.setColumn(this.dsParam.rowposition, "sysId", this.dsSearch.getColumn(0, "sysId"));
+};
+
+/**
+ * description 행삭제 클릭
+*/
+this.divParam_btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsParam);
+};
+
+/**
+ * description 그리드 헤드 클릭
+*/
+this.divParam_grdParam_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+/**
+ * description 엔터키 검색
+*/
+this.divSearch_divSrch_edtParamId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+this.dsSearch_oncolumnchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSColChangeEventInfo)
+{
+    if (e.columnid === "sysId") {
+        this.dsModuleCombo.filter("text == '전체' || sysId == '" + e.newvalue + "'");
+        this.dsModuleComboSearch.filter("value == null || value == '' || sysId == '" + e.newvalue + "'");
+        this.fnParamSearch();
+    }
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+
+this.fnValidation = function ()
+{
+    var args = [
+        ["sysId", "NULL", ""],	// 시스템ID
+        ["paramId", "NULL|MAX_LEN:100", ""],	// 파라미터 아이디
+		["paramData", "NULL|MAX_LEN:4000", ""],	// 파라미터 자료
+		["paramNm", "MAX_LEN:1000", ""],	// 파라미터명
+		["targetNm", "MAX_LEN:300", ""],	// 환경설정대상(경로)
+		["msg", "MAX_LEN:1000", ""],		// 메세지
+		["rmk", "MAX_LEN:4000", ""],		// 비고
+    ];
+
+    return this.gfnCheckGrid(this.divParam.form.grdParam, args, "");
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboModuleId" propid="value" datasetid="dsSearch" columnid="moduleFg"/>
+      <BindItem id="item1" compid="divSearch.form.edtParamNm" propid="value" datasetid="dsSearch" columnid="paramNm"/>
+      <BindItem id="item2" compid="divSearch.form.edtParamId" propid="value" datasetid="dsSearch" columnid="searchParamId"/>
+      <BindItem id="item3" compid="divSearch.form.systemIdCombo" propid="value" datasetid="dsSearch" columnid="sysId"/>
+    </Bind>
+  </Form>
+</FDL>

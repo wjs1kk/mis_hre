@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_2020P_01" width="1084" height="1440" titletext="게시글 보기" onload="CMS_2020P_01_onload" oninit="CMS_2020P_01_oninit" onbeforeclose="CMS_2020P_01_onbeforeclose" left="0" top="0">
+    <Layouts>
+      <Layout height="1440" width="1084">
+        <Div id="popupDiv" taborder="0" text="" left="0" top="50" formscrollbartype="auto" right="0" formscrolltype="vertical" bottom="0">
+          <Layouts>
+            <Layout>
+              <Div id="Div00" taborder="1" text="Div00" left="30" top="20" right="30" height="1370">
+                <Layouts>
+                  <Layout type="vertical" verticalgap="10">
+                    <Div id="divFormBox" taborder="0" left="0" top="0" height="132" cssclass="div_WF_popup" text="" width="100%" flexgrow="0" flexshrink="0">
+                      <Layouts>
+                        <Layout width="1032" height="72">
+                          <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="staArtclTitle" taborder="8" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" right="20" fittocontents="height" minheight="27" maxheight="" padding="4px 0px 4px 21px"/>
+                          <Static id="staHd0" taborder="3" left="21" top="staArtclTitle:7" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="20"/>
+                          <Static id="staRgstNm" taborder="11" text="작성자" cssclass="sta_WF_condition02" left="21" top="staHd0:0" width="151" height="34"/>
+                          <Static id="staVd0" taborder="6" left="20" top="staHd0:-1" width="1" onclick="div_Search_Static07_onclick" background="#00388e" text="" bottom="14"/>
+                          <Static id="sta001" taborder="2" left="21" top="staRgstNm:0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="20"/>
+                          <Static id="staShowYn" taborder="9" text="공개 여부" cssclass="sta_WF_condition02" left="staVd0:0" top="sta001:0" width="151" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                          <Static id="staHd2" taborder="4" left="21" top="staShowYn:0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="20"/>
+                          <Static id="Static07_00_01_00" taborder="5" top="staHd0:-1" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" right="20" bottom="15"/>
+                          <Static id="Static07_01_02_00" taborder="7" left="staRgstNm:0" top="staHd0:-1" onclick="div_Search_Static07_onclick" background="#dddddd" bottom="15" width="1"/>
+                          <Static id="staInOutDiv" taborder="10" text="대내외 구분" cssclass="sta_WF_condition02" left="staShowYn:176" top="sta001:0" height="34" width="151"/>
+                          <Static id="Static10_00" taborder="12" text="w12" visible="false" left="173" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_00_00" taborder="13" text="w12" visible="false" left="173" top="116" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_01" taborder="14" text="w12" visible="false" left="173" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static04_00_00_00_00" taborder="15" text="h 15" onclick="Static31_onclick" visible="false" left="110" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                          <Static id="staShowRange" taborder="16" text="게시 기간" cssclass="sta_WF_condition02" left="staInOutDiv:176" top="sta001:0" width="151" height="34" onclick="div_Search02_00_in_YY_onclick"/>
+                          <Static id="staVd13" taborder="17" top="81" height="35" onclick="div_Search_Static07_onclick" background="#dddddd" right="staInOutDiv:0" width="1"/>
+                          <Static id="Static10_00_00" taborder="19" text="w12" visible="false" left="989" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_01_00" taborder="20" text="w12" visible="false" top="81" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="staVd13:0" width="12"/>
+                          <Static id="Static10_00_01_00_00" taborder="21" text="w12" visible="false" left="staInOutDiv:1" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_01_00_00_00" taborder="22" text="w12" visible="false" left="989" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="staRgstNmValue" taborder="23" left="staRgstNm:13" top="46" width="150" height="34"/>
+                          <Static id="staShowValue" taborder="24" text="" left="staShowYn:13" top="sta001:1" width="150" height="34"/>
+                          <Static id="staInOutValue" taborder="25" left="staInOutDiv:13" top="sta001:0" width="150" height="34"/>
+                          <Static id="staRgstDt" taborder="28" text="작성일" cssclass="sta_WF_condition02" left="staRgstNm:176" top="staHd0:0" width="151" height="34"/>
+                          <Static id="Static07_01_02_00_00" taborder="27" top="staHd0:0" onclick="div_Search_Static07_onclick" background="#dddddd" right="staRgstDt:0" width="1" height="35"/>
+                          <Static id="staRgstDtValue" taborder="30" left="staRgstDt:13" top="47" width="150" height="34"/>
+                          <Static id="Static07_01_02_00_00_00" taborder="29" top="staHd0:0" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" height="34" left="staRgstDt:0"/>
+                          <Static id="staShowRangeValue" taborder="26" left="staShowRange:13" top="81" height="34" right="Static07_00_01_00:12"/>
+                          <Static id="staVd14" taborder="18" left="staInOutDiv:0" top="81" width="1" height="34" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                          <Static id="staViewCount" taborder="31" text="조회수" cssclass="sta_WF_condition02" left="staRgstDt:176" top="staHd0:0" width="151" height="34"/>
+                          <Static id="Static07_01_02_00_00_01" taborder="32" top="46" onclick="div_Search_Static07_onclick" background="#dddddd" right="staViewCount:0" width="1" height="35"/>
+                          <Static id="Static07_01_02_00_00_00_00" taborder="33" top="46" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" height="34" left="staViewCount:0"/>
+                          <Static id="Static10_00_01_00_00_01_00" taborder="34" text="w12" visible="false" top="46" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="staViewCount:1" width="12"/>
+                          <Static id="staViewCountValue" taborder="35" left="staViewCount:13" top="47" width="150" height="34"/>
+                          <Static id="Static10_00_01_00_00_01_00_00" taborder="36" text="w12" visible="false" left="827" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="Static10_00_01_00_01" taborder="37" text="w12" visible="false" top="46" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="staRgstDt:1" width="12"/>
+                          <Static id="Static07_01_02_00_00_01_00" taborder="38" top="81" onclick="div_Search_Static07_onclick" background="#dddddd" right="staShowRange:0" width="1" height="35"/>
+                          <Static id="Static07_01_02_00_00_00_00_00" taborder="39" top="81" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" height="34" left="staShowRange:0"/>
+                        </Layout>
+                      </Layouts>
+                      <InitValue/>
+                    </Div>
+                    <Div id="divViewWrap" taborder="4" text="Div00" left="100" top="174" width="100%" height="330" cssclass="div_WF_popup" flexgrow="0" flexshrink="0" minheight="330" maxheight="">
+                      <Layouts>
+                        <Layout>
+                          <WebView id="wvEditor" taborder="0" flexgrow="1" flexshrink="0" minheight="1" left="0" top="0" maxheight="" bottom="0" minwidth="" onloadcompleted="popupDiv_Div00_divViewWrap_wvEditor_onloadcompleted" width="100%"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                    <Div id="divAttachBox" taborder="1" left="0" top="0" height="200" cssclass="div_WF_popup" text="" width="100%" url="cmm::fileUpload.xfdl" flexgrow="0" flexshrink="0"/>
+                    <Div id="divNav" taborder="3" left="0" top="632" height="71" text="" width="100.00%" flexgrow="0" flexshrink="0">
+                      <Layouts>
+                        <Layout width="1032" height="72">
+                          <Static id="Static07_01_01_00_00" taborder="1" left="0" top="0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="0"/>
+                          <Static id="staPrevLabel" taborder="6" text="이전 글" cssclass="sta_WF_condition02" left="1" top="Static07_01_01_00_00:0" width="150" height="34"/>
+                          <Static id="Static07_01_01_00" taborder="0" left="0" top="staPrevLabel:0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="0"/>
+                          <Static id="staNextLabel" taborder="7" text="다음 글" cssclass="sta_WF_condition02" left="1" top="Static07_01_01_00:0" width="150" height="34"/>
+                          <Static id="Static07_01_01_00_01" taborder="2" left="0" top="staNextLabel:0" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="0"/>
+                          <Static id="Static07_00_01_00" taborder="3" top="0" height="71" onclick="div_Search_Static07_onclick" background="#dddddd" width="1" right="0"/>
+                          <Static id="Static07_00_00_00" taborder="4" left="0" top="0" width="1" height="71" onclick="div_Search_Static07_onclick" background="#00388e" text=""/>
+                          <Static id="Static07_01_02_00" taborder="5" left="staPrevLabel:0" top="0" width="1" height="70" onclick="div_Search_Static07_onclick" background="#dddddd"/>
+                          <Static id="Static10_00" taborder="8" text="w12" visible="false" left="152" top="1" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="staPrevTitle" taborder="9" left="staPrevLabel:13" top="Static07_01_01_00_00:0" height="33" right="Static07_00_01_00:12" onclick="popupDiv_Div00_divNav_staPrevTitle_onclick"/>
+                          <Static id="Static10_00_01" taborder="10" text="w12" visible="false" left="152" top="36" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="staNextTitle" taborder="11" left="staNextLabel:13" top="Static07_01_01_00:0" height="33" right="Static07_00_01_00:12" onclick="popupDiv_Div00_divNav_staNextTitle_onclick"/>
+                        </Layout>
+                      </Layouts>
+                      <InitValue/>
+                    </Div>
+                    <Div id="divBtnGroup" taborder="2" left="30" height="54" top="979" width="100%" flexgrow="0" flexshrink="0">
+                      <Layouts>
+                        <Layout type="horizontal" horizontalgap="3" flexmainaxisalign="center" spacing="15px 0 23px 0">
+                          <Button id="btnModify" text="수정" cssclass="btn_WF_icoModify" top="2681" width="65" height="28" taborder="1" left="934" onclick="popupDiv_Div00_div_btnGroup_btnModify_onclick" visible="false"/>
+                          <Button id="btnDelete" text="삭제" cssclass="btn_WF_icoDelete" top="2681" width="64" height="28" taborder="2" left="187" onclick="popupDiv_Div00_divBtnGroup_btnDelete_onclick" visible="false"/>
+                          <Button id="btnClose" text="닫기" cssclass="" visible="true" height="28" taborder="0" left="0" width="65" top="0" onclick="popupDiv_div_btnGroup_btnClose_onclick"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                    <Div id="divComment" taborder="6" text="Div00" left="0" top="849" width="100.00%" height="457" flexgrow="0" flexshrink="0" cssclass="div_WF_popup">
+                      <Layouts>
+                        <Layout>
+                          <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="sta001" taborder="1" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" fittocontents="width" minheight="27" maxheight="" padding="4px 0px 4px 21px" text="댓글" width="50"/>
+                          <Static id="Static04_00_00_00" taborder="2" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                          <Static id="staGridRowCnt" taborder="3" text="(총 0건)" cssclass="sta_WF_subResult" left="sta001:0" top="11" width="149" height="27"/>
+                          <ListView id="lvComment" taborder="4" left="19" top="sta001:7" height="306" right="20" border="1px solid #dddddd, 0px none, 0px none" background="transparent" binddataset="dsComment" bandexpandtype="accordion" oncellclick="popupDiv_Div00_divComment_lvComment_oncellclick" onbandclick="popupDiv_Div00_divComment_lvComment_onbandclick" autoupdatetype="itemselect" autoenter="select" readonly="false">
+                            <Formats>
+                              <Format id="default">
+                                <Band id="body" width="100%" height="80">
+                                  <Cell id="cellRgstNm" left="expr:level * 20 - 10" top="6" width="80" height="20" text="bind:rgstNm" border="0px none" color="#000000" font="normal 700 12px/16px &quot;Malgun Gothic&quot;"/>
+                                  <Cell id="cellCont" left="expr:level * 20 - 10" top="cellRgstNm:6" text="bind:artclCont" right="10" bottom="10" tooltiptext="bind:artclCont" border="0px none" color="#000000" wordWrap="english" font="normal 12px/16px &quot;Malgun Gothic&quot;" verticalAlign="top"/>
+                                  <Cell id="cellRgstDt" left="cellRgstNm:10" top="4" width="180" height="20" text="bind:rgstDt" border="0px none" font="normal 12px/16px &quot;Malgun Gothic&quot;"/>
+                                  <Cell id="cellReply" top="12" height="7" right="cellRgstNm:8" width="7" border="0px none, 0px none, 1px dotted black, 1px dotted black"/>
+                                  <Cell id="cellDelete" top="6" width="58" height="26" right="10" text="삭제" border="0px none" displaytype="expr:nexacro.getApplication().gdsUserInfo.getColumn(0, &quot;userId&quot;) == rgstId ? &quot;buttoncontrol&quot; : &quot;none&quot;" edittype="expr:nexacro.getApplication().gdsUserInfo.getColumn(0, &quot;userId&quot;) == rgstId ? &quot;button&quot; : &quot;none&quot;" borderRadius="4px" padding="0px"/>
+                                </Band>
+                                <Band id="detail" width="100%" height="80">
+                                  <Cell id="cellSave" top="10" width="58" height="26" right="10" text="작성" displaytype="buttoncontrol" edittype="button" padding="0px" border="0px none" color="white" background="#5473e0" borderRadius="4px"/>
+                                  <Cell id="cellReplyCont" left="expr:level * 20 + 10" top="10" edittype="textarea" right="cellSave:10" bottom="10" padding="0px" border="0px none" text="bind:replyCont" textareaacceptsenter="true" textareamaxlength="4000" displaytype="textareacontrol" textareascrolltype="vertical" wordWrap="english"/>
+                                  <Cell id="cellReply" top="10" height="7" right="cellReplyCont:8" width="7" border="0px none, 0px none, 1px dotted black, 1px dotted black"/>
+                                </Band>
+                              </Format>
+                            </Formats>
+                          </ListView>
+                          <TextArea id="taComment" taborder="5" left="20" top="lvComment:10" height="80" right="94" scrolltype="vertical" wordWrap="english"/>
+                          <Button id="btnWrite" text="작성" cssclass="btn_WF_icoDecision" top="lvComment:10" width="65" height="28" taborder="6" left="taComment:10" onclick="popupDiv_Div00_divComment_btnWrite_onclick"/>
+                          <Static id="Static04_00_00_00_00" taborder="7" text="h 15" onclick="Static31_onclick" visible="false" left="36" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="-1"/>
+                          <Static id="Static10_00" taborder="8" text="w20" visible="false" top="324" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                    <Div id="divBtnGroup2" taborder="5" left="30" height="66" top="979" width="100%" flexgrow="0" flexshrink="0">
+                      <Layouts>
+                        <Layout type="horizontal" horizontalgap="3" flexmainaxisalign="center" spacing="15px 0 23px 0">
+                          <Button id="btnModify" text="수정" cssclass="btn_WF_icoModify" top="2681" width="65" height="28" taborder="1" left="934" onclick="popupDiv_Div00_div_btnGroup_btnModify_onclick" visible="false"/>
+                          <Button id="btnDelete" text="삭제" cssclass="btn_WF_icoDelete" top="2681" width="64" height="28" taborder="2" left="187" onclick="popupDiv_Div00_divBtnGroup_btnDelete_onclick" visible="false"/>
+                          <Button id="btnClose" text="닫기" cssclass="" visible="true" height="28" taborder="0" left="0" width="65" top="0" onclick="popupDiv_div_btnGroup_btnClose_onclick"/>
+                        </Layout>
+                      </Layouts>
+                    </Div>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staBoardNm" taborder="1" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+*  게시글 보기
+*  MenuPath      게시판 - 게시글 보기
+*  FileName      CMS_2020P_01.xfdl 
+*  Creator          parksw
+*  CreateDate    2023.04.03
+*  Desction      게시판에 게시글을 등록한다.
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.04.06    parksw      최초 생성
+*  2023.04.18    parksw      폼 ID 변경
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.CMS_2020P_01_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+    form = this;
+
+    var that = this;
+    window.addEventListener("resize", this.onResizeHandler);
+
+    this.sysId = this.parent.sysId;
+    this.boardId = this.parent.boardId;
+    this.boardNm = this.parent.boardNm;
+    this.articleId = this.parent.articleId;
+
+    if (this.sysId == null || this.sysId == "" || this.boardId == null || this.boardId == "" || this.articleId == null || this.articleId == "") {
+        this.gfnAlert("잘못된 접근입니다.");
+        this.fnClose();
+        return;
+    }
+
+    this.dsArticle.setColumn(0, "sysId", this.sysId);
+    this.dsArticle.setColumn(0, "boardId", this.boardId);
+    this.dsArticle.setColumn(0, "artclId", this.articleId);
+
+    this.dsUiStat.setColumn(0, "boardNm", this.boardNm);
+};
+
+/**
+ * @description 화면 onload
+ */
+this.CMS_2020P_01_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+    this.fnUpdateItemVisibility(true, false, true, true);
+
+    this.gfnTransaction("getBoardInfo", "cms/getBoardInfo.do", "", "dsBoard dsBoardRoles", "boardId=" + this.boardId + " sysId=" + this.sysId, "fnCallback");
+};
+
+this.CMS_2020P_01_onbeforeclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+    window.removeEventListener("resize", this.onResizeHandler);
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnSearch = function ()
+{
+    var strSvcId    = "getArticle";
+    var strSvcUrl   = "cms/getBoardArticle.do";
+    var inData      = "dsArticle";
+    var outData     = "dsArticle dsAttach dsComment";
+    var strArg      = "withContent=false withNeighborLink=true type=view";
+    var callbackFn  = "fnCallback";
+    var isAsync     = true;
+
+    this.popupDiv.form.Div00.form.divBtnGroup.form.btnModify.set_visible(false);
+    this.popupDiv.form.Div00.form.divBtnGroup.form.btnDelete.set_visible(false);
+
+    if (this.dsBoardRoles.findRowExpr("boardFuncId == 'REPLY'") >= 0) {
+        strArg += " withComment=true"
+    }
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+};
+
+this.fnDelete = function ()
+{
+    var strSvcId    = "deleteArticle";
+    var strSvcUrl   = "cms/deleteBoardArticle.do";
+    var inData      = "dsArticle";
+    var outData     = "";
+    var strArg      = "";
+    var callbackFn  = "fnCallback";
+    var isAsync     = true;
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+};
+
+this.fnSaveComment = function (id, content, parentId) {
+    var strSvcId    = "saveComment";
+    var strSvcUrl   = "cms/saveBoardComment.do";
+    var inData      = "dsCommentRegist";
+    var outData     = "";
+    var strArg      = "";
+    var callbackFn  = "fnCallback";
+    var isAsync     = true;
+    
+    if (Eco.isEmpty(content)) {
+        this.gfnAlert("CMN_BBS_ERR_NO_CONT");
+        return;
+    }
+
+    this.dsCommentRegist.setColumn(0, "sysId", this.dsArticle.getColumn(0, "sysId"));
+    this.dsCommentRegist.setColumn(0, "boardId", this.dsArticle.getColumn(0, "boardId"));
+    this.dsCommentRegist.setColumn(0, "artclId", this.dsArticle.getColumn(0, "artclId"));
+    this.dsCommentRegist.setColumn(0, "rowStatus", Eco.isEmpty(id) ? "inserted" : "updated");
+    this.dsCommentRegist.setColumn(0, "cmntId", Eco.isEmpty(id) ? (void 0) : id);
+    this.dsCommentRegist.setColumn(0, "upCmntId", parentId);
+    this.dsCommentRegist.setColumn(0, "artclCont", content);
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+}
+
+this.fnDeleteComment = function (id) {
+    var strSvcId    = "deleteComment";
+    var strSvcUrl   = "cms/deleteBoardComment.do";
+    var inData      = "dsCommentRegist";
+    var outData     = "";
+    var strArg      = "";
+    var callbackFn  = "fnCallback";
+    var isAsync     = true;
+    
+    if (Eco.isEmpty(id)) {
+        this.gfnAlert("CM_MSG_NO_ITEM");
+        return;
+    }
+
+    this.dsCommentRegist.setColumn(0, "sysId", this.dsArticle.getColumn(0, "sysId"));
+    this.dsCommentRegist.setColumn(0, "boardId", this.dsArticle.getColumn(0, "boardId"));
+    this.dsCommentRegist.setColumn(0, "artclId", this.dsArticle.getColumn(0, "artclId"));
+    this.dsCommentRegist.setColumn(0, "cmntId", id);
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+}
+
+this.fnRefreshComment = function ()
+{
+    var strSvcId    = "getCommentList";
+    var strSvcUrl   = "cms/getBoardCommentList.do";
+    var inData      = "dsArticle";
+    var outData     = "dsComment";
+    var strArg      = "";
+    var callbackFn  = "fnCallback";
+    var isAsync     = true;
+
+    this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callbackFn, isAsync); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "getBoardInfo":
+            if (this.dsBoardRoles.findRow("boardFuncId", "WRITE") < 0) {
+                this.gfnAlert();
+                this.gfnPopupClose(false);
+            }
+
+            var showYn = this.dsBoard.getColumn(0, "boardType") == "BBST02";
+            var inOut = this.dsBoard.getColumn(0, "boardType") == "BBST02";
+            var showRange = this.dsBoard.getColumn(0, "boardAttr") == "BBSA01";
+            var showAttach = this.dsBoard.getColumn(0, "fileAtchPosblYn") == "Y";
+            var cmntVisible = this.dsBoard.getColumn(0, "replyPosblYn") == "Y";
+
+            this.fnUpdateItemVisibility(showYn, inOut, showRange, false, cmntVisible);
+            this.fnSearch();
+            break;
+        case "getArticle":
+            this.popupDiv.form.Div00.form.divViewWrap.form.wvEditor.set_url(nexacro.getEnvironment().services["svcurl"].url + this.dsArticle.getColumn(0, "artclCont"));
+            this.commentDetailVisible = false;
+            this.fnUpdateAttachState();
+            this.fnUpdateButtonVisibility();
+            this.gfnRowCount(this.dsComment, this.popupDiv.form.Div00.form.divComment.form.staGridRowCnt);
+            break;
+        case "saveComment":
+            if (this.callbackMsg == "success") {
+                this.popupDiv.form.Div00.form.divComment.form.taComment.set_value("");
+                this.dsCommentRegist.clearData();
+                this.dsCommentRegist.addRow();
+                this.fnRefreshComment();
+            }
+            break;
+        case "deleteComment":
+            if (this.callbackMsg == "success") {
+                this.dsCommentRegist.clearData();
+                this.dsCommentRegist.addRow();
+                this.fnRefreshComment();
+            }
+            break;
+        case "getCommentList":
+            this.commentDetailVisible = false;
+            this.fnResize();
+            this.gfnRowCount(this.dsComment, this.popupDiv.form.Div00.form.divComment.form.staGridRowCnt);
+            break;
+        case "deleteArticle":
+            if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_DELETE_SUCCESS");  // 저장 되었습니다.
+                this.gfnPopupClose(true);
+            }
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.popupDiv_div_btnGroup_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnClose(false);
+};
+
+this.popupDiv_Div00_div_btnGroup_btnModify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnModify();
+};
+
+this.popupDiv_Div00_divViewWrap_wvEditor_onloadcompleted = function(obj:nexacro.WebView,e:nexacro.WebLoadCompEventInfo)
+{
+    this.fnResize();
+};
+
+this.popupDiv_Div00_divBtnGroup_btnDelete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnDelete();
+};
+
+this.popupDiv_Div00_divComment_lvComment_oncellclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+    if (e.bandid == "detail" && e.cellid == "cellSave") {
+        this.fnSaveComment(void 0, this.dsComment.getColumn(e.row, "replyCont"), this.dsComment.getColumn(e.row, "cmntId"));
+    } else if (e.bandid == "body" && e.cellid == "cellDelete") {
+        this.fnDeleteComment(this.dsComment.getColumn(e.row, "cmntId"));
+    } else if (e.bandid == "body") {
+        this.commentDetailVisible = true;
+        obj.showDetailBand(e.row);
+        this.fnResize();
+    } 
+};
+
+this.popupDiv_Div00_divComment_lvComment_onbandclick = function(obj:nexacro.ListView,e:nexacro.ListViewClickEventInfo)
+{
+    if (e.bandid == "body") {
+        this.commentDetailVisible = true;
+        obj.showDetailBand(e.row);
+        this.fnResize();
+    }
+};
+
+this.popupDiv_Div00_divComment_btnWrite_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSaveComment(void 0, this.popupDiv.form.Div00.form.divComment.form.taComment.value);
+};
+
+this.popupDiv_Div00_divNav_staPrevTitle_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.fnGoPrevious();
+};
+
+this.popupDiv_Div00_divNav_staNextTitle_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	this.fnGoNext();
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.fnClose = function (result)
+{
+    this.gfnPopupClose(result || false);
+};
+
+this.onResizeHandler = (function ()
+{
+    this.fnResize();
+}).bind(this);
+
+this.fnResize = function ()
+{
+    var viewboxWidth = window.innerWidth;
+    var formWidth = 1084;
+    var viewboxHeight = window.innerHeight;
+    var contentHeight = this.fnMeasure();
+    var height = Math.min(viewboxHeight - 30, 1080);
+
+    if (contentHeight > height) {
+        formWidth += 16;
+    }
+    height = Math.min(height, contentHeight);
+
+    this.popupDiv.form.Div00.set_height(contentHeight - 70);
+    this.popupDiv.set_height(height - 50);
+    form.set_height(height);
+    this.parent.resize(formWidth, height);
+    this.parent.move((viewboxWidth - formWidth) / 2, (viewboxHeight - height) / 2);
+    this.resetScroll();
+    this.popupDiv.form.resetScroll();
+};
+
+this.fnModify = function ()
+{
+    var args = {
+        sysId: this.dsArticle.getColumn(0, "sysId"),
+        boardId: this.dsArticle.getColumn(0, "boardId"),
+        articleId: this.dsArticle.getColumn(0, "artclId")
+    };
+    console.log(this.parent);
+    this.opener.gfnOpenPopup("boardRegistPopup", "sys::cms/CMS_2020P_02.xfdl", args, "fnPopupCallback", "");
+    this.fnClose(false);
+};
+
+this.fnUpdateAttachState = function ()
+{
+    var showAttach = (this.dsBoard.getColumn(0, "fileAtchPosblYn") == "Y") && (this.dsAttach.rowcount);
+    this.fnUpdateItemVisibility(this.showYnVisible, this.inOutDivVisible, this.periodVisible, showAttach, this.commentVisible);
+};
+
+this.fnUpdateItemVisibility = function (showYnVisible, inOutDivVisible, periodVisible, attachFileVisible, commentVisible)
+{
+    var titleHeight = this.popupDiv.form.Div00.form.divFormBox.form.staArtclTitle.getOffsetHeight();
+    var formHeight = 105 + titleHeight;
+
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowYn.set_visible(showYnVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowValue.set_visible(showYnVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staVd13.set_visible(showYnVisible && inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staVd14.set_visible(showYnVisible && inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutDiv.set_left(showYnVisible ? "staShowYn:176" : "staVd0:0");
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutValue.set_left("staInOutDiv:13");
+
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutDiv.set_visible(inOutDivVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staInOutValue.set_visible(inOutDivVisible);
+
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowRange.set_visible(periodVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowRangeValue.set_visible(periodVisible);
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowRange.set_left(inOutDivVisible ? "staInOutDiv:176" : (showYnVisible ? "staShowYn:176" : "staVd0:0"));
+    this.popupDiv.form.Div00.form.divFormBox.form.staShowRangeValue.set_left("staShowRange:13");
+    this.popupDiv.form.Div00.form.divFormBox.form.staHd2.set_visible(showYnVisible || inOutDivVisible || periodVisible);
+
+    if (!showYnVisible && !inOutDivVisible && !periodVisible) {
+        formHeight -= 35;
+    }
+
+    this.popupDiv.form.Div00.form.divFormBox.set_height(formHeight);
+    this.popupDiv.form.Div00.form.divAttachBox.set_visible(attachFileVisible);
+    
+    
+    this.popupDiv.form.Div00.form.divComment.set_visible(commentVisible);
+    this.popupDiv.form.Div00.form.divBtnGroup2.set_visible(commentVisible);
+    
+    this.showYnVisible = showYnVisible;
+    this.inOutDivVisible = inOutDivVisible;
+    this.periodVisible = periodVisible;
+    this.attachFileVisible = attachFileVisible;
+    this.commentVisible = commentVisible;
+
+    this.popupDiv.form.Div00.form.divFormBox.form.resetScroll();
+};
+
+this.fnUpdateButtonVisibility = function ()
+{
+    var sessionUserId = nexacro.getApplication().gdsUserInfo.getColumn(0, "userId");
+    var writerId = this.dsArticle.getColumn(0, "rgstId");
+    var editable = sessionUserId == writerId;
+
+    this.popupDiv.form.Div00.form.divBtnGroup.form.btnModify.set_visible(editable);
+    this.popupDiv.form.Div00.form.divBtnGroup.form.btnDelete.set_visible(editable);
+    this.popupDiv.form.Div00.form.divBtnGroup2.form.btnModify.set_visible(editable);
+    this.popupDiv.form.Div00.form.divBtnGroup2.form.btnDelete.set_visible(editable);
+};
+
+this.fnMeasure = function ()
+{
+    var height = 70;
+    height += this.popupDiv.form.Div00.form.divFormBox.getOffsetHeight() + 2;
+
+    height += 10;
+    height += this.fnMeasureAndAdjustArticle();
+
+    if (this.popupDiv.form.Div00.form.divAttachBox.visible) {
+        height += 10;
+        height += this.popupDiv.form.Div00.form.divAttachBox.getOffsetHeight() + 2;
+    }
+
+    height += 20;
+    height += this.popupDiv.form.Div00.form.divNav.getOffsetHeight();
+    height += this.popupDiv.form.Div00.form.divBtnGroup.getOffsetHeight();
+    
+    if (this.commentVisible) {
+        height += 20;
+        height += this.fnMeasureAndAdjustComment();
+        height += this.popupDiv.form.Div00.form.divBtnGroup2.getOffsetHeight();
+    }
+
+    return height;
+};
+
+this.fnMeasureAndAdjustArticle = function ()
+{
+    this.popupDiv.form.Div00.form.divViewWrap.set_height(1);
+
+    var contentWidth = Number(this.popupDiv.form.Div00.form.divViewWrap.form.wvEditor.callScript("document.documentElement.scrollWidth"));
+    var contentHeight = Number(this.popupDiv.form.Div00.form.divViewWrap.form.wvEditor.callScript("document.documentElement.scrollHeight"));
+    this.popupDiv.form.Div00.form.divViewWrap.set_height(contentHeight + 2);
+
+    var clientWidth = Number(this.popupDiv.form.Div00.form.divViewWrap.form.wvEditor.callScript("document.documentElement.clientWidth"));
+    var offsetWidth = this.popupDiv.form.Div00.form.divViewWrap.form.wvEditor.getOffsetWidth();
+    var scrollBarSize = (contentWidth > offsetWidth) ? Math.abs(offsetWidth - clientWidth) : -1;
+
+    if (scrollBarSize > 0) {
+        this.popupDiv.form.Div00.form.divViewWrap.set_height(contentHeight + scrollBarSize + 2);
+    }
+
+    this.popupDiv.form.Div00.form.divViewWrap.form.wvEditor.set_width("100%");
+    this.popupDiv.form.Div00.form.divViewWrap.form.resetScroll();
+    return this.popupDiv.form.Div00.form.divViewWrap.getOffsetHeight() + 2;
+};
+
+this.fnMeasureAndAdjustComment = function ()
+{
+    if (!this.commentVisible) {
+        return 0;
+    }
+
+    var totalHeight = 45;
+    var commentListHeight = this.dsComment.rowcount == 0 ? 0 : (1 + 81 * this.dsComment.rowcount);
+
+    if (this.commentDetailVisible) {
+        commentListHeight += 81;
+    }
+    totalHeight += commentListHeight
+
+    totalHeight += this.popupDiv.form.Div00.form.divComment.form.taComment.getOffsetHeight();
+    totalHeight += (this.dsComment.rowcount > 0) ? 10 : 0;
+
+    totalHeight += 15;
+    this.popupDiv.form.Div00.form.divComment.set_height(totalHeight);
+
+    this.popupDiv.form.Div00.form.divComment.form.lvComment.set_height(commentListHeight);
+    if (this.dsComment.rowcount == 0) {
+        this.popupDiv.form.Div00.form.divComment.form.taComment.set_top("sta001:0");
+        this.popupDiv.form.Div00.form.divComment.form.btnWrite.set_top("sta001:0");
+    } else {
+        this.popupDiv.form.Div00.form.divComment.form.taComment.set_top("lvComment:10");
+        this.popupDiv.form.Div00.form.divComment.form.btnWrite.set_top("lvComment:10");
+    }
+    
+    this.popupDiv.form.Div00.form.divComment.set_height(totalHeight);
+    this.popupDiv.form.Div00.form.divComment.form.resetScroll();
+    
+    return totalHeight;
+};
+
+this.fnGoPrevious = function ()
+{
+    var targetId = this.dsArticle.getColumn(0, "prevArtclId");
+    if (targetId != null && targetId != "") {
+        this.dsArticle.setColumn(0, "artclId", targetId);
+        this.fnSearch();
+    }
+};
+
+this.fnGoNext = function ()
+{
+    var targetId = this.dsArticle.getColumn(0, "nextArtclId");
+    if (targetId != null && targetId != "") {
+        this.dsArticle.setColumn(0, "artclId", targetId);
+        this.fnSearch();
+    }
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsUiStat">
+        <ColumnInfo>
+          <Column id="showYnVisible" type="STRING" size="256"/>
+          <Column id="inOutDivVisible" type="STRING" size="256"/>
+          <Column id="durationVisible" type="STRING" size="256"/>
+          <Column id="boardNm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="showYnVisible">false</Col>
+            <Col id="inOutDivVisible">true</Col>
+            <Col id="durationVisible">true</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsArticle">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="boardId" type="STRING" size="20"/>
+          <Column id="artclId" type="BIGDECIMAL" size="256"/>
+          <Column id="artclTitle" type="STRING" size="200"/>
+          <Column id="artclCont" type="STRING" size="2147483647"/>
+          <Column id="showYn" type="STRING" size="1"/>
+          <Column id="showStartDt" type="DATE" size="256"/>
+          <Column id="showEndDt" type="DATE" size="256"/>
+          <Column id="atchFileId" type="STRING" size="40"/>
+          <Column id="inOutDiv" type="STRING" size="20"/>
+          <Column id="upArtclId" type="BIGDECIMAL" size="256"/>
+          <Column id="viewCount" type="BIGDECIMAL" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstDt" type="DATETIME" size="256"/>
+          <Column id="showDtRange" type="STRING" size="256"/>
+          <Column id="prevArtclId" type="STRING" size="256"/>
+          <Column id="prevArtclTitle" type="STRING" size="256"/>
+          <Column id="nextArtclId" type="STRING" size="256"/>
+          <Column id="nextArtclTitle" type="STRING" size="256"/>
+          <Column id="showYnNm" type="STRING" size="256"/>
+          <Column id="inOutDivNm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="showYn">Y</Col>
+            <Col id="inOutDiv">IN</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAttach">
+        <ColumnInfo>
+          <Column id="fileId" type="STRING" size="256"/>
+          <Column id="fileSeq" type="STRING" size="256"/>
+          <Column id="fileName" type="STRING" size="256"/>
+          <Column id="fileSize" type="STRING" size="256"/>
+          <Column id="fileMask" type="STRING" size="256"/>
+          <Column id="fileUploadPath" type="STRING" size="256"/>
+          <Column id="fileUploadFullPath" type="STRING" size="256"/>
+          <Column id="link" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsShowYnCbo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsInOutCbo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBoard">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="boardId" type="STRING" size="256"/>
+          <Column id="boardIntro" type="STRING" size="256"/>
+          <Column id="boardNm" type="STRING" size="256"/>
+          <Column id="boardType" type="STRING" size="256"/>
+          <Column id="boardAttr" type="STRING" size="256"/>
+          <Column id="replyPosblYn" type="STRING" size="256"/>
+          <Column id="fileAtchPosblYn" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rgstDt" type="DATE" size="256"/>
+          <Column id="rsgtId" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="updtId" type="DATE" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="upperMenuId" type="STRING" size="256"/>
+          <Column id="upperMenuNm" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="INT" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBoardRoles">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="boardId" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="boardFuncId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsComment" updatecontrol="false" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="cmntId" type="BIGDECIMAL" size="256"/>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="boardId" type="STRING" size="20"/>
+          <Column id="artclId" type="BIGDECIMAL" size="256"/>
+          <Column id="artclCont" type="STRING" size="4000"/>
+          <Column id="atchFileId" type="STRING" size="40"/>
+          <Column id="upCmntId" type="BIGDECIMAL" size="256"/>
+          <Column id="rgstId" type="STRING" size="20"/>
+          <Column id="rgstDt" type="DATETIME" size="256"/>
+          <Column id="rgstNm" type="STRING" size="300"/>
+          <Column id="level" type="INT" size="256"/>
+          <Column id="replyCont" type="STRING" size="4000"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCommentRegist">
+        <ColumnInfo>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="boardId" type="STRING" size="256"/>
+          <Column id="artclId" type="STRING" size="256"/>
+          <Column id="cmntId" type="STRING" size="256"/>
+          <Column id="upCmntId" type="STRING" size="256"/>
+          <Column id="artclCont" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="popupDiv.form.Div00.form.divFormBox.form.staArtclTitle" propid="text" datasetid="dsArticle" columnid="artclTitle"/>
+      <BindItem id="item1" compid="popupDiv.form.Div00.form.divFormBox.form.staRgstNmValue" propid="text" datasetid="dsArticle" columnid="rgstNm"/>
+      <BindItem id="item2" compid="popupDiv.form.Div00.form.divFormBox.form.staRgstDtValue" propid="text" datasetid="dsArticle" columnid="rgstDt"/>
+      <BindItem id="item3" compid="popupDiv.form.Div00.form.divFormBox.form.staShowValue" propid="text" datasetid="dsArticle" columnid="showYnNm"/>
+      <BindItem id="item4" compid="popupDiv.form.Div00.form.divFormBox.form.staInOutValue" propid="text" datasetid="dsArticle" columnid="inOutDivNm"/>
+      <BindItem id="item5" compid="popupDiv.form.Div00.form.divFormBox.form.staShowRangeValue" propid="text" datasetid="dsArticle" columnid="showDtRange"/>
+      <BindItem id="item6" compid="staBoardNm" propid="text" datasetid="dsUiStat" columnid="boardNm"/>
+      <BindItem id="item7" compid="popupDiv.form.Div00.form.divNav.form.staPrevTitle" propid="text" datasetid="dsArticle" columnid="prevArtclTitle"/>
+      <BindItem id="item8" compid="popupDiv.form.Div00.form.divNav.form.staNextTitle" propid="text" datasetid="dsArticle" columnid="nextArtclTitle"/>
+      <BindItem id="item9" compid="popupDiv.form.Div00.form.divFormBox.form.staViewCountValue" propid="text" datasetid="dsArticle" columnid="viewCount"/>
+    </Bind>
+  </Form>
+</FDL>

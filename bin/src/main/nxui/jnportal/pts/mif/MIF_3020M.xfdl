@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MIF_3020M" width="1920" height="720" titletext="ID/PW 찾기">
+    <Layouts>
+      <Layout height="720" mobileorientation="landscape" width="1920">
+        <Div id="Div00" taborder="1" text="" top="39" cssclass="portal_div_frmBg_Login" left="180" width="1560" height="643">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Static id="Static00" taborder="3" left="50%" top="90" width="1" background="#cccccc" bottom="90"/>
+        <Div id="findID" taborder="2" text="" left="365" top="120" height="320" right="Static00:185">
+          <Layouts>
+            <Layout>
+              <Edit id="edtEmlAddr" taborder="3" left="0" height="50" top="195" password="false" cssclass="portal_edi_login" displaynulltext="이메일" right="0"/>
+              <Button id="btn_findId" text="확인" cssclass="portal_btn" visible="true" width="130" height="45" taborder="0" left="155" top="edtEmlAddr:20" onclick="findID_btn_findId_onclick"/>
+              <Static id="Static00" taborder="4" top="0" height="37" enable="true" cssclass="portal_sta_frmTitle2" onclick="Static_onclick" font="normal 700 25px/normal &quot;맑은고딕&quot;" text="아이디 찾기" textAlign="center" width="134" left="153"/>
+              <Edit id="edtUserNm" taborder="1" left="0" height="50" top="Static00:40" password="false" cssclass="portal_edi_login" displaynulltext="이름" right="0"/>
+              <Edit id="edtMblTelno" taborder="2" left="0" height="50" top="edtUserNm:9" password="false" cssclass="portal_edi_login" displaynulltext="연락처" right="0" oninput="findID_edtMblTelno_oninput"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="findPW" taborder="0" text="" left="Static00:174" top="120" height="460" width="430">
+          <Layouts>
+            <Layout>
+              <Edit id="edtMblTelno" taborder="3" left="0" height="50" top="195" password="false" displaynulltext="연락처" right="0" cssclass="portal_edi_login" oninput="findPW_edtMblTelno_oninput"/>
+              <Edit id="mblEmailAddr" taborder="4" left="0" height="50" top="edtMblTelno:9" password="false" displaynulltext="이메일" right="0" cssclass="portal_edi_login"/>
+              <Static id="Static20" taborder="5" text="*입력하신 이메일주소로 비밀번호변경 메일이 전송되며,&#13;&#10;해당메일의 링크를 통해 비밀번호 변경이 가능합니다.&#13;&#10;" top="mblEmailAddr:30" height="50" enable="true" cssclass="sta_WF_GTxt" onclick="Static_onclick" textAlign="center" left="30" right="30" font="normal 14px/normal &quot;맑은고딕&quot;"/>
+              <Button id="btn_findPw" text="확인" cssclass="portal_btn" visible="true" width="130" height="45" taborder="0" right="155" top="Static20:20" onclick="findPW_btn_findPw_onclick"/>
+              <Static id="Static00" taborder="6" top="0" height="37" enable="true" cssclass="portal_sta_frmTitle2" onclick="Static_onclick" font="normal 700 25px/normal &quot;맑은고딕&quot;" text="비밀번호 찾기" textAlign="center" width="159" left="141"/>
+              <Edit id="edtMemberId" taborder="1" left="0" height="50" top="Static00:40" password="false" displaynulltext="아이디" right="0" cssclass="portal_edi_login"/>
+              <Edit id="edtUserNmKr" taborder="2" left="0" height="50" top="edtMemberId:9" password="false" displaynulltext="이름" right="0" cssclass="portal_edi_login"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  ID/PW찾기
+ *  MenuPath      로그인 - ID/PW찾기
+ *  FileName      MIF_3010M.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.10.31
+ *  Desction      ID/PW찾기
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.10.31    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+this.foundMemberId = null;
+this.emlAddr = null;
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnFindId = function ()
+{
+    this.foundUserId = null;
+    this.gfnTransaction("findId", "mi/login/findId.do", "dsFindId", "", "", "fnCallback");
+};
+
+this.fnFindPassword = function ()
+{
+    this.emlAddr = null;
+    this.gfnTransaction("findPassword", "mi/login/findPassword.do", "dsFindPasswd", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "findId":
+            this.gfnOpenPopup("findIdResult", "pts::mif/MIF_3020P_01.xfdl", { memberId: this.foundMemberId }, "fnPopupCallback");
+            break;
+        case "findPassword":
+            this.gfnOpenPopup("findIdResult", "pts::mif/MIF_3020P_02.xfdl", { emlAddr: this.emlAddr }, "fnPopupCallback");
+            break;
+        default:
+            break;
+    }
+};
+
+this.fnPopupCallback = function (popupid, args)
+{
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.findPW_btn_findPw_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnFindPassword();
+};
+
+this.findID_btn_findId_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnFindId();
+};
+
+this.findID_edtMblTelno_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+    var value = obj.value;
+    var formatted = this.fnFormatTelno(obj.value);
+    obj.set_value(formatted);
+    console.log({ oldValue: value, formatted, newValue: obj.value });
+};
+
+this.findPW_edtMblTelno_oninput = function(obj:nexacro.Edit,e:nexacro.InputEventInfo)
+{
+    var value = obj.value;
+    var formatted = this.fnFormatTelno(obj.value);
+    obj.set_value(formatted);
+    console.log({ oldValue: value, formatted, newValue: obj.value });
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.fnValidateFindId = function ()
+{
+    var args = [
+        ["userNmKr", "NULL", "이름"],
+        ["mblTelno", "NULL", "연락처"],
+        ["emlAddr", "NULL", "이메일"],
+    ];
+
+    return this.gfnCheckGrid(this.dsFindId, args, "");
+};
+
+this.fnValidateFindPassword = function ()
+{
+    var args = [
+        ["memberId", "NULL", "아이디"],
+        ["userNmKr", "NULL", "이름"],
+        ["mblTelno", "NULL", "연락처"],
+        ["emlAddr", "NULL", "이메일"],
+    ];
+
+    return this.gfnCheckGrid(this.dsFindPasswd, args, "");
+};
+
+this.fnFormatTelno = function (input) {
+    if (Eco.isEmpty(input)) {
+        return "";
+    }
+
+    var regex = /^(?:(1[568]\d{2})(\d{0,4}?)|(010)(\d{4})?(\d{0,4})|(0(?:2|[3456]\d|1[15-9]))(\d{3,4}?)?(\d{0,4}))$/;
+    var i = input.replace(/(-|[^\d])/g, '');
+    var match = regex.exec(i);
+    
+    console.log({ input, i, match });
+    
+    if (match == null) {
+        return i;
+    } else {
+        return Array.from(match).slice(1)
+            .filter(s => !Eco.isEmpty(s))
+            .join('-');
+    }
+}
+]]></Script>
+    <Objects>
+      <Dataset id="dsFindId">
+        <ColumnInfo>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="mblTelno" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsFindPasswd">
+        <ColumnInfo>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="mblTelno" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="findID.form.edtUserNm" propid="value" datasetid="dsFindId" columnid="userNmKr"/>
+      <BindItem id="item1" compid="findID.form.edtMblTelno" propid="value" datasetid="dsFindId" columnid="mblTelno"/>
+      <BindItem id="item2" compid="findID.form.edtEmlAddr" propid="value" datasetid="dsFindId" columnid="emlAddr"/>
+      <BindItem id="item3" compid="findPW.form.edtMemberId" propid="value" datasetid="dsFindPasswd" columnid="memberId"/>
+      <BindItem id="item4" compid="findPW.form.edtUserNmKr" propid="value" datasetid="dsFindPasswd" columnid="userNmKr"/>
+      <BindItem id="item5" compid="findPW.form.edtMblTelno" propid="value" datasetid="dsFindPasswd" columnid="mblTelno"/>
+      <BindItem id="item6" compid="findPW.form.mblEmailAddr" propid="value" datasetid="dsFindPasswd" columnid="emlAddr"/>
+    </Bind>
+  </Form>
+</FDL>

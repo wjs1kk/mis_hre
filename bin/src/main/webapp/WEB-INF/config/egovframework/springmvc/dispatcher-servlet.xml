@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:util="http://www.springframework.org/schema/util"
+        xmlns:p="http://www.springframework.org/schema/p"
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- scan -->
+    <context:component-scan base-package="egovframework,com.jnv">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+    </context:component-scan>
+
+    <!-- UI Adaptor -->
+    <bean id="jnUiAdaptor" class="com.jnv.jncore.argumentresolver.support.JnUiAdaptorImpl" />
+
+
+    <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="com.jnv.jncore.argumentresolver.JnHandlerMethodArgumentResolver">
+                <property name="uiAdaptor">
+                    <ref bean="jnUiAdaptor" />
+                </property>
+            </bean>
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+
+    <bean class="com.jnv.jncore.argumentresolver.JnRequestMappingHandlerAdapter" p:order="1">
+        <property name="customArgumentResolvers">
+            <list>
+                <bean class="com.jnv.jncore.argumentresolver.JnHandlerMethodArgumentResolver"/>
+            </list>
+        </property>
+        <property name="customReturnValueHandlers">
+            <list>
+                <bean class="com.jnv.jncore.argumentresolver.JnHandlerMethodReturnValueHandler">
+                    <property name="jnResultView">
+                        <bean class="com.jnv.jncore.view.JnResultView" />
+                    </property>
+                    <property name="nexacroView">
+                        <bean class="com.nexacro.uiadapter.spring.core.view.NexacroView" />
+                    </property>
+                </bean>
+            </list>
+        </property>
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                    <property name="supportedMediaTypes" value="application/json" />
+                </bean>
+                <bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+<!--         <mvc:return-value-handlers/> -->
+
+    <mvc:resources location="/" mapping="/**" />
+
+    <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="language" />
+    </bean>
+
+    <!-- 20230301 localeChangeInterceptor <mvc> 로 이동 ref : https://www.egovframe.go.kr/wiki/doku.php?id=egovframework:rte2:ptl:spring_mvc_tag_configuration  -->
+    <!-- locale -->
+    <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+    <!-- 쿠키를 이용한 Locale 이용시 <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver"/> -->
+<!--     <bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"> -->
+<!--         <property name="paramName" value="language" /> -->
+<!--     </bean> -->
+
+    <!-- exception resolver -->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver" p:order="2">
+        <property name="defaultErrorView" value="cmmn/egovError"/>
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.springframework.dao.DataAccessException">cmmn/dataAccessFailure</prop>
+                <prop key="org.springframework.transaction.TransactionException">cmmn/transactionFailure</prop>
+                <prop key="egovframework.rte.fdl.cmmn.exception.EgovBizException">cmmn/egovError</prop>
+                <prop key="org.springframework.security.AccessDeniedException">cmmn/egovError</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- view resolver -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
+
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/jsp" />
+        <property name="suffix" value=".jsp" />
+        <property name="order" value="3" />
+    </bean>
+
+    <bean id="ResultView" class="com.jnv.jncore.view.JsonView"/>
+
+    <bean id="jsonView" class="com.jnv.jncore.common.file.view.FileJsonView" />
+
+    <bean id="jnResultView" class="com.jnv.jncore.view.JnResultView" />
+
+    <mvc:view-controller path="/cmmn/validator.do" view-name="/cmmn/validator"/>
+
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <!-- trimParamDataSet, trimParamVariable = all 설정 사용 -->
+    <!-- @ParamDataSet, @ParamVariable 으로 들어오는 값 trim 적용.  \n \t 도 제거됨 -->
+    <util:properties id="EtcProperty" >
+        <prop key="uiAdapter.trimParamDataSet">all</prop>
+        <prop key="uiAdapter.trimParamVariable">all</prop>
+<!--         <prop key="uiAdapter.getHeader.WhoAreYou">Nexacro</prop> -->
+    </util:properties>
+
+    <beans profile="web">
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/**/*.do" />
+                <ref bean="localeChangeInterceptor"/>
+            </mvc:interceptor>
+        </mvc:interceptors>
+
+        <bean id="exceptionResolver" class="com.jnv.common.exception.JnExceptionResolver" p:order="1">
+            <property name="view" ref="jnResultView" />
+            <property name="shouldLogStackTrace" value="true" />
+            <!--         <property name="shouldSendStackTrace" value="true" /> -->
+            <property name="shouldSendStackTrace" value="false" />
+            <!-- shouldSendStackTrace 가 false 일 경우 nexacroN으로 전송되는 에러메시지  -->
+            <!-- <property name="defaultErrorMsg" value="An Error Occured. check the ErrorCode for detail of error infomation" /> -->
+            <property name="defaultErrorMsg" value="fail.common.msg" />
+            <property name="messageSource" ref="messageSource" />
+        </bean>
+    </beans>
+
+    <beans profile="nexacro">
+        <mvc:interceptors>
+            <mvc:interceptor>
+                <mvc:mapping path="/**/*.do" />
+                <ref bean="localeChangeInterceptor"/>
+            </mvc:interceptor>
+        </mvc:interceptors>
+
+        <bean id="nexacroInterceptor" class="com.nexacro.uiadapter.spring.core.servlet.NexacroInterceptor"/>
+        <bean id="nexacroFileView"    class="com.nexacro.uiadapter.spring.core.view.NexacroFileView" />
+        <bean id="nexacroView"        class="com.nexacro.uiadapter.spring.core.view.NexacroView">
+            <property name="defaultContentType" value="PlatformJson" /> <!-- PlatformXml PlatformJson -->
+            <property name="defaultCharset" value="UTF-8" />
+        </bean>
+        <bean id="jnNexacroView"        class="com.jnv.common.view.JnNexacroView">
+            <property name="defaultContentType" value="PlatformJson" /> <!-- PlatformXml PlatformJson -->
+            <property name="defaultCharset" value="UTF-8" />
+        </bean>
+
+        <!-- 넥사크로N EXCEPTION-RESOLVER 등록 -->
+        <!--     <bean id="exceptionResolver" class="com.nexacro.uiadapter.spring.core.resolve.NexacroMappingExceptionResolver" p:order="1"> -->
+        <bean id="exceptionResolver" class="com.jnv.common.exception.JnExceptionResolver" p:order="1">
+            <property name="view" ref="nexacroView" />
+            <property name="shouldLogStackTrace" value="true" />
+            <!--         <property name="shouldSendStackTrace" value="true" /> -->
+            <property name="shouldSendStackTrace" value="false" />
+            <!-- shouldSendStackTrace 가 false 일 경우 nexacroN으로 전송되는 에러메시지  -->
+            <!-- <property name="defaultErrorMsg" value="An Error Occured. check the ErrorCode for detail of error infomation" /> -->
+            <property name="defaultErrorMsg" value="fail.common.msg" />
+            <property name="messageSource" ref="messageSource" />
+        </bean>
+
+        <!-- XENI REQUEST-MAPPING-HANDLERADAPTER 등록 -->
+        <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+        <bean id="xeniUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping" p:order="0">
+            <property name="mappings">
+                <props>
+                    <prop key="/XExportImport.do">xeniWrappingController</prop>
+                </props>
+            </property>
+        </bean>
+
+        <!-- XENI WRAPPINGCONTROLLER 설정. -->
+        <bean id="xeniWrappingController" class="org.springframework.web.servlet.mvc.ServletWrappingController">
+            <property name="servletClass" value="com.nexacro.java.xeni.services.GridExportImportServlet"/>
+        </bean>
+
+        <!-- Multipart Resolver 최대 10메가 바이트(정확히 10메가는 아니지만)까지 업로드가 가능하도록 설정 -->
+        <!-- XENI를 이용한 엑셀 IMPORT시 필요(엑셀 이용시 반드시 정의해야 함) -->
+        <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+            <property name="maxUploadSize"   value="100000000" />
+            <property name="maxInMemorySize" value="100000000" />
+        </bean>
+    </beans>
+
+</beans>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.mi.register.service.MemberRegisterDAO">
+
+    <select id="getMemberIdDuplicated" resultType="_boolean">
+        /* member-register-mapper.getMemberIdCount */
+        SELECT CASE
+                   WHEN count(*) = 0 THEN 0
+                   ELSE 1
+               END
+          FROM PTS_MEMBER
+         WHERE MEMBER_ID = #{memberId}
+           AND WHDWL_YN <![CDATA[<>]]> 'Y'
+    </select>
+
+    <insert id="insertMemberInfo" parameterType="memberRegisterVO">
+        /* member-register-mapper.insertMemberInfo */
+        INSERT INTO pts_member (
+            MEMBER_ID,
+            MEMBER_NM_KR,
+            PASSWD,
+            OGDP_INST_NM,
+            EML_ADDR,
+            OFC_TELNO,
+            OFC_FXNO,
+            MBL_TELNO,
+            PRVC_CLCT_AGRE_YN,
+            PRVC_PVSN_AGRE_YN,
+            APPLY_DT,
+            JOIN_APRV_STTS,
+            JOIN_AUTZR,
+            JOIN_APRV_DT,
+            CORP_YN,
+            JBPS_NM,
+            OGDP_DEPT_NM,
+            MBR_ZIP,
+            MBR_ADDR,
+            MBR_DADDR,
+            OFC_ZIP,
+            OFC_ADDR,
+            OFC_DADDR,
+            WHDWL_YN,
+            USE_YN,
+            RGST_DT,
+            UPDT_DT
+        )
+        VALUES(
+            NULLIF(#{memberId}, ''),
+            NULLIF(#{memberNmKr}, ''),
+            NULLIF(#{passwd}, ''),
+            NULLIF(#{ogdpInstNm}, ''),
+            NULLIF(#{emlAddrLocal}, '') || '@' || NULLIF(#{emlAddrDomain}, ''),
+            NULLIF(#{ofcTelno}, ''),
+            NULLIF(#{ofcFxno}, ''),
+            NULLIF(#{mblTelno}, ''),
+            'Y',
+            'Y',
+            NOW(),
+            'APPLY',
+            NULL,
+            NULL,
+            'N',
+            NULLIF(#{jbpsNm}, ''),
+            NULLIF(#{ogdpDeptNm}, ''),
+            NULLIF(#{mbrZip}, ''),
+            NULLIF(#{mbrAddr}, ''),
+            NULLIF(#{mbrDaddr}, ''),
+            NULLIF(#{ofcZip}, ''),
+            NULLIF(#{ofcAddr}, ''),
+            NULLIF(#{ofcDaddr}, ''),
+            'N',
+            'Y',
+            NOW(),
+            NOW()
+        )
+    </insert>
+
+    <insert id="insertUserInfo" parameterType="memberRegisterVO">
+        /* member-register-mapper.insertUserInfo */
+        INSERT INTO cmn_user (
+            user_id,
+            member_id,
+            user_nm_kr,
+            user_nm_en,
+            use_yn,
+            rgst_dt,
+            updt_dt,
+            pw_expire_dt,
+            in_out_div)
+        VALUES(
+            NULLIF(#{userId}, ''),
+            NULLIF(#{memberId}, ''),
+            NULLIF(#{memberNmKr}, ''),
+            NULLIF(#{memberNmEn}, ''),
+            'Y',
+            NOW(),
+            NOW(),
+            NOW() + INTERVAL '3 months',
+            'I')
+    </insert>
+
+    <insert id="insertAgreement" parameterType="termsAgreementVO">
+        INSERT INTO cmn_trms_agrm (
+            sys_id,
+            trms_id,
+            user_id,
+            agrm_yn,
+            agrm_dt,
+            rgst_dt,
+            updt_dt)
+        VALUES(
+            NULLIF(#{sysId}, ''),
+            NULLIF(#{trmsId}, '')::bigint,
+            NULLIF(#{userId}, ''),
+            NULLIF(#{agrmYn}, ''),
+            NOW(),
+            NOW(),
+            NOW())
+    </insert>
+</mapper>

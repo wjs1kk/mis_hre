@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.menu.service.MenuManageDAO">
+    <select id="selectModuleIdComboList" parameterType="map" resultType="comboVO">
+        /* menu-mapper.selectModuleIdComboList */
+        <choose>
+            <when test='"a".equalsIgnoreCase(type)'>
+        SELECT '전체' AS "TEXT"
+             , NULL AS "VALUE"
+        UNION ALL
+            </when>
+            <when test='"c".equalsIgnoreCase(type)'>
+        SELECT '선택' AS "TEXT"
+             , NULL AS "VALUE"
+        UNION ALL
+            </when>
+        </choose>
+        SELECT "TEXT", "VALUE"
+          FROM (SELECT MODULE_ID AS "VALUE"
+                     , MODULE_NM AS "TEXT"
+                  FROM CMN_MODULE
+                 WHERE USE_YN = 'Y'
+                 ORDER BY SORT_ORDR) T
+    </select>
+
+    <select id="selectMenuManageList" parameterType="map" resultType="menuManageVO">
+        /* menu-mapper.selectMenuManageList */
+        WITH RECURSIVE
+        A(SYS_ID, MENU_ID, PROG_ID, UPPER_MENU_ID, MENU_NM, MENU_TY, MENU_DC, INDCT_YN, SORT_ORDR, MODULE_ID,
+                DEFAULT_ROW_CNT, OFTEN_USE_YN, MAIN_IMG_SRC, MAIN_URL, ATRZ_YN, WORK_GRP_ID, RGST_ID, RGST_IP, RGST_DT,
+                UPDT_ID, UPDT_IP, UPDT_DT, LEVEL, ID, PARENT) AS (
+            SELECT CM.SYS_ID
+                 , CM.MENU_ID
+                 , CM.PROG_ID
+                 , CM.UPPER_MENU_ID
+                 , CM.MENU_NM
+                 , CM.MENU_TY
+                 , CM.MENU_DC
+                 , CM.INDCT_YN
+                 , CM.SORT_ORDR
+                 , CM.MODULE_ID
+                 , CM.DEFAULT_ROW_CNT
+                 , CM.OFTEN_USE_YN
+                 , CM.MAIN_IMG_SRC
+                 , CM.MAIN_URL
+                 , CM.ATRZ_YN
+                 , CM.WORK_GRP_ID
+                 , CM.RGST_ID
+                 , CM.RGST_IP
+                 , CM.RGST_DT
+                 , CM.UPDT_ID
+                 , CM.UPDT_IP
+                 , CM.UPDT_DT
+                 , 0 AS LEVEL
+                 , CM.SYS_ID || '/' || CM.MENU_ID AS ID
+                 , CM.SYS_ID || '/' || CM.UPPER_MENU_ID AS PARENT
+              FROM CMN_MENU CM
+        <choose>
+            <when test='upperMenuId != null and upperMenuId != ""'>
+             WHERE MENU_ID LIKE '%' || #{upperMenuId} || '%'
+            </when>
+            <otherwise>
+             WHERE UPPER_MENU_ID IS NULL
+            </otherwise>
+        </choose>
+             UNION ALL
+            SELECT CM.SYS_ID
+                 , CM.MENU_ID
+                 , CM.PROG_ID
+                 , CM.UPPER_MENU_ID
+                 , CM.MENU_NM
+                 , CM.MENU_TY
+                 , CM.MENU_DC
+                 , CM.INDCT_YN
+                 , CM.SORT_ORDR
+                 , CM.MODULE_ID
+                 , CM.DEFAULT_ROW_CNT
+                 , CM.OFTEN_USE_YN
+                 , CM.MAIN_IMG_SRC
+                 , CM.MAIN_URL
+                 , CM.ATRZ_YN
+                 , CM.WORK_GRP_ID
+                 , CM.RGST_ID
+                 , CM.RGST_IP
+                 , CM.RGST_DT
+                 , CM.UPDT_ID
+                 , CM.UPDT_IP
+                 , CM.UPDT_DT
+                 , A.LEVEL + 1 AS LEVEL
+                 , CM.SYS_ID || '/' || CM.MENU_ID AS ID
+                 , CM.SYS_ID || '/' || CM.UPPER_MENU_ID AS PARENT
+              FROM CMN_MENU CM
+              JOIN A
+                ON CM.SYS_ID = A.SYS_ID
+               AND CM.UPPER_MENU_ID = A.MENU_ID
+        ) SEARCH DEPTH FIRST BY SORT_ORDR, MENU_ID, MENU_NM SET ROW_ORDER
+        SELECT A.SYS_ID
+             , CS.SYS_NM
+             , A.MENU_ID
+             , A.UPPER_MENU_ID
+             , A.MENU_NM
+             , A.MENU_TY
+             , A.PROG_ID
+             , CP.PROG_NM
+             , A.INDCT_YN
+             , A.SORT_ORDR
+             , A.MENU_DC
+             , A.MODULE_ID
+             , CM.MODULE_NM
+             , A.DEFAULT_ROW_CNT
+             , A.OFTEN_USE_YN
+             , A.MAIN_URL
+             , A.RGST_ID
+             , A.RGST_IP
+             , A.RGST_DT
+             , A.UPDT_ID
+             , A.UPDT_IP
+             , A.UPDT_DT
+             , A.LEVEL
+             , A.ID
+             , A.PARENT
+          FROM A
+          LEFT JOIN CMN_PROG CP
+            ON A.SYS_ID = CP.SYS_ID
+           AND A.PROG_ID = CP.PROG_ID
+          LEFT JOIN CMN_MODULE CM
+            ON A.SYS_ID = CM.SYS_ID
+           AND A.MODULE_ID = CM.MODULE_ID
+          LEFT JOIN CMN_SYSTEM CS
+            ON A.SYS_ID = CS.SYS_ID
+        <where>
+            <if test='menuId != null and menuId != ""'>
+           AND A.MENU_ID LIKE '%' || #{menuId} || '%'
+            </if>
+            <if test='menuNm != null and menuNm != ""'>
+           AND A.MENU_NM LIKE '%' || #{menuNm} || '%'
+            </if>
+            <if test='menuTy != null and menuNm != ""'>
+           AND A.MENU_TY = #{menuTy}
+            </if>
+            <if test='progId != null and progId != ""'>
+           AND A.PROG_ID LIKE '%' || #{progId} || '%'
+            </if>
+            <if test='sysId !=null and sysId != ""'>
+           AND A.SYS_ID = #{sysId}
+            </if>
+        </where>
+         ORDER BY ROW_ORDER
+    </select>
+
+    <select id="getSystemIdCombo" resultType="comboVO">
+        <choose>
+            <when test='"a".equalsIgnoreCase(type)'>
+        SELECT '전체' AS "TEXT"
+             , NULL AS "VALUE"
+        UNION ALL
+            </when>
+            <when test='"c".equalsIgnoreCase(type)'>
+        SELECT '선택' AS "TEXT"
+             , NULL AS "VALUE"
+        UNION ALL
+            </when>
+        </choose>
+        SELECT "TEXT", "VALUE"
+          FROM (SELECT SYS_NM AS "TEXT"
+                     , SYS_ID AS "VALUE"
+                  FROM CMN_SYSTEM
+                 ORDER BY SYS_NM) T
+    </select>
+
+    <insert id="insertMenu" parameterType="menuManageVO">
+        /* menu-mapper.insertMenu */
+        INSERT INTO CMN_MENU (
+            SYS_ID,
+            MENU_ID,
+            PROG_ID,
+            UPPER_MENU_ID,
+            MENU_NM,
+            MENU_TY,
+            INDCT_YN,
+            SORT_ORDR,
+            MENU_DC,
+            RGST_ID,
+            RGST_IP,
+            RGST_DT,
+            UPDT_ID,
+            UPDT_IP,
+            UPDT_DT,
+            MODULE_ID,
+            DEFAULT_ROW_CNT,
+            OFTEN_USE_YN,
+            MAIN_URL
+        )
+        VALUES (
+            NULLIF(#{sysId}, ''),
+            NULLIF(#{menuId}, ''),
+            NULLIF(#{progId}, ''),
+            NULLIF(#{upperMenuId}, ''),
+            NULLIF(#{menuNm}, ''),
+            NULLIF(#{menuTy}, ''),
+            NULLIF(#{indctYn}, ''),
+            NULLIF(#{sortOrdr}, '')::INT,
+            NULLIF(#{menuDc}, ''),
+            NULLIF(#{sessionUserId}, ''),
+            NULLIF(#{sessionUserIp}, ''),
+            NOW(),
+            NULLIF(#{sessionUserId}, ''),
+            NULLIF(#{sessionUserIp}, ''),
+            NOW(),
+            NULLIF(#{moduleId}, ''),
+            NULLIF(#{defaultRowCnt}, '')::BIGINT,
+            NULLIF(#{oftenUseYn}, ''),
+            NULLIF(#{mainUrl}, '')
+        )
+    </insert>
+
+    <update id="updateMenu" parameterType="menuManageVO">
+        /* menu-mapper.updateMenu */
+        UPDATE CMN_MENU
+           SET PROG_ID         = NULLIF(#{progId}, '')
+             , UPPER_MENU_ID   = NULLIF(#{upperMenuId}, '')
+             , MENU_NM         = NULLIF(#{menuNm}, '')
+             , MENU_TY         = NULLIF(#{menuTy}, '')
+             , INDCT_YN        = NULLIF(#{indctYn}, '')
+             , SORT_ORDR       = NULLIF(#{sortOrdr}, '')::INT
+             , MENU_DC         = NULLIF(#{menuDc}, '')
+             , UPDT_ID         = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP         = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT         = NOW()
+             , MODULE_ID       = NULLIF(#{moduleId}, '')
+             , DEFAULT_ROW_CNT = NULLIF(#{defaultRowCnt}, '')::BIGINT
+             , OFTEN_USE_YN    = NULLIF(#{oftenUseYn}, '')
+             , MAIN_URL        = NULLIF(#{mainUrl}, '')
+         WHERE SYS_ID = #{sysId}
+           AND MENU_ID = #{menuId}
+
+    </update>
+
+    <delete id="deleteMenu">
+        /* menu-mapper.deleteMenu */
+        DELETE FROM CMN_MENU
+         WHERE SYS_ID = #{sysId}
+           AND MENU_ID = #{menuId}
+    </delete>
+
+    <delete id="deleteDescendentMenu" parameterType="menuManageVO">
+        /* menu-mapper.deleteDescendentMenu */
+        WITH RECURSIVE MENU_DESCENDENTS(SYS_ID, MENU_ID) AS (
+            SELECT CM.SYS_ID, CM.MENU_ID
+              FROM CMN_MENU CM
+             WHERE SYS_ID = #{sysId}
+               AND UPPER_MENU_ID = #{menuId}
+             UNION ALL
+            SELECT CM.SYS_ID, CM.MENU_ID
+              FROM CMN_MENU CM
+              JOIN MENU_DESCENDENTS MD
+                ON CM.SYS_ID = MD.SYS_ID
+               AND CM.UPPER_MENU_ID = MD.MENU_ID
+        )
+        DELETE FROM CMN_MENU
+         WHERE (SYS_ID, MENU_ID) IN (SELECT SYS_ID, MENU_ID
+                                       FROM MENU_DESCENDENTS)
+    </delete>
+</mapper>

@@ -1,0 +1,1550 @@
+﻿
+html, body
+{
+  position:absolute;
+  width:100%;
+  height:100%;
+  font:12pt Verdana;
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+}
+
+div, header, nav, section, article, aside, footer
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+  background-origin:padding-box;
+  background-repeat:no-repeat;
+  white-space : pre;
+  -moz-user-select:-moz-none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  -webkit-appearance:none;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+  outline:none;
+}
+
+table
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+input
+{
+  position:absolute;
+  box-sizing:border-box;
+  overflow:hidden;
+}
+
+img
+{
+  position:absolute;
+  box-sizing:border-box;
+}
+
+textarea::-webkit-scrollbar { display: none; }
+
+
+.nexacontainer
+{
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:100%;
+  height:100%;
+}
+.nexacontainer.withvscroll
+{
+  right:14px;
+}
+.nexacontainer.withhscroll
+{
+  bottom:14px;
+}
+.nexacontainer.withbothscroll
+{
+  right:14px;
+  bottom:14px;
+}
+
+.nexalefttop
+{
+  left:0px;
+  top:0px;
+  background-repeat:no-repeat;
+  background-position:left top;
+  font-size:1px;
+}
+.nexaleftbottom
+{
+  left:0px;
+  bottom:0px;
+  background-repeat:no-repeat;
+  background-position:left bottom;
+  font-size:1px;
+}
+.nexarightbottom
+{
+  right:0px;
+  bottom:0px;
+  background-repeat:no-repeat;
+  background-position:right bottom;
+  font-size:1px;
+}
+.nexarighttop
+{
+  right:0px;
+  top:0px;
+  background-repeat:no-repeat;
+  background-position:right top;
+}
+.nexaedge
+{
+  width:100%;
+  height:100%;
+}
+.nexamodaloverlay
+{
+  width:100%;
+  height:100%;
+}
+.nexainnercontainer
+{
+  
+}
+
+.nexatransform
+{
+  
+}
+
+.nexacontentsbox
+{
+  position:relative;
+  display:table-cell;
+  background-position:left center;
+  background-repeat:no-repeat;
+  vertical-align:middle;
+}
+.nexacontentsboxflex
+{
+  display: -webkit-flex;
+  display: flex;
+  background-position:left center;
+  background-repeat:no-repeat;
+  align-items : center;
+}
+.nexatextitem
+{
+  position:relative;
+  vertical-align:middle;
+  white-space:inherit;
+  word-wrap:inherit;
+  word-break:inherit;
+  text-decoration:inherit;
+}
+.nexaiconitem
+{
+  position:relative;
+  vertical-align:middle;
+  background-position:center center;
+  background-repeat:no-repeat;
+}
+
+.nexainput
+{
+  font:inherit;
+  color:inherit;
+  cursor:inherit;
+  letter-spacing:inherit;
+  word-spacing:inherit;
+  border:none;
+  outline:none;
+  background:transparent;
+  padding : 0px;  
+}
+
+.nexatextarea
+{
+  font:inherit;
+  color:inherit;
+  cursor:inherit;
+  line-height : inherit;
+  letter-spacing:inherit;
+  word-spacing:inherit;
+  white-space:pre;
+  word-wrap:normal;
+  border:none;
+  outline:none;
+  resize:none;
+  background:transparent;
+  padding : 0px;
+}
+
+.nexaleftalign
+{
+  text-align:left;
+  justify-content:flex-start;
+}
+
+.nexarightalign
+{
+  text-align:right;
+  justify-content:flex-end;
+}
+
+.nexacenteralign
+{
+  text-align:center;
+  justify-content:center;
+}
+
+.nexamap div *
+{
+  overflow:visible;
+}
+
+.ProgressBar,.ProgressBarControl
+{
+
+}
+
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+  background-position:center center;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Form
+{
+	font : 12px "Malgun Gothic";
+	color : #000000;
+}
+.Button
+{
+	background : #5473E0;
+	color : #ffffff;
+	cursor : pointer;
+	font : 12px/1 "Malgun Gothic";
+	border-radius : 4px;
+}
+.Button .nexacontentsbox
+{
+	white-space : pre;
+	word-wrap : normal;
+	vertical-align : middle;
+	background-position-y : center;
+}
+.Grid .summary
+{
+	border-top : 1px solid #c8c1c2;
+	border-right : 0px none;
+	border-bottom : 0px none;
+	border-left : 0px none;
+}
+.Grid .summary .row .cell
+{
+	font : bold 12px "Noto Sans KR";
+	color : #333333;
+	background : #fdfbe5;
+	border : 1px solid #c8c1c2;
+	justify-content : center;
+}
+.Grid .summary .row .cell > .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Grid .hscrollbar
+{
+	border-top : 1px solid #b1b1b1;
+	border-right : 0px none;
+	border-bottom : 0px none;
+	border-left : 0px none;
+}
+.Grid .vscrollbar
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 0px none;
+	border-left : 1px solid #b1b1b1;
+}
+.GridCellControl .cellbutton
+{
+	background : #ffffff;
+	color : #000000;
+	cursor : pointer;
+	font : 12px/1 "Noto Sans KR";
+	border : 1px solid #686868;
+	border-radius : 4px;
+}
+.GridCellControl .cellbutton .nexacontentsbox
+{
+	white-space : pre;
+	word-wrap : normal;
+	vertical-align : middle;
+	background-position-y : center;
+}
+.GridCellControl .cellcalendar
+{
+	font : 12px "Noto Sans KR";
+}
+.GridCellControl .cellcheckbox
+{
+	font : 12px "Noto Sans KR";
+}
+.GridCellControl .cellcombo
+{
+	font : 12px "Noto Sans KR";
+}
+.ListBoxControl.popupGridCellControlcellcombocombolist.dummy.dummy
+{
+	font : 12px "Noto Sans KR";
+}
+.GridCellControl .celledit
+{
+	font : 12px "Noto Sans KR";
+	background : #ffffff;
+	border : 1px solid #cccccc;
+}
+.GridCellControl .celledit .nexainput
+{
+	padding : 1px 9px 0px 9px;
+}
+.GridCellControl .cellselection
+{
+	border : 2px dotted #909090;
+}
+.GridCellControl .cellmaskedit
+{
+	font : 12px "Noto Sans KR";
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.GridCellControl .cellmaskedit .nexainput
+{
+	padding : 1px 9px 0px 9px;
+}
+.GridCellControl .cellprogressbar
+{
+	font : 12px "Noto Sans KR";
+}
+.GridCellControl .celltextarea
+{
+	font : 12px "Noto Sans KR";
+}
+.GridCellControl .celltreeitem .treeitemtext
+{
+	font : 12px "Noto Sans KR";
+	color : #666666;
+}
+.GridCellControl.matched .celltreeitem .treeitemtext
+{
+	font : bold 12px "Noto Sans KR";
+	color : #00388e;
+}
+.GridCellControl .celltreeline
+{
+	border : 1px dotted #909090;
+}
+.GroupBox .groupboxcontents
+{
+	background : #ffffff;
+	border : 1px solid #d6d4d5;
+}
+.GroupBox .groupboxtitle
+{
+	background : #ffffff;
+}
+.ImageViewer
+{
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.ImageViewer .imagetext .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.ListBox
+{
+	background : #ffffff;
+	border : 1px solid #cccccc;
+}
+.ListBoxControl
+{
+	background : #ffffff;
+	border : 1px solid #cccccc;
+}
+.ListBox .listboxitem
+{
+	color : #000000;
+}
+.ListBoxControl .listboxitem
+{
+	color : #000000;
+}
+.Menu .prevbutton
+{
+	cursor : pointer;
+}
+.Menu .nextbutton
+{
+	cursor : pointer;
+}
+.Menu .menuitem
+{
+	font : bold 16px "Noto Sans KR";
+	color : #111111;
+	cursor : pointer;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy
+{
+	font : 12px "Noto Sans KR";
+	color : #111111;
+	background : #ffffff;
+	border : 1px solid #dddddd;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy .prevbutton
+{
+	cursor : pointer;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy .nextbutton
+{
+	cursor : pointer;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem
+{
+	color : #111111;
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dddddd;
+	border-left : 0px none;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemtext
+{
+	color : #c3e0ff;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemhotkeytext
+{
+	color : #6d95cc;
+}
+.PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemhotkeytext .nexacontentsbox
+{
+	text-align : right;
+	background-position-x : right;
+}
+.Plugin
+{
+	border : 1px solid #d5d5d5;
+}
+.PluginControl
+{
+	border : 1px solid #d5d5d5;
+}
+.PopupMenu
+{
+	font : 12px "Noto Sans KR";
+	color : #555555;
+	background : #ffffff;
+	border : 1px solid #b5b5b5;
+}
+.PopupMenuControl
+{
+	font : 12px "Noto Sans KR";
+	color : #555555;
+	background : #ffffff;
+	border : 1px solid #b5b5b5;
+}
+.PopupMenu .popupmenuitem
+{
+	color : #555555;
+}
+.PopupMenuControl .popupmenuitem
+{
+	color : #555555;
+}
+.PopupMenu .popupmenuitem .popupmenuitemcheckbox
+{
+	background : URL('./images/chk_WF_Popupmenu_O.png') no-repeat left center;
+}
+.PopupMenuControl .popupmenuitem .popupmenuitemcheckbox
+{
+	background : URL('./images/chk_WF_Popupmenu_O.png') no-repeat left center;
+}
+.PopupMenu .popupmenuitem .popupmenuitemhotkeytext
+{
+	color : #aaaaaa;
+}
+.PopupMenu .popupmenuitem .popupmenuitemhotkeytext .nexacontentsbox
+{
+	text-align : right;
+	background-position-x : right;
+}
+.PopupMenuControl .popupmenuitem .popupmenuitemhotkeytext
+{
+	color : #aaaaaa;
+}
+.PopupMenuControl .popupmenuitem .popupmenuitemhotkeytext .nexacontentsbox
+{
+	text-align : right;
+	background-position-x : right;
+}
+.ProgressBar
+{
+	background : #eeeeee;
+	border-radius : 20px;
+}
+.ProgressBarControl
+{
+	background : #eeeeee;
+	border-radius : 20px;
+}
+.ProgressBar .progressbaritem
+{
+	background : #00388E;
+}
+.ProgressBarControl .progressbaritem
+{
+	background : #00388E;
+}
+.ProgressBar .progressbartext
+{
+	color : #000000;
+	font : normal 12px/1 "Noto Sans KR";
+}
+.ProgressBar .progressbartext .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.ProgressBarControl .progressbartext
+{
+	color : #000000;
+	font : normal 12px/1 "Noto Sans KR";
+}
+.ProgressBarControl .progressbartext .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Sketch
+{
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.Static
+{
+	color : #000000;
+}
+.TextArea
+{
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.TextArea .nexatextarea
+{
+	padding : 9px 9px 9px 9px;
+}
+.TextAreaControl
+{
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.TextAreaControl .nexatextarea
+{
+	padding : 9px 9px 9px 9px;
+}
+.WebBrowser
+{
+	border : 1px solid #d5d5d5;
+}
+.WebBrowserControl
+{
+	border : 1px solid #d5d5d5;
+}
+.VScrollBarControl
+{
+	background : #f7f7f7;
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 0px none;
+	border-left : 1px solid #d5d5d5;
+}
+.HScrollBarControl
+{
+	background : #f7f7f7;
+	border-top : 1px solid #d5d5d5;
+	border-right : 0px none;
+	border-bottom : 0px none;
+	border-left : 0px none;
+}
+.VScrollBarControl .trackbar
+{
+	background : #dddddd;
+}
+.HScrollBarControl .trackbar
+{
+	background : #dddddd;
+}
+.VScrollIndicatorControl
+{
+	background : #f2f2f2;
+}
+.HScrollIndicatorControl
+{
+	background : #f2f2f2;
+}
+.VScrollIndicatorControl .trackbar
+{
+	background : #cccccc;
+	border : 1px solid transparent;
+}
+.HScrollIndicatorControl .trackbar
+{
+	background : #cccccc;
+	border : 1px solid transparent;
+}
+.StatusBarControl
+{
+	background : #e7e7e7;
+}
+.StatusBarControl .progressbar
+{
+	background : #eaeaea;
+	border : 1px solid #d2d0d0;
+}
+.StatusBarControl .progressbar .progressbaritem
+{
+	background : #4ca0e2;
+}
+.StatusBarControl .resizegrip .nexacontentsbox
+{
+	vertical-align : bottom;
+	background-position-y : bottom;
+}
+.TitleBarControl
+{
+	font : bold 12px "Noto Sans KR";
+	color : #ffffff;
+	background : #003284;
+}
+.StepControl
+{
+	background : #00388E;
+	border-radius : 8px 8px 0px 0px;
+}
+.ListView
+{
+	border : 1px solid #d5d5d5;
+	background : #ebecee;
+	color : #666666;
+}
+.ListView .body
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+.ListView .detail
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #f9f9f9;
+	font : 12px "Noto Sans KR";
+}
+.ListViewDetailBandControl.popupListViewdetail.dummy
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #f9f9f9;
+	font : 12px "Noto Sans KR";
+}
+.ListView .body .cell
+{
+	border : 1px solid #dbdee2;
+}
+.ListView .detail .cell
+{
+	border : 1px solid #dbdee2;
+}
+.ListViewDetailBandControl.popupListViewdetail.dummy .cell
+{
+	border : 1px solid #dbdee2;
+}
+.ListViewCellControl .cellbutton
+{
+	font : 12px "Noto Sans KR";
+	color : #555555;
+	background : #eaeaea;
+	background : -webkit-linear-gradient(to top,#eaeaea,#ffffff);
+	background : linear-gradient(to top,#eaeaea,#ffffff);
+	border : 1px solid #c2c2c2;
+}
+.ListViewCellControl .cellcalendar
+{
+	font : 12px "Noto Sans KR";
+}
+.ListViewCellControl .cellcheckbox
+{
+	font : 12px "Noto Sans KR";
+}
+.ListViewCellControl .cellcombo
+{
+	font : 12px "Noto Sans KR";
+}
+.ListBoxControl.popupListViewCellControlcellcombocombolist.dummy.dummy
+{
+	font : 12px "Noto Sans KR";
+	color : #555555;
+}
+.ListViewCellControl .celledit
+{
+	font : 12px "Noto Sans KR";
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.ListViewCellControl .celledit .nexainput
+{
+	padding : 1px 9px 0px 9px;
+}
+.ListViewCellControl .cellmaskedit
+{
+	font : 12px "Noto Sans KR";
+	background : #ffffff;
+	border : 1px solid #d5d5d5;
+}
+.ListViewCellControl .cellmaskedit .nexainput
+{
+	padding : 1px 9px 0px 9px;
+}
+.ListViewCellControl .cellprogressbar
+{
+	font : 12px "Noto Sans KR";
+}
+.ListViewCellControl .celltextarea
+{
+	font : 12px "Noto Sans KR";
+}
+.ListView .body .expandbar
+{
+	background : #eaeaea;
+	background : -webkit-linear-gradient(to top,#eaeaea,#ffffff);
+	background : linear-gradient(to top,#eaeaea,#ffffff);
+	border : 1px solid #c2c2c2;
+}
+.Button.btn_LF_menu
+{
+	background : #00388E;
+	color : #ffffff;
+	border-radius : 0px;
+}
+.Button.btn_LF_menu .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Button.btn_LF_favorite
+{
+	background : #666666;
+	color : #ffffff;
+	border-radius : 0px;
+}
+.Button.btn_LF_favorite .nexacontentsbox
+{
+	text-align : center;
+	background-position-x : center;
+}
+.Grid.grd_LF_treeMenu
+{
+	background : #ffffff;
+	border : 0px none;
+}
+.Button.btn_LF_open
+{
+	background : url('./images/btn_LF_close.png') no-repeat center center #00388e;
+	border-radius : 0px 3px 3px 0px;
+}
+.Button.btn_LF_close
+{
+	background : url('./images/btn_LF_open.png') no-repeat center center #00388e;
+	border-radius : 0px 3px 3px 0px;
+}
+.Grid.grd_LF_treeMenu .head .row .cell
+{
+	border : 0px none;
+	justify-content : flex-start;
+	color : #00388e;
+	font : 700 18px "Malgun Gothic";
+	background : #ffffff;
+}
+.Grid.grd_LF_treeMenu .head .row .cell > .nexacontentsbox
+{
+	text-align : left;
+	background-position-x : left;
+}
+.Grid.grd_LF_treeMenu .body .row .cell
+{
+	border : 0px none;
+	color : #000000;
+	cursor : pointer;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1.dummy.dummy.dummy
+{
+	background : #F9FAFC;
+	color : #333333;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2.dummy.dummy.dummy
+{
+	background : #ECF0F6;
+	color : #555555;
+	font : 13px "Malgun Gothic";
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0.dummy.dummy.dummy
+{
+	font : 16px "Malgun Gothic";
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0_fav.dummy.dummy.dummy
+{
+	background : url('./images/img_LF_favorite.png') no-repeat center center;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0_fav_S.dummy.dummy.dummy
+{
+	background : url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1_fav.dummy.dummy.dummy
+{
+	background : #F9FAFC url('./images/img_LF_favorite.png') no-repeat center center;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1_fav_S.dummy.dummy.dummy
+{
+	background : #F9FAFC url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2_fav.dummy.dummy.dummy
+{
+	background : #ECF0F6 url('./images/img_LF_favorite.png') no-repeat center center;
+}
+.Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2_fav_S.dummy.dummy.dummy
+{
+	background : #ECF0F6 url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+.Static.sta_LF_img1
+{
+	background : url('./images/sta_LF_img1.png') repeat left top;
+}
+#nexacontainer .ListBoxControl.popupGridCellControlcellcombocombolist.dummy.dummy .listboxitem[status=mouseover]
+{
+	background : #e8e9ed;
+}
+#nexacontainer .GridCellControl .celledit[status=mouseover]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .GridCellControl .celledit[status=focused]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .GridCellControl .cellmaskedit[status=mouseover]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .GridCellControl .cellmaskedit[status=focused]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem[status=mouseover]
+{
+	color : #ffffff;
+	background : transparent;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem[status=focused]
+{
+	color : #ffffff;
+	background : #00438b;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemtext[status=mouseover]
+{
+	color : #ffffff;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemhotkeytext[status=mouseover]
+{
+	color : #ffffff;
+}
+#nexacontainer .PopupMenu .popupmenuitem[status=mouseover]
+{
+	background : #e7e9ed;
+}
+#nexacontainer .PopupMenu .popupmenuitem[status=focused]
+{
+	background : #e7e9ed;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem[status=mouseover]
+{
+	background : #e7e9ed;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem[status=focused]
+{
+	background : #e7e9ed;
+}
+#nexacontainer .PopupMenu .popupmenuitem .popupmenuitemcheckbox[status=mouseover]
+{
+	background : URL('./images/chk_WF_Popupmenu_O.png') no-repeat left center;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem .popupmenuitemcheckbox[status=mouseover]
+{
+	background : URL('./images/chk_WF_Popupmenu_O.png') no-repeat left center;
+}
+#nexacontainer .TextArea[status=mouseover]
+{
+	border : 1px solid #5473E0;
+}
+#nexacontainer .TextArea[status=focused]
+{
+	border : 1px solid #5473E0;
+}
+#nexacontainer .TextAreaControl[status=mouseover]
+{
+	border : 1px solid #5473E0;
+}
+#nexacontainer .TextAreaControl[status=focused]
+{
+	border : 1px solid #5473E0;
+}
+#nexacontainer .TextArea[status=readonly]
+{
+	background : #efefef;
+	border : 1px solid #d5d5d5;
+}
+#nexacontainer .TextAreaControl[status=readonly]
+{
+	background : #efefef;
+	border : 1px solid #d5d5d5;
+}
+#nexacontainer .VScrollBarControl .trackbar[status=focused]
+{
+	background : #999999;
+}
+#nexacontainer .HScrollBarControl .trackbar[status=focused]
+{
+	background : #999999;
+}
+#nexacontainer .VScrollBarControl .trackbar[status=mouseover]
+{
+	background : #bbbbbb;
+}
+#nexacontainer .HScrollBarControl .trackbar[status=mouseover]
+{
+	background : #bbbbbb;
+}
+#nexacontainer .VScrollIndicatorControl .trackbar[status=mouseover]
+{
+	background : #999999;
+}
+#nexacontainer .HScrollIndicatorControl .trackbar[status=mouseover]
+{
+	background : #999999;
+}
+#nexacontainer .ListView[status=readonly]
+{
+	border : 1px solid #d5d5d5;
+	background : #ebecee;
+	color : #666666;
+}
+#nexacontainer .ListView[status=mouseover]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .ListView[status=focused]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .ListView .body[status=readonly]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListView .detail[status=readonly]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy[status=readonly]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListView .body[status=focused]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListView .detail[status=focused]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy[status=focused]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListView .body[status=mouseover]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListView .detail[status=mouseover]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy[status=mouseover]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #dbdee2;
+	border-left : 0px none;
+	background : #ffffff;
+	font : 12px "Noto Sans KR";
+}
+#nexacontainer .ListView .body .cell[status=readonly]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListView .detail .cell[status=readonly]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy .cell[status=readonly]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListView .body .cell[status=focused]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListView .detail .cell[status=focused]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy .cell[status=focused]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListView .body .cell[status=mouseover]
+{
+	border : 1px solid #c4c9cf;
+}
+#nexacontainer .ListView .detail .cell[status=mouseover]
+{
+	border : 1px solid #c4c9cf;
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy .cell[status=mouseover]
+{
+	border : 1px solid #c4c9cf;
+}
+#nexacontainer .ListViewCellControl .cellbutton[status=mouseover]
+{
+	background : #e7e7e7;
+	background : -webkit-linear-gradient(to top,#e7e7e7,#fefefe);
+	background : linear-gradient(to top,#e7e7e7,#fefefe);
+	border : 1px solid #a0a0a0;
+}
+#nexacontainer .ListViewCellControl .cellbutton[status=focused]
+{
+	background : #e7e7e7;
+	background : -webkit-linear-gradient(to top,#e7e7e7,#fefefe);
+	background : linear-gradient(to top,#e7e7e7,#fefefe);
+	border : 1px solid #a0a0a0;
+}
+#nexacontainer .ListBoxControl.popupListViewCellControlcellcombocombolist.dummy.dummy .listboxitem[status=mouseover]
+{
+	background : #e8e9ed;
+}
+#nexacontainer .ListViewCellControl .celledit[status=mouseover]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .ListViewCellControl .celledit[status=focused]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .ListViewCellControl .cellmaskedit[status=mouseover]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .ListViewCellControl .cellmaskedit[status=focused]
+{
+	border : 1px solid #5a86cd;
+}
+#nexacontainer .ListView .body .expandbar[status=mouseover]
+{
+	background : #e7e7e7;
+	background : -webkit-linear-gradient(to top,#e7e7e7,#fefefe);
+	background : linear-gradient(to top,#e7e7e7,#fefefe);
+	border : 1px solid #a0a0a0;
+}
+#nexacontainer .ListView .body .expandbar[status=focused]
+{
+	background : #e7e7e7;
+	background : -webkit-linear-gradient(to top,#e7e7e7,#fefefe);
+	background : linear-gradient(to top,#e7e7e7,#fefefe);
+	border : 1px solid #a0a0a0;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0.dummy.dummy.dummy[status=mouseover]
+{
+	background : none;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0_fav.dummy.dummy.dummy[status=mouseover]
+{
+	background : url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0_fav_S.dummy.dummy.dummy[status=mouseover]
+{
+	background : url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1.dummy.dummy.dummy[status=mouseover]
+{
+	background : #F9FAFC;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1_fav.dummy.dummy.dummy[status=mouseover]
+{
+	background : #F9FAFC url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1_fav_S.dummy.dummy.dummy[status=mouseover]
+{
+	background : #F9FAFC url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2.dummy.dummy.dummy[status=mouseover]
+{
+	background : #ECF0F6;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2_fav.dummy.dummy.dummy[status=mouseover]
+{
+	background : #ECF0F6 url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2_fav_S.dummy.dummy.dummy[status=mouseover]
+{
+	background : #ECF0F6 url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.sta_LF_favorite_S.dummy.dummy.dummy[status=mouseover]
+{
+	background : url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.sta_LF_favorite.dummy.dummy.dummy[status=mouseover]
+{
+	background : url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid .body .row .cell[userstatus=blinked]
+{
+	background : #125dae;
+	color : #ffffff;
+}
+#nexacontainer .ListBox .listboxitem[userstatus=selected]
+{
+	color : #000000;
+	background : #CCE2FD;
+}
+#nexacontainer .ListBoxControl .listboxitem[userstatus=selected]
+{
+	color : #000000;
+	background : #CCE2FD;
+}
+#nexacontainer .Menu .menuitem[userstatus=selected]
+{
+	color : #00388e;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem[userstatus=selected]
+{
+	color : #ffffff;
+	background : #00438b;
+}
+#nexacontainer .PopupMenu .popupmenuitem[userstatus=selected]
+{
+	color : #ffffff;
+	background : #125dae;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem[userstatus=selected]
+{
+	color : #ffffff;
+	background : #125dae;
+}
+#nexacontainer .VScrollBarControl .trackbar[userstatus=pushed]
+{
+	background : #999999;
+}
+#nexacontainer .VScrollBarControl .trackbar[userstatus=selected]
+{
+	background : #999999;
+}
+#nexacontainer .HScrollBarControl .trackbar[userstatus=pushed]
+{
+	background : #999999;
+}
+#nexacontainer .HScrollBarControl .trackbar[userstatus=selected]
+{
+	background : #999999;
+}
+#nexacontainer .VScrollIndicatorControl .trackbar[userstatus=pushed]
+{
+	background : #606060;
+}
+#nexacontainer .HScrollIndicatorControl .trackbar[userstatus=pushed]
+{
+	background : #606060;
+}
+#nexacontainer .ListView .body[userstatus=selected]
+{
+	background : #f2f9ff;
+}
+#nexacontainer .ListView .detail[userstatus=selected]
+{
+	background : #ebf3f9;
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy[userstatus=selected]
+{
+	background : #ebf3f9;
+}
+#nexacontainer .ListViewCellControl .cellbutton[userstatus=pushed]
+{
+	background : #fefefe;
+	background : -webkit-linear-gradient(to top,#fefefe,#e9e9e9);
+	background : linear-gradient(to top,#fefefe,#e9e9e9);
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0.dummy.dummy.dummy[userstatus=selected]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #00388e;
+	border-left : 0px none;
+	background : none;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0_fav.dummy.dummy.dummy[userstatus=selected]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #00388e;
+	border-left : 0px none;
+	background : url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel0_fav_S.dummy.dummy.dummy[userstatus=selected]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #00388e;
+	border-left : 0px none;
+	background : url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1.dummy.dummy.dummy[userstatus=selected]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #e8eaef;
+	border-left : 0px none;
+	background : #F9FAFC;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1_fav.dummy.dummy.dummy[userstatus=selected]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #e8eaef;
+	border-left : 0px none;
+	background : #F9FAFC url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel1_fav_S.dummy.dummy.dummy[userstatus=selected]
+{
+	border-top : 0px none;
+	border-right : 0px none;
+	border-bottom : 1px solid #e8eaef;
+	border-left : 0px none;
+	background : #F9FAFC url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2.dummy.dummy.dummy[userstatus=selected]
+{
+	background : #ECF0F6;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2_fav.dummy.dummy.dummy[userstatus=selected]
+{
+	background : #ECF0F6 url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.cellTreeLevel2_fav_S.dummy.dummy.dummy[userstatus=selected]
+{
+	background : #ECF0F6 url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.sta_LF_favorite.dummy.dummy.dummy[userstatus=selected]
+{
+	background : url('./images/img_LF_favorite.png') no-repeat center center;
+}
+#nexacontainer .Grid.grd_LF_treeMenu .body .row .cell.sta_LF_favorite_S.dummy.dummy.dummy[userstatus=selected]
+{
+	background : url('./images/img_LF_favorite_active.png') no-repeat center center;
+}
+#nexacontainer .Form[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .Button[status=disabled]
+{
+	color : #888888;
+	background : #dddddd;
+	cursor : default;
+}
+#nexacontainer .GridCellControl .cellbutton[status=disabled]
+{
+	background : #EEEEEE;
+}
+#nexacontainer .GridCellControl .celledit[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .GridCellControl .cellmaskedit[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .GridCellControl .celltreeitem .treeitemtext[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .GridCellControl.matched .celltreeitem .treeitemtext[status=disabled]
+{
+	font : bold 12px "Noto Sans KR";
+	color : #999999;
+}
+#nexacontainer .GroupBox .groupboxcontents[data-status=disabled]
+{
+	background : #efefef;
+}
+#nexacontainer .GroupBox .groupboxtitle[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .ImageViewer[status=disabled]
+{
+	background : #f2f2f2;
+}
+#nexacontainer .ImageViewer .imagetext[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .ListBox[status=disabled]
+{
+	background : #f3f3f3;
+}
+#nexacontainer .ListBoxControl[status=disabled]
+{
+	background : #f3f3f3;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem[status=disabled]
+{
+	color : #2665af;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemtext[status=disabled]
+{
+	color : #2665af;
+}
+#nexacontainer .PopupMenuControl.popupMenumenupopupmenu.dummy .popupmenuitem .popupmenuitemhotkeytext[status=disabled]
+{
+	color : #4577b9;
+}
+#nexacontainer .PopupMenu .popupmenuitem[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .PopupMenu .popupmenuitem .popupmenuitemcheckbox[status=disabled]
+{
+	background : URL('./images/chk_WF_Popupmenu.png') no-repeat left center;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem .popupmenuitemcheckbox[status=disabled]
+{
+	background : URL('./images/chk_WF_Popupmenu.png') no-repeat left center;
+}
+#nexacontainer .PopupMenu .popupmenuitem .popupmenuitemhotkeytext[status=disabled]
+{
+	color : #4577b9;
+}
+#nexacontainer .PopupMenuControl .popupmenuitem .popupmenuitemhotkeytext[status=disabled]
+{
+	color : #4577b9;
+}
+#nexacontainer .ProgressBar .progressbaritem[status=disabled]
+{
+	background : #CCCCCC;
+}
+#nexacontainer .ProgressBarControl .progressbaritem[status=disabled]
+{
+	background : #CCCCCC;
+}
+#nexacontainer .Sketch[status=disabled]
+{
+	background : #efefef;
+}
+#nexacontainer .Static[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .TextArea[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .TextAreaControl[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .VScrollBarControl .trackbar[status=disabled]
+{
+	background : #eeeeee;
+}
+#nexacontainer .HScrollBarControl .trackbar[status=disabled]
+{
+	background : #eeeeee;
+}
+#nexacontainer .ListView[status=disabled]
+{
+	background : #666666;
+}
+#nexacontainer .ListView .body[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .ListView .detail[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy[status=disabled]
+{
+	color : #999999;
+}
+#nexacontainer .ListView .body .cell[status=disabled]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListView .detail .cell[status=disabled]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListViewDetailBandControl.popupListViewdetail.dummy .cell[status=disabled]
+{
+	border : 1px solid #dbdee2;
+}
+#nexacontainer .ListViewCellControl .cellbutton[status=disabled]
+{
+	color : #bbbbbb;
+	background : #f5f5f5;
+	border : 1px solid #d9d9d9;
+}
+#nexacontainer .ListViewCellControl .celledit[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .ListViewCellControl .cellmaskedit[status=disabled]
+{
+	color : #999999;
+	background : #efefef;
+}
+#nexacontainer .ListView .body .expandbar[status=disabled]
+{
+	color : #bbbbbb;
+	background : #f5f5f5;
+	border : 1px solid #d9d9d9;
+	opacity : 0.50;
+}
+#nexacontainer .Button.btn_LF_menu[status=disabled]
+{
+	background : #00388E;
+	color : #ffffff;
+}
+#nexacontainer .Button.btn_LF_favorite[status=disabled]
+{
+	background : #666666;
+	color : #ffffff;
+}

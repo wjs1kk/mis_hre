@@ -49,7 +49,7 @@
 
             obj = new Static("sta001","50","0","500","58",null,null,null,null,null,null,this);
             obj.set_taborder("1");
-            obj.set_text("사용자 관리");
+            obj.set_text("평가비중 기준 관리");
             obj.set_cssclass("sta_WF_compTitle01");
             this.addChild(obj.name, obj);
 
@@ -59,14 +59,14 @@
             this.addChild(obj.name, obj);
 
             obj = new Static("Static00","0","0",null,"56","0",null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("6");
+            obj.set_taborder("4");
             obj.set_cssclass("sta_WF_bg");
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Static("sta002","20","15","100","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("0");
-            obj.set_text("회원 ID");
+            obj.set_text("검색조건");
             obj.set_cssclass("sta_WF_condition01");
             this.divSearch.addChild(obj.name, obj);
 
@@ -74,24 +74,12 @@
             obj.set_taborder("1");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Static("sta003","25%","15","100","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Edit("edtUserNm","565","15","160","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("2");
-            obj.set_text("사용자이름");
-            obj.set_cssclass("sta_WF_condition01");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Edit("edtUserNm","sta003:10","15","160","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Edit("edtJbps","1020","15","238","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("3");
-            this.divSearch.addChild(obj.name, obj);
-
-            obj = new Static("sta004","50%","15","100","26",null,null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("4");
-            obj.set_text("직위");
-            obj.set_cssclass("sta_WF_condition01");
-            this.divSearch.addChild(obj.name, obj);
-
-            obj = new Edit("edtJbps","sta004:10","15","238","26",null,null,null,null,null,null,this.divSearch.form);
-            obj.set_taborder("5");
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Div("divResult","50","divSearch:15",null,null,"50","30",null,null,null,null,this);
@@ -196,7 +184,7 @@
                 p.btnSearch.move(null,"20","65","28","btn_delete:3",null);
 
                 p.sta001.set_taborder("1");
-                p.sta001.set_text("사용자 관리");
+                p.sta001.set_text("평가비중 기준 관리");
                 p.sta001.set_cssclass("sta_WF_compTitle01");
                 p.sta001.move("50","0","500","58",null,null);
 
@@ -543,9 +531,7 @@
             this.divSearch.form.Static00.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
             this.divSearch.form.sta002.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
             this.divSearch.form.edtUserId.addEventHandler("onkeyup",this.divSearch_edtUserNm_onkeyup,this);
-            this.divSearch.form.sta003.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
             this.divSearch.form.edtUserNm.addEventHandler("onkeyup",this.divSearch_edtUserNm_onkeyup,this);
-            this.divSearch.form.sta004.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
             this.divSearch.form.edtJbps.addEventHandler("onkeyup",this.divSearch_edtUserNm_onkeyup,this);
             this.divResult.form.grdUserManage.addEventHandler("onheadclick",this.Div00_grdUserManage_onheadclick,this);
             this.divResult.form.grdUserManage.addEventHandler("oncelldblclick",this.divResult_grdUserManage_oncelldblclick,this);

@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="USER_1010M" width="1920" height="670" titletext="사용자관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btn_delete" text="삭제" cssclass="btn_WF_Delete" visible="true" top="20" width="65" height="28" right="50" taborder="4" onclick="btn_delete_onclick"/>
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="btn_delete:3" width="65" onclick="btnSearch_onclick"/>
+        <Static id="sta001" taborder="1" text="사용자 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="56" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="6" left="0" top="0" right="0" cssclass="sta_WF_bg" text="" height="56" onclick="div_Search_Static00_onclick"/>
+              <Static id="sta002" taborder="0" text="회원 ID" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtUserId" taborder="1" left="sta002:10" top="15" width="160" height="26" onkeyup="divSearch_edtUserNm_onkeyup"/>
+              <Static id="sta003" taborder="2" text="사용자이름" left="25%" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtUserNm" taborder="3" left="sta003:10" top="15" width="160" height="26" onkeyup="divSearch_edtUserNm_onkeyup"/>
+              <Static id="sta004" taborder="4" text="직위" left="50%" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtJbps" taborder="5" left="sta004:10" top="15" width="238" height="26" onkeyup="divSearch_edtUserNm_onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:15" right="50" bottom="30" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Grid id="grdUserManage" taborder="1" left="0" top="45" binddataset="dsUserManage" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="Div00_grdUserManage_onheadclick" oncelldblclick="divResult_grdUserManage_oncelldblclick" oncellclick="divResult_grdUserManage_oncellclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="96"/>
+                      <Column size="96"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                      <Column size="160"/>
+                      <Column size="120"/>
+                      <Column size="120"/>
+                      <Column size="80"/>
+                      <Column size="120"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="회원 ID"/>
+                      <Cell col="3" text="사용자 이름"/>
+                      <Cell col="4" text="부서"/>
+                      <Cell col="5" text="직위"/>
+                      <Cell col="6" text="E-MAIL"/>
+                      <Cell col="7" text="TEL"/>
+                      <Cell col="8" text="PHONE"/>
+                      <Cell col="9" text="사용여부"/>
+                      <Cell col="10" text="비밀번호 만기일"/>
+                      <Cell col="11" text="승인 상태"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" text="bind:memberId"/>
+                      <Cell col="3" text="bind:userNmKr" edittype="none"/>
+                      <Cell col="4"/>
+                      <Cell col="5" text="bind:jobPosition" edittype="none" textAlign="center"/>
+                      <Cell col="6" text="bind:emailAddr" edittype="none"/>
+                      <Cell col="7" text="bind:telNo" edittype="none"/>
+                      <Cell col="8" text="bind:phoneNo" edittype="none"/>
+                      <Cell col="9" text="bind:useYn" combodataset="dsUseYn" combocodecol="value" combodatacol="text" displaytype="combotext"/>
+                      <Cell col="10" text="bind:pwExpireDt" edittype="none" textAlign="center"/>
+                      <Cell col="11" displaytype="expr:joinAprvStts === 'APPLY' ? 'buttoncontrol' : 'normal'" edittype="expr:joinAprvStts === 'APPLY' ? 'button' : 'none'" text="bind:joinAprvSttsNm"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta005" taborder="1" text="사용자 관리 목록" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Static09_onclick" width="136"/>
+              <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subTxt" left="sta005:10" top="0" width="149" height="45"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Button id="btnUpdate" taborder="5" text="수정" top="20" height="28" right="btnSearch:3" width="65" onclick="btnUpdate_onclick"/>
+        <Button id="btn_registration" text="신규" cssclass="" visible="true" top="20" width="65" height="28" right="btnUpdate:3" taborder="6" onclick="btn_registration_onclick"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="jobPosition" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUserManage" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="userNmEn" type="STRING" size="256"/>
+          <Column id="passwd" type="STRING" size="256"/>
+          <Column id="emailAddr" type="STRING" size="256"/>
+          <Column id="telNo" type="STRING" size="256"/>
+          <Column id="phoneNo" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="FLOAT" size="256"/>
+          <Column id="updtIp" type="FLOAT" size="256"/>
+          <Column id="updtDt" type="DATE" size="256"/>
+          <Column id="deptCd" type="STRING" size="256"/>
+          <Column id="jobTitle" type="STRING" size="256"/>
+          <Column id="jobPosition" type="STRING" size="256"/>
+          <Column id="pwExpireDt" type="STRING" size="256"/>
+          <Column id="useYnText" type="STRING" size="256"/>
+          <Column id="joinAprvStts" type="STRING" size="256"/>
+          <Column id="joinAprvSttsNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  사용자 관리
+ *  MenuPath      시스템 관리 - 기준정보 관리 - 사용자, 메뉴 및 권한 관리
+ *  FileName      user.Manage.xfdl 
+ *  Creator 	     moonsj
+ *  CreateDate    2023.02.27
+ *  Desction      사용자 관리
+ ************** 소스 수정 이력 *************************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.02.27    moonsj 	 최초 생성
+ *  2023.08.25    parksw     회원ID만 표시/수정하고, 사용자ID는 드러나지 않도록 수정
+ *  2023.10.31    parksw     회원가입 승인 추가
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ /***********************************************************************************************/
+
+/**
+ * description 화면 onload
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnLoadCombo("loadCombo", "dsUseYn=SM:USE_YN:C", "fnCallBack");
+	this.fnSearch();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+/**
+ * description 삭제
+ */
+this.fnDelete = function ()
+{
+	var strSvcId	= "deleteUserManageList";
+	var strSvcUrl	= "sm/deleteUserManageList.do";
+	var inData		= "dsUserManage";
+	var outData		= "";
+	var strArg		= "";
+	var callBackFnc = "fnCallBack";
+	var isAsync     = true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getUserManageList";
+	var strSvcUrl   = "sm/getUserManage.do";
+	var inData      = "dsSearch";  // input1=dsSearch
+	var outData     = "dsUserManage";  // dsUserManage
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	var strSvcId    = "setUserManageList";
+	var strSvcUrl   = "sm/setUserManageList.do";
+	var inData      = "dsUserManage";  // input1=dsSearch
+	var outData     = "";  // dsUserManage=output1
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description Transaction CallBack 함수
+ */
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+        case "getUserManageList":
+			this.gfnRowCount(this.dsUserManage, this.divResult.form.staGridRowCnt);
+            break;
+        case "setUserManageList":
+			if (this.callbackMsg == "success") {
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				//총 건수 계산
+			    this.gfnRowCount(this.dsUserManage, this.divResult.form.staGridRowCnt);
+				this.fnSearch();
+			} else {
+				this.gfnAlert("저장 실패");
+			}
+            
+			this.gfnRowCount(this.dsUserManage, this.divResult.form.staGridRowCnt);
+			break;
+		case "deleteUserManageList":
+			if (this.callbackMsg == "success") {
+				 this.gfnAlert("CM_MSG_DELETE_SUCCESS"); //삭제되었습니다.
+				 //총 건수 계산
+		         this.gfnRowCount(this.dsUserManage, this.divResult.form.staGridRowCnt);
+				 this.dsUserManage.clearData();
+				 this.dsUserManage.addRow();
+				 this.fnSearch();
+			} else {
+				this.gfnAlert("삭제 실패");
+			}
+			
+            this.gfnRowCount(this.dsUserManage, this.divResult.form.staGridRowCnt);
+			break;
+		default:
+			break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+ */
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+    switch (sPopupId) {
+        case "userManagePopup":
+            this.fnSearch();
+            break;
+        case "registerApprovePopup":
+            this.fnSearch();
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+/**
+ * description 조회버튼 클릭
+ */
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 삭제버튼 클릭
+ */
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var cCnt = this.dsUserManage.getCaseCount("rowCheck==1");
+	
+	if (cCnt == 0) {
+		this.gfnAlert("삭제할 데이터를 선택해주세요.");
+		return;
+	}
+	
+	this.gfnAlert("CM_CFM_DELETE", "", "", { trueFunc: "fnDelete", falseFunc: "" });  // 변경된 내역을 삭제 하시겠습니까?	
+};
+
+/**
+ * description 그리드헤드 클릭
+ */
+this.Div00_grdUserManage_onheadclick= function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+/**
+ * description 사용자관리 신규등록 Popup 
+ */
+this.btn_registration_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnOpenPopup("userManagePopup", "sys::user/USER_1010P.xfdl", {}, "fnPopupAfter", "");
+};
+
+/**
+ * description 그리드에 선택된 데이터를 수정팝업창 오픈
+ */
+this.btnUpdate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	//체크된 행 갯수 count
+	var cnt = 0;
+	for (var i = 0; i < this.dsUserManage.rowcount; i++) {
+		if (this.dsUserManage.getColumn(i, "rowCheck") == 1) {
+			cnt++;
+		}
+	}
+	
+	if (cnt > 1) {
+        this.gfnAlert("수정 할 데이터를 한 개만 선택하세요.");
+        return;
+	}
+    
+	this.fnUpdateUserInfo(this.dsUserManage.rowposition);
+};
+
+/**
+ * description 그리드 셀 더블클릭 시 수정팝업창 오픈
+ */
+this.divResult_grdUserManage_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.fnUpdateUserInfo(e.row);
+};
+
+/**
+ * description generate multi language Excel 
+ */
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+this.divSearch_edtUserNm_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+    if (e.keycode == 13) {
+        this.fnSearch();
+    }
+};
+
+/**
+ * 회원가입 승인 팝업
+ */
+this.divResult_grdUserManage_oncellclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	const aprvStts = this.dsUserManage.getColumn(e.row, "joinAprvStts");
+    if (e.col == 11 && aprvStts === "APPLY") {
+        this.fnApproveRegistration(e.row);
+    }
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+/**
+ * description 수정팝업창 오픈
+ */
+this.fnUpdateUserInfo = function (sRow)
+{
+    var args = {
+        userId: this.dsUserManage.getColumn(sRow, "userId")
+    };
+
+	this.gfnOpenPopup("userManagePopup", "sys::user/USER_1010P.xfdl", args, "fnPopupAfter", "");
+};
+
+/**
+ * 회원가입 승인 화면
+ */
+this.fnApproveRegistration = function (row)
+{
+    var args = {
+        userId: this.dsUserManage.getColumn(row, "userId")
+    };
+
+	this.gfnOpenPopup("registerApprovePopup", "sys::user/USER_1010P_02.xfdl", args, "fnPopupAfter", "");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item3" compid="divSearch.form.edtUserId" propid="value" datasetid="dsSearch" columnid="memberId"/>
+      <BindItem id="item4" compid="divSearch.form.edtUserNm" propid="value" datasetid="dsSearch" columnid="userNmKr"/>
+      <BindItem id="item5" compid="divSearch.form.edtJbps" propid="value" datasetid="dsSearch" columnid="jobPosition"/>
+    </Bind>
+  </Form>
+</FDL>

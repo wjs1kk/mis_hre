@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.ast.resources.service.ResourcesStatusDAO">
+    <!-- 자원 현황 조회 -->
+    <select id="getResourcesStatusList" parameterType="map" resultType="resourcesRqstListVO">
+        /* resources-list-mapper.getResourcesList */
+        SELECT AQ.AST_NO
+             , AI.AST_NM
+             , AQ.RGSTR_ID
+             , (SELECT C.USER_NM_KR
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = AQ.RGSTR_ID) AS RGSTR_ID_NM
+             , AI.AST_QTY
+             , AI.AST_DIV_CD
+             , (SELECT CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = AI.AST_DIV_CD) AS AST_DIV_CD_NM
+             , TO_CHAR(AQ.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , AQ.AST_RTN_DUE_YMD
+             , (AQ.AST_USE_BGN_YMD || '~' || AQ.AST_RTN_DUE_YMD) AS AST_USE_YMD
+             , AST_MNG_DEPT_CD
+             , (SELECT D.DEPT_NM
+                  FROM PTS_DEPT D
+                 WHERE D.DEPT_CD = AI.AST_MNG_DEPT_CD) AS AST_MNG_DEPT_NM
+          FROM PTS_AST_INFO AI
+             , PTS_AST_RQST AQ
+         WHERE AQ.AST_NO = AI.AST_NO
+              <if test='astRtnDueStrYmd != null and astRtnDueStrYmd !=""'>
+             AND AQ.AST_RTN_DUE_YMD >= TO_CHAR(TO_DATE(#{astRtnDueStrYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+              </if>
+              <if test='astRtnDueEndYmd != null and astRtnDueEndYmd !=""'>
+              <![CDATA[
+             AND AQ.AST_RTN_DUE_YMD <= TO_CHAR(TO_DATE(#{astRtnDueEndYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+              ]]>
+              </if>
+              <if test = 'astDivCd != null and astDivCd != ""'>
+              AND AI.AST_DIV_CD = #{astDivCd}
+              </if>
+              <if test = 'searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test = 'searchType == "AST_NM"'>
+                AND AI.AST_NM LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test = 'searchType == "AST_MNG_DEPT_CD"'>
+                AND (SELECT D.DEPT_NM
+                  FROM PTS_DEPT D
+                 WHERE D.DEPT_CD = AI.AST_MNG_DEPT_CD) LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test = 'searchType == "AST_MNG_PIC_ID"'>
+                AND (SELECT C.USER_NM_KR
+                       FROM CMN_USER C
+                      WHERE C.USER_ID = AI.AST_MNG_PIC_ID) LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+                AND (AI.AST_NM LIKE '%' || #{searchKeyword} || '%'
+                  OR (SELECT D.DEPT_NM
+                  FROM PTS_DEPT D
+                 WHERE D.DEPT_CD = AI.AST_MNG_DEPT_CD) LIKE '%' || #{searchKeyword} || '%'
+                  OR (SELECT C.USER_NM_KR
+                       FROM CMN_USER C
+                      WHERE C.USER_ID = AI.AST_MNG_PIC_ID) LIKE '%' || #{searchKeyword} || '%')
+                    </otherwise>
+                </choose>
+              </if>
+    </select>
+
+
+      <!-- 자원 현황 수정-->
+    <update id="updateResourcesManage" parameterType="resourcesAddVO">
+        UPDATE PTS_AST_INFO
+           SET AST_MNG_DEPT_CD = NULLIF(#{astMngDeptCd}, '')
+             , AST_MNG_PIC_ID  = NULLIF(#{astMngPicId}, '')
+             , AST_QTY         = #{astQty}::INT
+             , AST_UOM         = NULLIF(#{astUom}, '')
+             , AST_RMK         = NULLIF(#{astRmk}, '')
+             , ATCH_FILE_ID    = NULLIF(#{atchFileId}, '')
+             , UPDTR_ID     = #{sessionUserId}
+             , UPDT_DT      = NOW()
+        WHERE AST_NO = #{astNo}
+    </update>
+
+      <!-- 자원 현황 수정-->
+    <update id="updateDetailResManage" parameterType="ResourcesDetailAddVO">
+        UPDATE PTS_AST_DTL
+           SET AST_USE_DEPT_CD  = NULLIF(#{astUseDeptCd},'')
+             , AST_USE_USER_ID  = NULLIF(#{astUseUserId},'')
+             , UPDTR_ID         = #{sessionUserId}
+             , UPDT_DT          = NOW()
+         WHERE AST_NO           = #{astNo}
+           AND AST_SRL_NO       = #{astSrlNo}::INT
+    </update>
+
+      <!-- 자원 현황 수정-->
+    <update id="updateDetailResManage2" parameterType="ResourcesDetailAddVO">
+        UPDATE PTS_AST_RQST
+           SET AST_RTN_YMD      = #{astRtnYmd}
+             , UPDTR_ID         = #{sessionUserId}
+             , UPDT_DT          = NOW()
+         WHERE AST_NO           = #{astNo}
+           AND AST_SRL_NO       = #{astSrlNo}::INT
+    </update>
+</mapper>

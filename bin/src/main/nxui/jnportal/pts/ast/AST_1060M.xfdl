@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="AST_1060M" width="1920" height="1370" titletext="자원현황상세" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static02" taborder="0" text="W&#13;&#10; 50" visible="false" top="0" height="3275" onclick="Static02_onclick" background="antiquewhite" color="blue" width="50" right="0"/>
+        <Static id="Static34" taborder="1" text="W 50" onclick="Static02_onclick" visible="false" left="0" top="4" width="50" height="1366" background="antiquewhite" color="blue"/>
+        <Static id="Static04_00_00_02" taborder="2" text="h 10" onclick="Static31_onclick" visible="false" left="45" top="379" width="60" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Div id="divResisterForm" taborder="3" text="Div01" left="50" top="28" cssclass="div_WF_Area" height="1312" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="44" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="77" height="34" text="" right="0"/>
+              <Static id="Static10_00_00_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" top="207" height="268" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="staTitle" taborder="3" text="자원번호" cssclass="sta_WF_condition02_LEssential" left="0" top="44" width="150" height="34"/>
+              <Static id="staRqstrNm" taborder="6" text="별칭" cssclass="sta_WF_condition02" left="75%" top="44" width="150" height="34"/>
+              <Edit id="edtTitle" taborder="4" height="26" top="48" readonly="true" width="250" left="staTitle:10"/>
+              <Static id="staAskKind" taborder="5" text="구분" cssclass="sta_WF_condition02_LEssential" left="0" top="77" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="staRqstCn" taborder="7" text="사양" cssclass="sta_WF_condition02_L" left="0" top="207" width="150" height="268"/>
+              <TextArea id="textCn" taborder="8" oneditclick="TextArea01_oneditclick" left="staRqstCn:-1" top="206" height="269" onchanged="Div01_TextArea01_00_onchanged" right="0" readonly="true"/>
+              <Static id="staEnrollTitle" taborder="9" text="자원현황" top="-27" cssclass="sta_WF_compTitle01" left="0" onclick="sta_title_onclick" height="58" right="Static10_00:-500"/>
+              <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="10" width="65" height="28" right="70" taborder="10" onclick="btn_save_onclick"/>
+              <Combo id="cboAskKind" taborder="11" left="staAskKind:10" top="81" width="215" height="26" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" text="" readonly="true">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">선택</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">AST-020-010</Col>
+                      <Col id="datacolumn">회의실</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">AST-020-020</Col>
+                      <Col id="datacolumn">서버</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">AST-020-030</Col>
+                      <Col id="datacolumn">컴퓨터</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">AST-020-040</Col>
+                      <Col id="datacolumn">사무실비품</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtRqstrId" taborder="12" left="staRqstrNm:10" height="26" top="48" readonly="true" width="285"/>
+              <Static id="staWorkCn" taborder="14" cssclass="sta_WF_condition02_L" left="0" top="474" height="178" text="비고" width="150"/>
+              <TextArea id="textWorkCn" taborder="13" oneditclick="TextArea01_oneditclick" left="staWorkCn:-1" top="474" height="178" onchanged="Div01_TextArea01_00_onchanged" right="0" readonly="false"/>
+              <Static id="Static10_00_00_00_01_00" taborder="15" cssclass="sta_WF_condition02box" left="0" top="650" height="34" text="" right="0"/>
+              <Static id="staWorkAtchFileNm" taborder="16" text="첨부파일" cssclass="sta_WF_condition02_L" left="0" top="650" width="150" height="34"/>
+              <Edit id="edtWorkAtchFileNm" taborder="17" left="staWorkAtchFileNm:10" width="445" height="26" top="654" readonly="true"/>
+              <Button id="btnWokrDownload" taborder="18" text="다운로드" cssclass="btn_WF_grdArrDown" top="654" width="85" height="26" left="edtWorkAtchFileNm:10"/>
+              <Button id="btnWorkUpload" taborder="19" text="업로드" cssclass="btn_WF_grdUpload" top="654" width="73" height="26" left="btnWokrDownload:5"/>
+              <Button id="btnModify" text="닫기" cssclass="btn_WF_icoExit" visible="true" top="10" width="65" height="28" taborder="20" onclick="divResisterForm_btnModify_onclick" left="btnSave:5"/>
+              <Static id="starqstrDt00" taborder="21" text="자원명" cssclass="sta_WF_condition02" left="25.00%" top="44" width="150" height="34"/>
+              <Edit id="edtrqstrDt00" taborder="22" left="starqstrDt00:10" top="48" height="26" readonly="true" password="false" width="670"/>
+              <Static id="Static10_00_00_01" taborder="23" cssclass="sta_WF_condition02box" left="0" top="110" height="34" text="" right="0"/>
+              <Static id="staAskKind00" taborder="24" text="최초 등록일" cssclass="sta_WF_condition02_LEssential" left="0" top="110" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Calendar id="calCpltDueDt00" taborder="25" displaynulltext="____-__-__" left="staAskKind00:10" top="114" width="215" height="26" dateformat="yyyyMMdd" editformat="yyyyMMdd" readonly="true"/>
+              <Static id="Static10_00_00_01_00" taborder="26" cssclass="sta_WF_condition02box" left="0" top="143" height="34" text="" right="0"/>
+              <Static id="staAskKind00_01" taborder="27" text="관리부서" cssclass="sta_WF_condition02_LEssential" left="0" top="143" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="staAskKind00_00_00" taborder="28" text="관리담당자" cssclass="sta_WF_condition02" left="455" top="143" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Edit id="edtWorkPicNm00_00" taborder="29" left="staAskKind00_00_00:10" width="151" height="26" top="146" readonly="true"/>
+              <Static id="Static10_00_00_01_00_00" taborder="30" cssclass="sta_WF_condition02box" left="0" top="174" height="34" text="" right="0"/>
+              <Static id="staAskKind00_01_00" taborder="31" text="제조사" cssclass="sta_WF_condition02_L" left="0" top="174" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="staAskKind00_01_00_00" taborder="32" text="수량" cssclass="sta_WF_condition02" left="455" top="174" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Edit id="edtWorkPicNm00_00_00" taborder="33" left="staAskKind00_01_00_00:10" width="151" height="26" top="178" readonly="false"/>
+              <Combo id="cboWorkType00" taborder="34" left="edtWorkPicNm00_00_00:5" top="178" width="108" height="26" value="" index="-1" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" readonly="false">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">선택</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">EA</Col>
+                      <Col id="codecolumn">CMW-030-010</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">SET</Col>
+                      <Col id="codecolumn">CMW-030-020</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">식</Col>
+                      <Col id="codecolumn">CMW-030-030</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">KG</Col>
+                      <Col id="codecolumn">CMW-030-040</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtWorkPicNm00_00_01" taborder="35" left="staAskKind00_01:10" width="186" height="26" top="146" readonly="true"/>
+              <Edit id="edtWorkPicNm00_00_01_00" taborder="36" left="staAskKind00_01_00:10" width="186" height="26" top="178" readonly="true"/>
+              <Static id="staDetailTit" taborder="37" text="상세정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="4" top="staWorkAtchFileNm:10" height="45" width="81"/>
+              <Grid id="grdDetailInfo" taborder="38" left="0" binddataset="dsDetailList" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onexpandup="divSiteResult_grdSiteList_onexpandup" height="533" top="staDetailTit:0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="58" band="left"/>
+                      <Column size="100"/>
+                      <Column size="190"/>
+                      <Column size="150"/>
+                      <Column size="195"/>
+                      <Column size="98"/>
+                      <Column size="85"/>
+                      <Column size="89"/>
+                      <Column size="89"/>
+                      <Column size="89"/>
+                      <Column size="101"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="1" text="순번"/>
+                      <Cell col="2" text="구분"/>
+                      <Cell col="3" text="자원 고유번호"/>
+                      <Cell col="4" text="취득일"/>
+                      <Cell col="5" text="사용부서"/>
+                      <Cell col="6" text="사용자"/>
+                      <Cell col="7" text="상태"/>
+                      <Cell col="8" text="사용시작일"/>
+                      <Cell col="9" text="반납예정일"/>
+                      <Cell col="10" text="반납일"/>
+                      <Cell col="11" text="사용여부"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="1" expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="2"/>
+                      <Cell col="3" displaytype="normal" edittype="none" text="bind:astSrlNo" combodatacol="text" textAlign="center" combocodecol="value"/>
+                      <Cell col="4" text="bind:astAqstnYmd" textAlign="center" editmaxlength="-1" displaytype="normal" edittype="none" expandshow="hide" expandsize="16"/>
+                      <Cell col="5" text="bind:astUseDeptCdNm" editmaxlength="20" textAlign="center" displaytype="normal" edittype="text"/>
+                      <Cell col="6" text="bind:astUseUserIdNm" edittype="text" displaytype="normal" textAlign="center"/>
+                      <Cell col="7" text="bind:astSttsCd" edittype="none" displaytype="normal" combodataset="dsUseYn" combocodecol="value" combodatacol="text" textAlign="left"/>
+                      <Cell col="8" displaytype="date" edittype="none" text="bind:astUseBgnYmd" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="9" text="bind:astRtnDueYmd" displaytype="date" edittype="none" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="10" displaytype="date" edittype="date" calendardateformat="yyyy-MM-dd" text="bind:astRtnYmd"/>
+                      <Cell col="11" text="bind:useYn" displaytype="normal" edittype="none" combodataset="dsUseYn" combocodecol="value" combodatacol="text"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnDept" taborder="39" cssclass="btn_WF_frmSearch" left="edtWorkPicNm00_00_01:5" top="146" width="26" height="26" text="" onclick="divResisterForm_btnDeptMngr_onclick"/>
+              <Button id="btnPic" taborder="40" cssclass="btn_WF_frmSearch" left="edtWorkPicNm00_00:5" top="146" width="26" height="26" text="" onclick="divResisterForm_btnPic_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="astNo" type="STRING" size="256"/>
+          <Column id="astNm" type="STRING" size="256"/>
+          <Column id="astAlias" type="STRING" size="256"/>
+          <Column id="astDivCd" type="STRING" size="256"/>
+          <Column id="astDivCdNm" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="astMngDeptCd" type="STRING" size="256"/>
+          <Column id="astMngDeptCdNm" type="STRING" size="256"/>
+          <Column id="astMngPicId" type="STRING" size="256"/>
+          <Column id="astMngPicIdNm" type="STRING" size="256"/>
+          <Column id="astMftrNm" type="STRING" size="256"/>
+          <Column id="astQty" type="STRING" size="256"/>
+          <Column id="astUom" type="STRING" size="256"/>
+          <Column id="astDesc" type="STRING" size="256"/>
+          <Column id="astRmk" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="astNo" type="STRING" size="256"/>
+          <Column id="astMngPicId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAskKindCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsDetailList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="astSrlNo" type="STRING" size="256"/>
+          <Column id="astAqstnYmd" type="STRING" size="256"/>
+          <Column id="astUseDeptCd" type="STRING" size="256"/>
+          <Column id="astUseDeptCdNm" type="STRING" size="256"/>
+          <Column id="astUseUserId" type="STRING" size="256"/>
+          <Column id="astUseUserIdNm" type="STRING" size="256"/>
+          <Column id="astSttsCd" type="STRING" size="256"/>
+          <Column id="astSttsCdNm" type="STRING" size="256"/>
+          <Column id="astRtnDueYmd" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="astUseBgnYmd" type="STRING" size="256"/>
+          <Column id="astRtnYmd" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  처리 등록
+*  MenuPath      
+*  FileName      AST_1060M.xfdl 
+*  Creator 	     yuyr
+*  CreateDate    2023.12.15
+*  Desction      자원 현황 상세
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.15   yuyr 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+var astNo = this.getOwnerFrame().tabArgs.param.astNo;
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.dsSearch.setColumn(0, "astNo", astNo);
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/*
+ * description 자원등록 상세조회
+ */
+this.fnSearch = function()
+{	
+	this.gfnTransaction("getResourcesItem", "ast/resources/getResourcesItem.do", "dsSearch", "dsList dsDetailList", "", "fnCallback");
+};
+
+/*
+ * description 자원등록 상세조회
+ */
+this.fnUpdate = function()
+{	
+	this.gfnTransaction("getResourcesUpdate", "ast/resources/getResourcesUpdate.do", "dsList dsDetailList", "", "", "fnCallback");
+};
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getResourcesItem":
+            break;
+		case "getAstRqstApply":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.				
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+		case "getResourcesUpdate":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.				
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;	
+		case "userSearchPopupMngr":
+			var result = this.gfnGetPopupRtn();
+			if (result == null) {
+				return;     // 취소시 항목의 ID를 변경하지 않음
+			}		
+			var sUser = result.user;
+			
+			if (!result.canceled) {
+				this.dsList.setColumn(0, "astMngPicId", sUser.userId);
+				this.dsList.setColumn(0, "astMngPicIdMember", sUser.memberId);
+				this.dsList.setColumn(0, "astMngPicIdNm", sUser.userNmKr);
+			}
+			break;
+		case "deptSearchPopup":
+			var result = this.gfnGetPopupRtn();
+			if (result == null) {
+				return;     // 취소시 항목의 프로그램 ID를 변경하지 않음
+			}		
+			var sDept = result.dept;
+
+			if (!result.canceled) {
+				this.dsList.setColumn(0, "astMngDeptCd", sDept.deptCd);  //  팝업창 sDept[0].deptCd를 "upDeptCd"에 담음
+				this.dsList.setColumn(0, "astMngDeptCdNm", sDept.deptNm);			
+			}
+			break;
+		default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 자원번호 검색
+*/
+this.divResisterForm_btnDeptMngr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var args = {
+        mode: "single"
+    };
+	
+	this.gfnOpenPopup("deptSearchPopup", "cmm::deptSearchPopup.xfdl", args, "fnCallback", "");
+};
+
+this.divResisterForm_btnPic_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+		const args = {
+        mode: "single",
+        enableReset: false
+    };
+	
+	this.gfnOpenPopup("userSearchPopupMngr", "cmm::userSearchPopup.xfdl", args, "fnCallback", "");	
+};
+
+/**
+ * description 현재 창 닫기
+*/
+this.divResisterForm_btnModify_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().closeTab(this.getOwnerFrame().tabArgs.tabId);
+};
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+ /**
+ * description 저장 전 확인
+*/
+this.fnBeforeSave = function ()
+{
+	if(this.dsList.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  	// 저장할 데이터가 없습니다.
+		return;
+	}
+	
+	if (!this.gfnDsIsUpdated(this.dsList)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+     if (!this.fnValidate()) {
+		return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnUpdate", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+/**
+ * description 유효성 체크
+*/
+ this.fnValidate = function ()
+ {
+     if (!this.gfnDsIsUpdated(this.dsList)) {
+ 		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+ 		return false;
+     }
+	 
+     var args = [
+        ["astNm", "NULL|MAX_LEN:50", "자원명"]
+    ];
+	
+	if (!this.gfnCheckGrid(this.dsList, args, "")) {
+        return false;
+    }
+	return true;
+ };
+
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnUpdate();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divResisterForm.form.edtTitle" propid="value" datasetid="dsSearch" columnid="astNo"/>
+      <BindItem id="item1" compid="divResisterForm.form.edtrqstrDt00" propid="value" datasetid="dsList" columnid="astNm"/>
+      <BindItem id="item2" compid="divResisterForm.form.edtRqstrId" propid="value" datasetid="dsList" columnid="astAlias"/>
+      <BindItem id="item3" compid="divResisterForm.form.cboAskKind" propid="value" datasetid="dsList" columnid="astDivCd"/>
+      <BindItem id="item4" compid="divResisterForm.form.calCpltDueDt00" propid="value" datasetid="dsList" columnid="rgstDt"/>
+      <BindItem id="item5" compid="divResisterForm.form.edtWorkPicNm00_00_01" propid="value" datasetid="dsList" columnid="astMngDeptCdNm"/>
+      <BindItem id="item6" compid="divResisterForm.form.edtWorkPicNm00_00" propid="value" datasetid="dsList" columnid="astMngPicIdNm"/>
+      <BindItem id="item7" compid="divResisterForm.form.edtWorkPicNm00_00_01_00" propid="value" datasetid="dsList" columnid="astMftrNm"/>
+      <BindItem id="item8" compid="divResisterForm.form.edtWorkPicNm00_00_00" propid="value" datasetid="dsList" columnid="astQty"/>
+      <BindItem id="item9" compid="divResisterForm.form.cboWorkType00" propid="value" datasetid="dsList" columnid="astUom"/>
+      <BindItem id="item10" compid="divResisterForm.form.textCn" propid="value" datasetid="dsList" columnid="astDesc"/>
+      <BindItem id="item11" compid="divResisterForm.form.textWorkCn" propid="value" datasetid="dsList" columnid="astRmk"/>
+    </Bind>
+  </Form>
+</FDL>

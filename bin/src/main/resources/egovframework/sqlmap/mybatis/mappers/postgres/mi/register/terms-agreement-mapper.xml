@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.mi.register.service.TermsAgreementDAO">
+
+    <select id="getTermsList" parameterType="map" resultType="termsVO">
+        /* terms-manage-mapper.getTermsList */
+        SELECT SYS_ID
+             , TRMS_ID
+             , TRMS_TITLE
+             , TRMS_CN
+             , ESNTL_YN
+             , USE_YN
+             , SORT_ORDR
+             , RGST_ID
+             , RGST_IP
+             , RGST_DT
+             , UPDT_ID
+             , UPDT_IP
+             , UPDT_DT
+          FROM CMN_TRMS_MNG CTM
+         WHERE USE_YN = 'Y'
+           AND SYS_ID = #{sysId}
+         ORDER BY SORT_ORDR
+    </select>
+</mapper>

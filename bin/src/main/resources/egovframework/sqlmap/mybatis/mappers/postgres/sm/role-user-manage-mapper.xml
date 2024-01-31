@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.sm.role.service.RoleUserManageDAO">
+
+    <select id="getRoleUserSearch" parameterType="map" resultType="roleUserManageVO">
+        /* role-user-manage-mapper.getRoleUserSearch */
+        SELECT CRU.USER_ID
+             , CU.USER_NM_KR AS USER_NM
+             , CU.MEMBER_ID
+             , PM.OGDP_DEPT_NM AS DEPT_NM
+             , PM.JBPS_NM AS JOB_POSITION
+             , CRU.UPDT_REASON
+          FROM CMN_ROLE_USER CRU
+          JOIN CMN_USER CU
+            ON CRU.USER_ID = CU.USER_ID
+          JOIN PTS_MEMBER PM
+            ON CU.MEMBER_ID = PM.MEMBER_ID
+         WHERE CRU.ROLE_CODE = #{searchRoleCode}
+    </select>
+
+    <select id="getUserList" parameterType="map" resultType="roleUserManageVO">
+        /* role-user-manage-mapper.getUserList */
+        SELECT CU.USER_ID
+             , CU.MEMBER_ID
+             , CU.USER_NM_KR AS USER_NM
+             , PM.OGDP_DEPT_NM AS DEPT_NM
+             , PM.JBPS_NM AS JOB_POSITION
+             , PM.OFC_TELNO AS TEL_NO
+             , PM.MBL_TELNO AS PHONE_NO
+             , PM.EML_ADDR AS EMAIL_ADDR
+          FROM CMN_USER CU
+          JOIN PTS_MEMBER PM
+            ON CU.MEMBER_ID = PM.MEMBER_ID
+        <where>
+               CU.USER_ID NOT IN (SELECT RU.USER_ID
+                                    FROM CMN_ROLE_USER RU
+                                   WHERE RU.ROLE_CODE = #{roleCode})
+            <if test="memberId != null and memberId != ''">
+           AND CU.MEMBER_ID LIKE '%' || #{memberId} || '%'
+            </if>
+            <if test="userNm != null and userNm != ''">
+           AND CU.USER_NM_KR LIKE '%' || #{userNm} || '%'
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertRoleUser" parameterType="roleUserManageVO">
+        /* role-user-manage-mapper.insertRoleUser */
+        INSERT INTO CMN_ROLE_USER (ROLE_CODE,
+                                   USER_ID,
+                                   USE_YN,
+                                   USE_YMD,
+                                   END_YMD,
+                                   RGST_ID,
+                                   RGST_IP,
+                                   RGST_DT,
+                                   UPDT_REASON,
+                                   UPDT_ID,
+                                   UPDT_IP,
+                                   UPDT_DT
+        )
+        VALUES (NULLIF(#{roleCode}, ''),
+                NULLIF(#{userId}, ''),
+                NULLIF(#{useYn}, ''),
+                TO_DATE(NULLIF(#{useYmd}, ''), 'YYYYMMDD'),
+                TO_DATE(NULLIF(#{endYmd}, ''), 'YYYYMMDD'),
+                NULLIF(#{sessionUserId}, ''),
+                NULLIF(#{sessionUserIp}, ''),
+                NOW(),
+                NULLIF(#{updtReason}, ''),
+                NULLIF(#{sessionUserId}, ''),
+                NULLIF(#{sessionUserIp}, ''),
+                NOW()
+               )
+    </insert>
+
+    <update id="updateRoleUser" parameterType="roleUserManageVO">
+        /* role-user-manage-mapper.updateRoleUser */
+        UPDATE CMN_ROLE_USER
+           SET UPDT_REASON  = NULLIF(#{updtReason}, '')
+             , UPDT_ID      = NULLIF(#{sessionUserId}, '')
+             , UPDT_IP      = NULLIF(#{sessionUserIp}, '')
+             , UPDT_DT      = NOW()
+         WHERE USER_ID   = #{userId}
+           AND ROLE_CODE = #{roleCode}
+    </update>
+
+    <delete id="deleteRoleUser">
+        /* role-user-manage-mapper.deleteRoleUser */
+        DELETE FROM CMN_ROLE_USER
+         WHERE ROLE_CODE = #{roleCode}
+           AND USER_ID   = #{userId}
+    </delete>
+</mapper>

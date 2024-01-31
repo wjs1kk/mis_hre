@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.hlp.helpRequest.service.HelpRequestListDAO">
+    <!-- 요청 현황 목록 조회 -->
+    <select id = "getHelpRequestList" parameterType="map" resultType="helpRequestVO">
+        /* help-request-mapper.getHelpRequestList */
+        SELECT M.HLP_RQST_NO
+             , M.HLP_RQST_TYPE_CD
+             , (SELECT LINE_CODE_NM_KR
+             FROM CMN_CODE_LINE CL
+             WHERE CL.LINE_CODE = M.HLP_RQST_TYPE_CD) AS HLP_RQST_TYPE_CD_NM
+             , M.HLP_RQST_TTL
+             , P.HLP_WK_CLS_CD
+             , M.HLP_RQSTR_ID
+             , (SELECT MEMBER_ID
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = M.HLP_RQSTR_ID) AS HLP_RQSTR_ID_MEMBER
+             , (SELECT USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = M.HLP_RQSTR_ID) AS HLP_RQSTR_ID_NM
+             , M.HLP_STTS_CD
+             , M.HLP_RQST_CN
+             , M.HLP_WK_PIC_ID
+             , (SELECT MEMBER_ID
+                  FROM CMN_USER U
+                 WHERE U.USER_ID = P.HLP_PIC_ID) AS HLP_WK_PIC_ID_MEMBER
+             , P.HLP_PIC_ID
+             , M.HLP_RQST_RSN_CD
+             , (SELECT CODE_NM
+             FROM PTS_STD_CODE SC
+             WHERE SC.CODE_CD = M.HLP_RQST_RSN_CD) AS HLP_RQST_RSN_CD_NM
+             , M.HLP_RQST_DT
+             , M.HLP_WK_CPLT_DT
+             , M.HLP_STTS_CD
+             , (SELECT CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = M.HLP_STTS_CD) AS HLP_STTS_CD_NM
+          FROM PTS_HLP_MNG M
+     LEFT JOIN PTS_HLP_PIC P
+            ON M.HLP_RQST_TYPE_CD = P.HLP_WK_CLS_CD
+          <where>
+            <if test ='hlpRqstTypeCd != null and hlpRqstTypeCd != ""'>
+            AND M.HLP_RQST_TYPE_CD = #{hlpRqstTypeCd}
+            </if>
+            <if test = 'hlpRqstTtl != null and hlpRqstTtl != ""'>
+            AND M.HLP_RQST_TTL LIKE '%' || #{hlpRqstTtl} || '%'
+            </if>
+            <if test = 'hlpRqstrIdMember != null and hlpRqstrIdMember != ""'>
+            AND M.HLP_WK_PIC_ID_MEMBER LIKE '%' || #{hlpRqstrIdMember} || '%'
+            </if>
+            <if test = 'hlpSttsCd != null and hlpSttsCd != ""'>
+            AND M.HLP_STTS_CD = #{hlpSttsCd}
+            </if>
+            <if test = 'hlpRqstNo != null and hlpRqstNo != ""'>
+            AND M.HLP_RQST_NO LIKE '%' || #{hlpRqstNo} || '%'
+            </if>
+            <if test = 'hlpRqstCn != null and hlpRqstCn != ""'>
+            AND M.HLP_RQST_CN LIKE '%' || #{hlpRqstCn} || '%'
+            </if>
+            <if test = 'hlpWkPicIdMember != null and hlpWkPicIdMember != ""'>
+            AND M.HLP_WK_PIC_ID_MEMBER LIKE '%' || #{hlpWkPicIdMember} || '%'
+            </if>
+            <if test = 'hlpRqstRsnCd != null and hlpRqstRsnCd != ""'>
+            AND M.HLP_RQST_RSN_CD = #{hlpRqstRsnCd}
+            </if>
+          </where>
+           ORDER BY HLP_RQST_DT DESC
+        </select>
+    </mapper>

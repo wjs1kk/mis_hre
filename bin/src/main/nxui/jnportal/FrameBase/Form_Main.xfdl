@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Main" width="1920" height="700" titletext="" background="#ffffff" onload="Form_Main_onload">
+    <Layouts>
+      <Layout height="700" width="1920">
+        <Div id="divWork" taborder="1" left="0" top="0" right="0" bottom="0" text="" async="true" onvscroll="divWork_onvscroll" url="pts::PTS_0000M.xfdl"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_Main_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+
+};
+
+]]></Script>
+  </Form>
+</FDL>

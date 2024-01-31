@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.hlp.helpRequest.service.HelpRequestManageDAO">
+
+    <!-- 요청현황 상세 조회 -->
+    <select id="getHelpRequestManage" parameterType="map" resultType="helpRequestVO">
+        /* help-request-manage.getHelpRequestManage */
+        SELECT H.HLP_RQST_NO
+             , H.HLP_RQST_TTL
+             , H.HLP_RQST_TYPE_CD
+             , (SELECT LINE_CODE_NM_KR
+                  FROM CMN_CODE_LINE CCL
+                 WHERE CCL.LINE_CODE = H.HLP_RQST_TYPE_CD) AS HLP_RQST_TYPE_CD_NM
+             , H.HLP_RQSTR_ID
+             , (SELECT USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = H.HLP_RQSTR_ID) AS HLP_RQSTR_ID_NM
+             , (SELECT MEMBER_ID
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = H.HLP_RQSTR_ID) AS HLP_RQSTR_ID_MEMBER
+             , (SELECT MEMBER_ID
+                  FROM CMN_USER U
+                 WHERE U.USER_ID = H.HLP_WK_PIC_ID) AS HLP_WK_PIC_ID_MEMBER
+             , H.HLP_RQST_DT
+             , H.HLP_RQST_RSN_CD
+             , (SELECT CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = H.HLP_RQST_RSN_CD) AS HLP_RQST_RSN_CD_NM
+             , H.HLP_RQST_CN
+             , H.HLP_RQST_ATCH_FILE_ID
+             , H.HLP_WK_PIC_ID
+             , H.HLP_WK_CN
+             , H.HLP_WK_CPLT_YMD
+             , H.HLP_WK_TYPE_CD
+             , TO_CHAR(H.HLP_WK_CPLT_DT, 'YYYY-MM-DD') AS HLP_WK_CPLT_DT
+             , H.HLP_STTS_CD
+             , (SELECT CODE_NM
+                FROM PTS_STD_CODE SC
+               WHERE SC.CODE_CD = H.HLP_STTS_CD) AS HLP_STTS_CD_NM
+          FROM PTS_HLP_MNG H
+         WHERE H.HLP_RQST_NO = #{hlpRqstNo}
+    </select>
+
+    <!-- 요청 등록 입력 저장-->
+    <insert id="insertHelpRequestManage" parameterType="helpRequestVO">
+        /* help-request-manage.insertHelpRequestManage */
+        INSERT
+          INTO PTS_HLP_MNG ( HLP_RQST_NO
+                           , HLP_RQST_TTL
+                           , HLP_RQST_TYPE_CD
+                           , HLP_RQSTR_ID
+                           , HLP_RQST_DT
+                           , HLP_RQST_RSN_CD
+                           , HLP_RQST_CN
+                           , HLP_RQST_ATCH_FILE_ID
+                           , HLP_WK_PIC_ID
+                           , HLP_STTS_CD)
+                    VALUES ( NULLIF(#{hlpRqstNo},'')
+                           , NULLIF(#{hlpRqstTtl},'')
+                           , NULLIF(#{hlpRqstTypeCd},'')
+                           , #{sessionUserId}
+                           , NOW()
+                           , NULLIF(#{hlpRqstRsnCd},'')
+                           , NULLIF(#{hlpRqstCn},'')
+                           , '12345'
+                           , NULLIF(#{hlpWkPicId},'')
+                           , 'HLP-010-010') <!-- 신규작성 -->
+    </insert>
+
+    <!-- 요청 수정 입력 저장-->
+    <update id="updateHelpRequestManage" parameterType="helpRequestVO">
+        /* help-request-manage.updateHelpRequestManage */
+        UPDATE PTS_HLP_MNG
+           SET HLP_RQST_TTL          = NULLIF(#{hlpRqstTtl},'')
+             , HLP_RQST_TYPE_CD      = NULLIF(#{hlpRqstTypeCd},'')
+             , HLP_RQST_DT           = NOW()
+             , HLP_RQST_RSN_CD       = NULLIF(#{hlpRqstRsnCd},'')
+             , HLP_RQST_CN           = NULLIF(#{hlpRqstCn},'')
+         WHERE HLP_RQST_NO           = #{hlpRqstNo}
+    </update>
+
+    <!-- 처리 내용 답변 등록 저장 -->
+    <update id="updateHelpRequestAnswer" parameterType="helpRequestVO" >
+        /* help-request-manage.updateHelpRequestAnswer */
+        UPDATE PTS_HLP_MNG
+           SET HLP_WK_PIC_ID         = NULLIF(#{hlpWkPicId},'')
+             , HLP_STTS_CD           = NULLIF(#{hlpSttsCd},'')
+             , HLP_WK_TYPE_CD        = NULLIF(#{hlpWkTypeCd},'')
+             , HLP_WK_CPLT_YMD       = NULLIF(#{hlpWkCpltYmd},'')
+             , HLP_WK_CPLT_DT        = TO_DATE(NULLIF(#{hlpWkCpltDt}, ''), 'YYYYMMDD')
+             , HLP_WK_CN             = NULLIF(#{hlpWkCn},'')
+             , HLP_RQST_ATCH_FILE_ID = NULLIF(#{hlpRqstAtchFileId},'')
+         WHERE HLP_RQST_NO           = #{hlpRqstNo}
+    </update>
+
+        <!-- 처리 내용 답변 삭제 저장 -->
+    <update id="delUpdateHelpRequestAnswer" parameterType="helpRequestVO" >
+        /* help-request-manage.updateHelpRequestAnswer */
+        UPDATE PTS_HLP_MNG
+           SET HLP_WK_PIC_ID         = NULL
+             , HLP_STTS_CD           = NULLIF(#{hlpSttsCd},'')
+             , HLP_WK_TYPE_CD        = NULLIF(#{hlpWkTypeCd},'')
+             , HLP_WK_CPLT_YMD       = NULL
+             , HLP_WK_CPLT_DT        = NULL
+             , HLP_WK_CN             = NULL
+         WHERE HLP_RQST_NO           = #{hlpRqstNo}
+           AND HLP_WK_PIC_ID         = #{hlpWkPicId}
+    </update>
+
+    <!-- 요청 상세 삭제  -->
+    <delete id="deleteHelpRequestManage" parameterType="helpRequestVO">
+        /* help-request-manage.deleteHelpRequestManage */
+        DELETE
+          FROM PTS_HLP_MNG
+         WHERE HLP_RQST_NO = #{hlpRqstNo}
+    </delete>
+
+</mapper>

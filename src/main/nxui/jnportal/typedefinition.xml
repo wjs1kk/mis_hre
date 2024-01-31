@@ -60,7 +60,7 @@
     <Service prefixid="imagerc" type="resource" url="./_resource_/_images_/" version="0" cachelevel="session" include_subdir="true"/>
     <Service prefixid="font" type="resource" url="./_resource_/_font_/" version="0" cachelevel="session" include_subdir="false"/>
     <Service prefixid="extlib" type="file" url="./_extlib_/" version="0" cachelevel="session" include_subdir="true" communicationversion="0"/>
-    <Service prefixid="svcurl" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://test.jnvalue.net:8088/jnportal/"/>
+    <Service prefixid="svcurl" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://localhost:8080/jnportal/"/>
     <Service prefixid="lib" type="js" url="./lib/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
     <Service prefixid="Base" type="form" url="./Base/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
     <Service prefixid="FrameBase" type="form" url="./FrameBase/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>

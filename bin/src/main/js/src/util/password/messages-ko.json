@@ -1,0 +1,12 @@
+{
+    "Password.InvalidChar": "문자 ''{0}''는 비밀번호에 사용할 수 없습니다.",
+    "Password.InvalidChar.Control": "비밀번호에 올바르지 않은 문자가 포함되어 있습니다.",
+    "Password.InvalidChar.Whitespace": "공백 문자는 비밀번호에 사용할 수 없습니다.",
+    "Password.Required": "비밀번호는 {0}[를|을] 반드시 포함해야 합니다.",
+    "Password.Category.LowerCase": "소문자",
+    "Password.Category.UpperCase": "대문자",
+    "Password.Category.Alpha": "영문자",
+    "Password.Category.Digit": "숫자",
+    "Password.Category.Symbol": "특수문자",
+    "Password.And": "[과|와] "
+}

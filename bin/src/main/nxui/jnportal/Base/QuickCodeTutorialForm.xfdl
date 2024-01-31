@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="sample_SingleDetail" width="600" height="450" titletext="Sing Detail Sample">
+    <Layouts>
+      <Layout width="600" height="450">
+        <View id="view_search" taborder="0" viewtype="FreeForm" viewdataset="viewdataset" text="view_search" left="0" top="0" width="600" height="100">
+          <Layouts>
+            <Layout>
+              <Static id="stcompany" text="Company" left="10" top="10" width="80" height="20"/>
+              <Combo id="cmbcompany" left="100" top="10" width="130" height="20" innerdataset="ds_company" datacolumn="data" codecolumn="code"/>
+              <Static id="stdepartment" text="Department" left="250" top="10" width="80" height="20"/>
+              <Combo id="cmbdepartment" left="340" top="10" width="130" height="20" innerdataset="ds_department" datacolumn="data" codecolumn="code"/>
+              <Static id="stname" text="Name" left="10" top="40" width="80" height="20"/>
+              <Edit id="edtname" left="100" top="40" width="130" height="20"/>
+              <Button id="btnSearch" text="Search" top="10" width="100" right="10" bottom="10"/>
+            </Layout>
+          </Layouts>
+          <Objects>
+            <Dataset id="viewdataset">
+              <ColumnInfo>
+                <Column id="company" type="BLOB" size="80"/>
+                <Column id="department" type="BLOB" size="80"/>
+                <Column id="name" type="STRING" size="80"/>
+              </ColumnInfo>
+              <Rows>
+                <Row>
+                  <Col id="company"/>
+                  <Col id="department"/>
+                  <Col id="name"/>
+                </Row>
+              </Rows>
+            </Dataset>
+            <Dataset id="ds_company">
+              <ColumnInfo>
+                <Column id="code" type="STRING" size="80"/>
+                <Column id="data" type="STRING" size="256"/>
+              </ColumnInfo>
+              <Rows>
+                <Row>
+                  <Col id="code">nexa</Col>
+                  <Col id="data">nexa</Col>
+                </Row>
+                <Row>
+                  <Col id="code">tobesoft</Col>
+                  <Col id="data">tobesoft</Col>
+                </Row>
+              </Rows>
+            </Dataset>
+            <Dataset id="ds_department">
+              <ColumnInfo>
+                <Column id="code" type="STRING" size="80"/>
+                <Column id="data" type="STRING" size="256"/>
+              </ColumnInfo>
+              <Rows>
+                <Row>
+                  <Col id="code">Abroad</Col>
+                  <Col id="data">Abroad</Col>
+                </Row>
+                <Row>
+                  <Col id="code">Management</Col>
+                  <Col id="data">Management</Col>
+                </Row>
+                <Row>
+                  <Col id="code">Marketing</Col>
+                  <Col id="data">Marketing</Col>
+                </Row>
+                <Row>
+                  <Col id="code">R&amp;D</Col>
+                  <Col id="data">R&amp;D</Col>
+                </Row>
+                <Row>
+                  <Col id="code">UI/UX</Col>
+                  <Col id="data">UI/UX</Col>
+                </Row>
+                <Row>
+                  <Col id="code">QA</Col>
+                  <Col id="data">QA</Col>
+                </Row>
+              </Rows>
+            </Dataset>
+          </Objects>
+          <Bind>
+            <BindItem id="cmbcompany_viewdataset" compid="cmbcompany" propid="value" datasetid="viewdataset" columnid="company"/>
+            <BindItem id="cmbdepartment_viewdataset" compid="cmbdepartment" propid="value" datasetid="viewdataset" columnid="department"/>
+            <BindItem id="edtname_viewdataset" compid="edtname" propid="value" datasetid="viewdataset" columnid="name"/>
+          </Bind>
+          <ModelInfo modelserviceid="svcQuickCodeTutorial" serviceid="svcQuickCodeTutorial" modelid="tutorial_SearchEmployee" filepath="svcQuickCodeTutorial.xmodel">
+            <Fields>
+              <Field id="company"/>
+              <Field id="department"/>
+              <Field id="name"/>
+            </Fields>
+            <Components>
+              <Component id="stcompany" fields="company"/>
+              <Component id="cmbcompany" fields="company"/>
+              <Component id="stdepartment" fields="department"/>
+              <Component id="cmbdepartment" fields="department"/>
+              <Component id="stname" fields="name"/>
+              <Component id="edtname" fields="name"/>
+            </Components>
+          </ModelInfo>
+          <ViewTemplateInfo filepath="tutorial_Search_FreeViewTemplate.xviewgen">
+            <Attribute id="use_triggerbutton" value="true"/>
+          </ViewTemplateInfo>
+        </View>
+        <View id="view_master" taborder="1" viewtype="GridView" viewdataset="viewdataset" text="view_master" left="0" top="100" width="600" height="350">
+          <Layouts>
+            <Layout>
+              <Grid id="grdMaster" left="0" top="0" right="0" bottom="0" binddataset="viewdataset">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="80" band="body"/>
+                      <Column size="80" band="body"/>
+                      <Column size="80" band="body"/>
+                      <Column size="80" band="body"/>
+                      <Column size="80" band="body"/>
+                      <Column size="80" band="body"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24" band="body"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell id="cell_company" col="0" row="0" text="Company" displaytype="text" edittype="none"/>
+                      <Cell id="cell_department" col="1" row="0" text="Department" displaytype="text" edittype="none"/>
+                      <Cell id="cell_name" col="2" row="0" text="Name" displaytype="text" edittype="none"/>
+                      <Cell id="cell_position" col="3" row="0" text="Position" displaytype="text" edittype="none"/>
+                      <Cell id="cell_phone" col="4" row="0" text="Phone" displaytype="text" edittype="none"/>
+                      <Cell id="cell_address" col="5" row="0" text="Address" displaytype="text" edittype="none"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell id="cell_company" col="0" row="0" text="bind:company" displaytype="text" edittype="none"/>
+                      <Cell id="cell_department" col="1" row="0" text="bind:department" displaytype="text" edittype="none"/>
+                      <Cell id="cell_name" col="2" row="0" text="bind:name" displaytype="text" edittype="none"/>
+                      <Cell id="cell_position" col="3" row="0" text="bind:position" displaytype="text" edittype="none"/>
+                      <Cell id="cell_phone" col="4" row="0" text="bind:phone" displaytype="text" edittype="none"/>
+                      <Cell id="cell_address" col="5" row="0" text="bind:address" displaytype="text" edittype="none"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+          <Objects>
+            <Dataset id="viewdataset">
+              <ColumnInfo>
+                <Column id="company" type="BLOB" size="80"/>
+                <Column id="department" type="BLOB" size="80"/>
+                <Column id="name" type="STRING" size="80"/>
+                <Column id="position" type="STRING" size="80"/>
+                <Column id="phone" type="STRING" size="80"/>
+                <Column id="address" type="STRING" size="256"/>
+              </ColumnInfo>
+              <Rows>
+                <Row>
+                  <Col id="company"/>
+                  <Col id="department"/>
+                  <Col id="name"/>
+                  <Col id="position"/>
+                  <Col id="phone"/>
+                  <Col id="address"/>
+                </Row>
+              </Rows>
+            </Dataset>
+          </Objects>
+          <ModelInfo modelserviceid="svcQuickCodeTutorial" serviceid="svcQuickCodeTutorial" modelid="tutorial_DetailEmployee" filepath="svcQuickCodeTutorial.xmodel">
+            <Fields>
+              <Field id="company"/>
+              <Field id="department"/>
+              <Field id="name"/>
+              <Field id="position"/>
+              <Field id="phone"/>
+              <Field id="address"/>
+            </Fields>
+            <Components>
+              <Component id="grdMaster" fields="company,department,name,position,phone,address"/>
+            </Components>
+          </ModelInfo>
+          <ViewTemplateInfo filepath="tutorial_Master_GridViewTemplate.xviewgen">
+            <Attribute id="use_addbutton" value="false"/>
+          </ViewTemplateInfo>
+        </View>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <TutorialQueryAction id="TutorialQueryAction00" targetview="view_master" serviceid="svcSearchEmployee" serviceurl="http://localhost:8080/">
+        <Contents>
+          <![CDATA[{
+    "model":{
+        "input":[
+            {
+                "name":"view_search:company",
+                "viewid":"view_search",
+                "fieldid":"company",
+                "value":""
+            },
+            {
+                "name":"view_search:department",
+                "viewid":"view_search",
+                "fieldid":"department",
+                "value":""
+            },
+            {
+                "name":"view_search:name",
+                "viewid":"view_search",
+                "fieldid":"name",
+                "value":""
+            }
+        ]
+    }
+}]]>
+        </Contents>
+      </TutorialQueryAction>
+      <TutorialAlertAction id="TutorialAlertAction00" message="THIS IS ALERT">
+        <Contents/>
+      </TutorialAlertAction>
+    </Objects>
+    <Trigger>
+      <TriggerItem id="item0" triggertype="Click" triggerview="view_search" triggerobj="btnSearch" targetaction="TutorialQueryAction00" condition=""/>
+      <TriggerItem id="item1" triggertype="Action Success" triggerview="sample_SingleDetail" triggerobj="TutorialQueryAction00" targetaction="TutorialAlertAction00" condition=""/>
+    </Trigger>
+  </Form>
+</FDL>

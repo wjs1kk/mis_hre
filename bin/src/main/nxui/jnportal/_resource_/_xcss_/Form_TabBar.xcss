@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XCSS version="1.1">
+  <Predefines/>
+  <CSSData><![CDATA[.Form.frm_MDI_tabbar
+{
+	background : #00388E;
+}
+.Button.menu
+{
+	-nexa-icon : url('theme://images/menu.png');
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.btn_MDI_tabprev
+{
+	-nexa-border : 0px none, 1px solid #3360a5;
+	-nexa-icon : url('theme://images/btn_MDI_tabPrev.png');
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.btn_MDI_tabnext
+{
+	-nexa-border : 0px none, 1px solid #3360a5;
+	-nexa-icon : url('theme://images/btn_MDI_tabNext.png');
+	background : transparent;
+	border-radius : 0px;
+}
+.Button.tabbar-button
+{
+	-nexa-border : 0px none, 1px solid #3360a5;
+	background : transparent;
+	border-radius : 0px;
+
+}
+.Button.tabbar-button[status=disabled]
+{
+	opacity : 0.4;
+}
+.Tab
+{
+}
+.Tab.tab_MDI_menu .tabbuttonitem
+{
+	font : normal 700 12px/1 "Malgun Gothic";
+	color : #c9d5e7;
+	background : #4C73B0;
+	-nexa-padding : 0px 10px 0px 0px;
+}
+.Tab.tab_MDI_menu .tabbuttonitem .extrabutton
+{
+	background : url('theme://images/tab_MDI_menuClose.png') no-repeat center center;
+}
+.Tab .tabbuttonitem[userstatus=selected]
+{
+	color : #00388E;
+	background : #DEE7F1;
+}
+.Tab.tab_MDI_menu .tabbuttonitem[userstatus=selected] .extrabutton
+{
+	background : url('theme://images/tab_MDI_menuClose_S.png') no-repeat center center;
+}
+.Tab.tab_MDI_menu .tabbuttonitem .tabbuttonitemtext
+{
+	-nexa-padding : 0px 14px 0px 25px;
+}
+]]></CSSData>
+</XCSS>

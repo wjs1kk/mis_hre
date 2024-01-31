@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_1040P_01" width="1000" titletext="사용자 조회" onload="form_onload" height="496">
+    <Layouts>
+      <Layout>
+        <Div id="divPopup" taborder="0" text="" left="0" top="0" height="496" width="1000">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="회원가입 승인" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" onclick="Static31_onclick" visible="false" left="0" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+              <Static id="Static04_00_00_01_00_00" taborder="5" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="53" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divMemberInfo" taborder="1" left="30" top="70" height="348" cssclass="div_WF_popup" text="" width="940">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static07_01_01_00" taborder="2" left="21" top="115" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="Static07_01_01_00_00" taborder="3" left="21" top="45" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="Static07_01_01_00_01" taborder="4" left="21" top="150" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="staTitle" taborder="7" text="회원정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="20" top="10" height="27" width="160"/>
+              <Static id="Static07_01_02_00" taborder="6" left="203" top="45" width="1" onclick="div_Search_Static07_onclick" background="#dddddd" bottom="20"/>
+              <Static id="sta001" taborder="8" text="망구분" cssclass="sta_WF_condition02" left="20" top="46" width="180" height="34"/>
+              <Static id="sta003" taborder="9" text="소속기관" cssclass="sta_WF_condition02" left="20" top="116" width="180" height="34"/>
+              <Static id="Static10_00" taborder="10" text="w12" visible="false" left="200" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00_00_00" taborder="11" text="w12" visible="false" left="200" top="111" width="12" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="20"/>
+              <Static id="Static10_00_01" taborder="12" text="w12" visible="false" left="200" top="116" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static07_01_01_00_01_00_00" taborder="13" left="20" top="325" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="22"/>
+              <Static id="Static07_01_01_00_01_01" taborder="14" left="21" top="185" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="sta004" taborder="15" text="법인여부" cssclass="sta_WF_condition02" left="20" top="151" width="180" height="34"/>
+              <Static id="Static10_00_01_00" taborder="16" text="w12" visible="false" left="200" top="151" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static07_01_01_00_01_01_00" taborder="17" left="21" top="220" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="sta005" taborder="18" text="사무실전화번호" cssclass="sta_WF_condition02" left="20" top="186" width="180" height="34"/>
+              <Static id="Static10_00_01_00_00" taborder="19" text="w12" visible="false" left="200" top="186" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static07_01_01_00_01_01_00_00" taborder="20" left="21" top="255" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="sta006" taborder="21" text="승인상태" cssclass="sta_WF_condition02" left="20" top="221" width="180" height="34"/>
+              <Static id="Static10_00_01_00_00_00" taborder="22" text="w12" visible="false" left="200" top="221" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00_01_00_00_00_00" taborder="23" text="w12" visible="false" left="200" top="256" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Radio id="rdCorpYn" taborder="24" index="0" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" onitemclick="Div00_Radio00_onitemclick" left="212" top="155" width="136" height="26" innerdataset="innerdataset" onitemchanged="div_Search02_Radio00_onitemchanged" enable="true" readonly="true">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">N</Col>
+                      <Col id="datacolumn">아니오</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">Y</Col>
+                      <Col id="datacolumn">예</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Edit id="edtOgdpInsCd" taborder="25" left="212" top="120" width="80" height="26" cssclass="" enable="true" text="B554621" readonly="true"/>
+              <Edit id="edtOfcNo" taborder="26" left="212" top="190" width="180" height="26" cssclass="" enable="true" text="012-345-6789" readonly="true"/>
+              <Static id="sta011" taborder="27" text="E-mail" cssclass="sta_WF_condition02" left="470" top="151" width="180" height="34" border="0px none, 1px solid #dddddd"/>
+              <Edit id="edtEmail" taborder="28" left="662" top="155" width="180" height="26" cssclass="" enable="true" text="abcd@efg.com" readonly="true"/>
+              <Static id="Static10_00_01_01_00_00" taborder="29" text="w12" visible="false" left="650" top="151" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="sta008" taborder="30" text="신청내용" cssclass="sta_WF_condition02" left="20" top="291" width="180" height="34"/>
+              <Edit id="edtAppltCont" taborder="31" left="212" top="295" width="700" height="26" cssclass="" enable="true" text="000 과제를 위한 회원가입 신청입니다." readonly="true"/>
+              <Edit id="edtHpNo" taborder="32" left="662" top="190" width="180" height="26" cssclass="" enable="true" text="010-1234-5678" readonly="true"/>
+              <Static id="sta012" taborder="33" text="휴대폰전화번호" cssclass="sta_WF_condition02" left="470" top="186" width="180" height="34" border="0px none, 1px solid #dddddd"/>
+              <Static id="sta013" taborder="34" text="신청일" cssclass="sta_WF_condition02" left="470" top="221" width="180" height="34" border="0px none, 1px solid #dddddd"/>
+              <Calendar id="calApplyDt" taborder="35" left="662" top="225" width="118" height="26" dateformat="yyyy-MM-dd" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28" cssclass="essential" enable="true" readonly="true"/>
+              <Edit id="edtOgdpInsNm" taborder="36" left="298" top="120" width="200" height="26" cssclass="" enable="true" text="국방기술진흥연구소" readonly="true"/>
+              <Static id="Static10_00_01_01_00_00_00" taborder="37" text="w12" visible="false" left="650" top="186" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00_01_01_00_00_00_00" taborder="38" text="w12" visible="false" left="650" top="221" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="sta007" taborder="39" text="개인정보 수집 및 이용 동의" cssclass="sta_WF_condition02" left="20" top="256" width="180" height="34"/>
+              <Static id="sta014" taborder="40" text="개인정보 제공 동의" cssclass="sta_WF_condition02" left="470" top="256" width="180" height="34" border="0px none, 1px solid #dddddd"/>
+              <Static id="Static07_01_01_00_01_01_00_00_00" taborder="41" left="21" top="290" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="Static10_00_01_01_00_00_00_00_00" taborder="42" text="w12" visible="false" left="650" top="256" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Radio id="rdPrvcPvsn" taborder="43" index="0" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" onitemclick="Div00_Radio00_onitemclick" left="662" top="260" width="136" height="26" innerdataset="innerdataset" onitemchanged="div_Search02_Radio00_onitemchanged" enable="true" readonly="true">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">Y</Col>
+                      <Col id="datacolumn">동의</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">N</Col>
+                      <Col id="datacolumn">비동의</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Radio id="rdPrvcClct" taborder="44" index="0" codecolumn="codecolumn" datacolumn="datacolumn" direction="vertical" onitemclick="Div00_Radio00_onitemclick" left="212" top="260" width="136" height="26" innerdataset="innerdataset" onitemchanged="div_Search02_Radio00_onitemchanged" enable="true" readonly="true" text="동의">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">Y</Col>
+                      <Col id="datacolumn">동의</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">N</Col>
+                      <Col id="datacolumn">비동의</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Static id="Static07_01_01_00_00_00" taborder="45" left="21" top="80" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+              <Static id="sta002" taborder="46" text="회원명(한글)" cssclass="sta_WF_condition02" left="20" top="81" width="180" height="34"/>
+              <Static id="Static10_00_00" taborder="47" text="w12" visible="false" left="200" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Edit id="edtMemberNmKr" taborder="48" left="212" top="85" width="180" height="26" cssclass="" enable="true" text="김재홍" readonly="true"/>
+              <Static id="sta010" taborder="49" text="회원명(영문)" cssclass="sta_WF_condition02" left="470" top="81" width="180" height="34" border="0px none, 1px solid #dddddd"/>
+              <Edit id="edtMemberNmEng" taborder="50" left="662" top="85" width="180" height="26" cssclass="" enable="true" text="KIM JAEHONG" readonly="true"/>
+              <Static id="Static10_00_01_01_01" taborder="51" text="w12" visible="false" left="650" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="sta009" taborder="52" text="회원ID" cssclass="sta_WF_condition02" left="470" top="46" width="180" height="34" border="0px none, 1px solid #dddddd"/>
+              <Static id="Static10_00_01_01_01_00" taborder="53" text="w12" visible="false" left="650" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Edit id="edtMemberId" taborder="54" left="662" top="50" width="180" height="26" cssclass="" enable="true" text="abc0123456" readonly="true"/>
+              <Static id="Static07_00_00_00" taborder="5" left="20" top="45" width="1" onclick="div_Search_Static07_onclick" background="#00388e" text="" bottom="20"/>
+              <Static id="Static07_00_00_00_00" taborder="55" left="470" top="45" width="1" onclick="div_Search_Static07_onclick" background="#00388e" text="" height="71"/>
+              <Static id="Static07_00_00_00_00_00" taborder="56" left="470" top="150" width="1" onclick="div_Search_Static07_onclick" background="#00388e" text="" height="141"/>
+              <Combo id="cboInOutFlag" taborder="57" left="212" top="50" width="180" height="26" innerdataset="dsInOut" codecolumn="value" datacolumn="text" onkeyup="divSearch_Div00_edt_01_onkeyup" readonly="true"/>
+              <Combo id="cboJoinAprvStts" taborder="58" text="" left="212" top="225" width="180" height="26" innerdataset="dsAprvStts" codecolumn="value" datacolumn="text" index="-1" onkeyup="divSearch_Div00_edt_01_onkeyup" readonly="true"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Button id="btnApprobation" text="승인" cssclass="btn_WF_icoApprobation" width="65" taborder="2" left="400" bottom="24" height="28" onclick="btnApprobation_onclick"/>
+        <Button id="btnReject" text="반려" cssclass="btn_WF_icoReject" width="65" taborder="3" bottom="24" left="468" height="28" onclick="btnReject_onclick"/>
+        <Button id="btnClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="4" right="399" bottom="24" onclick="btnClose_onclick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUserInfo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="memberNmKr" type="STRING" size="256"/>
+          <Column id="memberNmEn" type="STRING" size="256"/>
+          <Column id="ogdpInstCd" type="STRING" size="256"/>
+          <Column id="ogdpInstNm" type="STRING" size="256"/>
+          <Column id="emlAddr" type="STRING" size="256"/>
+          <Column id="ofcTelno" type="STRING" size="256"/>
+          <Column id="mblTelno" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="prvcClctAgreYn" type="STRING" size="256"/>
+          <Column id="prvcPvsnAgreYn" type="STRING" size="256"/>
+          <Column id="applyDt" type="STRING" size="256"/>
+          <Column id="corpYn" type="STRING" size="256"/>
+          <Column id="applyCont" type="STRING" size="256"/>
+          <Column id="joinAprvStts" type="STRING" size="256"/>
+          <Column id="whdwlYn" type="STRING" size="256"/>
+          <Column id="inOrOutFlag" type="STRING" size="256"/>
+          <Column id="mbrNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsInOut" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="text">전체</Col>
+            <Col id="value"/>
+          </Row>
+          <Row>
+            <Col id="text">국방망</Col>
+            <Col id="value">I</Col>
+          </Row>
+          <Row>
+            <Col id="text">인터넷망</Col>
+            <Col id="value">O</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAprvStts">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      memberAprManagePopup.xfdl 
+*  Creator 	     cheonsy
+*  CreateDate    2023.03.30
+*  Desction      회원가입 승인
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.15    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnLoadCombo("loadCombo", "dsAprvStts=CMS:APRV_STTS:C", "fnCallBack");
+	this.dsUserInfo.setColumn(0, "memberId", this.parent.memberId);
+	this.dsUserInfo.setColumn(0, "mbrNo", this.parent.mbrNo);
+	this.dsUserInfo.setColumn(0, "inOrOutFlag", this.parent.inOrOutFlag);
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{  
+	this.gfnTransaction("getAprUserInfo", "cms/getAprUserInfo.do", "dsUserInfo", "dsUserInfo", "", "fnCallBack");
+};
+
+/**
+ * description 승인/반려
+*/
+this.fnSave = function()
+{  
+	this.gfnTransaction("setAprUserInfo", "cms/setAprUserInfo.do", "dsUserInfo", "", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getAprUserInfo":
+			this.fnBtnControll();
+		break;
+		case "setAprUserInfo":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.close();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 승인 버튼
+*/
+this.btnApprobation_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsUserInfo.setColumn(0, "joinAprvStts", "APPROVAL");
+	this.gfnAlert("CM_CFM_APPROVAL", "", "", {trueFunc: "fnSave", falseFunc: "fnReset"});  // 승인하시겠습니까?
+    return;
+
+};
+
+/**
+ * description 반려 버튼
+*/
+this.btnReject_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.dsUserInfo.setColumn(0, "joinAprvStts", "REJECT");
+	this.gfnAlert("CM_CFM_REJECT", "", "", {trueFunc: "fnSave", falseFunc: "fnReset"});  // 반려하시겠습니까?
+	return;
+};
+
+/**
+ * description 닫기버튼
+*/
+this.btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+this.fnBtnControll = function()
+{
+	if(this.dsUserInfo.getColumn(0, "joinAprvStts") == "APPLY"){
+		this.btnApprobation.set_enable(true);
+		this.btnReject.set_enable(true);
+		this.btnClose.set_enable(true);
+	}else if(this.dsUserInfo.getColumn(0, "joinAprvStts") == "APPROVAL"){
+		this.btnApprobation.set_enable(false);
+		this.btnReject.set_enable(false);
+		this.btnClose.set_enable(true);
+	}else if(this.dsUserInfo.getColumn(0, "joinAprvStts") == "REJECT"){
+		this.btnApprobation.set_enable(false);
+		this.btnReject.set_enable(false);
+		this.btnClose.set_enable(true);
+	}
+}
+
+/**
+ * description 상태 승인으로 변경
+*/
+this.fnReset = function()
+{
+	this.dsUserInfo.setColumn(0, "joinAprvStts", "APPLY");
+}]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divMemberInfo.form.edt001" propid="value" datasetid="dsUserInfo" columnid="inOrOutFlag"/>
+      <BindItem id="item1" compid="divMemberInfo.form.edtMemberNmKr" propid="value" datasetid="dsUserInfo" columnid="memberNmKr"/>
+      <BindItem id="item2" compid="divMemberInfo.form.edtMemberId" propid="value" datasetid="dsUserInfo" columnid="memberId"/>
+      <BindItem id="item3" compid="divMemberInfo.form.edtMemberNmEng" propid="value" datasetid="dsUserInfo" columnid="memberNmEn"/>
+      <BindItem id="item4" compid="divMemberInfo.form.edtOgdpInsCd" propid="value" datasetid="dsUserInfo" columnid="ogdpInstCd"/>
+      <BindItem id="item5" compid="divMemberInfo.form.edtOgdpInsNm" propid="value" datasetid="dsUserInfo" columnid="ogdpInstNm"/>
+      <BindItem id="item6" compid="divMemberInfo.form.rdCorpYn" propid="value" datasetid="dsUserInfo" columnid="corpYn"/>
+      <BindItem id="item7" compid="divMemberInfo.form.edtEmail" propid="value" datasetid="dsUserInfo" columnid="emlAddr"/>
+      <BindItem id="item8" compid="divMemberInfo.form.edtOfcNo" propid="value" datasetid="dsUserInfo" columnid="ofcTelno"/>
+      <BindItem id="item9" compid="divMemberInfo.form.edtHpNo" propid="value" datasetid="dsUserInfo" columnid="mblTelno"/>
+      <BindItem id="item10" compid="divMemberInfo.form.RQST_NM00_00_01_00_01" propid="value" datasetid="dsUserInfo" columnid="joinAprvStts"/>
+      <BindItem id="item11" compid="divMemberInfo.form.calApplyDt" propid="value" datasetid="dsUserInfo" columnid="applyDt"/>
+      <BindItem id="item12" compid="divMemberInfo.form.rdPrvcClct" propid="value" datasetid="dsUserInfo" columnid="prvcClctAgreYn"/>
+      <BindItem id="item13" compid="divMemberInfo.form.rdPrvcPvsn" propid="value" datasetid="dsUserInfo" columnid="prvcPvsnAgreYn"/>
+      <BindItem id="item15" compid="divMemberInfo.form.edtAppltCont" propid="value" datasetid="dsUserInfo" columnid="applyCont"/>
+      <BindItem id="item16" compid="divMemberInfo.form.cboInOutFlag" propid="text" datasetid="dsUserInfo" columnid="inOrOutFlag"/>
+      <BindItem id="item14" compid="divMemberInfo.form.cboJoinAprvStts" propid="value" datasetid="dsUserInfo" columnid="joinAprvStts"/>
+      <BindItem id="item17" compid="divMemberInfo.form.cboInOutFlag" propid="value" datasetid="dsUserInfo" columnid="inOrOutFlag"/>
+    </Bind>
+  </Form>
+</FDL>

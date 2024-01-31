@@ -1,0 +1,114 @@
+﻿{
+    "version" : "21.0.0.1",
+    "runtime" :
+    {
+        "target" :
+        {
+            "os" : "windows"
+        },
+        "framework" :
+        [    
+        "./nexacrolib/framework/Framework.js"
+        ],
+        "component" :
+        [    
+        "./nexacrolib/component/CompBase.js",
+        "./nexacrolib/component/ComComp.js",
+        "./nexacrolib/component/Grid.js",
+        "./nexacrolib/component/ListView.js",
+        "./nexacrolib/component/DeviceAPI.js",
+        "./nexacrolib/component/TutorialActions/TutorialAlertAction.js",
+        "./nexacrolib/component/TutorialActions/TutorialQueryAction.js",
+        "./nexacrolib/component/ActionAsset/TranAction.js",
+        "./nexacrolib/component/ActionAsset/MessageAction.js",
+        "./nexacrolib/component/ActionAsset/PopupAction.js",
+        "./nexacrolib/component/extPrototype/Frame.js",
+        "./nexacrolib/component/extPrototype/Util.js",
+        "./nexacrolib/component/extPrototype/Transaction.js",
+        "./nexacrolib/component/extPrototype/Popup.js",
+        "./nexacrolib/component/extPrototype/File.js",
+        "./nexacrolib/component/extPrototype/Message.js",
+        "./nexacrolib/component/extPrototype/Excel.js",
+        "./nexacrolib/component/EcoLibrary/Namespace.js",
+        "./nexacrolib/component/EcoLibrary/Eco.js",
+        "./nexacrolib/component/EcoLibrary/array.js",
+        "./nexacrolib/component/EcoLibrary/date.js",
+        "./nexacrolib/component/EcoLibrary/number.js",
+        "./nexacrolib/component/EcoLibrary/string.js",
+        "./nexacrolib/component/EcoLibrary/object.js",
+        "./nexacrolib/component/EcoLibrary/Style.js",
+        "./nexacrolib/component/EcoLibrary/Logger.js",
+        "./nexacrolib/component/EcoLibrary/Color.js",
+        "./nexacrolib/component/EcoLibrary/XComp.js",
+        "./nexacrolib/component/EcoLibrary/PositionSize.js",
+        "./nexacrolib/component/EcoLibrary/Json.js",
+        "./nexacrolib/component/EcoLibrary/Event.js",
+        "./nexacrolib/component/EcoLibrary/LocalStorage.js",
+        "./nexacrolib/component/EcoLibrary/Factory.js",
+        "./nexacrolib/component/EcoLibrary/util.js",
+        "./nexacrolib/component/ExLib/comm/core.js",
+        "./nexacrolib/component/ExLib/comm/vali.js",
+        "./nexacrolib/component/ExLib/comm/util.js",
+        "./nexacrolib/component/raonkupload/js/raonkupload.js",
+        "./nexacrolib/component/raonkupload/plugin/nexacro/21/raonkupload.nexacro21.js"
+        ],
+        "environment" :
+        [    
+        {
+        "file":"./environment.xml.js"
+        }
+        ],
+        "screen" :
+        [    
+        {"id":"Desktop_screen","type":"desktop","themeid":"theme::krit"}
+        ],
+        "xadl" :
+        [
+        {
+        	"screenid":"Desktop_screen",
+        	"launch":"./jnportal.xadl.js",
+        	"quickview":"./jnportal.xadl.quickview.js",
+        	"form":[
+        				"./FrameBase/Form_Top.xfdl.js",
+        		"./FrameBase/Form_TabBar.xfdl.js",
+        		"./FrameBase/Form_Footer.xfdl.js"
+        	]
+        }
+        ],  
+        "protocol" :
+        {
+            "adaptors" :
+            []
+        },
+        "resource" :
+        {
+            "windows" : {
+                "updateurl" : "./",
+                "timeout" : "30",
+                "retry" : "3",
+                "autoupdate" : "auto",
+                "updatetype" : "server",
+            "common" : {
+                "updateurl" : "",
+                    "resources" :
+                    [{"type" : "Module", "file" : "nexacrolib.zip", "targetpath" : "", "version" : "0"}]
+                }
+            }
+        },
+		"deploy" :
+        {
+            "windows" : {
+                "updateurl" : "./",
+            "common" : {
+                "updateurl" : "",
+                    "resources" :
+                    [{"type" : "Module", "file" : "nexacrolib.zip", "targetpath" : "", "version" : "0"}]
+                }
+            }
+        },
+        "userfont" :
+        [
+
+        ]
+    }
+}

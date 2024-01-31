@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jnv.common.accesslog.service.AccessLoggerDAO">
+
+    <select id="selectMenuIdForUrl" resultType="string">
+        /* access-log-mapper.selectMenuIdForUrl */
+        SELECT CM.MENU_ID
+          FROM CMN_MENU CM
+         WHERE CM.PROG_ID IN (SELECT PROG_ID
+                                FROM CMN_PROG CP
+                               WHERE CP.PROG_URL = #{url}
+                                  OR '/' || CP.PROG_URL = #{url})
+         ORDER BY SORT_ORDR NULLS LAST
+    </select>
+
+    <insert id="insertLog" parameterType="accessLogVO">
+        /* access-log-mapper.insertLog */
+        INSERT
+          INTO CMN_SYS_ACCESS_LOG ( ACCESS_TIME
+                             , FINISH_TIME
+                             , ACCESS_IP
+                             , ACCESS_URL
+                             , USER_ID
+                             , MEMBER_ID
+                             , USER_NM_KR
+                             , MENU_ID
+                             , MENU_NM
+                             , PROG_ID
+                             , PROG_NM
+                             , ACTION_NAME
+                             , ACTION_RESULT
+                             , REQUEST_BODY)
+                      VALUES ( TO_TIMESTAMP(#{accessTime}, 'YYYY-MM-DD HH24:MI:SS.FF')
+                             , NOW()
+                             , #{accessIp}
+                             , #{accessUrl}
+                             , #{userId}
+                             , (SELECT MEMBER_ID FROM CMN_USER WHERE USER_ID = #{userId})
+                             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = #{userId})
+                             , #{menuId}
+                             , (SELECT MENU_NM FROM CMN_MENU WHERE MENU_ID = #{menuId})
+                             , (SELECT PROG_ID FROM CMN_MENU WHERE MENU_ID = #{menuId})
+                             , (SELECT PROG_NM
+                                  FROM CMN_PROG CP
+                                  JOIN CMN_MENU CM
+                                    ON CP.PROG_ID = CM.PROG_ID
+                                WHERE CM.MENU_ID = #{menuId}
+                                FETCH FIRST 1 ROWS ONLY)
+                             , #{actionName}
+                             , #{actionResult}
+                             , #{requestBody})
+    </insert>
+
+    <insert id="insertLogUsingMenuNm" parameterType="accessLogVO">
+        /* access-log-mapper.insertLogUsingMenuNm */
+        INSERT
+          INTO CMN_SYS_ACCESS_LOG ( ACCESS_TIME
+                             , FINISH_TIME
+                             , ACCESS_IP
+                             , ACCESS_URL
+                             , USER_ID
+                             , MEMBER_ID
+                             , USER_NM_KR
+                             , MENU_ID
+                             , MENU_NM
+                             , PROG_ID
+                             , PROG_NM
+                             , ACTION_NAME
+                             , ACTION_RESULT
+                             , REQUEST_BODY)
+                      VALUES ( TO_TIMESTAMP(#{accessTime}, 'YYYY-MM-DD HH24:MI:SS.FF')
+                             , NOW()
+                             , #{accessIp}
+                             , #{accessUrl}
+                             , #{userId}
+                             , (SELECT MEMBER_ID FROM CMN_USER WHERE USER_ID = #{userId})
+                             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = #{userId})
+                             , #{menuId}
+                             , #{menuNm}
+                             , (SELECT PROG_ID FROM CMN_MENU WHERE MENU_ID = #{menuId})
+                             , #{progNm}
+                             , #{actionName}
+                             , #{actionResult}
+                             , #{requestBody})
+    </insert>
+
+    <select id="selectAccessLog" resultType="accessLogVO">
+        /* access-log-mapper.selectAccessLog */
+        SELECT TO_CHAR(A.ACCESS_TIME, 'YYYY-MM-DD HH24:MI:SS') AS ACCESS_TIME
+             , TO_CHAR(A.FINISH_TIME, 'YYYY-MM-DD HH24:MI:SS') AS FINISH_TIME
+             , A.ACCESS_IP
+             , A.ACCESS_URL
+             , A.USER_ID
+             , A.MEMBER_ID
+             , A.USER_NM_KR
+             , A.MENU_ID
+             , A.MENU_NM
+             , A.PROG_ID
+             , A.PROG_NM
+             , A.ACTION_NAME
+             , CASE A.ACTION_RESULT
+                   WHEN 'Y' THEN '성공'
+                   WHEN 'N' THEN '실패'
+               END AS ACTION_RESULT
+             , A.REQUEST_BODY
+          FROM CMN_SYS_ACCESS_LOG A
+        <where>
+            <if test='beginDt != null and beginDt != ""'>
+           AND TRUNC(A.ACCESS_TIME) >=   TO_TIMESTAMP(#{beginDt}, 'YYYY-MM-DD')
+            </if>
+            <if test='endDt != null and endDt != ""'>
+           AND TRUNC(A.ACCESS_TIME) <![CDATA[<=]]> TO_TIMESTAMP(#{endDt}, 'YYYY-MM-DD')
+            </if>
+            <if test='memberId != null and memberId != ""'>
+           AND A.MEMBER_ID          LIKE '%' || COALESCE(#{memberId}, '') || '%'
+            </if>
+            <if test='userNmKr != null and userNmKr != ""'>
+           AND A.USER_NM_KR         LIKE '%' || COALESCE(#{userNmKr}, '') || '%'
+            </if>
+            <if test='menuNm != null and menuNm != ""'>
+           AND A.MENU_NM            LIKE '%' || COALESCE(#{menuNm}, '') || '%'
+            </if>
+            <if test='actionResult != null and actionResult != ""'>
+           AND A.ACTION_RESULT      =    #{actionResult}
+            </if>
+        </where>
+         ORDER BY A.ACCESS_TIME DESC
+    </select>
+
+    <select id="selectAccessInfo" parameterType="accessLogVO" resultType="accessLogVO">
+        /* access-log-mapper.selectAccessInfo */
+         SELECT F.PROG_ID
+              , P.PROG_NM
+              , F.FUNC_ID
+              , F.FUNC_NAME
+              , F.FUNC_PATTERN_TYPE
+              , F.FUNC_CODE
+              , F.FUNC_TYPE
+              , STRING_AGG(M.MENU_ID, ',' ORDER BY M.SORT_ORDR) AS MENU_ID
+              , STRING_AGG(M.MENU_NM, ',' ORDER BY M.SORT_ORDR) AS MENU_NM
+          FROM CMN_PROG_FUNC F
+          JOIN CMN_PROG P
+            ON P.SYS_ID = F.SYS_ID
+           AND P.PROG_ID = F.PROG_ID
+          JOIN CMN_MENU M
+            ON M.SYS_ID = F.SYS_ID
+           AND M.PROG_ID = F.PROG_ID
+         WHERE P.SYS_ID = #{sessionSysId}
+        <if test='menuId != null and menuId != ""'>
+           AND M.MENU_ID = #{menuId}
+        </if>
+           AND F.FUNC_PATTERN = #{accessUrl}
+         GROUP BY F.PROG_ID
+             , P.PROG_NM
+             , F.FUNC_ID
+             , F.FUNC_NAME
+             , F.FUNC_PATTERN_TYPE
+             , F.FUNC_CODE
+             , F.FUNC_TYPE
+    </select>
+
+    <insert id="insertAccessLog" parameterType="accessLogVO">
+        /* access-log-mapper.insertAccessLog */
+        INSERT
+          INTO CMN_SYS_ACCESS_LOG ( ACCESS_TIME
+                             , FINISH_TIME
+                             , ACCESS_IP
+                             , ACCESS_URL
+                             , USER_ID
+                             , MEMBER_ID
+                             , USER_NM_KR
+                             , SYS_ID
+                             , SYS_NM
+                             , MENU_ID
+                             , MENU_NM
+                             , PROG_ID
+                             , PROG_NM
+                             , ACTION_NAME
+                             , ACTION_RESULT
+                             , REQUEST_BODY
+                             , ELAPSED_TIME)
+                      VALUES ( TO_TIMESTAMP(#{accessTime}, 'YYYY-MM-DD HH24:MI:SS.FF3')
+                             , TO_TIMESTAMP(#{finishTime}, 'YYYY-MM-DD HH24:MI:SS.FF3')
+                             , #{accessIp}
+                             , #{accessUrl}
+                             , #{userId}
+                             , #{memberId}
+                             , #{userNmKr}
+                             , #{sysId}
+                             , (SELECT SYS_NM FROM CMN_SYSTEM WHERE SYS_ID = #{sysId})
+                             , #{menuId}
+                             , #{menuNm}
+                             , #{progId}
+                             , #{progNm}
+                             , #{actionName}
+                             , #{actionResult}
+                             , #{requestBody}
+                             , #{elapsedTime})
+    </insert>
+
+    <select id="selectMenuInfo">
+        /* access-logger-mapper.selectMenuInfo */
+        SELECT CM.MENU_NM, CM.MENU_ID, CM.SYS_ID, CP.PROG_ID, CP.PROG_NM
+          FROM CMN_MENU CM
+          LEFT JOIN CMN_PROG CP
+            ON CM.SYS_ID = CP.SYS_ID
+           AND CM.PROG_ID = CP.PROG_ID
+         WHERE CM.SYS_ID = #{sysId}
+           AND CM.MENU_ID = #{menuId}
+    </select>
+</mapper>

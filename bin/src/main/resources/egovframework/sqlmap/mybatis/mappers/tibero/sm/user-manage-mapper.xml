@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.sm.user.service.UserManageDAO">
+
+    <select id="getUserManageList" parameterType="map" resultType="UserManageVO">
+        /*user-manage-mapper.getuserManageList*/
+        SELECT M.USER_ID
+             , M.MEMBER_ID
+             , M.USER_NM_KR
+             , M.USER_NM_EN
+             , P.EML_ADDR AS EMAIL_ADDR
+             , P.OFC_TELNO AS TEL_NO
+             , P.MBL_TELNO AS PHONE_NO
+             , M.USE_YN
+             , M.RGST_ID
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = M.RGST_ID) AS RGST_NM
+             , M.RGST_IP
+             , TO_CHAR(M.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , M.UPDT_ID
+             , M.UPDT_IP
+             , M.UPDT_DT
+             , P.OGDP_DEPT_NM AS DEPT_NM
+             , P.JBPS_NM AS JOB_POSITION
+             , TO_CHAR(M.PW_EXPIRE_DT, 'YYYY-MM-DD') AS PW_EXPIRE_DT
+          FROM CMN_USER M
+          JOIN PTS_MEMBER P
+            ON M.MEMBER_ID = P.MEMBER_ID
+        <where>
+            <if test="memberId != null and memberId != ''">
+           AND M.MEMBER_ID LIKE '%'|| #{memberId} || '%'
+            </if>
+            <if test="userNmKr != null and userNmKr != ''">
+           AND USER_NM_KR LIKE '%' || #{userNmKr} || '%'
+            </if>
+            <if test="jobPosition != null and jobPosition != ''">
+           AND P.JBPS_NM LIKE '%' || #{jobPosition} || '%'
+            </if>
+        </where>
+         ORDER BY M.MEMBER_ID
+    </select>
+
+    <select id="getUserManageItem">
+        SELECT CU.USER_ID
+             , CU.MEMBER_ID
+             , CU.USER_NM_KR
+             , CU.USER_NM_EN
+             , PM.PASSWD AS ORIG_PASSWD
+             , PM.EML_ADDR AS EMAIL_ADDR
+             , PM.OFC_TELNO AS TEL_NO
+             , PM.MBL_TELNO AS PHONE_NO
+             , PM.JBPS_NM AS JOB_POSITION
+             , PM.OGDP_DEPT_NM AS DEPT_NM
+             , CU.USE_YN
+             , CU.RGST_ID
+             , CU.RGST_IP
+             , CU.RGST_DT
+             , CU.UPDT_ID
+             , CU.UPDT_IP
+             , CU.UPDT_DT
+             , CU.PW_EXPIRE_DT
+          FROM CMN_USER CU
+          JOIN PTS_MEMBER PM
+               ON CU.MEMBER_ID = PM.MEMBER_ID
+         WHERE CU.USER_ID = #{userId}
+    </select>
+
+    <insert id="insertUserManage" parameterType="UserManageVO">
+        /* user-manage-mapper.insertUserManage */
+        INSERT INTO CMN_USER (USER_ID,
+                              MEMBER_ID,
+                              USER_NM_KR,
+                              USER_NM_EN,
+                              USE_YN,
+                              PW_EXPIRE_DT,
+                              IN_OUT_DIV,
+                              RGST_ID,
+                              RGST_IP,
+                              RGST_DT,
+                              UPDT_ID,
+                              UPDT_IP)
+        VALUES (#{userId},
+                #{memberId},
+                #{userNmKr},
+                #{userNmEn},
+                'Y',
+                ADD_MONTHS(TRUNC(SYSDATE, 'DD'), 6),
+                'I',
+                #{sessionUserId},
+                #{sessionUserIp},
+                SYSDATE,
+                #{sessionUserId},
+                #{sessionUserIp})
+    </insert>
+
+    <insert id="insertMember">
+        INSERT INTO PTS_MEMBER (
+            MEMBER_ID,
+            MEMBER_NM_KR,
+            PASSWD,
+            EML_ADDR,
+            OFC_TELNO,
+            MBL_TELNO,
+            APPLY_DT,
+            WHDWL_YN,
+            CORP_YN,
+            USE_YN,
+            JOIN_APRV_STTS,
+            JOIN_AUTZR,
+            JOIN_APRV_DT,
+            RGST_ID,
+            RGST_DT,
+            RGST_IP,
+            UPDT_ID,
+            UPDT_DT,
+            UPDT_IP,
+            JBPS_NM,
+            OGDP_DEPT_NM)
+        VALUES (
+            #{memberId},
+            #{userNmKr},
+            #{passwd},
+            #{emailAddr},
+            #{telNo},
+            #{phoneNo},
+            SYSDATE,
+            'N',
+            'N',
+            'Y',
+            'Y',
+            #{sessionUserId},
+            SYSDATE,
+            #{sessionUserId},
+            SYSDATE,
+            #{sessionUserIp},
+            #{sessionUserId},
+            SYSDATE,
+            #{sessionUserIp},
+            #{jobPosition},
+            #{deptNm}
+        )
+    </insert>
+
+    <update id="updateUserManage" parameterType="UserManageVO">
+        /* user-manage-mapper.updateUserManage */
+        UPDATE CMN_USER
+           SET USER_NM_KR   = #{userNmKr}
+        <if test='passwd != null and passwd != ""'>
+             , PW_EXPIRE_DT = ADD_MONTHS(TRUNC(SYSDATE, 'DD'), 6)
+        </if>
+             , USE_YN       = #{useYn}
+             , UPDT_ID      = #{sessionUserId}
+             , UPDT_IP      = #{sessionUserIp}
+             , UPDT_DT      = SYSDATE
+         WHERE USER_ID      = #{userId}
+    </update>
+
+    <update id="updateMember">
+        /* user-manage-mapper.updateMember */
+        UPDATE PTS_MEMBER
+           SET EML_ADDR = #{emailAddr}
+             , OFC_TELNO = #{telNo}
+             , MBL_TELNO = #{phoneNo}
+             , JBPS_NM = #{jobPosition}
+             , OGDP_DEPT_NM = #{deptNm}
+        <if test='passwd != null and passwd != ""'>
+             , PASSWD = #{passwd}
+        </if>
+             , UPDT_ID = #{sessionUserId}
+             , UPDT_IP = #{sessionUserIp}
+             , UPDT_DT = SYSDATE
+         WHERE MEMBER_ID = #{memberId}
+    </update>
+
+    <delete id="deleteUserManage" parameterType="UserManageVO">
+        /* user-manage-mapper.deleteUserManage */
+        DELETE FROM CMN_USER
+         WHERE USER_ID = #{userId}
+    </delete>
+
+    <delete id="deleteMember">
+        /* user-manage-mapper.deleteMember */
+        DELETE FROM PTS_MEMBER
+         WHERE MEMBER_ID = #{memberId}
+    </delete>
+
+    <select id="getMemberIdExists">
+        SELECT CASE COUNT(*)
+                   WHEN 0 THEN 0
+                   ELSE 1
+               END AS VAL
+          FROM CMN_USER
+         WHERE MEMBER_ID = #{memberId}
+    </select>
+</mapper>

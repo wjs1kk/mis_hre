@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.sm.messageManage.service.MessageManageDAO">
+
+    <select id="getMessageList" parameterType="map" resultType="messageManageVO">
+        /* message-manage-mapper.getMessageList */
+        SELECT M.MSG_ID
+             , M.MSG
+             , M.ENG_MSG
+             , M.MSG_TYPE
+             , M.USE_YN
+             , M.RMK
+             , M.RGST_ID
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = M.RGST_ID) AS RGST_NM
+             , TO_CHAR(M.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , M.RGST_IP
+             , M.UPDT_ID
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = M.UPDT_ID) AS UPDT_NM
+             , TO_CHAR(M.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+             , M.UPDT_IP
+          FROM CMN_MESSAGE M
+         WHERE 1=1
+       <if test="msgId != null and msgId != ''">
+           AND M.MSG_ID LIKE #{msgId} || '%'
+       </if>
+       <if test="msg != null and msg != ''">
+           AND M.MSG LIKE '%' || #{msg} || '%'
+       </if>
+         ORDER BY M.MSG_ID
+    </select>
+
+    <insert id="insertMessage" parameterType="messageManageVO">
+        /* message-manage-mapper.insertMessage */
+        INSERT
+          INTO CMN_MESSAGE ( MSG_ID
+                          , MSG
+                          , ENG_MSG
+                          , MSG_TYPE
+                          , USE_YN
+                          , RMK
+                          , RGST_ID
+                          , RGST_DT
+                          , RGST_IP
+                          , UPDT_ID
+                          , UPDT_DT
+                          , UPDT_IP)
+                   VALUES ( #{msgId}
+                          , #{msg}
+                          , #{engMsg}
+                          , #{msgType}
+                          , #{useYn}
+                          , #{rmk}
+                          , #{sessionUserId}
+                          , SYSDATE
+                          , #{sessionUserIp}
+                          , #{sessionUserId}
+                          , SYSDATE
+                          , #{sessionUserIp})
+    </insert>
+
+    <update id="updateMessage" parameterType="messageManageVO">
+        /* message-manage-mapper.updateMessage */
+        UPDATE CMN_MESSAGE
+           SET MSG_ID            = #{msgId}
+             , MSG               = #{msg}
+             , ENG_MSG           = #{engMsg}
+             , MSG_TYPE          = #{msgType}
+             , USE_YN            = #{useYn}
+             , RMK                  = #{rmk}
+             , UPDT_ID           = #{sessionUserId}
+             , UPDT_IP           = #{sessionUserIp}
+             , UPDT_DT           = SYSDATE
+         WHERE MSG_ID = #{msgId}
+    </update>
+
+    <delete id="deleteMessage" parameterType="messageManageVO">
+        /* message-manage-mapper.deleteMessage */
+        DELETE
+          FROM CMN_MESSAGE
+         WHERE MSG_ID = #{msgId}
+    </delete>
+
+    <select id="getDuplicatedKeyCnt" parameterType="messageManageVO" resultType="int">
+        /* message-manage-mapper.getDuplicatedKeyCnt */
+        SELECT COUNT(*)
+          FROM CMN_MESSAGE
+         WHERE MSG_ID = #{msgId}
+    </select>
+</mapper>

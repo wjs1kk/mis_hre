@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.log.service.ProgramFuncUseDAO">
+
+    <select id="getUserByMenuStat" parameterType="map" resultType="programFuncUseVO">
+        /* program-func-use-mapper.getUserByMenuStat */
+        SELECT TO_CHAR(DATE_TRUNC('day', ACCESS_TIME), 'YYYY-MM-DD') AS ACCESS_DATE
+             , SYS_ID
+             , SYS_NM
+             , PROG_ID
+             , PROG_NM
+             , MENU_ID
+             , MENU_NM
+             , COUNT(*) AS ACCESS_COUNT
+          FROM CMN_SYS_ACCESS_LOG
+         WHERE REGEXP_LIKE(ACCESS_URL, '\.xfdl.js$', 'i')
+        <if test='sysId != null and sysId != ""'>
+           AND SYS_ID = #{sysId}
+        </if>
+        <if test='accessFromDt != null and accessFromDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) >= TO_DATE(#{accessFromDt}, 'YYYYMMDD')
+        </if>
+        <if test='accessToDt != null and accessToDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) <![CDATA[<=]]> TO_DATE(#{accessToDt}, 'YYYYMMDD')
+        </if>
+         GROUP BY DATE_TRUNC('day', ACCESS_TIME), (SYS_ID, SYS_NM), (PROG_ID, PROG_NM), (MENU_ID, MENU_NM)
+         ORDER BY DATE_TRUNC('day', ACCESS_TIME) DESC
+                , SYS_ID, SYS_NM
+                , ACCESS_COUNT DESC
+                , PROG_ID, PROG_NM
+                , MENU_ID, MENU_NM
+    </select>
+
+    <select id="getTxByMenuStat" parameterType="map" resultType="programFuncUseVO">
+        /* program-func-use-mapper.getTxByMenuStat */
+        SELECT TO_CHAR(DATE_TRUNC('day', ACCESS_TIME), 'YYYY-MM-DD') AS ACCESS_DATE
+             , SYS_ID
+             , SYS_NM
+             , PROG_ID
+             , PROG_NM
+             , MENU_ID
+             , MENU_NM
+             , ACTION_NAME
+             , COUNT(*) AS ACCESS_COUNT
+          FROM CMN_SYS_ACCESS_LOG
+         WHERE NOT REGEXP_LIKE(ACCESS_URL, '\.xfdl.js$', 'i')
+        <if test='sysId != null and sysId != ""'>
+           AND SYS_ID = #{sysId}
+        </if>
+        <if test='accessFromDt != null and accessFromDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) >= TO_DATE(#{accessFromDt}, 'YYYYMMDD')
+        </if>
+        <if test='accessToDt != null and accessToDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) <![CDATA[<=]]> TO_DATE(#{accessToDt}, 'YYYYMMDD')
+        </if>
+         GROUP BY DATE_TRUNC('day', ACCESS_TIME), (SYS_ID, SYS_NM), (PROG_ID, PROG_NM), (MENU_ID, MENU_NM), ACTION_NAME
+         ORDER BY DATE_TRUNC('day', ACCESS_TIME) DESC
+                , SYS_ID, SYS_NM
+                , ACCESS_COUNT DESC
+                , PROG_ID, PROG_NM
+                , MENU_ID, MENU_NM
+                , ACTION_NAME
+    </select>
+
+    <select id="getMenuByUserStat" parameterType="map" resultType="programFuncUseVO">
+        /* program-func-use-mapper.getMenuByUserStat */
+        SELECT TO_CHAR(DATE_TRUNC('day', ACCESS_TIME), 'YYYY-MM-DD') AS ACCESS_DATE
+             , SYS_ID
+             , SYS_NM
+             , USER_ID
+             , MEMBER_ID
+             , USER_NM_KR
+             , PROG_ID
+             , PROG_NM
+             , MENU_ID
+             , MENU_NM
+             , COUNT(*) AS ACCESS_COUNT
+          FROM CMN_SYS_ACCESS_LOG
+         WHERE REGEXP_LIKE(ACCESS_URL, '\.xfdl.js$', 'i')
+        <if test='sysId != null and sysId != ""'>
+           AND SYS_ID = #{sysId}
+        </if>
+        <if test='accessFromDt != null and accessFromDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) >= TO_DATE(#{accessFromDt}, 'YYYYMMDD')
+        </if>
+        <if test='accessToDt != null and accessToDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) <![CDATA[<=]]> TO_DATE(#{accessToDt}, 'YYYYMMDD')
+        </if>
+         GROUP BY DATE_TRUNC('day', ACCESS_TIME), (SYS_ID, SYS_NM), (USER_ID, MEMBER_ID, USER_NM_KR), (PROG_ID, PROG_NM), (MENU_ID, MENU_NM)
+         ORDER BY DATE_TRUNC('day', ACCESS_TIME) DESC
+                , SYS_ID, SYS_NM
+                , ACCESS_COUNT DESC
+                , USER_ID, MEMBER_ID, USER_NM_KR
+                , PROG_ID, PROG_NM
+                , MENU_ID, MENU_NM
+    </select>
+
+    <select id="getTxByUserStat" parameterType="map" resultType="programFuncUseVO">
+        /* program-func-use-mapper.getTxByUserStat */
+        SELECT TO_CHAR(DATE_TRUNC('day', ACCESS_TIME), 'YYYY-MM-DD') AS ACCESS_DATE
+             , SYS_ID
+             , SYS_NM
+             , USER_ID
+             , MEMBER_ID
+             , USER_NM_KR
+             , PROG_ID
+             , PROG_NM
+             , MENU_ID
+             , MENU_NM
+             , ACTION_NAME
+             , COUNT(*) AS ACCESS_COUNT
+          FROM CMN_SYS_ACCESS_LOG
+         WHERE NOT REGEXP_LIKE(ACCESS_URL, '\.xfdl.js$', 'i')
+        <if test='sysId != null and sysId != ""'>
+           AND SYS_ID = #{sysId}
+        </if>
+        <if test='accessFromDt != null and accessFromDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) >= TO_DATE(#{accessFromDt}, 'YYYYMMDD')
+        </if>
+        <if test='accessToDt != null and accessToDt != ""'>
+           AND DATE_TRUNC('day', ACCESS_TIME) <![CDATA[<=]]> TO_DATE(#{accessToDt}, 'YYYYMMDD')
+        </if>
+         GROUP BY DATE_TRUNC('day', ACCESS_TIME), (SYS_ID, SYS_NM), (USER_ID, MEMBER_ID, USER_NM_KR), (PROG_ID, PROG_NM), (MENU_ID, MENU_NM), ACTION_NAME
+         ORDER BY DATE_TRUNC('day', ACCESS_TIME) DESC
+                , SYS_ID, SYS_NM
+                , ACCESS_COUNT DESC
+                , USER_ID, MEMBER_ID, USER_NM_KR
+                , PROG_ID, PROG_NM
+                , MENU_ID, MENU_NM
+                , ACTION_NAME
+    </select>
+</mapper>
