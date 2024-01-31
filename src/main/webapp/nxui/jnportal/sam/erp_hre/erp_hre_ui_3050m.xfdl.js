@@ -9,9 +9,8 @@
         
         this.on_create = function()
         {
-            this.set_name("hre_3050M");
+            this.set_name("erp_hre_ui_3050m");
             this.set_titletext("New Form");
-            this.set_background("white");
             if (Form == this.constructor)
             {
                 this._setFormPosition(1280,720);
@@ -21,10 +20,15 @@
 
             
             // UI Components Initialize
-            obj = new Button("btn_Save","1150","36","63","28",null,null,null,null,null,null,this);
-            obj.set_text("저장");
-            obj.set_cssclass("btn_WF_icoSave");
+            obj = new Static("staTitle","50","0","500","58",null,null,null,null,null,null,this);
             obj.set_taborder("0");
+            obj.set_text("평가비중 기준 관리");
+            obj.set_cssclass("sta_WF_compTitle01");
+            this.addChild(obj.name, obj);
+
+            obj = new Static("Static00","20","68",null,"50","120",null,null,null,null,null,this);
+            obj.set_taborder("1");
+            obj.set_cssclass("sta_WF_bg");
             this.addChild(obj.name, obj);
             // Layout Functions
             //-- Default Layout : this
@@ -50,9 +54,10 @@
         // Regist UI Components Event
         this.on_initEvent = function()
         {
-            this.btn_Save.addEventHandler("onclick",this.btn_search_onclick,this);
+            this.staTitle.addEventHandler("onclick",this.staTitle_onclick,this);
+            this.Static00.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
         };
-        this.loadIncludeScript("hre_3050M.xfdl");
+        this.loadIncludeScript("erp_hre_ui_3050m.xfdl");
         this.loadPreloadList();
         
         // Remove Reference

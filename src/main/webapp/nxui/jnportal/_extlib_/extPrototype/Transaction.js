@@ -128,6 +128,14 @@ pForm.gfnCallback = function(svcID,errorCode,errorMsg)
 				//@todo : 임의 에러코드  처리
 				//return false;
 				break;
+            case -1200: // 세션 타임아웃
+                this.gfnAlert(errorMsg);
+                window.setTimeout(() => {
+                    nexacro.getApplication().logout();
+                }, 0);
+                return;
+            default:
+                break;
 		}
 	}
 

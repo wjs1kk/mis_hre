@@ -18,12 +18,6 @@
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
-            obj = new Dataset("dsSearch", this);
-            obj.set_updatecontrol("true");
-            obj._setContents("<ColumnInfo><Column id=\"roleCode\" type=\"STRING\" size=\"256\"/><Column id=\"roleNm\" type=\"STRING\" size=\"256\"/><Column id=\"moduleId\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"searchRoleCode\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
-            this.addChild(obj.name, obj);
-
-
             obj = new Dataset("dsRole", this);
             obj.set_useclientlayout("true");
             obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"256\"/><Column id=\"roleCode\" type=\"STRING\" size=\"256\"/><Column id=\"sysId\" type=\"STRING\" size=\"256\"/><Column id=\"moduleId\" type=\"STRING\" size=\"256\"/><Column id=\"roleNm\" type=\"STRING\" size=\"256\"/><Column id=\"roleDc\" type=\"STRING\" size=\"256\"/><Column id=\"rolePermit\" type=\"STRING\" size=\"256\"/><Column id=\"workGrpId\" type=\"STRING\" size=\"256\"/><Column id=\"useYmd\" type=\"DATE\" size=\"256\"/><Column id=\"endYmd\" type=\"DATE\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"rgstId\" type=\"STRING\" size=\"256\"/><Column id=\"rgstDt\" type=\"STRING\" size=\"256\"/><Column id=\"rgstIp\" type=\"STRING\" size=\"256\"/><Column id=\"rgstNm\" type=\"STRING\" size=\"256\"/><Column id=\"updtId\" type=\"STRING\" size=\"256\"/><Column id=\"updtIp\" type=\"STRING\" size=\"256\"/><Column id=\"updtDt\" type=\"STRING\" size=\"256\"/><Column id=\"updtNm\" type=\"STRING\" size=\"256\"/></ColumnInfo>");

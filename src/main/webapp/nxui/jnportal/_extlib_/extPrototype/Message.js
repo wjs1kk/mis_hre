@@ -23,7 +23,7 @@ var pForm = nexacro.Form.prototype;
  * this.gfnAlert(this, "A", "확인하세요");	
  * this.gfnAlert("치환테스트 {0} 입니다.",  ["성공"]);
  */
-pForm.gfnAlert = function ( sMsgId, arrArg, sPopId, sCallback)
+pForm.gfnAlert = function ( sMsgId, arrArg, sPopId, sCallback, sType)
 {
     var objApp = nexacro.getApplication();
 	var sLang = nexacro.getEnvironmentVariable("gvLang");
@@ -48,6 +48,9 @@ pForm.gfnAlert = function ( sMsgId, arrArg, sPopId, sCallback)
 	sMsg = pForm.gfnConvertMessage(sMsg, arrArg);
 	
 	var sMsgType = objApp.gdsMessage.lookup("msgId", sMsgId, "msgType");
+    if (!Eco.isEmpty(sType)) {
+        sMsgType = sType;
+    }
 	
 	if( this.gfnIsNull(sPopId) ) sPopId = sMsgId.replace(/[.,'"\s]/g, "");
 	
