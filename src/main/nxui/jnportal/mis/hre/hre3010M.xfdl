@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="DEPT_1010M" width="1920" height="720" titletext="부서 관리" cssclass="frm_WF_comp" onload="form_onload" enable="true">
+  <Form id="DEPT_1010M" width="1920" height="720" titletext="공통코드관리" cssclass="frm_WF_comp" onload="form_onload" enable="true">
     <Layouts>
       <Layout height="720" width="1920">
         <Static id="mainTitle" taborder="0" text="공통코드관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
@@ -203,7 +203,7 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 */
 this.fnLoadCombo = function ()
 {
-	this.gfnLoadCombo("loadCombo", "dsUseYnCombo=SM:USE_YN:C", "fnComboCallback"); 
+	this.gfnLoadHreCombo("loadCombo", "dsUseYnCombo=SM:USE_YN:C", "fnComboCallback"); 
 };
 
 /**
@@ -241,11 +241,30 @@ this.fnSave = function ()
 /************************************************************************************************
  * CALLBACK 콜백 처리부분(Transaction, Popup)
  ************************************************************************************************/
-
-
-
-
-
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getProgramList":
+            if (this.dsProgram.rowcount == 0) {
+                this.dsFunction.clearData();
+            }
+            break;
+        case "saveProgramList":
+            if (this.callbackMsg == "success") {
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                this.fnSearch();
+            }
+            break;
+        case "saveFunctionList":
+            if (this.callbackMsg == "success") {
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                var sysId = this.dsProgram.getColumn(this.dsProgram.rowposition, "sysId");
+                var progId = this.dsProgram.getColumn(this.dsProgram.rowposition, "progId");
+                this.fnSearchFuncs(sysId, progId);
+            }
+            break;
+    }
+};
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역
 ************************************************************************************************/
