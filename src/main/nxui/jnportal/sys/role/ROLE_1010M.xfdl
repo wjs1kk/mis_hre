@@ -81,18 +81,6 @@
       <Layout name="screen00" width="1280" height="670" screenid=""/>
     </Layouts>
     <Objects>
-      <Dataset id="dsSearch" updatecontrol="true">
-        <ColumnInfo>
-          <Column id="roleCode" type="STRING" size="256"/>
-          <Column id="roleNm" type="STRING" size="256"/>
-          <Column id="moduleId" type="STRING" size="256"/>
-          <Column id="useYn" type="STRING" size="256"/>
-          <Column id="searchRoleCode" type="STRING" size="256"/>
-        </ColumnInfo>
-        <Rows>
-          <Row/>
-        </Rows>
-      </Dataset>
       <Dataset id="dsRole" useclientlayout="true" onrowposchanged="dsRole_onrowposchanged">
         <ColumnInfo>
           <Column id="rowCheck" type="STRING" size="256"/>
