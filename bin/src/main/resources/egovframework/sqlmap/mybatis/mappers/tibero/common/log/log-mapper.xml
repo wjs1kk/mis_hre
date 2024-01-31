@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.common.log.service.LogDAO">
+
+    <insert id="insertExceptionLog" parameterType="logVO">
+        /* log-mapper.insertExceptionLog */
+        INSERT INTO CMN_SYS_LOG_INFO ( LOG_NO
+                                    , LOG_DT
+                                    , PGM_ID
+                                    , URL
+                                    , CLASS_NM
+                                    , CMD
+                                    , CONN_IP
+                                    , USER_ID
+                                    , MEMBER_ID
+                                    , USER_NM_KR
+                                    , DEPT_CD
+                                    , DEPT_NM
+                                    , EXCEPTION_NM
+                                    , LOG_CONT)
+                             VALUES ( CMN_SYS_LOG_INFO_SEQ.nextVal
+                                    , SYSDATE
+                                    , #{pgmId}
+                                    , #{url}
+                                    , #{classNm}
+                                    , #{cmd}
+                                    , #{connIp}
+                                    , #{userId}
+                                    , #{memberId}
+                                    , #{userNmKr}
+                                    , #{deptCd}
+                                    , #{deptNm}
+                                    , #{exceptionNm}
+                                    , #{logCont})
+    </insert>
+
+</mapper>

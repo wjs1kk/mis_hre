@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_1030P_01" width="1000" height="870" titletext="과제정보 상세" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="divPop" taborder="0" text="" left="0" top="0" height="870" width="1000">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="과제정보 상세" left="0" top="0" width="1000" height="50" cssclass="sta_WF_popupTitle"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" onclick="Static31_onclick" visible="false" left="449" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Div id="divProjectInfo" taborder="5" left="30" top="70" height="382" cssclass="div_WF_popup" text="" width="940">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static07_01_01_00" taborder="2" left="21" top="80" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_01_01_00_00" taborder="3" left="21" top="45" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="Static07_01_01_00_01" taborder="4" left="21" top="150" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="staTitle" taborder="7" text="과제정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="11" height="27" width="169"/>
+                    <Static id="Static07_00_00_00" taborder="5" left="20" top="45" width="1" onclick="div_Search_Static07_onclick" background="#00388e" text="" bottom="20"/>
+                    <Static id="Static07_01_02_00" taborder="6" left="171" top="45" width="1" onclick="div_Search_Static07_onclick" background="#dddddd" bottom="20"/>
+                    <Static id="sta001" taborder="8" text="과제NO" cssclass="sta_WF_condition02" left="21" top="46" width="150" height="34"/>
+                    <Static id="sta003" taborder="9" text="시작일/종료일" cssclass="sta_WF_condition02" left="21" top="116" width="150" height="34"/>
+                    <Static id="Static10_00" taborder="10" text="w12" visible="false" left="172" top="46" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static10_00_00_00" taborder="11" text="w12" visible="false" left="172" top="116" width="12" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="20"/>
+                    <Static id="Static10_00_01" taborder="12" text="w12" visible="false" left="172" top="81" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static07_01_01_00_01_00_00" taborder="13" left="20" top="220" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="22"/>
+                    <Static id="Static07_01_01_00_01_01" taborder="14" left="21" top="185" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="sta004" taborder="15" text="예산" cssclass="sta_WF_condition02" left="21" top="151" width="150" height="34"/>
+                    <Static id="Static10_00_01_00" taborder="16" text="w12" visible="false" left="172" top="151" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static07_01_01_00_01_01_00_00" taborder="17" left="21" top="359" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Static id="sta006" taborder="18" text="과제목표" cssclass="sta_WF_condition02" left="21" top="221" width="150" height="138"/>
+                    <Static id="Static10_00_01_00_00_00" taborder="19" text="w12" visible="false" left="172" top="266" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static10_00_01_00_00_00_00" taborder="20" text="w12" visible="false" left="172" top="301" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Edit id="edtProjectNo" taborder="21" left="184" top="50" width="29.00%" height="26" cssclass="" enable="false" text="PJC00000001"/>
+                    <Static id="sta007" taborder="22" text="사업구분" cssclass="sta_WF_condition02" left="500" top="46" width="148" height="34" border="0px none, 1px solid #dddddd"/>
+                    <Static id="Static10_00_01_01" taborder="23" text="w12" visible="false" left="648" top="46" width="12" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="20"/>
+                    <Calendar id="edtStartDt" taborder="24" left="184" top="120" width="118" height="26" dateformat="yyyy-MM-dd" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28" cssclass="essential" enable="false"/>
+                    <Static id="sta008" taborder="25" text="기간" cssclass="sta_WF_condition02" left="500" top="116" width="148" height="34" border="0px none, 1px solid #dddddd"/>
+                    <Static id="Static10_00_01_01_00" taborder="26" text="w12" visible="false" left="648" top="80" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Edit id="edtProjectBudget" taborder="27" left="184" top="155" width="29.00%" height="26" cssclass="" enable="false" text="113.3억원"/>
+                    <Static id="sta009" taborder="28" text="진행상태" cssclass="sta_WF_condition02" left="500" top="151" width="148" height="34" border="0px none, 1px solid #dddddd"/>
+                    <Edit id="edtStts" taborder="29" left="660" top="155" width="25.48%" height="26" cssclass="" enable="false" value="-" text="-"/>
+                    <Static id="Static10_00_01_01_00_00" taborder="30" text="w12" visible="false" left="648" top="151" width="12" height="34" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="sta005" taborder="31" text="과제개요" cssclass="sta_WF_condition02" left="21" top="186" width="150" height="34"/>
+                    <Edit id="edtProjectOverview" taborder="32" left="184" top="190" width="76.23%" height="26" cssclass="" enable="false" text="「국방과학기술혁신 촉진법」에 의거 산학연주관 응용연구 과제"/>
+                    <Static id="sta002" taborder="33" text="과제명" cssclass="sta_WF_condition02" left="21" top="81" width="150" height="34"/>
+                    <Edit id="edtProjectNm" taborder="34" left="184" top="85" width="76.23%" height="26" cssclass="" enable="false" text="250kW급 고출력밀도 기술(응용연구)"/>
+                    <Static id="Static07_01_01_00_01_00" taborder="35" left="21" top="115" height="1" onclick="div_Search_Static07_onclick" background="#dddddd" text="" right="21"/>
+                    <Calendar id="edtEndDt" taborder="36" left="340" top="120" width="118" height="26" dateformat="yyyy-MM-dd" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28" cssclass="essential" enable="false"/>
+                    <Static id="Static00" taborder="37" text="~" left="309" top="121" width="24" height="26" textAlign="center"/>
+                    <Edit id="edtProjectDuration" taborder="38" left="660" top="120" width="25.48%" height="26" cssclass="" enable="false" text="72개월"/>
+                    <TextArea id="taObjective" taborder="39" left="184" top="225" width="715" height="129" wordWrap="english" readonly="true"/>
+                    <Combo id="cboProjectTpye" taborder="40" left="660" top="50" width="25.48%" height="26" codecolumn="value" datacolumn="text" ondropdown="div_Search_sch_apv_stat_cd_ondropdown" oncloseup="div_Search_sch_apv_stat_cd_oncloseup" onitemchanged="div_Search_sch_apv_stat_cd_onitemchanged" innerdataset="dsProjType" index="-1" text="전체" value="" enable="false"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="450" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" width="103"/>
+              <Button id="btnClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" right="467" bottom="23" onclick="divPop_btnClose_onclick"/>
+              <Div id="divProjectList" taborder="8" left="30" top="462" height="333" cssclass="div_WF_popup" text="" width="940">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 22" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="22" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="staTitle" taborder="2" text="담당자 목록" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" onclick="Static09_onclick" width="169"/>
+                    <Static id="staGridRowCnt" taborder="3" text="(총 0건)" cssclass="sta_WF_subResult" left="149" top="12" width="149" height="27"/>
+                    <Grid id="grdProject" taborder="4" binddataset="dsUser" left="20" top="45" right="20" autofittype="col" tooltiptype="default" onheadclick="grd_list_onheadclick" autoenter="select" bottom="10" enable="true" oncelldblclick="div_Search01_grd_list_oncelldblclick">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="40" band="left"/>
+                            <Column size="200"/>
+                            <Column size="200"/>
+                            <Column size="100"/>
+                            <Column size="200"/>
+                            <Column size="200"/>
+                            <Column size="100"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="33"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell text="NO"/>
+                            <Cell col="1" text="담당자명 (법인명)"/>
+                            <Cell col="2" text="담당자ID"/>
+                            <Cell col="3" text="법인여부"/>
+                            <Cell col="4" text="사무실 전화번호"/>
+                            <Cell col="5" text="휴대폰 번호"/>
+                            <Cell col="6" text="탈퇴여부"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell text="expr:currow+1" textAlign="center" expandsize="16" edittype="none"/>
+                            <Cell col="1" text="bind:memberNmKr" displaytype="normal" expandsize="16" edittype="none" textAlign="center"/>
+                            <Cell col="2" displaytype="normal" edittype="none" text="bind:memberId" calendardateformat="yyyy-MM-dd" expandsize="16" textAlign="center"/>
+                            <Cell col="3" text="bind:corpYn" textAlign="center" edittype="none" combodataset="dsCorpYn" combocodecol="value" combodatacol="text" displaytype="combotext"/>
+                            <Cell col="4" text="bind:ofcTelno" textAlign="center" edittype="none"/>
+                            <Cell col="5" text="bind:mblTelno" textAlign="center" edittype="none"/>
+                            <Cell col="6" text="bind:whdwlYn" textAlign="center" displaytype="combotext" combodataset="dsWhdwlYn" combocodecol="value" combodatacol="text"/>
+                          </Band>
+                        </Format>
+                        <Format id="format_copy"/>
+                      </Formats>
+                    </Grid>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static15_01_00" taborder="9" text="h 12" onclick="Static31_onclick" visible="false" left="32" top="451" width="50" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+          <Column id="mbrNo" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="memberNmKr" type="STRING" size="256"/>
+          <Column id="corpYn" type="STRING" size="256"/>
+          <Column id="ofcTelno" type="STRING" size="256"/>
+          <Column id="mblTelno" type="STRING" size="256"/>
+          <Column id="whdwlYn" type="STRING" size="256"/>
+          <Column id="memberNmEn" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsProject" useclientlayout="true" onrowposchanged="dsProject_onrowposchanged">
+        <ColumnInfo>
+          <Column id="projectNo" type="STRING" size="256"/>
+          <Column id="projectNm" type="STRING" size="256"/>
+          <Column id="projectType" type="STRING" size="256"/>
+          <Column id="projectOverview" type="STRING" size="256"/>
+          <Column id="projectStartDt" type="STRING" size="256"/>
+          <Column id="projectEndDt" type="STRING" size="256"/>
+          <Column id="projectDuration" type="STRING" size="256"/>
+          <Column id="projectBudget" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="RGST_IP" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProjType" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCorpYn" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="text"/>
+            <Col id="value"/>
+          </Row>
+          <Row>
+            <Col id="text">예</Col>
+            <Col id="value">Y</Col>
+          </Row>
+          <Row>
+            <Col id="text">아니오</Col>
+            <Col id="value">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsWhdwlYn" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="text"/>
+            <Col id="value"/>
+          </Row>
+          <Row>
+            <Col id="text">예</Col>
+            <Col id="value">Y</Col>
+          </Row>
+          <Row>
+            <Col id="text">아니오</Col>
+            <Col id="value">N</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item12" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="PopupDiv.form.div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="PopupDiv.form.div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="PopupDiv.form.div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="PopupDiv.form.div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="PopupDiv.form.div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="PopupDiv.form.div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="PopupDiv.form.div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="PopupDiv.form.div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="PopupDiv.form.div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="PopupDiv.form.div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="PopupDiv.form.div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="PopupDiv.form.div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="PopupDiv.form.div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="PopupDiv.form.div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="PopupDiv.form.div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="PopupDiv.form.div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="PopupDiv.form.div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="PopupDiv.form.div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item0" compid="divPop.form.div_Search.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="divPop.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="divPop.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="divPop.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="divPop.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="divPop.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="divPop.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="divPop.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="divPop.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="divPop.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="divPop.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="divPop.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item33" compid="div_Search02_00.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item34" compid="div_Search02_00.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item35" compid="div_Search02_00.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item36" compid="div_Search02_00.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item37" compid="div_Search02_00.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item38" compid="div_Search02_00.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item39" compid="div_Search02_00.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item40" compid="div_Search02_00.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item41" compid="div_Search02_00.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item42" compid="div_Search02_00.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item43" compid="div_Search02_00.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item44" compid="div_Search02_00.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item45" compid="div_Search02_00.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item46" compid="div_Search02_00.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item47" compid="div_Search02_00.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item48" compid="div_Search02_00.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item49" compid="div_Search02_00.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item50" compid="div_Search02_00.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item51" compid="div_Search02_00.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item52" compid="div_Search02_00.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item53" compid="div_Search02_00.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item54" compid="divPop.form.divProjectInfo.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item55" compid="divPop.form.divProjectInfo.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item56" compid="divPop.form.divProjectInfo.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item57" compid="divPop.form.divProjectInfo.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item58" compid="divPop.form.divProjectInfo.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item59" compid="divPop.form.divProjectInfo.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item60" compid="divPop.form.divProjectInfo.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item61" compid="divPop.form.divProjectInfo.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item62" compid="divPop.form.divProjectInfo.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item63" compid="divPop.form.divProjectInfo.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item64" compid="divPop.form.divProjectInfo.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item65" compid="divPop.form.divProjectInfo.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item66" compid="divPop.form.divProjectInfo.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item67" compid="divPop.form.divProjectInfo.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item68" compid="divPop.form.divProjectInfo.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item69" compid="divPop.form.divProjectInfo.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item70" compid="divPop.form.divProjectInfo.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item71" compid="divPop.form.divProjectInfo.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item72" compid="divPop.form.divProjectInfo.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item73" compid="divPop.form.divProjectInfo.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item74" compid="divPop.form.divProjectInfo.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+      <BindItem id="item75" compid="divPop.form.divProjectInfo.form.edtStartDt" propid="value" datasetid="dsProject" columnid="projectStartDt"/>
+      <BindItem id="item76" compid="divPop.form.divProjectInfo.form.edtEndDt" propid="value" datasetid="dsProject" columnid="projectEndDt"/>
+      <BindItem id="item77" compid="divPop.form.divProjectInfo.form.SCH_RQST_DT00_00_00" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item78" compid="divPop.form.divProjectInfo.form.SCH_RQST_DT00_00_01" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item79" compid="divPop.form.divProjectInfo.form.SCH_RQST_DT00_00_00_00" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item80" compid="divPop.form.divProjectInfo.form.RQST_NM00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item81" compid="divPop.form.divProjectInfo.form.edtProjectNo" propid="value" datasetid="dsProject" columnid="projectNo"/>
+      <BindItem id="item82" compid="divPop.form.divProjectInfo.form.RQST_NM00_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item83" compid="divPop.form.divProjectInfo.form.edtProjectBudget" propid="value" datasetid="dsProject" columnid="projectBudget"/>
+      <BindItem id="item84" compid="divPop.form.divProjectInfo.form.RQST_NM00_00_01_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item85" compid="divPop.form.divProjectInfo.form.edtStts" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item86" compid="divPop.form.divProjectInfo.form.edtProjectOverview" propid="value" datasetid="dsProject" columnid="projectOverview"/>
+      <BindItem id="item87" compid="divPop.form.divProjectInfo.form.RQST_NM00_00_01_00_01" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item88" compid="divPop.form.divProjectInfo.form.RQST_NM00_00_00_00_00" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item89" compid="divPop.form.divProjectInfo.form.edtProjectNm" propid="value" datasetid="dsProject" columnid="projectNm"/>
+      <BindItem id="item90" compid="divPop.form.divProjectInfo.form.edtProjectDuration" propid="value" datasetid="dsProject" columnid="projectDuration"/>
+      <BindItem id="item91" compid="divPop.form.divProjectInfo.form.cboProjectTpye" propid="value" datasetid="dsProject" columnid="projectType"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      cmMyProjectInfoPopup.xfdl 
+*  Creator 	     Kimjs
+*  CreateDate    2023.03.23
+*  Descrption    담당과제 상세조회  
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.23    Kimjs  	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);	
+    this.gfnLoadCombo("loadCombo", "dsProjType=PMS:TMP:PROJECT_TY", "fnCallBack");
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 담당과제 조회
+*/
+this.fnSearch = function()
+{
+	this.gfnTransaction("getSubjectDtl", "cms/getSubjectDtl.do", "dsSearch", "dsProject dsUser", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+        case "loadCombo":
+            this.dsSearch.setColumn(0, "projectNo", this.parent.projectId);
+            this.fnSearch();
+        break;
+		case "getSubjectDtl":
+			//총 건수 계산
+			this.gfnRowCount(this.dsUser, this.divPop.form.divProjectList.form.staGridRowCnt);
+		break;
+		default:
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 닫기버튼
+*/
+this.divPop_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+  </Form>
+</FDL>

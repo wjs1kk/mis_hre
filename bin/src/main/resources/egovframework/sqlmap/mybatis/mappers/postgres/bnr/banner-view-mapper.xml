@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bnr.banner.service.BannerViewDAO">
+
+    <!-- 배너 리스트 조회 -->
+    <select id="getBannerList" parameterType="map" resultType="bannerVO">
+        /* banner-mapper.getBannerList */
+        SELECT B.BNR_ID
+             , B.BNR_NM
+             , B.BNR_URL
+             , B.BNR_IMG
+             , B.BNR_DESC
+             , B.USE_YN
+             , B.RGSTR_ID
+             , TO_CHAR(B.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , B.UPDTR_ID
+             , TO_CHAR(B.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+             , B.BNR_IMG_FILE
+             , B.BNR_ORD
+          FROM PTS_BANNER B
+        <where>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "BANNERNAME"'>
+                    AND B.BNR_NM LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "BANNERURL"'>
+                    AND B.BNR_URL LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "WRITERNAME"'>
+                    AND B.RGSTR_ID LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+                    AND (B.BNR_NM LIKE '%'|| #{searchKeyword} || '%'
+                        OR B.BNR_URL LIKE '%'|| #{searchKeyword} || '%'
+                        OR B.RGSTR_ID LIKE '%'|| #{searchKeyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+         ORDER BY B.RGST_DT DESC
+    </select>
+</mapper>

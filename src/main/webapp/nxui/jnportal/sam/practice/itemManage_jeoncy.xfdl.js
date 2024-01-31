@@ -18,15 +18,25 @@
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
-            obj = new Dataset("dsSearch", this);
+            obj = new Dataset("dsList", this);
             obj.set_updatecontrol("true");
-            obj._setContents("<ColumnInfo><Column id=\"itemCode\" type=\"STRING\" size=\"256\"/><Column id=\"itemName\" type=\"STRING\" size=\"256\"/><Column id=\"itemType\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            obj._setContents("<ColumnInfo><Column id=\"itemCode\" type=\"STRING\" size=\"256\"/><Column id=\"itemName\" type=\"STRING\" size=\"256\"/><Column id=\"itemType\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"itemCost\" type=\"INT\" size=\"256\"/><Column id=\"itemCount\" type=\"INT\" size=\"256\"/><Column id=\"itemDesc\" type=\"STRING\" size=\"3000\"/><Column id=\"rgstDt\" type=\"STRING\" size=\"256\"/><Column id=\"rgstId\" type=\"STRING\" size=\"256\"/><Column id=\"updtDt\" type=\"STRING\" size=\"256\"/><Column id=\"updtId\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
-            obj = new Dataset("dsList", this);
+            obj = new Dataset("dsSearch", this);
             obj.set_useclientlayout("true");
-            obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"itemCode\" type=\"STRING\" size=\"256\"/><Column id=\"itemName\" type=\"STRING\" size=\"256\"/><Column id=\"itemType\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"itemCost\" type=\"INT\" size=\"256\"/><Column id=\"itemCount\" type=\"INT\" size=\"256\"/><Column id=\"itemDesc\" type=\"STRING\" size=\"3000\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsItemType", this);
+            obj._setContents("<ColumnInfo><Column id=\"text\" type=\"STRING\" size=\"256\"/><Column id=\"value\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsUseYn", this);
+            obj._setContents("<ColumnInfo><Column id=\"LINE_CODE\" type=\"STRING\" size=\"256\"/><Column id=\"LINE_CODE_NM_KR\" type=\"STRING\" size=\"256\"/><Column id=\"LINE_CODE_NM_EN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"LINE_CODE_NM_KR\">전체</Col><Col id=\"LINE_CODE_NM_EN\">all</Col></Row><Row><Col id=\"LINE_CODE\">Y</Col><Col id=\"LINE_CODE_NM_KR\">사용</Col><Col id=\"LINE_CODE_NM_EN\">use</Col></Row><Row><Col id=\"LINE_CODE_NM_KR\">미사용</Col><Col id=\"LINE_CODE_NM_EN\">unused</Col><Col id=\"LINE_CODE\">N</Col></Row></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -72,6 +82,9 @@
 
             obj = new Combo("cboUseYn","sta004:10","15","170","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("2");
+            obj.set_innerdataset("dsUseYn");
+            obj.set_datacolumn("LINE_CODE_NM_KR");
+            obj.set_codecolumn("LINE_CODE");
             obj.set_text("");
             obj.set_index("-1");
             this.divSearch.addChild(obj.name, obj);
@@ -84,6 +97,9 @@
 
             obj = new Combo("cboItemType","sta003:10","15","170","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("4");
+            obj.set_innerdataset("dsItemType");
+            obj.set_codecolumn("value");
+            obj.set_datacolumn("text");
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
@@ -144,7 +160,7 @@
             obj.set_autofittype("col");
             obj.set_autoenter("select");
             obj.set_autoupdatetype("itemselect");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"40\" band=\"left\"/><Column size=\"40\" band=\"left\"/><Column size=\"40\" band=\"left\"/><Column size=\"120\"/><Column size=\"200\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"400\"/><Column size=\"100\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"2\" text=\"상태\"/><Cell col=\"3\" text=\"제품코드\"/><Cell col=\"4\" text=\"제품명\"/><Cell col=\"5\" text=\"제품분류\"/><Cell col=\"6\" text=\"단가\"/><Cell col=\"7\" text=\"수량\"/><Cell col=\"8\" text=\"제품설명\"/><Cell col=\"9\" text=\"사용여부\"/></Band><Band id=\"body\"><Cell/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:rowCheck\"/><Cell col=\"2\" text=\"bind:rowStatus\"/><Cell col=\"3\"/><Cell col=\"4\"/><Cell col=\"5\"/><Cell col=\"6\"/><Cell col=\"7\"/><Cell col=\"8\"/><Cell col=\"9\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"40\"/><Column size=\"100\"/><Column size=\"200\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"500\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" text=\"제품코드\"/><Cell col=\"2\" text=\"제품명\"/><Cell col=\"3\" text=\"제품분류\"/><Cell col=\"4\" text=\"단가\"/><Cell col=\"5\" text=\"수량\"/><Cell col=\"6\" text=\"제품설명\"/><Cell col=\"7\" text=\"사용여부\"/><Cell col=\"8\" text=\"등록일자\"/><Cell col=\"9\" text=\"등록자\"/><Cell col=\"10\" text=\"수정일자\"/><Cell col=\"11\" text=\"수정자\"/></Band><Band id=\"body\"><Cell expr=\"currow + 1\"/><Cell col=\"1\" text=\"bind:itemCode\"/><Cell col=\"2\" text=\"bind:itemName\" textAlign=\"left\" tooltiptext=\"bind:itemName\"/><Cell col=\"3\" text=\"bind:itemType\" displaytype=\"combotext\" edittype=\"none\" combodataset=\"dsItemType\" combodatacol=\"text\" combocodecol=\"value\" accessibilityenable=\"false\"/><Cell col=\"4\" text=\"bind:itemCost\" textAlign=\"right\" displaytype=\"number\"/><Cell col=\"5\" text=\"bind:itemCount\" displaytype=\"number\" textAlign=\"right\"/><Cell col=\"6\" text=\"bind:itemDesc\" textAlign=\"left\" tooltiptext=\"bind:itemDesc\" tooltiptype=\"default\"/><Cell col=\"7\" text=\"bind:useYn\" displaytype=\"combotext\" edittype=\"none\" combodataset=\"dsUseYn\" combocodecol=\"LINE_CODE\" combodatacol=\"LINE_CODE_NM_KR\" accessibilityenable=\"false\"/><Cell col=\"8\" text=\"bind:rgstDt\"/><Cell col=\"9\" text=\"bind:rgstId\"/><Cell col=\"10\" text=\"bind:updtDt\"/><Cell col=\"11\" text=\"bind:updtId\"/></Band></Format></Formats>");
             this.divList.addChild(obj.name, obj);
 
             obj = new Button("btnAdd",null,"14","73","26","0",null,null,null,null,null,this.divList.form);
@@ -256,7 +272,29 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
+            obj = new BindItem("item0","divSearch.form.edtItemCode","value","dsSearch","itemCode");
+            this.addChild(obj.name, obj);
+            obj.bind();
 
+            obj = new BindItem("item1","divSearch.form.edtItemName","value","dsSearch","itemName");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item3","divSearch.form.cboUseYn","text","dsUseYn","LINE_CODE_NM_KR");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item4","divSearch.form.cboItemType","value","dsSearch","itemType");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item2","divSearch.form.cboUseYn","tooltiptype","dsUseYn","LINE_CODE");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item5","divSearch.form.cboUseYn","value","dsSearch","useYn");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -283,6 +321,8 @@
         *  0000.00.00    OOO 	     최초 생성
         *******************************************************************************/
         this.executeIncludeScript("lib::common.xjs"); /*include "lib::common.xjs"*/;
+
+        var sessionUserName = nexacro.getApplication().gdsUserInfo.getColumn(0, "userNmKr");
         /***********************************************************************************************
         * FORM EVENT 영역(onload, onbeforeclose)
         /***********************************************************************************************/
@@ -292,24 +332,134 @@
         this.form_onload = function(obj,e)
         {
         	this.gfnFormOnLoad(this);
+        	this.gfnLoadCombo("loadCombo", "dsItemType=SMP:ITEM_TYPE:A", "fnCallBack");
+        	this.fnSearch();
+
         };
 
         /************************************************************************************************
         * TRANSACTION 서비스 호출 처리
         ************************************************************************************************/
+        this.fnSearch = function()
+        {
+        	var strSvcId    = "getItemList";
+        	var strSvcUrl   = "sam/practice/getItemListJcy.do";
+        	var inData      = "dsSearch";
+        	var outData     = "dsList";
+        	var strArg      = "";
+        	var callBackFnc = "fnCallBack";
+        	var isAsync   	= true;
 
+        // 	"0" : XML 형식
+        // 	"1" : Binary 형식
+        // 	"2" : SSV 형식
+        // 	"3" : JSON 형식
+        	//this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, 3);  // json
+        	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        						strSvcUrl, 	    // transaction을 요청할 주소
+        						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        						isAsync); 		// 비동기통신 여부 [생략가능]
+        };
         /************************************************************************************************
          * CALLBACK 콜백 처리부분(Transaction, Popup)
          ************************************************************************************************/
+        this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+        {
+        	switch (sSvcId) {
+        		case "getItemList":
+        			this.gfnRowCount(this.dsList, this.divList.form.staGridRowCnt);
+        			trace(this.dsList.rgstDt);
+        		break;
+        		case "setItemList":
+        			if(this.callbackMsg == "success"){
+        				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+        				this.fnSearch();
+        			}
+        		break;
+        		default:
+        		break;
+        	}
+        };
 
+        /**
+         * description Popup CallBack 함수
+        */
+        this.fnPopupAfter = function (sPopupId, vArg)
+        {
+        	console.log('fnPopupAfter: ', sPopupId, ' || ', vArg);
+        	switch(sPopupId){
+        		case "itemDetailPopup":
+        			var oRtn = this.gfnGetPopupRtn();
+        			this.fnSearch();
+        			if(oRtn){
+        				console.log('oRtn : ',  oRtn);
+        				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+        				console.log('oRtn.popDS : ',  oRtn.popDS);
+        			}
+        		break;
+        	}
+        };
         /************************************************************************************************
          * 각 COMPONENT 별 EVENT 영역
         ************************************************************************************************/
+        this.btnSearch_onclick = function(obj,e)
+        {
+        	this.fnSearch();
+        };
+        this.divList_btnAdd_onclick = function(obj,e)
+        {
+        	var oArg = {
+        				title : "제품등록",
+        				rowStatus : "inserted"
+        				};
+        //  gfnOpenPopup
+        //  * @param {String} sPopupId	- 팝업ID
+        //  * @param {String} sUrl	 - 팝업URL
+        //  * @param {String} [oArg] - 전달값
+        //  * @param {String} [sPopupCallback] - 팝업콜백. 없으면 confirm message 로 간주.
+        //  * @param {Object} [oOption] - 팝업옵션 <br>
+        	this.gfnOpenPopup("itemDetailPopup", "sam::practice/itemDetailPopup_jeoncy.xfdl", oArg, "fnPopupAfter", "");
+        };
 
         /************************************************************************************************
         * 사용자 FUNCTION 영역
         ************************************************************************************************/
 
+        this.divList_grdList_oncellclick = function(obj,e)
+        {
+        	var oArg = {
+        				title : "제품상세",
+        				rowStatus : "updated",
+        				itemCode : obj.getBindDataset().getColumn(e.row, "itemCode"),
+        	            itemName : obj.getBindDataset().getColumn(e.row, "itemName"),
+        				itemType : obj.getBindDataset().getColumn(e.row, "itemType"),
+        				useYn : obj.getBindDataset().getColumn(e.row, "useYn"),
+        				itemCost : obj.getBindDataset().getColumn(e.row, "itemCost"),
+        				itemCount : obj.getBindDataset().getColumn(e.row, "itemCount"),
+        				itemDesc : obj.getBindDataset().getColumn(e.row, "itemDesc")
+        				};
+        	this.gfnOpenPopup("itemDetailPopup", "sam::practice/itemDetailPopup_jeoncy.xfdl", oArg, "fnPopupAfter", "");
+        };
+
+        this.divSearch_cboItemType_oncloseup = function(obj,e)
+        {
+        	this.fnSearch();
+        };
+
+        this.divSearch_cboUseYn_oncloseup = function(obj,e)
+        {
+        	this.fnSearch();
+        };
+
+        this.divSearch_onkeyup = function(obj,e)
+        {
+        	if(e.keycode == 13){
+        		this.btnSearch_onclick();
+        	}
+        };
 
         });
         
@@ -318,15 +468,21 @@
         {
             this.addEventHandler("onload",this.form_onload,this);
             this.btnSearch.addEventHandler("onclick",this.btnSearch_onclick,this);
+            this.divSearch.addEventHandler("onkeyup",this.divSearch_onkeyup,this);
             this.divSearch.form.staBg.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
             this.divSearch.form.Static15_01_00_00.addEventHandler("onclick",this.Static31_onclick,this);
             this.divSearch.form.sta004.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
+            this.divSearch.form.cboUseYn.addEventHandler("oncloseup",this.divSearch_cboUseYn_oncloseup,this);
             this.divSearch.form.sta003.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
+            this.divSearch.form.cboItemType.addEventHandler("oncloseup",this.divSearch_cboItemType_oncloseup,this);
             this.divSearch.form.sta002.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
             this.divSearch.form.sta001.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
+            this.divSearch.form.edtItemCode.addEventHandler("onchanged",this.divSearch_edtItemCode_onchanged,this);
             this.divList.form.staTitle.addEventHandler("onclick",this.Static09_onclick,this);
             this.divList.form.Static04_00_00_00_00.addEventHandler("onclick",this.Static31_onclick,this);
-            this.dsList.addEventHandler("onrowposchanged",this.dsRole_onrowposchanged,this);
+            this.divList.form.grdList.addEventHandler("oncelldblclick",this.divList_grdList_oncellclick,this);
+            this.divList.form.btnAdd.addEventHandler("onclick",this.divList_btnAdd_onclick,this);
+            this.dsSearch.addEventHandler("onrowposchanged",this.dsRole_onrowposchanged,this);
         };
         this.loadIncludeScript("itemManage_jeoncy.xfdl");
         this.loadPreloadList();

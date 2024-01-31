@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.main.common.service.CommonPopupDAO">
+
+    <select id="getUserList" parameterType="map" resultType="userSearchPopupVO">
+        /* common-popup-mapper.getUserList */
+        SELECT CU.USER_ID
+             , CU.USER_NM_KR
+             , PM.MEMBER_ID
+             , PM.MEMBER_NM_KR
+             , PM.MEMBER_NM_EN
+             , PM.PASSWD
+             , PM.OGDP_INST_CD
+             , PM.OGDP_INST_NM
+             , PM.EML_ADDR
+             , PM.OFC_TELNO
+             , PM.OFC_FXNO
+             , PM.MBL_TELNO
+             , PM.PRVC_CLCT_AGRE_YN
+             , PM.PRVC_PVSN_AGRE_YN
+             , PM.APPLY_DT
+             , PM.APPLY_CONT
+             , PM.JOIN_APRV_STTS
+             , PM.JOIN_AUTZR
+             , PM.JOIN_APRV_DT
+             , PM.CORP_YN
+             , PM.JBPS_CD
+             , PM.JBPS_NM
+             , PM.OGDP_DEPT_CD
+             , PM.OGDP_DEPT_NM
+             , PM.MBR_ZIP
+             , PM.MBR_ADDR
+             , PM.MBR_DADDR
+             , PM.OFC_ZIP
+             , PM.OFC_ADDR
+             , PM.OFC_DADDR
+             , PM.WHDWL_YN
+             , PM.USE_YN
+             , PM.RGST_ID
+             , PM.RGST_DT
+             , PM.RGST_IP
+             , PM.UPDT_ID
+             , PM.UPDT_DT
+             , PM.UPDT_IP
+          FROM CMN_USER CU
+          JOIN PTS_MEMBER PM
+            ON CU.MEMBER_ID = PM.MEMBER_ID
+        <where>
+           AND CU.USE_YN = 'Y'
+           AND CU.WHDWL_YN = 'N'
+            <if test='memberId != null and memberId != ""'>
+           AND CU.MEMBER_ID LIKE '%' || #{memberId} || '%'
+            </if>
+            <if test='userNm != null and userNm != ""'>
+           AND CU.USER_NM_KR LIKE '%' || #{userNm} || '%'
+            </if>
+            <if test='deptNm != null and deptNm != ""'>
+           AND PM.OGDP_DEPT_NM LIKE '%' || #{deptNm} || '%'
+            </if>
+            <if test='jbpsNm != null and jbpsNm != ""'>
+           AND PM.JBPS_NM LIKE '%' || #{jbpsNm} || '%'
+            </if>
+        </where>
+    </select>
+
+    <select id="getDeptTree" parameterType="map" resultType="deptSearchResultVO">
+        /* common-popup-mapper.getDeptTree */
+          WITH RECURSIVE
+        <if test='deptNm != null and deptNm != ""'>
+              DEPT_MATCHED_ANCESTOR(ID, PARENT, DEPT_CD, DEPT_NM, DEPT_LDR_ID, DEPT_MNGR_ID, DEPT_DESC, USE_YN,
+                                    ORD_SN, UP_DEPT_CD, MATCHED)
+                  AS (SELECT PD.DEPT_CD AS ID
+                           , PD.UP_DEPT_CD AS PARENT
+                           , PD.DEPT_CD, PD.DEPT_NM, PD.DEPT_LDR_ID, PD.DEPT_MNGR_ID, PD.DEPT_DESC, PD.USE_YN, PD.ORD_SN
+                           , PD.UP_DEPT_CD
+                           , 'Y' AS MATCHED
+                        FROM PTS_DEPT PD
+                       WHERE DEPT_NM LIKE '%' || #{deptNm} || '%'
+                       UNION
+                      SELECT PD.DEPT_CD AS ID
+                           , PD.UP_DEPT_CD AS PARENT
+                           , PD.DEPT_CD, PD.DEPT_NM, PD.DEPT_LDR_ID, PD.DEPT_MNGR_ID, PD.DEPT_DESC, PD.USE_YN, PD.ORD_SN
+                           , PD.UP_DEPT_CD
+                           , 'N' AS MATCHED
+                        FROM PTS_DEPT PD
+                        JOIN DEPT_MATCHED_ANCESTOR DMA
+                        ON PD.DEPT_CD = DMA.UP_DEPT_CD),
+              DEPT_MATCHED_DESCENDENT(ID, PARENT, DEPT_CD, DEPT_NM, DEPT_LDR_ID, DEPT_MNGR_ID, DEPT_DESC, USE_YN,
+                                      ORD_SN, UP_DEPT_CD, MATCHED)
+                  AS (SELECT PD.DEPT_CD AS ID
+                           , PD.UP_DEPT_CD AS PARENT
+                           , PD.DEPT_CD, PD.DEPT_NM, PD.DEPT_LDR_ID, PD.DEPT_MNGR_ID, PD.DEPT_DESC, PD.USE_YN, PD.ORD_SN
+                           , PD.UP_DEPT_CD
+                           , 'Y' AS MATCHED
+                        FROM PTS_DEPT PD
+                       WHERE DEPT_NM LIKE '%' || #{deptNm} || '%'
+                       UNION
+                      SELECT PD.DEPT_CD AS ID
+                           , PD.UP_DEPT_CD AS PARENT
+                           , PD.DEPT_CD, PD.DEPT_NM, PD.DEPT_LDR_ID, PD.DEPT_MNGR_ID, PD.DEPT_DESC, PD.USE_YN, PD.ORD_SN
+                           , PD.UP_DEPT_CD
+                           , 'N' AS MATCHED
+                        FROM PTS_DEPT PD
+                        JOIN DEPT_MATCHED_DESCENDENT DMA
+                        ON PD.UP_DEPT_CD = DMA.DEPT_CD),
+              DEPT_LIST AS (SELECT ID, PARENT, DEPT_CD, DEPT_NM, DEPT_LDR_ID, DEPT_MNGR_ID, DEPT_DESC, USE_YN, ORD_SN
+                                 , UP_DEPT_CD, MATCHED
+                              FROM DEPT_MATCHED_ANCESTOR
+                             UNION
+                            SELECT ID, PARENT, DEPT_CD, DEPT_NM, DEPT_LDR_ID, DEPT_MNGR_ID, DEPT_DESC, USE_YN, ORD_SN
+                                 , UP_DEPT_CD, MATCHED
+                              FROM DEPT_MATCHED_DESCENDENT),
+        </if>
+        <if test='deptNm == null or deptNm == ""'>
+              DEPT_LIST AS (SELECT PD.DEPT_CD AS ID
+                                 , PD.UP_DEPT_CD AS PARENT
+                                 , PD.DEPT_CD, PD.DEPT_NM, PD.DEPT_LDR_ID, PD.DEPT_MNGR_ID, PD.DEPT_DESC, PD.USE_YN
+                                 , PD.ORD_SN, PD.UP_DEPT_CD
+                                 , 'N' AS MATCHED
+                              FROM PTS_DEPT PD),
+        </if>
+              DEPT_TREE(ID, PARENT, DEPT_CD, DEPT_NM, DEPT_LDR_ID, DEPT_MNGR_ID, DEPT_DESC, USE_YN,
+                        ORD_SN, UP_DEPT_CD, LEVEL, DEPT_NM_PATH, MATCHED)
+                  AS (SELECT D.ID
+                           , D.PARENT
+                           , D.DEPT_CD
+                           , D.DEPT_NM
+                           , D.DEPT_LDR_ID
+                           , D.DEPT_MNGR_ID
+                           , D.DEPT_DESC
+                           , D.USE_YN
+                           , D.ORD_SN
+                           , D.UP_DEPT_CD
+                           , 1 AS LEVEL
+                           , ARRAY[D.DEPT_NM::TEXT] AS DEPT_NM_PATH
+                           , D.MATCHED
+                        FROM DEPT_LIST D
+                       WHERE D.PARENT IS NULL
+                       UNION ALL
+                      SELECT D.ID
+                           , D.PARENT
+                           , D.DEPT_CD
+                           , D.DEPT_NM
+                           , D.DEPT_LDR_ID
+                           , D.DEPT_MNGR_ID
+                           , D.DEPT_DESC
+                           , D.USE_YN
+                           , D.ORD_SN
+                           , D.UP_DEPT_CD
+                           , DT.LEVEL + 1 AS LEVEL
+                           , DT.DEPT_NM_PATH || D.DEPT_NM AS DEPT_NM_PATH
+                           , D.MATCHED
+                        FROM DEPT_LIST D
+                        JOIN DEPT_TREE DT
+                        ON D.PARENT = DT.ID)
+                  SEARCH DEPTH FIRST BY ORD_SN, DEPT_NM, DEPT_CD SET SORT_ORDR
+        SELECT DT.ID
+             , DT.PARENT
+             , DT.DEPT_CD
+             , DT.DEPT_NM
+             , DT.DEPT_LDR_ID
+             , (SELECT USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = DT.DEPT_LDR_ID) AS DEPT_LDR_NM
+             , DT.DEPT_MNGR_ID
+             , (SELECT USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = DT.DEPT_MNGR_ID) AS DEPT_MNGR_NM
+             , DT.DEPT_DESC
+             , DT.USE_YN
+             , DT.ORD_SN
+             , DT.UP_DEPT_CD
+             , (SELECT DEPT_NM
+                  FROM PTS_DEPT PD
+                 WHERE DT.UP_DEPT_CD = PD.DEPT_CD) AS UP_DEPT_NM
+             , DT.LEVEL
+             , ARRAY_TO_STRING(DT.DEPT_NM_PATH, '\') AS DEPT_NM_PATH
+             , DT.MATCHED
+          FROM DEPT_TREE DT
+         ORDER BY DT.SORT_ORDR
+    </select>
+</mapper>

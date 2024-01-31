@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Footer" width="1920" height="100" titletext="New Form" cssclass="footer_cmb">
+    <Layouts>
+      <Layout height="100" width="1920">
+        <Static id="Static00" taborder="0" left="0" top="0" right="0" bottom="0" cssclass="footerBg"/>
+        <Static id="Static00_00" taborder="5" left="180" width="281" font="normal bold 20pt/normal &quot;Arial&quot;" color="white" background="url('theme://images/footer_logo.png') no-repeat left center" top="42" onclick="Static00_onclick" height="51"/>
+        <Static id="Static05" taborder="1" text="(52815) 경상남도 진주시 사들로 123번길 40" left="Static00_00:45" top="40" width="300" height="25" enable="true" onclick="Static_onclick" font="normal 14px/normal &quot;맑은고딕&quot;" textAlign="left" color="#afafaf"/>
+        <Static id="Static06" taborder="2" text="팩스 055-751-5266" left="Static05:10" top="40" width="150" height="25" enable="true" onclick="Static_onclick" font="normal 14px/normal &quot;맑은고딕&quot;" textAlign="left" color="#afafaf"/>
+        <Static id="Static07" taborder="3" text="Korea Research Institute for defense Technology planning and advancement all rights reserved." left="Static00_00:45" top="Static05:0" width="800" height="25" enable="true" onclick="Static_onclick" font="normal 14px/normal &quot;맑은고딕&quot;" textAlign="left" color="#afafaf"/>
+        <Combo id="Combo00" taborder="4" text="관련사이트" top="10" height="40" innerdataset="\" codecolumn="value" datacolumn="country" index="0" displaynulltext="관련사이트" width="200" right="180" value="" cssclass="footer_cmb"/>
+        <Static id="Static01" taborder="6" text="개인정보처리방침" left="Static00_00:-281" top="13" width="128" height="16" enable="true" onclick="Static_onclick" font="normal 14px/normal 맑은고딕" color="#ffffff"/>
+        <Static id="Static10" taborder="7" text="|" left="Static01:15" top="13" height="16" enable="true" onclick="Static_onclick" textAlign="center" width="4" font="normal 14px/normal &quot;맑은고딕&quot;" color="#878787"/>
+        <Static id="Static02" taborder="8" text="이용약관" left="Static10:15" top="13" width="64" height="16" enable="true" onclick="Static_onclick" font="normal 14px/normal 맑은고딕" color="#afafaf"/>
+        <Static id="Static11" taborder="9" text="|" left="Static02:15" top="13" height="16" enable="true" onclick="Static_onclick" textAlign="center" width="4" font="normal 14px/normal &quot;맑은고딕&quot;" color="#878787"/>
+        <Static id="Static03" taborder="10" text="연구소소개" left="Static11:15" top="13" width="80" height="16" enable="true" onclick="Static_onclick" font="normal 14px/normal 맑은고딕" color="#afafaf"/>
+        <Combo id="Combo00_00" taborder="11" text="관련사이트" top="10" height="40" innerdataset="dsCombo01" codecolumn="value" datacolumn="country" index="0" displaynulltext="업무시스템" width="200" right="Combo00:10" value="" cssclass="footer_cmb"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[  ]]></Script>
+    <Objects>
+      <Dataset id="dsCombo01">
+        <ColumnInfo>
+          <Column id="country" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value"/>
+            <Col id="country">업무시스템</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCombo02">
+        <ColumnInfo>
+          <Column id="country" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="value"/>
+            <Col id="country">관련사이트</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

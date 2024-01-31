@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="termsAgreement" width="1920" height="1140" titletext="약관 동의" onload="termsAgreement_onload" scrollbartype="auto auto">
+    <Layouts>
+      <Layout height="1140" width="1920" type="vertical" flexcrossaxisalign="center">
+        <Div id="divStep" taborder="0" left="0" top="245" width="1560" height="201" flexshrink="0" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle" taborder="3" left="0" top="0" height="125" enable="true" cssclass="portal_sta_frmTitle" text="회원가입" textAlign="center" width="1560" flexshrink="0"/>
+              <Static id="Static01" taborder="0" left="0" top="125" height="66" enable="true" cssclass="portal_sta_joinStep1_S" text="약관동의" width="520"/>
+              <Static id="Static03" taborder="1" left="520" top="125" height="66" enable="true" cssclass="portal_sta_joinStep2_S_step3" text="가입양식작성" width="520"/>
+              <Static id="Static04" taborder="2" left="1040" top="125" height="66" enable="true" cssclass="portal_sta_joinStep4" text="가입완료" width="520"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divAgreeAll" taborder="1" text="" left="0" top="191" width="1560" height="103" flexshrink="0" cssclass="div_WF_Area" flexgrow="0">
+          <Layouts>
+            <Layout>
+              <Static id="staNotice" taborder="0" text="* 개인정보 제공자가 동의한 내용외 다른 목적으로 활용하지 않으며, 제공된 개인정보의 이용을 거부하고자 할 때에는 개인정보 관리책임자를 통해 열람, 정정, 삭제를 요구할 수 있습니다. " left="0" top="54" height="39" cssclass="portal_sta_joinInfo" right="0" flexshrink="0" flexgrow="0"/>
+              <CheckBox id="chkAgreeAll" taborder="1" text="국방기술진흥연구소 과제관리시스템의 이용약관, 개인정보 수집에 모두 동의합니다." left="0" top="30" height="24" cssclass="portal_chk_joinAll" right="0" flexshrink="0" onclick="divAgreeAll_chkAgreeAll_onclick" flexgrow="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divTermsList" taborder="2" left="644" top="508" width="1560" height="684" cssclass="div_WF_Area" flexshrink="0">
+          <Layouts>
+            <Layout verticalgap="14"/>
+          </Layouts>
+        </Div>
+        <Div id="divBtn" taborder="3" left="396" top="1004" width="1560" height="150" flexshrink="0">
+          <Layouts>
+            <Layout>
+              <Button id="btnNext" taborder="0" text="다음" left="715" height="45" top="83" cssclass="portal_btn" width="130" onclick="divBtn_btnNext_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsTerms" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="trmsId" type="STRING" size="256"/>
+          <Column id="trmsCn" type="STRING" size="256"/>
+          <Column id="esntlYn" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="trmsTitle" type="STRING" size="256"/>
+          <Column id="agrmYn" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAgreement" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="trmsId" type="STRING" size="256"/>
+          <Column id="esntlYn" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="Column5" type="STRING" size="256"/>
+          <Column id="agrmYn" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  약관 동의
+ *  MenuPath      회원가입 - 약관 동의
+ *  FileName      MIF_1010M.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.10.23
+ *  Desction      약관 동의
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.10.23    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+this.termsDivIds = [];
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+/**
+ * @description 화면 로드
+ */
+this.termsAgreement_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+    this.fnSearch();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnSearch = function ()
+{
+	this.gfnTransaction("clearAgrm", "mi/register/clearTermsAgreement.do", "", "", "", "fnCallback");
+	this.gfnTransaction("getTerms", "mi/register/getTerms.do", "", "dsTerms", "", "fnCallback");
+};
+
+this.fnSave = function ()
+{
+	this.gfnTransaction("setAgrm", "mi/register/setTermsAgreement.do", "dsTerms", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ 
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getTerms":
+            while (this.termsDivIds.length > 0) {
+                let i = this.termsDivIds.length - 1;
+                const removed = this.removeChild(this.termsDivIds[i]);
+                if (div != null) {
+                    div.destroy();
+                }
+                
+                this.termsDivIds.splice(i, 1);
+            }
+            
+            const termsCount = this.dsTerms.getRowCount();
+            const termsHeight = termsCount * 335 + (termsCount - 1) * 14;
+            //this.set_height(456 + termsHeight);
+            this.divTermsList.set_height(termsHeight);
+            
+            for (let i = 0; i < termsCount; i++) {
+                const id = "divTerm" + (i + 1);
+                const div = new nexacro.Div(id, 0, 0, 1560, 335, 0, 0, 1560, 1560, 335, 335);
+                this.divTermsList.insertChild(i, id, div);
+                div.show();
+                this.termsDivIds.push(id);
+                div.set_async(false);
+                div.set_width("100%");
+                div.set_height(335);
+                div.set_left(0);
+                div.set_top(i * 349);
+                div.termIndex = i;
+                div.sysId = this.dsTerms.getColumn(i, "sysId");
+                div.trmsId = this.dsTerms.getColumn(i, "trmsId");
+                div.trmsTitle = this.dsTerms.getColumn(i, "trmsTitle");
+                div.trmsCn = this.dsTerms.getColumn(i, "trmsCn");
+                div.esntlYn = this.dsTerms.getColumn(i, "esntlYn");
+                div.agrmYn = 'N';
+                div.set_url("pts::mif/MIF_0010U.xfdl");
+                div.form.onvaluechanged = this.divTerm_onvaluechanged.bind(this);
+            }
+            this.resetScroll();
+            break;
+        case "setAgrm":
+            this.fnGoRegisterForm();
+            break;
+        default:
+            break;
+    }
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divBtn_btnNext_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if (!this.fnValidate()) {
+        return;
+    }
+    
+    this.fnSave();
+};
+
+this.divTerm_onvaluechanged = function (obj, e)
+{
+    this.dsTerms.setColumn(e.index, "agrmYn", e.agrmYn);
+    
+    let checked = true;
+    for (let i = 0; (i < this.termsDivIds.length) && checked; i++) {
+        const div = this.divTermsList.form[this.termsDivIds[i]];
+        if (div.esntlYn === "Y") {
+            checked = checked && (div.form.getAgrmYn() == "Y");
+        }
+    }
+    
+    this.divAgreeAll.form.chkAgreeAll.set_value(checked);
+};
+
+this.divAgreeAll_chkAgreeAll_onclick = function(obj:nexacro.CheckBox,e:nexacro.ClickEventInfo)
+{
+    const value = obj.value ? "Y" : "N";
+    for (let i = 0; (i < this.termsDivIds.length) && value; i++) {
+        const div = this.divTermsList.form[this.termsDivIds[i]];
+        if (div.esntlYn === "Y") {
+            div.form.setAgrmYn(value);
+        }
+    }
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnValidate = function ()
+{
+    let result = true;
+    for (let i = 0; (i < this.dsTerms.rowcount) && result; i++) {
+        if (this.dsTerms.getColumn(i, "esntlYn") === "Y") {
+            result = result && (this.dsTerms.getColumn(i, "agrmYn") == "Y");
+        }
+    }
+    
+    if (!result) {
+        this.gfnAlert("필수 약관에 모두 동의해야 합니다.");
+        return false;
+    }
+    
+    return true;
+};
+
+this.fnGoRegisterForm = function ()
+{
+    nexacro.getApplication().goPage("identification", "pts::mif/MIF_1020M.xfdl");
+};
+]]></Script>
+  </Form>
+</FDL>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="roleHierarchy"
+          class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+        <property name="hierarchy" ref="hierarchyStrings"/>
+    </bean>
+
+    <bean id="hierarchyStrings"
+          class="org.egovframe.rte.fdl.security.userdetails.hierarchicalroles.HierarchyStringsFactoryBean"
+          init-method="init">
+        <property name="securedObjectService" ref="securedObjectService"/>
+    </bean>
+
+<!--    <bean id="filterSecurityInterceptor"-->
+<!--          class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">-->
+<!--        <property name="authenticationManager" ref="authenticationManager"/>-->
+<!--        <property name="accessDecisionManager" ref="org.springframework.security.access.vote.AffirmativeBased#0"/>-->
+<!--        <property name="securityMetadataSource" ref="databaseSecurityMetadataSource"/>-->
+<!--    </bean>-->
+
+    <bean id="databaseSecurityMetadataSource"
+          class="org.egovframe.rte.fdl.security.intercept.EgovReloadableFilterInvocationSecurityMetadataSource">
+        <constructor-arg ref="requestMap"/>
+        <property name="securedObjectService" ref="securedObjectService"/>
+    </bean>
+
+    <!--  url  -->
+    <bean id="requestMap" class="org.egovframe.rte.fdl.security.intercept.UrlResourcesMapFactoryBean"
+          init-method="init">
+        <property name="securedObjectService" ref="securedObjectService"/>
+    </bean>
+
+    <bean id="securedObjectService" class="org.egovframe.rte.fdl.security.securedobject.impl.SecuredObjectServiceImpl">
+        <property name="securedObjectDAO" ref="securedObjectDAO"/>
+        <property name="requestMatcherType" value="regex"/>   <!--  default : ant -->
+    </bean>
+
+    <bean id="loginSuccessHandler" class="com.jnv.main.login.controller.LoginSuccessHandler">
+        <property name="defaultUrl" value="/businessMain.do"/>
+    </bean>
+
+    <bean id="loginFailureHandler" class="com.jnv.main.login.controller.LoginFailureHandler">
+        <property name="defaultUrl" value="/loginFailure.do"/>
+    </bean>
+</beans>

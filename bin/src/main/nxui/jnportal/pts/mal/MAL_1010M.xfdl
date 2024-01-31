@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MAL_1010M" width="1920" height="720" titletext=" 메일발송 목록" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="720" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="메일발송 목록" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="staTitle_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="56" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="2" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="20" top="55" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="40"/>
+              <Static id="staSearch" taborder="3" text="검색" left="20" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboSearch" taborder="7" left="staSearch:10" top="15" width="140" height="26" codecolumn="codecolumn" datacolumn="datacolumn" value="" index="-1" innerdataset="innerdataset" onkeyup="onkeyup">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">제목</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">발송자</Col>
+                      <Col id="codecolumn">sndMembNm</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtSearch" taborder="1" left="cboSearch:10" top="15" width="950" height="26" onkeyup="onkeyup"/>
+              <Static id="staSearch00" taborder="6" text="발송일" left="1365" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Calendar id="calStrYmd" taborder="4" left="staSearch00:10" top="15" width="118" height="26" dateformat="yyyy-MM-dd" weekformat="일 월 화 수 목 금 토" daysize="29 29" headheight="28" enable="true"/>
+              <Calendar id="calEndYmd" taborder="5" left="calStrYmd:25" top="15" width="112" height="26" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" backgroundcolumn="disabled" readonly="false" enable="true" onkeyup="onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:15" right="50" cssclass="div_WF_Area" bottom="37">
+          <Layouts>
+            <Layout>
+              <Grid id="grdList" taborder="0" left="0" top="45" binddataset="dsList" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0" oncelldblclick="divResult_grdList_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="500"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                      <Column size="80"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="normal" edittype="none" text="순번"/>
+                      <Cell col="1" text="제목"/>
+                      <Cell col="2" text="발송일"/>
+                      <Cell col="3" text="발송자"/>
+                      <Cell col="4" text="발송대상 수"/>
+                      <Cell col="5" text="상태"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="normal" edittype="none" textAlign="center" text="expr:currow+1" expr="currow+1"/>
+                      <Cell col="1" text="bind:emlTtl"/>
+                      <Cell col="2" text="bind:sndDt"/>
+                      <Cell col="3" text="bind:sndNm"/>
+                      <Cell col="4" text="bind:sndTrgtCnt"/>
+                      <Cell col="5" text="bind:sndSttsNm"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="staGridRowCnt" taborder="1" text="총 0건" cssclass="sta_WF_subTxt" left="0" top="0" width="150" height="45"/>
+              <Button id="btnSms" taborder="2" text="메일발송" cssclass="btn_WF_icoSms" height="28" bottom="grdList:9" right="0" width="90" onclick="divResult_btnSms_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="emlTtl" type="STRING" size="256"/>
+          <Column id="sndDt" type="STRING" size="256"/>
+          <Column id="sndTrgtCnt" type="STRING" size="256"/>
+          <Column id="sndSttsNm" type="STRING" size="256"/>
+          <Column id="emlId" type="STRING" size="256"/>
+          <Column id="sndNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="sndStrDt" type="STRING" size="256"/>
+          <Column id="sndEndDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  메일발송 목록
+*  MenuPath      메일발송 관리 - 메일발송 목록
+*  FileName      MAL_1010M.xfdl 
+*  Creator 	     kangjw
+*  CreateDate    2023.12.11
+*  Desction      메일발송 목록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.11    kangjw  	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	
+	// 이달 1일 세팅, 현재날짜 세팅
+	var currDate = new Date();
+	var year = currDate.getFullYear().toString().padLeft(4, "0");
+	var month = (currDate.getMonth() + 1).toString().padLeft(2, "0");
+	var day = 1;
+
+	this.dsSearch.setColumn(0,"sndStrDt",(year + month + day));
+	this.dsSearch.setColumn(0,"sndEndDt",(new Date()).getFullYear() + "1231");
+	
+	this.btnSearch_onclick();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+
+/**
+ * description 메일발송관리 목록
+*/
+this.fnSearch = function ()
+{
+	var strSvcId    = "getEmlSndList";
+	var strSvcUrl   = "mal/emlSndMaster/getEmlSndList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+
+/**
+ * description Transaction Callback 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getEmlSndList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCnt); 
+            break;
+		default:
+			break;	
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSearch();
+};
+
+this.divResult_grdList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var param = { emlId:  this.dsList.getColumn(e.row, "emlId") }
+		nexacro.getApplication().openNewTab("MAL_1030M", "메일발송 이력", "pts::mal/MAL_1030M.xfdl", param, "메일발송 관리 > 메일발송 이력", "");
+};
+
+this.divResult_btnSms_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().openNewTab("MAL_1020M", "메일발송", "pts::mal/MAL_1020M.xfdl", "메일발송 관리 > 메일발송", "");
+};
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+this.onkeyup = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	
+	if(e.keycode==13){
+		this.btnSearch_onclick()();
+	}
+};
+
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboSearch" propid="value" datasetid="dsSearch" columnid="searchType"/>
+      <BindItem id="item1" compid="divSearch.form.edtSearch" propid="value" datasetid="dsSearch" columnid="searchKeyword"/>
+      <BindItem id="item2" compid="divSearch.form.calStrYmd" propid="value" datasetid="dsSearch" columnid="sndStrDt"/>
+      <BindItem id="item3" compid="divSearch.form.calEndYmd" propid="value" datasetid="dsSearch" columnid="sndEndDt"/>
+    </Bind>
+  </Form>
+</FDL>

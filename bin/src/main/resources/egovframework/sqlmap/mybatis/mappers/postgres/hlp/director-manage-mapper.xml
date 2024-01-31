@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.hlp.directorManage.service.DirectorManageDAO">
+
+    <!-- 담당자 관리 조회 -->
+    <select id="getDirectorManageList" parameterType="map" resultType="directorManageVO">
+        /* director-manage-mapper.getDirectorManageList */
+        SELECT H.HLP_PIC_ID
+             , (SELECT U.USER_NM_KR
+                FROM CMN_USER U
+                WHERE U.USER_ID = H.HLP_PIC_ID) AS HLP_PIC_ID_NM
+             ,  (SELECT U.MEMBER_ID
+                FROM CMN_USER U
+                WHERE U.USER_ID = H.HLP_PIC_ID) AS HLP_PIC_ID_MEMBER
+             ,  H.HLP_WK_CLS_CD
+             , (SELECT CCL.LINE_CODE_NM_KR
+                FROM CMN_CODE_LINE CCL
+                WHERE CCL.LINE_CODE = H.HLP_WK_CLS_CD) AS HLP_WK_CLS_CD_NM
+             , H.POW_CD
+             , (SELECT PS.CODE_NM
+                FROM PTS_STD_CODE PS
+                WHERE PS.CODE_CD = H.POW_CD) AS POW_CD_NM
+             , H.USE_YN
+             , H.HLP_WK_CLS_CD
+          FROM PTS_HLP_PIC H
+          <where>
+            <if test='hlpWkClsCd != null and hlpWkClsCd != ""'>
+            AND H.HLP_WK_CLS_CD = #{hlpWkClsCd}
+            </if>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "MANAGERNAME"'>
+                        AND (SELECT U.MEMBER_ID FROM CMN_USER U WHERE U.USER_ID = H.HLP_PIC_ID) LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "MANAGER"'>
+                        AND (SELECT U.USER_NM_KR FROM CMN_USER U WHERE U.USER_ID = H.HLP_PIC_ID) LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "MANAGERAREA"'>
+                        AND (SELECT PS.CODE_NM FROM PTS_STD_CODE PS WHERE PS.CODE_CD = H.POW_CD) LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+                        AND (SELECT U.MEMBER_ID FROM CMN_USER U WHERE U.USER_ID = H.HLP_PIC_ID) LIKE '%'|| #{searchKeyword} || '%'
+                            OR (SELECT U.USER_NM_KR FROM CMN_USER U WHERE U.USER_ID = H.HLP_PIC_ID) LIKE '%'|| #{searchKeyword} || '%'
+                            OR (SELECT PS.CODE_NM FROM PTS_STD_CODE PS WHERE PS.CODE_CD = H.POW_CD) LIKE '%'|| #{searchKeyword} || '%'
+                    </otherwise>
+                </choose>
+            </if>
+          </where>
+    </select>
+
+   <!-- 담당자 관리 입력 저장-->
+    <insert id="insertDirectorManageItem" parameterType="directorManageVO">
+        /* director-manage-mapper.insertDirectorManageItem */
+        INSERT
+          INTO PTS_HLP_PIC( HLP_PIC_ID
+                          , HLP_WK_CLS_CD
+                          , POW_CD
+                          , USE_YN)
+                   VALUES ( NULLIF(#{hlpPicId}, '')
+                          , NULLIF(#{hlpWkClsCd}, '')
+                          , NULLIF(#{powCd}, '')
+                          , NULLIF(#{useYn}, ''))
+    </insert>
+
+    <!-- 담당자 관리 수정 저장 -->
+    <update id="updateDirectorManageItem" parameterType="directorManageVO">
+        /* director-manage-mapper.updateDirectorManageItem */
+        UPDATE PTS_HLP_PIC
+           SET HLP_WK_CLS_CD  = NULLIF(#{hlpWkClsCd}, '')
+             , POW_CD         = NULLIF(#{powCd}, '')
+             , USE_YN         = NULLIF(#{useYn}, '')
+         WHERE HLP_PIC_ID= #{hlpPicId}
+    </update>
+
+    <!-- 담당자 삭제 저장 -->
+    <delete id="deleteDirectorManageItem" parameterType="directorManageVO">
+        /* director-manage-mapper.deleteDirectorManageItem */
+        DELETE
+          FROM PTS_HLP_PIC
+         WHERE HLP_PIC_ID     = #{hlpPicId}
+           AND POW_CD         = #{powCd}
+    </delete>
+
+    <!-- 담당 분야 코드 중복체크 -->
+    <select id="getDuplicateKeyCnt" parameterType="deptManageVO">
+        /* director-manage-mapper.getDuplicateKeyCnt */
+        SELECT COUNT(*)
+          FROM PTS_HLP_PIC
+         WHERE HLP_PIC_ID = #{hlpPicId}
+    </select>
+
+</mapper>

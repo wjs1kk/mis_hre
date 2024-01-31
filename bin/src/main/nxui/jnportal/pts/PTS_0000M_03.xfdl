@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_0000M_03" width="80" height="497" titletext="퀵메뉴">
+    <Layouts>
+      <Layout height="497" mobileorientation="landscape" width="80">
+        <Div id="Div00" taborder="0" text="Div00" left="0" top="0" right="0" bottom="0" cssclass="portal_main_quick">
+          <Layouts>
+            <Layout>
+              <Button id="btn_00_00" taborder="2" text="과제&#13;&#10;신청" left="13" top="42" width="55" height="55" cssclass="portal_quick_btn"/>
+              <Button id="btn_00" taborder="0" text="협약&#13;&#10;신청" left="13" top="btn_00_00:15" width="55" height="55" cssclass="portal_quick_btn"/>
+              <Static id="Static00" taborder="1" text="맞춤서비스" left="0" top="0" height="42" cssclass="portal_quick_tit" right="0"/>
+              <Button id="btn_00_01" taborder="3" text="사업비&#13;&#10;관리" left="13" top="btn_00:15" width="55" height="55" cssclass="portal_quick_btn"/>
+              <Button id="btn_00_01_00" taborder="4" text="평가&#13;&#10;관리" left="13" top="btn_00_01:15" width="55" height="55" cssclass="portal_quick_btn"/>
+              <Button id="btn_00_01_00_00" taborder="5" text="이용&#13;&#10;매뉴얼" left="13" top="btn_00_01_00:15" width="55" height="55" cssclass="portal_quick_btn"/>
+              <Button id="btn_00_01_00_00_00" taborder="6" text="QnA" left="13" top="btn_00_01_00_00:15" width="55" height="55" cssclass="portal_quick_btn"/>
+              <Button id="btn_01" taborder="7" text="설정" left="13" top="btn_00_01_00_00_00:12" width="55" height="21" cssclass="portal_quick_setting"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+  </Form>
+</FDL>

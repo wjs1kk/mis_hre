@@ -1,0 +1,422 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CMS_1050M" width="1920" height="670" titletext="배너 및 팝업 관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen" stepcount="0">
+        <Button id="btnSearch" taborder="0" text="조회" top="12" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="sta001" taborder="1" text="배너 및 팝업 관리" left="50" top="10" height="30" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
+        <Static id="Static04_00" taborder="2" text="h 12" onclick="Static31_onclick" visible="false" left="50" top="45" width="60" height="12" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Static id="sta002" taborder="3" text="검색조건" left="50" top="53" width="169" height="27" cssclass="sta_WF_subTitle01" onclick="div_Search_Static05_onclick"/>
+        <Static id="Static10_00" taborder="4" text="w20" visible="false" left="30" top="107" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="416" onclick="Static10_00_onclick"/>
+        <Div id="div_Search01" taborder="5" left="50" top="177" height="483" cssclass="" text="" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static10" taborder="1" text="w20" visible="false" left="-20" top="26" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00" taborder="2" text="h 18" onclick="Static31_onclick" visible="false" left="20" top="0" width="60" height="18" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="129" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="sta003" taborder="5" text="검색결과" cssclass="sta_WF_subTitle01" left="20" top="11" height="27" onclick="Static09_onclick" width="169"/>
+              <Grid id="grdAdvtManage" taborder="4" binddataset="dsAdvtManage" left="20" top="45" right="20" autofittype="col" tooltiptype="default" onheadclick="grd_list_onheadclick" autoenter="select" bottom="13" enable="true" oncelldblclick="div_Search01_grdAdvtManage_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="100"/>
+                      <Column size="300"/>
+                      <Column size="400"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="33"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" text="유형" autosizerow="default"/>
+                      <Cell col="2" text="제목"/>
+                      <Cell col="3" text="내용"/>
+                      <Cell col="4" text="표시순서"/>
+                      <Cell col="5" text="게시 시작일"/>
+                      <Cell col="6" text="게시 종료일"/>
+                      <Cell col="7" text="사용여부"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1" textAlign="center" expandsize="16" edittype="none"/>
+                      <Cell col="1" displaytype="combotext" edittype="none" text="bind:advtType" expandsize="16" textAlign="center" combodataset="dsAdTy" combocodecol="value" combodatacol="text"/>
+                      <Cell col="2" text="bind:advtTitle" displaytype="normal" expandsize="16" edittype="none" textAlign="center"/>
+                      <Cell col="3" displaytype="normal" edittype="none" text="bind:advtCont" calendardateformat="yyyy-MM-dd" expandsize="16" textAlign="left"/>
+                      <Cell col="4" text="bind:sortOrdr" textAlign="center" edittype="none"/>
+                      <Cell col="5" text="bind:advtStartDt" textAlign="center" edittype="none" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="6" text="bind:advtEndDt" textAlign="center" edittype="none" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="7" text="bind:useYn" textAlign="center" displaytype="combotext" combodataset="dsUseYn" combodatacol="text" combocodecol="value"/>
+                    </Band>
+                  </Format>
+                  <Format id="format_copy"/>
+                </Formats>
+              </Grid>
+              <Static id="Static10_00" taborder="0" text="w20" visible="false" top="0" width="20" height="295" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="staGridRowCnt" taborder="6" text="(총 0건)" cssclass="sta_WF_subResult" left="109" top="12" width="149" height="27"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="Static04_00_00" taborder="6" text="h 10" onclick="Static31_onclick" visible="false" left="70" top="167" width="60" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Button id="btn_registration" taborder="7" text="신규등록" top="12" cssclass="btn_WF_icoRegistration" onclick="btn_registration_onclick" height="28" width="90" right="118"/>
+        <Div id="divSearch" taborder="8" left="51" top="82" height="80" text="" right="49">
+          <Layouts>
+            <Layout>
+              <Div id="Div00" taborder="0" text="" top="15" cssclass="div_WF_panel" right="20" left="20" bottom="15" onkeyup="divSearch_Div00_onkeyup">
+                <Layouts>
+                  <Layout>
+                    <Static id="sta004" taborder="0" text="유형" cssclass="sta_WF_condition01" top="9" width="110" height="34" onclick="div_Search_Static01_onclick" left="11"/>
+                    <Static id="sta005" taborder="1" text="제목" left="305" top="9" width="110" height="34" cssclass="sta_WF_condition01"/>
+                    <Edit id="edtAdvtTitle" taborder="2" left="414" top="13" width="8.43%" height="26" onkeyup="divSearch_Div00_onkeyup"/>
+                    <Static id="sta006" taborder="3" text="내용" left="621" top="9" width="110" height="34" cssclass="sta_WF_condition01"/>
+                    <Edit id="edtAdvtCont" taborder="4" left="730" top="13" width="8.43%" height="26" onkeyup="divSearch_Div00_onkeyup"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Combo id="cboAdTy" taborder="9" left="163" top="110" width="115" height="26" index="-1" value="" datacolumn="text" codecolumn="value" innerdataset="dsAdTy" text="" onkeyup="divSearch_Div00_onkeyup"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="userNmEn" type="STRING" size="256"/>
+          <Column id="applyDt" type="STRING" size="256"/>
+          <Column id="applyStatus" type="STRING" size="256"/>
+          <Column id="applyCont" type="STRING" size="256"/>
+          <Column id="legalYn" type="STRING" size="256"/>
+          <Column id="emailAddr" type="STRING" size="256"/>
+          <Column id="telNo" type="STRING" size="256"/>
+          <Column id="phoneNo" type="STRING" size="256"/>
+          <Column id="UnsubscribeYn" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAdvtManage" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="advtId" type="STRING" size="256"/>
+          <Column id="advtType" type="STRING" size="256"/>
+          <Column id="advtTitle" type="STRING" size="256"/>
+          <Column id="advtCont" type="STRING" size="256"/>
+          <Column id="advtStartDt" type="STRING" size="256"/>
+          <Column id="advtEndDt" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="attachFileId" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsAdTy">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="advtId" type="STRING" size="256"/>
+          <Column id="advtType" type="STRING" size="256"/>
+          <Column id="advtTitle" type="STRING" size="256"/>
+          <Column id="advtCont" type="STRING" size="256"/>
+          <Column id="advtStartDt" type="STRING" size="256"/>
+          <Column id="advtEndDt" type="STRING" size="256"/>
+          <Column id="ordNo" type="STRING" size="256"/>
+          <Column id="advtUseYn" type="STRING" size="256"/>
+          <Column id="attachFileId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  배너 및 팝업 관리
+*  MenuPath      관리 메뉴 - 관리자 - 배너 및 팝업 관리
+*  FileName      advtManage.xfdl 
+*  Creator 	     moonsj
+*  CreateDate    2023.02.22
+*  Desction      배너 및 팝업 관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.15    moonsj 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.gfnLoadCombo("loadCombo", "dsAdTy=CMS:ADVT_TYPE:A dsUseYn=SM:USE_YN:", "fnCallBack");
+	var nRowObj = this.parent.sRowObj;
+	console.log('this.parent.sRowObj: ', this.parent.sRowObj);
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 삭제
+*/
+
+this.fnDelete = function ()
+{
+	var strSvcId	= "deleteAdvtManageList";
+	var strSvcUrl	= "cms/deleteAdvtManageList.do";
+	var inData		= "dsAdvtManage";
+	var outData		= "";
+	var strArg		= "";
+	var callBackFnc = "fnCallBack";
+	var isAsync     = true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getAdvtManageList";
+	var strSvcUrl   = "cms/getAdvtManageList.do";
+	var inData      = "dsSearch";  // input1=dsSearch
+	var outData     = "dsAdvtManage";  // dsAdvtManage
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	var strSvcId    = "setAdvtManageList";
+	var strSvcUrl   = "cms/setAdvtManageList.do";
+	var inData      = "dsAdvtManage";  // input1=dsSearch
+	var outData     = "";  // dsAdvtManage=output1
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************
+/**
+ * description Transaction CallBack 함수
+*/
+
+
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+	   case "getAdvtManageList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsAdvtManage, this.div_Search01.form.staGridRowCnt);
+		break;
+	
+	   case "setAdvtManageList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.fnSearch();
+			}else{
+				this.gfnAlert("저장 실패");
+			}
+			//총 건수 계산
+			this.gfnRowCount(this.dsAdvtManage, this.div_Search01.form.staGridRowCnt);
+			break;
+			
+		case "deleteAdvtManageList":
+			if(this.callbackMsg == "success"){
+				 this.gfnAlert("CM_MSG_DELETE_SUCCESS"); //삭제되었습니다.
+				 this.dsAdvtManage.clearData();
+				 this.dsAdvtManage.addRow();
+				 this.fnSearch();
+			}else{
+				this.gfnAlert("삭제 실패");
+			}
+			//총 건수 계산
+			this.gfnRowCount(this.dsAdvtManage, this.div_Search01.form.stc_gridRowCnt);
+			break;
+		default:
+			break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	this.fnSearch();
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*************************************************************************************************
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+
+/**
+ * description 저장버튼 클릭
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    if(this.dsAdvtManage.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+		return;
+	}
+	// 변경사항 체크
+	if (!this.gfnDsIsUpdated(this.dsUserManage)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	// msgId, args(치환), popupId, Confirm Callback Function({확인 trueFunc, 취소: falseFunc})
+	// confirm 이후 스크립트가 실행되기때문에 return; 처리 or 가장 마지막 위치
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/**
+ * description 삭제버튼 클릭
+*/
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var cCnt = this.dsAdvtManage.getCaseCount("rowCheck==1");
+	
+	if(cCnt == 0){
+		this.gfnAlert("삭제할 데이터를 선택해주세요.");
+		return;
+	}
+	
+	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""});  // 변경된 내역을 삭제 하시겠습니까?	
+};
+
+/**
+ * description 그리드헤드 클릭
+*/
+this.Div00_grdAdvtManage_onheadclick= function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+/**
+ * description 사용자관리 신규등록 Popup 
+*/
+this.btn_registration_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+
+	this.gfnOpenPopup("advtManagePopup", "sys::cms/CMS_1050P.xfdl", "", "fnPopupAfter", "");
+	
+};
+
+/**
+ * description 그리드에 선택된 데이터를 수정팝업창 오픈
+*/
+this.btnUpdate_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	//체크된 행 갯수 count
+	var cnt = 0;
+	for(var i = 0; i < this.dsAdvtManage.rowcount; i++){
+		if(this.dsAdvtManage.getColumn(i, "rowCheck") == 1){
+			cnt++;
+		}
+	}
+	
+	if(cnt > 1){
+	this.gfnAlert("수정 할 데이터를 한 개만 선택하세요.");
+	return;
+	}
+	this.fnUpdateAdvtInfo(this.dsAdvtManage.rowposition);
+};
+
+/**
+ * description 그리드 셀 더블클릭 시 수정팝업창 오픈
+*/
+this.div_Search01_grdAdvtManage_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.fnUpdateAdvtInfo(e.row);
+};
+
+/**
+ * description 팝업창 내용 저장 후 팝업창 닫기
+*/
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+/**
+ * description 수정팝업창 오픈
+*/
+this.fnUpdateAdvtInfo = function(sRow)
+{
+	var sRowObj = this.gfnGetRowObj(this.dsAdvtManage, sRow);
+	var args = {sRowObj: sRowObj};
+	this.gfnOpenPopup("advtManagePopup", "sys::cms/CMS_1050P.xfdl", args, "fnPopupAfter", "");
+};
+
+/**
+ * description 엔터키 검색 이벤트
+*/
+this.divSearch_Div00_onkeyup = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+	
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.Div00.form.comboAdTySearch" propid="value" datasetid="dsAdTy" columnid="text"/>
+      <BindItem id="item1" compid="divSearch.form.Div00.form.edtAdvtTitle" propid="value" datasetid="dsSearch" columnid="advtTitle"/>
+      <BindItem id="item2" compid="divSearch.form.Div00.form.edtAdvtCont" propid="value" datasetid="dsSearch" columnid="advtCont"/>
+      <BindItem id="item3" compid="cboAdTy" propid="value" datasetid="dsSearch" columnid="advtType"/>
+    </Bind>
+  </Form>
+</FDL>

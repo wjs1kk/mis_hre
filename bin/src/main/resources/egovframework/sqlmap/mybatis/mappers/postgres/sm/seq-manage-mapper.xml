@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.seq.service.SeqManageDAO">
+
+    <select id="selectSeqManageList" parameterType="map" resultType="seqManageVO">
+        /* seq-manage-mapper.selectSeqManageList */
+        SELECT SEQ_ID
+             , SEQ_PREFIX
+             , SEQ_SUFFIX
+             , SEQ_DIGITS
+             , SEQ_MIN
+             , SEQ_INC
+             , USE_YN
+             , SEQ_CURR
+             , SEQ_DESC
+             , RGST_ID
+             , RGST_DT
+             , RGST_IP
+             , UPDT_ID
+             , UPDT_DT
+             , UPDT_IP
+          FROM CMN_SEQ_MNG
+        <where>
+            <if test='seqId != null and seqId != ""'>
+           AND SEQ_ID LIKE '%' || #{seqId} || '%'
+            </if>
+            <if test='seqDesc != null and seqDesc != ""'>
+           AND SEQ_DESC LIKE '%' || #{seqDesc} || '%'
+            </if>
+            <if test='useYn != null and useYn != ""'>
+           AND USE_YN = #{useYn}
+            </if>
+        </where>
+        ORDER BY SEQ_ID
+    </select>
+
+    <insert id="insertSeqManageItem" parameterType="seqManageVO">
+        /* seq-manage-mapper.insertSeqManageItem */
+        INSERT INTO CMN_SEQ_MNG (
+            SEQ_ID,
+            SEQ_PREFIX,
+            SEQ_SUFFIX,
+            SEQ_DIGITS,
+            SEQ_MIN,
+            SEQ_INC,
+            USE_YN,
+            SEQ_DESC,
+            RGST_ID,
+            RGST_DT,
+            RGST_IP,
+            UPDT_ID,
+            UPDT_DT,
+            UPDT_IP
+        ) VALUES (
+            NULLIF(#{seqId}, ''),
+            NULLIF(#{seqPrefix}, ''),
+            NULLIF(#{seqSuffix}, ''),
+            NULLIF(#{seqDigits}, '')::INT,
+            NULLIF(#{seqMin}, '')::BIGINT,
+            NULLIF(#{seqInc}, '')::BIGINT,
+            NULLIF(#{useYn}, ''),
+            NULLIF(#{seqDesc}, ''),
+            NULLIF(#{sessionUserId}, ''),
+            NOW(),
+            NULLIF(#{sessionUserIp}, ''),
+            NULLIF(#{sessionUserId}, ''),
+            NOW(),
+            NULLIF(#{sessionUserIp}, '')
+        )
+    </insert>
+
+    <update id="updateSeqManageItem" parameterType="seqManageVO">
+        /* seq-manage-mapper.updateSeqManageItem */
+        UPDATE CMN_SEQ_MNG
+           SET SEQ_PREFIX = #{seqPrefix}
+             , SEQ_SUFFIX = #{seqSuffix}
+             , SEQ_DIGITS = #{seqDigits}::INT
+             , SEQ_MIN = #{seqMin}::BIGINT
+             , SEQ_INC = #{seqInc}::BIGINT
+             , USE_YN = #{useYn}
+             , SEQ_DESC = #{seqDesc}
+             , UPDT_ID = #{sessionUserId}
+             , UPDT_DT = NOW()
+             , UPDT_IP = #{sessionUserIp}
+         WHERE SEQ_ID = #{seqId}
+    </update>
+
+    <delete id="deleteSeqManageItem" parameterType="seqManageVO">
+        /* seq-manage-mapper.deleteSeqManageItem */
+        DELETE FROM CMN_SEQ_MNG
+         WHERE SEQ_ID = #{seqId}
+    </delete>
+
+    <select id="selectSeqManageItemById" resultType="seqManageVO">
+        /* seq-manage-mapper.selectSeqManageItemById */
+        SELECT SEQ_ID
+             , SEQ_PREFIX
+             , SEQ_SUFFIX
+             , SEQ_DIGITS
+             , SEQ_MIN
+             , SEQ_INC
+             , USE_YN
+             , SEQ_CURR
+             , SEQ_DESC
+             , RGST_ID
+             , RGST_DT
+             , RGST_IP
+             , UPDT_ID
+             , UPDT_DT
+             , UPDT_IP
+          FROM CMN_SEQ_MNG
+         WHERE SEQ_ID = #{seqId}
+           AND USE_YN = 'Y'
+        <if test="lock == true">
+        FOR UPDATE
+        </if>
+    </select>
+
+    <update id="updateSeqCurrentValue" parameterType="seqManageVO">
+        /* seq-manage-mapper.updateSeqCurrentValue */
+        UPDATE CMN_SEQ_MNG
+           SET SEQ_CURR = NULLIF(#{seqCurr}, '')
+             , UPDT_ID = NULLIF(#{sessionUserId}, '')
+             , UPDT_DT = NOW()
+             , UPDT_IP = NULLIF(#{sessionUserIp}, '')
+         WHERE SEQ_ID = #{seqId}
+    </update>
+</mapper>

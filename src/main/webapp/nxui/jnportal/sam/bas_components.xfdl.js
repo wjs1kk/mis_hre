@@ -4195,6 +4195,9 @@
         	//협조문서인 경우에는 발신문서번호와 접수문서번호를 보내야 함
         	this.gfn_gwDocCall("문서iD,문서iD");
         };
+
+
+
         });
         
         // Regist UI Components Event
@@ -4252,6 +4255,7 @@
             this.btn_Sms_D.addEventHandler("onclick",this.btn_mail_onclick,this);
             this.btn_Mail_D.addEventHandler("onclick",this.btn_search_onclick,this);
             this.div_Search00.form.sta_subTitle.addEventHandler("onclick",this.div_Search_Static05_onclick,this);
+            this.div_Search00.form.btn_download.addEventHandler("onclick",this.div_Search00_btn_download_onclick,this);
             this.div_Search00.form.btn_arrRight_D.addEventHandler("onclick",this.btn_mail_onclick,this);
             this.div_Search00.form.btn_arrLeft_D.addEventHandler("onclick",this.btn_mail_onclick,this);
             this.div_Search00.form.btn_arrUp_D.addEventHandler("onclick",this.btn_mail_onclick,this);
@@ -4319,6 +4323,7 @@
             this.div_Grid00.form.grd_list.addEventHandler("oncellclick",this.grd_list_oncellclick,this);
             this.div_Grid00.form.grd_list.addEventHandler("onheadclick",this.grd_list_onheadclick,this);
             this.div_Grid00.form.grd_list.addEventHandler("onclick",this.grd_list_onclick,this);
+            this.div_Grid00.form.Button15.addEventHandler("onclick",this.div_Grid00_Button15_onclick,this);
             this.div_Grid00.form.btn_row_delete00.addEventHandler("onclick",this.btn_deleteRow_onclick,this);
             this.div_Grid00.form.btn_row_add00.addEventHandler("onclick",this.btn_addRow_onclick,this);
             this.div_Grid00.form.Static04_00_00_00.addEventHandler("onclick",this.Static31_onclick,this);

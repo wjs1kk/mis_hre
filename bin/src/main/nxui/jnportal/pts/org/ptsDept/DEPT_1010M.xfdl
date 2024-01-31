@@ -1,0 +1,602 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="DEPT_1010M" width="1920" height="720" titletext="부서 관리" cssclass="frm_WF_comp" onload="form_onload" enable="true">
+    <Layouts>
+      <Layout height="720" width="1920">
+        <Static id="mainTitle" taborder="0" text="부서 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" width="65" right="50" taborder="1" onclick="btnSave_onclick" height="28" top="20"/>
+        <Div id="divResult" taborder="2" text="" left="50" cssclass="div_WF_Area" width="650" top="73" height="617">
+          <Layouts>
+            <Layout>
+              <Grid id="grdDept" taborder="0" left="0" top="116" binddataset="dsList" bottom="25" autofittype="col" autoenter="select" autoupdatetype="itemselect" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_tree" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="200"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="부서"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" text="bind:deptNm" edittype="tree" treelevel="bind:level" textAlign="left" displaytype="treeitemcontrol" treecheck="bind:rowCheck" treestartlevel="0"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="deptList" taborder="1" text="부서목록" cssclass="sta_WF_subTitle01" left="9" top="56" height="45" onclick="Static09_onclick" width="81" fittocontents="width"/>
+              <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subResult" left="deptList:10" top="56" width="149" height="45"/>
+              <Static id="sta001" taborder="3" left="0" top="0" cssclass="sta_WF_bg" text="" onclick="div_Search_Static00_onclick" height="56" right="0"/>
+              <Static id="staDeptNm" taborder="6" text="부서명" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="editDeptNm" taborder="4" left="staDeptNm:10" height="26" top="15" width="300" onkeyup="onkeyup"/>
+              <Button id="btnSearch" text="조회" cssclass="" top="14" height="28" taborder="5" onclick="btnSearch_onclick" width="65" right="20"/>
+              <Button id="btnAddSiblingRow" taborder="7" text="같은 레벨 부서 추가" cssclass="btn_WF_Row_Add" top="85" right="196" width="151" height="26" onclick="divResult_btnAddSiblingRow_onclick"/>
+              <Button id="btnAddRow" taborder="8" text="하위 부서 추가" cssclass="btn_WF_Row_Add" top="85" height="26" onclick="divResult_btnAddRow_onclick" left="459" width="125"/>
+              <Button id="btnDeleteRow" taborder="9" text="삭제" cssclass="btn_WF_Row_Delete" width="61" height="26" enable="true" onclick="divResult_btnDeleteRow_onclick" top="85" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divDetail" taborder="3" text="Div02" top="73" height="617" cssclass="div_WF_Area" left="715" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="deptDetail" taborder="0" text="부서 상세정보" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Div00_Static13_onclick" width="500"/>
+              <Static id="Static12_01_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="45" right="0" height="34" text=""/>
+              <Static id="Static20_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" right="0" height="34" text="" top="79"/>
+              <Static id="Static18_00" taborder="3" cssclass="sta_WF_condition02box" left="0" top="113" right="0" height="34"/>
+              <Static id="Static25_00_00" taborder="4" cssclass="sta_WF_condition02box" left="0" top="181" right="0" text="" bottom="25"/>
+              <Static id="staUpDeptCd" taborder="5" text="상위부서코드" cssclass="sta_WF_condition02_LEssential" left="0" top="45" width="151" height="34"/>
+              <Static id="staDeptCd" taborder="6" text="부서코드" cssclass="sta_WF_condition02_LEssential" left="0" top="79" width="151" height="34"/>
+              <Static id="staOrdSn" taborder="7" text="정렬순서" cssclass="sta_WF_condition02_LEssential" left="0" top="113" width="151" height="34"/>
+              <Static id="staDeptDesc" taborder="8" text="설명" cssclass="sta_WF_condition02_L" left="0" top="181" width="151" bottom="30"/>
+              <Static id="staDeptNm" taborder="9" text="부서명" cssclass="sta_WF_condition02Essential" left="600" top="79" width="151" height="34"/>
+              <Static id="stauUseYn" taborder="10" text="사용여부" cssclass="sta_WF_condition02Essential" left="600" top="113" width="151" height="34"/>
+              <Static id="staUpDeptNm" taborder="11" text="상위부서명" cssclass="sta_WF_condition02" left="600" top="45" width="151" height="34"/>
+              <Edit id="editUpDeptNm" taborder="12" cssclass="" left="staUpDeptNm:10" top="49" width="300" height="26" enable="false"/>
+              <Edit id="editUpDeptCd" taborder="13" left="staUpDeptCd:10" top="49" width="271" height="26" enable="false"/>
+              <TextArea id="editDeptDesc" taborder="14" top="185" left="staDeptDesc:10" right="10" bottom="30"/>
+              <Static id="Static12_01_00_00" taborder="15" cssclass="sta_WF_condition02box" left="0" right="0" height="34" top="147" text=""/>
+              <Static id="staDeptLdr" taborder="16" text="부서장" cssclass="sta_WF_condition02_LEssential" left="0" width="151" height="34" top="147"/>
+              <Static id="staDeptMngr" taborder="17" text="부서 관리자" cssclass="sta_WF_condition02" left="600" width="151" height="34" top="147"/>
+              <Combo id="comboUseYn" taborder="18" displaynulltext="선택" left="stauUseYn:10" top="117" width="300" height="26" innerdataset="dsUseYnCombo" codecolumn="value" datacolumn="text"/>
+              <Edit id="editDeptCd" taborder="19" left="staDeptCd:10" top="83" width="300" height="26"/>
+              <Edit id="editOrdSn" taborder="20" left="staOrdSn:10" top="117" width="300" height="26" inputtype="digit"/>
+              <Edit id="editDeptLdrNm" taborder="21" left="staDeptLdr:10" top="151" width="271" height="26" enable="false"/>
+              <Edit id="editDeptNm" taborder="22" left="staDeptNm:10" top="83" width="300" height="26"/>
+              <Edit id="editDeptMngrNm" taborder="23" left="staDeptMngr:10" top="151" width="271" height="26" enable="false"/>
+              <Button id="btnUpDeptCd" taborder="24" cssclass="btn_WF_frmSearch" left="editUpDeptCd:5" top="49" width="26" height="26" onclick="divDetail_btnUpDeptCd_onclick" text=""/>
+              <Button id="btnDeptLdr" taborder="25" cssclass="btn_WF_frmSearch" left="editDeptLdrNm:5" top="151" width="26" height="26" onclick="divDetail_btnDeptLdr_onclick" text=""/>
+              <Button id="btnDeptMngr" taborder="26" cssclass="btn_WF_frmSearch" left="editDeptMngrNm:5" top="151" width="26" height="26" onclick="divDetail_btnDeptMngr_onclick" text=""/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  관리 메뉴
+ *  MenuPath      조직정보 - 부서관리
+ *  FileName      DEPT_1010M.xfdl
+ *  Creator 	  woohj
+ *  CreateDate    2023.11.20
+ *  Desction      관리 메뉴
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.11.20    woohj      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ 
+/**
+ * description 콤보 loadCombo
+*/
+this.fnLoadCombo = function ()
+{
+	this.gfnLoadCombo("loadCombo", "dsUseYnCombo=SM:USE_YN:C", "fnComboCallback"); 
+};
+
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getDeptManageList";
+	var strSvcUrl   = "org/deptManage/getDeptManageList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function ()
+{
+	var strSvcId    = "saveDeptManageList";
+	var strSvcUrl   = "org/deptManage/saveDeptManageList.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+	this.fnSearch();
+};
+
+/**
+ * description Transaction Callback 함수
+*/
+this.fnCallback = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getDeptManageList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCnt);
+			
+			// 부서코드 변경시
+			deptCd = this.dsList.getColumn(0,"deptCd");
+			if(deptCd != null && deptCd !="") {
+				this.fnEnableFalse();
+			}
+            break;
+		case "saveDeptManageList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  	// 저장 되었습니다.
+				this.fnSearch();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  		// 저장에 실패하였습니다.
+			}
+            break;
+		default:
+            break;
+	}
+};
+
+/**
+ * description Popup Callback 함수
+ */
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+    switch (sPopupId) {
+		case "deptSearchPopup":
+			var result = this.gfnGetPopupRtn();
+			if (result == null) {
+				return;     // 취소시 항목의 프로그램 ID를 변경하지 않음
+			}		
+
+			var sDept = result.dept;
+
+			if (!result.canceled) {
+				var row = this.dsList.rowposition;
+				this.dsList.setColumn(row, "upDeptCd", sDept.deptCd);  //  팝업창 sDept[0].deptCd를 "upDeptCd"에 담음
+				this.dsList.setColumn(row, "upDeptNm", sDept.deptNm);
+			}
+			break;
+		case "userSearchPopupLdr":
+			var result = this.gfnGetPopupRtn();
+			if (result == null) {
+				return;     // 취소시 항목의 ID를 변경하지 않음
+			}		
+
+			var sUser = result.user;
+
+			if (!result.canceled) {
+				var row = this.dsList.rowposition;
+				this.dsList.setColumn(row, "deptLdrId", sUser.userId);  //  팝업창 sUser[0].userId를 "deptLdrId"에 담음
+				this.dsList.setColumn(row, "deptLdrNm", sUser.userNmKr);
+			}
+			break;
+		case "userSearchPopupMngr":
+			var result = this.gfnGetPopupRtn();
+			if (result == null) {
+				return;     // 취소시 항목의 ID를 변경하지 않음
+			}		
+
+			var sUser = result.user;
+
+			if (!result.canceled) {
+				var row = this.dsList.rowposition;
+				this.dsList.setColumn(row, "deptMngrId", sUser.userId);
+				this.dsList.setColumn(row, "deptMngrNm", sUser.userNmKr);
+
+			}
+			break;
+		default:
+			break;
+    }
+};
+
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회 버튼
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 저장 버튼
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnBeforeSave();
+};
+
+/**
+ * description 부서선택시-상세정보 변경 이벤트 (rowposition change 이벤트)
+*/
+this.dsList_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{
+	this.dsSearch.setColumn(0, "deptCd", this.dsList.getColumn(this.dsList.rowposition, "upDeptCd"));
+	
+	for (var i = 0; i < this.dsList.getRowCount(); i++) {
+		this.dsList.setColumn(i, "rowCheck", 0);
+	}
+	this.dsList.setColumn(e.newrow, "rowCheck", 1);
+};
+
+/**
+ * description 같은 레벨 부서 추가 버튼
+*/
+this.divResult_btnAddSiblingRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsList.rowposition;
+	
+	this.fnEnableTrue();
+	
+	if(this.dsList.findRow("rowStatus", "inserted") > -1){
+		this.divResult.form.grdDept.setCellPos( 3,  this.dsList.findRow("rowStatus", "inserted"));
+		this.gfnAlert("CM_MSG_CHANGE_DATA");
+		return ;
+	} else if (this.dsList.findRow("rowStatus", "updated") > -1){
+		this.divResult.form.grdDept.setCellPos( 3,  this.dsList.findRow("rowStatus", "updated"));
+		this.gfnAlert("CM_MSG_CHANGE_DATA");
+		return ;
+	} else if (this.dsList.findRowExpr("rowStatus=='deleted'") > -1){
+		this.divResult.form.grdDept.setCellPos( 3,  this.dsList.findRowExpr("rowStatus=='deleted'"));
+
+		this.gfnAlert("CM_MSG_CHANGE_DATA");
+		return ;
+	}
+	
+	if(nRow < 0 || nRow == null) {
+		this.fnAddTopmostRow();     // 상위레벨 추가
+	} else {
+		this.fnAddSiblingRow(nRow); // 같은레벨 추가
+	}
+	
+};
+
+/**
+ * description 하위 레벨 부서 추가 버튼
+*/
+this.divResult_btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var nRow = this.dsList.rowposition;
+	
+	this.fnEnableTrue();
+    
+	if(this.dsList.findRow("rowStatus", "inserted") > -1){
+		this.divResult.form.grdDept.setCellPos( 3,  this.dsList.findRow("rowStatus", "inserted"));
+		this.gfnAlert("CM_MSG_CHANGE_DATA");
+		return ;
+	} else if (this.dsList.findRow("rowStatus", "updated") > -1){
+		this.divResult.form.grdDept.setCellPos( 3,  this.dsList.findRow("rowStatus", "updated"));
+		this.gfnAlert("CM_MSG_CHANGE_DATA");
+		return ;
+	} else if (this.dsList.findRowExpr("rowStatus=='deleted'") > -1){
+		this.divResult.form.grdDept.setCellPos( 3,  this.dsList.findRowExpr("rowStatus=='deleted'"));
+
+		this.gfnAlert("CM_MSG_CHANGE_DATA");
+		return ;
+	}
+	
+    if (nRow < 0 || nRow == null) {
+        this.fnAddTopmostRow();
+    } else {
+        this.fnAddChildRow(nRow);
+    }
+};
+
+/**
+ * description 트리 삭제
+*/
+this.divResult_btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var indices = this.gfnGetCheckedRows(this.dsList, "rowCheck");
+    var thisObj = this;
+    
+    if (!indices.every(function (e) { return this.fnCheckDeletable(e); }, this)) {
+        return;
+    }
+    
+    this.gfnDeleteRow(this.dsList);
+};
+
+/**
+ * description 엔터키 검색
+*/
+this.onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * description 상위부서코드 추가 버튼
+*/
+this.divDetail_btnUpDeptCd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.gfnIsGridChecked(this.dsList, "rowCheck")) {
+		this.gfnAlert("부서를 체크해주세요"); // 자기
+		return;
+	}
+	
+	var args = {
+        mode: "single"
+// 		,
+//         upDeptCd: this.dsList.getColumn(this.dsList.rowposition, "upDeptCd")
+    };
+	
+	this.gfnOpenPopup("deptSearchPopup", "cmm::deptSearchPopup.xfdl", args, "fnPopupAfter", "");
+};
+
+/**
+ * description 부서장 추가 버튼
+*/
+this.divDetail_btnDeptLdr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.gfnIsGridChecked(this.dsList, "rowCheck")) {
+		this.gfnAlert("부서장를 체크해주세요"); // 자기
+		return;
+	}
+	
+    const args = {
+        mode: "single",
+        enableReset: false
+    };
+	
+	this.gfnOpenPopup("userSearchPopupLdr", "cmm::userSearchPopup.xfdl", args, "fnPopupAfter", "");
+};
+
+/**
+ * description 부서관리자 추가 버튼
+*/
+this.divDetail_btnDeptMngr_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	const args = {
+        mode: "single",
+        enableReset: false
+    };
+	
+	this.gfnOpenPopup("userSearchPopupMngr", "cmm::userSearchPopup.xfdl", args, "fnPopupAfter", "");
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description 저장 전 확인
+*/
+this.fnBeforeSave = function ()
+{
+	if(this.dsList.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  	// 저장할 데이터가 없습니다.
+		return;
+	}
+	if (!this.gfnDsIsUpdated(this.dsList)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	
+    if (!this.fnValidation()) {
+        return;
+    }
+
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+};
+
+/**
+ * description 상위 레벨 추가
+*/
+this.fnAddTopmostRow = function ()
+{
+    this.gfnInsertRow(this.dsList, "last");
+	var i = this.dsList.rowposition;
+    var grid = this.divResult.form.grdDept;
+	
+    this.dsList.setColumn(i, "level", 0);
+};
+
+/**
+ * description 같은 레벨 추가
+*/
+this.fnAddSiblingRow = function (row: number)
+{
+    var grid = this.divResult.form.grdDept;
+    var pRow = grid.getTreeParentRow(row);
+    if (pRow < 0 || pRow == null) {
+        this.fnAddTopmostRow();
+        return;
+    }
+    
+    var i = grid.getTreeChildRow(pRow, -1);
+    while (grid.getTreeChildRow(i, -1) >= 0) {
+        i = grid.getTreeChildRow(i, -1);
+    }
+    
+    i++;
+    
+    this.dsList.insertRow(i);
+    this.dsList.setColumn(i, "level", parseInt(this.dsList.getColumn(row, "level")));
+    this.dsList.setColumn(i, "upDeptCd", this.dsList.getColumn(pRow, "deptCd"));
+	this.dsList.setColumn(i, "upDeptNm", this.dsList.getColumn(pRow, "deptNm"));
+
+};
+
+/**
+ * description 하위 레벨 추가
+*/
+this.fnAddChildRow = function (row: number)
+{
+    var i = row;
+    var grid = this.divResult.form.grdDept;
+    while (grid.getTreeChildRow(i, -1) >= 0) {
+        i = grid.getTreeChildRow(i, -1)
+    }
+    
+    i++;
+    
+    this.dsList.insertRow(i);
+    this.dsList.setColumn(i, "level", parseInt(this.dsList.getColumn(row, "level")) + 1);
+    this.dsList.setColumn(i, "upDeptCd", this.dsList.getColumn(row, "deptCd"));
+	this.dsList.setColumn(i, "upDeptNm", this.dsList.getColumn(row, "deptNm"));
+};
+
+/**
+ * description 트리 삭제할 시 확인
+*/
+this.fnCheckDeletable = function (row: number)
+{
+    if (!this.divResult.form.grdDept.isTreeLeafRow(row) ) {
+        this.gfnAlert("CM_MENU_CANNOT_DELETE_NOT_LEAF");
+        return false;
+    }
+    
+    return true;
+};
+
+/**
+ * description enable
+*/
+this.fnEnableFalse = function ()
+{
+	this.divDetail.form.editDeptCd.set_enable(false); // 부서코드
+};
+
+/**
+ * description enable
+*/
+this.fnEnableTrue = function ()
+{
+	this.divDetail.form.editDeptCd.set_enable(true); // 부서코드
+};
+
+/**
+ * description 유효성 체크
+*/
+this.fnValidation = function ()
+{
+	var args = [
+		["upDeptCd", "NULL|MAX_LEN:20", "상위부서코드"],
+        ["deptCd", "NULL|MAX_LEN:20", "부서코드"],
+		["deptNm", "NULL|MAX_LEN:50", "부서명"],
+		["deptLdrId", "NULL|MAX_LEN:10", "부서장"],
+		["useYn", "NULL|MAX_LEN:1", "사용여부"],
+		["ordSn", "NULL", "정렬순서"]
+
+    ];
+
+	if(!this.gfnCheckGrid(this.divResult.form.grdDept, args, "")) {
+		return false;
+	}
+	
+    return true;
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsList" onrowposchanged="dsList_onrowposchanged">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="deptCd" type="STRING" size="20" description="부서코드"/>
+          <Column id="deptNm" type="STRING" size="50" description="부서명"/>
+          <Column id="deptLdrId" type="STRING" size="10" description="부서장 아이디"/>
+          <Column id="deptLdrNm" type="STRING" size="50"/>
+          <Column id="deptMngrId" type="STRING" size="10" description="부서담당자 아이디"/>
+          <Column id="deptMngrNm" type="STRING" size="50"/>
+          <Column id="deptDesc" type="STRING" size="300" description="부서설명"/>
+          <Column id="useYn" type="STRING" size="1" description="사용여부"/>
+          <Column id="ordSn" type="INT" size="256" description="정렬순서"/>
+          <Column id="upDeptCd" type="STRING" size="20" description="상위부서코드"/>
+          <Column id="upDeptNm" type="STRING" size="50"/>
+          <Column id="level" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="deptCd" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYnCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divResult.form.editDeptNm" propid="value" datasetid="dsSearch" columnid="deptNm"/>
+      <BindItem id="item1" compid="divDetail.form.editUpDeptCd" propid="value" datasetid="dsList" columnid="upDeptCd"/>
+      <BindItem id="item2" compid="divDetail.form.editUpDeptNm" propid="value" datasetid="dsList" columnid="upDeptNm"/>
+      <BindItem id="item3" compid="divDetail.form.editDeptCd" propid="value" datasetid="dsList" columnid="deptCd"/>
+      <BindItem id="item4" compid="divDetail.form.editOrdSn" propid="value" datasetid="dsList" columnid="ordSn"/>
+      <BindItem id="item5" compid="divDetail.form.editDeptLdrNm" propid="value" datasetid="dsList" columnid="deptLdrNm"/>
+      <BindItem id="item6" compid="divDetail.form.editDeptNm" propid="value" datasetid="dsList" columnid="deptNm"/>
+      <BindItem id="item7" compid="divDetail.form.comboUseYn" propid="value" datasetid="dsList" columnid="useYn"/>
+      <BindItem id="item8" compid="divDetail.form.editDeptMngrNm" propid="value" datasetid="dsList" columnid="deptMngrNm"/>
+      <BindItem id="item9" compid="divDetail.form.editDeptDesc" propid="value" datasetid="dsList" columnid="deptDesc"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="BNR_1010M" width="1920" height="530" titletext="컴포넌트" cssclass="btn_WF_Sort" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Static id="Static04" taborder="1" text="h 20" onclick="Static31_onclick" visible="false" left="1810" top="0" width="60" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Static id="Static02" taborder="0" text="W&#13;&#10; 50" visible="false" top="0" height="3275" onclick="Static02_onclick" background="antiquewhite" color="blue" width="50" right="0"/>
+        <Static id="Static34" taborder="2" text="W 50" onclick="Static02_onclick" visible="false" left="0" top="-2" width="50" height="400" background="antiquewhite" color="blue"/>
+        <Static id="Static04_00_00_02" taborder="3" text="h 10" onclick="Static31_onclick" visible="false" left="45" top="379" width="60" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+        <Div id="DivBnrForm" taborder="4" text="Div01" left="50" top="29" cssclass="div_WF_Area" height="369" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static10_00" taborder="0" cssclass="sta_WF_condition02box" left="0" top="44" height="34" text="" right="0"/>
+              <Static id="Static10_00_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="77" height="34" text="" right="0"/>
+              <Static id="Static10_00_00_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" top="110" height="143" text="" onclick="Div01_Static10_00_00_00_00_onclick" right="0"/>
+              <Static id="Static_basic" taborder="3" text="배너 ID" cssclass="sta_WF_condition02_LEssential" left="0" top="44" width="150" height="34"/>
+              <Edit id="edtBnrId" taborder="4" left="Static_basic:10" width="159" height="26" top="48"/>
+              <Static id="Static_comboBox" taborder="5" text="배너링크 URL" cssclass="sta_WF_condition02_LEssential" left="0" top="77" width="150" height="34" onclick="Div01_Static_comboBox_onclick"/>
+              <Static id="Static_essential" taborder="6" text="배너명" cssclass="sta_WF_condition02" left="40%" top="44" width="150" height="34"/>
+              <Edit id="edtBnrNm" taborder="7" left="Static_essential:9" top="48" height="26" right="290"/>
+              <Static id="Static07_01_01_00_01_00_00" taborder="8" top="19.55%" height="1" onclick="div_Search_Static07_onclick" text="" cssclass="sta_WF_borCondition02" width="570" right="20"/>
+              <Static id="Static_textarea" taborder="9" text="배너설명" cssclass="sta_WF_condition02_LEssential" left="0" top="110" width="150" height="143"/>
+              <TextArea id="textBnr" taborder="10" oneditclick="TextArea01_oneditclick" left="Static_textarea:10" top="112" height="137" onchanged="Div01_TextArea01_00_onchanged" right="10"/>
+              <Edit id="edtBnrUrl" taborder="11" left="Static_comboBox:10" height="26" top="81" right="290"/>
+              <Static id="Static10_00_00_00" taborder="12" cssclass="sta_WF_condition02box" left="6" top="252" height="34" text="" right="0"/>
+              <Button id="Button16" taborder="13" text="업로드" cssclass="btn_WF_grdUpload" top="255" width="73" height="26" left="562"/>
+              <Button id="Button15" taborder="14" text="다운로드" cssclass="btn_WF_grdArrDown" top="255" width="85" height="26" left="472"/>
+              <Edit id="edtBnrImg" taborder="15" left="160" width="302" height="26" top="255" readonly="true"/>
+              <Static id="Static_basic00_00" taborder="16" text="배너 이미지" cssclass="sta_WF_condition02_L" left="0" top="252" width="150" height="34"/>
+              <Static id="Static10_00_01" taborder="18" cssclass="sta_WF_condition02box" left="0" top="285" height="34" text="" right="0"/>
+              <Static id="Static_basic00" taborder="17" text="순서" cssclass="sta_WF_condition02_LEssential" left="0" top="285" width="150" height="34"/>
+              <Edit id="edtOrg" taborder="19" left="160" width="302" height="26" top="290"/>
+              <Static id="Static_essential00" taborder="20" text="사용여부" cssclass="sta_WF_condition02" left="39.58%" top="285" width="150" height="34"/>
+              <Combo id="Combo00" taborder="21" left="Static_essential00:10" top="289" width="215" height="26" value="" index="-1" innerdataset="dsUseCbo" codecolumn="value" datacolumn="text"/>
+              <Static id="staTitle" taborder="22" text="배너등록" top="-27" cssclass="sta_WF_compTitle01" left="0" onclick="sta_title_onclick" height="58" right="Static10_00:-500"/>
+              <Button id="btnDelete" text="삭제" cssclass="btn_WF_Delete" visible="true" top="4" height="28" taborder="24" onclick="btn_delete_onclick" width="65" right="0"/>
+              <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" top="4" width="65" height="28" right="btnDelete:5" taborder="23" onclick="btn_save_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="bnrNm" type="STRING" size="256"/>
+          <Column id="bnrUrl" type="STRING" size="256"/>
+          <Column id="bnrId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="bnrOrd" type="STRING" size="256"/>
+          <Column id="rowNum" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="bnrImg" type="STRING" size="256"/>
+          <Column id="bnrDesc" type="STRING" size="256"/>
+          <Column id="updtrDt" type="STRING" size="256"/>
+          <Column id="bnrImgFile" type="STRING" size="256"/>
+          <Column id="rgstrId" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="bnrId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  배너 등록
+*  MenuPath      관리 메뉴 > 배너 및 팝업관리 
+*  FileName      BNR_1010M.xfdl 
+*  Creator 	     yuyr
+*  CreateDate    2023.11.22
+*  Desction      배너 조회 및 등록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.11.22   yuyr 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+this.bnrId = "";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	var param = this.getOwnerFrame().tabArgs.param;
+	var bnrId = (param == null || Eco.isEmpty(param.bnrId)) ? null : param.bnrId;
+    if (bnrId != null && bnrId != "") {
+		this.DivBnrForm.form.staTitle.set_text("배너 상세 조회");	
+		this.dsList.setColumn(0, "rowStatus", "updated");
+		this.DivBnrForm.form.btnDelete.set_visible(true);
+	} else {                // 신규화면
+		this.dsList.setColumn(0, "rowStatus", "inserted");
+		this.DivBnrForm.form.btnDelete.set_visible(false);
+	}
+    this.gfnLoadCombo("loadCombo", "dsUseCbo=PMS:SM:USE_YN", "fnComboCallback");
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/**
+ * description 상세 조회
+ */
+  
+this.fnSearch = function()
+{	
+	this.gfnTransaction("getBannerManageItem", "bnr/banner/getBannerManageItem.do", "dsSearch", "dsList", "", "fnCallback");
+};
+
+/**
+ * description 저장
+ */
+ this.fnSave = function()
+{	
+	this.gfnTransaction("setBannerManageItem", "bnr/banner/setBannerManageItem.do", "dsList", "", "", "fnCallback");
+};
+
+
+/**
+ * description 삭제
+ */
+ this.fnDelete = function()
+{	
+	this.dsList.setColumn(0, "rowStatus", "deleted");
+	this.gfnTransaction("deleteBannerManageItem", "bnr/banner/deleteBannerManageItem.do", "dsList", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+ /**
+ * description 콤보 loadCombo
+*/
+
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+	var param = this.getOwnerFrame().tabArgs.param;
+	var bnrId = (param == null || Eco.isEmpty(param.bnrId)) ? null : param.bnrId;
+	
+    if (bnrId != null && bnrId != "") {
+        this.dsSearch.setColumn(0, "bnrId", bnrId);
+        this.fnSearch();
+	} else {
+		// 기본값을 설정
+		this.dsList.setColumn(0, "useYn", "Y");
+	}
+};
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getBannerManageItem":
+            break;
+        case "setBannerManageItem":
+            if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				
+				if(this.bnrId){
+					this.dsSearch.setColumn(0, "bnrId", this.bnrId);
+					this.fnSearch();
+				}else{
+					alert("배너ID가 없습니다.");
+				}
+            }
+            break;
+        case "deleteBannerManageItem":
+            if(this.callbackMsg == "success"){
+                this.gfnAlert("CM_MSG_DELETE_SUCCESS");  // 삭제 되었습니다.
+				this.dsList.clearData();
+ 			    this.dsList.addRow();
+            }
+		default:	
+            break;
+    }
+};
+ 
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 저장 버튼 클릭
+*/
+
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if (!this.fnValidate()) {		// 그리드 필수값 체크
+		return;
+    }
+	
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;	
+};
+
+/**
+ * description 삭제 버튼 클릭
+*/
+this.btn_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// 행 갯수 count
+	var cnt = 0;
+	for(var i = 0; i < this.dsList.rowcount; i++){
+		if(this.dsList.getColumn(i, "rowCheck") == 1){
+			cnt++;
+		}
+	}
+	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
+};
+
+// 	var param = this.getOwnerFrame().tabArgs.param;
+// 	var bnrId = (param == null || Eco.isEmpty(param.bnrId)) ? null : param.bnrId;	
+// 	
+//     if (bnrId) {
+//         this.fnDelete();
+//     }
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+this.fnValidate = function ()
+{
+	this.DivBnrForm.form.edtBnrId.updateToDataset();
+	this.DivBnrForm.form.edtBnrNm.updateToDataset();
+	this.DivBnrForm.form.edtBnrUrl.updateToDataset();
+	this.DivBnrForm.form.textBnr.updateToDataset();
+	this.DivBnrForm.form.edtBnrImg.updateToDataset();
+	this.DivBnrForm.form.edtOrg.updateToDataset();
+	
+     if (!this.gfnDsIsUpdated(this.dsList)) {
+ 		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+ 		return false;
+     }
+ 
+     var args = [
+ 		["bnrId","MAX_LEN:20","배너ID"],
+		["bnrNm", "MAX_LEN:50", "배너명"],
+		["bnrUrl", "MAX_LEN:2000", "배너 URL"],
+ 		["bnrOrd", "NULL", "정렬 순서"]
+    ];
+	
+	if (!this.gfnCheckGrid(this.dsList, args, "")) {
+        return false;
+    }
+	
+	return true;
+};
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="DivBnrForm.form.edtBnrId" propid="value" datasetid="dsList" columnid="bnrId"/>
+      <BindItem id="item1" compid="DivBnrForm.form.edtBnrNm" propid="value" datasetid="dsList" columnid="bnrNm"/>
+      <BindItem id="item2" compid="DivBnrForm.form.edtBnrUrl" propid="value" datasetid="dsList" columnid="bnrUrl"/>
+      <BindItem id="item3" compid="DivBnrForm.form.textBnr" propid="value" datasetid="dsList" columnid="bnrDesc"/>
+      <BindItem id="item4" compid="DivBnrForm.form.edtBnrImg" propid="value" datasetid="dsList" columnid="bnrImg"/>
+      <BindItem id="item5" compid="DivBnrForm.form.edtOrg" propid="value" datasetid="dsList" columnid="bnrOrd"/>
+      <BindItem id="item6" compid="DivBnrForm.form.Combo00" propid="value" datasetid="dsList" columnid="useYn"/>
+    </Bind>
+  </Form>
+</FDL>

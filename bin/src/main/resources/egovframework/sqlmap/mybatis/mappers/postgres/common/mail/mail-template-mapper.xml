@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/schema/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.common.mail.service.MailTemplateDAO">
+
+    <select id="getTemplate" parameterType="map" resultType="mailTemplateVO">
+        /* mail-template-mapper.getTemplate */
+        SELECT SYS_ID
+             , TEMPLATE_ID
+             , TEMPLATE_SUBJECT
+             , TEMPLATE_HTML_CN
+             , TEMPLATE_TEXT_CN
+             , USE_YN
+          FROM CMN_EMAIL_TEMPLATE
+         WHERE SYS_ID = #{sysId}
+           AND TEMPLATE_ID = #{templateId}
+           AND USE_YN = 'Y'
+    </select>
+</mapper>

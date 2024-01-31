@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bnr.site.service.SiteManageDAO">
+
+    <!-- 사이트 관리 조회 -->
+    <select id="selectSiteManageList" parameterType="map" resultType="SiteVO">
+        /* site-manage-mapper.selectSiteManageList */
+        SELECT S.SITE_ID
+             , S.SITE_NM
+             , S.SITE_URL
+             , S.SITE_DESC
+             , S.SITE_CLS_CD
+             , S.USE_YN
+             , S.RGSTR_ID
+             , S.RGST_DT
+             , S.UPDTR_ID
+             , S.UPDT_DT
+          FROM PTS_SITE_LIST S
+        <where>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "SITENAME"'>
+                    AND S.SITE_NM LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "SITEURL"'>
+                    AND S.SITE_URL LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "WRITERNAME"'>
+                    AND S.RGSTR_ID LIKE '%'|| #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+                    AND (S.SITE_NM LIKE '%'|| #{searchKeyword} || '%'
+                        OR S.SITE_URL LIKE '%'|| #{searchKeyword} || '%'
+                        OR S.RGSTR_ID LIKE '%'|| #{searchKeyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+         ORDER BY S.RGST_DT DESC
+    </select>
+
+    <!-- 사이트 관리 입력 저장 -->
+    <insert id="insertSiteManageItem" parameterType= "SiteVO">
+        /* site-manage-mapper.insertSiteManageItem */
+        INSERT INTO PTS_SITE_LIST
+                  ( SITE_ID
+                  , SITE_NM
+                  , SITE_URL
+                  , SITE_DESC
+                  , SITE_CLS_CD
+                  , USE_YN
+                  , RGSTR_ID
+                  , RGST_DT
+                  , UPDTR_ID
+                  , UPDT_DT)
+            VALUES(
+                   NULLIF(#{siteId}, '')
+                  ,NULLIF(#{siteNm}, '')
+                  ,NULLIF(#{siteUrl}, '')
+                  ,NULLIF(#{siteDesc}, '')
+                  ,NULLIF(#{siteClsCd}, '')
+                  ,NULLIF(#{useYn}, '')
+                  ,NULLIF(#{sessionUserId}, '')
+                  ,NOW()
+                  ,#{sessionUserId}
+                  ,NOW()
+                   )
+    </insert>
+
+    <!-- 사이트 관리 수정 저장 -->
+    <update id="updateSiteManageItem" parameterType= "SiteVO">
+        /* site-manage-mapper.updateSiteManageItem */
+        UPDATE PTS_SITE_LIST
+           SET SITE_NM     = NULLIF(#{siteNm}, '')
+             , SITE_URL    = NULLIF(#{siteUrl}, '')
+             , SITE_DESC   = NULLIF(#{siteDesc}, '')
+             , SITE_CLS_CD = NULLIF(#{siteClsCd}, '')
+             , USE_YN      = NULLIF(#{useYn}, '')
+             , RGSTR_ID    = NULLIF(#{sessionUserId}, '')
+             , RGST_DT     = NOW()
+             , UPDTR_ID    = #{sessionUserId}
+             , UPDT_DT     = NOW()
+         WHERE SITE_ID     = #{siteId}
+    </update>
+
+    <!-- 사이트 관리 삭제 저장 -->
+    <delete id="deleteSiteManageItem" parameterType="SiteVO">
+        /* site-manage-mapper.deleteSiteManageItem */
+        DELETE FROM PTS_SITE_LIST
+         WHERE SITE_ID = #{siteId}
+    </delete>
+
+</mapper>

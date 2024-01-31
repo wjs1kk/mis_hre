@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.main.login.service.LoginHistoryDAO">
+
+    <insert id="saveLoginLog" parameterType="map">
+        /** login-mapper.saveLoginLog **/
+        INSERT
+          INTO CMN_LOGIN_LOG (USER_ID
+                            , MEMBER_ID
+                            , USER_IP
+                            , USER_LOGIN_DATE
+                            , USER_SESSION_ID)
+                     VALUES ( #{userId}
+                            , #{memberId}
+                            , #{userIp}
+                            , NOW()
+                            , #{userSessionId})
+    </insert>
+
+    <update id="saveLogoutLog" parameterType="map">
+        /** login-mapper.saveLogoutLog **/
+        UPDATE CMN_LOGIN_LOG
+           SET USER_LOGOUT_DATE = NOW()
+         WHERE USER_ID = #{userId}
+           AND USER_SESSION_ID = #{userSessionId}
+           AND USER_LOGIN_DATE = (SELECT MAX(USER_LOGIN_DATE)
+                                    FROM CMN_LOGIN_LOG
+                                   WHERE USER_ID = #{userId}
+                                     AND USER_SESSION_ID = #{userSessionId})
+    </update>
+
+    <select id="selectLoginLog" parameterType="map" resultType="loginLogVO">
+        /** login-mapper.selectLoginLog **/
+        SELECT A.USER_ID
+             , A.USER_IP
+             , A.USER_LOGIN_DATE
+          FROM (SELECT CLL.USER_ID
+                     , CLL.USER_IP
+                     , TO_CHAR(CLL.USER_LOGIN_DATE, 'YYYY-MM-DD HH24:MI:SS') AS USER_LOGIN_DATE
+                  FROM CMN_LOGIN_LOG CLL
+                 WHERE USER_ID = #{userId}
+                 ORDER BY USER_LOGIN_DATE DESC) A
+          FETCH FIRST 1 ROWS ONLY
+    </select>
+
+    <select id="selectAccessibleIP" parameterType="map" resultType="string">
+        /** login-mapper.selectAccessibleIP **/
+        SELECT A.CONN_IP
+          FROM (SELECT CCI.CONN_IP AS CONN_IP
+                  FROM CMN_CONNECT_IP CCI
+                 WHERE CCI.USER_ID = #{userId}) A
+    </select>
+
+    <select id="selectAvailableUserIdForMemberId" resultType="string">
+        /** login-mapper.selectAvailableUserIdForMemberId **/
+        SELECT USER_ID
+          FROM CMN_USER CU
+         WHERE MEMBER_ID = #{memberId}
+           AND USE_YN = 'Y'
+         FETCH FIRST 1 ROWS ONLY
+    </select>
+
+</mapper>

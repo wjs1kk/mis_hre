@@ -20,7 +20,7 @@ if (nexacro.Environment)
         nexacro._addService("imagerc", "file", "./_resource_/_images_/", "session", null, "", "0", "");
         nexacro._addService("font", "file", "./_resource_/_font_/", "session", null, "", "0", "");
         nexacro._addService("extlib", "file", "./_extlib_/", "session", null, "", "0", "0");
-        nexacro._addService("svcurl", "JSP", "http://test.jnvalue.net:8088/jnportal/", "none", null, "", "0", "0");
+        nexacro._addService("svcurl", "JSP", "http://localhost:8080/jnportal/", "none", null, "", "0", "0");
         nexacro._addService("lib", "js", "./lib/", "none", null, "", "0", "0");
         nexacro._addService("Base", "form", "./Base/", "none", null, "", "0", "0");
         nexacro._addService("FrameBase", "form", "./FrameBase/", "none", null, "", "0", "0");
@@ -30,6 +30,7 @@ if (nexacro.Environment)
         nexacro._addService("pts", "form", "./pts/", "session", null, "", "0", "0");
         nexacro._addService("sam", "form", "./sam/", "none", null, "", "0", "0");
         nexacro._addService("GUIDE", "form", "./GUIDE/", "session", null, "", "0", "0");
+        nexacro._addService("mis", "form", "./mis/", "session", null, "", "0", "0");
     	nexacro._component_uri = (nexacro._arg_compurl ? nexacro._arg_compurl : "./nexacrolib/component/");
     	nexacro._theme_uri = "./_resource_/_theme_/";
     	// load components

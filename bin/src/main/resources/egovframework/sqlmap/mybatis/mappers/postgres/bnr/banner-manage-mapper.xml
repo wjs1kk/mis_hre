@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bnr.banner.service.BannerManageDAO">
+
+    <!-- 배너관리 상세 조회 -->
+    <select id="getBannerManageItem" parameterType="bannerVO" resultType="bannerVO">
+        /* banner-manage-mapper.getBannerManageItem */
+        SELECT B.BNR_ID
+             , B.BNR_NM
+             , B.BNR_URL
+             , B.BNR_IMG
+             , B.BNR_DESC
+             , B.USE_YN
+             , B.RGSTR_ID
+             , TO_CHAR(B.RGST_DT, 'YYYY-MM-DD') AS RGST_DT
+             , B.UPDTR_ID
+             , TO_CHAR(B.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+             , B.BNR_IMG_FILE
+             , B.BNR_ORD
+          FROM PTS_BANNER B
+          WHERE B.BNR_ID = #{bnrId}
+    </select>
+
+    <!-- 배너관리 입력 저장 -->
+    <insert id="insertBannerManageItem" parameterType="bannerVO">
+        /* banner-manage-mapper.insertBannerManageItem */
+     INSERT INTO PTS_BANNER
+               ( BNR_ID
+               , BNR_NM
+               , BNR_URL
+               , BNR_IMG
+               , BNR_DESC
+               , USE_YN
+               , RGSTR_ID
+               , RGST_DT
+               , UPDTR_ID
+               , UPDT_DT
+               , BNR_IMG_FILE
+               , BNR_ORD)
+        VALUES ( NULLIF(#{bnrId}, '')
+               , NULLIF(#{bnrNm}, '')
+               , NULLIF(#{bnrUrl}, '')
+               ,'123456'
+               , NULLIF(#{bnrDesc}, '')
+               , NULLIF(#{useYn}, '')
+               , #{sessionUserId}
+               , NOW()
+               , #{sessionUserId}
+               , NOW()
+               , NULLIF(#{bnrImgFile}, '')
+               , #{bnrOrd}::INT)
+    </insert>
+
+    <!-- 배너관리 수정 저장-->
+    <update id="updateBannerManageItem" parameterType="bannerVO">
+        /* banner-manage-mapper.updateBannerManageItem */
+          UPDATE PTS_BANNER
+               SET BNR_NM       = NULLIF(#{bnrNm}, '')
+                 , BNR_URL      = NULLIF(#{bnrUrl}, '')
+                 , BNR_IMG      = NULLIF(#{bnrImg}, '')
+                 , BNR_DESC     = NULLIF(#{bnrDesc}, '')
+                 , USE_YN       = NULLIF(#{useYn}, '')
+                 , RGSTR_ID     = #{sessionUserId}
+                 , RGST_DT      = NOW()
+                 , UPDTR_ID     = #{sessionUserId}
+                 , UPDT_DT      = NOW()
+                 , BNR_IMG_FILE = NULLIF(#{bnrImgFile}, '')
+                 , BNR_ORD      = #{bnrOrd}::INT
+             WHERE BNR_ID       = #{bnrId}
+    </update>
+
+    <!-- 배너관리 삭제 저장 -->
+    <delete id="deleteBannerManageItem" parameterType="bannerVO">
+        /* banner-manage-mapper.deleteBannerManageItem */
+            DELETE FROM PTS_BANNER
+            WHERE BNR_ID= #{bnrId}
+    </delete>
+
+</mapper>

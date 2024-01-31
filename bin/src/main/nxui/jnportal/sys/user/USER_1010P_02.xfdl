@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="USER_1010P_02" width="1000" height="570" titletext="회원가입 승인" onload="USER_1010P_02_onload">
+    <Layouts>
+      <Layout height="570" width="1000">
+        <Div id="divPopupRoot" taborder="0" text="Div00" left="0" top="0" width="1000" height="570" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="회원가입 승인" left="0" top="0" width="1000" height="50" cssclass="sta_WF_popupTitle"/>
+              <Div id="divBasicInfo" taborder="1" left="30" top="50" height="217" right="30">
+                <Layouts>
+                  <Layout>
+                    <Static id="staSubtitle" taborder="0" text="기본정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="169"/>
+                    <Static id="sta000" taborder="1" cssclass="sta_WF_condition02box" left="0" top="44" right="0" height="34" text=""/>
+                    <Static id="sta001" taborder="2" cssclass="sta_WF_condition02box" left="0" top="77" right="0" height="34" text=""/>
+                    <Static id="sta002" taborder="3" cssclass="sta_WF_condition02box" left="0" top="110" right="0" height="34" text=""/>
+                    <Static id="sta003" taborder="4" cssclass="sta_WF_condition02box" left="0" top="143" right="0" height="74" text=""/>
+                    <Static id="staLMemberNmKr" taborder="6" text="회원명" cssclass="sta_WF_condition02" left="470" top="44" width="150" height="34"/>
+                    <Static id="staLMbrAddr" taborder="9" text="주소" cssclass="sta_WF_condition02_L" left="0" top="143" width="150" height="74"/>
+                    <Static id="staLMblTelno" taborder="8" text="연락처" cssclass="sta_WF_condition02_L" left="0" top="110" width="150" height="34"/>
+                    <Static id="staLEmlAddr" taborder="7" text="이메일" cssclass="sta_WF_condition02_L" left="0" top="77" width="150" height="34"/>
+                    <Static id="staLMemberId" taborder="5" text="회원 ID" cssclass="sta_WF_condition02_L" left="0" top="44" width="150" height="34"/>
+                    <Static id="staAddr" taborder="10" text="00000&#13;&#10;대전광역시 유성구&#13;&#10;102호" left="staLMbrAddr:10" top="147" width="770" height="66" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="5px 9px" font="normal 9pt/1.5 &quot;Malgun Gothic&quot;"/>
+                    <Static id="staMemberId" taborder="11" text="김길동" left="160" top="48" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staMemberNm" taborder="12" text="김길동" left="630" top="48" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staEmlAddr" taborder="13" text="김길동" left="160" top="81" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staMblTelno" taborder="14" text="김길동" left="160" top="114" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Div id="divBasicInfo00" taborder="2" left="30" top="divBasicInfo:10" height="217" right="30">
+                <Layouts>
+                  <Layout>
+                    <Static id="staSubtitle" taborder="0" text="업체/기관정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="169"/>
+                    <Static id="sta000" taborder="1" cssclass="sta_WF_condition02box" left="0" top="44" right="0" height="34" text=""/>
+                    <Static id="sta001" taborder="2" cssclass="sta_WF_condition02box" left="0" top="77" right="0" height="34" text=""/>
+                    <Static id="sta002" taborder="3" cssclass="sta_WF_condition02box" left="0" top="110" right="0" height="34" text=""/>
+                    <Static id="sta003" taborder="4" cssclass="sta_WF_condition02box" left="0" top="143" right="0" height="74" text=""/>
+                    <Static id="staLJbps" taborder="6" text="직위" cssclass="sta_WF_condition02" left="470" top="77" width="150" height="34"/>
+                    <Static id="staLMbrAddr" taborder="9" text="주소" cssclass="sta_WF_condition02_L" left="0" top="143" width="150" height="74"/>
+                    <Static id="staLOfcTelno" taborder="8" text="사무실 연락처" cssclass="sta_WF_condition02_L" left="0" top="110" width="150" height="34"/>
+                    <Static id="staLOgdpDept" taborder="7" text="부서" cssclass="sta_WF_condition02_L" left="0" top="77" width="150" height="34"/>
+                    <Static id="staLOgdpInstNm" taborder="5" text="업체/기관명" cssclass="sta_WF_condition02_L" left="0" top="44" width="150" height="34"/>
+                    <Static id="staOfcAddr" taborder="10" text="00000&#13;&#10;대전광역시 유성구&#13;&#10;102호" left="staLMbrAddr:10" top="147" width="770" height="66" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="5px 9px" font="normal 9pt/1.5 &quot;Malgun Gothic&quot;"/>
+                    <Static id="staOgdpInstNm" taborder="11" text="김길동" left="160" top="48" width="770" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staJbps" taborder="12" text="김길동" left="630" top="81" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staOgdpDeptNm" taborder="13" text="김길동" left="160" top="81" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staOfcTelno" taborder="14" text="김길동" left="160" top="114" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                    <Static id="staLOfcFxno" taborder="15" text="사무실 팩스 번호" cssclass="sta_WF_condition02" left="470" top="110" width="150" height="34"/>
+                    <Static id="staOfcFxno" taborder="16" text="김길동" left="630" top="114" width="300" height="26" leftbase="" topbase="" bottombase="" rightbase="" widthbase="" heightbase="" onclick="Static10_onclick" verticalAlign="top" padding="6px 9px" font="normal 9pt &quot;Malgun Gothic&quot;"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Static id="Static04_00_00_01_00_00" taborder="3" text="h 25" onclick="Static31_onclick" visible="false" left="449" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51.024" width="103"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" onclick="Static31_onclick" visible="false" left="448" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0.02400000000000091"/>
+              <Div id="divDlgBtns" taborder="5" left="250" top="518" height="28" right="250">
+                <Layouts>
+                  <Layout type="horizontal" flexmainaxisalign="center" horizontalgap="3">
+                    <Button id="btnApprove" text="승인" cssclass="btn_WF_icoApprobation" top="2545" width="63" height="28" taborder="1" left="579" onclick="divPopupRoot_divDlgBtns_btnApprove_onclick"/>
+                    <Button id="btnReject" text="반려" cssclass="btn_WF_icoReject" top="2545" width="63" height="28" taborder="0" left="513" onclick="divPopupRoot_divDlgBtns_btnReject_onclick"/>
+                    <Button id="btnClose" text="닫기" cssclass="btn_WF_icoCancel" top="2545" width="63" height="28" taborder="2" left="315" onclick="divPopupRoot_divDlgBtns_btnClose_onclick"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsMemberInfo" useclientlayout="true" oncolumnchanged="dsMemberInfo_oncolumnchanged">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="20"/>
+          <Column id="memberNmKr" type="STRING" size="300"/>
+          <Column id="memberNmEn" type="STRING" size="300"/>
+          <Column id="passwd" type="STRING" size="72"/>
+          <Column id="passwdCheck" type="STRING" size="72"/>
+          <Column id="ogdpInstCd" type="STRING" size="20"/>
+          <Column id="ogdpInstNm" type="STRING" size="200"/>
+          <Column id="emlAddrLocal" type="STRING" size="160"/>
+          <Column id="emlAddrDomain" type="STRING" size="160"/>
+          <Column id="emlAddr" type="STRING" size="320"/>
+          <Column id="ofcTelno" type="STRING" size="20"/>
+          <Column id="ofcFxno" type="STRING" size="11"/>
+          <Column id="mblTelno" type="STRING" size="20"/>
+          <Column id="prvcClctAgreYn" type="STRING" size="1"/>
+          <Column id="prvcPvsnAgreYn" type="STRING" size="1"/>
+          <Column id="applyDt" type="DATETIME" size="256"/>
+          <Column id="applyCont" type="STRING" size="4000"/>
+          <Column id="joinAprvStts" type="STRING" size="20"/>
+          <Column id="joinAutzr" type="STRING" size="20"/>
+          <Column id="joinAprvDt" type="DATETIME" size="256"/>
+          <Column id="corpYn" type="STRING" size="1"/>
+          <Column id="jbpsCd" type="STRING" size="20"/>
+          <Column id="jbpsNm" type="STRING" size="300"/>
+          <Column id="ogdpDeptCd" type="STRING" size="20"/>
+          <Column id="ogdpDeptNm" type="STRING" size="300"/>
+          <Column id="mbrZip" type="STRING" size="6"/>
+          <Column id="mbrAddr" type="STRING" size="300"/>
+          <Column id="mbrDaddr" type="STRING" size="300"/>
+          <Column id="ofcZip" type="STRING" size="6"/>
+          <Column id="ofcAddr" type="STRING" size="300"/>
+          <Column id="ofcDaddr" type="STRING" size="300"/>
+          <Column id="whdwlYn" type="STRING" size="1"/>
+          <Column id="useYn" type="STRING" size="1"/>
+          <Column id="rgstId" type="STRING" size="20"/>
+          <Column id="rgstDt" type="DATETIME" size="256"/>
+          <Column id="rgstIp" type="STRING" size="40"/>
+          <Column id="updtId" type="STRING" size="20"/>
+          <Column id="updtDt" type="DATETIME" size="256"/>
+          <Column id="updtIp" type="STRING" size="40"/>
+          <Column id="mbrAddrMerged" type="STRING" size="1048576"/>
+          <Column id="ofcAddrMerged" type="STRING" size="1048576"/>
+          <Column id="userId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  회원가입 승인
+ *  MenuPath      시스템 관리 - 기준정보 관리 - 사용자, 메뉴 및 권한 관리
+ *  FileName      user.Manage.xfdl 
+ *  Creator 	  parksw
+ *  CreateDate    2023.10.31
+ *  Desction      회원가입 승인 팝업
+ ************** 소스 수정 이력 *************************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.10.31    parksw 	 최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.USER_1010P_02_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+    this.dsSearch.setColumn(0, "userId", this.parent.userId);
+    this.fnSearch();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnSearch = function ()
+{
+    this.gfnTransaction("getRegistInfo", "sm/user/getRegisterInfo.do", "dsSearch", "dsMemberInfo", "", "fnCallback");
+};
+
+this.fnApprove = function ()
+{
+    this.gfnTransaction("approveRegistration", "sm/user/approveRegistration.do", "dsMemberInfo", "", "", "fnCallback");
+};
+
+this.fnReject = function ()
+{
+    this.gfnTransaction("rejectRegistration", "sm/user/rejectRegistration.do", "dsMemberInfo", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "getRegistInfo":
+            break;
+        case "approveRegistration":
+            if (this.callbackMsg === "success") {
+                this.gfnAlert("회원가입 요청이 승인되었습니다.");
+                this.close();
+            }
+            break;
+        case "rejectRegistration":
+            if (this.callbackMsg === "success") {
+                this.gfnAlert("회원가입 요청이 반려되었습니다.");
+                this.close();
+            }
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divPopupRoot_divDlgBtns_btnApprove_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnBeforeApprove();
+};
+
+this.divPopupRoot_divDlgBtns_btnReject_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnBeforeReject();
+};
+
+this.divPopupRoot_divDlgBtns_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.close();
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnBeforeApprove = function ()
+{
+    this.gfnAlert("CM_CFM_APPROVAL", [], "", { trueFunc: "fnApprove", falseFunc: "" });
+};
+
+
+this.fnBeforeReject = function ()
+{
+    this.gfnAlert("CM_CFM_REJECT", [], "", { trueFunc: "fnReject", falseFunc: "" });
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divPopupRoot.form.divBasicInfo.form.staMemberId" propid="text" datasetid="dsMemberInfo" columnid="memberId"/>
+      <BindItem id="item1" compid="divPopupRoot.form.divBasicInfo.form.staMemberNm" propid="text" datasetid="dsMemberInfo" columnid="memberNmKr"/>
+      <BindItem id="item2" compid="divPopupRoot.form.divBasicInfo.form.staEmlAddr" propid="text" datasetid="dsMemberInfo" columnid="emlAddr"/>
+      <BindItem id="item3" compid="divPopupRoot.form.divBasicInfo.form.staMblTelno" propid="text" datasetid="dsMemberInfo" columnid="mblTelno"/>
+      <BindItem id="item4" compid="divPopupRoot.form.divBasicInfo.form.staAddr" propid="text" datasetid="dsMemberInfo" columnid="mbrAddrMerged"/>
+      <BindItem id="item5" compid="divPopupRoot.form.divBasicInfo00.form.staOgdpInstNm" propid="text" datasetid="dsMemberInfo" columnid="ogdpInstNm"/>
+      <BindItem id="item6" compid="divPopupRoot.form.divBasicInfo00.form.staOgdpDeptNm" propid="text" datasetid="dsMemberInfo" columnid="ogdpDeptNm"/>
+      <BindItem id="item7" compid="divPopupRoot.form.divBasicInfo00.form.staJbps" propid="text" datasetid="dsMemberInfo" columnid="jbpsNm"/>
+      <BindItem id="item8" compid="divPopupRoot.form.divBasicInfo00.form.staOfcTelno" propid="text" datasetid="dsMemberInfo" columnid="ofcTelno"/>
+      <BindItem id="item9" compid="divPopupRoot.form.divBasicInfo00.form.staOfcFxno" propid="text" datasetid="dsMemberInfo" columnid="ofcFxno"/>
+      <BindItem id="item10" compid="divPopupRoot.form.divBasicInfo00.form.staOfcAddr" propid="text" datasetid="dsMemberInfo" columnid="ofcAddrMerged"/>
+    </Bind>
+  </Form>
+</FDL>

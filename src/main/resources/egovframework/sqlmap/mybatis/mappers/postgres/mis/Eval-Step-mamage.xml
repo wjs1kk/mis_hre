@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.mis.hre.vo.EvalStepVO">
+
+    <select id="getEvalStepList" parameterType="map" resultType="evalStepVO">
+        /*module-manage-mapper.getModuleManageList*/
+        SELECT S.EVAL_YEAR
+             , S.EVAL_STEP_CD
+             , TO_CHAR(S.EVAL_STEP_START_DATE, 'YYYY-MM-DD') AS START_DT
+             , TO_CHAR(S.EVAL_STEP_END_DATE, 'YYYY-MM-DD') AS END_DT
+          FROM HRE_EVAL_STEP S
+         ORDER BY S.EVAL_YEAR, S.EVAL_STEP_CD
+
+    </select>
+
+<!--     <insert id="insertEvalStep" parameterType="evalStepVO"> -->
+<!--         /* module-manage-mapper.insertModuleManage */ -->
+<!--         INSERT -->
+<!--           INTO CMN_MODULE ( MODULE_ID -->
+<!--                           , SYS_ID -->
+<!--                           , MODULE_NM -->
+<!--                           , USE_YN -->
+<!--                           , USE_YMD -->
+<!--                           , END_YMD -->
+<!--                           , SORT_ORDR -->
+<!--                           , RGST_ID -->
+<!--                           , RGST_IP -->
+<!--                           , RGST_DT -->
+<!--                           , UPDT_ID -->
+<!--                           , UPDT_IP -->
+<!--                           , UPDT_DT) -->
+<!--                    VALUES ( NULLIF(#{moduleId}, '') -->
+<!--                           , NULLIF(#{sysId}, '') -->
+<!--                           , NULLIF(#{moduleNm}, '') -->
+<!--                           , NULLIF(#{useYn}, '') -->
+<!--                           , NULLIF(#{useYmd}, '') -->
+<!--                           , NULLIF(#{endYmd}, '') -->
+<!--                           , NULLIF(#{sortOrdr}, '')::INT -->
+<!--                           , NULLIF(#{sessionUserId}, '') -->
+<!--                           , NULLIF(#{sessionUserIp}, '') -->
+<!--                           , NOW() -->
+<!--                           , NULLIF(#{sessionUserId}, '') -->
+<!--                           , NULLIF(#{sessionUserIp}, '') -->
+<!--                           , NOW()) -->
+<!--     </insert> -->
+
+<!--     <update id="updateEvalStep" parameterType="evalStepVO"> -->
+<!--         /* module-manage-mapper.updateModuleManage */ -->
+<!--         UPDATE CMN_MODULE -->
+<!--            SET MODULE_NM         = NULLIF(#{moduleNm}, '') -->
+<!--              , USE_YN            = NULLIF(#{useYn}, '') -->
+<!--              , USE_YMD           = NULLIF(#{useYmd}, '') -->
+<!--              , END_YMD           = NULLIF(#{endYmd}, '') -->
+<!--              , SORT_ORDR         = NULLIF(#{sortOrdr}, '')::INT -->
+<!--              , UPDT_ID           = NULLIF(#{sessionUserId}, '') -->
+<!--              , UPDT_IP           = NULLIF(#{sessionUserIp}, '') -->
+<!--              , UPDT_DT           = NOW() -->
+<!--          WHERE MODULE_ID         = #{moduleId} -->
+<!--            AND SYS_ID            = #{sysId} -->
+<!--     </update> -->
+
+<!--     <delete id="deleteEvalStep" parameterType="evalStepVO"> -->
+<!--         /* module-manage-mapper.deleteModuleManage */ -->
+<!--         DELETE -->
+<!--           FROM CMN_MODULE -->
+<!--          WHERE MODULE_ID         = #{moduleId} -->
+<!--            AND SYS_ID            = #{sysId} -->
+<!--     </delete> -->
+
+</mapper>

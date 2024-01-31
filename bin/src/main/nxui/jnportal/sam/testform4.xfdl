@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="testform4" width="1280" height="720" titletext="Tab Template" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout height="720" width="1280">
+        <Static id="Static00" taborder="0" text="Tab Template" left="50" top="10" width="190" height="30" cssclass="sta_WF_compTitle01"/>
+        <Tab id="Tab00" taborder="1" tabindex="0" left="50" top="50" right="50" bottom="50" onchanged="Tab00_onchanged" cssclass="tab_WF_comp">
+          <Tabpages>
+            <Tabpage id="Tabpage1" text="Tabpage1">
+              <Layouts>
+                <Layout>
+                  <Grid id="grdTypeTwo" taborder="0" left="20" top="45" binddataset="dsTypeTab1" right="20" bottom="20" autofittype="col" autoenter="select" autoupdatetype="itemselect">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="48" band="left"/>
+                          <Column size="48" band="left"/>
+                          <Column size="48" band="left"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="150"/>
+                          <Column size="150"/>
+                          <Column size="100"/>
+                          <Column size="150"/>
+                          <Column size="100"/>
+                          <Column size="80"/>
+                          <Column size="100"/>
+                          <Column size="150"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="42" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="순번"/>
+                          <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                          <Cell col="2" text="상태"/>
+                          <Cell col="3" text="시스템ID"/>
+                          <Cell col="4" text="프로그램ID"/>
+                          <Cell col="5" text="프로그램명"/>
+                          <Cell col="6" text="프로그램유형"/>
+                          <Cell col="7" text="URL"/>
+                          <Cell col="8" text="프로그램 설명"/>
+                          <Cell col="9" text="프로그램 파일명"/>
+                          <Cell col="10" text="대체URL"/>
+                          <Cell col="11" text="대체URL 사용여부"/>
+                          <Cell col="12" text="첨부파일"/>
+                          <Cell col="13" text="권한레벨 사용여부"/>
+                          <Cell col="14" text="권한레벨 사용설명"/>
+                          <Cell col="15" text="radio사용"/>
+                          <Cell col="16" text="radio미사용"/>
+                          <Cell col="17" text="등록자"/>
+                          <Cell col="18" text="등록일"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                          <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                          <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="expr:rowStatus == 'inserted' ? 'C' : rowStatus == 'updated' ? 'U' : rowStatus == 'deleted' ? 'D' : ''"/>
+                          <Cell col="3" text="bind:sysId" edittype="text" textAlign="center"/>
+                          <Cell col="4" text="bind:progId" edittype="text"/>
+                          <Cell col="5" text="bind:progNm" edittype="text"/>
+                          <Cell col="6" text="bind:progTy" edittype="combo" displaytype="combocontrol"/>
+                          <Cell col="7" text="bind:progUrl" edittype="text"/>
+                          <Cell col="8" text="bind:progDc" edittype="text"/>
+                          <Cell col="9" text="bind:progFileNm" edittype="text"/>
+                          <Cell col="10" text="bind:substituteUrl" edittype="text"/>
+                          <Cell col="11" text="bind:substituteUseYn" edittype="combo" displaytype="combocontrol" combodataset="dsUseYn" combocodecol="LINE_CODE" combodatacol="LINE_CODE_NM_KR" comboautoselect="true"/>
+                          <Cell col="12" text="bind:atchFileId" edittype="text"/>
+                          <Cell col="13" text="bind:permissionUseYn" edittype="checkbox" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                          <Cell col="14" text="bind:permissionDc" edittype="text"/>
+                          <Cell col="15" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="Y" text="bind:radioUseYn"/>
+                          <Cell col="16" text="bind:radioUseYn" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="N"/>
+                          <Cell col="17" text="bind:rgstNm" edittype="none" textAlign="center"/>
+                          <Cell col="18" text="bind:rgstDt" edittype="none" textAlign="center"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                  <Static id="sta_00" taborder="1" text="Tabpage 1 Grid List" left="20" top="14" width="370" height="23" onclick="Tab00_Tabpage1_sta_00_onclick" cssclass="sta_WF_compTitle02"/>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+            <Tabpage id="Tabpage2" text="Tabpage2">
+              <Layouts>
+                <Layout>
+                  <Static id="sta_00" taborder="0" text="Tabpage 2 Grid List" left="20" top="14" width="370" height="23" cssclass="sta_WF_compTitle02"/>
+                  <Grid id="grdTypeTwo" taborder="1" left="20" top="45" binddataset="dsTypeTab2" right="20" bottom="20" autofittype="col" autoenter="select" autoupdatetype="itemselect">
+                    <Formats>
+                      <Format id="default">
+                        <Columns>
+                          <Column size="48" band="left"/>
+                          <Column size="48" band="left"/>
+                          <Column size="48" band="left"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="150"/>
+                          <Column size="150"/>
+                          <Column size="100"/>
+                          <Column size="150"/>
+                          <Column size="100"/>
+                          <Column size="80"/>
+                          <Column size="100"/>
+                          <Column size="150"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                          <Column size="80"/>
+                        </Columns>
+                        <Rows>
+                          <Row size="42" band="head"/>
+                          <Row size="30"/>
+                        </Rows>
+                        <Band id="head">
+                          <Cell text="순번"/>
+                          <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                          <Cell col="2" text="상태"/>
+                          <Cell col="3" text="시스템ID"/>
+                          <Cell col="4" text="프로그램ID"/>
+                          <Cell col="5" text="프로그램명"/>
+                          <Cell col="6" text="프로그램유형"/>
+                          <Cell col="7" text="URL"/>
+                          <Cell col="8" text="프로그램 설명"/>
+                          <Cell col="9" text="프로그램 파일명"/>
+                          <Cell col="10" text="대체URL"/>
+                          <Cell col="11" text="대체URL 사용여부"/>
+                          <Cell col="12" text="첨부파일"/>
+                          <Cell col="13" text="권한레벨 사용여부"/>
+                          <Cell col="14" text="권한레벨 사용설명"/>
+                          <Cell col="15" text="radio사용"/>
+                          <Cell col="16" text="radio미사용"/>
+                          <Cell col="17" text="등록자"/>
+                          <Cell col="18" text="등록일"/>
+                        </Band>
+                        <Band id="body">
+                          <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                          <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                          <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="expr:rowStatus == 'inserted' ? 'C' : rowStatus == 'updated' ? 'U' : rowStatus == 'deleted' ? 'D' : ''"/>
+                          <Cell col="3" text="bind:sysId" edittype="text" textAlign="center"/>
+                          <Cell col="4" text="bind:progId" edittype="text"/>
+                          <Cell col="5" text="bind:progNm" edittype="text"/>
+                          <Cell col="6" text="bind:progTy" edittype="combo" displaytype="combocontrol"/>
+                          <Cell col="7" text="bind:progUrl" edittype="text"/>
+                          <Cell col="8" text="bind:progDc" edittype="text"/>
+                          <Cell col="9" text="bind:progFileNm" edittype="text"/>
+                          <Cell col="10" text="bind:substituteUrl" edittype="text"/>
+                          <Cell col="11" text="bind:substituteUseYn" edittype="combo" displaytype="combocontrol" combodataset="dsUseYn" combocodecol="LINE_CODE" combodatacol="LINE_CODE_NM_KR" comboautoselect="true"/>
+                          <Cell col="12" text="bind:atchFileId" edittype="text"/>
+                          <Cell col="13" text="bind:permissionUseYn" edittype="checkbox" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                          <Cell col="14" text="bind:permissionDc" edittype="text"/>
+                          <Cell col="15" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="Y" text="bind:radioUseYn"/>
+                          <Cell col="16" text="bind:radioUseYn" displaytype="radioitemcontrol" edittype="radioitem" radioitemcodevalue="N"/>
+                          <Cell col="17" text="bind:rgstNm" edittype="none" textAlign="center"/>
+                          <Cell col="18" text="bind:rgstDt" edittype="none" textAlign="center"/>
+                        </Band>
+                      </Format>
+                    </Formats>
+                  </Grid>
+                </Layout>
+              </Layouts>
+            </Tabpage>
+          </Tabpages>
+        </Tab>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsTypeTab1" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+          <Column id="radioUseYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="sysId">3</Col>
+            <Col id="progId">3</Col>
+            <Col id="substituteUseYn">Y</Col>
+            <Col id="permissionUseYn">Y</Col>
+            <Col id="radioUseYn">Y</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+          <Row>
+            <Col id="sysId">5</Col>
+            <Col id="progId">5</Col>
+            <Col id="progNm">5</Col>
+            <Col id="substituteUseYn">Y</Col>
+            <Col id="permissionUseYn">Y</Col>
+            <Col id="radioUseYn">Y</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+          <Row>
+            <Col id="sysId">1</Col>
+            <Col id="progId">1</Col>
+            <Col id="progNm">테스트</Col>
+            <Col id="substituteUseYn">N</Col>
+            <Col id="permissionUseYn">N</Col>
+            <Col id="radioUseYn">N</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+          <Row>
+            <Col id="sysId">2</Col>
+            <Col id="progId">2</Col>
+            <Col id="substituteUseYn">Y</Col>
+            <Col id="permissionUseYn">Y</Col>
+            <Col id="radioUseYn">Y</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsTypeTab2" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="progDc" type="STRING" size="256"/>
+          <Column id="progFileNm" type="STRING" size="256"/>
+          <Column id="progAuthor" type="STRING" size="256"/>
+          <Column id="substituteUrl" type="STRING" size="256"/>
+          <Column id="substituteUseYn" type="STRING" size="256"/>
+          <Column id="atchFileId" type="STRING" size="256"/>
+          <Column id="permissionUseYn" type="STRING" size="256"/>
+          <Column id="permissionDc" type="STRING" size="256"/>
+          <Column id="radioUseYn" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="sysId">3</Col>
+            <Col id="progId">3</Col>
+            <Col id="substituteUseYn">Y</Col>
+            <Col id="permissionUseYn">Y</Col>
+            <Col id="radioUseYn">Y</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+          <Row>
+            <Col id="sysId">5</Col>
+            <Col id="progId">5</Col>
+            <Col id="progNm">5</Col>
+            <Col id="substituteUseYn">Y</Col>
+            <Col id="permissionUseYn">Y</Col>
+            <Col id="radioUseYn">Y</Col>
+            <Col id="rgstDt">2023/02/10</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="LINE_CODE">Y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN"/>
+          </Row>
+          <Row>
+            <Col id="LINE_CODE">N</Col>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN"/>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Tab00_onchanged = function(obj:nexacro.Tab,e:nexacro.TabIndexChangeEventInfo)
+{
+	
+};
+
+this.Tab00_Tabpage1_sta_00_onclick = function(obj:nexacro.Static,e:nexacro.ClickEventInfo)
+{
+	
+};
+]]></Script>
+  </Form>
+</FDL>

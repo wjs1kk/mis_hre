@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LOG_1040P_01" width="800" onload="form_onload" height="650" titletext="로그 상세 팝업" scrolltype="both">
+    <Layouts>
+      <Layout>
+        <Div id="divPopup" taborder="1" text="" left="0" top="0" height="650" width="800" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="로그 상세" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Div id="divLogDitail" taborder="4" left="30" top="70" cssclass="div_WF_popup" text="" width="740" bottom="76">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="staSubTitle" taborder="2" text="상세 정보" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" width="169"/>
+                    <Static id="Static10_00_00_01_00" taborder="3" text="w20" visible="false" top="0" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" onclick="div_Search_Static10_00_onclick" right="0" width="20" bottom="0"/>
+                    <TextArea id="taLogDetail" taborder="4" left="20" top="45" right="20" bottom="20" readonly="true" scrolltype="vertical" scrollbartype="default default" wordWrap="english" font="normal 10pt/normal monospace"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00" taborder="5" text="h 23" onclick="Static31_onclick" visible="false" left="0" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" right="0"/>
+              <Button id="btnPopupClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" right="367" bottom="23" onclick="divPopup_btnPopupClose_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="logNo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsLogDtail" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="logCont" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  Popup Template
+*  MenuPath      -
+*  FileName      statisticsPopup.xfdl
+*  Creator 	     cheonsy
+*  CreateDate    2023.03.15
+*  Desction      로그 상세 팝업
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.15    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.dsSearch.setColumn(0, "logNo", this.parent.logNo);
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	this.gfnTransaction("getlogDtail", "cms/getlogDtail.do", "dsSearch", "dsLogDtail", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getlogDtail":
+			this.divPopup.form.divLogDitail.form.taLogDetail.scrollTo(0, 0);	// 스크롤바 최상단으로 이동
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+this.divPopup_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.divLogDitail.form.taLogDetail" propid="value" datasetid="dsLogDtail" columnid="logCont"/>
+    </Bind>
+  </Form>
+</FDL>

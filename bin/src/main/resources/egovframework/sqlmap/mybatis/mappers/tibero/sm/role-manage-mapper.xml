@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.sm.role.service.RoleManageDAO">
+
+    <select id="getRoleSearch" parameterType="map" resultType="roleManageVO">
+        /* role-manage-mapper.getRoleSearch */
+        SELECT R.ROLE_CODE
+             , R.SYS_ID
+             , R.MODULE_ID
+             , R.ROLE_NM
+             , R.ROLE_DC
+             , R.ROLE_PERMIT
+             , R.WORK_GRP_ID
+             , R.USE_YN
+             , R.UPDT_ID
+             , R.UPDT_IP
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = R.UPDT_ID) AS UPDT_NM
+             , TO_CHAR(R.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+          FROM CMN_ROLE R
+         WHERE 1=1
+         <if test='roleCode != null and roleCode != "" and roleCode != "undefined"'>
+           AND R.ROLE_CODE LIKE '%' || #{roleCode} || '%'
+           </if>
+           <if test='roleNm != null and roleNm != "" and roleNm != "undefined"'>
+           AND R.ROLE_NM LIKE '%' || #{roleNm} || '%'
+           </if>
+           <if test='useYn != null and useYn != "" and useYn != "undefined"'>
+           AND R.USE_YN = #{useYn}
+           </if>
+           <if test='moduleId != null and moduleId != "" and moduleId != "undefined"'>
+           AND R.MODULE_ID = #{moduleId}
+           </if>
+         ORDER BY R.MODULE_ID NULLS FIRST
+              , R.ROLE_PERMIT
+              , R.ROLE_CODE
+    </select>
+
+    <select id="getModuleCombo" parameterType="map" resultType="comboVO">
+        /* role-manage-mapper.getModuleCombo */
+        <choose>
+            <when test='"a".equalsIgnoreCase(type)'>
+        SELECT '전체' AS "TEXT"
+             , NULL AS "VALUE"
+             , NULL AS SYS_ID
+          FROM DUAL
+         UNION ALL
+            </when>
+            <when test='"c".equalsIgnoreCase(type)'>
+        SELECT '선택' AS "TEXT"
+             , NULL AS "VALUE"
+             , NULL AS SYS_ID
+          FROM DUAL
+         UNION ALL
+            </when>
+        </choose>
+        <choose>
+            <when test='"Y".equalsIgnoreCase(distinct)'>
+        SELECT MAX(M.MODULE_NM) KEEP (DENSE_RANK FIRST ORDER BY M.SYS_ID, M.SORT_ORDR) AS "TEXT"
+             , MAX(M.MODULE_ID) AS "VALUE"
+             , MAX(M.SYS_ID) KEEP (DENSE_RANK FIRST ORDER BY M.SYS_ID, M.SORT_ORDR) AS SYS_ID
+          FROM CMN_MODULE M
+            </when>
+            <otherwise>
+        SELECT M.MODULE_NM AS "TEXT"
+             , M.MODULE_ID AS "VALUE"
+             , M.SYS_ID
+          FROM CMN_MODULE M
+            </otherwise>
+        </choose>
+        <where>
+               M.USE_YN =  'Y'
+            <if test='sysId != null and sysId != ""'>
+           AND M.SYS_ID = #{sysId}
+            </if>
+        </where>
+         ORDER BY M.SYS_ID, M.SORT_ORDR
+    </select>
+
+    <insert id="insertRole" parameterType="roleManageVO">
+        /* role-manage-mapper.insertRole */
+         INSERT
+          INTO CMN_ROLE ( ROLE_CODE
+                       , SYS_ID
+                       , MODULE_ID
+                       , ROLE_NM
+                       , ROLE_DC
+                       , ROLE_PERMIT
+                       , WORK_GRP_ID
+                       , USE_YN
+                       , USE_YMD
+                       , END_YMD
+                       , RGST_ID
+                       , RGST_DT
+                       , RGST_IP
+                       , UPDT_ID
+                       , UPDT_DT
+                       , UPDT_IP)
+                VALUES ( #{roleCode}
+                       , #{sessionSysId}
+                       , #{moduleId}
+                       , #{roleNm}
+                       , #{roleDc}
+                       , #{rolePermit}
+                       , #{workGrpId}
+                       , #{useYn}
+                       , TO_DATE(NULLIF(#{useYmd}, ''), 'YYYY-MM-DD')
+                       , TO_DATE(NULLIF(#{endYmd}, ''), 'YYYY-MM-DD')
+                       , #{sessionUserId}
+                       , SYSDATE
+                       , #{sessionUserIp}
+                       , #{sessionUserId}
+                       , SYSDATE
+                       , #{sessionUserIp})
+    </insert>
+
+    <update id="updateRole" parameterType="roleManageVO">
+        /* role-manage-mapper.updateRole */
+        UPDATE CMN_ROLE
+           SET ROLE_CODE        = #{roleCode}
+             , ROLE_NM           = #{roleNm}
+             , MODULE_ID           = #{moduleId}
+             , ROLE_PERMIT      = #{rolePermit}
+             , ROLE_DC             = #{roleDc}
+             , USE_YMD            = TO_DATE(NULLIF(#{useYmd}, ''), 'YYYY-MM-DD')
+             , END_YMD            = TO_DATE(NULLIF(#{endYmd}, ''), 'YYYY-MM-DD')
+             , USE_YN            = #{useYn}
+             , UPDT_ID          = #{sessionUserId}
+             , UPDT_IP          = #{sessionUserIp}
+             , UPDT_DT          = SYSDATE
+         WHERE ROLE_CODE         = #{roleCode}
+    </update>
+
+    <delete id="deleteRole" parameterType="roleManageVO">
+        /* role-manage-mapper.deleteRole */
+        DELETE
+          FROM CMN_ROLE
+         WHERE ROLE_CODE     = #{roleCode}
+    </delete>
+
+    <select id="getDuplicatedKeyCnt" parameterType="roleManageVO" resultType="int">
+        /* role-manage-mapper.getDuplicatedKeyCnt */
+        SELECT COUNT(*)
+          FROM CMN_ROLE
+         WHERE ROLE_CODE = #{roleCode}
+    </select>
+
+</mapper>

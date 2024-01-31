@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.sm.param.service.ParameterManageDAO">
+
+    <select id="getParam" parameterType="map" resultType="parameterManageVO">
+        /* parameter-manage-mapper.getParam */
+        SELECT P.PARAM_ID
+             , P.PARAM_NM
+             , P.MODULE_FG
+             , P.TARGET_NM
+             , P.PARAM_DATA
+             , P.MSG
+             , P.RMK
+             , P.UPDT_ID
+             , P.UPDT_IP
+             , (SELECT USER_NM_KR FROM CMN_USER WHERE USER_ID = P.UPDT_ID) AS UPDT_NM
+             , TO_CHAR(P.UPDT_DT, 'YYYY-MM-DD') AS UPDT_DT
+          FROM CMN_PARAMETER P
+         WHERE 1=1
+        <if test='paramId != null and paramId != "" and paramId != "undefined"'>
+           AND P.PARAM_ID LIKE '%' || #{paramId} || '%'
+        </if>
+        <if test='paramNm != null and paramNm != "" and paramNm != "undefined"'>
+           AND P.PARAM_NM LIKE '%' || #{paramNm} || '%'
+        </if>
+        <if test='moduleFg != null and moduleFg != "" and moduleFg != "undefined"'>
+           AND P.MODULE_FG LIKE '%' || #{moduleFg} || '%'
+        </if>
+         ORDER BY P.PARAM_ID
+    </select>
+
+    <insert id="insertParam" parameterType="parameterManageVO">
+        /* parameter-manage-mapper.insertParam */
+        INSERT
+          INTO CMN_PARAMETER ( PARAM_ID
+                            , PARAM_NM
+                            , MODULE_FG
+                            , TARGET_NM
+                            , PARAM_DATA
+                            , MSG
+                            , RMK
+                            , RGST_ID
+                            , RGST_DT
+                            , RGST_IP
+                            , UPDT_ID
+                            , UPDT_DT
+                            , UPDT_IP)
+                     VALUES ( #{paramId}
+                            , #{paramNm}
+                            , #{moduleFg}
+                            , #{targetNm}
+                            , #{paramData}
+                            , #{msg}
+                            , #{rmk}
+                            , #{sessionUserId}
+                            , SYSDATE
+                            , #{sessionUserIp}
+                            , #{sessionUserId}
+                            , SYSDATE
+                            , #{sessionUserIp})
+    </insert>
+
+    <update id="updateParam" parameterType="parameterManageVO">
+        /* parameter-manage-mapper.updateParam */
+        UPDATE CMN_PARAMETER
+           SET PARAM_NM         = #{paramNm}
+             , MODULE_FG        = #{moduleFg}
+             , TARGET_NM        = #{targetNm}
+             , PARAM_DATA       = #{paramData}
+             , MSG              = #{msg}
+             , RMK              = #{rmk}
+             , UPDT_ID          = #{sessionUserId}
+             , UPDT_IP          = #{sessionUserIp}
+             , UPDT_DT          = SYSDATE
+         WHERE PARAM_ID         = #{paramId}
+    </update>
+
+    <delete id="deleteParam" parameterType="parameterManageVO">
+        /* parameter-manage-mapper.deleteParam */
+        DELETE
+          FROM CMN_PARAMETER
+         WHERE PARAM_ID      = #{paramId}
+    </delete>
+
+    <select id="getDuplicatedKeyCnt" parameterType="parameterManageVO" resultType="int">
+        /* parameter-manage-mapper.getDuplicatedKeyCnt */
+        SELECT COUNT(*)
+          FROM CMN_PARAMETER
+         WHERE PARAM_ID = #{paramId}
+    </select>
+
+</mapper>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jnv.main.businessmain.service.BusinessMainDAO">
+
+    <select id="selectUserInfo" parameterType="map" resultType="userManageVO">
+        /*business-main-mapper.selectUserInfo*/
+        SELECT CU.USER_ID
+             , CU.MEMBER_ID
+             , CU.USER_NM_KR
+             , CU.USER_NM_EN
+             , CU.EMAIL_ADDR
+             , CU.TEL_NO
+             , CU.PHONE_NO
+             , CU.USE_YN
+             , CU.DEPT_CD
+             , CU.JOB_TITLE
+             , CU.JOB_POSITION
+             , (SELECT DEPT_NAME_KR
+                  FROM CMN_DEPT CD
+                 WHERE CD.DEPT_CODE = CU.DEPT_CD) AS DEPT_NM
+             , (SELECT STRING_AGG(CONN_IP, ', ')
+                  FROM CMN_CONNECT_IP CCI
+                 WHERE CCI.USER_ID = CU.USER_ID) AS ACCESSIBLE_IP
+          FROM CMN_USER CU
+         WHERE CU.USER_ID = #{userId}
+           AND CU.USE_YN = 'Y'
+    </select>
+
+</mapper>

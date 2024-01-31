@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Pattern01" width="1920" height="681" titletext="Pattern01" onload="main_onload" scrolltype="vertical">
+    <Layouts>
+      <Layout>
+        <Static id="Static00" taborder="3" left="0" top="0" height="467" background="url('theme://images/portal/portal_main_bg.jpg') no-repeat center top" right="0" text=""/>
+        <Div id="Div00" taborder="4" left="180" top="0" width="502" formscrollbartype="none none" text="" height="467">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" text="국방기술과 방위산업 혁신을 선도하는" left="13" top="66" height="38" font="normal 23px/1 &quot;맑은고딕&quot;" color="#c9d7ff" right="13" cssclass="portal_mainTxt_s"/>
+              <Static id="Static01" taborder="1" text="연구기관 KRIT" left="13" top="Static00:0" height="38" font="700 27px/1 &quot;맑은고딕&quot;" color="#ffffff" right="13" onclick="Div03_Div00_Static01_onclick" cssclass="portal_mainTxt"/>
+              <Div id="Div01" taborder="2" text="Div00" left="14" top="163" height="54" right="14">
+                <Layouts>
+                  <Layout>
+                    <Static id="Static02_00" taborder="0" left="0" top="2" bottom="2" right="1" border="1px solid #252525" borderRadius="25px"/>
+                    <Combo id="Combo01" taborder="2" top="3" width="185" innerdataset="dsData" codecolumn="value" datacolumn="country" left="1" cssclass="portal_cmb_main" bottom="3" text="핵심기술 과제공고" buttonsize="20 48" itemheight="25" value="1" index="0"/>
+                    <Edit id="Edit01" taborder="1" left="Combo01:0" top="3" displaynulltext="검색어를 입력하세요" right="27" cssclass="portal_edi_main" bottom="3" onchanged="Div00_Div01_Edit01_onchanged" border="1px none #252525"/>
+                    <Button id="Button02" taborder="3" cssclass="portal_btn_search" top="0" height="54" right="0" width="54"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+              <Button id="btn_system" taborder="3" text="시스템소개" left="13" top="281" width="95" height="132" cssclass="portal_btns_quick" icon="url('theme://images/portal/portal_btn_icon1.png')"/>
+              <Button id="btn_manual" taborder="4" text="이용매뉴얼" left="btn_system:34" top="281" width="95" height="132" cssclass="portal_btns_quick" icon="url('theme://images/portal/portal_btn_icon2.png')" onclick="Div00_btn_manual_onclick"/>
+              <Button id="btn_regul" taborder="5" text="규정 및 지침" left="btn_manual:34" top="281" width="95" height="132" cssclass="portal_btns_quick" icon="url('theme://images/portal/portal_btn_icon3.png')" onclick="Div00_btn_regul_onclick"/>
+              <Button id="btn_law" taborder="6" text="관련법령" left="btn_regul:34" top="281" width="95" height="132" cssclass="portal_btns_quick" icon="url('theme://images/portal/portal_btn_icon4.png')"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div02" taborder="0" text="Div02" left="0" right="0" url="pts::PTS_0000M_01.xfdl" height="214" top="Div00:0"/>
+        <Static id="Static34" taborder="1" text="W 50" onclick="Static02_onclick" visible="false" left="0" top="0" width="180" background="antiquewhite" color="blue" bottom="0"/>
+        <Static id="Static02" taborder="2" text="W&#13;&#10; 50" visible="false" top="0" onclick="Static02_onclick" background="antiquewhite" color="blue" width="180" right="0" bottom="0"/>
+        <Div id="Div01" taborder="5" left="Div00:56" top="0" height="467" right="180">
+          <Layouts>
+            <Layout>
+              <Tab id="Tab00" taborder="1" tabindex="0" left="0" top="26" cssclass="portal_tab_main" right="0" tabbuttonheight="48" onchanged="Tab00_onchanged" bottom="36">
+                <Tabpages>
+                  <Tabpage id="Tabpage1" text="전체">
+                    <Layouts>
+                      <Layout>
+                        <Div id="Div00" taborder="0" left="0" top="26" width="486" height="150" cssclass="portal_div_project">
+                          <Layouts>
+                            <Layout>
+                              <Static id="Static01" taborder="0" text="접수중" left="20" top="17" width="60" height="26" onclick="Div01_Div00_Static01_onclick" cssclass="portal_sta_projAccepting"/>
+                              <Static id="Static02" taborder="1" text="핵심기술" left="Static01:7" top="17" width="60" height="26" cssclass="portal_sta_projCore"/>
+                              <Static id="Static04" taborder="2" text="&lt;2023년 산학연 주관 국방핵심기술과제 사전예고&gt;" left="0" top="Static01:10" height="50" right="0" cssclass="portal_sta_projTitle"/>
+                              <Static id="Static05" taborder="3" text="마감일 2023-03-14" left="0" width="169" height="45" bottom="0" cssclass="portal_sta_projDate"/>
+                              <Static id="Static03" taborder="4" text="과제기획" left="Static02:7" top="17" width="60" height="26" textAlign="center" cssclass="portal_sta_projPlan"/>
+                              <Static id="Static06" taborder="5" text="D-12" left="Static05:0" width="34" height="47" bottom="0" cssclass="portal_sta_projDday"/>
+                            </Layout>
+                          </Layouts>
+                        </Div>
+                        <Div id="Div01" taborder="1" left="Div00:30" top="26" height="150" cssclass="portal_div_project" right="0">
+                          <Layouts>
+                            <Layout>
+                              <Static id="Static01" taborder="0" text="접수예정" left="20" top="17" width="60" height="26" cssclass="portal_sta_projAccept"/>
+                              <Static id="Static02" taborder="1" text="방산진흥" left="Static01:7" top="17" width="60" height="26" cssclass="portal_sta_projDefense"/>
+                              <Static id="Static05" taborder="2" text="마감일 2023-03-30" left="0" width="169" height="45" bottom="0" cssclass="portal_sta_projDate"/>
+                              <Static id="Static03" taborder="3" text="과제기획" left="Static02:7" top="17" width="60" height="26" cssclass="portal_sta_projPlan"/>
+                              <Static id="Static06" taborder="4" text="D-27" left="Static05:0" width="34" height="47" bottom="0" cssclass="portal_sta_projDday"/>
+                              <Static id="Static04" taborder="5" text="23-1차 유망수출품목발굴 지원사업 참여기업 모집..." left="0" top="53" height="50" right="0" cssclass="portal_sta_projTitle"/>
+                            </Layout>
+                          </Layouts>
+                        </Div>
+                        <Div id="Div03" taborder="2" left="0" top="Div00:30" width="486" height="150" cssclass="portal_div_project">
+                          <Layouts>
+                            <Layout>
+                              <Static id="Static01" taborder="0" text="접수중" left="20" top="17" width="60" height="26" cssclass="portal_sta_projAccepting"/>
+                              <Static id="Static02" taborder="1" text="방산진흥" left="Static01:7" top="17" width="60" height="26" cssclass="portal_sta_projDefense"/>
+                              <Static id="Static04" taborder="2" text="23년 국방 벤처기업 인큐베이팅사업 지원대상기업..." left="0" top="60" height="50" right="0" cssclass="portal_sta_projTitle"/>
+                              <Static id="Static05" taborder="3" text="마감일 2023-03-16" left="0" width="169" height="45" bottom="0" cssclass="portal_sta_projDate"/>
+                              <Static id="Static03" taborder="4" text="과제기획" left="Static02:7" top="17" width="60" height="26" cssclass="portal_sta_projPlan"/>
+                              <Static id="Static06" taborder="5" text="D-13" left="Static05:0" width="34" height="47" bottom="0" cssclass="portal_sta_projDday"/>
+                            </Layout>
+                          </Layouts>
+                        </Div>
+                        <Div id="Div04" taborder="3" left="Div03:30" top="Div01:30" height="150" cssclass="portal_div_project" right="0">
+                          <Layouts>
+                            <Layout>
+                              <Static id="Static01" taborder="0" text="접수중" left="20" top="17" width="60" height="26" cssclass="portal_sta_projAccepting"/>
+                              <Static id="Static02" taborder="1" text="방산진흥" left="Static01:7" top="17" width="60" height="26" cssclass="portal_sta_projDefense"/>
+                              <Static id="Static05" taborder="2" text="마감일 2023-03-13" left="0" width="169" height="45" bottom="0" cssclass="portal_sta_projDate"/>
+                              <Static id="Static03" taborder="3" text="과제기획" left="Static02:7" top="17" width="60" height="26" cssclass="portal_sta_projPlan"/>
+                              <Static id="Static06" taborder="4" text="D-10" left="Static05:0" width="34" height="47" bottom="0" cssclass="portal_sta_projDday"/>
+                              <Static id="Static04" taborder="5" text="23-3차 무기체계 부품 국산화 개발지원 사업 주관..." left="0" top="60" height="50" right="0" cssclass="portal_sta_projTitle"/>
+                            </Layout>
+                          </Layouts>
+                        </Div>
+                      </Layout>
+                    </Layouts>
+                  </Tabpage>
+                  <Tabpage id="Tabpage2" text="핵심기술"/>
+                  <Tabpage id="Tabpage3" text="방산진흥">
+                    <Layouts>
+                      <Layout/>
+                    </Layouts>
+                  </Tabpage>
+                </Tabpages>
+              </Tab>
+              <Button id="Button00" taborder="0" text="더보기" top="39" width="64" height="27" right="0" cssclass="portal_btn_moreTxt"/>
+              <Radio id="Radio00" taborder="2" top="32" height="34" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" cssclass="portal_rdo_proj" value="0" text="전체" index="0" rowcount="-1" columncount="3" right="Button00:20" width="265" fittocontents="width">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">0</Col>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">1</Col>
+                      <Col id="datacolumn">접수중</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">2</Col>
+                      <Col id="datacolumn">접수예정</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_quick" taborder="6" top="234" width="31" height="56" cssclass="portal_quick_collapse" right="0" onclick="btn_quick_onclick"/>
+        <Button id="btn_01" taborder="7" text="챗봇상담" width="82" height="102" right="0" cssclass="portal_quick_chatbot" bottom="46"/>
+        <Div id="quickMenu" taborder="8" text="Div03" top="13" width="80" height="497" right="-80" url="pts::PTS_0000M_03.xfdl" visible="true" cssclass="portal_main_quick"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="country" type="STRING" size="256"/>
+          <Column id="value" type="FLOAT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="country">핵심기술 과제공고</Col>
+            <Col id="value">1</Col>
+          </Row>
+          <Row>
+            <Col id="country">핵심기술 과제기획</Col>
+            <Col id="value">2</Col>
+          </Row>
+          <Row>
+            <Col id="country">방산진흥 과제공고</Col>
+            <Col id="value">3</Col>
+          </Row>
+          <Row>
+            <Col id="country">방산진흥 과제기획</Col>
+            <Col id="value">4</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+this.Div00_btn_manual_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMenuId = "PTS_3020M_01";
+	var url = "pts::PTS_3020M_01.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+
+this.Div00_btn_regul_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMenuId = "PTS_3060M_01";
+	var url = "pts::PTS_3060M_01.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+
+this.main_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.quick_animate(obj);
+};
+
+this.btn_quick_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if( obj.cssclass == "portal_quick_collapse")
+	{		
+		this.Ani00.play();
+	} else {
+		this.Ani01.play();
+	}
+};
+
+this.quick_animate = function(obj) {
+    var aniObj00 = new nexacro.Animation("Ani00", this);
+    this.addChild("Ani00", aniObj00);
+	this.Ani00.addTarget("AniItem00", this.btn_quick, "right:80");
+	this.Ani00.addTarget("AniItem01", this.quickMenu, "right:0", "visible: true");
+	this.Ani00.setEventHandler("oncomplete", this.Ani00_oncomplete, this);
+	this.Ani00.set_duration(500);
+	this.Ani00.set_easing("easeInSine");
+
+    var aniObj01 = new nexacro.Animation("Ani01", this);
+    this.addChild("Ani01", aniObj01);
+	this.Ani01.addTarget("AniItem00", this.btn_quick, "right:0");
+	this.Ani01.addTarget("AniItem01", this.quickMenu, "right:-80", "visible: false");
+	this.Ani01.setEventHandler("oncomplete", this.Ani01_oncomplete, this);
+	this.Ani01.set_duration(500);
+	this.Ani01.set_easing("easeInSine");
+}
+
+this.Ani00_oncomplete = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{  
+	this.btn_quick.set_cssclass("portal_quick_expand");
+};
+
+this.Ani01_oncomplete = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{  
+	this.btn_quick.set_cssclass("portal_quick_collapse");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.Combo01" propid="value" datasetid="Dataset00" columnid="key"/>
+      <BindItem id="item1" compid="Div00.form.Div01.form.Combo01" propid="value" datasetid="Dataset00" columnid="key"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="excelExportLarge" width="1920" height="720" titletext="대용량 엑셀 다운로드" onload="excelExportLarge_onload">
+    <Layouts>
+      <Layout height="720" width="1920">
+        <Static id="staTitle" taborder="0" text="대용량 엑셀 다운로드 샘플" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" left="50"/>
+        <Button id="btnDownload" taborder="1" text="다운로드" top="20" width="65" height="28" flexgrow="0" flexshrink="0" right="50" onclick="btnDownload_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" cssclass="div_WF_Transparent" text="" right="50" height="90">
+          <Layouts>
+            <Layout>
+              <Static id="Static00_01" taborder="10" left="0" top="0" right="0" cssclass="sta_WF_bg" text="" onclick="div_Search_Static00_onclick" height="90"/>
+              <Static id="staProgId" taborder="0" text="프로그램 ID" left="25%" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Static id="staProgNm" taborder="2" text="프로그램명" left="50%" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Edit id="edtProgId" taborder="1" left="staProgId:10" top="15" width="200" height="26" onkeyup="row1_Div00_edt_prog_id_onkeyup"/>
+              <Edit id="edtProgNm" taborder="3" left="staProgNm:10" top="15" width="200" height="26" onkeyup="row1_Div00_edt_prog_id_onkeyup"/>
+              <Static id="staProgUrl" taborder="4" text="프로그램 URL" left="20" top="49" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Edit id="edtProgUrl" taborder="5" left="staProgUrl:10" top="49" width="200" height="26" onkeyup="row1_Div00_edt_prog_id_onkeyup"/>
+              <Static id="staProgTy" taborder="6" text="프로그램 유형" left="25%" top="49" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Combo id="cboProgTySearch" taborder="7" left="staProgTy:10" top="49" width="150" height="26" innerdataset="dsProgTySearchCombo" codecolumn="value" datacolumn="text" onkeyup="row1_Div00_edt_prog_id_onkeyup"/>
+              <Static id="staSysId" taborder="9" text="시스템" left="20" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboSysId" taborder="8" text="Combo00" left="staSysId:10" top="15" width="200" height="26" innerdataset="dsSysIdCombo" codecolumn="value" datacolumn="text" onitemchanged="divSearch_systemIdCombo_onitemchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <FileDownTransfer id="fdtExcel"/>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="progId" type="STRING" size="256"/>
+          <Column id="progNm" type="STRING" size="256"/>
+          <Column id="selectedProgId" type="STRING" size="256"/>
+          <Column id="progTy" type="STRING" size="256"/>
+          <Column id="progUrl" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsProgTySearchCombo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSysIdCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[
+
+include "lib::common.xjs";
+
+this.excelExportLarge_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnLoadCombo("loadCombo", "dsProgTySearchCombo=PMS:SM:PROG_TY:A dsProgTyCombo=PMS:SM:PROG_TY:C dsFuncTyCombo=PMS:SM:FUNC_TYPE:C dsProgFuncTyCombo=PMS:SM:PROG_FUNC_TYPE:C dsUseYnCombo=PMS:SM:USE_YN", "fnComboCallback");
+	this.gfnTransaction("loadSysIdCombo","sm/getSystemIdCombo.do","","dsSysIdCombo","type=A","fnComboCallback");
+};
+
+this.btnDownload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    const row = this.gfnGetRowObj(this.dsSearch, 0);
+    for (let key in row) {
+        if (Object.prototype.hasOwnProperty.call(row, key)) {
+            this.fdtExcel.setPostData(key, row[key]);
+        }
+    }
+    
+	this.fdtExcel.download(nexacro.getEnvironment().services["svcurl"].url + "sam/excel/downloadLargeExcel.do");
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtProgId" propid="value" datasetid="dsSearch" columnid="progId"/>
+      <BindItem id="item1" compid="divSearch.form.edtProgNm" propid="value" datasetid="dsSearch" columnid="progNm"/>
+      <BindItem id="item2" compid="divSearch.form.cboProgTySearch" propid="value" datasetid="dsSearch" columnid="progTy"/>
+      <BindItem id="item3" compid="divSearch.form.edtProgUrl" propid="value" datasetid="dsSearch" columnid="progUrl"/>
+      <BindItem id="item4" compid="divSearch.form.cboSysId" propid="value" datasetid="dsSearch" columnid="sysId"/>
+    </Bind>
+  </Form>
+</FDL>

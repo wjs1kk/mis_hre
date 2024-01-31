@@ -17,30 +17,35 @@
             }
             
             // Object(Dataset, ExcelExportObject) Initialize
-            obj = new Dataset("dsAdvtManage", this);
-            obj.set_useclientlayout("true");
-            obj._setContents("<ColumnInfo><Column id=\"advtId\" type=\"STRING\" size=\"256\"/><Column id=\"advtType\" type=\"STRING\" size=\"256\"/><Column id=\"advtTitle\" type=\"STRING\" size=\"256\"/><Column id=\"advtCont\" type=\"STRING\" size=\"256\"/><Column id=\"advtStartDt\" type=\"STRING\" size=\"256\"/><Column id=\"advtEndDt\" type=\"STRING\" size=\"256\"/><Column id=\"sortOrdr\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"attachFileId\" type=\"STRING\" size=\"256\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"256\"/><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
-            this.addChild(obj.name, obj);
-
-
             obj = new Dataset("dsAdTyCombo", this);
             obj._setContents("<ColumnInfo><Column id=\"text\" type=\"STRING\" size=\"256\"/><Column id=\"value\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("dsUseYn", this);
-            obj._setContents("<ColumnInfo><Column id=\"text\" type=\"STRING\" size=\"256\"/><Column id=\"value\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"LINE_CODE\" type=\"STRING\" size=\"256\"/><Column id=\"LINE_CODE_NM_KR\" type=\"STRING\" size=\"256\"/><Column id=\"LINE_CODE_NM_EN\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"LINE_CODE\">Y</Col><Col id=\"LINE_CODE_NM_KR\">사용</Col><Col id=\"LINE_CODE_NM_EN\">use</Col></Row><Row><Col id=\"LINE_CODE\">N</Col><Col id=\"LINE_CODE_NM_KR\">미사용</Col><Col id=\"LINE_CODE_NM_EN\">unused</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsItem", this);
+            obj._setContents("<ColumnInfo><Column id=\"itemCode\" type=\"STRING\" size=\"256\"/><Column id=\"itemName\" type=\"STRING\" size=\"256\"/><Column id=\"itemType\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"itemCost\" type=\"BIGDECIMAL\" size=\"256\"/><Column id=\"itemCount\" type=\"BIGDECIMAL\" size=\"256\"/><Column id=\"itemDesc\" type=\"STRING\" size=\"3000\"/><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"256\"/><Column id=\"rgstId\" type=\"STRING\" size=\"256\"/><Column id=\"updtId\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsSearch", this);
+            obj.set_useclientlayout("true");
+            obj._setContents("<ColumnInfo><Column id=\"itemCode\" type=\"STRING\" size=\"256\"/><Column id=\"itemName\" type=\"STRING\" size=\"256\"/><Column id=\"itemType\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"itemCost\" type=\"INT\" size=\"256\"/><Column id=\"itemCount\" type=\"INT\" size=\"256\"/><Column id=\"itemDesc\" type=\"STRING\" size=\"3000\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
             obj = new Div("divForm","0","0","600",null,null,"0",null,null,null,null,this);
             obj.set_taborder("0");
             obj.set_text("");
+            obj.set_background("white");
             this.addChild(obj.name, obj);
 
             obj = new Static("staMainTitle","0","0",null,"50","0",null,null,null,null,null,this.divForm.form);
             obj.set_taborder("0");
-            obj.set_text("OOOOO");
             obj.set_cssclass("sta_WF_popupTitle");
             this.divForm.addChild(obj.name, obj);
 
@@ -124,7 +129,7 @@
 
             obj = new Static("staSubTitle","20","0","100","45",null,null,null,null,null,null,this.divForm.form.divDetail.form);
             obj.set_taborder("2");
-            obj.set_text("OOO");
+            obj.set_text("상세정보");
             obj.set_cssclass("sta_WF_subTitle01");
             obj.set_fittocontents("width");
             this.divForm.form.divDetail.addChild(obj.name, obj);
@@ -162,27 +167,104 @@
             obj = new Static("sta002_01","20","110","100","34",null,null,null,null,null,null,this.divForm.form.divDetail.form);
             obj.set_taborder("8");
             obj.set_cssclass("sta_WF_condition02_L");
-            obj.set_text("ㅇㅇㅇ");
+            obj.set_text("제품분류");
             this.divForm.form.divDetail.addChild(obj.name, obj);
 
             obj = new Edit("edtItemCode","sta001:10","48","100","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
             obj.set_taborder("9");
             obj.set_cssclass("essential");
+            obj.set_inputfilter("none");
+            obj.set_inputtype("number,english");
+            obj.set_maxlength("20");
             this.divForm.form.divDetail.addChild(obj.name, obj);
 
             obj = new Edit("edtItemName","sta002:10","81","200","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
             obj.set_taborder("10");
             obj.set_cssclass("essential");
+            obj.set_maxlength("100");
             this.divForm.form.divDetail.addChild(obj.name, obj);
 
-            obj = new Edit("edtOOO","sta002_01:10","114","359","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj = new Combo("Combo00","130","115","200","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
             obj.set_taborder("11");
+            obj.set_innerdataset("dsAdTyCombo");
+            obj.set_datacolumn("text");
+            obj.set_codecolumn("value");
             this.divForm.form.divDetail.addChild(obj.name, obj);
 
-            obj = new Static("Static00","74","173","163","166",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj = new Static("staBg002_00_00","20","143",null,"34","20",null,null,null,null,null,this.divForm.form.divDetail.form);
             obj.set_taborder("12");
-            obj.set_text("* 제품 테이블 내용 추가\r\n* 모두 추가 후 높이 조절");
-            obj.set_background("aquamarine");
+            obj.set_cssclass("sta_WF_condition02box");
+            obj.set_text("");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("sta002_01_00","20","143","100","34",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("13");
+            obj.set_cssclass("sta_WF_condition02_L");
+            obj.set_text("단가");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Edit("Edit00","130","147","200","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("14");
+            obj.set_inputfilter("none");
+            obj.set_inputtype("number");
+            obj.set_maxlength("12");
+            obj.set_textAlign("right");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("staBg002_00_00_00","20","176",null,"34","20",null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("15");
+            obj.set_cssclass("sta_WF_condition02box");
+            obj.set_text("");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("sta002_01_00_00","20","176","100","34",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("16");
+            obj.set_cssclass("sta_WF_condition02_L");
+            obj.set_text("수량");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Edit("Edit00_00","130","180","200","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("17");
+            obj.set_inputfilter("none");
+            obj.set_inputtype("number");
+            obj.set_maxlength("12");
+            obj.set_textAlign("right");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("staBg002_00_00_00_00","20","209",null,"175","20",null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("18");
+            obj.set_cssclass("sta_WF_condition02box");
+            obj.set_text("");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("sta002_01_00_00_00","20","209","100","175",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("19");
+            obj.set_cssclass("sta_WF_condition02_L");
+            obj.set_text("제품설명");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new TextArea("TextArea00","130","216","379","160",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("20");
+            obj.set_maxlength("3000");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("staBg002_00_00_00_01","20","383",null,"34","20",null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("21");
+            obj.set_cssclass("sta_WF_condition02box");
+            obj.set_text("");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Static("sta002_01_00_00_01","20","383","100","34",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("22");
+            obj.set_cssclass("sta_WF_condition02_L");
+            obj.set_text("사용여부");
+            this.divForm.form.divDetail.addChild(obj.name, obj);
+
+            obj = new Combo("Combo01","130","387","200","26",null,null,null,null,null,null,this.divForm.form.divDetail.form);
+            obj.set_taborder("23");
+            obj.set_innerdataset("dsUseYn");
+            obj.set_datacolumn("LINE_CODE_NM_KR");
+            obj.set_codecolumn("LINE_CODE");
             this.divForm.form.divDetail.addChild(obj.name, obj);
 
             obj = new Static("Static04_00_00_01_00_00","249",null,"103","25",null,"51",null,null,null,null,this.divForm.form);
@@ -230,39 +312,71 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-            obj = new BindItem("item0","divForm.form.divDetail.form.comboAdTyPopup","value","dsAdvtManage","advtType");
+            obj = new BindItem("item9","divForm.form.divDetail.form.edtItemCode","value","dsItem","itemCode");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item1","divForm.form.divDetail.form.edtAdvtTitle","value","dsAdvtManage","advtTitle");
+            obj = new BindItem("item10","divForm.form.divDetail.form.edtItemName","value","dsItem","itemName");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item2","divForm.form.divDetail.form.edtCont","value","dsAdvtManage","sortOrdr");
+            obj = new BindItem("item11","divForm.form.divDetail.form.Combo00","value","dsItem","itemType");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item3","divForm.form.divDetail.form.RqstNm","value","dsAdvtManage","advtId");
+            obj = new BindItem("item12","divForm.form.divDetail.form.Combo00_00","value","dsItem","itemType");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item4","divForm.form.divDetail.form.TextArea00","value","dsAdvtManage","advtCont");
+            obj = new BindItem("item13","divForm.form.divDetail.form.Edit00","value","dsItem","itemCost");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item5","divForm.form.divDetail.form.edtFromDt","value","dsAdvtManage","advtStartDt");
+            obj = new BindItem("item14","divForm.form.divDetail.form.Edit00_00","value","dsItem","itemCount");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item6","divForm.form.divDetail.form.edtToDt","value","dsAdvtManage","advtEndDt");
+            obj = new BindItem("item15","divForm.form.divDetail.form.TextArea00","acceptstab","dsItem","itemDesc");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item7","divForm.form.divDetail.form.ComboUseYn","value","dsAdvtManage","useYn");
+            obj = new BindItem("item16","divForm.form.divDetail.form.Combo01","value","dsItem","useYn");
             this.addChild(obj.name, obj);
             obj.bind();
 
-            obj = new BindItem("item8","divForm.form.divDetail.form.edtRqstDt","value","dsAdvtManage","advtStartDt");
+            obj = new BindItem("item0","divForm.form.divDetail.form.Edit01","value","dsItem","itemDesc");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item1","divForm.form.divDetail.form.TextArea00","value","dsItem","itemDesc");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item2","divForm.form.divDetail.form.edtItemCode","accessibilityaction","dsSearch","itemCode");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item3","divForm.form.divDetail.form.edtItemName","accessibilityaction","dsSearch","itemName");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item4","divForm.form.divDetail.form.Edit00","accessibilityaction","dsSearch","itemCost");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item5","divForm.form.divDetail.form.Edit00_00","accessibilityaction","dsSearch","itemCount");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item6","divForm.form.divDetail.form.TextArea00","accessibilityaction","dsSearch","itemDesc");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item7","divForm.form.divDetail.form.Combo01","text","dsUseYn","LINE_CODE_NM_KR");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item8","divForm.form.divDetail.form.Combo00","text","dsSearch","itemType");
             this.addChild(obj.name, obj);
             obj.bind();
             
@@ -297,23 +411,176 @@
         /**
          * description 화면 onload
         */
+
         this.form_onload = function(obj,e)
         {
+        	this.gfnLoadCombo("loadCombo", "dsAdTyCombo=SMP:ITEM_TYPE:A", "fnCallBack");
         	this.gfnFormOnLoad(this);
+
+         	this.dsItem.setColumn(0, "itemCode", this.parent.itemCode);
+        	this.dsItem.setColumn(0, "itemName", this.parent.itemName);
+        	this.dsItem.setColumn(0, "itemType", this.parent.itemType);
+        	this.dsItem.setColumn(0, "itemCost", this.parent.itemCost);
+        	this.dsItem.setColumn(0, "itemCount", this.parent.itemCount);
+        	this.dsItem.setColumn(0, "itemDesc", this.parent.itemDesc);
+        	this.dsItem.setColumn(0, "useYn", this.parent.useYn);
+        	this.fnSearch();
+
+        	if(Eco.isEmpty(this.parent.itemCode)){
+        		this.dsItem.setColumn(0, "useYn", "Y");
+        	}
+        	this.dsItem.setColumn(0, "rowStatus", this.parent.rowStatus);;
+
+        	var title = this.parent.title;
+        	this.divForm.form.staMainTitle.set_text(title);
+
+        	if(this.parent.title == "제품등록"){
+        		this.divForm.form.btnDelete.set_enable(false);
+        	}
+        	if(this.parent.title == "제품상세"){
+        		this.divForm.form.divDetail.form.edtItemCode.set_enable(false);
+        	}
         };
 
         /************************************************************************************************
         * TRANSACTION 서비스 호출 처리
         ************************************************************************************************/
+        this.fnSave = function()
+        {
+        	var strSvcId    = "setItemDetailJcy";
+        	var strSvcUrl   = "sam/practice/setItemDetailJcy.do";
+        	var inData      = "dsItem";
+        	var outData     = "";
+        	var strArg      = "";
+        	var callBackFnc = "fnCallBack";
+        	var isAsync   	= true;
+
+        	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        						strSvcUrl, 	    // transaction을 요청할 주소
+        						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        						isAsync); 		// 비동기통신 여부 [생략가능]
+        };
+        this.fnSearch = function()
+        {
+        	var strSvcId    = "getItemDetailJcy";
+        	var strSvcUrl   = "sam/practice/setItemDetailJcy.do";
+        	var inData      = "dsItem";
+        	var outData     = "dsItem";
+        	var strArg      = "";
+        	var callBackFnc = "fnCallBack";
+        	var isAsync   	= true;
+
+        	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        						strSvcUrl, 	    // transaction을 요청할 주소
+        						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        						isAsync); 		// 비동기통신 여부 [생략가능]
+        }
+        this.equalCodeName = function(){
+        	var strSvcId    = "equalCodeName";
+        	var strSvcUrl   = "sam/practice/equalCodeName.do";
+        	var inData      = "dsItem";
+        	var outData     = "";
+        	var strArg      = "";
+        	var callBackFnc = "fnCallBack";
+        	var isAsync   	= true;
+
+        	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        						strSvcUrl, 	    // transaction을 요청할 주소
+        						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        						isAsync); 		// 비동기통신 여부 [생략가능]
+        }
 
         /************************************************************************************************
          * CALLBACK 콜백 처리부분(Transaction, Popup)
          ************************************************************************************************/
-
+        this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+        {
+        	switch (sSvcId) {
+        		case "getItemList":
+        		this.gfnRowCount(this.dsList, this.divList.form.staGridRowCnt);
+        		break;
+        		case "setItemDetailJcy":
+        			if(this.callbackMsg == "success"){
+        				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+        				this.close();
+        			} else{
+        				this.gfnAlert("CM_MSG_TEST_3");
+        			}
+        		break;
+        		case "equalCodeName":
+        			if(this.callbackMsg == "codeEqual"){
+        				this.gfnAlert("제품코드가 중복되었습니다.");
+        				return "code";
+        			}
+        			if(this.callbackMsg == "nameEqual"){
+        				this.gfnAlert("제품명이 중복되었습니다.");
+        				return "name";
+        			}
+        		break;
+        		default:
+        		break;
+        	}
+        };
         /************************************************************************************************
          * 각 COMPONENT 별 EVENT 영역
         ************************************************************************************************/
+        this.divForm_btnClose_onclick = function(obj,e)
+        {
+        	this.close();
+        };
 
+        this.divForm_btnDelete_onclick = function(obj,e)
+        {
+        	this.dsItem.setColumn(0,"rowStatus","deleted");
+        	this.gfnAlert("PTS_DELETE", "", "", {trueFunc: "fnSave", falseFunc: ""});
+        };
+
+        this.divForm_btnSave_onclick = function(obj,e)
+        {
+
+        	if(this.parent.rowStatus == "updated"){
+        		if (!this.gfnDsIsUpdated(this.dsItem)) {
+        			this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+        			return;
+        		}
+        	}
+        	if(this.dsItem.getColumn(0, "itemCode") == null){
+        		this.gfnAlert("제품코드는 필수 입력값입니다.");
+        		return;
+        	}
+
+        	if(this.dsItem.getColumn(0, "itemName") == null){
+        		this.gfnAlert("제품명은 필수 입력값입니다.");
+        		return;
+        	}
+        	if(this.dsItem.getColumn(0, "itemCost") < 0){
+        		this.gfnAlert("단가는 양의 정수만 입력가능합니다.");
+        		return;
+        	}
+        	if(this.dsItem.getColumn(0, "itemCount") < 0){
+        		this.gfnAlert("수량은 양의 정수만 입력가능합니다.");
+        		return;
+        	}
+
+        	if(this.parent.rowStatus == "updated"){
+        		this.dsItem.setColumn(0, "updtId", nexacro.getApplication().gdsUserInfo.getColumn(0, "userNmKr"));
+        	}
+        	if(this.parent.rowStatus == "inserted"){
+        		this.dsItem.setColumn(0, "rgstId", nexacro.getApplication().gdsUserInfo.getColumn(0, "userNmKr"));
+        	}
+        //	this.fnSave();
+
+        	this.gfnAlert("CM_CFM_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});
+        };
         /************************************************************************************************
         * 사용자 FUNCTION 영역
         ************************************************************************************************/
@@ -325,9 +592,17 @@
         this.on_initEvent = function()
         {
             this.addEventHandler("onload",this.form_onload,this);
+            this.divForm.form.staMainTitle.addEventHandler("onclick",this.divForm_staMainTitle_onclick,this);
             this.divForm.form.Static04_00_00_01.addEventHandler("onclick",this.Static31_onclick,this);
             this.divForm.form.Static04_00_00_01_00.addEventHandler("onclick",this.Static31_onclick,this);
+            this.divForm.form.divDetail.form.staBg002_00_00.addEventHandler("onclick",this.divForm_divDetail_staBg002_00_00_onclick,this);
+            this.divForm.form.divDetail.form.Edit00.addEventHandler("onchanged",this.divForm_divDetail_Edit00_onchanged,this);
+            this.divForm.form.divDetail.form.Combo01.addEventHandler("onitemchanged",this.divForm_divDetail_Combo01_onitemchanged,this);
             this.divForm.form.Static04_00_00_01_00_00.addEventHandler("onclick",this.Static31_onclick,this);
+            this.divForm.form.btnDelete.addEventHandler("onclick",this.divForm_btnDelete_onclick,this);
+            this.divForm.form.btnClose.addEventHandler("onclick",this.divForm_btnClose_onclick,this);
+            this.divForm.form.btnSave.addEventHandler("onclick",this.divForm_btnSave_onclick,this);
+            this.dsSearch.addEventHandler("onrowposchanged",this.dsRole_onrowposchanged,this);
         };
         this.loadIncludeScript("itemDetailPopup_jeoncy.xfdl");
         this.loadPreloadList();

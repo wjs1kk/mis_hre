@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="QNA_2030M" width="1920" height="720" titletext="QNA 목록" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="720" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="QNA 목록" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="staTitle_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="56" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="2" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="20" top="55" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="40"/>
+              <Static id="staCls" taborder="4" text="분류" left="20" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboCls" taborder="3" left="staCls:10" top="15" width="140" height="26" innerdataset="dsClsCombo" codecolumn="value" datacolumn="text" onkeyup="onkeyup" value="" index="-1" onitemchanged="divSearch_cboCls_onitemchanged"/>
+              <Static id="staSearch" taborder="6" text="검색" left="20%" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboSearch" taborder="5" left="staSearch:10" top="15" width="140" height="26" innerdataset="dsSearchCombo" codecolumn="value" datacolumn="text" onkeyup="divSearch_edtSearchNm_onchanged" value="" index="-1" onitemchanged="divSearch_cboSearch_onitemchanged"/>
+              <Edit id="edtSearch" taborder="1" left="cboSearch:10" top="15" width="950" height="26" onkeyup="onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:15" right="50" cssclass="div_WF_Area" bottom="37">
+          <Layouts>
+            <Layout>
+              <Grid id="grdList" taborder="0" left="0" top="45" binddataset="dsList" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0" oncelldblclick="divResult_grdList_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="150"/>
+                      <Column size="750"/>
+                      <Column size="150"/>
+                      <Column size="150"/>
+                      <Column size="150"/>
+                      <Column size="150"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="normal" edittype="none" text="순번"/>
+                      <Cell col="1" text="분류"/>
+                      <Cell col="2" text="제목"/>
+                      <Cell col="3" text="조회수"/>
+                      <Cell col="4" text="등록일"/>
+                      <Cell col="5" text="최종수정일"/>
+                      <Cell col="6" text="작성자"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="normal" edittype="none" textAlign="center" text="expr:currow+1" expr="currow+1"/>
+                      <Cell col="1" text="bind:clsNm"/>
+                      <Cell col="2" text="bind:qstnTtl" editmaxlength="20" textAlign="left" displaytype="normal" edittype="none"/>
+                      <Cell col="3" text="bind:rdcnt"/>
+                      <Cell col="4" text="bind:rgstDt" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="5" text="bind:updtDt" displaytype="date" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="6" text="bind:rgstrMemberId"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static04_00_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="90" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="2" text="총 0건" cssclass="sta_WF_subTxt" left="0" top="0" width="150" height="45"/>
+              <Button id="btnRegistration" text="신규" visible="true" top="14" width="65" height="28" right="0" taborder="3" onclick="divResult_btnRegistration_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="qnaId" type="STRING" size="256"/>
+          <Column id="clsCd" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearchCombo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList" updatecontrol="true" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="qnaId" type="STRING" size="256" description="QNA ID"/>
+          <Column id="qstnTtl" type="STRING" size="256" description="질문제목"/>
+          <Column id="qstnCn" type="STRING" size="256" description="질문내용"/>
+          <Column id="rdcnt" type="STRING" size="256" description="조회수"/>
+          <Column id="emlAddr" type="STRING" size="256" description="이메일주소"/>
+          <Column id="rgstDt" type="STRING" size="256" description="등록일시(질문일시)"/>
+          <Column id="rgstrId" type="STRING" size="256" description="등록자ID(질문자)"/>
+          <Column id="rgstrMemberId" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256" description="최종수정시점"/>
+          <Column id="updtrId" type="STRING" size="256" description="최종수정자ID"/>
+          <Column id="qnaPrcSttsCd" type="STRING" size="256" description="질의응답처리상태코드"/>
+          <Column id="qnaPrcSttsNm" type="STRING" size="256"/>
+          <Column id="answrId" type="STRING" size="256" description="답변자ID"/>
+          <Column id="answrMemberId" type="STRING" size="256"/>
+          <Column id="answrCn" type="STRING" size="256" description="답변내용"/>
+          <Column id="wrtePasswd" type="STRING" size="256" description="작성비밀번호"/>
+          <Column id="answrDt" type="STRING" size="256" description="답변일시"/>
+          <Column id="emlAnswrYn" type="STRING" size="256" description="메일답변여부"/>
+          <Column id="clsCd" type="STRING" size="256" description="분류코드"/>
+          <Column id="clsNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsClsCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  QNA 목록
+*  MenuPath      소통광장 - 게시물 관리 - QNA 목록
+*  FileName      QNA_2030M.xfdl 
+*  Creator 	     woohj
+*  CreateDate    2023.11.29
+*  Desction      QNA 목록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.11.29    woohj  	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo(); //
+	
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 콤보 loadCombo
+*/
+this.fnLoadCombo = function ()
+{
+	this.gfnLoadCombo("loadCombo", "dsSearchCombo=PTS:SEARCH_TY:A dsClsCombo=PTS:WORK_CATEGORY:C", "fnComboCallback"); 
+};
+
+/**
+ * description FAQ 목록
+*/
+this.fnSearch = function ()
+{
+	var strSvcId    = "getQnaList";
+	var strSvcUrl   = "bbs/qna/getQnaList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+/**
+ * description 콤보 ComboCallback
+*/
+this.fnComboCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    if (svcId == "loadCombo") {
+        this.fnSearch();
+    }
+};
+
+/**
+ * description Transaction Callback 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getQnaList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCnt); 
+            break;
+		default:
+		break;	
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSearch();
+};
+
+/**
+ * description 엔터키 이벤트
+*/
+this.onkeyup = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * description 분류 콤보박스 변경
+*/
+this.divSearch_cboCls_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+/**
+ * description 검색(제목/내용) 콤보박스 변경
+*/
+this.divSearch_cboSearch_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+
+/**
+ * description 그리드 더블클릭 - 상세페이지 이동
+*/
+this.divResult_grdList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	// qnaId QNA ID
+	var param = {
+			qnaId: this.dsList.getColumn(e.row, "qnaId")
+		}
+
+	nexacro.getApplication().openNewTab("QNA_2050M", "QNA 답변등록", "pts::bbs/qna/QNA_2050M.xfdl", param , "소통광장 > 게시물관리 > QNA 답변등록", "");
+	
+};
+
+/**
+ * description 신규 등록 - 상세페이지 이동
+*/
+this.divResult_btnRegistration_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().openNewTab("QNA_2040M", "QNA 질문등록", "pts::bbs/qna/QNA_2040M.xfdl", "" , "소통광장 > 게시물관리 > QNA 질문등록", "");
+};
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+
+
+
+
+
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboCls" propid="value" datasetid="dsSearch" columnid="clsCd"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearch" propid="value" datasetid="dsSearch" columnid="searchType"/>
+      <BindItem id="item2" compid="divSearch.form.edtSearch" propid="value" datasetid="dsSearch" columnid="searchKeyword"/>
+    </Bind>
+  </Form>
+</FDL>

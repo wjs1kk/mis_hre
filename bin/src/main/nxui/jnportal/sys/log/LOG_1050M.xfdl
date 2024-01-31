@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="LOG_1050M" width="1920" height="670" onload="form_onload" cssclass="frm_WF_comp" titletext="사용자 로그">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="sta_01" taborder="1" text="메시지관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" expr="comp.parent.getOwnerFrame().tabArgs.title"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="71" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="8" left="0" top="0" right="0" cssclass="sta_WF_bg" text="" height="56" onclick="div_Search_Static00_onclick"/>
+              <Static id="sta_msg" taborder="3" text="사용자" left="455" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edt_roleNm" taborder="2" left="sta_msg:10" top="15" width="90" height="26" onkeyup="divSearch_Div00_edt_roleNm_onkeyup"/>
+              <Button id="btn_rqst_nm" taborder="1" cssclass="btn_WF_frmSearch" left="edt_roleNm:5" top="15" width="26" height="26" onclick="div_Search_btn_rqst_nm_onclick"/>
+              <Edit id="edt_userNm" taborder="0" left="btn_rqst_nm:5" top="15" width="160" height="26" onkeyup="divSearch_Div00_edt_roleNm_onkeyup"/>
+              <Static id="sta_msgId" taborder="7" text="기간" left="39" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01Essential"/>
+              <Calendar id="cal_Dt_from" taborder="5" left="sta_msgId:10" top="15" width="110" height="26" dateformat="yyyy-MM-dd" editformat="yyyy-MM-dd" readonly="false" cssclass="essential" onkeyup="divSearch_Div00_edt_roleNm_onkeyup"/>
+              <Static id="Static26" taborder="6" text="~" left="cal_Dt_from:0" top="15" width="14" height="24" textAlign="center"/>
+              <Calendar id="cal_Dt_to" taborder="4" left="Static26:0" top="15" width="110" height="26" dateformat="yyyy-MM-dd" weekformat="일 월 화 수 목 금 토" cssclass="essential" onkeyup="divSearch_Div00_edt_roleNm_onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_Search01" taborder="3" left="50" top="divSearch:0" cssclass="div_WF_Area" text="" right="50" bottom="37">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static04_00_00_00" taborder="0" text="h 45" onclick="Static31_onclick" visible="false" left="129" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01" taborder="1" text="h 13" onclick="Static31_onclick" visible="false" left="20" top="281" width="60" height="13" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static09" taborder="3" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="81"/>
+              <Static id="stc_gridRowCnt" taborder="4" cssclass="sta_WF_subResult" left="Static09:10" top="0" width="149" height="45" text="(총 0건)"/>
+              <Grid id="grd_list" taborder="2" binddataset="dsUserLog" left="0" top="45" right="0" autofittype="col" tooltiptype="default" oncellclick="grd_list_oncellclick" onheadclick="grd_list_onheadclick" onclick="grd_list_onclick" autoenter="select" bottom="0" enable="true">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                      <Column size="200"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="33"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" text="로그인 일시" calendareditformat="yyyy-MM-dd ddd"/>
+                      <Cell col="2" text="로그아웃 일시" calendareditformat="yyyy-MM-dd ddd"/>
+                      <Cell col="3" text="사용자명"/>
+                      <Cell col="4" text="사용자 ID"/>
+                      <Cell col="5" text="접속 IP"/>
+                      <Cell col="6" text="세션 ID"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1" textAlign="center" expandsize="16"/>
+                      <Cell col="1" displaytype="normal" edittype="none" text="bind:userLoginDate" calendardateformat="yyyy-MM-dd" expandsize="16"/>
+                      <Cell col="2" displaytype="normal" edittype="none" text="bind:userLogoutDate" calendardateformat="yyyy-MM-dd" expandsize="16"/>
+                      <Cell col="3" displaytype="normal" edittype="none" text="bind:userNmKr" cssclass="" expandsize="16"/>
+                      <Cell col="4" displaytype="normal" edittype="none" text="bind:memberId" mask="!#,###,###" cssclass=" cellLink" expandsize="16"/>
+                      <Cell col="5" text="bind:userIp"/>
+                      <Cell col="6" text="bind:userSessionId"/>
+                    </Band>
+                  </Format>
+                  <Format id="format_copy"/>
+                </Formats>
+              </Grid>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="exceptionNm" type="STRING" size="256"/>
+          <Column id="menuNm" type="STRING" size="256"/>
+          <Column id="userLoginDate" type="STRING" size="256"/>
+          <Column id="userLoginDateFrom" type="STRING" size="256"/>
+          <Column id="userLoginDateTo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsUserLog" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="userLoginDate" type="STRING" size="256"/>
+          <Column id="userLogoutDate" type="STRING" size="256"/>
+          <Column id="userIp" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="userSessionId" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCalDate" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="userLoginDateFrom" type="STRING" size="256"/>
+          <Column id="userLoginDateTo" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  사용자로그
+*  MenuPath      관리메뉴-관리자-사용자 로그
+*  FileName      userLog.xfdl 
+*  Creator 	     moonsj
+*  CreateDate    2023.03.14
+*  Desction      사용자 로그
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.03.22    moonsj 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	// 이달 1일 세팅, 현재날짜 세팅
+	var currDate = new Date();
+	var year = currDate.getFullYear().toString().padLeft(4, "0");
+	var month = (currDate.getMonth() + 1).toString().padLeft(2, "0");
+	var day = 1;
+	
+	this.divSearch.form.cal_Dt_from.set_value(year + month + day);
+	this.divSearch.form.cal_Dt_to.set_value(Ex.util.getToday());
+    this.fnSearchUserLog();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 시스템 로그 조회
+*/
+this.fnSearchUserLog = function()
+{
+	this.gfnTransaction("getUserLog", "cms/getUserLog.do", "dsSearch", "dsUserLog", "", "fnCallBack"); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+
+
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getUserLog":
+			//총 건수 계산
+			this.gfnRowCount(this.dsUserLog, this.Div00.form.div_Search01.form.stc_gridRowCnt);
+		break;
+ 		case "loadCombo":
+ 			break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	switch (sPopupId) {
+		case "statisticsUserPopup":	// 사용자 조회 팝업
+			var oRtn = this.gfnGetPopupRtn();
+			if (oRtn) {
+				console.log('oRtn : ',  oRtn);
+				console.log('oRtn.CONFIRM : ',  oRtn.CONFIRM);
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+   if (!this.fnValidation()) {
+		this.gfnAlert("CM_MSG_SRCH_DATE");  // 검색 기간은 필수입력값입니다.
+		return;
+    }
+
+	if (!this.fnCalValidation()) {
+        this.gfnAlert("CM_MSG_VAL_SRCH_3MONTH");  // 검색 기간을 시작일로부터 3개월 이내로 설정해주세요.
+		return;
+    }
+	
+	this.fnSearchUserLog();
+};
+
+/**
+ * description 사용자 조회 버튼 클릭
+*/
+this.div_Search_btn_rqst_nm_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnOpenPopup("statisticsUserPopup", "cms::statisticsUserPopup.xfdl", "", "fnPopupAfter", "");
+};
+
+/**
+ * description 엔터키 검색 이벤트
+*/
+this.divSearch_Div00_edt_roleNm_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+		this.btnSearch_onclick();
+	}
+};
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+	this.gfnGenerateMLExcel();
+};
+
+
+/**
+ * description 유효성 체크
+*/
+this.fnValidation = function ()
+{
+    if (this.dsSearch.getColumn(0, "userLoginDateFrom") == "" || this.dsSearch.getColumn(0, "userLoginDateTo") == "") {
+		return false;
+    }else{
+		return true;
+	}
+};
+
+
+/**
+ * description 기간 유효성 체크( 3개월 )
+*/
+this.fnCalValidation = function()
+{
+	var startDay = this.dsSearch.getColumn(0, "userLoginDateFrom");
+	var endDay = this.dsSearch.getColumn(0, "userLoginDateTo");
+	var addStartday = this.fn_addMonth(startDay, 3);
+	
+	if (endDay > addStartday) {
+		return false;
+	} else {
+		return true;
+	}
+};
+
+/**
+ * description 시작일 + 3개월
+*/
+this.fn_addMonth = function(strDate, month)
+{
+    return Eco.date.addMonth(strDate, month);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item4" compid="divSearch.form.edt_userNm" propid="value" datasetid="dsSearch" columnid="userNm"/>
+      <BindItem id="item5" compid="divSearch.form.edt_roleNm" propid="value" datasetid="dsSearch" columnid="userId"/>
+      <BindItem id="item6" compid="divSearch.form.cal_Dt_to" propid="value" datasetid="dsSearch" columnid="userLoginDateTo"/>
+      <BindItem id="item7" compid="divSearch.form.cal_Dt_from" propid="value" datasetid="dsSearch" columnid="userLoginDateFrom"/>
+    </Bind>
+  </Form>
+</FDL>

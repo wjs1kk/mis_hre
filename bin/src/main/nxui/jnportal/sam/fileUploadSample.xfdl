@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="fileUploadTest" width="1920" height="1699" titletext="파일 업로드 테스트" oninit="fileUploadTest_oninit" onload="fileUploadTest_onload">
+    <Layouts>
+      <Layout height="1699" width="1920">
+        <Static id="staTitle" taborder="0" text="파일 업로드 샘플" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" left="50"/>
+        <Div id="divSample1" taborder="1" left="50" top="staTitle:-10" width="720" height="318" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divFileUpload1" taborder="0" left="0" top="0" width="720" height="280" url="cmm::fileUpload.xfdl"/>
+              <Button id="btnUpload" taborder="1" text="업로드 시작" left="0" top="290" width="120" height="28" onclick="divSample1_btnUpload_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divSample2" taborder="2" text="Div00" left="50" top="divSample1:10" width="720" height="318" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divFileUpload2" taborder="0" left="0" top="0" width="720" height="280" url="cmm::fileUpload.xfdl"/>
+              <Button id="btnUpload" taborder="1" text="업로드 시작" left="0" top="290" width="120" height="28" onclick="divSample2_btnUpload_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divSample3" taborder="3" left="50" top="divSample2:10" width="720" height="358" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divFileUpload3" taborder="0" left="0" top="0" width="720" height="280" url="cmm::fileUpload.xfdl" cssclass="div_WF_Area"/>
+              <Button id="btnRefresh" taborder="1" text="목록 새로고침" left="0" top="290" width="120" height="28" onclick="divSample3_btnRefresh_onclick"/>
+              <Static id="Static00" taborder="2" text="&quot;기본 첨부파일 예제&quot;에 파일을 업로드한 후 &quot;목록 새로고침&quot;을 누르면 목록이 표시됩니다." left="0" top="328" width="720" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="staHeading3" taborder="4" text="기타 예제" cssclass="sta_WF_subTitle01" left="50" top="divSample3:10" height="45" width="169"/>
+        <Div id="divSample7" taborder="5" left="50" top="staHeading3:-10" width="720" height="358" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divFileUpload7" taborder="0" left="0" top="0" width="720" height="280" url="cmm::fileUpload.xfdl" cssclass="div_WF_Area"/>
+              <Button id="btnUpload" taborder="1" text="업로드 시작" left="0" top="290" width="120" height="28" onclick="divSample7_btnUpload_onclick"/>
+              <Static id="Static00" taborder="2" text="이미지 파일(jpg, png, gif, bmp, webp, heif)만 업로드 가능합니다." left="0" top="328" width="720" height="30"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divSample8" taborder="6" left="50" top="divSample7:10" width="720" height="358" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divFileUpload8" taborder="0" left="0" top="0" width="720" height="280" url="cmm::fileUpload.xfdl" cssclass="div_WF_Area"/>
+              <Button id="btnUpload" taborder="1" text="업로드 시작" left="0" top="290" width="120" height="28" onclick="divSample8_btnUpload_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects/>
+    <Script type="xscript5.1"><![CDATA[
+this.fileUploadTest_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+};
+
+this.fileUploadTest_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    // 파일 업로더를 초기화한다. 
+    // init(pgmId, fileId, options)
+    // pgmId: 프로그램 ID
+    // fileId: 파일 ID
+    // options: 업로더 옵션
+    //   - header: 업로더 제목 (문자열)
+    //   - maxCount: 최대 업로드 가능 개수 (숫자) (기본값: 20)
+    //   - maxFileSize: 단일 파일의 업로드 가능한 최대 크기 (기본값: 50MB) (예: "20MB")
+    //   - maxTotalSize: 파일 크기 총합 최대 크기 (기본값: 200MB) (예: "200MB")
+    //   - allowedTypes: 업로드를 허용할 확장자 배열 (예: ["doc", "docx", "hwp", "odt"])
+    //   - readonly: 읽기 전용(다운로드 전용) 모드 여부 (boolean)
+    this.divSample1.form.divFileUpload1.form.init("fileUploadTest", "20230907000001", { header: "기본 첨부파일 예제" });
+    
+    this.divSample2.form.divFileUpload2.form.init("fileUploadTest", "20230907000002", { header: "목록 저장을 화면에서 별도로 처리하는 예제" });
+    
+    this.divSample3.form.divFileUpload3.form.init("fileUploadTest", "20230907000001", { header: "읽기 전용", readonly: true });
+    
+    this.divSample7.form.divFileUpload7.form.init("fileUploadTest", "20230907000007", { header: "파일 확장자 제한", allowedTypes: ["jpg", "png", "gif", "bmp", "webp", "heif"] });
+    
+    this.divSample8.form.divFileUpload8.form.init("fileUploadTest", "20230907000008", { header: "파일 크기 제한 변경", maxCount: 10, maxFileSize: "5GB", maxTotalSize: "20GB" });
+};
+
+this.fnSaveSample2 = function ()
+{
+    this.gfnTransaction("save2", "cmn/file/setList.do", "dsFileList=dsFile2", "", "", "fnCallback");
+};
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    if (svcId === "save2") {
+        this.gfnAlert("저장하였습니다.");
+        this.divSample2.form.divFileUpload2.form.searchFileList();
+    }
+};
+
+this.divSample1_btnUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // 파일을 업로드한다.
+    // upload(callback, dsFile[, extParam])
+    // callback: 업로드 후 실행될 콜백 이름
+    // dsFile: 업로드 후 파일 목록이 저장될 데이터셋 이름
+    // extParam: 값이 "U"면 업로드만 하고 파일 목록을 저장하지 않음. 빈 값이면 파일 목록도 저장함.
+    // 여기서는 파일 목록을 같이 저장한다.
+    this.divSample1.form.divFileUpload1.form.upload("fnUploadComplete1", "dsFile1");
+};
+
+this.divSample2_btnUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // 파일만 업로드하고 목록은 저장하지 않는다.
+    this.divSample2.form.divFileUpload2.form.upload("fnUploadComplete2", "dsFile2", "U");
+};
+
+this.divSample3_btnRefresh_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // 파일 목록을 새로 조회한다.
+    this.divSample3.form.divFileUpload3.form.searchFileList();
+};
+
+this.divSample7_btnUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.divSample7.form.divFileUpload7.form.upload("fnUploadComplete7", "dsFile7");
+};
+
+this.divSample8_btnUpload_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.divSample8.form.divFileUpload8.form.upload("fnUploadComplete8", "dsFile8");
+};
+
+
+this.fnUploadComplete1 = function (name, result)
+{
+    if (result === "Y") {
+        this.gfnAlert("업로드를 완료하였습니다.");
+    }
+};
+
+this.fnUploadComplete2 = function (name, result)
+{
+    if (result === "Y") {
+        this.fnSaveSample2();
+    }
+};
+
+this.fnUploadComplete7 = function (name, result)
+{
+    if (result === "Y") {
+        this.gfnAlert("업로드를 완료하였습니다.");
+    }
+};
+
+this.fnUploadComplete8 = function (name, result)
+{
+    if (result === "Y") {
+        this.gfnAlert("업로드를 완료하였습니다.");
+    }
+};
+
+this.raonk_RAONKUPLOAD_BeforeCreation = function(obj:nexacro.RaonkUpload)
+{
+};
+]]></Script>
+  </Form>
+</FDL>

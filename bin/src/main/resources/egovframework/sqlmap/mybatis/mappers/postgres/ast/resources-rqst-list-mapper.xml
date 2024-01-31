@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.ast.resources.service.ResourcesRqstListDAO">
+
+    <!-- 자원 목록 조회 -->
+    <select id="getAstRqst" parameterType="map" resultType="resourcesRqstListVO">
+        /* resources-list-mapper.getResourcesList */
+        SELECT AI.AST_NO
+             , AI.AST_NM
+             , AI.AST_DIV_CD
+             , (SELECT CODE_NM
+                  FROM PTS_STD_CODE SC
+                 WHERE SC.CODE_CD = AI.AST_DIV_CD) AS AST_DIV_CD_NM
+             , AI.AST_MNG_DEPT_CD
+             , (SELECT PD.DEPT_NM
+                  FROM PTS_DEPT PD
+                 WHERE PD.DEPT_CD = AI.AST_MNG_DEPT_CD) AS AST_MNG_DEPT_CD_NM
+             , AI.RGSTR_ID
+             ,  (SELECT C.USER_NM_KR
+                   FROM CMN_USER C
+                  WHERE C.USER_ID = AI.RGSTR_ID) AS RGSTR_ID_NM
+             , AT.AST_RQST_USER_ID
+             , (SELECT CU.USER_NM_KR
+                FROM CMN_USER CU
+                WHERE CU.USER_ID = AT.AST_RQST_USER_ID) AS AST_RQST_USER_ID_NM
+             , AI.RGST_DT
+             , AI.AST_QTY
+             , TO_CHAR(AT.RGST_DT, 'yyyy-MM-dd') AS RGST_DT
+             , AT.AST_RTN_DUE_YMD
+             , CONCAT(AT.AST_USE_BGN_YMD ,'~', AST_RTN_YMD) AS AST_USE_YMD
+          FROM PTS_AST_INFO AI
+             , PTS_AST_RQST AT
+         WHERE AT.AST_NO = AI.AST_NO
+          <if test = 'astDivCd != null and astDivCd != ""'>
+          AND AI.AST_DIV_CD = #{astDivCd}
+          </if>
+          <if test = 'searchKeyword != null and searchKeyword != ""'>
+            <choose>
+                <when test = 'searchType == "AST_NM"'>
+            AND AI.AST_NM LIKE '%' || #{searchKeyword} || '%'
+                </when>
+                <when test = 'searchType == "AST_MNG_DEPT_CD"'>
+            AND AI.AST_MNG_DEPT_CD LIKE '%' || #{searchKeyword} || '%'
+                </when>
+                <when test = 'searchType == "AST_MNG_PIC_ID"'>
+            AND (SELECT C.USER_NM_KR
+                   FROM CMN_USER C
+                  WHERE C.USER_ID = AI.AST_MNG_PIC_ID) LIKE '%' || #{searchKeyword} || '%'
+                </when>
+                <otherwise>
+            AND (AI.AST_NM LIKE '%' || #{searchKeyword} || '%'
+              OR AI.AST_MNG_DEPT_CD LIKE '%' || #{searchKeyword} || '%'
+              OR (SELECT C.USER_NM_KR
+                   FROM CMN_USER C
+                  WHERE C.USER_ID = AI.AST_MNG_PIC_ID) LIKE '%' || #{searchKeyword} || '%')
+                </otherwise>
+            </choose>
+          </if>
+    </select>
+
+    <insert id = "getAstRqstApply" parameterType="resourcesRqstListVO">
+        INSERT
+          INTO PTS_AST_RQST( AST_RQST_ID
+                           , AST_SRL_NO
+                           , AST_NO
+                           , AST_RQST_DEPT_CD
+                           , AST_RQST_USER_ID
+                           , AST_USE_BGN_YMD
+                           , AST_RTN_DUE_YMD
+                           , AST_RTN_YMD
+                           , AST_STTS_CD
+                           , RGSTR_ID
+                           , RGST_DT)
+                     VALUES( #{astRqstId}
+                           , #{astSrlNo}::INT
+                           , #{astNo}
+                           , (SELECT PM.OGDP_DEPT_CD
+                                FROM PTS_MEMBER PM
+                               WHERE PM.MEMBER_ID = (SELECT CU.MEMBER_ID
+                                                       FROM CMN_USER CU
+                                                      WHERE CU.USER_ID = #{sessionUserId}))
+                           , #{sessionUserId}
+                           , TO_CHAR(TO_DATE(#{astUseBgnYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+                           , TO_CHAR(TO_DATE(#{astRtnDueYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+                           , TO_CHAR(TO_DATE(#{astRtnYmd}, 'YYYYMMDD'), 'YYYYMMDD')
+                           , '자원신청' <!-- AST-030-030 -->
+                           , #{sessionUserId}
+                           , NOW())
+    </insert>
+</mapper>

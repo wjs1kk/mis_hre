@@ -1,0 +1,305 @@
+<script setup lang="ts">
+
+</script>
+
+<template>
+    <div class="jn-page">
+        <div class="jn-title-container">
+            <h1 class="jn-title">버튼 샘플</h1>
+            <div class="jn-btn-group">
+                <button>조회</button>
+                <button class="jn-btn-save">저장</button>
+                <button class="jn-btn-delete">삭제</button>
+            </div>
+        </div>
+        <div class="jn-area" style="margin-top: -5px;">
+            <h2 class="jn-sub-title-01">공통 버튼</h2>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 3px;">
+                <button class="icon-add">추가</button>
+                <button class="jn-btn-save icon-save">저장</button>
+                <button class="jn-btn-delete icon-delete">삭제</button>
+                <button class="icon-list">목록</button>
+                <button class="icon-cancel">취소</button>
+                <button class="icon-search">조회</button>
+                <button class="icon-print">인쇄</button>
+                <button class="icon-reject">반려</button>
+                <button class="icon-accept">승인</button>
+                <button class="icon-mail">메일</button>
+                <button class="icon-return">회수</button>
+                <button class="icon-check">확인</button>
+                <button class="icon-select">선택</button>
+                <button class="icon-modify">수정</button>
+                <button class="icon-decision">확정</button>
+                <button class="icon-report">보고</button>
+                <button class="icon-conclusion">체결</button>
+                <button class="icon-accept">접수</button>
+                <button class="icon-submit">제출</button>
+                <button class="icon-notify">통보</button>
+                <button class="icon-termination">해지</button>
+                <button class="icon-rescission">해약</button>
+                <button class="icon-application">신청</button>
+                <button class="icon-review">검토</button>
+                <button class="icon-evaluation">평가</button>
+                <button class="icon-sort">정렬</button>
+                <button class="icon-sms">SMS</button>
+                <button class="icon-report">보고서</button>
+                <button class="icon-help">도움말</button>
+                <button class="icon-upload">업로드</button>
+                <button class="icon-download">다운로드</button>
+                <button class="icon-excel">엑셀업로드</button>
+                <button class="icon-excel">엑셀다운</button>
+                <button class="icon-approval">결재상신</button>
+                <button class="icon-registration">신규등록</button>
+                <button class="icon-cont-delete">내용지우기</button>
+                <button class="icon-close">나가기</button>
+                <button class="icon-text">텍스트</button>
+                <button class="icon-exe">실행</button>
+                <button class="icon-exit">닫기</button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 3px; margin-top: 10px;">
+                <button disabled class="icon-add">추가</button>
+                <button disabled class="jn-btn-save icon-save">저장</button>
+                <button disabled class="jn-btn-delete icon-delete">삭제</button>
+                <button disabled class="icon-list">목록</button>
+                <button disabled class="icon-cancel">취소</button>
+                <button disabled class="icon-search">조회</button>
+                <button disabled class="icon-print">인쇄</button>
+                <button disabled class="icon-reject">반려</button>
+                <button disabled class="icon-accept">승인</button>
+                <button disabled class="icon-mail">메일</button>
+                <button disabled class="icon-return">회수</button>
+                <button disabled class="icon-check">확인</button>
+                <button disabled class="icon-select">선택</button>
+                <button disabled class="icon-modify">수정</button>
+                <button disabled class="icon-decision">확정</button>
+                <button disabled class="icon-report">보고</button>
+                <button disabled class="icon-conclusion">체결</button>
+                <button disabled class="icon-accept">접수</button>
+                <button disabled class="icon-submit">제출</button>
+                <button disabled class="icon-notify">통보</button>
+                <button disabled class="icon-termination">해지</button>
+                <button disabled class="icon-rescission">해약</button>
+                <button disabled class="icon-application">신청</button>
+                <button disabled class="icon-review">검토</button>
+                <button disabled class="icon-evaluation">평가</button>
+                <button disabled class="icon-sort">정렬</button>
+                <button disabled class="icon-sms">SMS</button>
+                <button disabled class="icon-report">보고서</button>
+                <button disabled class="icon-help">도움말</button>
+                <button disabled class="icon-upload">업로드</button>
+                <button disabled class="icon-download">다운로드</button>
+                <button disabled class="icon-excel">엑셀업로드</button>
+                <button disabled class="icon-excel">엑셀다운</button>
+                <button disabled class="icon-approval">결재상신</button>
+                <button disabled class="icon-registration">신규등록</button>
+                <button disabled class="icon-cont-delete">내용지우기</button>
+                <button disabled class="icon-close">나가기</button>
+                <button disabled class="icon-text">텍스트</button>
+                <button disabled class="icon-exe">실행</button>
+                <button disabled class="icon-exit">닫기</button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 3px; margin-top: 10px;">
+                <button class="icon-arr-up"></button>
+                <button class="icon-arr-down"></button>
+                <button class="icon-arr-left"></button>
+                <button class="icon-arr-right"></button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 3px; margin-top: 10px;">
+                <button disabled class="icon-arr-up"></button>
+                <button disabled class="icon-arr-down"></button>
+                <button disabled class="icon-arr-left"></button>
+                <button disabled class="icon-arr-right"></button>
+            </div>
+        </div>
+        <div class="jn-area" style="margin-top: 10px;">
+            <h2 class="jn-sub-title-01">폼 버튼</h2>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
+                <button class="jn-btn-form icon-arr-up"></button>
+                <button class="jn-btn-form icon-arr-down"></button>
+                <button class="jn-btn-form icon-arr-left"></button>
+                <button class="jn-btn-form icon-arr-right"></button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
+                <button disabled class="jn-btn-form icon-arr-up"></button>
+                <button disabled class="jn-btn-form icon-arr-down"></button>
+                <button disabled class="jn-btn-form icon-arr-left"></button>
+                <button disabled class="jn-btn-form icon-arr-right"></button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
+                <button class="jn-btn-form icon-add">추가</button>
+                <button class="jn-btn-form icon-save">저장</button>
+                <button class="jn-btn-form icon-delete">삭제</button>
+                <button class="jn-btn-form icon-list">목록</button>
+                <button class="jn-btn-form icon-cancel">취소</button>
+                <button class="jn-btn-form icon-search">조회</button>
+                <button class="jn-btn-form icon-print">인쇄</button>
+                <button class="jn-btn-form icon-reject">반려</button>
+                <button class="jn-btn-form icon-accept">승인</button>
+                <button class="jn-btn-form icon-mail">메일</button>
+                <button class="jn-btn-form icon-return">회수</button>
+                <button class="jn-btn-form icon-check">확인</button>
+                <button class="jn-btn-form icon-select">선택</button>
+                <button class="jn-btn-form icon-modify">수정</button>
+                <button class="jn-btn-form icon-decision">확정</button>
+                <button class="jn-btn-form icon-report">보고</button>
+                <button class="jn-btn-form icon-conclusion">체결</button>
+                <button class="jn-btn-form icon-accept">접수</button>
+                <button class="jn-btn-form icon-submit">제출</button>
+                <button class="jn-btn-form icon-notify">통보</button>
+                <button class="jn-btn-form icon-termination">해지</button>
+                <button class="jn-btn-form icon-rescission">해약</button>
+                <button class="jn-btn-form icon-application">신청</button>
+                <button class="jn-btn-form icon-review">검토</button>
+                <button class="jn-btn-form icon-evaluation">평가</button>
+                <button class="jn-btn-form icon-sort">정렬</button>
+                <button class="jn-btn-form icon-sms">SMS</button>
+                <button class="jn-btn-form icon-report">보고서</button>
+                <button class="jn-btn-form icon-help">도움말</button>
+                <button class="jn-btn-form icon-upload">업로드</button>
+                <button class="jn-btn-form icon-download">다운로드</button>
+                <button class="jn-btn-form icon-excel">엑셀업로드</button>
+                <button class="jn-btn-form icon-excel">엑셀다운</button>
+                <button class="jn-btn-form icon-approval">결재상신</button>
+                <button class="jn-btn-form icon-registration">신규등록</button>
+                <button class="jn-btn-form icon-cont-delete">내용지우기</button>
+                <button class="jn-btn-form icon-close">나가기</button>
+                <button class="jn-btn-form icon-text">텍스트</button>
+                <button class="jn-btn-form icon-exe">실행</button>
+                <button class="jn-btn-form icon-exit">닫기</button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
+                <button disabled class="jn-btn-form icon-add">추가</button>
+                <button disabled class="jn-btn-form icon-save">저장</button>
+                <button disabled class="jn-btn-form icon-delete">삭제</button>
+                <button disabled class="jn-btn-form icon-list">목록</button>
+                <button disabled class="jn-btn-form icon-cancel">취소</button>
+                <button disabled class="jn-btn-form icon-search">조회</button>
+                <button disabled class="jn-btn-form icon-print">인쇄</button>
+                <button disabled class="jn-btn-form icon-reject">반려</button>
+                <button disabled class="jn-btn-form icon-accept">승인</button>
+                <button disabled class="jn-btn-form icon-mail">메일</button>
+                <button disabled class="jn-btn-form icon-return">회수</button>
+                <button disabled class="jn-btn-form icon-check">확인</button>
+                <button disabled class="jn-btn-form icon-select">선택</button>
+                <button disabled class="jn-btn-form icon-modify">수정</button>
+                <button disabled class="jn-btn-form icon-decision">확정</button>
+                <button disabled class="jn-btn-form icon-report">보고</button>
+                <button disabled class="jn-btn-form icon-conclusion">체결</button>
+                <button disabled class="jn-btn-form icon-accept">접수</button>
+                <button disabled class="jn-btn-form icon-submit">제출</button>
+                <button disabled class="jn-btn-form icon-notify">통보</button>
+                <button disabled class="jn-btn-form icon-termination">해지</button>
+                <button disabled class="jn-btn-form icon-rescission">해약</button>
+                <button disabled class="jn-btn-form icon-application">신청</button>
+                <button disabled class="jn-btn-form icon-review">검토</button>
+                <button disabled class="jn-btn-form icon-evaluation">평가</button>
+                <button disabled class="jn-btn-form icon-sort">정렬</button>
+                <button disabled class="jn-btn-form icon-sms">SMS</button>
+                <button disabled class="jn-btn-form icon-report">보고서</button>
+                <button disabled class="jn-btn-form icon-help">도움말</button>
+                <button disabled class="jn-btn-form icon-upload">업로드</button>
+                <button disabled class="jn-btn-form icon-download">다운로드</button>
+                <button disabled class="jn-btn-form icon-excel">엑셀업로드</button>
+                <button disabled class="jn-btn-form icon-excel">엑셀다운</button>
+                <button disabled class="jn-btn-form icon-approval">결재상신</button>
+                <button disabled class="jn-btn-form icon-registration">신규등록</button>
+                <button disabled class="jn-btn-form icon-cont-delete">내용지우기</button>
+                <button disabled class="jn-btn-form icon-close">나가기</button>
+                <button disabled class="jn-btn-form icon-text">텍스트</button>
+                <button disabled class="jn-btn-form icon-exe">실행</button>
+                <button disabled class="jn-btn-form icon-exit">닫기</button>
+            </div>
+        </div>
+        <div class="jn-area" style="margin-top: 10px;">
+            <h2 class="jn-sub-title-01">폼 버튼(강조)</h2>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 5px;">
+                <button class="jn-btn-form-accent icon-add">추가</button>
+                <button class="jn-btn-form-accent icon-save">저장</button>
+                <button class="jn-btn-form-accent icon-delete">삭제</button>
+                <button class="jn-btn-form-accent icon-list">목록</button>
+                <button class="jn-btn-form-accent icon-cancel">취소</button>
+                <button class="jn-btn-form-accent icon-search">조회</button>
+                <button class="jn-btn-form-accent icon-print">인쇄</button>
+                <button class="jn-btn-form-accent icon-reject">반려</button>
+                <button class="jn-btn-form-accent icon-accept">승인</button>
+                <button class="jn-btn-form-accent icon-mail">메일</button>
+                <button class="jn-btn-form-accent icon-return">회수</button>
+                <button class="jn-btn-form-accent icon-check">확인</button>
+                <button class="jn-btn-form-accent icon-select">선택</button>
+                <button class="jn-btn-form-accent icon-modify">수정</button>
+                <button class="jn-btn-form-accent icon-decision">확정</button>
+                <button class="jn-btn-form-accent icon-report">보고</button>
+                <button class="jn-btn-form-accent icon-conclusion">체결</button>
+                <button class="jn-btn-form-accent icon-accept">접수</button>
+                <button class="jn-btn-form-accent icon-submit">제출</button>
+                <button class="jn-btn-form-accent icon-notify">통보</button>
+                <button class="jn-btn-form-accent icon-termination">해지</button>
+                <button class="jn-btn-form-accent icon-rescission">해약</button>
+                <button class="jn-btn-form-accent icon-application">신청</button>
+                <button class="jn-btn-form-accent icon-review">검토</button>
+                <button class="jn-btn-form-accent icon-evaluation">평가</button>
+                <button class="jn-btn-form-accent icon-sort">정렬</button>
+                <button class="jn-btn-form-accent icon-sms">SMS</button>
+                <button class="jn-btn-form-accent icon-report">보고서</button>
+                <button class="jn-btn-form-accent icon-help">도움말</button>
+                <button class="jn-btn-form-accent icon-upload">업로드</button>
+                <button class="jn-btn-form-accent icon-download">다운로드</button>
+                <button class="jn-btn-form-accent icon-excel">엑셀업로드</button>
+                <button class="jn-btn-form-accent icon-excel">엑셀다운</button>
+                <button class="jn-btn-form-accent icon-approval">결재상신</button>
+                <button class="jn-btn-form-accent icon-registration">신규등록</button>
+                <button class="jn-btn-form-accent icon-cont-delete">내용지우기</button>
+                <button class="jn-btn-form-accent icon-close">나가기</button>
+                <button class="jn-btn-form-accent icon-text">텍스트</button>
+                <button class="jn-btn-form-accent icon-exe">실행</button>
+                <button class="jn-btn-form-accent icon-exit">닫기</button>
+            </div>
+            <div style="display:flex; flex-direction: row; flex-wrap: wrap; gap: 5px; margin-top: 10px;">
+                <button disabled class="jn-btn-form-accent icon-add">추가</button>
+                <button disabled class="jn-btn-form-accent icon-save">저장</button>
+                <button disabled class="jn-btn-form-accent icon-delete">삭제</button>
+                <button disabled class="jn-btn-form-accent icon-list">목록</button>
+                <button disabled class="jn-btn-form-accent icon-cancel">취소</button>
+                <button disabled class="jn-btn-form-accent icon-search">조회</button>
+                <button disabled class="jn-btn-form-accent icon-print">인쇄</button>
+                <button disabled class="jn-btn-form-accent icon-reject">반려</button>
+                <button disabled class="jn-btn-form-accent icon-accept">승인</button>
+                <button disabled class="jn-btn-form-accent icon-mail">메일</button>
+                <button disabled class="jn-btn-form-accent icon-return">회수</button>
+                <button disabled class="jn-btn-form-accent icon-check">확인</button>
+                <button disabled class="jn-btn-form-accent icon-select">선택</button>
+                <button disabled class="jn-btn-form-accent icon-modify">수정</button>
+                <button disabled class="jn-btn-form-accent icon-decision">확정</button>
+                <button disabled class="jn-btn-form-accent icon-report">보고</button>
+                <button disabled class="jn-btn-form-accent icon-conclusion">체결</button>
+                <button disabled class="jn-btn-form-accent icon-accept">접수</button>
+                <button disabled class="jn-btn-form-accent icon-submit">제출</button>
+                <button disabled class="jn-btn-form-accent icon-notify">통보</button>
+                <button disabled class="jn-btn-form-accent icon-termination">해지</button>
+                <button disabled class="jn-btn-form-accent icon-rescission">해약</button>
+                <button disabled class="jn-btn-form-accent icon-application">신청</button>
+                <button disabled class="jn-btn-form-accent icon-review">검토</button>
+                <button disabled class="jn-btn-form-accent icon-evaluation">평가</button>
+                <button disabled class="jn-btn-form-accent icon-sort">정렬</button>
+                <button disabled class="jn-btn-form-accent icon-sms">SMS</button>
+                <button disabled class="jn-btn-form-accent icon-report">보고서</button>
+                <button disabled class="jn-btn-form-accent icon-help">도움말</button>
+                <button disabled class="jn-btn-form-accent icon-upload">업로드</button>
+                <button disabled class="jn-btn-form-accent icon-download">다운로드</button>
+                <button disabled class="jn-btn-form-accent icon-excel">엑셀업로드</button>
+                <button disabled class="jn-btn-form-accent icon-excel">엑셀다운</button>
+                <button disabled class="jn-btn-form-accent icon-approval">결재상신</button>
+                <button disabled class="jn-btn-form-accent icon-registration">신규등록</button>
+                <button disabled class="jn-btn-form-accent icon-cont-delete">내용지우기</button>
+                <button disabled class="jn-btn-form-accent icon-close">나가기</button>
+                <button disabled class="jn-btn-form-accent icon-text">텍스트</button>
+                <button disabled class="jn-btn-form-accent icon-exe">실행</button>
+                <button disabled class="jn-btn-form-accent icon-exit">닫기</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style scoped>
+
+</style>

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="tinymceSample" width="1920" height="1000" titletext="웹 에디터 샘플" onload="tinymceSample_onload">
+    <Layouts>
+      <Layout height="1000" width="1920">
+        <Static id="staTitle" taborder="0" text="기본화면구성" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" left="50"/>
+        <Div id="divEditor01" taborder="2" left="50" top="staTitle:-5" width="900" height="482" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divEditor" taborder="0" left="0" top="45" url="cmm::tinymce.xfdl" right="0" bottom="0"/>
+              <Static id="sta_dtlInfo" taborder="1" text="에디터" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="169"/>
+              <Button id="btnReadOnlyToggle" taborder="2" text="읽기 전용 토글" top="14" width="123" height="26" left="77" cssclass="btn_WF_grdModify" onclick="divEditor01_btnReadOnlyToggle_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divHtml01" taborder="1" left="50" top="divEditor01:10" height="415" cssclass="div_WF_Area" width="900">
+          <Layouts>
+            <Layout>
+              <TextArea id="taHtml" taborder="0" left="0" top="45" bottom="0" right="0" readonly="true"/>
+              <Static id="sta_dtlInfo" taborder="1" text="에디터 HTML" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="169"/>
+              <Button id="btnGetContent" taborder="2" text="내용 가져오기" top="14" height="26" cssclass="btn_WF_grdArrDown" width="116" left="124" onclick="divHtml01_btnGetContent_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divEditor02" taborder="3" left="divEditor01:15" top="staTitle:-5" width="900" height="482" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Div id="divEditor" taborder="0" left="0" top="45" url="cmm::tinymce.xfdl" right="0" bottom="0"/>
+              <Static id="sta_dtlInfo" taborder="1" text="읽기 전용 에디터" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="169"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divHtml02" taborder="4" left="divHtml01:15" top="divEditor02:10" height="415" cssclass="div_WF_Area" width="900">
+          <Layouts>
+            <Layout>
+              <TextArea id="taHtml" taborder="0" left="0" top="45" bottom="0" right="0"/>
+              <Static id="sta_dtlInfo" taborder="1" text="HTML 입력" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="169"/>
+              <Button id="btnSetContent" taborder="2" text="에디터에 설정하기" top="14" height="26" cssclass="btn_WF_grdArrUp" width="140" left="107" onclick="divHtml02_btnSetContent_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsData">
+        <ColumnInfo>
+          <Column id="content01" type="STRING" size="2147483647"/>
+          <Column id="content02" type="STRING" size="2147483647"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  웹 에디터(TinyMCE) 샘플
+ *  MenuPath      -
+ *  FileName      sam::editorSample.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.12.08
+ *  Desction      웹 에디터(TinyMCE) 샘플
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.12.08    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+this.tinymceSample_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.gfnFormOnLoad(this);
+    
+    // 에디터를 초기화한다.
+    this.divEditor01.form.divEditor.form.init();
+    // 에디터 초기화 후 추가 작업이 필요한 경우 콜백을 지정한다.
+    this.divEditor01.form.divEditor.form.addOnInitializedCallback("fnDivEditor01Initialized", this);
+    
+    // 에디터를 읽기 전용으로 초기화한다.
+    this.divEditor02.form.divEditor.form.init({
+        readonly: true,
+        toolbar: false
+    });
+};
+
+// 에디터 초기화 후 콜백
+this.fnDivEditor01Initialized = function ()
+{
+    this.divEditor01.form.divEditor.form.setContent("<h1>제목</h1><p>내용</p>");
+};
+
+/**
+ * 내용 가져오기 버튼
+ */
+this.divHtml01_btnGetContent_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // 에디터 내용을 가져온다.
+    const html = this.divEditor01.form.divEditor.form.getContent();
+    
+    // 가져온 내용을 데이터셋에 설정한다.
+    this.dsData.setColumn(0, "content01", html);
+};
+
+/**
+ * 읽기 전용 토글 버튼
+ */
+this.divEditor01_btnReadOnlyToggle_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // 에디터의 읽기 전용 상태를 가져온다.
+    const isReadonly = this.divEditor01.form.divEditor.form.isReadonly();
+    
+    // 에디터의 읽기 전용 상태를 반대로 바꾼다.
+    this.divEditor01.form.divEditor.form.setReadonly(!isReadonly);
+};
+
+/**
+ * 에디터에 설정하기 버튼
+ */
+this.divHtml02_btnSetContent_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    // 데이터셋에 설정된 HTML을 가져온다.
+    const html = this.dsData.getColumn(0, "content02");
+    
+    // 앞의 HTML을 에디터 내용으로 설정한다.
+    this.divEditor02.form.divEditor.form.setContent(html);
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divHtml01.form.taHtml" propid="value" datasetid="dsData" columnid="content01"/>
+      <BindItem id="item1" compid="divHtml02.form.taHtml" propid="value" datasetid="dsData" columnid="content02"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="itemDetailPopup_parkkr" width="600" height="600" onload="form_onload" titletext="제품등록">
+    <Layouts>
+      <Layout>
+        <Div id="divForm" taborder="0" text="" left="0" top="0" width="600" bottom="0">
+          <Layouts>
+            <Layout>
+              <Static id="staMainTitle" taborder="0" text="OOOOO" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="484" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="494" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" onclick="Static31_onclick" visible="false" left="249" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Div id="divDetail" taborder="5" left="30" top="70" cssclass="div_WF_popup" text="" right="30" bottom="80">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="-1" width="19" height="132" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="Static04_00_00_00" taborder="1" text="h 45" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="staSubTitle" taborder="2" text="OOO" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" width="100" fittocontents="width"/>
+                    <Static id="staBg002" taborder="3" cssclass="sta_WF_condition02box" left="20" top="77" right="20" height="34" text=""/>
+                    <Static id="sta002" taborder="4" cssclass="sta_WF_condition02_LEssential" left="20" top="77" width="100" height="34" text="제품명"/>
+                    <Static id="staBg001" taborder="5" cssclass="sta_WF_condition02box" left="20" top="44" right="20" height="34" text=""/>
+                    <Static id="sta001" taborder="6" cssclass="sta_WF_condition02_LEssential" left="20" top="44" width="100" height="34" text="제품코드"/>
+                    <Static id="staBg002_00" taborder="7" cssclass="sta_WF_condition02box" left="20" top="110" right="20" height="34" text=""/>
+                    <Static id="sta002_01" taborder="8" cssclass="sta_WF_condition02_L" left="20" top="110" width="100" height="34" text="ㅇㅇㅇ"/>
+                    <Edit id="edtItemCode" taborder="9" left="sta001:10" top="48" width="100" height="26" cssclass="essential"/>
+                    <Edit id="edtItemName" taborder="10" left="sta002:10" top="81" width="200" height="26" cssclass="essential"/>
+                    <Edit id="edtOOO" taborder="11" left="sta002_01:10" top="114" width="359" height="26"/>
+                    <Static id="Static00" taborder="12" text="* 제품 테이블 칼럼들 추가&#13;&#10;* 모두 추가 후 높이 조절" left="74" top="173" width="163" height="166" background="aquamarine"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="249" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" width="103"/>
+              <Button id="btnDelete" text="삭제" cssclass="btn_WF_icoDelete" width="65" taborder="9" left="268" bottom="23" height="28" visible="true"/>
+              <Button id="btnClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" bottom="23" left="btnDelete:5"/>
+              <Button id="btnSave" text="저장" cssclass="btn_WF_icoSave" taborder="8" left="198" bottom="23" height="28" width="65"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsAdvtManage" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="advtId" type="STRING" size="256"/>
+          <Column id="advtType" type="STRING" size="256"/>
+          <Column id="advtTitle" type="STRING" size="256"/>
+          <Column id="advtCont" type="STRING" size="256"/>
+          <Column id="advtStartDt" type="STRING" size="256"/>
+          <Column id="advtEndDt" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="attachFileId" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAdTyCombo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  OOO
+*  MenuPath      OOO
+*  FileName      OOO.xfdl 
+*  Creator 	     OOO
+*  CreateDate    0000.00.00
+*  Desction      OOO
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  0000.00.00    OOO 	     최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divForm.form.divDetail.form.comboAdTyPopup" propid="value" datasetid="dsAdvtManage" columnid="advtType"/>
+      <BindItem id="item1" compid="divForm.form.divDetail.form.edtAdvtTitle" propid="value" datasetid="dsAdvtManage" columnid="advtTitle"/>
+      <BindItem id="item2" compid="divForm.form.divDetail.form.edtCont" propid="value" datasetid="dsAdvtManage" columnid="sortOrdr"/>
+      <BindItem id="item3" compid="divForm.form.divDetail.form.RqstNm" propid="value" datasetid="dsAdvtManage" columnid="advtId"/>
+      <BindItem id="item4" compid="divForm.form.divDetail.form.TextArea00" propid="value" datasetid="dsAdvtManage" columnid="advtCont"/>
+      <BindItem id="item5" compid="divForm.form.divDetail.form.edtFromDt" propid="value" datasetid="dsAdvtManage" columnid="advtStartDt"/>
+      <BindItem id="item6" compid="divForm.form.divDetail.form.edtToDt" propid="value" datasetid="dsAdvtManage" columnid="advtEndDt"/>
+      <BindItem id="item7" compid="divForm.form.divDetail.form.ComboUseYn" propid="value" datasetid="dsAdvtManage" columnid="useYn"/>
+      <BindItem id="item8" compid="divForm.form.divDetail.form.edtRqstDt" propid="value" datasetid="dsAdvtManage" columnid="advtStartDt"/>
+    </Bind>
+  </Form>
+</FDL>

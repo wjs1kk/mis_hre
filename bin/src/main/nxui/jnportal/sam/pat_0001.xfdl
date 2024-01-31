@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Pattern01" width="1920" height="781" titletext="Pattern01">
+    <Layouts>
+      <Layout>
+        <Div id="div_Search" taborder="7" left="50" top="58" height="105" text="" cssclass="div_WF_Transparent" right="50">
+          <Layouts>
+            <Layout width="1032" height="72">
+              <Static id="Static00" taborder="0" left="0" top="0" right="0" bottom="15" cssclass="sta_WF_bg" text="" onclick="div_Search_Static00_onclick"/>
+              <Static id="Static01" taborder="1" text="신청번호" cssclass="sta_WF_condition01Essential" top="15" width="100" height="26" left="20" usedecorate="true"/>
+              <Static id="Static00_00" taborder="2" text="신청일" cssclass="sta_WF_condition01" left="25.00%" top="15" width="100" height="26"/>
+              <Calendar id="Calendar01" taborder="3" left="Static00_00:10" top="15" width="118" height="26" headheight="28" popupsize="220" daysize="28 28" weekformat="일 월 화 수 목 금 토"/>
+              <Static id="Static03" taborder="4" text="신청자" cssclass="sta_WF_condition01" left="50.00%" top="15" width="100" height="26"/>
+              <Edit id="MaskEdit01" taborder="5" left="Static03:10" top="15" width="118" height="26"/>
+              <Button id="Button00" taborder="6" cssclass="btn_WF_frmSearch" left="MaskEdit01:5" top="15" width="26" height="26"/>
+              <Static id="Static05" taborder="7" text="결재상태" cssclass="sta_WF_condition01" top="15" width="100" height="26" left="75.00%"/>
+              <Combo id="Combo00" taborder="8" left="Static05:10" top="15" width="118" height="26" innerdataset="Dataset00" codecolumn="key" datacolumn="value"/>
+              <Static id="Static07" taborder="9" text="최종수정자" cssclass="sta_WF_condition01" top="49" width="100" height="26" left="20"/>
+              <Static id="Static08" taborder="10" text="최종수정일" cssclass="sta_WF_condition01" left="25.00%" top="49" width="100" height="26"/>
+              <Calendar id="Calendar00" taborder="11" left="Static08:10" top="49" width="118" height="26" headheight="28" popupsize="220" daysize="28 28" weekformat="일 월 화 수 목 금 토"/>
+              <Static id="Static09" taborder="12" text="신청부서" cssclass="sta_WF_condition01" left="50.00%" top="49" width="100" height="26"/>
+              <Edit id="MaskEdit02" taborder="22" left="Static09:10" top="49" width="118" height="26"/>
+              <Button id="Button01" taborder="14" cssclass="btn_WF_frmSearch" left="MaskEdit02:5" top="49" width="26" height="26"/>
+              <Edit id="MaskEdit00" taborder="13" left="Button01:5" top="49" width="118" height="26"/>
+              <Edit id="Edit00" taborder="15" left="Static01:10" top="15" width="250" height="26" cssclass="essential"/>
+              <Edit id="Edit01" taborder="16" left="Static07:10" top="49" width="250" height="26"/>
+              <Static id="Static12" taborder="17" text="w 10" visible="false" left="120" top="0" width="10" height="84" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick"/>
+              <Static id="Static11" taborder="18" text="h 15" visible="false" left="20" top="0" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="20"/>
+              <Static id="Static14" taborder="19" text="h 8" visible="false" left="20" top="41" height="8" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="20"/>
+              <Static id="Static15" taborder="20" text="h 15" visible="false" left="20" top="75" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="20"/>
+              <Static id="Static13" taborder="21" text="w 10" visible="false" left="1010" top="15" width="10" height="54" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static17" taborder="23" text="w 10" visible="false" left="1465" top="15" width="10" height="60" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static16_00" taborder="24" text="w 10" visible="false" left="555" top="4" width="10" height="68" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static06_00" taborder="25" text="h 15" visible="false" left="0" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" bottom="0" height="15"/>
+              <Static id="Static12_00" taborder="26" text="w 20" visible="false" left="0" top="0" width="20" height="90" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick" opacity="0.5"/>
+              <Static id="Static12_01" taborder="27" text="w 60" visible="false" left="395" top="0" width="60" height="90" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick"/>
+              <Static id="Static12_01_00" taborder="28" text="w 60" visible="false" left="850" top="0" width="60" height="90" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick"/>
+              <Static id="Static13_00" taborder="29" text="w 5" visible="false" left="1138" top="15" width="5" height="60" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static13_00_00" taborder="30" text="w 5" visible="false" left="1169" top="15" width="5" height="60" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static12_00_00" taborder="31" text="w 20" visible="false" top="0" width="20" height="90" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick" opacity="0.5" right="0"/>
+              <Static id="Static12_01_00_00" taborder="32" text="w 60" visible="false" left="1305" top="0" width="60" height="90" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" onclick="div_Search_Static12_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_save" text="저장" cssclass="btn_WF_Save" visible="true" top="20" width="65" height="28" right="254" taborder="5"/>
+        <Button id="btn_list" text="목록" cssclass="" visible="true" top="20" width="65" height="28" right="118" taborder="8"/>
+        <Button id="btn_delete" text="삭제" cssclass="btn_WF_Delete" visible="true" top="20" width="65" height="28" right="186" taborder="6"/>
+        <Button id="btn_registration" text="신규" visible="true" top="20" width="65" height="28" right="322" taborder="4"/>
+        <Static id="sta_title" taborder="2" text="기본화면구성" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" left="50"/>
+        <Button id="btn_search" text="조회" cssclass="" top="20" width="65" height="28" right="50" taborder="9"/>
+        <Button id="btn_mail" text="메일" top="20" height="28" cssclass="btn_WF_icoMail" width="65" right="554" taborder="0"/>
+        <Button id="btn_print" text="인쇄" cssclass="btn_WF_icoReport" top="20" width="65" height="28" right="486" taborder="1"/>
+        <Button id="btn_approval" text="결재상신" cssclass="btn_WF_icoApproval" top="20" width="93" height="28" right="390" taborder="3"/>
+        <Static id="Static03" taborder="11" text="h 58" visible="false" left="154" top="0" width="50" height="58" background="aqua" color="blue" textAlign="center" verticalAlign="middle"/>
+        <Static id="Static02" taborder="10" text="W&#13;&#10;50" visible="false" top="0" width="50" background="antiquewhite" color="blue" right="0" bottom="0"/>
+        <Static id="Static34" taborder="12" text="W&#13;&#10;50" visible="false" left="0" top="0" width="50" background="antiquewhite" color="blue" bottom="0"/>
+        <Button id="btn_help00" taborder="13" text="도움말" cssclass="btn_WF_icoHelp" top="20" right="869" width="79" height="28"/>
+        <Button id="btn_sms" taborder="14" text="SMS" cssclass="btn_WF_icoSms" top="20" right="800" width="66" height="28"/>
+        <Button id="btn_report" taborder="15" text="보고서" cssclass="btn_WF_icoReport" top="20" right="622" width="79" height="28"/>
+        <Button id="btn_exel_dn" taborder="16" text="엑셀다운" cssclass="btn_WF_icoExcel_Dn" top="20" right="704" width="93" height="28"/>
+        <Div id="Div00" taborder="17" text="Div00" left="50" top="163" height="335" right="50" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="Static09" taborder="0" text="검색결과" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="500" onclick="Div00_Static09_onclick"/>
+              <Grid id="Grid01" taborder="1" binddataset="ds_list" left="0" top="45" right="0" tooltiptype="default" autofittype="col" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="110" band="left"/>
+                      <Column size="85"/>
+                      <Column size="83"/>
+                      <Column size="43"/>
+                      <Column size="95"/>
+                      <Column size="88"/>
+                      <Column size="95"/>
+                      <Column size="400"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="48"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" displaytype="checkbox" edittype="checkbox" text="선택" textAlign="center" verticalAlign="middle"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="신청번호" autosizerow="default"/>
+                      <Cell col="4" text="신청일"/>
+                      <Cell col="5" text="결재상태"/>
+                      <Cell col="6" text="문서"/>
+                      <Cell col="7" text="신청부서"/>
+                      <Cell col="8" text="신청자"/>
+                      <Cell col="9" text="신청금액"/>
+                      <Cell col="10" text="제목"/>
+                      <Cell col="11" colspan="2" text="신청기간"/>
+                      <Cell col="13" text="파일"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="bind:NUM"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:isChecked" textAlign="center" verticalAlign="middle"/>
+                      <Cell col="2" text="bind:HEAD_STAT_CD"/>
+                      <Cell col="3" displaytype="normal" edittype="none" text="bind:RQST_NO"/>
+                      <Cell col="4" displaytype="date" edittype="none" text="bind:RQST_DT" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="5" displaytype="normal" edittype="none" text="bind:APV_STAT_NM" cssclass=""/>
+                      <Cell col="6" text="bind:APV_STAT_CD" cssclass=""/>
+                      <Cell col="7" displaytype="normal" edittype="none" text="bind:RQST_DEPT_NM"/>
+                      <Cell col="8" displaytype="normal" edittype="none" text="bind:RQST_NM" cssclass=""/>
+                      <Cell col="9" displaytype="number" edittype="none" text="bind:RQST_AMT" textAlign="right" verticalAlign="middle"/>
+                      <Cell col="10" displaytype="normal" edittype="none" text="bind:SBJ" autosizerow="default" autosizecol="default" textAlign="right" verticalAlign="middle" wordWrap="none"/>
+                      <Cell col="11" displaytype="date" edittype="date" text="bind:FRM_DT" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="12" displaytype="date" edittype="date" text="bind:TO_DT" calendardateformat="yyyy-MM-dd"/>
+                      <Cell col="13" cssclass=""/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static00_00" taborder="2" text="w 10" visible="false" left="76" top="0" width="10" background="fuchsia" color="white" textAlign="center" verticalAlign="middle" height="45"/>
+              <Static id="Static44_00" taborder="3" text="(총 4건)" cssclass="sta_WF_subTxt" left="86" top="0" width="43" height="45"/>
+              <Static id="Static05_00" taborder="4" text="h 45" visible="false" left="206" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" width="44" top="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="Div01" taborder="18" left="50" top="508" height="263" text="" cssclass="div_WF_Area" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static12" taborder="0" text="체크는 필수항목입니다." cssclass="essential_R" top="0" height="45" usedecorate="true" onclick="Div01_Static12_onclick" right="0" width="136"/>
+              <Static id="Static06" taborder="1" text="상세정보" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="500" onclick="Div01_Static06_onclick"/>
+              <Static id="Static10" taborder="2" cssclass="sta_WF_condition02box" left="20" top="45" right="0" height="34" text=""/>
+              <Static id="Static20" taborder="3" cssclass="sta_WF_condition02box" left="20" top="78" right="0" height="34" text=""/>
+              <Static id="Static18" taborder="4" cssclass="sta_WF_condition02box" left="20" top="144" right="0" height="119" onclick="Div01_Static18_onclick"/>
+              <Static id="Static05_00" taborder="5" text="h 45" visible="false" left="206" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" width="44" top="0"/>
+              <Static id="Static20_00" taborder="6" cssclass="sta_WF_condition02box" left="20" top="111" right="0" height="34" onclick="Static_onclick"/>
+              <Static id="Static11" taborder="7" text="수기입력" cssclass="sta_WF_condition02_LEssential" left="0" top="45" height="34" width="8.19%"/>
+              <Static id="Static22" taborder="8" text="필수입력" cssclass="sta_WF_condition02" left="33.33%" top="45" width="8.24%" height="34"/>
+              <Edit id="Edit05" taborder="9" cssclass="" left="Static22:10" top="49" width="17.53%" height="26"/>
+              <Edit id="Edit01" taborder="10" left="Static11:10" top="49" width="17.53%" height="26" cssclass="essential" onchanged="Div01_Edit01_onchanged"/>
+              <Static id="Static01" taborder="11" text="년도입력" cssclass="sta_WF_condition02" left="66.66%" top="45" width="8.24%" height="34"/>
+              <Spin id="Spin00" taborder="12" value="2020" left="Static01:10" top="49" width="8.08%" height="26" cssclass="" buttonsize="26"/>
+              <Static id="Static21" taborder="13" text="라디오버튼입력" cssclass="sta_WF_condition02_L" left="0" top="78" height="34" width="8.19%"/>
+              <Radio id="Radio00" taborder="14" index="0" codecolumn="codecolumn" datacolumn="datacolumn" value="1" direction="vertical" onitemclick="Div00_Radio00_onitemclick" left="Static21:10" top="82" width="249" height="26" innerdataset="innerdataset" columncount="-1" rowcount="-1">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="codecolumn">1</Col>
+                      <Col id="datacolumn">조건01</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">2</Col>
+                      <Col id="datacolumn">조건02</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Radio>
+              <Static id="Static23" taborder="15" text="콤보입력" cssclass="sta_WF_condition02" left="33.334%" top="78" width="8.24%" height="34"/>
+              <Combo id="Combo00" taborder="16" displaynulltext="선택" left="Static23:10" top="82" width="17.53%" height="26"/>
+              <Static id="sta_WF_ItemStatic12" taborder="17" text="팝업입력" cssclass="sta_WF_condition02" left="66.66%" top="78" width="8.24%" height="34"/>
+              <Edit id="Edit07" taborder="18" left="sta_WF_ItemStatic12:10" top="82" width="8.08%" height="26"/>
+              <Button id="Button02" taborder="19" cssclass="btn_WF_frmSearch" left="Edit07:0" top="82" width="26" height="26"/>
+              <Static id="Static25" taborder="20" text="readonly" cssclass="sta_WF_condition02" left="33.334%" top="111" width="8.24%" height="34"/>
+              <Edit id="Edit02" taborder="21" left="Static25:10" top="116" width="17.53%" height="26" cssclass="" readonly="true" value="읽기전용" text="읽기전용"/>
+              <Static id="Static15" taborder="22" text="기간입력" cssclass="sta_WF_condition02_L" left="0" top="111" width="8.19%" height="34" onclick="Static_onclick"/>
+              <Calendar id="FRM_DT" taborder="23" displaynulltext="____-__-__" left="Static15:10" top="115" width="7.97%" height="26" cssclass="" popuptype="none" dateformat="yyyy-MM-dd" ondropdown="FRM_DT_ondropdown" onchanged="Div01_FRM_DT_onchanged" daysize="28 28" headheight="28" popupsize="220"/>
+              <Calendar id="TO_DT" taborder="24" displaynulltext="____-__-__" left="FRM_DT:14" top="115" width="8.08%" height="26" value="20200101" dateformat="yyyy-MM-dd" cssclass="" daysize="28 28" headheight="28" popupsize="220"/>
+              <Static id="Static26" taborder="25" text="~" left="FRM_DT:0" top="115" width="14" height="26" textAlign="center"/>
+              <Static id="Static35" taborder="26" text="체크박스입력" cssclass="sta_WF_condition02" left="66.66%" top="111" width="8.24%" height="34"/>
+              <CheckBox id="CheckBox00" taborder="27" text="사용여부" left="Static35:10" top="116" width="250" height="26" cssclass=""/>
+              <Static id="Static19" taborder="28" text="textarea입력" cssclass="sta_WF_condition02_L" left="0" top="144" width="8.19%" height="119"/>
+              <TextArea id="TextArea01" taborder="29" left="Static19:10" top="148" height="111" onchanged="TextArea01_onchanged" right="43"/>
+              <Static id="Static28" taborder="30" text="w 10" visible="false" left="149" top="45" width="10" height="218" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static28_01" taborder="31" text="w 10" visible="false" left="756" top="45" width="10" height="103" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+              <Static id="Static28_01_00" taborder="32" text="w 10" visible="false" left="1363" top="45" width="10" height="103" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="Static03_00_00" taborder="19" text="h 10" visible="false" top="48" width="50" height="10" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="50"/>
+        <Static id="Static06_00_00" taborder="20" text="h 10" visible="false" left="50" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" bottom="668" height="10"/>
+        <Static id="Static04_00" taborder="21" text="h 20" visible="false" left="1660" top="0" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" right="50"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_list" firefirstcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="NUM" type="STRING" size="256"/>
+          <Column id="RQST_NO" type="STRING" size="256"/>
+          <Column id="RQST_DT" type="STRING" size="256"/>
+          <Column id="APV_STAT_NM" type="STRING" size="256"/>
+          <Column id="APV_STAT_CD" type="STRING" size="256"/>
+          <Column id="RQST_DEPT_NM" type="STRING" size="256"/>
+          <Column id="RQST_NM" type="STRING" size="256"/>
+          <Column id="RQST_AMT" type="STRING" size="256"/>
+          <Column id="SBJ" type="STRING" size="256"/>
+          <Column id="FRM_DT" type="STRING" size="256"/>
+          <Column id="TO_DT" type="STRING" size="256"/>
+          <Column id="isChecked" type="STRING" size="256"/>
+          <Column id="HEAD_STAT_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="RQST_NO">ACT02202001-0001</Col>
+            <Col id="RQST_DT">20200101</Col>
+            <Col id="APV_STAT_NM">결재중</Col>
+            <Col id="APV_STAT_CD"/>
+            <Col id="RQST_DEPT_NM">인사총무팀</Col>
+            <Col id="RQST_NM">홍길동</Col>
+            <Col id="RQST_AMT">100000</Col>
+            <Col id="SBJ">연구활동비 지급신청서활동비 지급신청서활동비 지급신청서활동비 지급신청서</Col>
+            <Col id="NUM">1</Col>
+            <Col id="FRM_DT">20200101</Col>
+            <Col id="TO_DT">20200101</Col>
+            <Col id="isChecked">D</Col>
+            <Col id="HEAD_STAT_CD">I</Col>
+          </Row>
+          <Row>
+            <Col id="NUM">2</Col>
+            <Col id="RQST_NO">ACT02202001-0002</Col>
+            <Col id="RQST_DT">20200101</Col>
+            <Col id="HEAD_STAT_CD">U</Col>
+          </Row>
+          <Row>
+            <Col id="NUM">3</Col>
+            <Col id="RQST_NO">ACT02202001-0003</Col>
+            <Col id="RQST_DT">20200101</Col>
+          </Row>
+          <Row>
+            <Col id="NUM">4</Col>
+            <Col id="RQST_NO">ACT02202001-0004</Col>
+            <Col id="RQST_DT">20200101</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_main">
+        <ColumnInfo>
+          <Column id="FRM_DT" type="STRING" size="256"/>
+          <Column id="TO_DT" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="Dataset00">
+        <ColumnInfo>
+          <Column id="key" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="key">Y</Col>
+            <Col id="value">사용</Col>
+          </Row>
+          <Row>
+            <Col id="key">N</Col>
+            <Col id="value">미사용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[]]></Script>
+    <Bind>
+      <BindItem id="item2" compid="div_Search.form.Combo00" propid="value" datasetid="Dataset00" columnid="key"/>
+      <BindItem id="item0" compid="Div01.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item1" compid="Div01.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item3" compid="Div01.form.Combo00" propid="value" datasetid="Dataset00" columnid="key"/>
+    </Bind>
+  </Form>
+</FDL>

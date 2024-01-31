@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_TabContent" titletext="" left="0" top="0" width="1920" height="720" oninit="Form_TabContent_oninit" dragscrolltype="both" cssclass="div_WF_Area" onload="leftMenu_onload" onclose="Form_TabContent_onclose">
+    <Layouts>
+      <Layout height="720" width="1920" type="default" verticalgap="0" horizontalgap="0" flexwrap="wrap">
+        <View id="headerView" taborder="0" viewdataset="viewdataset" left="0" top="0" width="100.00%" height="32" text="" background="#ffffff">
+          <Layouts>
+            <Layout type="default">
+              <Static id="labelMenuNm" taborder="0" left="10" top="10" width="120" height="1" fittocontents="none" flexgrow="1" flexshrink="0" padding="0px 0px 0px 50px" font="normal 21px/normal &quot;Arial&quot;" minwidth="0" maxwidth="" text="" onclick="headerView_labelMenuNm_onclick"/>
+              <Static id="staDepthMenu3" taborder="1" text="3차메뉴" top="0" width="120" height="32" cssclass="btn_MDI_navi" right="50" visible="false" color="#555555" textAlign="center" fittocontents="width" padding="5px"/>
+              <Static id="Static03" taborder="2" text="" top="0" height="32" cssclass="sta_WF_navi" right="staDepthMenu3:0" width="9" visible="false"/>
+              <Static id="staDepthMenu2" taborder="3" text="2차메뉴" top="0" width="120" height="32" cssclass="btn_MDI_navi" right="Static03:0" visible="false" color="#555555" textAlign="center" fittocontents="width" padding="5px"/>
+              <Static id="Static02" taborder="4" text="" top="0" width="9" height="32" cssclass="sta_WF_navi" right="staDepthMenu2:0" visible="false"/>
+              <Static id="staDepthMenu1" taborder="5" text="1차메뉴" top="0" width="120" height="32" cssclass="btn_MDI_navi" right="Static02:0" visible="false" color="#555555" textAlign="center" fittocontents="width" padding="5px"/>
+              <Static id="Static01" taborder="6" text="" top="0" width="9" height="32" cssclass="sta_WF_navi" right="staDepthMenu1:0" visible="false"/>
+              <Button id="btnHome" taborder="7" text="" top="0" height="32" onclick="btnHome_onclick" cssclass="btn_MDI_home" tooltiptext="홈" right="Static01:0" width="25" padding="5px" textAlign="center" fittocontents="width"/>
+            </Layout>
+          </Layouts>
+        </View>
+        <Div id="contentDiv" taborder="1" flexgrow="1" flexshrink="0" maxwidth="" maxheight="" left="0" top="32" minheight="20" minwidth="20" cssclass="div_WF_Area" bottom="0" right="0">
+          <Layouts>
+            <Layout/>
+          </Layouts>
+        </Div>
+        <Div id="leftMenu" taborder="2" left="-250" top="0" width="250" url="FrameBase::Form_Left.xfdl" bottom="0" visible="false"/>
+        <Button id="btnOpenLeftMenu" taborder="3" left="0" top="64" width="18" height="60" cssclass="btn_LF_close" onclick="openLeftMenu_onclick"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[include "lib::common.xjs";
+this.btnHome_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	/*
+	var mainFrameSet = nexacro.getApplication().mainframe.VFrameSet.MainFrameSet;
+	var tabBarFrame = nexacro.getApplication().mainframe.VFrameSet.TabBarFrame;
+	var tabBar = tabBarFrame.form.tabBar;
+
+	if(tabBar.tabpages.length > 0){
+		nexacro.getApplication().closeAllTab();
+	}
+	nexacro.getApplication().openHomeTab();
+
+	mainFrameSet.frames["home"].setFocus();
+	*/
+};
+this.btn_MDI_navi = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_popupMenuOpen(obj);
+};
+
+this.Form_TabContent_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+	var args = this.getOwnerFrame().tabArgs;
+	this.set_titletext(args.title);
+	if (!this.gfnIsEmpty(args.menuPath)) {
+		var str = args.menuPath.split(">");
+		var form = this.headerView.form;
+		for (i = 1; i <= 3; i++) {
+			form["staDepthMenu"+i].set_visible(false);
+			form["Static0"+i].set_visible(false);
+		}
+
+		for (i = 1; i <= str.length; i++) {
+			form["staDepthMenu" + i].set_text(str[i - 1]);
+			form["staDepthMenu" + i].set_visible(true);
+			form["Static0" + i].set_visible(true);
+		}
+
+		if (str.length == 2) {
+			this.headerView.form.staDepthMenu2.set_right(50);
+		}
+
+		if (str.length == 1) {
+			this.headerView.form.staDepthMenu1.set_right(50);
+		}
+	}
+
+    var url = resolveUrl(args.url);
+    var query = new URLSearchParams();
+    if (!this.gfnIsEmpty(args.menuId)) {
+        // url.searchParams.set("__menuId__", args.menuId);
+        query.set("__menuId__", args.menuId);
+    }
+    
+    this.contentDiv.set_url(args.url + ".js?" + query.toString());
+};
+
+/**
+* Function Name : fn_popupMenuOpen
+* Description   : 메뉴 팝업 열기
+* Arguments     : objBtn : 상단 대메뉴 버튼
+* Return        : none
+*/
+this.fn_popupMenuOpen = function(objBtn)
+{
+	var objMenuDs = nexacro.getApplication().mainframe.VFrameSet.TopFrame.form.dsMenu;
+	var sMenuNum = objBtn.level;
+	this.dsPopup.copyData(objMenuDs,true);
+	this.dsPopup.filter("level == '"+sMenuNum+"'");
+
+	if(this.dsPopup.getRowCount() < 1)
+	{
+		return;
+	}
+
+	var nLeft = nexacro.ceil(objBtn.getOffsetWidth() /2);
+	var nTop = objBtn.getOffsetHeight() -1;
+
+	this.PopupMenu00.trackPopupByComponent(objBtn,nLeft,nTop,'center');
+}
+
+this.leftMenu_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    var aniObj00 = new nexacro.Animation("Ani00", this);
+    this.addChild("Ani00", aniObj00);
+	this.Ani00.addTarget("AniItem00", this.btnOpenLeftMenu, "left:250");
+	this.Ani00.addTarget("AniItem01", this.leftMenu, "left:0, visible: true");
+    this.Ani00.setEventHandler("onbegin", this.Ani00_onbegin, this);
+	this.Ani00.setEventHandler("oncomplete", this.Ani00_oncomplete, this);
+	this.Ani00.set_duration(500);
+	this.Ani00.set_easing("easeInSine");
+
+    var aniObj01 = new nexacro.Animation("Ani01", this);
+    this.addChild("Ani01", aniObj01);
+	this.Ani01.addTarget("AniItem00", this.btnOpenLeftMenu, "left:0");
+	this.Ani01.addTarget("AniItem01", this.leftMenu, "left:-250, visible: false");
+	this.Ani01.setEventHandler("oncomplete", this.Ani01_oncomplete, this);
+	this.Ani01.set_duration(500);
+	this.Ani01.set_easing("easeInSine");
+};
+
+this.openLeftMenu_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if( obj.cssclass == "btn_LF_close")
+	{
+		this.Ani00.play();
+	} else {
+		this.Ani01.play();
+	}
+};
+
+this.Ani00_onbegin = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+    this.leftMenu.set_boxShadow("0px 0px 4px 0px rgba(0, 0, 0, 0.4)");
+};
+
+this.Ani00_oncomplete = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	this.btnOpenLeftMenu.set_cssclass("btn_LF_open");
+};
+
+this.Ani01_oncomplete = function(obj:nexacro.Animation,e:nexacro.AnimationEventInfo)
+{
+	this.btnOpenLeftMenu.set_cssclass("btn_LF_close");
+    this.leftMenu.set_boxShadow("");
+};
+
+this.Form_TabContent_onclose = function(obj:nexacro.Form,e:nexacro.CloseEventInfo)
+{
+	nexacro.getApplication().mainframe.VFrameSet.set_separatesize("111,35,*,100");
+};
+
+function resolveUrl(url) {
+    if (url.includes("::")) {
+        var i = url.indexOf("::");
+        var serviceName = url.substring(0, i);
+        var service = nexacro.getEnvironment().services[serviceName];
+        
+        if (service != null) {
+            var serviceUrl = service.url;
+            if (!serviceUrl.endsWith("/")) {
+                serviceUrl += "/";
+            }
+            
+            var path = url.substring(i + 2).replace(/\\/g, "/");
+            if (path.startsWith("/")) {
+                path = path.substring(1);
+            }
+            
+            if (path.endsWith(".xfdl")) {
+                path += ".js";
+            }
+            
+            return new URL(serviceUrl + path, document.baseURI);
+        } else {
+            var path = url.replace(/\\/g, "/");
+            if (path.endsWith(".xfdl")) {
+                path += ".js";
+            }
+            
+            return new URL(path, document.baseURI);
+        }
+    } else if (url.includes("://")) {
+        return new URL(url);
+    } else {
+        var path = url.replace(/\\/g, "/");
+        if (path.startsWith("/")) {
+            path = path.substring(1);
+        }
+        
+        return new URL(path, document.baseURI);
+    }
+}]]></Script>
+    <Objects>
+      <Dataset id="dsPopup"/>
+    </Objects>
+  </Form>
+</FDL>

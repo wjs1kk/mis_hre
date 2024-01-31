@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_TabBar" width="1920" height="35" titletext="Tab Bar" oninit="Form_TabBar_oninit" cssclass="frm_MDI_tabbar" scrolltype="both">
+    <Layouts>
+      <Layout height="35" width="1920">
+        <Tab id="tabBar" taborder="0" tabindex="0" left="0" top="5" right="125" cssclass="tab_MDI_menu" onlbuttonup="tabBar_onlbuttonup" onextrabuttonclick="tabBar_onextrabuttonclick" multiline="false" tabbuttongap="2" tabposition="top" tabbuttonstartgap="50" tabbuttonheight="30" showextrabutton="true" bottom="0" extrabuttonsize="10 10"/>
+        <Button id="btnCloseAll" taborder="1" top="0" width="38" height="35" right="49" background="" onclick="btnCloseAll_onclick" icon="url('theme://images/btn_MDI_tabClose.png')" cssclass="tabbar-button" tooltiptext="모든 탭 닫기" text=""/>
+        <Button id="btnHome" taborder="2" top="0" height="35" cssclass="tabbar-button" tooltiptext="홈" tooltiptype="inplace" icon="url('theme://images/btn_MDI_menu.png')" right="86" width="38" onclick="btnHome_onclick"/>
+        <Button id="btn_MdiPrev" taborder="3" top="0" width="35" height="36" right="157" cssclass="btn_MDI_tabprev" visible="false"/>
+        <Button id="btn_MdiNext" taborder="4" top="0" width="35" height="36" right="123" cssclass="btn_MDI_tabnext" visible="false"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[
+this.Form_TabBar_oninit = function(obj:nexacro.Form,e:nexacro.EventInfo)
+{
+	nexacro.getApplication().openHomeTab();
+};
+this.tabBar_onlbuttonup = function(obj:nexacro.Tab,e:nexacro.MouseEventInfo)
+{
+	var index = this.tabBar.getIndex(e.canvasx, e.canvasy);
+
+	if (index >= 0 && this.tabBar.tabindex == index) {
+		nexacro.getApplication().changeTab(this.tabBar.tabpages[index].id);
+	}
+
+	return true;
+};
+
+this.tabBar_onextrabuttonclick = function(obj:nexacro.Tab,e:nexacro.TabMouseEventInfo)
+{
+	var index = this.tabBar.getIndex(e.canvasx, e.canvasy);
+	var tabId = obj.tabpages[index].id;
+	nexacro.getApplication().closeTab(tabId);
+};
+
+this.btnCloseAll_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().closeAllTab();
+};
+this.btnHome_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+/*
+	if(tabBar.tabpages.length > 0){
+		objApp.closeAllTab();
+	}
+*/
+	nexacro.getApplication().openHomeTab();
+};
+]]></Script>
+  </Form>
+</FDL>

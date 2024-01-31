@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="ROLE_1030P" width="900" titletext="사용자 조회" onload="form_onload" height="720">
+    <Layouts>
+      <Layout>
+        <Div id="divPopup" taborder="0" text="" left="0" top="0" height="720" width="900" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="사용자 조회" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" height="586" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" onclick="Static31_onclick" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Div id="divSearch" taborder="4" left="30" top="70" height="151" cssclass="div_WF_popup" text="" right="30">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static00" taborder="7" left="20" top="45" height="90" cssclass="sta_WF_bg" right="20"/>
+                    <Static id="Static04_00_00_00" taborder="0" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Static id="staSubTitle" taborder="1" text="검색조건" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="19" top="0" height="45" width="169"/>
+                    <Static id="sta002" taborder="2" text="사용자명" cssclass="sta_WF_condition01" left="50%" top="60" width="100" height="26"/>
+                    <Static id="sta001" taborder="3" text="회원 ID" cssclass="sta_WF_condition01" left="40" top="60" width="100" height="26"/>
+                    <Static id="Static04_00_00_00_00" taborder="4" text="h 15" onclick="Static31_onclick" visible="false" left="20" top="135" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Edit id="edtMemberId" taborder="5" left="sta001:10" top="60" width="160" height="26" maxlength="100" onkeyup="divPopup_divSearch_edtMemberId_onkeyup"/>
+                    <Edit id="edtMemberNm" taborder="6" left="sta002:10" top="60" width="160" height="26" maxlength="100" onkeyup="divPopup_divSearch_edtMemberId_onkeyup"/>
+                    <Button id="btn_grdSearch_W" taborder="8" text="조회" top="14" width="63" height="26" cssclass="btn_WF_grdSearch_W" right="20"/>
+                    <Static id="sta003" taborder="9" text="부서명" cssclass="sta_WF_condition01" left="40" top="94" width="100" height="26"/>
+                    <Edit id="edtDeptNm" taborder="10" left="150" top="94" width="160" height="26" maxlength="100" onkeyup="divPopup_divSearch_edtMemberId_onkeyup"/>
+                    <Static id="sta004" taborder="11" text="직급" cssclass="sta_WF_condition01" left="49.88%" top="94" width="99" height="26"/>
+                    <Edit id="edtJbpsNm" taborder="12" left="529" top="94" width="160" height="26" maxlength="100" onkeyup="divPopup_divSearch_edtMemberId_onkeyup"/>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00" taborder="5" text="h 23" onclick="Static31_onclick" visible="false" left="0" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+              <Static id="Static04_00_00_01_00_00" taborder="6" text="h 25" onclick="Static31_onclick" visible="false" left="0" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="51" right="0"/>
+              <Button id="btnPopupClose" text="닫기" cssclass="" visible="true" width="65" height="28" taborder="7" right="383" bottom="23" onclick="divPopup_btnPopupClose_onclick"/>
+              <Div id="divResult" taborder="8" text="Div00" left="30" top="divSearch:10" width="840" cssclass="div_WF_popup" bottom="76">
+                <Layouts>
+                  <Layout>
+                    <Grid id="grdRoleUser" taborder="0" binddataset="dsRoleUser" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="Div00_grdHeader_onheadclick" top="45" left="20" bottom="15" right="20">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="96"/>
+                            <Column size="80"/>
+                            <Column size="120"/>
+                            <Column size="160"/>
+                            <Column size="120"/>
+                            <Column size="80"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                            <Cell col="1" text="회원 ID"/>
+                            <Cell col="2" text="사용자명"/>
+                            <Cell col="3" text="전화번호"/>
+                            <Cell col="4" text="이메일"/>
+                            <Cell col="5" text="부서명"/>
+                            <Cell col="6" text="직급"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                            <Cell col="1" text="bind:memberId" edittype="none"/>
+                            <Cell col="2" text="bind:userNm" edittype="none"/>
+                            <Cell col="3" text="bind:telNo"/>
+                            <Cell col="4" text="bind:emailAddr"/>
+                            <Cell col="5" text="bind:deptNm"/>
+                            <Cell col="6" text="bind:jobPosition"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                    <Static id="staTitle" taborder="2" text="검색결과" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" onclick="Static09_onclick" width="81"/>
+                    <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subResult" left="staTitle:10" top="0" width="149" height="45"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btnAdd" taborder="1" text="추가" cssclass="btn_WF_icoAdd" width="65" height="28" onclick="btnAdd_onclick" left="384" bottom="23"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsRoleUser" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="deptCode" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="jobPosition" type="STRING" size="256"/>
+          <Column id="updtReason" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+          <Column id="telNo" type="STRING" size="256"/>
+          <Column id="phoneNo" type="STRING" size="256"/>
+          <Column id="emailAddr" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="deptCode" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="jobPosition" type="STRING" size="256"/>
+          <Column id="updtReason" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNm" type="STRING" size="256"/>
+          <Column id="deptNm" type="STRING" size="256"/>
+          <Column id="jbpsNm" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  Popup Template
+ *  MenuPath      -
+ *  FileName      roleUserPopup.xfdl 
+ *  Creator 	     cheonsy
+ *  CreateDate    2023.03.03
+ *  Desction      권한 사용자 조회 팝업
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.03.03    cheonsy 	 최초 생성
+ *  2023.08.25    parksw     화면 디자인 적용 및 기능 수정    
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+/**
+ * description 화면 onload
+ */
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);	
+	this.dsSearch.setColumn(0, "roleCode", this.parent.roleCode);
+	this.fnUserSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+/**
+ * description 조회
+*/
+this.fnUserSearch = function()
+{
+	this.gfnTransaction("getUserList", "sm/getUserList.do", "dsSearch", "dsRoleUser", "", "fnCallBack");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+/**
+ * description Transaction CallBack 함수
+ */
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getUserList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsRoleUser, this.divPopup.form.divResult.form.staGridRowCnt);
+            break;
+		default:
+            break;
+	}
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회 버튼
+ */
+this.divPopup_divSearch_btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnUserSearch();
+};
+
+/**
+ * description 추가버튼
+ */
+this.btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{	
+	if (!this.gfnIsGridChecked(this.dsRoleUser, "rowCheck")) {
+		this.gfnAlert("추가할 사용자를 체크해주세요");
+		return;
+	}
+	
+	for (var i = 0; i < this.dsRoleUser.rowcount; i++) {
+		if (this.dsRoleUser.getColumn(i, "rowCheck") > 0) {
+			var nRow = this.opener.dsRoleUser.addRow();
+			this.opener.dsRoleUser.copyRow(nRow, this.dsRoleUser, i);
+			this.opener.dsRoleUser.setColumn(nRow, "rowStatus", "inserted");
+			this.opener.dsRoleUser.setColumn(nRow, "roleCode", this.parent.roleCode);
+			this.opener.dsRoleUser.setColumn(nRow, "useYn", this.parent.useYn);
+			this.opener.dsRoleUser.setColumn(nRow, "useYmd", this.parent.useYmd);
+			this.opener.dsRoleUser.setColumn(nRow, "endYmd", this.parent.endYmd);
+			this.opener.dsRoleUser.setColumn(nRow, "roleNm", this.parent.roleNm);
+		}
+	}
+
+	var oRtn = new Object();
+	oRtn.CONFIRM = "Y";
+	this.gfnPopupClose(oRtn);
+};
+
+/**
+ * description 엔터키 검색
+ */
+this.divPopup_divSearch_edtMemberId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if (e.keycode == 13) {
+		this.divPopup_divSearch_btnSearch_onclick();
+	}
+};
+
+/**
+ * description 닫기버튼
+*/
+this.divPopup_btnPopupClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.close();
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.divSearch.form.edtMemberId" propid="value" datasetid="dsSearch" columnid="memberId"/>
+      <BindItem id="item1" compid="divPopup.form.divSearch.form.edtMemberNm" propid="value" datasetid="dsSearch" columnid="userNm"/>
+      <BindItem id="item2" compid="divPopup.form.divSearch.form.edtDeptNm" propid="value" datasetid="dsSearch" columnid="deptNm"/>
+      <BindItem id="item3" compid="divPopup.form.divSearch.form.edtJbpsNm" propid="value" datasetid="dsSearch" columnid="jbpsNm"/>
+    </Bind>
+  </Form>
+</FDL>

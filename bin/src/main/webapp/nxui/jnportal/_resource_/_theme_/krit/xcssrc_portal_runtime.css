@@ -1,0 +1,1594 @@
+﻿
+        
+.nexainput.nexaleftalign
+{
+  text-align:left;
+}
+.nexainput.nexarightalign
+{
+  text-align:right;
+}
+.nexainput.nexacenteralign
+{
+  text-align:center;
+}
+
+.nexacontentsbox.nexaleftalign
+{
+  text-align:left;
+}
+.nexacontentsbox.nexarightalign
+{
+  text-align:right;
+}
+.nexacontentsbox.nexacenteralign
+{
+  text-align:center;
+}
+.celltreeline
+{
+  border : 1px dotted #999999;
+}
+.Edit, .MaskEdit, .TextArea, .EditControl, .MaskEditControl, .TextAreaControl
+{
+  cursor:text;
+}
+.Button .nexacontentsbox, .ButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.FileDownload  .nexacontentsbox, .FileDownloadControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.IconTextControl .nexacontentsbox, .IconControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.DatePickerDayItemControl .nexacontentsbox, .DatePickerWeekItemControl .nexacontentsbox, .TitleBarButtonControl .nexacontentsbox
+{
+  text-align:center;
+}
+
+.MainFrame, .VScrollBarControl, .HScrollBarControl
+{
+  cursor:default;
+}
+
+.Sketch .nexacontentsbox
+{
+   text-align:center;
+}
+
+.nexainput
+{
+  cursor:inherit;
+}
+
+.Static.portalTitle01
+{
+	color : #111111;
+	font : 700 27px "Malgun Gothic";
+	background : url('./images/portal/portalTitle01.png') no-repeat left top;
+}
+.Static.portalTitle02
+{
+	color : #111111;
+	font : 700 24px "Malgun Gothic";
+	background : url('./images/portal/portalTitle02.png') no-repeat left center;
+}
+.Static.portal_systemBg
+{
+	border : 1px solid #dadada;
+	background : url('./images/portal/portal_systemBg.png') no-repeat right bottom #ffffff;
+	border-radius : 20px;
+	color : #333333;
+	font : 20px/1.4 "Malgun Gothic";
+}
+.Static.portal_systemBg .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+}
+.Combo.portal_cmb_main
+{
+	border : 0px none;
+	border-radius : 25px 0px 0px 25px;
+}
+.Button.portal_btn_search
+{
+	background : #101010;
+	border-radius : 30px;
+}
+.Edit.portal_edi_main
+{
+	border : 0px none;
+	color : #1f1f1f;
+	font : 15px/1 "Malgun Gothic";
+}
+.Combo.portal_cmb_main .comboedit
+{
+	color : #1f1f1f;
+	font : 15px/1 "Malgun Gothic";
+}
+.Combo.portal_cmb_main .comboedit .nexainput
+{
+	text-align : center;
+}
+.Combo.portal_cmb_main .comboedit .nexacontentsbox
+{
+	text-align : center;
+}
+.Button.portal_btns_quick
+{
+	background : transparent;
+	border-radius : 0px;
+	color : #ffffff;
+	font : 15px/1 "Malgun Gothic";
+}
+.Button.portal_btns_quick .nexacontentsbox
+{
+	vertical-align : bottom;
+}
+.Tab.portal_tab_main .tabpageTab.tabpageTabportal_tab_main
+{
+	border : 1px solid #ffffff,0px none,0px none;
+}
+.Tab.portal_tab_main .tabbuttonitemTab.tabbuttonitemTabportal_tab_main
+{
+	font : 20px/1 "Malgun Gothic";
+	color : #ffffff;
+	cursor : pointer;
+}
+.Div.portal_div_project
+{
+	border : 1px solid #dddddd;
+	background : #ffffff;
+	border-radius : 5px;
+	box-shadow : 0px 4px 13px 2px rgba(0,0,0,0.11);
+}
+.Static.portal_sta_projAccepting
+{
+	background : #234cb3;
+	color : #ffffff;
+}
+.Static.portal_sta_projAccepting .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_projAccept
+{
+	background : #1a1a1a;
+	color : #ffffff;
+}
+.Static.portal_sta_projAccept .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_projCore
+{
+	background : #009da7;
+	color : #ffffff;
+}
+.Static.portal_sta_projCore .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_projDefense
+{
+	background : #1b2f4e;
+	color : #ffffff;
+}
+.Static.portal_sta_projDefense .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_projPlan
+{
+	background : #8a8a8a;
+	color : #ffffff;
+}
+.Static.portal_sta_projPlan .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_projTitle
+{
+	color : #101010;
+	font : 700 20px/1.2 "Malgun Gothic";
+	letter-spacing : -1px;
+}
+.Static.portal_sta_projTitle .nexacontentsbox
+{
+	-nexa-word-wrap : none;
+	vertical-align : top;
+}
+.Static.portal_sta_projDate
+{
+	color : #888888;
+	font : 15px/1 "Malgun Gothic";
+}
+.Static.portal_sta_projDday
+{
+	color : #cb1a27;
+	font : 700 15px/1 "Malgun Gothic";
+}
+.Radio.portal_rdo_proj .radioitem
+{
+	color : #ffffff;
+	font : 18px "Malgun Gothic";
+	cursor : pointer;
+}
+.Radio.portal_rdo_proj .radioitem .nexacontentsbox
+{
+	vertical-align : bottom;
+}
+.Button.portal_btn_moreTxt
+{
+	border : 1px solid #bfbfbf;
+	background : #ffffff;
+	color : #333333;
+	font : 14px/1 "Malgun Gothic";
+	border-radius : 0px;
+}
+.Button.portal_btn_moreTxt .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_bdTitle
+{
+	color : #101010;
+	font : 700 19px/1 "Malgun Gothic";
+}
+.Static.portal_sta_bdListTit
+{
+	color : #001010;
+	font : 15px/1 "Malgun Gothic";
+}
+.Static.portal_sta_bdDate
+{
+	color : #a7a7a7;
+	font : 15px/1 "Malgun Gothic";
+}
+.Button.portal_btn_more
+{
+	background : none;
+}
+.StepControl
+{
+	background : none;
+}
+.Grid.portal_grd_bdmList
+{
+	background : #ffffff;
+	border : 0px none;
+}
+.Grid.portal_grd_bdmList .body .row .cell
+{
+	font : 15px/1 "Malgun Gothic";
+	border : 0px none;
+}
+.Grid.portal_grd_bdTreeList
+{
+	border : 2px solid #213878,0px none,0px none;
+}
+.Grid.portal_grd_bdTreeList .head .row .cell
+{
+	color : #213878;
+	font : 700 17px/1 "Malgun Gothic";
+	background : #f7f7f7;
+	border : 0px none,0px none,1px solid #d9d9d9;
+}
+.Grid.portal_grd_bdTreeList .head .row .cell .nexacontentsbox
+{
+	text-align : center;
+}
+.Grid.portal_grd_bdTreeList .body .row .cell
+{
+	border : 0px none,0px none,1px solid #d9d9d9;
+	color : #555555;
+	font : 17px/1 "Malgun Gothic";
+}
+.ImageViewer.portal_img_banner
+{
+	border : 0px none;
+	background : none;
+}
+.Div.portal_div_frmBg_Login
+{
+	border : 1px solid #dedede;
+	background : url('./images/portal/portal_div_frmBg_Login.png') no-repeat right bottom #f8f9fe;
+	border-radius : 15px;
+}
+.Div.portal_div_frmBg
+{
+	border : 1px solid #dedede;
+	background : url('./images/portal/portal_div_frmBg.png') no-repeat right bottom #f8f9fe;
+}
+.Static.portal_sta_frmTitle
+{
+	color : #000000;
+	font : 700 28px/1 "Malgun Gothic";
+}
+.Static.portal_sta_frmTitle .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_frmTitle2
+{
+	color : #000000;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_frmTitle2 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_frmTitle_login
+{
+	color : #222222;
+	font : 700 30px/1 "Malgun Gothic";
+	background : url('./images/portal/portal_sta_login.png') no-repeat left center;
+}
+.Static.portal_sta_frmDescription
+{
+	color : #555555;
+	font : 16px/1.5 "Malgun Gothic";
+}
+.Static.portal_sta_frmDescription .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+}
+.Static.portal_sta_popTitle
+{
+	background : #00388e;
+	color : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sta_popTit
+{
+	color : #00388e;
+	font : 700 18px "Malgun Gothic";
+}
+.Edit.portal_edi_login
+{
+	border : 1px solid #dedede;
+	background : #ffffff;
+	border-radius : 5px;
+	color : #222222;
+	font : 15px/1 "Malgun Gothic";
+	padding : 0px 15px;
+}
+.Edit.portal_txt_login
+{
+	border : 1px solid #dedede;
+	background : #ffffff;
+	border-radius : 5px;
+	color : #222222;
+	font : 15px/1 "Malgun Gothic";
+	padding : 0px 15px;
+}
+.Button.portal_btn_frm
+{
+	background : #00388f;
+	color : #ffffff;
+	font : 18px/1 "Malgun Gothic";
+}
+.Button.portal_btn_find
+{
+	color : #555555;
+	font : 15px/1 "Malgun Gothic";
+	background : none;
+}
+.Static.portal_sta_btnLine
+{
+	background : #b2b0b0;
+}
+.Static.portal_sta_pTitle
+{
+	color : #000000;
+	font : 700 28px/1 "Malgun Gothic";
+	border : 0px none,0px none,2px solid #213878;
+}
+.Static.portal_sta_pTitle .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_bdTotal
+{
+	color : #555555;
+	font : 700 17px/1 "Malgun Gothic";
+}
+.Grid.portal_grd_bdList
+{
+	border : 2px solid #213878,0px none,0px none;
+}
+.Grid.portal_grd_bdList .head .row .cell
+{
+	color : #213878;
+	font : 700 17px/1 "Malgun Gothic";
+	background : #f7f7f7;
+	border : 0px none,0px none,1px solid #d9d9d9;
+}
+.Grid.portal_grd_bdList .head .row .cell .nexacontentsbox
+{
+	text-align : center;
+}
+.Combo.portal_cmb_bd
+{
+	border : 1px solid #b4b4b4;
+	border-radius : 4px;
+	background : #ffffff;
+	color : #555555;
+	font : 16px/1 "Malgun Gothic";
+}
+.Combo.portal_cmb_bd .comboedit
+{
+	padding : 0px 0px 0px 10px;
+}
+.Edit.portal_edi_search
+{
+	border : 1px solid #b4b4b4;
+	border-radius : 4px;
+	background : #ffffff;
+	color : #555555;
+	font : 16px/1 "Malgun Gothic";
+	padding : 0px 10px;
+}
+.Button.portal_btn
+{
+	background : #00388e;
+	color : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Button.portal_btn2
+{
+	background : #ffffff;
+	color : #333333;
+	font : 16px "Malgun Gothic";
+	border : 1px solid #333333;
+}
+.Grid.portal_grd_bdList .body .row .cell
+{
+	border : 0px none,0px none,1px solid #d9d9d9;
+	color : #555555;
+	font : 17px/1 "Malgun Gothic";
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state0
+{
+	background : url('./images/portal/grd_state0.png') no-repeat center center;
+	color : #ffffff;
+	font : 700 14px "Malgun Gothic";
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state1
+{
+	background : url('./images/portal/grd_state1.png') no-repeat center center;
+	color : #ffffff;
+	font : 700 14px "Malgun Gothic";
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state2
+{
+	background : url('./images/portal/grd_state2.png') no-repeat center center;
+	color : #ffffff;
+	font : 700 14px "Malgun Gothic";
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state3
+{
+	background : url('./images/portal/grd_state3.png') no-repeat center center;
+	color : #ffffff;
+	font : 700 14px "Malgun Gothic";
+}
+.Button.portal_btn_PagingPrev
+{
+	border : 1px solid #cfcfcf;
+	background : #ffffff;
+}
+.Button.portal_btn_PagingNext
+{
+	border : 1px solid #cfcfcf;
+	background : #ffffff;
+}
+.Button.portal_btn_PagingFirst
+{
+	border : 1px solid #cfcfcf;
+	background : #ffffff;
+}
+.Button.portal_btn_PagingLast
+{
+	border : 1px solid #cfcfcf;
+	background : #ffffff;
+}
+.Button.portal_btn_paging
+{
+	background : #ffffff;
+	color : #7d7d7d;
+	font : 17px "Malgun Gothic";
+}
+.Static.portal_sta_joinStep1
+{
+	border : 1px solid #cccccc,0px none,1px solid #cccccc,1px solid #cccccc;
+	background : #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep1 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep1_S
+{
+	border : 1px solid #00388e,0px none;
+	background : #00388e;
+	color : #ffffff;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep1_S .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep1_S_step2
+{
+	border : 1px solid #cccccc,0px none;
+	background : url('./images/portal/portal_sta_joinStep_S.png') no-repeat left top #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep1_S_step2 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep2
+{
+	border : 1px solid #cccccc,0px none;
+	background : url('./images/portal/portal_sta_joinStep.png') no-repeat left top #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep2 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep2_S
+{
+	border : 1px solid #00388e,0px none;
+	background : url('./images/portal/portal_sta_joinStep.png') no-repeat left top #00388e;
+	color : #ffffff;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep2_S .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep2_S_step3
+{
+	border : 1px solid #cccccc,0px none;
+	background : url('./images/portal/portal_sta_joinStep_S.png') no-repeat left top #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep2_S_step3 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep3
+{
+	border : 1px solid #cccccc,0px none;
+	background : url('./images/portal/portal_sta_joinStep.png') no-repeat left top #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep3 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep3_S
+{
+	border : 1px solid #00388e,0px none;
+	background : url('./images/portal/portal_sta_joinStep.png') no-repeat left top #00388e;
+	color : #ffffff;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep3_S .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep3_S_step4
+{
+	border : 1px solid #cccccc,1px solid #cccccc,1px solid #cccccc,0px none;
+	background : url('./images/portal/portal_sta_joinStep_S.png') no-repeat left top #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep3_S_step4 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep4
+{
+	border : 1px solid #cccccc,1px solid #cccccc,1px solid #cccccc,0px none;
+	background : url('./images/portal/portal_sta_joinStep.png') no-repeat left top #f5f5f5;
+	color : #555555;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep4 .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_joinStep4_S
+{
+	border : 1px solid #00388e,0px none;
+	background : url('./images/portal/portal_sta_joinStep.png') no-repeat left top #00388e;
+	color : #ffffff;
+	font : 700 22px/1 "Malgun Gothic";
+}
+.Static.portal_sta_joinStep4_S .nexacontentsbox
+{
+	text-align : center;
+}
+.CheckBox.portal_chk_joinAll
+{
+	color : #000000;
+	font : 700 19px "Malgun Gothic";
+}
+.CheckBox.portal_chk_joinAll .nexacontentsbox
+{
+	text-decoration : underline;
+}
+.Static.portal_sta_joinInfo
+{
+	color : #555555;
+	font : 15px/1.4 "Malgun Gothic";
+}
+.Static.portal_sta_joinInfo2
+{
+	color : #222222;
+	font : 15px/1.4 "Malgun Gothic";
+}
+.Static.portal_sta_joinTitle
+{
+	color : #000000;
+	font : 700 20px/1 "Malgun Gothic";
+}
+.TextArea.portal_txt_login
+{
+	border : 1px solid #dedede;
+	background : #ffffff;
+	border-radius : 5px;
+	color : #222222;
+	font : 15px/1 "Malgun Gothic";
+	padding : 20px 15px;
+}
+.TextArea.portal_txt_login .nexatextarea
+{
+	text-align : center;
+}
+.TextArea.portal_txt_login .nexacontentsbox
+{
+	text-align : center;
+}
+.TextArea.portal_txt_join
+{
+	border : 1px solid #00388e,1px solid #cccccc,1px solid #cccccc;
+	padding : 13px 15px;
+	background : #f9f9f9;
+	color : #555555;
+	font : normal 15px/1.5 "Malgun Gothic";
+}
+.CheckBox.portal_chk
+{
+	color : #000000;
+	font : 17px/1 "Malgun Gothic";
+}
+.Radio.portal_rdo .radioitem
+{
+	color : #000000;
+	font : 17px "Malgun Gothic";
+	cursor : pointer;
+}
+.Static.portal_sta_certiNumber
+{
+	color : #00388e;
+	font : 700 19px "Malgun Gothic";
+}
+.Static.portal_sta_certiNumberBg
+{
+	background : #eaeeff;
+	border-radius : 999px;
+}
+.Static.portal_sta_certiTitle
+{
+	color : #000000;
+	font : 700 19px "Malgun Gothic";
+}
+.ImageViewer.portal_img_certi
+{
+	border : 0px none;
+	background : none;
+}
+.Static.portal_sta_memLabel
+{
+	border : 1px solid #cccccc,0px none,1px solid #cccccc,1px solid #cccccc;
+	background : #f5f5f5;
+	color : #000000;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sta_memLabel .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_memLabel_Essential
+{
+	border : 1px solid #cccccc,0px none,1px solid #cccccc,1px solid #cccccc;
+	background : url('./images/sta-essential.png') no-repeat #f5f5f5;
+	color : #000000;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sta_memLabel_Essential .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_memLabel_L
+{
+	border : 1px solid #cccccc,0px none,1px solid #cccccc,1px solid #00388e;
+	background : #f5f5f5;
+	color : #000000;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sta_memLabel_L .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_memLabel_L_essential
+{
+	border : 1px solid #cccccc,0px none,1px solid #cccccc,1px solid #00388e;
+	background : url('./images/sta-essential.png') no-repeat #f5f5f5;
+	color : #000000;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sta_memLabel_L_essential .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_memLabelBg
+{
+	border : 1px solid #cccccc;
+	background : #ffffff;
+}
+.Static.portal_sta_memTopInfo
+{
+	font : 14px "Malgun Gothic";
+	color : #ff2525;
+}
+.Static.portal_sta_memTopInfo_req
+{
+	background : url('./images/sta-essential.png') no-repeat left 50%;
+	font : 14px "Malgun Gothic";
+	color : #ff2525;
+}
+.Static.portal_sta_memInfo
+{
+	font : 14px "Malgun Gothic";
+	color : #ff2525;
+}
+.Static.portal_sta_memInfoPop
+{
+	font : 14px "Malgun Gothic";
+	color : #ff2525;
+}
+.Edit.portal_edi_mem
+{
+	border : 1px solid #cccccc;
+	background : #ffffff;
+	color : #333333;
+	font : 14px "Malgun Gothic";
+	padding : 0px 10px;
+}
+.Button.portal_btn_mem
+{
+	background : #333333;
+	color : #ffffff;
+	font : 14px "Malgun Gothic";
+	border-radius : 0px;
+}
+.Button.portal_btn_mem .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_memTitle
+{
+	color : #000000;
+	font : 700 22px "Malgun Gothic";
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_detail .cellbutton
+{
+	background : url('./images/portal/grd_detail.png') no-repeat center center;
+	border-radius : 0px;
+	color : #00388e;
+	font : 14px "Malgun Gothic";
+	border : 0px none;
+}
+.Grid.portal_grd_bdList .body .row .cell.notice
+{
+	background : url('./images/portal/portal_grd_bdListNotice.png') no-repeat center center;
+}
+.Static.portal_sta_bdCategory
+{
+	color : #888888;
+	font : 17px "Malgun Gothic";
+	border : 0px none,0px none,3px solid transparent;
+}
+.Static.portal_sta_bdCategory_on
+{
+	color : #0085ff;
+	font : 700 17px "Malgun Gothic";
+	border : 0px none,0px none,3px solid #0085ff;
+}
+.Static.portal_sta_bdViewTitleBg
+{
+	background : #eff6ff;
+}
+.Static.portal_sta_bdViewTitle
+{
+	color : #222222;
+	font : 700 22px "Malgun Gothic";
+}
+.Static.portal_sta_bdViewInfo
+{
+	color : #555555;
+	font : 17px "Malgun Gothic";
+}
+.Static.portal_sta_bdViewInfoTitle
+{
+	color : #2e558e;
+	font : 17px "Malgun Gothic";
+	background : url('./images/portal/portal_sta_bdViewInfoTitle.png') no-repeat right center;
+}
+.Div.portal_div_bdattach
+{
+	border : 1px solid #abb8dd,0px none,1px solid #a3a3a3;
+	background : #ffffff;
+}
+.Button.portal_btn_download
+{
+	background : #3d3d3d;
+	color : #ffffff;
+	font : 14px "Malgun Gothic";
+	border-radius : 0px;
+}
+.Button.portal_btn_bdBtns
+{
+	background : #3d3d3d;
+	color : #ffffff;
+	font : 14px "Malgun Gothic";
+	border-radius : 0px;
+}
+.Div.portal_bdView
+{
+	border : 0px none,0px none,1px solid #cccccc;
+	background : #ffffff;
+}
+.Button.portal_btn_bdBorder
+{
+	border : 1px solid #606060;
+	color : #606060;
+	font : 16px "Malgun Gothic";
+	background : #ffffff;
+}
+.Div.portal_div_bdPage
+{
+	border : 1px solid #cccccc,0px none;
+	background : #ffffff;
+}
+.Static.portal_sta_bdprev
+{
+	color : #3c3c3c;
+	font : 16px "Malgun Gothic";
+	background : url('./images/portal/portal_bdBtnPrev.png') no-repeat right center;
+}
+.Static.portal_sta_bdnext
+{
+	color : #3c3c3c;
+	font : 16px "Malgun Gothic";
+	background : url('./images/portal/portal_bdBtnNext.png') no-repeat right center;
+}
+.Static.portal_sta_pageTxt
+{
+	color : #3c3c3c;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sys_title
+{
+	color : #111111;
+	font : 700 18px "Malgun Gothic";
+}
+.Static.portal_sys_title2
+{
+	color : #111111;
+	font : 700 20px "Malgun Gothic";
+}
+.Static.portal_sys_charge
+{
+	color : #353535;
+	font : 18px "Malgun Gothic";
+}
+.Div.portal_div_charge
+{
+	border : 1px solid #dedede;
+	background : #f7f7f7;
+}
+.Button.portal_btn_charge
+{
+	border : 1px solid #dddddd;
+	background : #ffffff;
+	color : #555555;
+	font : 14px "Malgun Gothic";
+}
+.Button.portal_btn_charge .nexacontentsbox
+{
+	text-align : center;
+}
+.Div.portal_div_system
+{
+	border : 1px solid #dedede;
+	background : #ffffff;
+}
+.Div.portal_div_calendar
+{
+	background : #ffffff;
+}
+.Button.portal_btn_calPrev
+{
+	background : #ffffff;
+	border-radius : 0px;
+}
+.Button.portal_btn_calNext
+{
+	background : #ffffff;
+	border-radius : 0px;
+}
+.Button.portal_btn_calText
+{
+	border-radius : 0px;
+	color : #111111;
+	font : 14px "Malgun Gothic";
+	background : #ffffff;
+}
+.Button.portal_btn_calDate
+{
+	border-radius : 0px;
+	color : #111111;
+	font : 14px "Malgun Gothic";
+	background : #ffffff;
+}
+.Button.portal_btn_calDate_S
+{
+	border-radius : 0px;
+	color : #111111;
+	font : 700 14px "Malgun Gothic";
+	background : #ffffff;
+}
+.Button.portal_btn_calDate_today
+{
+	border-radius : 0px;
+	color : #111111;
+	font : 700 14px "Malgun Gothic";
+	background : url('./images/portal/portal_btn_calDate.png') no-repeat center bottom #ffffff;
+}
+.Button.portal_btn_calYM
+{
+	border-radius : 0px;
+	color : #111111;
+	font : 700 14px "Malgun Gothic";
+	background : #ffffff;
+}
+.Static.portal_sta_calText
+{
+	color : #111111;
+	font : 14px "Malgun Gothic";
+}
+.Static.portal_sta_calText .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_mypage_Total
+{
+	color : #111111;
+	font : 14px "Malgun Gothic";
+}
+.Button.portal_btn_mypage
+{
+	border-radius : 0px;
+	color : #ffffff;
+	font : 14px "Malgun Gothic";
+	background : #222222;
+}
+.Button.portal_btn_mypage .nexacontentsbox
+{
+	text-align : center;
+}
+.Tab.portal_tab_mypage .tabpageTab.tabpageTabportal_tab_mypage
+{
+	background : #ffffff;
+	border : 1px solid #dedede;
+}
+.Tab.portal_tab_mypage .tabbuttonitemTab.tabbuttonitemTabportal_tab_mypage
+{
+	border : 1px solid #dedede;
+	font : 700 14px "Malgun Gothic";
+	color : #333333;
+	background : #ffffff;
+	cursor : pointer;
+	border-radius : 0px;
+}
+.Combo.portal_cmb_mypage
+{
+	border : 1px solid #dedede;
+}
+.Combo.portal_cmb_mypage .comboedit
+{
+	font : 14px "Malgun Gothic";
+	color : #333333;
+	padding : 0px 10px;
+}
+.Grid.portal_grd_mypage
+{
+	border : 1px solid #cccccc;
+}
+.Grid.portal_grd_mypage .head .row .cell
+{
+	background : #ffffff;
+	color : #111111;
+	font : 700 15px "Malgun Gothic";
+}
+.Grid.portal_grd_mypage .body .row .cell
+{
+	background : #ffffff;
+	color : #555555;
+	font : 14px "Malgun Gothic";
+}
+.Static.portal_mypageBg
+{
+	background : #ecf1f7;
+}
+.Static.portal_work_year
+{
+	color : #111111;
+	font : 700 17px "Malgun Gothic";
+}
+.Button.portal_work_datePrev
+{
+	background : none;
+	border-radius : 0px;
+}
+.Button.portal_work_dateNext
+{
+	background : none;
+	border-radius : 0px;
+}
+.Grid.portal_grd_work
+{
+	border : 1px solid #00388e,1px solid #dddddd,1px solid #dddddd;
+}
+.Grid.portal_grd_work .head .row .cell
+{
+	font : 700 14px "Malgun Gothic";
+	border : 0px none,0px none,1px solid #dddddd;
+}
+.Grid.portal_grd_work .body .row .cell
+{
+	font : 14px "Malgun Gothic";
+	border : 0px none,0px none,1px solid #dddddd;
+}
+.Static.portal_work_Total
+{
+	color : #111111;
+	font : 700 15px "Malgun Gothic";
+}
+.Button.portal_btn_outSteps
+{
+	border : 1px solid #00388e;
+	background : #ffffff;
+	border-radius : 8px;
+	color : #00388e;
+	font : 16px "Malgun Gothic";
+}
+.Button.portal_btn_outSteps_S
+{
+	border : 1px solid #00388e;
+	background : #00388e;
+	border-radius : 8px;
+	color : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_sta_outStep
+{
+	background : url('./images/portal/portal_sta_outStep.png') no-repeat center center;
+}
+.Static.portal_sta_outLabel_L
+{
+	border : 1px solid #cccccc,1px solid #cccccc,1px solid #cccccc,1px solid #00388e;
+	background : #f9fafc;
+	color : #111111;
+	font : 700 15px "Malgun Gothic";
+}
+.Static.portal_sta_outLabel_bg
+{
+	border : 1px solid #cccccc;
+}
+.Static.portal_sta_outText
+{
+	color : #555555;
+	font : 15px "Malgun Gothic";
+}
+.Static.portal_sta_outText_emp
+{
+	color : #e54646;
+	font : 15px "Malgun Gothic";
+}
+.Static.portal_sta_outText_emp .nexacontentsbox
+{
+	text-decoration : underline;
+}
+.ListBoxControl.popupComboportal_cmb_maincombolist.dummy.dummy
+{
+	font : 14px "Malgun Gothic";
+}
+.Button.portal_btn_star
+{
+	background : none;
+	border-radius : 0px;
+}
+.Button.portal_btn_star_S
+{
+	background : none;
+	border-radius : 0px;
+}
+.Edit.portal_edi
+{
+	border : 1px solid #cccccc;
+	background : #ffffff;
+	color : #333333;
+	font : 14px "Malgun Gothic";
+	padding : 0px 10px;
+}
+.Calendar.portal_cal .calendaredit
+{
+	font : 16px "Malgun Gothic";
+}
+.Grid.portal_grd_bdTreeList .body .row .cell.portal_faq_collapse
+{
+	background : url('./images/portal/portal_faq_collapse.png') no-repeat center center;
+}
+.Grid.portal_grd_bdTreeList .body .row .cell.portal_faq_expand
+{
+	background : url('./images/portal/portal_faq_expand.png') no-repeat center center;
+}
+.Static.portal_system_top
+{
+	border : 1px solid #e8e8e8;
+	background : #f0f3fa;
+	border-radius : 20px;
+	color : #222222;
+	font : 22px/1.5 "Malgun Gothic";
+}
+.Static.portal_system_top .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.guide
+{
+	background : RGBA(255,45,45,0.60);
+}
+.Static.portal_system_head
+{
+	border : 0px none,1px solid #dee1e4,1px solid #dee1e4,0px none;
+	background : #f7f7f7;
+	font : 700 16px "Malgun Gothic";
+}
+.Static.portal_system_head .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_system_headFirst
+{
+	border : 0px none, 1px solid #dee1e4, 1px solid #dee1e4, 0px none;
+	background : #f7f7f7;
+	font : 700 16px "Malgun Gothic";
+}
+.Static.portal_system_headFirst .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_system_headLast
+{
+	border : 0px none, 0px none, 1px solid #dee1e4;
+	background : #f7f7f7;
+	font : 700 16px "Malgun Gothic";
+}
+.Static.portal_system_headLast .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_system_body
+{
+	border : 0px none, 1px solid #dee1e4, 1px solid #dee1e4, 0px none;
+	background : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_system_body .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+	text-align : center;
+}
+.Static.portal_system_bodyL
+{
+	border : 0px none, 1px solid #dee1e4, 1px solid #dee1e4, 0px none;
+	background : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_system_bodyL .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+}
+.Static.portal_system_bodyFirst
+{
+	border : 0px none, 1px solid #dee1e4, 1px solid #dee1e4,0px none;
+	background : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_system_bodyFirst .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+	text-align : center;
+}
+.Static.portal_system_bodyLast
+{
+	border : 0px none,0px none, 1px solid #dee1e4;
+	background : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Static.portal_system_bodyLast .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+	text-align : center;
+}
+.FileUpload.portal_fileUpload .fileuploaditem .fileuploaditembutton
+{
+	background : #333333;
+	color : #ffffff;
+	font : 16px "Malgun Gothic";
+}
+.Button.portal_btn_memOut
+{
+	border : 0px none,0px none,1px solid #333333;
+	background : none;
+	border-radius : 0px;
+	color : #333333;
+	font : 700 16px "Malgun Gothic";
+}
+.Static.portal_sta_memOut
+{
+	color : #686868;
+	font : 16px "Malgun Gothic";
+}
+.Button.portal_btn_interest
+{
+	background : #ffffff;
+	color : #aaaaaa;
+	font : 14px "Malgun Gothic";
+	border-radius : 0px;
+	border : 1px solid #aaaaaa;
+}
+.Button.portal_btn_interest .nexacontentsbox
+{
+	text-align : center;
+}
+.Button.portal_btn_interest_on
+{
+	background : #333333;
+	color : #ffffff;
+	font : 14px "Malgun Gothic";
+	border-radius : 0px;
+}
+.Button.portal_btn_interest_on .nexacontentsbox
+{
+	text-align : center;
+}
+.Button.portal_btn_interestCode
+{
+	background : #333333;
+	color : #ffffff;
+	font : 14px "Malgun Gothic";
+	border-radius : 15px;
+}
+.Button.portal_btn_interestCode .nexacontentsbox
+{
+	text-align : center;
+}
+.Static.portal_sta_popSchdule
+{
+	color : #00388e;
+	font : 700 18px "Malgun Gothic";
+	background : url('./images/portal/portal_sta_popSchdule.png') no-repeat left top;
+}
+.Button.portal_btn_close
+{
+	background : none;
+	border-radius : 0px;
+}
+.Div.portal_popBg
+{
+	border : 1px solid #d9d9d9;
+	border-radius : 5px;
+}
+.Static.portal_sta_popSchduleBg
+{
+	border : 0px none,0px none,1px solid #eeeeee;
+}
+.Static.portal_sta_popSchduleDate
+{
+	background : #eeeeee;
+	color : #000000;
+	font : 15px "Malgun Gothic";
+}
+.Static.portal_sta_popSchduleTxt
+{
+	color : #000000;
+	font : 14px "Malgun Gothic";
+	background : url('./images/portal/portal_sta_popSchduleTxt.png') no-repeat left top;
+}
+.Static.portal_sta_popSchduleTxt .nexacontentsbox
+{
+	-nexa-word-wrap : char;
+}
+.Div.portal_main_quick
+{
+	background : #ffffff;
+	border-radius : 20px 0px 0px 20px;
+	box-shadow : 0px 4px 13px 2px rgba(0,0,0,0.11);
+}
+.Static.portal_quick_tit
+{
+	color : #4a4a4a;
+	font : 700 14px "Malgun Gothic";
+}
+.Static.portal_quick_tit .nexacontentsbox
+{
+	text-align : center;
+}
+.Button.portal_quick_btn
+{
+	border : 1px solid #dddddd;
+	background : #ffffff;
+	border-radius : 6px;
+	color : #333333;
+	font : 14px/1.2 "Malgun Gothic";
+}
+.Button.portal_quick_setting
+{
+	border-radius : 10px;
+	background : #eaeaea;
+	color : #101010;
+	font : 10px "Malgun Gothic";
+}
+.Button.portal_quick_collapse
+{
+	background : #153b9a;
+	border-radius : 10px 0px 0px 10px;
+}
+.Button.portal_quick_expand
+{
+	background : #153b9a;
+	border-radius : 10px 0px 0px 10px;
+}
+.Button.portal_quick_chatbot
+{
+	color : #ff8e0b;
+	background : none;
+	border-radius : 0px;
+	font : 700 14px "Malgun Gothic";
+}
+.Combo.portal_cmb
+{
+	border : 1px solid #cccccc;
+	background : #ffffff;
+}
+.Combo.portal_cmb .comboedit
+{
+	color : #333333;
+	font : 14px "Malgun Gothic";
+	padding : 0px 10px;
+}
+.Static.portal_frmTxt
+{
+	font : 14px "Malgun Gothic";
+}
+.Static.portal_frmTxt .nexacontentsbox
+{
+	text-align : center;
+}
+.Button.portal_btn_mem2
+{
+	border : 1px solid #333333;
+	background : #ffffff;
+	color : #333333;
+	font : 14px "Malgun Gothic";
+}
+.Static.portal_mtab_page
+{
+	color : #adbbdd;
+	font : 18px "Malgun Gothic";
+}
+.Static.portal_mtab_page_S
+{
+	color : #ffffff;
+	font : 700 18px "Malgun Gothic";
+}
+.Static.portal_mtab_pageLine
+{
+	color : #ffffff;
+	font : 18px "Malgun Gothic";
+}
+.Button.portal_mtab_prev
+{
+	background : none;
+	border-radius : 0px;
+}
+.Button.portal_mtab_next
+{
+	background : none;
+	border-radius : 0px;
+}
+.Radio.portal_rdo_proj .radioitem[status=mouseover]
+{
+	background : url('./images/portal/portal_rdo_proj_S.png') no-repeat center top;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state0[status=mouseover]
+{
+	background : url('./images/portal/grd_state0.png') no-repeat center center #f6f6f6;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state1[status=mouseover]
+{
+	background : url('./images/portal/grd_state1.png') no-repeat center center #f6f6f6;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state2[status=mouseover]
+{
+	background : url('./images/portal/grd_state2.png') no-repeat center center #f6f6f6;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state3[status=mouseover]
+{
+	background : url('./images/portal/grd_state3.png') no-repeat center center #f6f6f6;
+}
+.Button.portal_btn_paging[status=mouseover]
+{
+	background : #00388e;
+	color : #ffffff;
+}
+.Grid.portal_grd_bdList .body .row .cell.notice[status=mouseover]
+{
+	background : url('./images/portal/portal_grd_bdListNotice.png') no-repeat center center #f6f6f6;
+}
+.Tab.portal_tab_mypage .tabbuttonitemTab.tabbuttonitemTabportal_tab_mypage[status=mouseover]
+{
+	border : 1px solid #dddddd;
+	background : #e5e5e5;
+}
+.Grid.portal_grd_bdTreeList .body .row .cell.portal_faq_collapse[status=mouseover]
+{
+	background : url('./images/portal/portal_faq_collapse.png') no-repeat center center #f6f6f6;
+}
+.Grid.portal_grd_bdTreeList .body .row .cell.portal_faq_expand[status=mouseover]
+{
+	background : url('./images/portal/portal_faq_expand.png') no-repeat center center #f6f6f6;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_detail .cellbutton[status=mouseover]
+{
+	background : url('./images/portal/grd_detail_MO.png') no-repeat center center;
+	color : #ffffff;
+}
+.Button.portal_quick_btn[status=mouseover]
+{
+	background : linear-gradient(to top,#153b9a 0%,#2ca5b3 72%,#2cb38b);
+	color : #ffffff;
+	border : 0px none;
+}
+.Combo.portal_cmb_main .comboedit[userstatus=nulltext]
+{
+	color : #1f1f1f;
+}
+.Edit.portal_edi_main[userstatus=nulltext]
+{
+	color : #888888;
+}
+.Tab.portal_tab_main .tabbuttonitemTab.tabbuttonitemTabportal_tab_main[userstatus=selected]
+{
+	font : 700 20px/1 "Malgun Gothic";
+	color : #ff9016;
+	background : none;
+	border : 0px none,0px none,3px solid #ff9016;
+}
+.Radio.portal_rdo_proj .radioitem[userstatus=selected]
+{
+	color : #ff9016;
+	background : url('./images/portal/portal_rdo_proj_S.png') no-repeat center top;
+}
+.Grid.portal_grd_bdmList .body .row .cell[userstatus=selected]
+{
+	background : #ffffff;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state0[userstatus=selected]
+{
+	background : url('./images/portal/grd_state0.png') no-repeat center center #EFF6FF;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state1[userstatus=selected]
+{
+	background : url('./images/portal/grd_state1.png') no-repeat center center #EFF6FF;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state2[userstatus=selected]
+{
+	background : url('./images/portal/grd_state2.png') no-repeat center center #EFF6FF;
+}
+.Grid.portal_grd_bdList .body .row .cell.grd_state3[userstatus=selected]
+{
+	background : url('./images/portal/grd_state3.png') no-repeat center center #EFF6FF;
+}
+.Button.portal_btn_paging[userstatus=selected]
+{
+	background : #00388e;
+	color : #ffffff;
+}
+.Grid.portal_grd_bdList .body .row .cell.notice[userstatus=selected]
+{
+	background : url('./images/portal/portal_grd_bdListNotice.png') no-repeat center center #EFF6FF;
+}
+.Tab.portal_tab_mypage .tabbuttonitemTab.tabbuttonitemTabportal_tab_mypage[userstatus=selected]
+{
+	border : 1px solid #00388E;
+	background : #00388E;
+	color : #ffffff;
+}
+.Grid.portal_grd_mypage .body .row .cell[userstatus=selected]
+{
+	background : #f1f3f8;
+}
+.Grid.portal_grd_bdTreeList .body .row .cell.portal_faq_collapse[userstatus=selected]
+{
+	background : url('./images/portal/portal_faq_collapse.png') no-repeat center center #EFF6FF;
+}
+.Grid.portal_grd_bdTreeList .body .row .cell.portal_faq_expand[userstatus=selected]
+{
+	background : url('./images/portal/portal_faq_expand.png') no-repeat center center #EFF6FF;
+}
+.Combo.portal_cmb .comboedit[userstatus=nulltext]
+{
+	color : #999999;
+}
+.Button.portal_btn_PagingPrev[status=disabled]
+{
+	border : 1px solid #dddddd;
+}
+.Button.portal_btn_PagingNext[status=disabled]
+{
+	border : 1px solid #dddddd;
+}
+.Button.portal_btn_PagingFirst[status=disabled]
+{
+	border : 1px solid #dddddd;
+}
+.Button.portal_btn_PagingLast[status=disabled]
+{
+	border : 1px solid #dddddd;
+}
+.Button.portal_btn_outSteps[status=disabled]
+{
+	background : #dcdcdc;
+	color : #717171;
+	border : 1px solid #dcdcdc;
+}
+.Tab.portal_tab_mypage .tabbuttonitemTab.tabbuttonitemTabportal_tab_mypage[status=focused][userstatus=selected]
+{
+	border : 1px solid #00388E;
+	background : #00388E;
+	color : #ffffff;
+}

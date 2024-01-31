@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="BBS_1010M" width="1920" height="720" titletext="게시판MST목록" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="720" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="게시판 목록" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="staTitle_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="56" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="2" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="20" top="55" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="40"/>
+              <Static id="staBbsTy" taborder="4" text="게시판 그룹" left="20" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboBbsTy" taborder="3" left="staBbsTy:10" top="15" width="140" height="26" codecolumn="codecolumn" datacolumn="datacolumn" onkeyup="onkeyup" value="" index="-1" onitemchanged="divSearch_cboBbsTy_onitemchanged" innerdataset="innerdataset">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">BRD-010-010</Col>
+                      <Col id="datacolumn">일반게시판</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">BRD-010-020</Col>
+                      <Col id="datacolumn">자료게시판</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">BRD-010-030</Col>
+                      <Col id="datacolumn">이미지게시판</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Static id="staSearch" taborder="6" text="검색" left="20%" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboSearch" taborder="5" left="staSearch:10" top="15" width="140" height="26" codecolumn="codecolumn" datacolumn="datacolumn" value="" index="-1" onitemchanged="divSearch_cboSearch_onitemchanged" onkeyup="onkeyup" innerdataset="innerdataset">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">TITLE</Col>
+                      <Col id="datacolumn">게시판 제목</Col>
+                    </Row>
+                    <Row>
+                      <Col id="codecolumn">ID</Col>
+                      <Col id="datacolumn">게시판 ID</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtSearch" taborder="1" left="cboSearch:10" top="15" width="950" height="26" onkeyup="onkeyup"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:15" right="50" cssclass="div_WF_Area" bottom="37">
+          <Layouts>
+            <Layout>
+              <Grid id="grdList" taborder="0" left="0" top="45" binddataset="dsList" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="40" band="left"/>
+                      <Column size="200"/>
+                      <Column size="150"/>
+                      <Column size="500"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="150"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell displaytype="normal" edittype="none" text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="게시판 그룹"/>
+                      <Cell col="4" text="게시판 ID"/>
+                      <Cell col="5" text="게시판 제목"/>
+                      <Cell col="6" text="답변"/>
+                      <Cell col="7" text="댓글"/>
+                      <Cell col="8" text="파일첨부"/>
+                      <Cell col="9" text="비밀글"/>
+                      <Cell col="10" text="추천"/>
+                      <Cell col="11" text="사용여부"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell displaytype="normal" edittype="none" textAlign="center" text="expr:currow+1" expr="currow+1"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck"/>
+                      <Cell col="2" text="bind:rowStatus"/>
+                      <Cell col="3" textAlign="left" editmaxlength="20" displaytype="combocontrol" edittype="combo" combodataset="dsBbsTyCombo" combocodecol="value" combodatacol="text" text="bind:bbsTyCd" cssclass="essential"/>
+                      <Cell col="4" text="bind:bbsId" editmaxlength="20" textAlign="left" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'normal'" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" cssclass="essential"/>
+                      <Cell col="5" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" text="bind:bbsNm" textAlign="left" cssclass="essential" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'normal'"/>
+                      <Cell col="6" text="bind:replyYn" displaytype="checkboxcontrol" edittype="checkbox" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                      <Cell col="7" textAlign="center" editmaxlength="3000" displaytype="checkboxcontrol" text="bind:answrYn" calendardateformat="yyyy-MM-dd" edittype="checkbox" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                      <Cell col="8" text="bind:fileAtchYn" edittype="checkbox" displaytype="checkboxcontrol" combodataset="dsUseYn" combocodecol="value" combodatacol="text" calendardateformat="yyyy-MM-dd" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                      <Cell col="9" displaytype="checkboxcontrol" edittype="checkbox" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                      <Cell col="10" displaytype="checkboxcontrol" edittype="checkbox" text="bind:rcmdYn" checkboxfalsevalue="N" checkboxtruevalue="Y"/>
+                      <Cell col="11" displaytype="combocontrol" edittype="combo" cssclass="essential" text="bind:useYn" combodataset="dsUseYn" combocodecol="value" combodatacol="text"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="Static04_00_00_00_00" taborder="1" text="h 45" onclick="Static31_onclick" visible="false" left="90" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="2" text="총 0건" cssclass="sta_WF_subTxt" left="0" top="0" width="150" height="45"/>
+              <Button id="btnDeleteRow" taborder="4" text="행삭제" cssclass="btn_WF_Row_Delete" top="14" right="0" width="73" height="26" onclick="divResult_btnDeleteRow_onclick"/>
+              <Button id="btnAddRow" taborder="3" text="행추가" cssclass="btn_WF_Row_Add" top="14" right="btnDeleteRow:5" width="73" height="26" onclick="divResult_btnAddRow_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" width="65" right="btnSearch:3" taborder="4" onclick="btnSave_onclick" height="28" top="20"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="searchType" type="STRING" size="256"/>
+          <Column id="searchKeyword" type="STRING" size="256"/>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="bbsTyCd" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearchCombo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="bbsId" type="STRING" size="256"/>
+          <Column id="bbsNm" type="STRING" size="256"/>
+          <Column id="bbsIntrcn" type="STRING" size="256"/>
+          <Column id="bbsTyCd" type="STRING" size="256"/>
+          <Column id="bbsTyNm" type="STRING" size="256"/>
+          <Column id="replyYn" type="STRING" size="256"/>
+          <Column id="fileAtchYn" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="rgstrId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="updtrId" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="answrYn" type="STRING" size="256"/>
+          <Column id="rcmdYn" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsBbsTyCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="text">선택</Col>
+          </Row>
+          <Row>
+            <Col id="value">BRD-010-010</Col>
+            <Col id="text">일반게시판</Col>
+          </Row>
+          <Row>
+            <Col id="value">BRD-010-020</Col>
+            <Col id="text">자료게시판</Col>
+          </Row>
+          <Row>
+            <Col id="value">BRD-010-030</Col>
+            <Col id="text">이미지게시판</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearchBbsTyCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  게시판 MST 목록
+*  MenuPath      관리메뉴 - 게시판 관리 - 게시판MST
+*  FileName      BBS_1010M.xfdl 
+*  Creator 	     woohj
+*  CreateDate    2023.12.01
+*  Desction      게시판 MST 목록
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.12.01    woohj  	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+	// 수정
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 콤보 loadCombo
+*/
+this.fnLoadCombo = function ()
+{
+	this.gfnLoadCombo("loadCombo", "dsUseYn=SM:USE_YN:C", "fnComboCallback"); 
+};
+
+/**
+ * description 게시판 MST 목록
+*/
+this.fnSearch = function ()
+{
+	var strSvcId    = "getBoardMasterList";
+	var strSvcUrl   = "bbs/boardMaster/getBoardMasterList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 게시판 MST 저장
+*/
+this.fnSave = function ()
+{
+	var strSvcId    = "setBoardMasterList";
+	var strSvcUrl   = "bbs/boardMaster/setBoardMasterList.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+************************************************************************************************/
+/**
+ * description 콤보 ComboCallback
+*/
+this.fnComboCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    if (svcId == "loadCombo") {
+        this.fnSearch();
+    }
+};
+
+/**
+ * description Transaction Callback 함수
+*/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getBoardMasterList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCnt); 
+            break;
+		case "setBoardMasterList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.dsSearch.clearData();
+				this.dsSearch.addRow();
+				this.fnSearch();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+			break;
+		default:
+			break;	
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnSearch();
+};
+
+/**
+ * description 엔터키 이벤트
+*/
+this.onkeyup = function(obj:nexacro.Combo,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * description 게시판유형 콤보박스 변경
+*/
+this.divSearch_cboBbsTy_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+/**
+ * description 검색(ID/내용) 콤보박스 변경
+*/
+this.divSearch_cboSearch_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch_onclick();
+};
+
+/**
+ * description 행추가
+*/
+this.divResult_btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsList, "last");
+	
+	this.dsList.setColumn(this.dsList.rowposition, "replyYn", "N");
+	this.dsList.setColumn(this.dsList.rowposition, "fileAtchYn", "N");
+	this.dsList.setColumn(this.dsList.rowposition, "useYn", "Y");
+	
+	this.dsList.setColumn(this.dsList.rowposition, "answrYn", "N");
+	this.dsList.setColumn(this.dsList.rowposition, "rcmdYn", "N");
+	
+	this.dsSearch.clearData();
+	this.dsSearch.addRow();
+};
+
+/**
+ * description 행삭제
+*/
+this.divResult_btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsList);
+};
+
+/**
+ * description 저장 버튼 클릭
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsList.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+		return;
+	}
+	if (!this.gfnDsIsUpdated(this.dsList)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+
+	if (!this.fnValidation()) {		// 그리드 필수값 체크 -> 라인
+		return;
+    }
+
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+
+
+this.fnValidation = function ()
+{
+    var args = [
+        ["bbsId", "NULL|MAX_LEN:20", "게시판 ID"],
+        ["bbsNm", "NULL|MAX_LEN:100", "게시판 제목"]
+    ];
+
+    return this.gfnCheckGrid(this.divResult.form.grdList, args, "");
+};
+
+
+
+
+
+
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboBbsTy" propid="value" datasetid="dsSearch" columnid="bbsTyCd"/>
+      <BindItem id="item1" compid="divSearch.form.cboSearch" propid="value" datasetid="dsSearch" columnid="searchType"/>
+      <BindItem id="item2" compid="divSearch.form.edtSearch" propid="value" datasetid="dsSearch" columnid="searchKeyword"/>
+    </Bind>
+  </Form>
+</FDL>

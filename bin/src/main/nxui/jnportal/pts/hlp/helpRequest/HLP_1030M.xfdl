@@ -1,0 +1,397 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HLP_1030M" width="1920" height="670" onload="form_onload" cssclass="frm_WF_comp" titletext="요청 현황">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="요청 현황" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="105" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="1" left="0" top="0" right="0" cssclass="sta_WF_bg" text="" onclick="div_Search_Static00_onclick" height="90"/>
+              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="0" top="90" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="55"/>
+              <Static id="sta001" taborder="2" text="업무분류" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Static id="sta002" taborder="3" text="제목" left="25%" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtTitle" taborder="4" left="sta002:10" top="15" width="240" height="26" onkeyup="divSearch_onkeyup"/>
+              <Static id="sta006" taborder="9" text="담당자" cssclass="sta_WF_condition01" left="50%" top="49" width="100" height="26" onclick="divSearch_Div00_sch_DEPT_CD_onclick"/>
+              <Static id="sta003" taborder="5" text="요청자" left="50%" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Static id="sta004" taborder="10" text="요청번호" cssclass="sta_WF_condition01" left="20" top="49" width="100" height="26" onclick="divSearch_Div00_sch_DEPT_CD_onclick"/>
+              <Edit id="edtAskCode" taborder="6" left="sta004:10" top="49" width="240" height="26" onkeyup="divSearch_onkeyup"/>
+              <Static id="sta005" taborder="8" text="요청내용" cssclass="sta_WF_condition01" left="25%" top="49" width="100" height="26" onclick="divSearch_Div00_sch_DEPT_CD_onclick"/>
+              <Edit id="edtAskContents" taborder="7" left="sta005:10" top="49" width="240" height="26" onkeyup="divSearch_onkeyup"/>
+              <Static id="sta003_00" taborder="12" text="진행상태" left="75%" top="16" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboProcess" taborder="11" text="" left="sta003_00:10" top="15" width="234" height="26" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="-1" onkeyup="divSearch_onkeyup">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">작성중</Col>
+                      <Col id="codecolumn">HLP-010-010</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">요청</Col>
+                      <Col id="codecolumn">HLP-010-020</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">접수</Col>
+                      <Col id="codecolumn">HLP-010-030</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">담당자지정</Col>
+                      <Col id="codecolumn">HLP-010-040</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">처리중</Col>
+                      <Col id="codecolumn">HLP-010-050</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">처리완료</Col>
+                      <Col id="codecolumn">HLP-010-060</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">최종완료</Col>
+                      <Col id="codecolumn">HLP-010-070</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Static id="sta003_00_00" taborder="13" text="요청사유" left="75%" top="51" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Combo id="cboAskReason" taborder="14" text="" left="sta003_00_00:10" top="49" width="234" height="26" innerdataset="innerdataset" codecolumn="codecolumn" datacolumn="datacolumn" index="-1" onkeyup="divSearch_onkeyup">
+                <Dataset id="innerdataset">
+                  <ColumnInfo>
+                    <Column id="codecolumn" size="256"/>
+                    <Column id="datacolumn" size="256"/>
+                  </ColumnInfo>
+                  <Rows>
+                    <Row>
+                      <Col id="datacolumn">전체</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">단순문의</Col>
+                      <Col id="codecolumn">HLP-020-010</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">업무문의</Col>
+                      <Col id="codecolumn">HLP-020-020</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">에러처리</Col>
+                      <Col id="codecolumn">HLP-020-030</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">데이터분석</Col>
+                      <Col id="codecolumn">HLP-020-040</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">데이터처리</Col>
+                      <Col id="codecolumn">HLP-020-050</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">프로세스개선</Col>
+                      <Col id="codecolumn">HLP-020-060</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">시스템분석</Col>
+                      <Col id="codecolumn">HLP-020-070</Col>
+                    </Row>
+                    <Row>
+                      <Col id="datacolumn">시스템개선</Col>
+                      <Col id="codecolumn">HLP-020-080</Col>
+                    </Row>
+                  </Rows>
+                </Dataset>
+              </Combo>
+              <Edit id="edtDirector" taborder="15" left="sta006:10" top="49" width="240" height="26" onkeyup="divSearch_onkeyup" onchanged="divSearch_edtDirector_onchanged"/>
+              <Edit id="edtAsker" taborder="16" left="sta003:10" top="15" width="240" height="26" onkeyup="divSearch_onkeyup"/>
+              <Combo id="cboWorkTy" taborder="17" text="" left="sta001:10" top="15" height="26" innerdataset="dsPowCbo" codecolumn="value" datacolumn="text" index="-1" width="240" onkeyup="divSearch_onkeyup" onitemchanged="divSearch_cboWorkTy_onitemchanged"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divReqestResult" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="37" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Grid id="grdRqstList" taborder="0" left="0" top="45" binddataset="dsList" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" oncelldblclick="divReqestResult_grdRqstList_oncelldblclick">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="115"/>
+                      <Column size="129"/>
+                      <Column size="245"/>
+                      <Column size="177"/>
+                      <Column size="110"/>
+                      <Column size="110"/>
+                      <Column size="110"/>
+                      <Column size="109"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" text="요청번호"/>
+                      <Cell col="2" text="업무분류"/>
+                      <Cell col="3" text="제목"/>
+                      <Cell col="4" text="요청사유"/>
+                      <Cell col="5" text="요청자"/>
+                      <Cell col="6" text="요청일"/>
+                      <Cell col="7" text="완료일"/>
+                      <Cell col="8" text="결과"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" text="bind:hlpRqstNo" edittype="none"/>
+                      <Cell col="2" text="bind:hlpRqstTypeCdNm" edittype="none" textAlign="left"/>
+                      <Cell col="3" text="bind:hlpRqstTtl" edittype="none" textAlign="left"/>
+                      <Cell col="4" text="bind:hlpRqstRsnCdNm" edittype="none" textAlign="left"/>
+                      <Cell col="5" text="bind:hlpRqstrIdMember" edittype="none" textAlign="left"/>
+                      <Cell col="6" text="bind:hlpRqstDt" edittype="none" combodataset="dsProcessType" combocodecol="value" combodatacol="text" displaytype="normal"/>
+                      <Cell col="7" text="bind:hlpWkCpltDt" edittype="none" textAlign="center"/>
+                      <Cell col="8" text="bind:hlpSttsCdNm"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="staTitle" taborder="1" text="검색결과" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="81"/>
+              <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:10" top="0" width="149" height="45"/>
+              <Static id="Static04_00_00_00_00" taborder="3" text="h 45" onclick="Static31_onclick" visible="false" left="110" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Button id="btnAdd" text="요청등록" cssclass="btn_WF_Save" visible="true" top="10" width="75" right="0" taborder="4" bottom="grdRqstList:5" onclick="divReqestResult_btnAdd_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true" cancolumnchange="dsSearch_cancolumnchange">
+        <ColumnInfo>
+          <Column id="hlpRqstNo" type="STRING" size="256"/>
+          <Column id="hlpRqstTtl" type="STRING" size="256"/>
+          <Column id="hlpWkPicId" type="STRING" size="256"/>
+          <Column id="hlpRqstCn" type="STRING" size="256"/>
+          <Column id="hlpWkClsCd" type="STRING" size="256"/>
+          <Column id="hlpPicId" type="STRING" size="256"/>
+          <Column id="hlpSttsCd" type="STRING" size="256"/>
+          <Column id="hlpRqstRsnCd" type="STRING" size="256"/>
+          <Column id="hlpRqstRsnCdNm" type="STRING" size="256"/>
+          <Column id="hlpSttsCdNm" type="STRING" size="256"/>
+          <Column id="hlpWkClsCdNm" type="STRING" size="256"/>
+          <Column id="hlpPicIdNm" type="STRING" size="256"/>
+          <Column id="hlpRqstrId" type="STRING" size="256"/>
+          <Column id="hlpRqstrIdNm" type="STRING" size="256"/>
+          <Column id="hlpRqstTypeCd" type="STRING" size="256"/>
+          <Column id="hlpRqstTypeCdNm" type="STRING" size="256"/>
+          <Column id="hlpWkPicIdMember" type="STRING" size="256"/>
+          <Column id="hlpRqstrIdMember" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRoleLog" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="memberId" type="STRING" size="256"/>
+          <Column id="userNmKr" type="STRING" size="256"/>
+          <Column id="organCd" type="STRING" size="256"/>
+          <Column id="organNm" type="STRING" size="256"/>
+          <Column id="roleCode" type="STRING" size="256"/>
+          <Column id="roleNm" type="STRING" size="256"/>
+          <Column id="processTy" type="STRING" size="256"/>
+          <Column id="processDt" type="STRING" size="256"/>
+          <Column id="processById" type="STRING" size="256"/>
+          <Column id="processByMemberId" type="STRING" size="256"/>
+          <Column id="processByNmKr" type="STRING" size="256"/>
+          <Column id="processReason" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsProcessType">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsList" updatecontrol="true" cancolumnchange="dsSearch_cancolumnchange">
+        <ColumnInfo>
+          <Column id="hlpRqstNo" type="STRING" size="256"/>
+          <Column id="hlpRqstTtl" type="STRING" size="256"/>
+          <Column id="hlpWkPicId" type="STRING" size="256"/>
+          <Column id="hlpRqstCn" type="STRING" size="256"/>
+          <Column id="hlpWkClsCd" type="STRING" size="256"/>
+          <Column id="hlpPicId" type="STRING" size="256"/>
+          <Column id="hlpSttsCd" type="STRING" size="256"/>
+          <Column id="hlpRqstRsnCd" type="STRING" size="256"/>
+          <Column id="hlpRqstRsnCdNm" type="STRING" size="256"/>
+          <Column id="hlpSttsCdNm" type="STRING" size="256"/>
+          <Column id="hlpWkClsCdNm" type="STRING" size="256"/>
+          <Column id="hlpPicIdNm" type="STRING" size="256"/>
+          <Column id="hlpRqstrId" type="STRING" size="256"/>
+          <Column id="hlpRqstDt" type="STRING" size="256"/>
+          <Column id="hlpWkCpltDt" type="STRING" size="256"/>
+          <Column id="hlpRqstTypeCd" type="STRING" size="256"/>
+          <Column id="hlpRqstTypeCdNm" type="STRING" size="256"/>
+          <Column id="hlpWkPicIdMember" type="STRING" size="256"/>
+          <Column id="hlpRqstrIdMember" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsPowCbo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSttsCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsRqstrCbo" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  요청현황
+*  MenuPath      온라인 요청관리 > 요청현황
+*  FileName      HLP_1030M.xfdl 
+*  Creator 	     yuyr
+*  CreateDate    2023.11.30
+*  Desction      권한 변경 이력 조회
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.11.30    yuyr 	 최초 생성
+*******************************************************************************/
+
+include "lib::common.xjs";
+
+/*******************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+	this.fnSearch();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+/**
+ * description 콤보 조회
+*/
+ this.fnLoadCombo = function ()
+ {
+	this.gfnLoadCombo("loadCombo", "dsPowCbo=PTS:WORK_CATEGORY:A", "fnCallback", "fnComboCallback");
+ };
+
+/**
+ * description 조회
+ */
+this.fnSearch = function()
+{	
+	this.gfnTransaction("getHelpRequestList", "hlp/helpRequest/getHelpRequestList.do", "dsSearch", "dsList", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * description Transaction CallBack 함수
+*/
+
+ this.fnComboCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+	 if (svcId == "loadCombo") {
+		 this.fnSearch();
+	 }
+};
+
+this.fnCallback = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+	   case "getHelpRequestList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsList, this.divReqestResult.form.staGridRowCnt);
+		break;
+		default:
+		break;
+	}
+};		
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+/**
+ * description 그리드 행 더블클릭 상세조회
+*/
+this.divReqestResult_grdRqstList_oncelldblclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	var param = {
+		hlpRqstNo: this.dsList.getColumn(e.row, "hlpRqstNo"),
+	};
+	nexacro.getApplication().openNewTab("HLP_1040M", "처리 상세 ", "pts::hlp/helpRequest/HLP_1040M.xfdl", param, "관리메뉴 > 온라인 헬프 > 요청 상세", "");	
+};
+
+/**
+ * description 요청 추가 이동 이벤트
+*/
+this.divReqestResult_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	nexacro.getApplication().openNewTab("HLP_1020M", "요청 등록", "pts::hlp/helpRequest/HLP_1020M.xfdl", "" , "관리메뉴 > 온라인 헬프 > 요청 등록", "");
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description 엔터키 검색 이벤트
+*/
+this.divSearch_onkeyup = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}		
+};
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.cboWorkTy" propid="value" datasetid="dsSearch" columnid="hlpRqstTypeCd"/>
+      <BindItem id="item1" compid="divSearch.form.edtTitle" propid="value" datasetid="dsSearch" columnid="hlpRqstTtl"/>
+      <BindItem id="item2" compid="divSearch.form.edtAsker" propid="value" datasetid="dsSearch" columnid="hlpRqstrIdMember"/>
+      <BindItem id="item3" compid="divSearch.form.cboProcess" propid="value" datasetid="dsSearch" columnid="hlpSttsCd"/>
+      <BindItem id="item4" compid="divSearch.form.edtAskCode" propid="value" datasetid="dsSearch" columnid="hlpRqstNo"/>
+      <BindItem id="item5" compid="divSearch.form.edtAskContents" propid="value" datasetid="dsSearch" columnid="hlpRqstCn"/>
+      <BindItem id="item6" compid="divSearch.form.edtDirector" propid="value" datasetid="dsSearch" columnid="hlpWkPicIdMember"/>
+      <BindItem id="item7" compid="divSearch.form.cboAskReason" propid="value" datasetid="dsSearch" columnid="hlpRqstRsnCd"/>
+    </Bind>
+  </Form>
+</FDL>

@@ -1,0 +1,568 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="CODE_1010M" width="1920" height="720" titletext="공통코드 관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="720" screenid="Desktop_screen">
+        <Button id="btnSave" taborder="4" text="저장" height="28" width="65" cssclass="btn_WF_Save" top="20" right="49" onclick="btnSave_onclick"/>
+        <Button id="btnSearch" taborder="0" text="조회" top="20" height="28" right="btnSave:3" width="65" onclick="btnSearch_onclick"/>
+        <Static id="staTitle" taborder="1" text="공통코드 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" height="70" text="" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staBg" taborder="8" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static15_01_00_00" taborder="1" text="h 15" onclick="Static31_onclick" visible="false" left="20" top="55" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="40"/>
+              <Static id="sta001" taborder="2" text="코드그룹" left="455" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Edit id="edtCodeId" taborder="3" left="sta001:10" top="15" width="200" height="26" onkeyup="divSearch_divSrch_edtCodeId_onkeyup"/>
+              <Static id="sta002" taborder="4" text="코드그룹명" left="910" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtCodeNm" taborder="5" left="sta002:10" top="15" width="200" height="26" onkeyup="divSearch_Div00_edt_03_onkeyup"/>
+              <Static id="sta003" taborder="6" text="모듈" left="1365" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtModuleId" taborder="7" left="sta003:10" top="15" width="200" height="26" onkeyup="divSearch_Div00_edt_03_onkeyup"/>
+              <Combo id="cboSysId" taborder="9" text="Combo00" left="130" top="15" width="200" height="26" innerdataset="dsSysIdCombo" codecolumn="value" datacolumn="text" onitemchanged="divSearch_systemIdCombo_onitemchanged"/>
+              <Static id="staSysId" taborder="10" text="시스템" left="20" top="15" width="100" height="26" onclick="row1_Div00_Static01_onclick" cssclass="sta_WF_condition01"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divCode" taborder="3" text="" left="50" top="138" right="50" cssclass="div_WF_Area" height="37.5%">
+          <Layouts>
+            <Layout>
+              <Grid id="grdCodeHeader" taborder="0" left="0" top="45" binddataset="dsCodeHeader" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="divCode_grdCodeHeader_onheadclick" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="96"/>
+                      <Column size="160"/>
+                      <Column size="240"/>
+                      <Column size="240"/>
+                      <Column size="560"/>
+                      <Column size="96"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="모듈"/>
+                      <Cell col="4" text="코드그룹"/>
+                      <Cell col="5" text="코드그룹명(한글)"/>
+                      <Cell col="6" text="코드그룹명(영문)"/>
+                      <Cell col="7" text="코드설명"/>
+                      <Cell col="8" text="사용여부"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" text="bind:moduleId" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" textAlign="center" editmaxlength="20" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'normal'"/>
+                      <Cell col="4" text="bind:headerCode" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" editmaxlength="20" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'normal'" textAlign="left"/>
+                      <Cell col="5" text="bind:headerCodeNmKr" edittype="text" editmaxlength="300" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="6" text="bind:headerCodeNmEn" edittype="text" editmaxlength="300" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="7" text="bind:headerCodeDc" edittype="text" textAlign="left" editmaxlength="3000" displaytype="editcontrol"/>
+                      <Cell col="8" text="bind:useYn" edittype="combo" displaytype="combocontrol" combodataset="dsUseYn" combocodecol="value" combodatacol="text"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnDeleteRowGroup" taborder="2" text="행삭제" height="26" right="0" width="73" cssclass="btn_WF_Row_Delete" top="14" onclick="divCode_btnDeleteRowGroup_onclick"/>
+              <Button id="btnAddRowGroup" taborder="1" text="행추가" height="26" right="btnDeleteRowGroup:5" width="73" cssclass="btn_WF_Row_Add" top="14" onclick="divCode_btnAddRowGroup_onclick"/>
+              <Static id="staTitle" taborder="3" text="코드그룹" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="80" fittocontents="width"/>
+              <Static id="Static04_00_00_00_00" taborder="4" text="h 45" onclick="Static31_onclick" visible="false" left="90" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="staGridRowCnt" taborder="5" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:10" top="0" width="150" height="45"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Div id="divLine" taborder="5" text="Div00" left="50" top="divCode:10" cssclass="div_WF_Area" bottom="37" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="staTitle00" taborder="0" text="코드라인" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="80" fittocontents="width"/>
+              <Static id="staGridRowCnt2" taborder="1" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle00:10" top="0" width="150" height="45"/>
+              <Grid id="grdCodeLine" taborder="2" left="0" binddataset="dsCodeLine" right="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="divCode_grdCodeHeader_onheadclick" top="45" bottom="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="48" band="left"/>
+                      <Column size="160"/>
+                      <Column size="160"/>
+                      <Column size="240"/>
+                      <Column size="240"/>
+                      <Column size="560"/>
+                      <Column size="96"/>
+                      <Column size="96"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="코드그룹"/>
+                      <Cell col="4" text="코드"/>
+                      <Cell col="5" text="코드명(한글)"/>
+                      <Cell col="6" text="코드명(영어)"/>
+                      <Cell col="7" text="코드설명"/>
+                      <Cell col="8" text="정렬순서"/>
+                      <Cell col="9" text="사용여부"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell expr="currow+1" text="expr:currow+1" textAlign="center"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                      <Cell col="2" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                      <Cell col="3" text="bind:headerCode" edittype="none" editmaxlength="20"/>
+                      <Cell col="4" text="bind:lineCode" edittype="expr:rowStatus == 'inserted'? 'text' : 'none'" editmaxlength="20" textAlign="left" displaytype="expr:rowStatus == 'inserted'? 'editcontrol' : 'normal'"/>
+                      <Cell col="5" text="bind:lineCodeNmKr" edittype="text" editmaxlength="300" textAlign="left" displaytype="editcontrol"/>
+                      <Cell col="6" text="bind:lineCodeNmEn" edittype="text" editmaxlength="300" textAlign="left" displaytype="editcontrol"/>
+                      <Cell col="7" text="bind:lineCodeDc" edittype="text" textAlign="left" editmaxlength="3000" displaytype="editcontrol"/>
+                      <Cell col="8" text="bind:sortOrdr" edittype="text" textAlign="right" displaytype="editcontrol"/>
+                      <Cell col="9" text="bind:useYn" edittype="combo" displaytype="combocontrol" combodataset="dsUseYn" combocodecol="value" combodatacol="text"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Button id="btnDeleteRowLine" taborder="4" text="행삭제" height="26" right="0" width="73" cssclass="btn_WF_Row_Delete" top="14" onclick="divCode_btnDeleteRowLine_onclick"/>
+              <Button id="btnAddRowLine" taborder="3" text="행추가" height="26" right="btnDeleteRowLine:5" width="73" cssclass="btn_WF_Row_Add" top="14" onclick="divCode_btnAddRowLine_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="moduleId" type="STRING" size="256"/>
+          <Column id="headerCode" type="STRING" size="256"/>
+          <Column id="headerCodeNmKr" type="STRING" size="256"/>
+          <Column id="searchHeaderCode" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="searchSysId" type="STRING" size="256"/>
+          <Column id="searchModuleId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsCodeHeader" useclientlayout="true" onrowposchanged="dsCodeHeader_onrowposchanged" updatecontrol="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="moduleId" type="STRING" size="256"/>
+          <Column id="headerCode" type="STRING" size="256"/>
+          <Column id="headerCodeNmKr" type="STRING" size="256"/>
+          <Column id="headerCodeNmEn" type="STRING" size="256"/>
+          <Column id="headerCodeDc" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="STRING" size="256"/>
+          <Column id="attr1" type="STRING" size="256"/>
+          <Column id="attr2" type="STRING" size="256"/>
+          <Column id="attr3" type="STRING" size="256"/>
+          <Column id="attr4" type="STRING" size="256"/>
+          <Column id="attr5" type="STRING" size="256"/>
+          <Column id="chkCntSql" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsCodeLine" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="moduleId" type="STRING" size="256"/>
+          <Column id="headerCode" type="STRING" size="256"/>
+          <Column id="lineCode" type="STRING" size="256"/>
+          <Column id="lineCodeNmKr" type="STRING" size="256"/>
+          <Column id="lineCodeNmEn" type="STRING" size="256"/>
+          <Column id="lineCodeDc" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
+          <Column id="useYmd" type="STRING" size="256"/>
+          <Column id="endYmd" type="STRING" size="256"/>
+          <Column id="sortOrdr" type="INT" size="256"/>
+          <Column id="attr1" type="STRING" size="256"/>
+          <Column id="attr2" type="STRING" size="256"/>
+          <Column id="attr3" type="STRING" size="256"/>
+          <Column id="attr4" type="STRING" size="256"/>
+          <Column id="attr5" type="STRING" size="256"/>
+          <Column id="headerCodeNmKr" type="STRING" size="256"/>
+          <Column id="headerCodeNmEn" type="STRING" size="256"/>
+          <Column id="headerCodeDc" type="STRING" size="256"/>
+          <Column id="rgstId" type="STRING" size="256"/>
+          <Column id="rgstDt" type="STRING" size="256"/>
+          <Column id="rgstIp" type="STRING" size="256"/>
+          <Column id="rgstNm" type="STRING" size="256"/>
+          <Column id="updtId" type="STRING" size="256"/>
+          <Column id="updtIp" type="STRING" size="256"/>
+          <Column id="updtDt" type="STRING" size="256"/>
+          <Column id="updtNm" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSysIdCombo">
+        <ColumnInfo>
+          <Column id="value" type="STRING" size="256"/>
+          <Column id="text" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  messageManage
+*  MenuPath      -
+*  FileName      commonCodeManage.xfdl 
+*  Creator 	     cheonsy
+*  CreateDate    2023.02.23
+*  Desction      공통코드관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.02.23    cheonsy 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+var cnt = 0;
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+    this.fnLoadCombo();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+this.fnLoadCombo = function ()
+{
+    this.comboCnt = 2;
+	this.gfnLoadCombo("loadCombo", "dsUseYn=SM:USE_YN:C", "fnComboCallback");
+	this.gfnTransaction("loadSysIdCombo","sm/getSystemIdCombo.do","","dsSysIdCombo","","fnComboCallback");
+};
+
+/**
+ * description 코드그룹 조회
+*/
+this.fnCodeHeaderSearch = function()
+{	
+	this.gfnTransaction("getCodeHeaderList", "sm/getCodeHeaderList.do", "dsSearch", "dsCodeHeader", "", "fnCallBack", true); 
+};
+
+/**
+ * description 코드라인 조회
+*/
+this.fnCodeLineSearch = function()
+{
+	this.gfnTransaction("getCodeLineList", "sm/getCodeLineList.do", "dsSearch", "dsCodeLine", "", "fnCallBack" , true);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function()
+{
+	this.gfnTransaction("setCodeList", "sm/setCodeList.do", "dsCodeHeader dsCodeLine", "", "", "fnCallBack" , true);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnComboCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    this.comboCnt--;
+    if (this.comboCnt == 0) {
+        var sysId = nexacro.getApplication().gdsUserInfo.getColumn(0, "sysId");
+        this.dsSearch.setColumn(0, "searchSysId", sysId);
+        this.btnSearch.click();
+    }
+};
+
+/**
+ * description Transaction CallBack 함수
+*/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getCodeHeaderList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsCodeHeader, this.divCode.form.staGridRowCnt);
+			this.fnCodeLineSearch();
+		break;
+		case "getCodeLineList":
+			//총 건수 계산
+			this.gfnRowCount(this.dsCodeLine, this.divLine.form.staGridRowCnt2);
+		break;
+		case "setCodeList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.dsSearch.clearData();
+				this.dsSearch.addRow();
+				this.fnCodeHeaderSearch();
+				this.fnBtnControlTrue();
+			}else{
+				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+/**
+ * description Popup CallBack 함수
+*/
+this.fnPopupAfter = function (sPopupId, vArg)
+{
+	
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+/**
+ * description 조회버튼 클릭
+*/
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnCodeHeaderSearch();
+	this.fnBtnControlTrue();
+};
+
+/**
+ * description 코드그룹 rowposition change 이벤트
+*/
+this.dsCodeHeader_onrowposchanged = function(obj:nexacro.NormalDataset,e:nexacro.DSRowPosChangeEventInfo)
+{	
+	if(this.dsCodeHeader.findRow("rowStatus", "inserted") > -1){
+		this.divCode.form.grdCodeHeader.setCellPos( 3,  this.dsCodeHeader.findRow("rowStatus", "inserted"));
+		this.fnBtnControlFalseInsert();
+		this.gfnAlert("CM_MSG_CHANGE_DATA");  // 변경된 데이터가 있습니다. 저장 후 진행해 주세요.
+	} else if (this.dsCodeHeader.findRow("rowStatus", "updated") > -1){
+		this.divCode.form.grdCodeHeader.setCellPos( 4,  this.dsCodeHeader.findRow("rowStatus", "updated"));
+		this.fnBtnControlFalse();
+		this.gfnAlert("CM_MSG_CHANGE_DATA");  // 변경된 데이터가 있습니다. 저장 후 진행해 주세요.
+	} else if (this.dsCodeHeader.findRowExpr("rowStatus=='deleted'") > -1){
+		this.divCode.form.grdCodeHeader.setCellPos( 4,  this.dsCodeHeader.findRowExpr("rowStatus=='deleted'"));
+		this.fnBtnControlFalse();
+		this.gfnAlert("CM_MSG_CHANGE_DATA");  // 변경된 데이터가 있습니다. 저장 후 진행해 주세요.
+	}
+	
+	this.dsSearch.setColumn(0, "sysId", this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "sysId"));
+	this.dsSearch.setColumn(0, "moduleId", this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "moduleId"));
+	this.dsSearch.setColumn(0, "headerCode", this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "headerCode"));
+	this.fnCodeLineSearch();
+};
+
+/**
+ * description 저장버튼 클릭
+*/
+this.btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsCodeHeader.rowcount == 0 && this.dsCodeLine.rowcount == 0){
+		this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+		return;
+	}
+	if (!this.gfnDsIsUpdated(this.dsCodeHeader) && !this.gfnDsIsUpdated(this.dsCodeLine)) {
+		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+		return;
+	}
+	if (!this.fnValidationHeader()) {		// 그리드 필수값 체크 -> 헤더
+		return;
+    }
+
+	if (!this.fnValidationLine()) {		// 그리드 필수값 체크 -> 라인
+		return;
+    }
+
+	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+	return;
+};
+
+/**
+ * description 그룹 행추가 클릭
+*/
+this.divCode_btnAddRowGroup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsCodeHeader, "last");
+	this.dsCodeHeader.setColumn(this.dsCodeHeader.rowposition, "useYn", "Y");
+	this.dsSearch.clearData();
+	this.dsSearch.addRow();
+	this.fnBtnControlFalseInsert();
+};
+
+/**
+ * description 그룹 행삭제 클릭
+*/
+this.divCode_btnDeleteRowGroup_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsCodeHeader);
+	if(this.dsCodeHeader.findRowExpr("rowStatus=='deleted'") > -1) {
+		this.fnBtnControlFalse();
+	}else{
+		this.fnBtnControlTrue();
+	}
+	
+};
+
+/**
+ * description 라인 행추가 클릭
+*/
+this.divCode_btnAddRowLine_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	if(this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "headerCode") != ""){
+		this.gfnInsertRow(this.dsCodeLine, "last");
+		this.dsCodeLine.setColumn(this.dsCodeLine.rowposition, "useYn", "Y");
+		this.dsCodeLine.setColumn(this.dsCodeLine.rowposition, "headerCode",  this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "headerCode"));
+		this.dsCodeLine.setColumn(this.dsCodeLine.rowposition, "moduleId",  this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "moduleId"));
+		this.dsCodeLine.setColumn(this.dsCodeLine.rowposition, "sysId",  this.dsCodeHeader.getColumn(this.dsCodeHeader.rowposition, "sysId"));
+	}else{
+		alert("코드그룹 저장 후 진행해 주세요");
+	}
+};
+
+/**
+ * description 라인 행삭제 클릭
+*/
+this.divCode_btnDeleteRowLine_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsCodeLine);
+};
+
+/**
+ * description 그리드해드 클릭
+*/
+this.divCode_grdCodeHeader_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+};
+
+/**
+ * description 엔터키 이벤트
+*/
+this.divSearch_divSrch_edtCodeId_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+	if(e.keycode==13){
+		this.btnSearch_onclick();
+	}
+};
+
+/**
+ * 시스템 ID 검색조건 변경
+ */
+this.divSearch_systemIdCombo_onitemchanged = function(obj:nexacro.Combo,e:nexacro.ItemChangeEventInfo)
+{
+	this.btnSearch.click();
+};
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+/**
+ * description generate multi language Excel 
+*/
+this.btnExportCompML_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	// generate multi language Excel 
+	this.gfnGenerateML(this);
+};
+
+/**
+ * description 버튼컨트롤(disable)
+*/
+this.fnBtnControlFalse = function()
+{
+	this.divLine.form.btnAddRowLine.set_enable(false);
+	this.divLine.form.btnDeleteRowLine.set_enable(false);
+	this.divLine.form.grdCodeLine.set_enable(false);
+	this.divCode.form.btnAddRowGroup.set_enable(false);
+	this.divCode.form.btnDeleteRowGroup.set_enable(false);
+}
+
+/**
+ * description 버튼컨트롤(enable)
+*/
+this.fnBtnControlTrue = function()
+{
+	this.divLine.form.btnAddRowLine.set_enable(true);
+	this.divLine.form.btnDeleteRowLine.set_enable(true);
+	this.divLine.form.grdCodeLine.set_enable(true);
+	this.divCode.form.btnAddRowGroup.set_enable(true);
+	this.divCode.form.btnDeleteRowGroup.set_enable(true);
+}
+
+/**
+ * description 버튼컨트롤(if disable)
+*/
+this.fnBtnControlFalseInsert = function()
+{
+	this.divLine.form.btnAddRowLine.set_enable(false);
+	this.divLine.form.btnDeleteRowLine.set_enable(false);
+	this.divLine.form.grdCodeLine.set_enable(false);
+	this.divCode.form.btnAddRowGroup.set_enable(false);
+	this.divCode.form.btnDeleteRowGroup.set_enable(true);
+}
+
+/**
+ * description Header 밸리데이션
+*/
+this.fnValidationHeader = function ()
+{
+    var args = [
+		["headerCode", "NULL|MAX_LEN:20", ""],
+		["moduleId", "NULL|MAX_LEN:20", ""],
+		["headerCodeNmKr", "MAX_LEN:300", ""],
+		["headerCodeNmEn", "MAX_LEN:300", ""],
+		["headerCodeDc", "MAX_LEN:3000", ""]
+    ];
+
+    return this.gfnCheckGrid(this.divCode.form.grdCodeHeader, args, "");
+};
+
+/**
+ * description Line 밸리데이션
+*/
+this.fnValidationLine = function ()
+{
+    var args = [
+        ["lineCode", "NULL|MAX_LEN:20", ""],
+		["lineCodeNmKr", "MAX_LEN:300", ""],
+		["lineCodeNmEn", "MAX_LEN:300", ""],
+		["lineCodeDc", "MAX_LEN:3000", ""]
+    ];
+    return this.gfnCheckGrid(this.divLine.form.grdCodeLine, args, "");
+};
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divSearch.form.edtCodeId" propid="value" datasetid="dsSearch" columnid="searchHeaderCode"/>
+      <BindItem id="item1" compid="divSearch.form.edtCodeNm" propid="value" datasetid="dsSearch" columnid="headerCodeNmKr"/>
+      <BindItem id="item2" compid="divSearch.form.edtModuleId" propid="value" datasetid="dsSearch" columnid="searchModuleId"/>
+      <BindItem id="item3" compid="divSearch.form.cboSysId" propid="value" datasetid="dsSearch" columnid="searchSysId"/>
+    </Bind>
+  </Form>
+</FDL>

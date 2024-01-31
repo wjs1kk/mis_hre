@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PGM_1010P" width="1200" height="585" titletext="프로그램 연관 테이블 관리" onload="PGM_1010P_onload">
+    <Layouts>
+      <Layout height="585" width="1200">
+        <Div id="divPopup" taborder="0" text="" left="0" top="0" height="585" right="0" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Static id="staPopupTitle" taborder="0" text="연관 테이블 관리" left="0" top="0" height="50" cssclass="sta_WF_popupTitle" right="0"/>
+              <Static id="Static10" taborder="1" text="w30" visible="false" left="0" top="50" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+              <Static id="Static10_00" taborder="2" text="w30" visible="false" top="50" width="30" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0" bottom="0"/>
+              <Static id="Static04_00_00_01" taborder="3" text="h 20" visible="false" left="30" top="50" width="103" height="20" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+              <Static id="Static04_00_00_01_00" taborder="4" text="h 23" visible="false" left="549" width="103" height="23" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="-1"/>
+              <Div id="divAvail" taborder="5" left="30" top="70" height="440" cssclass="div_WF_popup" text="" width="546">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" top="0" bottom="0"/>
+                    <Static id="staTitle" taborder="1" text="선택 가능한 테이블" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" width="169"/>
+                    <Static id="Static10_01" taborder="2" text="w20" visible="false" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" right="0" bottom="0"/>
+                    <Static id="Static04_00_00_01" taborder="3" text="h 15" visible="false" left="20" width="100" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static04_00_00_00" taborder="4" text="h 45" onclick="Static31_onclick" visible="false" left="111" top="0" width="60" height="45" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;"/>
+                    <Grid id="grdAvail" taborder="5" left="20" top="44" autofittype="col" right="20" bottom="15" binddataset="dsAvailTableList" onheadclick="divPopup_divAvail_grdAvail_onheadclick">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="64"/>
+                            <Column size="144"/>
+                            <Column size="200"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                            <Cell col="1" text="스키마"/>
+                            <Cell col="2" text="테이블명"/>
+                            <Cell col="3" text="설명"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowSelected"/>
+                            <Cell col="1" text="bind:tableOwner"/>
+                            <Cell col="2" text="bind:tableName"/>
+                            <Cell col="3" text="bind:tableComment"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Div id="divSelected" taborder="6" top="70" height="440" cssclass="div_WF_popup" text="" right="30" width="546">
+                <Layouts>
+                  <Layout width="1032" height="72">
+                    <Static id="Static10" taborder="0" text="w20" visible="false" left="0" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static04_00_00_00_01" taborder="1" text="h 15" visible="false" left="70" width="60" height="15" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0"/>
+                    <Static id="Static10_00" taborder="2" text="w20" visible="false" top="0" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="0" right="0"/>
+                    <Static id="staTitle" taborder="3" text="연관 테이블" cssclass="sta_WF_subTitle01" left="20" top="0" height="45" width="169"/>
+                    <Grid id="grdSelected" taborder="4" left="20" top="44" autofittype="col" right="20" bottom="15" binddataset="dsSelectedTableList" onheadclick="divPopup_divSelected_grdSelected_onheadclick">
+                      <Formats>
+                        <Format id="default">
+                          <Columns>
+                            <Column size="48" band="left"/>
+                            <Column size="64"/>
+                            <Column size="144"/>
+                            <Column size="200"/>
+                          </Columns>
+                          <Rows>
+                            <Row size="30" band="head"/>
+                            <Row size="34"/>
+                          </Rows>
+                          <Band id="head">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                            <Cell col="1" text="스키마"/>
+                            <Cell col="2" text="테이블명"/>
+                            <Cell col="3" text="설명"/>
+                          </Band>
+                          <Band id="body">
+                            <Cell displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowSelected"/>
+                            <Cell col="1" text="bind:tableOwner"/>
+                            <Cell col="2" text="bind:tableName"/>
+                            <Cell col="3" text="bind:tableComment"/>
+                          </Band>
+                        </Format>
+                      </Formats>
+                    </Grid>
+                  </Layout>
+                </Layouts>
+                <InitValue/>
+              </Div>
+              <Static id="Static04_00_00_01_00_00" taborder="7" text="h 25" visible="false" left="549" height="25" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="50" width="103"/>
+              <Button id="btnAdd" top="262" height="28" cssclass="btn_WF_ArrRight" width="28" taborder="8" left="586" tooltiptext="추가" onclick="divPopup_btnAdd_onclick"/>
+              <Button id="btnRemove" top="295" height="28" cssclass="btn_WF_ArrLeft" width="28" taborder="9" left="586" text="" tooltiptext="제거" onclick="divPopup_btnRemove_onclick"/>
+              <Button id="btnSave" text="저장" cssclass="btn_WF_icoSave" top="535" width="63" height="28" taborder="10" left="536" onclick="divPopup_btnSave_onclick"/>
+              <Button id="btnClose" text="닫기" top="535" height="28" cssclass="btn_WF_icoExit" width="65" taborder="11" left="602" onclick="divPopup_btnClose_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divPopup.form.div_Search.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item1" compid="divPopup.form.div_Search.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item2" compid="divPopup.form.div_Search.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item3" compid="divPopup.form.div_Search.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item4" compid="divPopup.form.div_Search.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item5" compid="divPopup.form.div_Search.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item6" compid="divPopup.form.div_Search.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item7" compid="divPopup.form.div_Search.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item8" compid="divPopup.form.div_Search.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item9" compid="divPopup.form.div_Search.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item10" compid="divPopup.form.div_Search.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item11" compid="divPopup.form.div_Search.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item12" compid="divPopup.form.divAvail.form.SCH_RQST_NO" propid="value" datasetid="ds_search" columnid="SCH_RQST_NO"/>
+      <BindItem id="item13" compid="divPopup.form.divAvail.form.SCH_RQST_DT" propid="value" datasetid="ds_search" columnid="SCH_RQST_DT"/>
+      <BindItem id="item14" compid="divPopup.form.divAvail.form.SCH_RQST_ID" propid="value" datasetid="ds_search" columnid="SCH_RQST_ID"/>
+      <BindItem id="item15" compid="divPopup.form.divAvail.form.SCH_APV_STAT_CD" propid="value" datasetid="ds_search" columnid="SCH_APV_STAT_CD"/>
+      <BindItem id="item16" compid="divPopup.form.divAvail.form.SCH_LAST_UPT_NM" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_NM"/>
+      <BindItem id="item17" compid="divPopup.form.divAvail.form.SCH_LAST_UPT_DT" propid="value" datasetid="ds_search" columnid="SCH_LAST_UPT_DT"/>
+      <BindItem id="item18" compid="divPopup.form.divAvail.form.SCH_DEPT_CD" propid="value" datasetid="ds_search" columnid="SCH_RQST_DEPT_NM"/>
+      <BindItem id="item19" compid="divPopup.form.divAvail.form.SCH_RQST_NM" propid="value" datasetid="ds_search" columnid="SCH_RQST_NM"/>
+      <BindItem id="item20" compid="divPopup.form.divAvail.form.SCH_CAL_MON" propid="value" datasetid="ds_search" columnid="SCH_CAL_MON"/>
+      <BindItem id="item21" compid="divPopup.form.divAvail.form.Radio00" propid="value" datasetid="ds_main" columnid="INOUT"/>
+      <BindItem id="item22" compid="divPopup.form.divAvail.form.CheckBox00" propid="value" datasetid="ds_main" columnid="COM_CAR_YN"/>
+      <BindItem id="item23" compid="divPopup.form.divAvail.form.Spin00" propid="value" datasetid="ds_main" columnid="YY"/>
+      <BindItem id="item24" compid="divPopup.form.divAvail.form.Combo00" propid="value" datasetid="ds_main" columnid="TP"/>
+      <BindItem id="item25" compid="divPopup.form.divAvail.form.Edit05" propid="value" datasetid="ds_main" columnid="RQST_AMT"/>
+      <BindItem id="item26" compid="divPopup.form.divAvail.form.RQST_NM" propid="value" datasetid="ds_main" columnid="RQST_ID"/>
+      <BindItem id="item27" compid="divPopup.form.divAvail.form.TextArea01" propid="value" datasetid="ds_main" columnid="CONT"/>
+      <BindItem id="item28" compid="divPopup.form.divAvail.form.SBJ" propid="value" datasetid="ds_main" columnid="SBJ"/>
+      <BindItem id="item29" compid="divPopup.form.divAvail.form.FRM_DT" propid="value" datasetid="ds_main" columnid="FRM_DT"/>
+      <BindItem id="item30" compid="divPopup.form.divAvail.form.TO_DT" propid="value" datasetid="ds_main" columnid="TO_DT"/>
+      <BindItem id="item31" compid="divPopup.form.divAvail.form.rqstNo" propid="value" datasetid="ds_main" columnid="RQST_NO"/>
+      <BindItem id="item32" compid="divPopup.form.divAvail.form.commCd" propid="value" datasetid="ds_main" columnid="COMM_CD"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  프로그램 관리
+ *  MenuPath      시스템 관리 - 기준정보 관리 - 프로그램 관리
+ *  FileName      PRG_1010M.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.02.13
+ *  Desction      프로그램 관리
+ ************** 소스 수정 이력 *************************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.02.13    parksw      최초 생성
+ *  2023.04.18    parksw      폼 ID 변경
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+this.callbackMsg = null;
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.PGM_1010P_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+    this.sysId = this.parent.sysId;
+    this.progId = this.parent.progId;
+    
+    if (Eco.isEmpty(this.sysId) || Eco.isEmpty(this.progId)) {
+        this.gfnAlert("잘못된 접근입니다.");
+        this.gfnPopupClose();
+    }
+    
+    this.dsSearch.setColumn(0, "sysId", this.sysId);
+    this.dsSearch.setColumn(0, "progId", this.progId);
+    
+    this.fnSearch();
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnSearch = function ()
+{
+    var svcId = "getTableList";
+    var svcUrl = "sm/getProgramTableList.do";
+    var inDs = "dsSearch";
+    var outDs = "dsAvailTableList dsSelectedTableList";
+    var strArgs = "";
+    var callbackName = "fnCallback";
+    this.gfnTransaction(svcId, svcUrl, inDs, outDs, strArgs, callbackName);
+};
+
+this.fnSave = function ()
+{
+    var svcId = "setTableList";
+    var svcUrl = "sm/setProgramTableList.do";
+    var inDs = "dsSelectedTableList=dsSelectedTableList:N";
+    var outDs = "";
+    var strArgs = "sysId=" + this.sysId + " progId=" + this.progId;
+    var callbackName = "fnCallback";
+    this.gfnTransaction(svcId, svcUrl, inDs, outDs, strArgs, callbackName);
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    switch (svcId) {
+        case "getTableList":
+            break;
+        case "setTableList":
+            this.gfnAlert("CM_MSG_SAVE_SUCCESS");
+            this.fnSearch();
+            break;
+        default:
+            break;
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divPopup_btnAdd_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnAdd();
+};
+
+this.divPopup_btnRemove_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnRemove();
+};
+
+this.divPopup_btnSave_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnAlert("CM_CFM_BEFORE_SAVE", [], "", { trueFunc: "fnSave", falseFunc: "" });
+};
+
+this.divPopup_btnClose_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.gfnPopupClose();
+};
+
+this.divPopup_divAvail_grdAvail_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowSelected");
+};
+
+this.divPopup_divSelected_grdSelected_onheadclick = function(obj:nexacro.Grid,e:nexacro.GridClickEventInfo)
+{
+	this.gfnSetGridCheckAll(obj, e, "rowSelected");
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnAdd = function ()
+{
+    var indices = this.gfnGetCheckedRows(this.dsAvailTableList, "rowSelected");
+    this.fnMoveRows(this.dsAvailTableList, this.dsSelectedTableList, indices);
+};
+
+this.fnRemove = function ()
+{
+    var indices = this.gfnGetCheckedRows(this.dsSelectedTableList, "rowSelected");
+    this.fnMoveRows(this.dsSelectedTableList, this.dsAvailTableList, indices);
+}
+
+this.fnMoveRows = function (from: nexacro.NormalDataset, to: nexacro.NormalDataset, indices: Array)
+{
+    if (indices.length == 0) {
+        return;
+    }
+
+    var sortedIndices = Array.from(indices).sort((a, b) => a < b ? -1 : (a > b ? 1 : 0));
+    
+    while (sortedIndices.length > 0) {
+        var sourceIdx = sortedIndices.pop();
+        
+        var targetIdx = to.addRow();
+        to.copyRow(targetIdx, from, sourceIdx, "sysId=sysId,progId=progId,tableOwner=tableOwner,tableName=tableName,tableComment=tableComment,tableType=tableType");
+        from.deleteRow(sourceIdx);
+    }
+    
+    to.updateSortGroup("S:+tableOwner+tableName")
+};
+]]></Script>
+    <Objects>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="256"/>
+          <Column id="progId" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsAvailTableList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="progId" type="STRING" size="50"/>
+          <Column id="tableOwner" type="STRING" size="128"/>
+          <Column id="tableName" type="STRING" size="128"/>
+          <Column id="tableComment" type="STRING" size="4000"/>
+          <Column id="tableType" type="STRING" size="256"/>
+          <Column id="rowSelected" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsSelectedTableList" useclientlayout="true">
+        <ColumnInfo>
+          <Column id="sysId" type="STRING" size="20"/>
+          <Column id="progId" type="STRING" size="50"/>
+          <Column id="tableOwner" type="STRING" size="128"/>
+          <Column id="tableName" type="STRING" size="128"/>
+          <Column id="tableComment" type="STRING" size="4000"/>
+          <Column id="tableType" type="STRING" size="256"/>
+          <Column id="rowSelected" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>

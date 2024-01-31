@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.ast.resources.service.ResourcesListDAO">
+
+    <!-- 자원 목록 조회 -->
+    <select id="getResourcesList" parameterType="map" resultType="resourcesListVO">
+        /* resources-list-mapper.getResourcesList */
+        SELECT AI.AST_NO
+             , AI.AST_NM
+             , AI.AST_DIV_CD
+             , (SELECT CODE_NM
+             FROM PTS_STD_CODE SC
+             WHERE SC.CODE_CD = AI.AST_DIV_CD) AS AST_DIV_CD_NM
+             , AI.AST_MNG_DEPT_CD
+             , (SELECT PD.DEPT_NM
+                  FROM PTS_DEPT PD
+                 WHERE PD.DEPT_CD = AI.AST_MNG_DEPT_CD) AS AST_MNG_DEPT_CD_NM
+             , AI.AST_MNG_PIC_ID
+             , (SELECT C.USER_NM_KR
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = AI.AST_MNG_PIC_ID) AS AST_MNG_PIC_ID_NM
+             , AI.AST_MFTR_NM
+             , AI.AST_QTY
+             , AI.AST_UOM
+             , AI.AST_DESC
+             , AI.AST_RMK
+             , AI.RGSTR_ID
+             , TO_CHAR(AI.RGST_DT, 'yyyy-MM-dd') AS RGST_DT
+             , AI.UPDTR_ID
+             , AI.UPDT_DT
+          FROM PTS_AST_INFO AI
+          <where>
+          <if test = 'astDivCd != null and astDivCd != ""'>
+          AND AI.AST_DIV_CD = #{astDivCd}
+          </if>
+          <if test = 'searchKeyword != null and searchKeyword != ""'>
+            <choose>
+                <when test = 'searchType == "AST_NM"'>
+            AND AI.AST_NM LIKE '%' || #{searchKeyword} || '%'
+                </when>
+                <when test = 'searchType == "AST_MNG_DEPT_CD"'>
+            AND AI.AST_MNG_DEPT_CD LIKE '%' || #{searchKeyword} || '%'
+                </when>
+                <when test = 'searchType == "AST_MNG_PIC_ID"'>
+            AND (SELECT C.MEMBER_ID
+                   FROM CMN_USER C
+                  WHERE C.USER_ID = AI.AST_MNG_PIC_ID) LIKE '%' || #{searchKeyword} || '%'
+                </when>
+                <otherwise>
+            AND (AI.AST_NM LIKE '%' || #{searchKeyword} || '%'
+              OR AI.AST_MNG_DEPT_CD LIKE '%' || #{searchKeyword} || '%'
+              OR (SELECT C.MEMBER_ID
+                   FROM CMN_USER C
+                  WHERE C.USER_ID = AI.AST_MNG_PIC_ID) LIKE '%' || #{searchKeyword} || '%')
+                </otherwise>
+            </choose>
+          </if>
+          </where>
+      ORDER BY AI.RGST_DT DESC
+    </select>
+
+</mapper>

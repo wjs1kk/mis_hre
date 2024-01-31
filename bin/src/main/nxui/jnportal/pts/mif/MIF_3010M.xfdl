@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="MIF_3010M" width="1920" height="720" titletext="로그인" onload="MIF_3010M_onload">
+    <Layouts>
+      <Layout>
+        <Static id="sta000" taborder="0" left="0" top="0" right="0" text="" height="720"/>
+        <Div id="divLoginForm" taborder="1" text="Div00" top="37" cssclass="portal_div_frmBg_Login" left="180" right="180" bottom="40">
+          <Layouts>
+            <Layout>
+              <Static id="Static14_00_02" taborder="0" top="111" height="29" enable="true" cssclass="portal_sta_frmTitle_login" onclick="Static_onclick" font="normal 700 25px/normal &quot;맑은고딕&quot;" text="로그인" textAlign="center" width="110" left="45.83%"/>
+              <Static id="Static14_00_02_00" taborder="1" left="37.68%" top="Static14_00_02:15" height="20" enable="true" cssclass="portal_sta_frmDescription" onclick="Static_onclick" font="normal normal 14px/normal &quot;맑은고딕&quot;" text="로그인 후 과제관리시스템의 서비스를 이용하실 수 있습니다." textAlign="center" width="383"/>
+              <Edit id="edtUsername" taborder="4" left="36.2%" top="Static14_00_02_00:50" height="50" cssclass="portal_edi_login" text="Edit" right="36.2%" font="normal 500 16px/normal &quot;맑은고딕&quot;" onkeyup="Edit_onkeyup"/>
+              <Edit id="edtPassword" taborder="5" left="36.2%" top="edtUsername:9" height="50" cssclass="portal_edi_login" text="Edit" right="36.2%" font="normal 500 16px/normal &quot;맑은고딕&quot;" password="true" onkeyup="Edit_onkeyup"/>
+              <CheckBox id="chkSaveId" taborder="2" text="아이디 저장" left="edtPassword:-100%" top="edtPassword:10" width="271" height="30" onclick="chk_pass_onclick" onchanged="chk_pass_onchanged" color="#777777" font="normal 16px/normal &quot;맑은고딕&quot;"/>
+              <Button id="btnLogin" taborder="3" text="로그인" top="chkSaveId:26" height="56" cssclass="portal_btn_frm" left="36.20%" right="36.20%" onclick="divLoginForm_btnLogin_onclick"/>
+              <Div id="divBtnWrap" taborder="6" left="36.2%" top="470" height="16" right="36.2%" text="">
+                <Layouts>
+                  <Layout type="horizontal" flexmainaxisalign="center" flexcrossaxisalign="center">
+                    <Button id="btnFindId" taborder="0" text="아이디 찾기" left="303" top="0" width="115" height="15" cssclass="portal_btn_find" onclick="divLoginForm_btnFindId_onclick" flexshrink="0"/>
+                    <Static id="Static21_00" taborder="1" left="779" top="5" height="13" enable="true" cssclass="portal_sta_btnLine" onclick="Static_onclick" textAlign="center" width="1"/>
+                    <Button id="btnFindPassword" taborder="2" text="비밀번호 찾기" left="781" top="0" width="130" height="15" cssclass="portal_btn_find" onclick="divLoginForm_btnFindPassword_onclick" flexshrink="0"/>
+                  </Layout>
+                </Layouts>
+              </Div>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsLogin">
+        <ColumnInfo>
+          <Column id="username" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  로그인
+ *  MenuPath      로그인 - 로그인
+ *  FileName      MIF_3010M.xfdl 
+ *  Creator       parksw
+ *  CreateDate    2023.10.30
+ *  Desction      로그인 화면
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.10.30    parksw      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+this.callbackMsg = null;
+this.errorCode = null;
+this.errorMsg = null;
+
+let objEnv;
+let svcUrl;
+
+/***********************************************************************************************
+ * FORM EVENT 영역(onload, onbeforeclose)
+ ***********************************************************************************************/
+
+this.MIF_3010M_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	objEnv = nexacro.getEnvironment();
+	svcUrl = objEnv.services["svcurl"].url;
+    
+    const id = window.localStorage.getItem("username");
+    if (id != null && id != "") {
+        this.dsLogin.setColumn(0, "username", id);
+    }
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+
+this.fnLogin = function ()
+{
+    if (!this.fnValidate()) {
+        return;
+    }
+    
+    this.transaction("login", svcUrl + "login", "dsLogin=dsLogin", "", "", "fnCallback");
+};
+
+this.fnInvalidatePreviousSession = function ()
+{
+    this.transaction("login", svcUrl + "mi/login/invalidatePreviousSession.do", "dsLogin=dsLogin", "", "", "fnCallback");
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+this.fnCallback = function (svcId, errorCode, errorMsg)
+{
+    if (svcId === "login") {
+        if (this.callbackMsg === "success") {
+            nexacro.getApplication().reloadSessionInfo();
+        } else if (errorCode == -1000) {
+            this.gfnAlert("ID 또는 비밀번호가 잘못되었습니다.");
+        } else if (errorCode == -1100) {
+            this.gfnAlert(errorMsg, [], "", {}, "C");
+        }
+    }
+};
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+ ************************************************************************************************/
+
+this.divLoginForm_btnLogin_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.fnLogin();
+};
+
+this.divLoginForm_btnFindId_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	const sMenuId = "findIdPassword";
+	const url = "pts::mif/MIF_3020M.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+
+this.divLoginForm_btnFindPassword_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	const sMenuId = "findIdPassword";
+	const url = "pts::mif/MIF_3020M.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+
+this.Edit_onkeyup = function(obj:nexacro.Edit,e:nexacro.KeyEventInfo)
+{
+    if (e.keycode == 13) {
+        this.fnLogin();
+    }
+};
+
+/************************************************************************************************
+ * 사용자 FUNCTION 영역
+ ************************************************************************************************/
+
+this.fnValidate = function ()
+{
+    this.divLoginForm.form.edtUsername.updateToDataset();
+    this.divLoginForm.form.edtPassword.updateToDataset();
+
+    const args = [
+        ["username", "NULL", "아이디"],
+        ["password", "NULL", "비밀번호"],
+    ];
+    
+    return this.gfnCheckGrid(this.dsLogin, args, "");
+};
+
+
+
+]]></Script>
+    <Bind>
+      <BindItem id="item0" compid="divLoginForm.form.edtUsername" propid="value" datasetid="dsLogin" columnid="username"/>
+      <BindItem id="item1" compid="divLoginForm.form.edtPassword" propid="value" datasetid="dsLogin" columnid="password"/>
+    </Bind>
+  </Form>
+</FDL>

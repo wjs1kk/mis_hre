@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="PTS_5020M_04" width="1920" height="510" titletext="가입완료">
+    <Layouts>
+      <Layout>
+        <Div id="Div01" taborder="2" left="180" top="189" height="161" cssclass="portal_div_frmBg" right="180">
+          <Layouts>
+            <Layout>
+              <Static id="Static10" taborder="0" text="회원가입신청이 완료되었습니다." left="0" top="48" height="30" enable="true" cssclass="portal_sta_frmTitle2" onclick="Static_onclick" right="0"/>
+              <Static id="Static00" taborder="1" text="* 관리자 승인후 로그인 가능합니다.&#13;&#10;* 승인까지 최대 00일이 소요될 수 있습니다." left="641" top="78" width="298" height="60" cssclass="portal_sta_joinInfo2"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="Button01" taborder="0" text="확인" left="895" top="Div01:83" height="45" right="895" font="normal 700 16px/normal &quot;맑은고딕&quot;" onclick="Div00_Button01_onclick" cssclass="portal_btn"/>
+        <Div id="Div00" taborder="1" left="180" top="0" height="191" cssclass="div_WF_Area" right="180">
+          <Layouts>
+            <Layout>
+              <Static id="Static00" taborder="0" left="0" top="0" height="125" enable="true" cssclass="portal_sta_frmTitle" onclick="Static_onclick" text="회원가입" textAlign="center" right="0"/>
+              <Static id="Static01" taborder="1" left="0" top="Static00:0" height="66" enable="true" cssclass="portal_sta_joinStep1" onclick="Static_onclick" text="약관동의" width="390"/>
+              <Static id="Static02" taborder="2" left="Static01:0" top="Static00:0" height="66" enable="true" cssclass="portal_sta_joinStep2" onclick="Static_onclick" text="본인확인" width="390"/>
+              <Static id="Static03" taborder="3" left="Static02:0" top="Static00:0" height="66" enable="true" cssclass="portal_sta_joinStep3" onclick="Static_onclick" text="가입양식작성" width="390"/>
+              <Static id="Static04" taborder="4" left="Static03:0" top="Static00:0" height="66" enable="true" cssclass="portal_sta_joinStep4_S" onclick="Static_onclick" text="가입완료" right="0"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_radio">
+        <ColumnInfo>
+          <Column id="code" type="STRING" size="256"/>
+          <Column id="data" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="code">Y</Col>
+            <Col id="data">동의</Col>
+          </Row>
+          <Row>
+            <Col id="code">N</Col>
+            <Col id="data">동의하지않음</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[this.Div00_Button01_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var sMenuId = "joinComplete";
+	var url = "pts::PTS_0000M.xfdl";
+	nexacro.getApplication().goPage(sMenuId, url);
+};
+]]></Script>
+  </Form>
+</FDL>

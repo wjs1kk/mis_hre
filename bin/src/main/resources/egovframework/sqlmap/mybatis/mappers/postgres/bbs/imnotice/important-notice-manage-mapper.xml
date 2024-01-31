@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.bbs.imnotice.service.ImportantNoticeDAO">
+
+    <!-- 게시판 관리 - 공지사항관리 조회 -->
+    <select id="getImportNoticeManage" parameterType="map" resultType="noticeBoardVO">
+        /* important-notice-manage-mapper.getImportNoticeManage */
+        SELECT PB.NTT_NO
+             , PB.BBS_ID
+             , PBM.BBS_NM
+             , PBM.BBS_TY_CD
+             , (SELECT P.CODE_NM
+                  FROM PTS_STD_CODE P
+                 WHERE P.CODE_CD = PBM.BBS_TY_CD) AS BBS_TY_NM
+             , PB.NTT_TTL
+             , PB.NTT_CN
+             , PB.NTC_BGN_YMD
+             , PB.NTC_END_YMD
+             , PB.NOTICE_YN
+             , PB.POP_YN
+             , (SELECT C.MEMBER_ID
+                  FROM CMN_USER C
+                 WHERE C.USER_ID = PB.NTCR_ID) AS NTCR_ID
+             , (SELECT CU.USER_NM_KR
+                  FROM CMN_USER CU
+                 WHERE CU.USER_ID = PB.NTCR_ID)AS NTCR_NM
+             , PB.RGST_DT
+             , PB.RGSTR_ID
+          FROM PTS_BBS PB
+          JOIN PTS_BBS_MST PBM
+            ON PB.BBS_ID = PBM.BBS_ID
+          <where>
+            AND PB.NOTICE_YN = 'Y'
+            <if test='ntcBgnYmd != null and ntcBgnYmd !="" and ntcEndYmd != null and ntcEndYmd != ""'>
+            AND TO_DATE(PB.NTC_BGN_YMD, 'YYYYMMDD') BETWEEN TO_DATE(#{strYmd}, 'YYYYMMDD') and TO_DATE(#{endYmd}, 'YYYYMMDD')
+            </if>
+            <if test='bbsTyCd != null and bbsTyCd !=""'>
+            AND PBM.BBS_TY_CD = #{bbsTyCd}
+            </if>
+            <if test='searchKeyword != null and searchKeyword != ""'>
+                <choose>
+                    <when test='searchType == "TITLE"'>
+                    AND PB.NTT_TTL LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "CONTENT"'>
+                    AND PB.NTT_CN LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <when test='searchType == "WRITER"'>
+                    AND (SELECT C.MEMBER_ID
+                           FROM CMN_USER C
+                          WHERE C.USER_ID = PB.NTCR_ID) LIKE '%' || #{searchKeyword} || '%'
+                    </when>
+                    <otherwise>
+                    AND (PB.NTT_TTL LIKE '%' || #{searchKeyword} || '%'
+                      OR PB.NTT_CN LIKE '%' || #{searchKeyword} || '%'
+                      OR (SELECT C.MEMBER_ID
+                            FROM CMN_USER C
+                           WHERE C.USER_ID = PB.NTCR_ID) LIKE '%' || #{searchKeyword} || '%')
+                    </otherwise>
+                </choose>
+            </if>
+            <if test='popYn != null and popYn != ""'>
+            AND PB.POP_YN = #{popYn}
+            </if>
+          </where>
+      ORDER BY PB.NTC_BGN_YMD
+    </select>
+
+    <!-- 게시판 관리 - 공지사항관리 저장 -->
+    <update id="updateImportNoticeManage" parameterType="noticeBoardVO">
+        /* important-notice-manage-mapper.updateImportNoticeManage */
+        UPDATE PTS_BBS
+           SET NTC_BGN_YMD = #{ntcBgnYmd}
+             , NTC_END_YMD = #{ntcEndYmd}
+             , POP_YN = #{popYn}
+         WHERE NTT_NO = #{nttNo}::INT
+           AND BBS_ID = #{bbsId}
+    </update>
+</mapper>

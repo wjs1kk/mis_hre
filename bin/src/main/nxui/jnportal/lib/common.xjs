@@ -1,0 +1,974 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Script version="1.0" type="xscript5.1"><![CDATA[/**
+*  JnFrame 공통 lib
+*  @FileName 	common.xfdl
+*  @Creator 	parkmg
+*  @CreateDate 	2023.02.07
+*  @Desction    공통 lib
+************** 소스 수정 이력 ***************************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2023.02.07    parkmg      최초 작성(nexacor N 참조)
+*******************************************************************************
+*/
+this.pgmId="";
+this.pgmNm="";
+this.helpPgmId="";
+this.helpYn="Y";
+this.chkCnt=0;
+this.errCd="";
+this.e =null;
+objWebBrowser = null;
+
+var application = nexacro.getApplication();
+if (system.navigatorname != "nexacro") {
+	//nexacro.getEnvironment().services["svcurl"].url = application.gv_domain;
+}
+
+this.domainNm = nexacro.getEnvironment().services["svcurl"].url;
+this.reportComUrl = nexacro.getEnvironment().services["svcurl"].url + "/common/createReport.html";
+this.reportUrl = nexacro.getEnvironment().services["svcurl"].url + "/report/"; 
+this.progressbarObj="";
+/******************************************************************************
+	popupValueSet 관련 변수 선언
+******************************************************************************/
+this.popupObject;
+this.popupColNm;
+this.popupCnt = 0;
+this.popupDsId;
+this.chkPopupValueColNm = "";
+this.popupfwdDs = "";
+
+/******************************************************************************
+	그리드 헤드 셀 클릭 정렬 기능 관련 function
+******************************************************************************/
+// 정렬이 토글될 때 취소를 실행할지 여부
+// true 일 경우 오름차순/내림차순/취소 반복
+// false 일 경우 오름차순/내림차순 반복
+this.SORT_TOGGLE_CANCEL = true;
+
+// 정렬 표시자 구분 (text or image)
+this.MARKER_TYPE = "text";
+
+// Grid Head 에 정렬 상태를 표시할 텍스트 또는 이미지 경로 지정 
+// [오름차순표시, 내림차순표시]
+//this.MARKER = ["URL('temp::grd_sort_up.png')", "URL('temp::grd_sort_dn.png')"];	// ["▲", "▼"]
+this.MARKER = ["▲", "▼"];
+
+/*excel 멀티 export 시 생성되는 동적 데이타셋명*/
+this.xfv_sExportDsCtrlID = "__ds_excelCtrl" ;
+
+/*excel 멀티 export 시 그리드 리스트*/
+this.xfv_aExcelGridList ;
+
+this.xfv_importObject = null;  //ExcelImportObject Component
+this.xfv_exportObject = null;  //ExcelImportObject Component
+
+sLang = nexacro.getEnvironmentVariable("gvLang");
+
+/**
+ * 그리드 행추가
+ * @param {datasetid} 행추가할 dataset id, chk
+ * @return {grid} 행추가
+ * @example
+ * @memberOf 
+ */
+this.gfnInsertRow = function(dsId,type)
+{
+	var rId;
+	if(Eco.isEmpty(type)){
+		rId = dsId.insertRow(dsId.rowposition+1);
+	}else if(type.toLowerCase()=="last"){
+		rId = dsId.insertRow(dsId.rowcount+1);
+	}else if(type.toLowerCase()=="first"){
+		rId = dsId.insertRow(0);
+	}
+}
+
+/**
+ * 그리드 행삭제
+ * @param {datasetid} 행삭제할 dataset id
+ * @return {grid} 행삭제
+ * @example
+ * @memberOf 
+ */
+this.gfnDeleteRow = function(dsId)
+{
+	if(this.gfnIsGridChecked(dsId, "rowCheck") == false){
+		this.gfnAlert("CM_MSG_SELECT_DELETE"); //삭제할 행을 선택해 주십시오.
+		return false;
+	}
+
+	for(var i = dsId.rowcount-1; i >= 0; i--){
+		
+		if(dsId.getColumnInfo("rowCheck") && dsId.getColumnInfo("rowStatus")) {
+			
+			if(dsId.getColumn(i,"rowCheck") == 1){
+				if(dsId.getColumn(i,"rowStatus") == 'inserted'){
+					dsId.set_updatecontrol(false);
+					dsId.setColumn(i,"rowStatus",'');
+					dsId.set_updatecontrol(true);
+					dsId.deleteRow(i);
+				}else if(dsId.getColumn(i,"rowStatus") != 'updated'){
+					dsId.set_updatecontrol(false);
+					dsId.setColumn(i,"rowStatus",'deleted');
+					dsId.setColumn(i, "rowCheck", 1);
+					dsId.setRowType(i,Dataset.ROWTYPE_DELETE);
+					dsId.set_updatecontrol(true);
+				}
+			}
+		}else{
+			dsId.deleteRow(i);
+		}
+	}
+};
+
+/**
+ * 그리드의 특정컬럼을 지정하면 해당 컬럼의 체크된 내역이 존재하는 지 여부를 반환
+ * @param {dataset} obj -	dataId
+ * @param {string} sColChk - Dataset check column id ( ex. "isChecked" )
+ * @param {string} bChecked - 확인할 상태. 체크가 된 것을 찾을 때는 1, 해제는 0, 미지정시는 1
+ * @return {boolean} bChecked 에 설정된 값이 하나라도 있으면 true, 없으면 false.
+ * @example
+ * 사용예시
+ *   if( this.gfn_isGridChecked(this.ds_grid, "isChecked")==false ){
+ *		Ex.core.showMsg("삭제할 항목을 선택해주세요.");	
+ *		return;
+ *	}
+ */
+this.gfnIsGridChecked = function(dsId, sColChk, bChecked)
+{
+	if(Eco.isEmpty(bChecked)){
+		bChecked = 1;
+	}
+	for( var i = 0; i < dsId.rowcount; i++){
+		var colValue = dsId.getColumn(i,sColChk);
+		if(Eco.isEmpty(colValue)){
+			colValue = 0;
+		}
+		if(colValue == bChecked){
+			return true;
+		}
+	}
+	return false;
+};
+
+/**
+ * @description
+ *     그리드의 내용을 엑셀로 내보낸다
+ * @param {nexacro.Grid} grid
+ *     데이터를 내보낼 그리드
+ * @param {Object} [options]
+ *     엑셀 내보내기 옵션
+ * @param {"xls" | "xlsx" | "csv" | "cell"} [options.type=xlsx]
+ *     파일을 내보낼 형식
+ * @param {Object.<string, *>} [options.params]
+ *     내보내기 시 서버로 전달할 데이터
+ * @param {string} [options.filename]
+ *     생성할 파일명
+ * @param {string} [options.password]
+ *     생성된 엑셀 파일에 설정할 비밀번호
+ * @param {string} [options.sheetName]
+ *     생성할 엑셀 시트의 이름
+ */
+this.gfnExportExcel = function (grid: nexacro.Grid, options: Object) {
+	var exportObj = new nexacro.ExcelExportObject();
+	var exportType = nexacro.ExportTypes.EXCEL2007;
+	var param = "";
+	var sheetName = "Sheet1";
+	
+	if (options != null && options.sheetName != null && typeof options.sheetName === "string") {
+		sheetName = options.sheetName;
+	}
+	
+	exportObj.addExportItem(nexacro.ExportItemTypes.GRID, grid, sheetName + "!A1", "allband", "allrecord", "merge", "selectstyle", "image", "color", "both");
+	
+	if (options != null) {
+		switch (options.type) {
+			case "xls":
+				exportType = nexacro.ExportTypes.EXCEL97;
+				break;
+			case "xlsx":
+				exportType = nexacro.ExportTypes.EXCEL2007;
+				break;
+			case "csv":
+				exportType = nexacro.ExportTypes.CSV;
+				break;
+			case "cell":
+				exportType = nexacro.ExportTypes.HANCELL2014;
+				break;
+			default:
+				break;
+		}
+	}
+	
+	exportObj.set_exporttype(exportType);
+	exportObj.set_exporteventtype("totalrecord");
+	exportObj.set_exportuitype("exportprogress");
+	exportObj.set_exportmessageprocess("%d: %d/%d행 처리됨");
+	exportObj.set_exporturl(nexacro.getEnvironment().services["svcurl"].url + "XExportImport");
+	exportObj.set_exportactivemode("noactive");
+	
+	if (options != null && options.filename != null && typeof(options.filename) === "string" && !/^\s*$/.test(options.filename)) {
+		exportObj.set_exportfilename(options.filename);
+	}
+
+	if (options != null && options.password != null && typeof(options.password) === "string" && !/^\s*$/.test(options.password)) {
+		exportObj.set_exportfilepassword(options.password);
+	}
+	
+	if (options != null && options.params != null && typeof(options.params) === "object") {
+		if (typeof options.params === "string") {
+			param = options.params;
+		} else if (typeof options.params === "object") {
+			var arr = [];
+			for (var k in options.params) {
+				if (Object.prototype.hasOwnProperty(options.params, k)) {
+					arr.push(encodeURIComponent(k) + "=" + encodeURIComponent(options.params[k]));
+				}
+			}
+			param = arr.join("&");
+		}
+	}
+	
+	exportObj.exportData(param);
+};
+
+/**
+ * 그리드 헤더에 All 클릭시 체크/해제
+ * @param {Grid} obj Grid Object
+ * @param {GridClickEventInfo} e 그리드클릭이벤트객체
+ * @param {string} sColChk - Dataset check column id
+ * @param {string} truevalue - true value
+ * @param {string} falsevalue - false value
+ * @return {void}
+ */		
+this.gfnSetGridCheckAll = function (obj:Grid, e:GridClickEventInfo, sColChk, truevalue, falsevalue)
+{
+	if (e.col == obj.getBindCellIndex("body",sColChk)) {
+
+		var dsObj = obj.getBindDataset();
+		
+		if(Eco.isEmpty(truevalue)) truevalue = 1;
+		if(Eco.isEmpty(falsevalue)) falsevalue = 0;
+		
+		var sColid;
+		if(Eco.isEmpty(sColChk)){
+			sColid = obj.getCellProperty("body", e.cell, "text").split("bind:").join("");
+		}else{
+			sColid = sColChk;
+		}
+		
+		obj.isGridCheckAll = (obj.isGridCheckAll ? 0 : 1);
+		dsObj.set_enableevent(false);
+		
+		dsObj.set_updatecontrol(false);
+		
+		for (var i = 0; i < dsObj.getRowCount(); i++) {
+			dsObj.setColumn(i, sColid, (obj.isGridCheckAll?truevalue:falsevalue));
+	
+			if(sColChk=="rowCheck" && obj.isGridCheckAll==0 && dsObj.getColumnInfo("rowStatus") && (dsObj.getColumn(i,"rowStatus") == "updated" || dsObj.getColumn(i,"rowStatus") == "deleted")){
+				dsObj.setColumn(i,"rowStatus","");
+				dsObj.setRowType(i,Dataset.ROWTYPE_NORMAL);
+			}
+		}
+		dsObj.set_updatecontrol(true);
+		
+		obj.setCellProperty("Head", e.cell, "expr", obj.isGridCheckAll);
+		dsObj.set_enableevent(true);
+	}
+};
+
+/**
+ * generate form components multi lang data (dsML 생성)
+ * generate form components multi lang Excel file (Excel file 생성)
+ * @param {Form} obj Form Object
+ * @param {string} null - for 재귀
+ * @return {void}
+ * this.gfnGenerateML(this, null)
+ */	
+this.gfnGenerateML = function(objForm, parentCompId)
+{
+	var sLang = nexacro.getEnvironmentVariable("gvLang");
+	
+	if(sLang != "ko")
+		 return alert("Please set your language to Korean.");
+	
+    var arrComp = objForm.components;
+    var nLength = arrComp.length;
+	var preFixCompId = "";
+	const regex = /[ㄱ-ㅎ|가-힣|a-z|A-Z]/;  // text 한글, 영문 있는 대상
+	
+	// 상위component id 존재
+	if(!this.gfnIsNull(parentCompId)){
+		preFixCompId = parentCompId + ".form.";
+	}else{
+		var objDs = new Dataset();
+		objDs.set_name("dsML");
+		objDs.addColumn("formId", "string");
+		objDs.addColumn("compId", "string");
+		objDs.addColumn("langId", "string");
+		objDs.addColumn("compIndex", "int");
+		objDs.addColumn("compText", "string");
+		objDs.addColumn("compType", "string");
+		this.addChild("dsML", objDs);
+	}
+   
+    for(var i = 0; i < nLength; i++)
+    {
+		var curCompId = preFixCompId + arrComp[i].id;
+		
+		if(arrComp[i] instanceof nexacro.Div)
+		{
+			this.gfnGenerateML(arrComp[i].form, curCompId); //재귀함수
+		}
+		else if(arrComp[i] instanceof nexacro.Tab)
+		{
+			var nPages = arrComp[i].tabpages.length;
+			
+			for(var j = 0; j < nPages; j++)
+			{
+				var tabpageId = curCompId + "." + arrComp[i].tabpages[j].id
+				
+				var tabpagesText = arrComp[i].tabpages[j].text;
+				
+				if(!this.gfnIsNull(tabpagesText) && regex.test(tabpagesText)){
+					var rId = this.dsML.addRow();  // ko
+					this.dsML.setColumn(rId, "formId", this.name);
+					this.dsML.setColumn(rId, "langId", "ko");
+					this.dsML.setColumn(rId, "compId", tabpageId);
+					this.dsML.setColumn(rId, "compIndex", 0);
+					this.dsML.setColumn(rId, "compText", tabpagesText);
+					this.dsML.setColumn(rId, "compType", "Tabpage");
+					
+					rId = this.dsML.addRow();  // en
+					this.dsML.setColumn(rId, "formId", this.name);
+					this.dsML.setColumn(rId, "langId", "en");
+					this.dsML.setColumn(rId, "compId", tabpageId);
+					this.dsML.setColumn(rId, "compIndex", 0);
+					
+					var enText = this.gfnTranslateKoToEn(tabpagesText);
+					enText = enText ? enText : "Tabpage_" + j;
+					
+					this.dsML.setColumn(rId, "compText", enText);
+					this.dsML.setColumn(rId, "compType", "Tabpage");
+				}
+				
+				this.gfnGenerateML(arrComp[i].tabpages[j].form, tabpageId); //재귀함수
+			}
+		}
+		else if(arrComp[i] instanceof nexacro.Static)
+		{
+			// exclude line guide, bg static, no character			
+			if(!this.gfnIsNull(arrComp[i].text) && arrComp[i].background != "fuchsia" && arrComp[i].background != "aqua" 
+			    && arrComp[i].background != "antiquewhite" && arrComp[i].cssclass != "sta_WF_bg" && regex.test(arrComp[i].text)){
+				var rId = this.dsML.addRow();  // ko
+				this.dsML.setColumn(rId, "formId", this.name);
+				this.dsML.setColumn(rId, "langId", "ko");
+				this.dsML.setColumn(rId, "compId", curCompId);
+				this.dsML.setColumn(rId, "compIndex", 0);
+				this.dsML.setColumn(rId, "compText", arrComp[i].text);
+				this.dsML.setColumn(rId, "compType", "Static");
+				
+				rId = this.dsML.addRow();  // en
+				this.dsML.setColumn(rId, "formId", this.name);
+				this.dsML.setColumn(rId, "langId", "en");
+				this.dsML.setColumn(rId, "compId", curCompId);
+				this.dsML.setColumn(rId, "compIndex", 0);
+				
+				var enText = this.gfnTranslateKoToEn(arrComp[i].text);
+				enText = enText ? enText : "Static_" + i;
+				
+				this.dsML.setColumn(rId, "compText", enText);
+				this.dsML.setColumn(rId, "compType", "Static");
+			}
+		}
+		else if(arrComp[i] instanceof nexacro.Button)
+		{
+			if(!this.gfnIsNull(arrComp[i].text) && regex.test(arrComp[i].text)){
+				var rId = this.dsML.addRow();  // ko
+				this.dsML.setColumn(rId, "formId", this.name);
+				this.dsML.setColumn(rId, "langId", "ko");
+				this.dsML.setColumn(rId, "compId", curCompId);
+				this.dsML.setColumn(rId, "compIndex", 0);
+				this.dsML.setColumn(rId, "compText", arrComp[i].text);
+				this.dsML.setColumn(rId, "compType", "Button");
+				
+				rId = this.dsML.addRow();  // en
+				this.dsML.setColumn(rId, "formId", this.name);
+				this.dsML.setColumn(rId, "langId", "en");
+				this.dsML.setColumn(rId, "compId", curCompId);
+				this.dsML.setColumn(rId, "compIndex", 0);
+				
+				var enText = this.gfnTranslateKoToEn(arrComp[i].text);
+				enText = enText ? enText : "Button_" + i;
+				
+				this.dsML.setColumn(rId, "compText", enText);
+				this.dsML.setColumn(rId, "compType", "Button");
+			}
+		}
+		else if(arrComp[i] instanceof nexacro.Grid)
+		{
+			for(var j = 0; j < arrComp[i].getCellCount("head"); j++){
+				var hText = arrComp[i].getCellProperty("head", j, "text");
+				
+				if(!this.gfnIsNull(hText) && regex.test(hText)){
+					var rId = this.dsML.addRow();  // ko
+					this.dsML.setColumn(rId, "formId", this.name);
+					this.dsML.setColumn(rId, "langId", "ko");
+					this.dsML.setColumn(rId, "compId", curCompId);
+					this.dsML.setColumn(rId, "compIndex", j);
+					this.dsML.setColumn(rId, "compText", hText);
+					this.dsML.setColumn(rId, "compType", "Grid");
+					
+					rId = this.dsML.addRow();  // en
+					this.dsML.setColumn(rId, "formId", this.name);
+					this.dsML.setColumn(rId, "langId", "en");
+					this.dsML.setColumn(rId, "compId", curCompId);
+					this.dsML.setColumn(rId, "compIndex", j);
+					
+					var enText = this.gfnTranslateKoToEn(hText);
+					enText = enText ? enText : "HeadColIdx_" + j;
+					
+					this.dsML.setColumn(rId, "compText", enText);
+					this.dsML.setColumn(rId, "compType", "Grid");
+				}
+			}
+		}
+	}
+	
+	// excel export
+	if(this.gfnIsNull(parentCompId)){
+		
+		if(!this.dsML){
+			this.gfnAlert("Multi Language Dataset이 존재하지 않습니다.");
+			return;
+		}
+		// grid 생성
+		var genGrid = new Grid();
+		genGrid.init("genGrid", 0, 0, 0, 0, null, null);
+		this.addChild("genGrid", genGrid);
+		genGrid.show();
+		
+		genGrid.set_binddataset(this.dsML);
+		
+		genGrid.appendContentsRow("head");
+		genGrid.appendContentsRow("body");
+		
+		genGrid.appendContentsCol();
+		genGrid.appendContentsCol();
+		genGrid.appendContentsCol();
+		genGrid.appendContentsCol();
+		genGrid.appendContentsCol();
+		
+		genGrid.setFormatColProperty(0, "size", 100);
+		genGrid.setFormatColProperty(1, "size", 300);
+		genGrid.setFormatColProperty(2, "size", 100);
+		genGrid.setFormatColProperty(3, "size", 100);
+		genGrid.setFormatColProperty(4, "size", 200);
+		genGrid.setFormatColProperty(5, "size", 100);
+		
+		for (var i = 0; i < this.dsML.getColCount(); i++) 
+		{
+			var colinfo = this.dsML.getColumnInfo(i);
+			genGrid.setCellProperty("head", i, "text", colinfo.name);
+			genGrid.setCellProperty("body", i, "text", "bind:" + colinfo.name);
+		}
+		
+		this.gfnExportExcel(this.genGrid, { type: "xlsx", filename: "genML_" + this.name });
+		
+		this.genGrid.destroy();
+		this.removeChild("dsML");
+	}
+};
+
+/**
+ * generate form components multi lang Excel file (Excel file 생성)
+ * gfnGenerateML 이후에 작성(pair)
+ * @return {void}
+ * this.gfnGenerateML(this);
+ * this.gfnGenerateMLExcel();
+ */	
+// this.gfnGenerateMLExcel = function()
+// {
+// 	if(!this.dsML){
+// 		this.gfnAlert("Multi Language Dataset이 존재하지 않습니다.");
+// 		return;
+// 	}
+// 	// grid 생성
+// 	var genGrid = new Grid();
+// 	genGrid.init("genGrid", 0, 0, 0, 0, null, null);
+//     this.addChild("genGrid", genGrid);
+//     genGrid.show();
+// 	
+// 	genGrid.set_binddataset(this.dsML);
+// 	
+// 	genGrid.appendContentsRow("head");
+// 	genGrid.appendContentsRow("body");
+// 	
+// 	genGrid.appendContentsCol();
+// 	genGrid.appendContentsCol();
+// 	genGrid.appendContentsCol();
+// 	genGrid.appendContentsCol();
+// 	genGrid.appendContentsCol();
+// 	
+// 	genGrid.setFormatColProperty(0, "size", 100);
+// 	genGrid.setFormatColProperty(1, "size", 300);
+// 	genGrid.setFormatColProperty(2, "size", 100);
+// 	genGrid.setFormatColProperty(3, "size", 100);
+// 	genGrid.setFormatColProperty(4, "size", 200);
+// 	genGrid.setFormatColProperty(5, "size", 100);
+// 	
+// 	for (var i = 0; i < this.dsML.getColCount(); i++) 
+// 	{
+// 		var colinfo = this.dsML.getColumnInfo(i);
+// 		genGrid.setCellProperty("head", i, "text", colinfo.name);
+// 		genGrid.setCellProperty("body", i, "text", "bind:" + colinfo.name);
+// 	}
+// 	
+// 	this.gfnExportExcel(this.genGrid, { type: "xlsx", filename: "genML_" + this.name });
+// 	
+// 	this.genGrid.destroy();
+// 	this.removeChild("dsML");
+// };
+
+/**
+ * translate Kor to Eng
+ * 주요 반복 단어 추가하여 사용
+ * @param {String} string kor text
+ * @return {String} string eng text
+ * this.gfnTranslateKoToEn("저장");
+ */	
+this.gfnTranslateKoToEn = function(koText)
+{
+	var enText = "";
+	
+	if(this.gfnIsNull(koText))
+		return enText;
+	
+	switch(koText){
+		case "조회": enText = "Search"; break;
+		case "저장": enText = "Save"; break;
+		case "신규": enText = "New"; break;
+		case "삭제": enText = "Delete";	break;
+		case "순번": enText = "No"; break;	
+		case "상태": enText = "Status"; break;
+		case "행추가": enText = "Add"; break;
+		case "행삭제": enText = "Delete"; break;
+		case "검색결과": enText = "Search Results"; break;
+		default:
+		break;
+	}
+	return enText;
+};
+
+/**
+ * @summary 공통 콤보 데이터를 로드한다.
+ * @author 박상욱
+ * @param {string} serviceId
+ *     트랜잭션을 구분하기 위한 ID를 설정한다.
+ * @param {string} params
+ *     <pre>
+ *     데이터셋에 로드할 콤보 데이터에 대한 옵션을 설정한다. 옵션의 형식은 다음과 같다.
+ *         <데이터셋 ID>=[<시스템 ID>:]<모듈 ID>:<코드 ID>[:<콤보 유형>]
+ *     []는 필수가 아닌 부분을 의미하며, 여러 콤보 데이터셋을 로드할 때는 띄어쓰기로 각 데이터셋을 구분한다.
+ *     옵션의 각 항목은 다음과 같다.
+ *     필드        |설명
+ *     ------------|-------------------------------------------------------------
+ *     데이터셋 ID | 조회한 콤보 데이터를 저장할 데이터셋의 이름이다.
+ *     시스템 ID   | 조회하고자 하는 코드가 정의되어 있는 시스템 ID이다.(SYS_ID)
+ *                 | 미지정 시 현재 세션 상의 값을 사용한다.
+ *     모듈 ID     | 조회하고자 하는 코드가 정의되어있는 모듈의 ID이다.(MODULE_ID)
+ *     코드 ID     | 콤보 데이터로 사용하고자 하는 공통 코드 ID(HEADER_CODE)
+ *     콤보 유형   | 콤보 맨 앞에 추가될 기본 항목 라벨의 유형. 다음 값을 사용할 수 있다.
+ *                 |   A: '전체', C: '선택'
+ *                 | 빈 문자열이 오거나 지정하지 않는 경우에는 해당 항목이 추가되지 않는다.
+ *
+ *     콤보 데이터를 저장할 데이터 셋에는 text와 value, 두 개의 열이 정의되어 있어야 한다.
+ *
+ *     예시:
+ *       dsProgCombo=PMS:SM:PROG_TY:A      // 시스템 ID가 PMS, 모듈이 SM인 PROG_TY 코드를 조회한다. 맨 앞에 '전체'항목이 추가된다.
+ *       dsProgCombo=PMS:SM:PROG_TY        // 시스템 ID가 PMS, 모듈이 SM인 PROG_TY 코드를 조회한다. 맨 앞에 기본 항목은 추가되지 않는다.
+ *       dsProgCombo=SM:PROG_TY:A          // 현재 세션상의 시스템 ID 내에서, 모듈이 SM인 PROG_TY 코드를 조회한다. 맨 앞에 '전체'항목이 추가된다.
+ *       dsProgCombo=SM:PROG_TY            // 현재 세션상의 시스템 ID 내에서, 모듈이 SM인 PROG_TY 코드를 조회한다. 맨 앞에 기본 항목은 추가되지 않는다.
+ *       dsProgCombo=SM:PROG_TY dsProgCombo=SM:FUNC_TYPE        // 두 개의 데이터셋에 콤보 데이터를 로드하는 예시
+ *     </pre>
+ *
+ * @param {string} [callback]
+ *     콤보 데이터 로드 후 실행할 콜백의 이름을 지정한다.
+ *
+ * @return {void} 이 함수는 값을 반환하지 않는다.
+ *
+ * @example
+ *     this.gfnLoadCombo("loadCombo", "dsProgTyCombo=PMS:SM:PROG_TY:C dsFuncTyCombo=SM:PROG_TY:C", "fnCallBack");
+ */
+this.gfnLoadCombo = function (serviceId, params, callback)
+{
+	var arr = params.split(' ');
+	for (var i = 0; i < arr.length; i++) {
+		var dsId = arr[i].substring(0, arr[i].indexOf('='));
+		arr[i] = dsId + "=" + dsId;
+	}
+	
+	var objEnv = nexacro.getEnvironment();
+	var now = new Date();
+	var date = String(now.getYear())
+		+ "-" + String(now.getMonth()).padLeft(2, "0")
+		+ "-" + String(now.getDate()).padLeft(2, "0")
+		+ " " + String(now.getHours()).padLeft(2, "0")
+		+ ":" + String(now.getMinutes()).padLeft(2, "0")
+		+ ":" + String(now.getSeconds()).padLeft(2, "0")
+		+ " " + String(now.getMilliseconds());
+	var time = now.getTime();
+	var svcId = serviceId + "|" + callback + "|true|" + date + "|" + time;
+	
+	this.transaction(svcId, objEnv.services["svcurl"].url + "cm/getCommonCodeCombo.do", "", arr.join(" "), params, "gfnCallback", false, "3");
+};
+
+///////////////
+// 권한 체크 //
+///////////////
+
+/**
+ * @summary 사용자가 지정한 권한 중 최소 하나 이상을 가지고 있는지 확인한다.
+ * @param {...string} roles
+ *     보유 여부를 확인할 권한 목록
+ * @return {boolean}
+ *     사용자가 주어진 권한 목록 중 하나 이상을 가지고 있는 경우 true를 반환한다.
+ *     만약 확인할 권한이 주어지지 않은 경우에는 false를 반환한다.
+ * @example
+ *     this.gfnHasAnyRole("ROLE_AST_ADMIN", "ROLE_BRD_ADMIN");
+ *     this.gfnHasAnyRole("ROLE_ADMIN");
+ */
+this.gfnHasAnyRoles = function (roles)
+{
+	var args = Array.prototype.slice.call(arguments);      // arguments를 배열로 변환한다.
+	var roleDs = nexacro.getApplication().gdsRoleCodeList;
+
+	for (var i = 0; i < roleDs.rowcount; i++) {
+		var n = args.indexOf(roleDs.getColumn(i, "roleCode"));
+		if (n >= 0)
+			return true;
+	}
+	return false;
+};
+
+/**
+ * @summary 사용자가 지정한 권한 모두를 가지고 있는지 확인한다.
+ * @param {...string} roles
+ *     보유 여부를 확인할 권한 목록
+ * @return {boolean}
+ *     사용자가 주어진 권한 목록에서 하나라도 가지고 있지 않은 false를 반환한다.
+ *     만약 확인할 권한이 주어지지 않은 경우에는 true를 반환한다.
+ * @example
+ *     this.gfnHasAllRole("ROLE_AST_ADMIN", "ROLE_BRD_ADMIN");
+ *     this.gfnHasAllRole("ROLE_ADMIN");
+ */
+this.gfnHasAllRoles = function (roles)
+{
+	var args = Array.prototype.slice.call(arguments);      // arguments를 배열로 변환한다.
+	var roleDs = nexacro.getApplication().gdsRoleCodeList;
+	for (var i = 0; i < roleDs.rowcount; i++) {
+		var n = args.indexOf(roleDs.getColumn(i, "roleCode"));
+		if (n < 0)
+			return false;
+	}
+	return true;
+};
+
+/////////////////
+// 입력값 확인 //
+/////////////////
+
+/**
+ * @summary 그리드 또는 데이터셋 내에 변경된 행이 있는지 확인한다.
+ * @param {nexacro.Grid | nexacro.Dataset} grid
+ *     변경 내역이 있는지 확인할 그리드 또는 데이터셋
+ * @return {boolean}
+ *     그리드 또는 데이터셋 내에 변경된 내역이 있으면 true를 반환한다.
+ */
+this.gfnIsUpdated = function (grid)
+{
+    if (Eco.XComp.typeOf(grid) == "Grid") {
+        return Ex.util.isUpdated(grid.getBindDataset());
+    } else {
+        return Ex.util.isUpdated(grid);
+    }
+};
+
+/**
+ * @summary 그리드 내의 데이터에 필수인 값이 입력되었는지 확인한다.
+ * @param {nexacro.Grid} grid
+ *     체크하고자 하는 그리드 객체
+ * @param {[string, string, string][]} args
+ * @param {string} row
+ * @return {boolean}
+ */
+this.gfnCheckGrid = function (grid, argList, row)
+{
+    for (var i = 0; i < argList.length; i++) {
+        var args = argList[i];
+        if (!this.gfnCheckGridValues(grid, args[1], args[0], row, args[2])) {
+            return false;
+        }
+    }
+    
+    return true;
+};
+
+/**
+ * @param {nexacro.Component} component
+ * @param {string} msg
+ * @param {string} chkType
+ * @param {string} column
+ * @param {string} row
+ * @param {string} logicType
+ * @return {boolean}
+ */
+this.gfnCheckGridValues = function (component, chkType, column, row, msg, logicType)
+{
+    var sLang = nexacro.getEnvironmentVariable("gvLang");
+    var data;
+    
+    switch (sLang) {
+        case "en":
+            sLang = "ENG";
+            break;
+        case "ko":
+        default:
+            sLang = "KOR";
+            break;
+    }
+    
+    if (Eco.isEmpty(chkType)) {
+        chkType = "NULL";
+    }
+    
+    var rowOffset = application.gdsMessage.findRow("msgId", msg);
+    if (rowOffset >= 0) {
+        msg = application.gdsMessage.getColumn(rowOffset, (sLang == "ENG") ? "msgEng" : "msg");
+    }
+    
+    if (Eco.isEmpty(column)) {
+        if (!Eco.isEmpty(component.value) && Eco.XComp.typeOf(component) == "MaskEdit") {
+            data = nexacro.trim(component.value);
+        } else {
+            data = component.value;
+        }
+        
+        if (!Ex.vali.checkValue(data, chkType, msg, sLang, logicType)) {
+            component.setFocus();
+            return false;
+        }
+    } else {
+        var grid = (component instanceof nexacro.Grid) ? component : null;
+        var ds = (component instanceof nexacro.Dataset) ? component : grid.getBindDataset();
+        var rowType = 1;
+        var rowStatus = "";
+        
+        if ((msg == null || msg == "") && grid != null) {
+            var cellIdx = grid.getBindCellIndex("body", column);
+            msg = grid.getCellText(-1, cellIdx)    // 헤더 텍스트
+                .replace(/\r?\n|\r/, "");
+        }
+        
+        var result = true;
+        
+        if (Eco.isEmpty(row)) {
+            for (var i = 0; i < ds.rowcount; i++) {
+                var addedOrModified = false;
+                
+                if (ds.getColumnInfo("rowStatus")) {
+                    rowStatus = ds.getColumn(i, "rowStatus");
+                    addedOrModified = (rowStatus == "inserted" || rowStatus == "updated");
+                } else {
+                    rowType = ds.getRowType(i);
+                    addedOrModified = (rowType == 2 || rowType == 4);
+                }
+                
+                if (addedOrModified && !Ex.vali.checkValue(ds.getColumn(i, column), chkType, msg, sLang)) {
+                    result = false;
+                    break;
+                }
+            }
+        } else {
+            result = Ex.vali.checkValue(ds.getColumn(row, column), chkType, msg, sLang, logicType);
+        }
+        
+        if (!result) {
+            ds.set_rowposition(i);
+            if (grid != null) {
+                var cellIdx = grid.getBindCellIndex("body", column);
+                grid.setCellPos(cellIdx);
+                grid.showEditor(true);
+            }
+        }
+        
+        return result;
+    }
+};
+
+/**
+* dataset 의 row를 object 형태로 반환
+* @param {datasetId, rowidx} 
+* @return {object} 
+* @example
+* this.gfnGetRowObj(this.Dataset00, 1);
+*/
+this.gfnGetRowObj = function(oDs, nRow){
+	var oRtn = new Object();
+	var sColNm;
+	var sValue = nRow == -1 ? " = ''" : " = oDs.getColumn(nRow, i)";
+	
+	for(var i = 0; i < oDs.colcount; i++){
+		sColNm = oDs.getColID(i);
+		
+		var sScript = "oRtn." + sColNm + sValue;
+		eval(sScript);
+	}
+	return oRtn;
+};
+
+
+/**
+ * @summary 그리드 내 특정 열의 체크박스가 체크된 행의 인덱스 목록을 가져온다.
+ * @description
+ *     그리드 또는 데이터셋에서 특정 열의 체크박스가 체크되어 있는 행의 인덱스 목록을 가져온다.
+ *     만약 그리드에서 찾는 경우, 지정한 열의 displaytype이 checkboxcontrol이 아니거나,
+ *     edittype이 checkbox가 아니면, 빈 배열이 반환된다.
+ *     데이터셋에서 찾는 경우, 지정한 열의 타입이 체크박스라고 가정하고 찾는다.
+ * @param {nexacro.Grid | nexacro.Dataset} grid
+ *     체크된 행의 목록을 확인할 그리드 또는 데이터셋
+ * @param {string} colId
+ *     체크 여부를 확인하고자 하는 열의 ID
+ * @return {number[]}
+ *     체크박스가 체크된 행의 목록.
+ *     만약 선택된 행이 없거나, 첫 번째 파라미터가 그리드이면서 지정한 열의 타입이 체크박스가 아닌 경우
+ *     빈 배열이 반환된다.
+ */
+this.gfnGetCheckedRows = function (grid, colId)
+{
+    var result = [];
+    var ds = grid;
+    var falseValue = false;
+    var trueValue = true;
+
+    if (grid instanceof nexacro.Grid) {
+        ds = grid.getBindDataset();
+        var colIdx = grid.getBindCellIndex("body", colId);
+        if (grid.getCellProperty("body", colIdx, "displaytype") != "checkboxcontrol" && grid.getCellProperty("body", colIdx, "edittype") != "checkbox" ) {
+            return [];
+        }
+        
+        falseValue = grid.getCellProperty("body", colIdx, "checkboxfalsevalue");
+        trueValue = grid.getCellProperty("body", colIdx, "checkboxtruevalue");
+    }
+    
+    if (trueValue == null) {
+        trueValue = true;
+    }
+    
+    if (falseValue == null) {
+        falseValue = false;
+    }
+    
+    for (var i = 0; i < ds.rowcount; i++) {
+        var value = ds.getColumn(i, colId);
+        
+        if (value == trueValue) {
+            result.push(i);
+        }
+    }
+    
+    return result;
+};
+
+/**
+ * 그리드 건수 표시
+ * @param dsId 건수 count할 데이터셋 아이디
+ * @param oComponent 건수 count한 것을 보여줄 component
+ * @return 
+ * @example
+ * @memberOf 
+ */
+this.gfnRowCount = function (dsId,oComponent) 
+{
+	//데이터셋의 현재 행의 카운터를 구함
+	var strRowCount = '(총 ' + dsId.rowcount + '건)';
+	if(sLang=="ENG"){
+		strRowCount = '(Total : ' + dsId.rowcount + ')';
+	}
+	oComponent.set_text(strRowCount);
+};
+
+/**
+ * 총 건수 표시(paging)
+ * @param 조회 총 건수
+ * @param oComponent 건수 count한 것을 보여줄 component
+ * @return 
+ * @example
+ * @memberOf 
+ */
+this.gfnAllRowCount = function (cnt, oComponent) 
+{
+	//데이터셋의 현재 행의 카운터를 구함
+	var strRowCount = '(총 ' + cnt + '건)';
+	if(sLang=="ENG"){
+		strRowCount = '(Total : ' + cnt + ')';
+	}
+	oComponent.set_text(strRowCount);
+};
+
+/**
+*  문자값을 숫자값으로 변환 하기
+*/ 
+this.gfnChangeNumber = function (srcStr , defvalue){
+	if( !defvalue) defvalue = 0;
+	if( !srcStr) return defvalue;
+	srcStr = '' + srcStr;	
+	try{
+		val = parseInt(srcStr,10);
+		if( val == NaN) {
+			return defvalue;
+		 }
+		return val;
+	}catch(e){
+		return defvalue;
+	}
+};
+
+/**
+ * 날짜값 체크
+ * @param sDate 받아온 날짜
+ * @return {boolean}
+ * @example
+ * @memberOf 
+ */
+this.gfnDateCheck = function(sDate)
+{
+	var a = sDate.length;
+	var b = sDate
+	if( a != 8 ){
+		return false;
+	}
+
+	var nYear = parseInt(b.substring(1,4), 10);
+	var nMonth = parseInt(b.substring(4,6), 10);
+	var nDate = parseInt(b.substring(6,8), 10);
+
+	if( nYear < 1 || nYear > 9999 ){
+		return false;
+	}
+	if( nMonth < 1 || nMonth > 12 ){
+		return false;
+	}
+    if( nDate < 1 || nDate > 31 ){
+		return false;
+	}
+    return true;
+}
+
+this.gfnIsEmpty = function (value)
+{
+    return Eco.isEmpty(value);
+};]]></Script>

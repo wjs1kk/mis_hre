@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TypeDefinition version="3.0">
+  <Modules>
+    <Module url="CompBase.json"/>
+    <Module url="ComComp.json"/>
+    <Module url="Grid.json"/>
+    <Module url="ListView.json"/>
+    <Module url="DeviceAPI.json"/>
+    <Module url="extlib::TutorialActions.json"/>
+    <Module url="extlib::ActionAsset.json"/>
+    <Module url="extlib::extPrototype.json"/>
+    <Module url="extlib::EcoLibrary.json"/>
+    <Module url="extlib::ExLib.json"/>
+    <Module url="extlib::raonkupload/plugin/nexacro/21/RaonkUpload.json"/>
+  </Modules>
+  <Components>
+    <Component type="JavaScript" id="Button" classname="nexacro.Button" prefixid="btn_"/>
+    <Component type="JavaScript" id="Combo" classname="nexacro.Combo"/>
+    <Component type="JavaScript" id="Edit" classname="nexacro.Edit"/>
+    <Component type="JavaScript" id="MaskEdit" classname="nexacro.MaskEdit"/>
+    <Component type="JavaScript" id="TextArea" classname="nexacro.TextArea"/>
+    <Component type="JavaScript" id="Static" classname="nexacro.Static"/>
+    <Component type="JavaScript" id="Div" classname="nexacro.Div"/>
+    <Component type="JavaScript" id="PopupDiv" classname="nexacro.PopupDiv"/>
+    <Component type="JavaScript" id="Radio" classname="nexacro.Radio"/>
+    <Component type="JavaScript" id="CheckBox" classname="nexacro.CheckBox"/>
+    <Component type="JavaScript" id="ListBox" classname="nexacro.ListBox"/>
+    <Component type="JavaScript" id="Grid" classname="nexacro.Grid"/>
+    <Component type="JavaScript" id="Spin" classname="nexacro.Spin"/>
+    <Component type="JavaScript" id="Menu" classname="nexacro.Menu"/>
+    <Component type="JavaScript" id="PopupMenu" classname="nexacro.PopupMenu"/>
+    <Component type="JavaScript" id="Tab" classname="nexacro.Tab"/>
+    <Component type="JavaScript" id="GroupBox" classname="nexacro.GroupBox"/>
+    <Component type="JavaScript" id="Calendar" classname="nexacro.Calendar"/>
+    <Component type="JavaScript" id="ImageViewer" classname="nexacro.ImageViewer"/>
+    <Component type="JavaScript" id="ProgressBar" classname="nexacro.ProgressBar"/>
+    <Component type="JavaScript" id="Plugin" classname="nexacro.Plugin"/>
+    <Component type="JavaScript" id="Dataset" classname="nexacro.NormalDataset"/>
+    <Component type="JavaScript" id="ListView" classname="nexacro.ListView"/>
+    <Component type="JavaScript" id="DataObject" classname="nexacro.DataObject"/>
+    <Component type="JavaScript" id="View" classname="nexacro.View"/>
+    <Component type="JavaScript" id="TutorialAlertAction" classname="nexacro.TutorialAlertAction"/>
+    <Component type="JavaScript" id="TutorialQueryAction" classname="nexacro.TutorialQueryAction"/>
+    <Component type="JavaScript" id="TranAction" classname="nexacro.TranAction"/>
+    <Component type="JavaScript" id="MessageAction" classname="nexacro.MessageAction"/>
+    <Component type="JavaScript" id="PopupAction" classname="nexacro.PopupAction"/>
+    <Component type="JavaScript" id="FileDialog" classname="nexacro.FileDialog"/>
+    <Component type="JavaScript" id="FileDownload" classname="nexacro.FileDownload"/>
+    <Component type="JavaScript" id="FileDownTransfer" classname="nexacro.FileDownTransfer"/>
+    <Component type="JavaScript" id="FileUpload" classname="nexacro.FileUpload"/>
+    <Component type="JavaScript" id="FileUpTransfer" classname="nexacro.FileUpTransfer"/>
+    <Component type="JavaScript" id="WebView" classname="nexacro.WebView"/>
+    <Component type="JavaScript" id="WebBrowser" classname="nexacro.WebBrowser"/>
+    <Component type="JavaScript" id="RaonkUpload" classname="nexacro.RaonkUpload"/>
+  </Components>
+  <Services>
+    <Service prefixid="theme" type="resource" url="./_resource_/_theme_/" version="0" cachelevel="session" include_subdir="true"/>
+    <Service prefixid="initvalue" type="resource" url="./_resource_/_initvalue_/" version="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="xcssrc" type="resource" url="./_resource_/_xcss_/" version="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="imagerc" type="resource" url="./_resource_/_images_/" version="0" cachelevel="session" include_subdir="true"/>
+    <Service prefixid="font" type="resource" url="./_resource_/_font_/" version="0" cachelevel="session" include_subdir="false"/>
+    <Service prefixid="extlib" type="file" url="./_extlib_/" version="0" cachelevel="session" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="svcurl" type="JSP" version="0" cachelevel="none" include_subdir="false" communicationversion="0" url="http://test.jnvalue.net:8088/jnportal/"/>
+    <Service prefixid="lib" type="js" url="./lib/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="Base" type="form" url="./Base/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="FrameBase" type="form" url="./FrameBase/" version="0" cachelevel="none" include_subdir="false" communicationversion="0"/>
+    <Service prefixid="sys" type="form" url="./sys/" version="0" cachelevel="none" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="svcQuickCodeTutorial" type="model" url="./svcQuickCodeTutorial/" version="0" cachelevel="none" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="cmm" type="form" url="./cmm/" version="0" cachelevel="none" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="pts" type="form" url="./pts/" version="0" cachelevel="session" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="sam" type="form" url="./sam/" version="0" cachelevel="none" include_subdir="true" communicationversion="0"/>
+    <Service prefixid="GUIDE" type="form" url="./GUIDE/" version="0" cachelevel="session" include_subdir="false" communicationversion="0"/>
+  </Services>
+  <Protocols/>
+  <DeviceAdaptors/>
+  <Update>
+    <Os name="Windows" url="./" timeout="30" retry="3" autoupdate="auto" updatetype="server">
+      <Version name="common">
+        <Resource type="Module" file="nexacrolib.zip" version="0" targetpath="" description=""/>
+      </Version>
+    </Os>
+  </Update>
+  <Deploy>
+    <Os name="Windows"/>
+  </Deploy>
+</TypeDefinition>
