@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+    namespace="com.jnv.mis.hre.service.Hre3050DAO">
+    
+    <select id="getEvalEmpList" parameterType="map" resultType="hre3050VO">
+        select distinct 
+            heet.eval_id 
+         ,  heet.eval_emp_grp_cd
+         ,  heet.eval_type_cd 
+         ,  heet.eval_type_wgt 
+         ,  heet.eval_plus_point 
+         ,  heet.use_yn 
+        from hre_eval_emp_type heet 
+        left outer join hre_eval_type het on heet.eval_id  = het.eval_id 
+    </select>
+</mapper>
