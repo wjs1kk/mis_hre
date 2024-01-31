@@ -31,9 +31,11 @@ if (nexacro.Environment)
         nexacro._addService("sam", "form", "./sam/", "none", null, "", "0", "0");
         nexacro._addService("GUIDE", "form", "./GUIDE/", "session", null, "", "0", "0");
         nexacro._addService("mis", "form", "./mis/", "session", null, "", "0", "0");
+
     	nexacro._component_uri = (nexacro._arg_compurl ? nexacro._arg_compurl : "./nexacrolib/component/");
     	nexacro._theme_uri = "./_resource_/_theme_/";
     	// load components
+
         var registerclass = [
         		{"id":"Button", "classname":"nexacro.Button", "type":"JavaScript"},
         		{"id":"Combo", "classname":"nexacro.Combo", "type":"JavaScript"},
