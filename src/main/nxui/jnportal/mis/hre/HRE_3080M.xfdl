@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="HRE_3030M" width="1920" height="670" titletext="부서성과평가지표 관리" onload="form_onload" cssclass="frm_WF_comp">
+    <Layouts>
+      <Layout width="1920" height="670" screenid="Desktop_screen">
+        <Button id="btnSave" taborder="0" text="저장" top="20" height="28" right="60" width="65" cssclass="btn_WF_Save"/>
+        <Static id="sta00" taborder="1" text="부서성과평가지표 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="sta00_onclick"/>
+        <Div id="divSearch" taborder="2" left="50" top="58" text="" right="50" height="71">
+          <Layouts>
+            <Layout>
+              <Static id="staBg00" taborder="3" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" text=""/>
+              <Static id="staBg" taborder="2" left="0" top="-254" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Static id="sta001" taborder="1" text="검색조건" left="20" top="15" width="100" height="26" cssclass="sta_WF_condition01" onclick="divSearch_sta001_onclick"/>
+              <Combo id="cbo01" taborder="0" left="sta001:10" top="15" width="120" height="26"/>
+              <Combo id="cbo02" taborder="4" left="cbo01:5" top="15" width="120" height="26"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="37" cssclass="div_WF_Area">
+          <Layouts>
+            <Layout>
+              <Button id="btnDeleteRow" taborder="1" text="행삭제" top="14" height="26" right="10" width="73" cssclass="btn_WF_Row_Delete"/>
+              <Button id="btnAddRow" taborder="0" text="행추가" top="14" height="26" right="btnDeleteRow:5" width="73" cssclass="btn_WF_Row_Add"/>
+              <Grid id="grdPceDetail" taborder="2" left="0" top="45" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="48"/>
+                      <Column size="100"/>
+                      <Column size="240"/>
+                      <Column size="160"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="30" band="head"/>
+                      <Row size="34"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="순번"/>
+                      <Cell col="1" text="평가ID"/>
+                      <Cell col="2" text="평가지표"/>
+                      <Cell col="3" text="역량평가 비중"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell textAlign="right" displaytype="text"/>
+                      <Cell col="1" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="2" displaytype="editcontrol" textAlign="left"/>
+                      <Cell col="3" edittype="date" displaytype="editcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="sta004" taborder="3" text="부서성과 평가 지표" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="180"/>
+              <Button id="btnCopy" taborder="4" text="복사" top="14" height="26" right="btnAddRow:5" width="73" cssclass="btn_WF_Row_Copy" onclick="divResult_btnAddRow00_onclick"/>
+            </Layout>
+            <Layout name="screen00"/>
+          </Layouts>
+        </Div>
+        <Button id="btnSearch" taborder="4" text="조회" top="73" height="28" right="60" width="65" cssclass="btn_WF_Row_Search"/>
+      </Layout>
+      <Layout name="screen00" width="1280" height="670" screenid=""/>
+    </Layouts>
+    <Objects>
+      <Dataset id="dsSearch"/>
+      <Dataset id="dsPceDetail">
+        <ColumnInfo>
+          <Column id="Column0" type="STRING" size="256"/>
+          <Column id="Column1" type="STRING" size="256"/>
+          <Column id="Column2" type="STRING" size="256"/>
+          <Column id="Column3" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+*  인사평가 관리
+*  MenuPath       -  - 
+*  FileName      
+*  Creator 	     parkkr
+*  CreateDate    2024.01.30
+*  Desction      평가유형 관리
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  2024.01.30    parkkr 	 최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
+};
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+*************************************************************************************************/
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+]]></Script>
+  </Form>
+</FDL>
