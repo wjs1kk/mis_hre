@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="hre_3070M" width="1920" height="961" titletext="New Form" background="white">
+    <Layouts>
+      <Layout height="961" mobileorientation="landscape" width="1920">
+        <Static id="Static14" taborder="0" text="개인역량 평가 항목 관리" left="20" top="21" width="250" height="58" enable="true" cssclass="sta_WF_compTitle01"/>
+        <Button id="btn_Save" text="저장" cssclass="btn_WF_icoSave" top="36" width="63" height="28" taborder="1" left="1827"/>
+        <Div id="Div00" taborder="2" text="" top="115" cssclass="div_WF_panel" right="30" left="10" bottom="796">
+          <Layouts>
+            <Layout>
+              <Static id="sta004" taborder="0" text="검색조건" cssclass="sta_WF_condition01" top="9" width="110" height="34" onclick="div_Search_Static01_onclick" left="11"/>
+              <Button id="btn_search" text="조회" cssclass="" top="10" width="65" height="28" right="10" taborder="1"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Combo id="Combo00" taborder="3" text="" left="140" top="127" width="150" height="26" innerdataset="ds_list" codecolumn="code" datacolumn="data" index="-1" displaynulltext="Combo"/>
+        <Combo id="Combo01" taborder="4" text="" left="320" top="127" width="150" height="26" innerdataset="ds_list" codecolumn="code" datacolumn="data" index="-1" displaynulltext="Combo"/>
+        <Static id="Static14_00_00" taborder="5" text="개인역량 평가 항목" left="20" top="195" width="200" height="45" enable="true" cssclass="sta_WF_subTitle01"/>
+        <Button id="btn_list" text="복사" cssclass="" visible="true" top="189" width="65" height="28" right="215" taborder="6"/>
+        <Button id="btn_row_add" taborder="7" text="행추가" cssclass="btn_WF_Row_Add" top="189" right="127" width="73" height="26"/>
+        <Button id="btn_row_delete" taborder="8" text="행추가" cssclass="btn_WF_Row_Delete" top="190" right="40" width="73" height="26"/>
+        <Grid id="grdDept" taborder="9" left="20" top="252" binddataset="dsList" bottom="31" autofittype="col" autoenter="select" autoupdatetype="itemselect" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_tree" right="50">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50" band="left"/>
+                <Column size="100" band="left"/>
+                <Column size="300" band="left"/>
+                <Column size="350" band="left"/>
+                <Column size="350" band="left"/>
+                <Column size="400" band="left"/>
+                <Column size="200" band="left"/>
+                <Column size="100" band="left"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="text" edittype="checkbox" text="순번"/>
+                <Cell col="1" text="평가 ID"/>
+                <Cell col="2" text="평가그룹"/>
+                <Cell col="3" text="역량평가지표 그룹"/>
+                <Cell col="4" text="역량평가지표"/>
+                <Cell col="5" text="역량지표 정의"/>
+                <Cell col="6" text="역량평가지표 수"/>
+                <Cell col="7" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="text" edittype="none" textAlign="center" text="bind:rowCheck" expr="currow + 1"/>
+                <Cell col="1" textAlign="center" imagestretch="fit" displaytype="maskeditcontrol" text="bind:rowStatus"/>
+                <Cell col="2" displaytype="combocontrol"/>
+                <Cell col="3" displaytype="combocontrol"/>
+                <Cell col="4" displaytype="combocontrol"/>
+                <Cell col="5" displaytype="textareacontrol"/>
+                <Cell col="6" displaytype="editcontrol"/>
+                <Cell col="7" displaytype="checkboxcontrol"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.comboAdTySearch" propid="value" datasetid="dsAdTy" columnid="text"/>
+      <BindItem id="item1" compid="Div00.form.edtAdvtTitle" propid="value" datasetid="dsSearch" columnid="advtTitle"/>
+      <BindItem id="item2" compid="Div00.form.edtAdvtCont" propid="value" datasetid="dsSearch" columnid="advtCont"/>
+    </Bind>
+  </Form>
+</FDL>

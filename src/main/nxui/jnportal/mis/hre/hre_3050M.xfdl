@@ -1,10 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="hre_3050M" width="1280" height="720" titletext="New Form" background="white">
+  <Form id="hre_3050M" width="1920" height="961" titletext="New Form" background="white">
     <Layouts>
-      <Layout height="720" mobileorientation="landscape" width="1280">
-        <Button id="btn_Save" text="저장" cssclass="btn_WF_icoSave" top="36" width="63" height="28" taborder="0" onclick="btn_search_onclick" left="1150"/>
+      <Layout height="961" mobileorientation="landscape" width="1920">
+        <Button id="btn_Save" text="저장" cssclass="btn_WF_icoSave" top="39" width="63" height="28" taborder="0" onclick="btn_search_onclick" left="1819"/>
+        <Static id="sta_title" taborder="1" text="기본화면구성" top="10" height="58" cssclass="sta_WF_compTitle01" width="500" left="10"/>
+        <Div id="Div00" taborder="2" text="" top="115" cssclass="div_WF_panel" right="20" left="20" bottom="796">
+          <Layouts>
+            <Layout>
+              <Static id="sta004" taborder="0" text="검색조건" cssclass="sta_WF_condition01" top="9" width="110" height="34" onclick="div_Search_Static01_onclick" left="11"/>
+              <Combo id="Combo00" taborder="1" text="Combo00" left="130" top="11" width="250" height="29"/>
+              <Edit id="Edit00" taborder="2" left="412" top="11" width="800" height="27"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Button id="btn_search" text="조회" cssclass="" top="125" width="65" height="28" right="38" taborder="3"/>
+        <Static id="Static14" taborder="4" text="평가 유형별 평가비중" left="10" top="190" width="200" height="45" enable="true" cssclass="sta_WF_subTitle01"/>
+        <Grid id="grdDept" taborder="5" left="20" top="230" binddataset="dsList" bottom="38" autofittype="col" autoenter="select" autoupdatetype="itemselect" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_tree" right="20">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="150" band="left"/>
+                <Column size="150" band="left"/>
+                <Column size="400" band="left"/>
+                <Column size="400" band="left"/>
+                <Column size="300" band="left"/>
+                <Column size="300" band="left"/>
+                <Column size="200" band="left"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" edittype="normal" text="선택"/>
+                <Cell col="1" text="평가 ID"/>
+                <Cell col="2" text="평가유형"/>
+                <Cell col="3" text="평가그룹"/>
+                <Cell col="4" text="평가비중"/>
+                <Cell col="5" text="평가가정"/>
+                <Cell col="6" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                <Cell col="1" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:rowStatus"/>
+                <Cell col="2" displaytype="combocontrol"/>
+                <Cell col="3" displaytype="combocontrol"/>
+                <Cell col="4" displaytype="number"/>
+                <Cell col="5" displaytype="number"/>
+                <Cell col="6" displaytype="checkboxcontrol"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_row_add" taborder="6" text="행추가" cssclass="btn_WF_Row_Add" top="190" right="127" width="73" height="26"/>
+        <Button id="btn_row_delete" taborder="7" text="행추가" cssclass="btn_WF_Row_Delete" top="190" right="37" width="73" height="26"/>
       </Layout>
     </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="Div00.form.comboAdTySearch" propid="value" datasetid="dsAdTy" columnid="text"/>
+      <BindItem id="item1" compid="Div00.form.edtAdvtTitle" propid="value" datasetid="dsSearch" columnid="advtTitle"/>
+      <BindItem id="item2" compid="Div00.form.edtAdvtCont" propid="value" datasetid="dsSearch" columnid="advtCont"/>
+    </Bind>
   </Form>
 </FDL>

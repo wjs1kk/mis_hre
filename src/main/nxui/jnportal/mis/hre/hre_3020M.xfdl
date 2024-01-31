@@ -1,0 +1,194 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="hre_3020M" width="1920" height="961" titletext="New Form" background="white">
+    <Layouts>
+      <Layout height="961" mobileorientation="landscape" width="1920">
+        <Static id="Static14" taborder="0" text="평가 ID 관리" left="50" top="15" width="290" height="58" enable="true" cssclass="sta_WF_compTitle01"/>
+        <Button id="btn_save" text="저장" cssclass="btn_WF_Save" visible="true" top="20" width="65" height="28" right="60" taborder="1" onclick="btn_save_onclick"/>
+        <Div id="divSrch" taborder="2" text="" top="125" cssclass="div_WF_panel" right="50" left="50" bottom="786">
+          <Layouts>
+            <Layout>
+              <Static id="sta001" taborder="0" text="평가연도" left="10" top="10" height="30" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01" width="120"/>
+              <Static id="sta002" taborder="1" text="평가ID" left="452" top="10" width="100" height="30" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Edit id="edtMemberNm" taborder="2" left="1160" top="13" width="290" height="26" onkeyup="divSearch_divSrch_calDtFrom_onkeyup"/>
+              <Static id="Static16_00" taborder="3" text="w 10" visible="false" left="562" top="-3" width="20" background="fuchsia" color="blue" textAlign="center" verticalAlign="middle" bottom="3"/>
+              <Combo id="combo_EVAL_ID" taborder="4" left="582" top="13" width="150" height="26" innerdataset="ds_evalid" codecolumn="COMM_CD" datacolumn="COMM_NM" onkeyup="divSearch_divSrch_calDtFrom_onkeyup" value="" index="0"/>
+              <Spin id="Spin" taborder="5" left="114" top="6" width="283" height="37" min="1900" max="9999" value=""/>
+              <Combo id="cboInOutFlag00" taborder="6" left="1000" top="13" width="150" height="26" innerdataset="ds_search" codecolumn="value" datacolumn="text" value="" index="0" text="" onitemchanged="divSrch_cboInOutFlag00_onitemchanged"/>
+              <Static id="sta002_00" taborder="7" text="검색조건" left="880" top="13" width="100" height="30" cssclass="sta_WF_condition01" onclick="divSrch_sta002_00_onclick"/>
+            </Layout>
+          </Layouts>
+          <InitValue/>
+        </Div>
+        <Static id="Static14_00_00_00" taborder="3" text="검색조건" left="50" top="205" width="290" height="45" enable="true" cssclass="sta_WF_subTitle01"/>
+        <Static id="staGridRowCnt" taborder="4" text="(총 0건)" cssclass="sta_WF_subResult" left="140" top="214" width="149" height="27"/>
+        <Button id="btn_row_add" taborder="5" text="행추가" cssclass="btn_WF_Row_Add" top="227" right="140" width="73" height="26"/>
+        <Button id="btn_row_delete" taborder="6" text="행추가" cssclass="btn_WF_Row_Delete" top="227" right="60" width="73" height="26"/>
+        <Grid id="grdDept" taborder="7" left="35" top="263" binddataset="" bottom="20" autofittype="col" autoenter="select" autoupdatetype="itemselect" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_tree" right="80">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="50" band="left"/>
+                <Column size="100" band="left"/>
+                <Column size="100" band="left"/>
+                <Column size="100" band="left"/>
+                <Column size="450" band="left"/>
+                <Column size="300" band="left"/>
+                <Column size="300" band="left"/>
+                <Column size="300" band="left"/>
+                <Column size="100" band="left"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="1" text="상태"/>
+                <Cell col="2" text="평가연도"/>
+                <Cell col="3" text="평가ID"/>
+                <Cell col="4" text="평가명"/>
+                <Cell col="5" text="펑가대상 기간"/>
+                <Cell col="6" text="평가 시작 일자"/>
+                <Cell col="7" text="평가종료 일자"/>
+                <Cell col="8" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:rowCheck"/>
+                <Cell col="1" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:tmHeader"/>
+                <Cell col="2" displaytype="editcontrol" text="bind:EVAL_YEAR"/>
+                <Cell col="3" text="bind:EVAL_ID"/>
+                <Cell col="4" displaytype="editcontrol" text="bind:EVAL_NM" edittype="text"/>
+                <Cell col="5" displaytype="editcontrol" text="bind:EVAL_TERM" edittype="normal"/>
+                <Cell col="6" displaytype="calendarcontrol" text="bind:EVAL_OP_START_DATE"/>
+                <Cell col="7" displaytype="calendarcontrol" text="bind:EVAL_OP_END_DATE"/>
+                <Cell col="8" displaytype="checkboxcontrol" text="bind:USE_YN" edittype="checkbox"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_search" text="조회" cssclass="" top="138" width="65" height="28" right="60" taborder="8" onclick="btn_search_onclick"/>
+      </Layout>
+    </Layouts>
+    <Bind>
+      <BindItem id="item0" compid="divSrch.form.calDtFrom" propid="value" datasetid="dsSearch" columnid="applyFromDt"/>
+      <BindItem id="item1" compid="divSrch.form.calDtTo" propid="value" datasetid="dsSearch" columnid="applyToDt"/>
+      <BindItem id="item2" compid="divSrch.form.edtMemberNm" propid="value" datasetid="dsSearch" columnid="memberNmKr"/>
+      <BindItem id="item3" compid="divSrch.form.combo_EVAL_ID" propid="value" datasetid="dsSearch" columnid="inOrOutFlag"/>
+      <BindItem id="item4" compid="divSrch.form.cboJoinAprvStts" propid="value" datasetid="dsSearch" columnid="joinAprvStts"/>
+      <BindItem id="item5" compid="divSrch.form.chWhdwlYn" propid="value" datasetid="dsSearch" columnid="whdwlYn"/>
+      <BindItem id="item6" compid="divSrch.form.edtMemberNm00" propid="value" datasetid="dsSearch" columnid="memberNmKr"/>
+      <BindItem id="item7" compid="divSrch.form.cboInOutFlag00" propid="value" datasetid="dsSearch" columnid="inOrOutFlag"/>
+    </Bind>
+    <Script type="xscript5.1"><![CDATA[/**
+*  OOO
+*  MenuPath      OOO
+*  FileName      OOO.xfdl 
+*  Creator 	     OOO
+*  CreateDate    0000.00.00
+*  Desction      OOO
+************** 소스 수정 이력 ***********************************************
+*  date          Modifier    Description
+*******************************************************************************
+*  0000.00.00    OOO 	     최초 생성
+*******************************************************************************/
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+
+
+
+/************************************************************************************************
+* TRANSACTION 서비스 호출 처리
+************************************************************************************************/
+
+
+
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+
+
+
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fn_save();
+};
+
+
+//저장버튼
+this.btn_save_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	
+};
+
+
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+
+
+]]></Script>
+    <Objects>
+      <Dataset id="ds_list">
+        <ColumnInfo>
+          <Column id="isChecked" type="STRING" size="256"/>
+          <Column id="tmHeader" type="STRING" size="256"/>
+          <Column id="EVAL_YEAR" type="STRING" size="256"/>
+          <Column id="EVAL_ID" type="STRING" size="256"/>
+          <Column id="EVAL_NM" type="STRING" size="256"/>
+          <Column id="EVAL_TERM" type="STRING" size="256"/>
+          <Column id="EVAL_OP_START_DATE" type="STRING" size="256"/>
+          <Column id="EVAL_OP_END_DATE" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="EVAL_YEAR">2022</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_evalid">
+        <ColumnInfo>
+          <Column id="COMM_CD" type="STRING" size="256"/>
+          <Column id="COMM_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_useYn">
+        <ColumnInfo>
+          <Column id="CD" type="STRING" size="256"/>
+          <Column id="NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="CD">Y</Col>
+            <Col id="NM">사용</Col>
+          </Row>
+          <Row>
+            <Col id="CD">N</Col>
+            <Col id="NM">미사용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+  </Form>
+</FDL>
