@@ -639,7 +639,7 @@
         	var arr = params.split(' ');
         	for (var i = 0; i < arr.length; i++) {
         		var dsId = arr[i].substring(0, arr[i].indexOf('='));
-        		arr[i] = dsId + "=" + dsId; // SMP:ITEM_TYPE:A=SMP:ITEM_TYPE:A
+        		arr[i] = dsId + "=" + dsId;
         	}
 
         	var objEnv = nexacro.getEnvironment();

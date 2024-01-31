@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="ROLE_1010M" width="1920" height="670" titletext="권한 관리" onload="form_onload" cssclass="frm_WF_comp">
+  <Form id="MOD_1010M" width="1920" height="670" onload="form_onload" cssclass="frm_WF_comp" titletext="평가등급기준관리">
     <Layouts>
       <Layout width="1920" height="670" screenid="Desktop_screen">
-        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" top="20" width="65" height="28" taborder="3" right="51" onclick="btnSave_onclick"/>
-        <Static id="staTitle" taborder="0" text="평가등급기준 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
-        <Div id="divSearch" taborder="1" left="50" top="58" height="71" text="" right="50">
+        <Button id="btnSave" taborder="1" text="저장" top="20" height="28" right="50" width="65" onclick="btnSave_onclick" cssclass="btn_WF_Save"/>
+        <Static id="sta00" taborder="2" text="평가등급기준 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
+        <Div id="divSearch" taborder="3" left="50" top="58" text="" right="50" height="71">
           <Layouts>
             <Layout>
-              <Static id="staBg" taborder="1" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
-              <Static id="Static15_01_00_00" taborder="0" text="h 15" onclick="Static31_onclick" visible="false" left="0" top="56" width="50" background="aqua" color="blue" textAlign="center" verticalAlign="middle" opacity="0.7" font="normal 12px/normal &quot;Arial&quot;" bottom="39"/>
-              <Combo id="cboModuleId" taborder="2" text="Combo00" left="140" top="15" width="190" height="26" innerdataset="dsModuleComboSearch" codecolumn="value" datacolumn="text" onkeyup="divSearch_divSrch_edtRoleCd_onkeyup"/>
-              <Static id="sta001" taborder="4" text="검색조건" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
-              <Edit id="edtRoleCd" taborder="3" left="360" top="15" width="550" height="26" onkeyup="divSearch_divSrch_edtRoleCd_onkeyup"/>
+              <Static id="staBg00" taborder="4" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" text=""/>
+              <Static id="staBg" taborder="3" left="0" top="-254" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
+              <Edit id="edt002" taborder="0" left="330" top="16" width="395" height="26"/>
+              <Static id="sta001" taborder="2" text="검색조건" left="20" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
+              <Combo id="cbo001" taborder="1" left="sta001:10" top="15" width="160" height="26"/>
             </Layout>
           </Layouts>
         </Div>
-        <Div id="divRole" taborder="2" text="" left="50" top="divSearch:0" bottom="37" right="50" cssclass="div_WF_Area">
+        <Div id="divResult" taborder="4" text="" left="50" top="divSearch:0" right="50" bottom="37" cssclass="div_WF_Area">
           <Layouts>
             <Layout>
-              <Static id="staTitle" taborder="0" text="평가등급 기준" onclick="Static09_onclick" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="120" fittocontents="width"/>
-              <Static id="staGridRowCnt" taborder="1" text="(총 0건)" cssclass="sta_WF_subTxt" left="staTitle:25" top="1" width="150" height="45"/>
-              <Grid id="grdRole" taborder="2" left="0" top="45" binddataset="dsList" autofittype="col" autoenter="select" autoupdatetype="itemselect" bottom="0" right="0" onheadclick="divRole_divRoleList_grdRole_onheadclick">
+              <Button id="btnDeleteRow" taborder="1" text="행삭제" top="14" height="26" right="0" width="73" onclick="btnDeleteRow_onclick" cssclass="btn_WF_Row_Delete"/>
+              <Button id="btnAddRow" taborder="0" text="행추가" top="14" height="26" right="btnDeleteRow:5" width="73" onclick="btnAddRow_onclick" cssclass="btn_WF_Row_Add"/>
+              <Grid id="grdModuleManage" taborder="2" left="0" top="45" binddataset="dsList" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect">
                 <Formats>
                   <Format id="default">
                     <Columns>
@@ -30,8 +30,7 @@
                       <Column size="100"/>
                       <Column size="100"/>
                       <Column size="100"/>
-                      <Column size="150"/>
-                      <Column size="100"/>
+                      <Column size="120"/>
                       <Column size="60"/>
                     </Columns>
                     <Rows>
@@ -39,49 +38,45 @@
                       <Row size="24"/>
                     </Rows>
                     <Band id="head">
-                      <Cell text="NO"/>
-                      <Cell col="1" text="isChecked" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell text="순번"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
                       <Cell col="2" text="평가 ID"/>
                       <Cell col="3" text="평가등급"/>
                       <Cell col="4" text="평가점수 범위"/>
                       <Cell col="5" text="평가점수반영옵션"/>
-                      <Cell col="6" text="반영자리수"/>
-                      <Cell col="7" text="사용여부"/>
+                      <Cell col="6" text="사용여부"/>
                     </Band>
                     <Band id="body">
-                      <Cell/>
-                      <Cell col="1" text="bind:isChecked"/>
-                      <Cell col="2" text="bind:EVAL_ID"/>
-                      <Cell col="3" text="bind:EVAL_GRADE"/>
-                      <Cell col="4" text="bind:EVAL_POINT_RANGE"/>
-                      <Cell col="5" text="bind:EVAL_POINT_ROUND_OPTION"/>
-                      <Cell col="6"/>
-                      <Cell col="7" text="bind:USE_YN"/>
+                      <Cell text="expr: corrow +1"/>
+                      <Cell col="1" text="bind:rowCheck" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="bind:evalId"/>
+                      <Cell col="3" text="bind:evalGrade"/>
+                      <Cell col="4" text="bind:evalPointRange"/>
+                      <Cell col="5" text="bind:evalPointRoundOption"/>
+                      <Cell col="6" text="bind:useYn"/>
                     </Band>
                   </Format>
                 </Formats>
               </Grid>
-              <Button id="btnAddRole" taborder="3" text="행추가" height="26" right="78" width="73" cssclass="btn_WF_Row_Add" top="14" onclick="divRole_divRoleList_btnAddRole_onclick"/>
-              <Button id="btnDeleteRowRole" taborder="4" text="행삭제" height="26" right="0" width="73" cssclass="btn_WF_Row_Delete" top="14" onclick="divRole_divRoleList_btnDeleteRowRole_onclick"/>
+              <Static id="sta004" taborder="4" text="평가등급 기준" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="137"/>
+              <Static id="staGridRowCnt" taborder="3" text="(총 0건)" cssclass="sta_WF_subTxt" left="sta004:10" top="0" width="149" height="45"/>
             </Layout>
             <Layout name="screen00"/>
           </Layouts>
         </Div>
-        <Button id="btnSearch00" taborder="4" text="조회" top="70" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
+        <Button id="btnSearch" taborder="0" text="조회" top="71" height="28" right="50" width="65" onclick="btnSearch_onclick"/>
       </Layout>
       <Layout name="screen00" width="1280" height="670" screenid=""/>
     </Layouts>
     <Objects>
       <Dataset id="dsList">
         <ColumnInfo>
-          <Column id="isChecked" type="STRING" size="256"/>
-          <Column id="tmHeader" type="STRING" size="256"/>
-          <Column id="EVAL_YEAR" type="STRING" size="256"/>
-          <Column id="EVAL_ID" type="STRING" size="256"/>
-          <Column id="EVAL_GRADE" type="STRING" size="256"/>
-          <Column id="EVAL_POINT_RANGE" type="FLOAT" size="256"/>
-          <Column id="EVAL_POINT_ROUND_OPTION" type="STRING" size="256"/>
-          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="evalId" type="STRING" size="256"/>
+          <Column id="evalGrade" type="STRING" size="256"/>
+          <Column id="evalPointRange" type="FLOAT" size="256"/>
+          <Column id="evalPointRoundOption" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
     </Objects>
@@ -107,53 +102,43 @@ include "lib::common.xjs";
 */
 this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
-	this.gfnFormOnLoad(this);
-
+//	this.gfnFormOnLoad(this);
+	this.fnSearch();
 };
 
 /************************************************************************************************
 * TRANSACTION 서비스 호출 처리
 ************************************************************************************************/
-
 /**
- * description 모듈명 콤보 생성
- */
-this.fnGetCombo = function()
-{
-    this.loadCount = 3;
-	this.gfnTransaction("getModuleCombo", "sm/getModuleCombo.do", "", "dsModuleCombo", "", "fnComboCallback"); 
-	this.gfnTransaction("getModuleComboSearch", "sm/getModuleCombo.do", "", "dsModuleComboSearch=dsModuleCombo", "type=A", "fnComboCallback"); 
-	this.gfnLoadCombo("loadCombo", "dsUseYn=SM:USE_YN dsUseYnSearch=SM:USE_YN:A dsRolePermit=SM:ROLE_PERMIT", "fnComboCallback");
-};
-
-/**
- * description 권한 조회
+ * description generate multi language Excel 
 */
-this.fnRoleSearch = function()
-{	
-	this.gfnTransaction("getRoleSearch", "sm/getRoleSearch.do", "dsSearch", "dsRole", "", "fnCallBack"); 
-};
-
-/**
- * description 저장
-*/
-this.fnSave = function()
+this.fnSearch = function()
 {
-	this.gfnTransaction("setRoleList", "sm/setRoleList.do", "dsRole", "", "", "fnCallBack"); 
+	var strSvcId    = "getEvalGradeList";
+	var strSvcUrl   = "mis/hre/hre3060/getEvalGrade.do";
+	var inData      = "ds_search";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= false;
 	
+// 	"0" : XML 형식
+// 	"1" : Binary 형식
+// 	"2" : SSV 형식
+// 	"3" : JSON 형식
+	//this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, 3);  // json
+	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl, 	    // transaction을 요청할 주소
+						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc 	// transaction의 결과를 받을 Function 이름
+						); 		// 비동기통신 여부 [생략가능]
 };
 
 /************************************************************************************************
  * CALLBACK 콜백 처리부분(Transaction, Popup)
  ************************************************************************************************/
-
-this.fnComboCallback = function (svcId, errorCode, errorMsg)
-{
-    this.loadCount--;
-    if (this.loadCount == 0) {
-        this.fnRoleSearch();
-    }
-}
 
 /**
  * description Transaction CallBack 함수
@@ -161,20 +146,10 @@ this.fnComboCallback = function (svcId, errorCode, errorMsg)
 this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
 {
 	switch (sSvcId) {
-		case "getRoleSearch":
+		case "getEvalGradeList":
 			//총 건수 계산
-			this.gfnRowCount(this.dsRole, this.divRole.form.staGridRowCnt);
+			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCntt);
             break;
-		case "setRoleList":
-			if (this.callbackMsg == "success") {
-				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
-				this.dsSearch.clearData();
-				this.dsSearch.addRow();
-				this.fnRoleSearch();
-			} else {
-				this.gfnAlert("CM_MSG_TEST_3");  // 저장에 실패하였습니다.
-			}
-		break;
 		default:
 		break;
 	}
@@ -194,15 +169,23 @@ this.divSearch_divSrch_edtRoleCd_onkeyup = function(obj:nexacro.Edit,e:nexacro.K
 /************************************************************************************************
 * 사용자 FUNCTION 영역
 ************************************************************************************************/
-/**
- * description generate multi language Excel 
-*/
+
+this.btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnInsertRow(this.dsList, "last");
+};
+
+
+
+this.btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.gfnDeleteRow(this.dsList);
+};
+
+this.btnSearch_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
 ]]></Script>
-    <Bind>
-      <BindItem id="item4" compid="divSearch.form.cboUseYn" propid="value" datasetid="dsSearch" columnid="useYn"/>
-      <BindItem id="item5" compid="divSearch.form.cboModuleId" propid="value" datasetid="dsSearch" columnid="moduleId"/>
-      <BindItem id="item6" compid="divSearch.form.edtRoleNm" propid="value" datasetid="dsSearch" columnid="roleNm"/>
-      <BindItem id="item7" compid="divSearch.form.edtRoleCd" propid="value" datasetid="dsSearch" columnid="searchRoleCode"/>
-    </Bind>
   </Form>
 </FDL>

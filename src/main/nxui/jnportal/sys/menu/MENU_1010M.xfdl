@@ -28,7 +28,7 @@
           </Layouts>
           <InitValue/>
         </Div>
-        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="30" cssclass="div_WF_Area">
+        <Div id="divResult" taborder="3" text="" left="50" top="divSearch:0" right="50" bottom="30" cssclass="div_WF_Area" color="aliceblue">
           <Layouts>
             <Layout>
               <Grid id="grdMenu" taborder="0" left="0" top="45" binddataset="dsMenu" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="divResult_grdMenu_onheadclick" treeusecheckbox="false" treeinitstatus="expand,null" oncelldblclick="divResult_grdMenu_oncelldblclick" onselectchanged="divResult_grdMenu_onselectchanged" onexpandup="divResult_grdMenu_onexpandup" oncellclick="divResult_grdMenu_oncellclick">

@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_name("DEPT_1010M");
-            this.set_titletext("부서 관리");
+            this.set_titletext("공통코드관리");
             this.set_cssclass("frm_WF_comp");
             this.set_enable("true");
             if (Form == this.constructor)
@@ -463,7 +463,7 @@
         */
         this.fnLoadCombo = function ()
         {
-        	this.gfnLoadCombo("loadCombo", "dsUseYnCombo=SM:USE_YN:C", "fnComboCallback");
+        	this.gfnLoadHreCombo("loadCombo", "dsUseYnCombo=SM:USE_YN:C", "fnComboCallback");
         };
 
         /**
@@ -501,11 +501,30 @@
         /************************************************************************************************
          * CALLBACK 콜백 처리부분(Transaction, Popup)
          ************************************************************************************************/
-
-
-
-
-
+        this.fnCallback = function (svcId, errorCode, errorMsg)
+        {
+            switch (svcId) {
+                case "getProgramList":
+                    if (this.dsProgram.rowcount == 0) {
+                        this.dsFunction.clearData();
+                    }
+                    break;
+                case "saveProgramList":
+                    if (this.callbackMsg == "success") {
+                        this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                        this.fnSearch();
+                    }
+                    break;
+                case "saveFunctionList":
+                    if (this.callbackMsg == "success") {
+                        this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                        var sysId = this.dsProgram.getColumn(this.dsProgram.rowposition, "sysId");
+                        var progId = this.dsProgram.getColumn(this.dsProgram.rowposition, "progId");
+                        this.fnSearchFuncs(sysId, progId);
+                    }
+                    break;
+            }
+        };
         /************************************************************************************************
          * 각 COMPONENT 별 EVENT 영역
         ************************************************************************************************/
