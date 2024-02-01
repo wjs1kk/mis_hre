@@ -1,10 +1,13 @@
 package com.jnv.mis.hre.vo;
 
-public class Hre3060VO {
+import com.jnv.jncore.vo.CommonVO;
+
+public class Hre3060VO extends CommonVO{
 	private String evalId;
 	private String evalGrade;
-	private String evalPointRange;
+	private int evalPointRange;
 	private String evalPointRoundOption;
+	private String useYn;
 	public String getEvalId() {
 		return evalId;
 	}
@@ -17,10 +20,10 @@ public class Hre3060VO {
 	public void setEvalGrade(String evalGrade) {
 		this.evalGrade = evalGrade;
 	}
-	public String getEvalPointRange() {
+	public int getEvalPointRange() {
 		return evalPointRange;
 	}
-	public void setEvalPointRange(String evalPointRange) {
+	public void setEvalPointRange(int evalPointRange) {
 		this.evalPointRange = evalPointRange;
 	}
 	public String getEvalPointRoundOption() {
@@ -28,6 +31,12 @@ public class Hre3060VO {
 	}
 	public void setEvalPointRoundOption(String evalPointRoundOption) {
 		this.evalPointRoundOption = evalPointRoundOption;
+	}
+	public String getUseYn() {
+		return useYn;
+	}
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
 	}
 	
 }

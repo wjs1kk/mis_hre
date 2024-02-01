@@ -474,12 +474,6 @@
         this.divResult_btnDeleteRow_onclick = function(obj,e)
         {
             var indices = this.gfnGetCheckedRows(this.dsMenu, "rowCheck");
-            var thisObj = this;
-
-            if (!indices.every(function (e) { return this.fnCheckDeletable(e); }, this)) {
-                return;
-            }
-
             this.gfnDeleteRow(this.dsMenu);
         };
 

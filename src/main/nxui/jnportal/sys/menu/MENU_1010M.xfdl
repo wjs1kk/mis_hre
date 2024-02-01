@@ -274,12 +274,6 @@ this.divResult_btnAddSiblingRow_onclick = function(obj:nexacro.Button,e:nexacro.
 this.divResult_btnDeleteRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
     var indices = this.gfnGetCheckedRows(this.dsMenu, "rowCheck");
-    var thisObj = this;
-    
-    if (!indices.every(function (e) { return this.fnCheckDeletable(e); }, this)) {
-        return;
-    }
-    
     this.gfnDeleteRow(this.dsMenu);
 };
 
