@@ -172,6 +172,7 @@
             obj.set_taborder("3");
             obj.set_text("");
             obj.set_cssclass("div_WF_Area");
+            obj.set_color("aliceblue");
             this.addChild(obj.name, obj);
 
             obj = new Grid("grdMenu","0","45",null,null,"0","0",null,null,null,null,this.divResult.form);

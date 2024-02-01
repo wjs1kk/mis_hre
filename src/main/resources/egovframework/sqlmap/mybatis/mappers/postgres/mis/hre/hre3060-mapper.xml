@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.mis.hre.service.Hre3060DAO">
+	<select id="getEvalGradeList" resultType="Hre3060VO">
+		select eval_id, eval_grade, eval_point_range, eval_point_round_option, use_yn from hre_eval_grade
+	</select>
+</mapper>

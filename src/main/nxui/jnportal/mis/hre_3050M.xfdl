@@ -1,10 +1,216 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="hre_3050M" width="1280" height="720" titletext="New Form" background="white">
+  <Form id="hre_3050M" width="1920" height="961" titletext="New Form" background="white">
     <Layouts>
-      <Layout height="720" mobileorientation="landscape" width="1280">
-        <Button id="btn_Save" text="저장" cssclass="btn_WF_icoSave" top="36" width="63" height="28" taborder="0" onclick="btn_search_onclick" left="1150"/>
+      <Layout height="961" mobileorientation="landscape" width="1920">
+        <Button id="btn_Save" text="저장" cssclass="btn_WF_icoSave" top="40" width="63" height="28" taborder="0" onclick="btn_search_onclick" left="1807"/>
+        <Static id="sta_title" taborder="1" text="평가비중 기준 관리" top="10" height="58" cssclass="sta_WF_compTitle01" width="500" left="10"/>
+        <Static id="Static14" taborder="2" text="평가 유형별 평가비중" left="10" top="190" width="200" height="45" enable="true" cssclass="sta_WF_subTitle01"/>
+        <Grid id="grdDept" taborder="3" left="20" top="237" binddataset="dsList" bottom="51" autofittype="col" autoenter="select" autoupdatetype="itemselect" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_tree" right="50">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40" band="left"/>
+                <Column size="100" band="left"/>
+                <Column size="400" band="left"/>
+                <Column size="400" band="left"/>
+                <Column size="200" band="left"/>
+                <Column size="200" band="left"/>
+                <Column size="60" band="left"/>
+              </Columns>
+              <Rows>
+                <Row size="30" band="head"/>
+                <Row size="34"/>
+              </Rows>
+              <Band id="head">
+                <Cell displaytype="normal" edittype="normal" text="선택"/>
+                <Cell col="1" text="평가 ID"/>
+                <Cell col="2" text="평가유형"/>
+                <Cell col="3" text="평가그룹"/>
+                <Cell col="4" text="평가비중"/>
+                <Cell col="5" text="평가가정"/>
+                <Cell col="6" text="사용여부"/>
+              </Band>
+              <Band id="body">
+                <Cell displaytype="checkboxcontrol" edittype="checkbox" textAlign="center" text="bind:roiwCheck" checkboxfalsevalue="n" checkboxtruevalue="y"/>
+                <Cell col="1" textAlign="center" imagestretch="fit" displaytype="normal" text="bind:EVAL_ID"/>
+                <Cell col="2" displaytype="combocontrol" text="bind:EVAL_TYPE_CD" edittype="combo"/>
+                <Cell col="3" displaytype="combocontrol" text="bind:EVAL_EMP_GRP_CD" edittype="combo"/>
+                <Cell col="4" displaytype="number" text="bind:EVAL_TYPE_WGT" edittype="normal"/>
+                <Cell col="5" displaytype="number" text="bind:EVAL_PLUS_POINT" edittype="normal"/>
+                <Cell col="6" displaytype="checkboxcontrol" checkboxfalsevalue="n" checkboxtruevalue="y" text="bind:USE_YN" edittype="checkbox"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_row_add" taborder="4" text="행추가" cssclass="btn_WF_Row_Add" top="190" right="127" width="73" height="26" onclick="btn_row_add_onclick"/>
+        <Button id="btn_row_delete" taborder="5" text="행삭제" cssclass="btn_WF_Row_Delete" top="190" right="37" width="73" height="26" onclick="btn_row_delete_onclick"/>
+        <Static id="staBg" taborder="6" left="0" top="80" height="56" cssclass="sta_WF_bg" right="50" text=""/>
+        <Button id="btn_search" text="조회" cssclass="" top="94" width="65" height="28" right="45" taborder="7" onclick="btn_search_onclick"/>
+        <Static id="sta004" taborder="8" text="검색조건" cssclass="sta_WF_condition01" top="91" width="110" height="34" left="10"/>
+        <Combo id="Combo00" taborder="9" text="Combo00" left="150" top="93" width="140" height="32"/>
+        <Edit id="Edit00" taborder="10" left="314" top="91" width="299" height="32"/>
       </Layout>
     </Layouts>
+    <Objects>
+      <Dataset id="dsList">
+        <ColumnInfo>
+          <Column id="rowCheck" type="STRING" size="256"/>
+          <Column id="EVAL_ID" type="STRING" size="256"/>
+          <Column id="EVAL_YEAR" type="STRING" size="256"/>
+          <Column id="EVAL_TYPE_CD" type="STRING" size="256"/>
+          <Column id="EVAL_EMP_GRP_CD" type="STRING" size="256"/>
+          <Column id="EVAL_TYPE_WGT" type="STRING" size="256"/>
+          <Column id="EVAL_PLUS_POINT" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="rowCheck">y</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="dsSearch">
+        <ColumnInfo>
+          <Column id="EVAL_TYPE_CD" type="STRING" size="256"/>
+          <Column id="EVAL_EMP_GRP_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  메뉴 관리
+ *  MenuPath      시스템 관리 - 사용자, 메뉴 및 권한 관리 - 메뉴 관리
+ *  FileName      hre_3050M.xfdl
+ *  Creator 	  choisw
+ *  CreateDate    2024.01.31
+ *  Desction      메뉴 관리
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2024.01.31    최성웅      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+
+/**
+ * description 화면 onload
+*/
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ /**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getEvalEmpList";
+	var strSvcUrl   = "mis/hre/hre_3050M/getEvalEmpList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallBack";
+	var isAsync   	= true;
+	
+// 	"0" : XML 형식
+// 	"1" : Binary 형식
+// 	"2" : SSV 형식
+// 	"3" : JSON 형식
+//this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, 3);  // json
+	
+	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+						strSvcUrl, 	    // transaction을 요청할 주소
+						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+						isAsync); 		// 비동기통신 여부 [생략가능]
+};
+
+
+
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+{
+	switch (sSvcId) {
+		case "getEvalEmpList":
+			this.gfnRowCount(this.dsList, this.grdDept.staGridRowCnt);
+			
+		break;
+		case "setItemList":
+			if(this.callbackMsg == "success"){
+				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+				this.fnSearch();
+			}
+		break;
+		default:
+		break;
+	}
+};
+
+
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+//행추가
+this.btn_row_add_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ds = this.dsList;
+	this.gfnInsertRow(ds, "last");
+	this.dsList.setColumn(this.dsList.rowposition, "rowCheck", "y");
+	this.dsList.setColumn(this.dsList.rowposition, "USE_YN", "y");
+
+//ds.setColumn(nRow, "EVAL_ID", 
+
+
+
+};
+
+
+
+
+
+//행삭제
+this.btn_row_delete_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	var ds = this.dsList;
+	
+	for(var i = ds.getRowCount() -1; i >=0; i--)
+	{	
+		//isChecked y 인 모든 행 삭제
+		var isChecked = ds.getColumn(i, "rowCheck");
+		
+		if(isChecked == "y")
+		ds.deleteRow(i);
+	}
+
+};
+
+//조회버튼
+this.btn_search_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+	this.fnSearch();
+};
+
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+
+
+
+
+
+]]></Script>
   </Form>
 </FDL>

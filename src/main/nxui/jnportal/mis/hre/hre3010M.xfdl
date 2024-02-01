@@ -1,0 +1,398 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="DEPT_1010M" width="1920" height="720" titletext="공통코드관리" cssclass="frm_WF_comp" onload="form_onload" enable="true">
+    <Layouts>
+      <Layout height="720" width="1920">
+        <Static id="mainTitle" taborder="0" text="공통코드관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500"/>
+        <Button id="btnSave" text="저장" cssclass="btn_WF_Save" visible="true" width="65" right="50" taborder="1" onclick="btnSave_onclick" height="28" top="20"/>
+        <Div id="divResult" taborder="2" text="" left="50" cssclass="div_WF_Area" width="650" top="73" height="617">
+          <Layouts>
+            <Layout>
+              <Grid id="grdDept" taborder="0" left="0" top="49" binddataset="ds_commCd" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" treeusecheckbox="false" treeinitstatus="expand,null" cssclass="grd_WF_tree" right="0">
+                <Formats>
+                  <Format id="default">
+                    <Columns>
+                      <Column size="40" band="left"/>
+                      <Column size="304"/>
+                    </Columns>
+                    <Rows>
+                      <Row size="24" band="head"/>
+                      <Row size="24"/>
+                    </Rows>
+                    <Band id="head">
+                      <Cell text="NO"/>
+                      <Cell col="1" text="코드명"/>
+                    </Band>
+                    <Band id="body">
+                      <Cell text="expr:currow+1"/>
+                      <Cell col="1" text="bind:COMM_NM" displaytype="treeitemcontrol" edittype="tree" treelevel="bind:LEV" treestate="bind:TREE_STATE"/>
+                    </Band>
+                  </Format>
+                </Formats>
+              </Grid>
+              <Static id="deptList" taborder="1" text="부서목록" cssclass="sta_WF_subTitle01" left="9" top="9" height="45" onclick="Static09_onclick" width="81" fittocontents="width"/>
+              <Static id="staGridRowCnt" taborder="2" text="(총 0건)" cssclass="sta_WF_subResult" left="deptList:10" top="9" width="149" height="45"/>
+              <Button id="btnAddSiblingRow" taborder="3" text="행추가" cssclass="btn_WF_Row_Add" top="9" right="105" width="94" height="26" onclick="divResult_btnAddSiblingRow_onclick"/>
+              <Button id="btnAddRow" taborder="4" text="행삭제" cssclass="btn_WF_Row_Delete" top="9" height="26" onclick="divResult_btnAddRow_onclick" left="550" width="94"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="divDetail" taborder="3" text="Div02" top="73" height="357" cssclass="div_WF_Area" left="790" right="50">
+          <Layouts>
+            <Layout>
+              <Static id="deptDetail" taborder="0" text="코드정보" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" onclick="Div00_Static13_onclick" width="500"/>
+              <Static id="Static12_01_00" taborder="1" cssclass="sta_WF_condition02box" left="0" top="45" right="0" height="34" text=""/>
+              <Static id="Static20_00_00" taborder="2" cssclass="sta_WF_condition02box" left="0" right="0" height="34" text="" top="79"/>
+              <Static id="Static18_00" taborder="3" cssclass="sta_WF_condition02box" left="0" top="113" right="0" height="34"/>
+              <Static id="staUpDeptCd" taborder="4" text="코드" cssclass="sta_WF_condition02_LEssential" left="0" top="45" width="151" height="34"/>
+              <Static id="staDeptCd" taborder="5" text="상위코드" cssclass="sta_WF_condition02" left="0" top="79" width="151" height="34"/>
+              <Static id="staOrdSn" taborder="6" text="구분" cssclass="sta_WF_condition02" left="0" top="113" width="151" height="34"/>
+              <Static id="staDeptNm" taborder="7" text="코드영문명" cssclass="sta_WF_condition02" left="454" top="79" width="151" height="34"/>
+              <Static id="stauUseYn" taborder="8" text="기타1" cssclass="sta_WF_condition02" left="454" top="113" width="151" height="34"/>
+              <Static id="staUpDeptNm" taborder="9" text="코드명" cssclass="sta_WF_condition02Essential" left="454" top="45" width="151" height="34"/>
+              <Edit id="editUpDeptNm" taborder="10" cssclass="" left="staUpDeptNm:10" top="49" width="300" height="26" enable="false"/>
+              <Edit id="editUpDeptCd" taborder="11" left="staUpDeptCd:10" top="49" width="271" height="26" enable="false"/>
+              <Static id="Static12_01_00_00" taborder="12" cssclass="sta_WF_condition02box" left="0" right="0" height="34" top="147" text=""/>
+              <Static id="staDeptLdr" taborder="13" text="순위" cssclass="sta_WF_condition02" left="0" width="151" height="34" top="147"/>
+              <Static id="staDeptMngr" taborder="14" text="기타2" cssclass="sta_WF_condition02" left="454" width="151" height="34" top="147"/>
+              <Edit id="editDeptCd" taborder="15" left="staDeptCd:10" top="83" width="271" height="26"/>
+              <Edit id="editOrdSn" taborder="16" left="staOrdSn:10" top="117" width="271" height="26" inputtype="digit"/>
+              <Edit id="editDeptLdrNm" taborder="17" left="staDeptLdr:10" top="151" width="271" height="26" enable="true"/>
+              <Edit id="editDeptNm" taborder="18" left="staDeptNm:10" top="83" width="300" height="26"/>
+              <Edit id="editDeptMngrNm" taborder="19" left="staDeptMngr:10" top="151" width="125" height="26" enable="true"/>
+              <Edit id="Edit00" taborder="20" left="615" top="117" width="125" height="26"/>
+              <Static id="stauUseYn00" taborder="21" text="기타5" cssclass="sta_WF_condition02" left="750" top="113" width="151" height="34"/>
+              <Edit id="Edit00_00" taborder="22" left="911" top="117" width="125" height="26"/>
+              <Static id="stauUseYn00_00" taborder="23" text="기타6" cssclass="sta_WF_condition02" left="750" top="146" width="151" height="34"/>
+              <Edit id="Edit00_00_00" taborder="24" left="911" top="151" width="125" height="26"/>
+              <Static id="Static12_01_00_00_00" taborder="25" cssclass="sta_WF_condition02box" left="0" right="0" height="34" top="180" text=""/>
+              <Static id="staDeptLdr00" taborder="26" text="참조코드" cssclass="sta_WF_condition02" left="0" width="151" height="34" top="180"/>
+              <Edit id="editDeptLdrNm00" taborder="27" left="161" top="184" width="271" height="26" enable="true"/>
+              <Static id="staDeptMngr00" taborder="28" text="기타3" cssclass="sta_WF_condition02" left="454" width="151" height="34" top="180"/>
+              <Edit id="editDeptMngrNm00" taborder="29" left="615" top="184" width="125" height="26" enable="true"/>
+              <Static id="stauUseYn00_00_00" taborder="30" text="기타7" cssclass="sta_WF_condition02" left="750" top="180" width="151" height="34"/>
+              <Edit id="Edit00_00_00_00" taborder="31" left="911" top="184" width="125" height="26"/>
+              <Static id="Static12_01_00_00_00_00" taborder="32" cssclass="sta_WF_condition02box" left="0" right="0" height="34" top="213" text=""/>
+              <Static id="staDeptLdr00_00" taborder="33" text="사용여부" cssclass="sta_WF_condition02" left="-1" width="151" height="34" top="213"/>
+              <Edit id="editDeptLdrNm00_00" taborder="34" left="161" top="217" width="271" height="26" enable="true"/>
+              <Static id="staDeptMngr00_00" taborder="35" text="기타4" cssclass="sta_WF_condition02" left="454" width="151" height="34" top="213"/>
+              <Edit id="editDeptMngrNm00_00" taborder="36" left="618" top="217" width="125" height="26" enable="true"/>
+              <Static id="stauUseYn00_00_00_00" taborder="37" text="기타8" cssclass="sta_WF_condition02" left="750" top="213" width="151" height="34"/>
+              <Edit id="Edit00_00_00_00_00" taborder="38" left="911" top="217" width="125" height="26"/>
+              <Static id="Static12_01_00_00_00_00_00" taborder="39" cssclass="sta_WF_condition02box" left="-1" right="1" height="111" top="246" text=""/>
+              <Static id="staDeptLdr00_00_00" taborder="40" text="내용" cssclass="sta_WF_condition02" left="-1" width="151" height="111" top="246"/>
+              <TextArea id="TextArea00" taborder="41" left="161" top="253" width="875" height="95"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Grid id="Grid00" taborder="4" left="790" top="467" width="1080" height="223" binddataset="ds_commDnCd" cellmovingtype="none">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="40" band="left"/>
+                <Column size="40" band="left"/>
+                <Column size="80" band="left"/>
+                <Column size="100"/>
+                <Column size="100"/>
+                <Column size="140"/>
+                <Column size="90"/>
+                <Column size="40"/>
+                <Column size="70"/>
+                <Column size="120"/>
+                <Column size="120"/>
+                <Column size="90"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+                <Column size="40"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="NO"/>
+                <Cell col="1" text="isChecked" displaytype="checkboxcontrol" edittype="checkbox"/>
+                <Cell col="2" text="상태"/>
+                <Cell col="3" text="코드"/>
+                <Cell col="4" text="상위코드"/>
+                <Cell col="5" text="코드명"/>
+                <Cell col="6" text="참조코드"/>
+                <Cell col="7" text="순위"/>
+                <Cell col="8" text="사용여부"/>
+                <Cell col="9" text="설명"/>
+                <Cell col="10" text="코드영문명"/>
+                <Cell col="11" text="구분"/>
+                <Cell col="12" text="레벨"/>
+                <Cell col="13" text="기타1"/>
+                <Cell col="14" text="기타2"/>
+                <Cell col="15" text="기타3"/>
+                <Cell col="16" text="기타4"/>
+                <Cell col="17" text="기타5"/>
+                <Cell col="18" text="기타6"/>
+                <Cell col="19" text="기타7"/>
+                <Cell col="20" text="기타8"/>
+              </Band>
+              <Band id="body">
+                <Cell text="expr:currow+1"/>
+                <Cell col="1" text="bind:isChecked"/>
+                <Cell col="2" text="bind:tmHeader"/>
+                <Cell col="3" text="bind:COMM_CD" tooltiptext="bind:COMM_CD"/>
+                <Cell col="4" text="bind:UP_COMM_CD" tooltiptext="bind:UP_COMM_CD"/>
+                <Cell col="5" text="bind:COMM_NM" tooltiptext="bind:COMM_NM"/>
+                <Cell col="6" text="bind:REF_CD" tooltiptext="bind:REF_CD"/>
+                <Cell col="7" text="bind:ORD_NO"/>
+                <Cell col="8" text="bind:USE_YN"/>
+                <Cell col="9" text="bind:RMK"/>
+                <Cell col="10" text="bind:COMM_ENG_NM" tooltiptext="bind:COMM_ENG_NM"/>
+                <Cell col="11" text="bind:CLS_CD" tooltiptext="bind:CLS_CD"/>
+                <Cell col="12" text="bind:LEV" tooltiptext="bind:LEV"/>
+                <Cell col="13" text="bind:ETC1" tooltiptext="bind:ETC1"/>
+                <Cell col="14" text="bind:ETC2" tooltiptext="bind:ETC2"/>
+                <Cell col="15" text="bind:ETC3" tooltiptext="bind:ETC3"/>
+                <Cell col="16" text="bind:ETC4" tooltiptext="bind:ETC4"/>
+                <Cell col="17" text="bind:ETC5" tooltiptext="bind:ETC5"/>
+                <Cell col="18" text="bind:ETC6" tooltiptext="bind:ETC6"/>
+                <Cell col="19" text="bind:ETC7" tooltiptext="bind:ETC7"/>
+                <Cell col="20" text="bind:ETC8" tooltiptext="bind:ETC8"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="deptDetail" taborder="5" text="하위코드" cssclass="sta_WF_subTitle01" left="789" top="431" height="45" onclick="Div00_Static13_onclick" width="500"/>
+      </Layout>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[/**
+ *  관리 메뉴
+ *  MenuPath      조직정보 - 부서관리
+ *  FileName      DEPT_1010M.xfdl
+ *  Creator 	  woohj
+ *  CreateDate    2023.11.20
+ *  Desction      관리 메뉴
+ ************** 소스 수정 이력 ***********************************************
+ *  date          Modifier    Description
+ *******************************************************************************
+ *  2023.11.20    woohj      최초 생성
+ *******************************************************************************/
+
+include "lib::common.xjs";
+
+/***********************************************************************************************
+* FORM EVENT 영역(onload, onbeforeclose)
+/***********************************************************************************************/
+
+/**
+ * description 화면 onload
+*/
+this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
+{
+	this.gfnFormOnLoad(this);
+};
+
+/************************************************************************************************
+ * TRANSACTION 서비스 호출 처리
+ ************************************************************************************************/
+ 
+/**
+ * description 콤보 loadCombo
+*/
+this.fnLoadCombo = function ()
+{
+	this.gfnLoadHreCombo("loadCombo", "dsUseYnCombo=SM:USE_YN:C", "fnComboCallback"); 
+};
+
+/**
+ * description 조회
+*/
+this.fnSearch = function()
+{
+	var strSvcId    = "getDeptManageList";
+	var strSvcUrl   = "org/deptManage/getDeptManageList.do";
+	var inData      = "dsSearch";
+	var outData     = "dsList";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+};
+
+/**
+ * description 저장
+*/
+this.fnSave = function ()
+{
+	var strSvcId    = "saveDeptManageList";
+	var strSvcUrl   = "org/deptManage/saveDeptManageList.do";
+	var inData      = "dsList";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	
+	this.gfnTransaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync); 
+};
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+this.fnCallback = function (svcId: string, errorCode: number, errorMsg: string)
+{
+    switch (svcId) {
+        case "getProgramList":
+            if (this.dsProgram.rowcount == 0) {
+                this.dsFunction.clearData();
+            }
+            break;
+        case "saveProgramList":
+            if (this.callbackMsg == "success") {
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                this.fnSearch();
+            }
+            break;
+        case "saveFunctionList":
+            if (this.callbackMsg == "success") {
+                this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+                var sysId = this.dsProgram.getColumn(this.dsProgram.rowposition, "sysId");
+                var progId = this.dsProgram.getColumn(this.dsProgram.rowposition, "progId");
+                this.fnSearchFuncs(sysId, progId);
+            }
+            break;
+    }
+};
+/************************************************************************************************
+ * 각 COMPONENT 별 EVENT 영역
+************************************************************************************************/
+
+/************************************************************************************************
+* 사용자 FUNCTION 영역
+************************************************************************************************/
+]]></Script>
+    <Objects>
+      <Dataset id="ds_search">
+        <ColumnInfo>
+          <Column id="SCH_UP_COMM_CD" type="STRING" size="256"/>
+          <Column id="SCH_KEY" type="STRING" size="256"/>
+          <Column id="SCH_STR" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row/>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_commCd">
+        <ColumnInfo>
+          <Column id="isChecked" type="STRING" size="256"/>
+          <Column id="tmHeader" type="STRING" size="256"/>
+          <Column id="COMM_CD" type="STRING" size="256"/>
+          <Column id="COMM_NM" type="STRING" size="256"/>
+          <Column id="COMM_ENG_NM" type="STRING" size="256"/>
+          <Column id="UP_COMM_CD" type="STRING" size="256"/>
+          <Column id="REF_CD" type="STRING" size="256"/>
+          <Column id="ETC1" type="STRING" size="256"/>
+          <Column id="ETC2" type="STRING" size="256"/>
+          <Column id="ETC3" type="STRING" size="256"/>
+          <Column id="ETC4" type="STRING" size="256"/>
+          <Column id="ETC5" type="STRING" size="256"/>
+          <Column id="ETC6" type="STRING" size="256"/>
+          <Column id="ETC7" type="STRING" size="256"/>
+          <Column id="ETC8" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="RMK" type="STRING" size="256"/>
+          <Column id="SYS_CD_CLS" type="STRING" size="256"/>
+          <Column id="CLS_CD" type="STRING" size="256"/>
+          <Column id="ORD_NO" type="STRING" size="256"/>
+          <Column id="CODE_IDEN" type="STRING" size="256"/>
+          <Column id="CODE_VALE" type="STRING" size="256"/>
+          <Column id="INS_ID" type="STRING" size="256"/>
+          <Column id="INS_NM" type="STRING" size="256"/>
+          <Column id="INS_DT" type="STRING" size="256"/>
+          <Column id="UPT_ID" type="STRING" size="256"/>
+          <Column id="UPT_NM" type="STRING" size="256"/>
+          <Column id="UPT_DT" type="STRING" size="256"/>
+          <Column id="LEV" type="STRING" size="256"/>
+          <Column id="TREE_STATE" type="STRING" size="256"/>
+          <Column id="COMM_CDNM" type="STRING" size="256"/>
+          <Column id="ORG_COMM_CD" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_commDnCd">
+        <ColumnInfo>
+          <Column id="isChecked" type="STRING" size="256"/>
+          <Column id="tmHeader" type="STRING" size="256"/>
+          <Column id="COMM_CD" type="STRING" size="256"/>
+          <Column id="COMM_NM" type="STRING" size="256"/>
+          <Column id="COMM_ENG_NM" type="STRING" size="256"/>
+          <Column id="UP_COMM_CD" type="STRING" size="256"/>
+          <Column id="REF_CD" type="STRING" size="256"/>
+          <Column id="ETC1" type="STRING" size="256"/>
+          <Column id="ETC2" type="STRING" size="256"/>
+          <Column id="ETC3" type="STRING" size="256"/>
+          <Column id="ETC4" type="STRING" size="256"/>
+          <Column id="ETC5" type="STRING" size="256"/>
+          <Column id="ETC6" type="STRING" size="256"/>
+          <Column id="ETC7" type="STRING" size="256"/>
+          <Column id="ETC8" type="STRING" size="256"/>
+          <Column id="USE_YN" type="STRING" size="256"/>
+          <Column id="RMK" type="STRING" size="256"/>
+          <Column id="SYS_CD_CLS" type="STRING" size="256"/>
+          <Column id="CLS_CD" type="STRING" size="256"/>
+          <Column id="ORD_NO" type="STRING" size="256"/>
+          <Column id="CODE_IDEN" type="STRING" size="256"/>
+          <Column id="CODE_VALE" type="STRING" size="256"/>
+          <Column id="INS_ID" type="STRING" size="256"/>
+          <Column id="INS_NM" type="STRING" size="256"/>
+          <Column id="INS_DT" type="STRING" size="256"/>
+          <Column id="UPT_ID" type="STRING" size="256"/>
+          <Column id="UPT_NM" type="STRING" size="256"/>
+          <Column id="UPT_DT" type="STRING" size="256"/>
+          <Column id="LEV" type="STRING" size="256"/>
+          <Column id="TREE_STATE" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_useYn">
+        <ColumnInfo>
+          <Column id="COMM_CD" type="STRING" size="256"/>
+          <Column id="COMM_NM" type="STRING" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="COMM_CD">Y</Col>
+            <Col id="COMM_NM">사용</Col>
+          </Row>
+          <Row>
+            <Col id="COMM_CD">N</Col>
+            <Col id="COMM_NM">미사용</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_commUpCd">
+        <ColumnInfo>
+          <Column id="COMM_CD" type="STRING" size="256"/>
+          <Column id="COMM_NM" type="STRING" size="256"/>
+          <Column id="CLS" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="divResult.form.editDeptNm" propid="value" datasetid="dsSearch" columnid="deptNm"/>
+      <BindItem id="item1" compid="divDetail.form.editUpDeptCd" propid="value" datasetid="dsList" columnid="upDeptCd"/>
+      <BindItem id="item2" compid="divDetail.form.editUpDeptNm" propid="value" datasetid="dsList" columnid="upDeptNm"/>
+      <BindItem id="item3" compid="divDetail.form.editDeptCd" propid="value" datasetid="dsList" columnid="deptCd"/>
+      <BindItem id="item4" compid="divDetail.form.editOrdSn" propid="value" datasetid="dsList" columnid="ordSn"/>
+      <BindItem id="item5" compid="divDetail.form.editDeptLdrNm" propid="value" datasetid="dsList" columnid="deptLdrNm"/>
+      <BindItem id="item6" compid="divDetail.form.editDeptNm" propid="value" datasetid="dsList" columnid="deptNm"/>
+      <BindItem id="item7" compid="divDetail.form.comboUseYn" propid="value" datasetid="dsList" columnid="useYn"/>
+      <BindItem id="item8" compid="divDetail.form.editDeptMngrNm" propid="value" datasetid="dsList" columnid="deptMngrNm"/>
+      <BindItem id="item9" compid="divDetail.form.editDeptDesc" propid="value" datasetid="dsList" columnid="deptDesc"/>
+      <BindItem id="item10" compid="divDetail.form.editDeptLdrNm00" propid="value" datasetid="dsList" columnid="deptLdrNm"/>
+      <BindItem id="item11" compid="divDetail.form.editDeptMngrNm00" propid="value" datasetid="dsList" columnid="deptMngrNm"/>
+      <BindItem id="item12" compid="divDetail.form.editDeptLdrNm00_00" propid="value" datasetid="dsList" columnid="deptLdrNm"/>
+      <BindItem id="item13" compid="divDetail.form.editDeptMngrNm00_00" propid="value" datasetid="dsList" columnid="deptMngrNm"/>
+    </Bind>
+  </Form>
+</FDL>

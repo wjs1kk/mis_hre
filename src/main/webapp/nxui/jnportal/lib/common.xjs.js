@@ -633,6 +633,40 @@
         	this.transaction(svcId, objEnv.services["svcurl"].url + "cm/getCommonCodeCombo.do", "", arr.join(" "), params, "gfnCallback", false, "3");
         };
 
+        // hre 관련
+        this.gfnLoadHreCombo = function (serviceId, params, callback)
+        {
+        	var arr = params.split(' ');
+        	for (var i = 0; i < arr.length; i++) {
+        		var dsId = arr[i].substring(0, arr[i].indexOf('='));
+        		arr[i] = dsId + "=" + dsId;
+        	}
+
+        	var objEnv = nexacro.getEnvironment();
+        	var now = new Date();
+        	var date = String(now.getYear())
+        		+ "-" + String(now.getMonth()).padLeft(2, "0")
+        		+ "-" + String(now.getDate()).padLeft(2, "0")
+        		+ " " + String(now.getHours()).padLeft(2, "0")
+        		+ ":" + String(now.getMinutes()).padLeft(2, "0")
+        		+ ":" + String(now.getSeconds()).padLeft(2, "0")
+        		+ " " + String(now.getMilliseconds());
+        	var time = now.getTime();
+        	var svcId = serviceId + "|" + callback + "|true|" + date + "|" + time;
+
+        	this.transaction(svcId, objEnv.services["svcurl"].url + "cm/getHreCodeCombo.do", "", arr.join(" "), params, "gfnCallback", false, "3");
+        };
+        //this.transaction(strSvcId, strSvcUrl, inData, outData, strArg, callBackFnc, isAsync, 3);  // json
+        // 	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        // 						strSvcUrl, 	    // transaction을 요청할 주소
+        // 						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        // 						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        // 						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        // 						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        // 						isAsync); 		// 비동기통신 여부 [생략가능]
+
+        // hre 관련 끝 this.gfnLoadCombo("loadCombo", "dsAdTyCombo=SMP:ITEM_TYPE:A", "fnCallBack");
+
         ///////////////
         // 권한 체크 //
         ///////////////
