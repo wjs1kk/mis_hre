@@ -19,7 +19,19 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsList", this);
-            obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"evalId\" type=\"STRING\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/><Column id=\"evalPointRange\" type=\"FLOAT\" size=\"256\"/><Column id=\"evalPointRoundOption\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj.set_useclientlayout("false");
+            obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"evalId\" type=\"STRING\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/><Column id=\"evalPointRange\" type=\"FLOAT\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsSearch", this);
+            obj.set_updatecontrol("true");
+            obj._setContents("<ColumnInfo><Column id=\"evalId\" type=\"STRING\" size=\"256\"/><Column id=\"evalGrade\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsGrade", this);
+            obj._setContents("<ColumnInfo><Column id=\"text\" type=\"STRING\" size=\"256\"/><Column id=\"value\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"value\">평가등급</Col><Col id=\"text\"/></Row><Row><Col id=\"text\">S</Col><Col id=\"value\">S</Col></Row><Row><Col id=\"text\">A</Col><Col id=\"value\">A</Col></Row><Row><Col id=\"text\">B</Col><Col id=\"value\">B</Col></Row><Row><Col id=\"text\">C</Col><Col id=\"value\">C</Col></Row><Row><Col id=\"text\">D</Col><Col id=\"value\">D</Col></Row></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -64,6 +76,12 @@
 
             obj = new Combo("cbo001","sta001:10","15","160","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("1");
+            obj.set_innerdataset("dsGrade");
+            obj.set_codecolumn("text");
+            obj.set_datacolumn("value");
+            obj.set_text("");
+            obj.set_value("");
+            obj.set_index("-1");
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Div("divResult","50","divSearch:0",null,null,"50","37",null,null,null,null,this);
@@ -90,7 +108,7 @@
             obj.set_autofittype("col");
             obj.set_autoenter("select");
             obj.set_autoupdatetype("itemselect");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"40\"/><Column size=\"40\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"60\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"24\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"2\" text=\"평가 ID\"/><Cell col=\"3\" text=\"평가등급\"/><Cell col=\"4\" text=\"평가점수 범위\"/><Cell col=\"5\" text=\"평가점수반영옵션\"/><Cell col=\"6\" text=\"사용여부\"/></Band><Band id=\"body\"><Cell text=\"expr: corrow +1\"/><Cell col=\"1\" text=\"bind:rowCheck\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"2\" text=\"bind:evalId\"/><Cell col=\"3\" text=\"bind:evalGrade\"/><Cell col=\"4\" text=\"bind:evalPointRange\"/><Cell col=\"5\" text=\"bind:evalPointRoundOption\"/><Cell col=\"6\" text=\"bind:useYn\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"40\"/><Column size=\"40\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"100\"/><Column size=\"60\"/></Columns><Rows><Row size=\"24\" band=\"head\"/><Row size=\"30\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"2\" text=\"평가 ID\"/><Cell col=\"3\" text=\"평가등급\"/><Cell col=\"4\" text=\"평가점수 범위\"/><Cell col=\"5\" text=\"사용여부\"/></Band><Band id=\"body\"><Cell text=\"expr: currow+1\"/><Cell col=\"1\" text=\"bind:rowCheck\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"2\" text=\"bind:evalId\" displaytype=\"editcontrol\" edittype=\"expr:rowStatus == &apos;inserted&apos; ? &apos;normal&apos; : &apos;none&apos;\" editmaxlength=\"6\"/><Cell col=\"3\" text=\"bind:evalGrade\" displaytype=\"editcontrol\" edittype=\"expr:expr:rowStatus == &apos;inserted&apos; ? &apos;normal&apos; : &apos;none&apos;\" editmaxlength=\"20\" editinputtype=\"normal,english\"/><Cell col=\"4\" text=\"bind:evalPointRange\" displaytype=\"editcontrol\" edittype=\"text\" editinputfilter=\"none,dot,comma\" editinputtype=\"number\"/><Cell col=\"5\" text=\"bind:useYn\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/></Band></Format></Formats>");
             this.divResult.addChild(obj.name, obj);
 
             obj = new Static("sta004","0","0","137","45",null,null,null,null,null,null,this.divResult.form);
@@ -211,7 +229,17 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
+            obj = new BindItem("item0","divSearch.form.cbo001","value","dsSearch","evalGrade");
+            this.addChild(obj.name, obj);
+            obj.bind();
 
+            obj = new BindItem("item1","divSearch.form.edt002","value","dsSearch","evalId");
+            this.addChild(obj.name, obj);
+            obj.bind();
+
+            obj = new BindItem("item2","divSearch.form.cbo001","text","dsGrade","text");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -247,7 +275,8 @@
         */
         this.form_onload = function(obj,e)
         {
-        //	this.gfnFormOnLoad(this);
+            this.divSearch.form.cbo001.set_index(0);
+        	this.gfnFormOnLoad(this);
         	this.fnSearch();
         };
 
@@ -261,7 +290,7 @@
         {
         	var strSvcId    = "getEvalGradeList";
         	var strSvcUrl   = "mis/hre/hre3060/getEvalGrade.do";
-        	var inData      = "ds_search";
+        	var inData      = "dsSearch";
         	var outData     = "dsList";
         	var strArg      = "";
         	var callBackFnc = "fnCallBack";
@@ -280,6 +309,24 @@
         						callBackFnc 	// transaction의 결과를 받을 Function 이름
         						); 		// 비동기통신 여부 [생략가능]
         };
+        this.fnSave = function()
+        {
+        	var strSvcId    = "setEvalGradeList";
+        	var strSvcUrl   = "mis/hre/hre3060/setEvalGrade.do";
+        	var inData      = "dsList";
+        	var outData     = "";
+        	var strArg      = "";
+        	var callBackFnc = "fnCallBack";
+        	var isAsync   	= true;
+
+        	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        						strSvcUrl, 	    // transaction을 요청할 주소
+        						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        						isAsync); 		// 비동기통신 여부 [생략가능]
+        };
 
         /************************************************************************************************
          * CALLBACK 콜백 처리부분(Transaction, Popup)
@@ -293,8 +340,16 @@
         	switch (sSvcId) {
         		case "getEvalGradeList":
         			//총 건수 계산
-        			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCntt);
+        			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCnt);
                     break;
+        		case "setEvalGradeList":
+        			if(this.callbackMsg == "success"){
+        				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+        				this.fnSearch();
+        			} else{
+        				this.gfnAlert("CM_MSG_TEST_3");
+        			}
+        		break;
         		default:
         		break;
         	}
@@ -304,12 +359,7 @@
          * 각 COMPONENT 별 EVENT 영역
         ************************************************************************************************/
 
-        this.divSearch_divSrch_edtRoleCd_onkeyup = function(obj,e)
-        {
-        	if (e.keycode == 13) {
-        		this.btnSearch_onclick();
-        	}
-        };
+
 
         /************************************************************************************************
         * 사용자 FUNCTION 영역
@@ -318,18 +368,36 @@
         this.btnAddRow_onclick = function(obj,e)
         {
         	this.gfnInsertRow(this.dsList, "last");
-        };
 
+        };
 
 
         this.btnDeleteRow_onclick = function(obj,e)
         {
+        	var indices = this.gfnGetCheckedRows(this.dsList, "rowCheck"); // 체크된 목록
         	this.gfnDeleteRow(this.dsList);
         };
 
         this.btnSearch_onclick = function(obj,e)
         {
         	this.fnSearch();
+        };
+        this.btnSave_onclick = function(obj,e)
+        {
+        	this.fnSave();
+        };
+
+        this.divResult_grdModuleManage_onheadclick = function(obj,e)
+        {
+        	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+        };
+
+
+        this.divSearch_onkeyup = function(obj,e)
+        {
+        	if (e.keycode == 13) {
+        		this.btnSearch_onclick();
+        	}
         };
 
         });
@@ -340,9 +408,12 @@
             this.addEventHandler("onload",this.form_onload,this);
             this.btnSave.addEventHandler("onclick",this.btnSave_onclick,this);
             this.sta00.addEventHandler("onclick",this.sta_01_onclick,this);
+            this.divSearch.addEventHandler("onkeyup",this.divSearch_onkeyup,this);
             this.divSearch.form.staBg.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
+            this.divSearch.form.cbo001.addEventHandler("onitemchanged",this.divSearch_cbo001_onitemchanged,this);
             this.divResult.form.btnDeleteRow.addEventHandler("onclick",this.btnDeleteRow_onclick,this);
             this.divResult.form.btnAddRow.addEventHandler("onclick",this.btnAddRow_onclick,this);
+            this.divResult.form.grdModuleManage.addEventHandler("onheadclick",this.divResult_grdModuleManage_onheadclick,this);
             this.btnSearch.addEventHandler("onclick",this.btnSearch_onclick,this);
         };
         this.loadIncludeScript("hre3060M.xfdl");
