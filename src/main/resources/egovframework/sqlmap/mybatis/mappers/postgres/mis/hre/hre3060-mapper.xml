@@ -45,7 +45,6 @@
     </delete>
 
     <select id="getDuplicatedKeyCnt" parameterType="typeTwoVO" resultType="int">
-        /* type-two-mapper.getDuplicatedKeyCnt */
         SELECT COUNT(*)
           FROM HRE_EVAL_GRADE
          WHERE EVAL_ID = #{evalId}

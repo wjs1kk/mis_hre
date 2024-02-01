@@ -1,8 +1,8 @@
-package com.jnv.mis.hre.vo;
+package com.jnv.mis.hre.std.vo;
 
 import com.jnv.jncore.vo.CommonVO;
 
-public class Hre3060VO extends CommonVO{
+public class EvalGradeVO extends CommonVO{
 	private String evalId;
 	private String evalGrade;
 	private int evalPointRange;

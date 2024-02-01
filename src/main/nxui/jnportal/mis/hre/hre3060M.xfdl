@@ -47,8 +47,8 @@
                     <Band id="body">
                       <Cell text="expr: currow+1"/>
                       <Cell col="1" text="bind:rowCheck" displaytype="checkboxcontrol" edittype="checkbox"/>
-                      <Cell col="2" text="bind:evalId" displaytype="editcontrol" edittype="expr:rowStatus == 'inserted' ? 'normal' : 'none'" editmaxlength="6"/>
-                      <Cell col="3" text="bind:evalGrade" displaytype="editcontrol" edittype="expr:expr:rowStatus == 'inserted' ? 'normal' : 'none'" editmaxlength="20" editinputtype="normal,english"/>
+                      <Cell col="2" text="bind:evalId" displaytype="normal" edittype="none" editmaxlength="6"/>
+                      <Cell col="3" text="bind:evalGrade" displaytype="normal" edittype="none" editmaxlength="20" editinputtype="normal,english"/>
                       <Cell col="4" text="bind:evalPointRange" displaytype="editcontrol" edittype="text" editinputfilter="none,dot,comma" editinputtype="number"/>
                       <Cell col="5" text="bind:useYn" displaytype="checkboxcontrol" edittype="checkbox"/>
                     </Band>
