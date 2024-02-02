@@ -28,6 +28,7 @@
                   <Format id="default">
                     <Columns>
                       <Column size="48"/>
+                      <Column size="0"/>
                       <Column size="100"/>
                       <Column size="120"/>
                       <Column size="48"/>
@@ -43,25 +44,27 @@
                     </Rows>
                     <Band id="head">
                       <Cell text="순번"/>
-                      <Cell col="1" text="기준연도"/>
-                      <Cell col="2" text="구분"/>
-                      <Cell col="3" text="차수"/>
-                      <Cell col="4" text="단계"/>
-                      <Cell col="5" text="시작"/>
-                      <Cell col="6" text="종료"/>
-                      <Cell col="7" text="사용"/>
-                      <Cell col="8" text="비고"/>
+                      <Cell col="1" text="rowCheck" suppressalign="first"/>
+                      <Cell col="2" text="기준연도"/>
+                      <Cell col="3" text="구분"/>
+                      <Cell col="4" text="차수"/>
+                      <Cell col="5" text="단계"/>
+                      <Cell col="6" text="시작"/>
+                      <Cell col="7" text="종료"/>
+                      <Cell col="8" text="사용"/>
+                      <Cell col="9" text="비고"/>
                     </Band>
                     <Band id="body">
                       <Cell textAlign="right" expr="currow+1"/>
-                      <Cell col="1" displaytype="combocontrol" textAlign="left" combodataset="dsEvalYear" combocodecol="evalYear" combodatacol="evalYear" text="bind:evalYear" edittype="combo"/>
-                      <Cell col="2" displaytype="combocontrol" textAlign="left" edittype="combo" text="bind:evalId" combodataset="dsEvalId" combocodecol="evalId" combodatacol="evalId"/>
-                      <Cell col="3" displaytype="editcontrol" textAlign="left" edittype="text" text="bind:evalCnt"/>
-                      <Cell col="4" displaytype="editcontrol" textAlign="left" edittype="text" text="bind:evalStepCd"/>
-                      <Cell col="5" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" text="bind:evalStepStartDate" calendareditformat="yyyy-MM-dd"/>
-                      <Cell col="6" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" calendardataset="dsEvalStep" calendardatecol="endDt" text="bind:evalStepEndDate"/>
-                      <Cell col="7" edittype="checkbox" textAlign="center" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y" text="bind:useYn"/>
-                      <Cell col="8" edittype="text" textAlign="left" displaytype="editcontrol" text="bind:evalStepDesc"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck"/>
+                      <Cell col="2" displaytype="combocontrol" textAlign="left" combodataset="dsEvalYear" combocodecol="evalYear" combodatacol="evalYear" text="bind:evalYear" edittype="combo"/>
+                      <Cell col="3" displaytype="combotext" textAlign="left" edittype="combo" text="bind:evalId" combodataset="dsEvalId" combocodecol="evalId" combodatacol="evalId"/>
+                      <Cell col="4" displaytype="editcontrol" textAlign="left" edittype="text" text="bind:evalCnt"/>
+                      <Cell col="5" displaytype="text" textAlign="left" edittype="text" text="bind:evalStepCd"/>
+                      <Cell col="6" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" text="bind:evalStepStartDate" calendareditformat="yyyy-MM-dd"/>
+                      <Cell col="7" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" calendardataset="dsEvalStep" calendardatecol="endDt" text="bind:evalStepEndDate"/>
+                      <Cell col="8" edittype="checkbox" textAlign="center" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y" text="bind:useYn"/>
+                      <Cell col="9" edittype="text" textAlign="left" displaytype="editcontrol" text="bind:evalStepDesc"/>
                     </Band>
                   </Format>
                 </Formats>
@@ -213,6 +216,7 @@ this.fnSearch = function()
 	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
 };
 
+
 /**
  * description 저장
 */
@@ -235,20 +239,6 @@ this.fnSave = function()
 						isAsync); 		// 비동기통신 여부 [생략가능]	
 };
 
-// 삭제
-// this.fnDelete = function()
-// {
-// 	var strSvcId    = "delteEvalStep";
-// 	var strSvcUrl   = "mis/delteEvalStep.do";
-// 	var inData      = "dsEvalStep";  // input1=dsSearch
-// 	var outData     = "dsEvalStep";  // dsModuleManage=output1
-// 	var strArg      = "";
-// 	var callBackFnc = "fnCallBack";
-// 	var isAsync   	= true;
-// 	
-// 	
-// 	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
-// };
 
 
 
@@ -273,39 +263,6 @@ this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
 		break;
 	}
 };
-
-/************************************************************************************************
-	//공통코드 조회 메소드..?
- // Function Name	: fn_callBack
- // Description		: svcId에 따른 분기처리
-
-this.fn_callBack = function (sSvcId)
-{
-    switch(sSvcId){
-	    // 인사평가 공통코드 조회 callback
-	    case "getHreCodeList":
-		    this.fn_comboEvalId();
-		    break;
-	    // 평가ID
-	    case "getEvalId":
-		    this.div_Search.form.combo_EVAL_ID.set_index(0);
-			this.fn_search();
-			break;
-	    // 조회
-		case "getData":			
-			this.gfn_rowCount(this.ds_list, this.stc_gridRowCnt);			
-		    break;
-		// 저장
-	    case "setData":			
-			if (this.result == "Y") {
-				this.gfn_showMsg("COM_CRUD_0002", "", "");
-			}
-			this.fn_search();
-		    break;
-	}
-};
-************************************************************************************************/
-
 
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역

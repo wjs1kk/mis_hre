@@ -10,6 +10,7 @@ public class EvalTypeVO extends CommonVO{
 	String evalAdjustProceduer;
 	String evalAdjustAvg;
 	String evalAdjustStdevp;
+	String useYn;
 	
 	public String getEvalId() {
 		return evalId;
@@ -54,5 +55,11 @@ public class EvalTypeVO extends CommonVO{
 		this.evalAdjustStdevp = evalAdjustStdevp;
 	}
 	
+	public String getUseYn() {
+		return useYn;
+	}
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
+	}
 
 }

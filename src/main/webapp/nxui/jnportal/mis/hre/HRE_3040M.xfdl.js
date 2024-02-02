@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_name("HRE_3030M");
-            this.set_titletext("시스템모듈관리");
+            this.set_titletext("평가유형 관리");
             this.set_cssclass("frm_WF_comp");
             if (Form == this.constructor)
             {
@@ -23,18 +23,13 @@
             this.addChild(obj.name, obj);
 
 
-            obj = new Dataset("dsSysIdComboSearch", this);
-            obj._setContents("<ColumnInfo><Column id=\"value\" type=\"STRING\" size=\"256\"/><Column id=\"text\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
-            this.addChild(obj.name, obj);
-
-
             obj = new Dataset("dsSearch", this);
-            obj._setContents("");
+            obj._setContents("<ColumnInfo><Column id=\"evalId\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
-            obj = new Dataset("ds_codeE03", this);
-            obj._setContents("");
+            obj = new Dataset("dsEvalType", this);
+            obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"rowStatus\" type=\"STRING\" size=\"256\"/><Column id=\"evalId\" type=\"STRING\" size=\"256\"/><Column id=\"evalTypeCd\" type=\"STRING\" size=\"256\"/><Column id=\"evalTypeName\" type=\"STRING\" size=\"256\"/><Column id=\"evalMethodCd\" type=\"STRING\" size=\"256\"/><Column id=\"evalAdjustMethod\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -67,14 +62,17 @@
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Static("sta001","20","15","70","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Static("sta001","20","15","100","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("1");
             obj.set_text("평가ID");
             obj.set_cssclass("sta_WF_condition01");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Combo("cbo01","sta001:10","15","110","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Combo("cbo01","sta001:10","15","120","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("0");
+            obj.set_innerdataset("dsEvalType");
+            obj.set_codecolumn("evalId");
+            obj.set_datacolumn("evalId");
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Div("divResult","50","divSearch:0",null,null,"50","37",null,null,null,null,this);
@@ -95,12 +93,13 @@
             obj.set_cssclass("btn_WF_Row_Add");
             this.divResult.addChild(obj.name, obj);
 
-            obj = new Grid("grdEvaluationStageManage","0","45",null,null,"0","0",null,null,null,null,this.divResult.form);
+            obj = new Grid("grdEvalType","0","45",null,null,"0","0",null,null,null,null,this.divResult.form);
             obj.set_taborder("2");
             obj.set_autofittype("col");
             obj.set_autoenter("select");
             obj.set_autoupdatetype("itemselect");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"240\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"80\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"선택\"/><Cell col=\"1\" text=\"평가ID\"/><Cell col=\"2\" text=\"평가유형ID\"/><Cell col=\"3\" text=\"평가유형 명\"/><Cell col=\"4\" text=\"평가방식\"/><Cell col=\"5\" text=\"평가보정 방식\"/><Cell col=\"6\" text=\"사용\"/></Band><Band id=\"body\"><Cell textAlign=\"right\" displaytype=\"checkboxcontrol\"/><Cell col=\"1\" displaytype=\"editcontrol\" textAlign=\"left\"/><Cell col=\"2\" displaytype=\"editcontrol\" textAlign=\"left\"/><Cell col=\"3\" displaytype=\"editcontrol\" textAlign=\"left\"/><Cell col=\"4\" displaytype=\"combocontrol\" textAlign=\"left\"/><Cell col=\"5\" edittype=\"date\" displaytype=\"combocontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\"/><Cell col=\"6\" text=\"bind:rgstDt\" edittype=\"none\" textAlign=\"center\" displaytype=\"checkboxcontrol\"/></Band></Format></Formats>");
+            obj.set_binddataset("dsEvalType");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"240\"/><Column size=\"120\"/><Column size=\"160\"/><Column size=\"80\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell displaytype=\"checkboxcontrol\" edittype=\"checkbox\"/><Cell col=\"1\" text=\"평가ID\"/><Cell col=\"2\" text=\"평가유형ID\"/><Cell col=\"3\" text=\"평가유형 명\"/><Cell col=\"4\" text=\"평가방식\"/><Cell col=\"5\" text=\"평가보정 방식\"/><Cell col=\"6\" text=\"사용\"/></Band><Band id=\"body\"><Cell textAlign=\"center\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:rowCheck\"/><Cell col=\"1\" displaytype=\"text\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalId\"/><Cell col=\"2\" displaytype=\"text\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalTypeCd\"/><Cell col=\"3\" displaytype=\"text\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalTypeName\"/><Cell col=\"4\" displaytype=\"text\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalMethodCd\"/><Cell col=\"5\" edittype=\"text\" displaytype=\"text\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" text=\"bind:evalAdjustMethod\"/><Cell col=\"6\" edittype=\"checkbox\" textAlign=\"center\" displaytype=\"checkboxcontrol\" text=\"bind:useYn\"/></Band></Format></Formats>");
             this.divResult.addChild(obj.name, obj);
 
             obj = new Static("sta004","0","0","180","45",null,null,null,null,null,null,this.divResult.form);
@@ -135,11 +134,12 @@
                 p.btnAddRow.set_cssclass("btn_WF_Row_Add");
                 p.btnAddRow.move(null,"14","73","26","btnDeleteRow:5",null);
 
-                p.grdEvaluationStageManage.set_taborder("2");
-                p.grdEvaluationStageManage.set_autofittype("col");
-                p.grdEvaluationStageManage.set_autoenter("select");
-                p.grdEvaluationStageManage.set_autoupdatetype("itemselect");
-                p.grdEvaluationStageManage.move("0","45",null,null,"0","0");
+                p.grdEvalType.set_taborder("2");
+                p.grdEvalType.set_autofittype("col");
+                p.grdEvalType.set_autoenter("select");
+                p.grdEvalType.set_autoupdatetype("itemselect");
+                p.grdEvalType.set_binddataset("dsEvalType");
+                p.grdEvalType.move("0","45",null,null,"0","0");
 
                 p.sta004.set_taborder("3");
                 p.sta004.set_text("평가유형");
@@ -167,7 +167,7 @@
             	{
                 var rootobj = p;
                 p = rootobj;
-                p.set_titletext("시스템모듈관리");
+                p.set_titletext("평가유형 관리");
                 p.set_cssclass("frm_WF_comp");
 
                 p.btnSave.set_taborder("0");
@@ -209,7 +209,9 @@
             this.addLayout(obj.name, obj);
             
             // BindItem Information
-
+            obj = new BindItem("item0","divSearch.form.cbo01","value","dsSearch","evalId");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -224,7 +226,7 @@
         this.addIncludeScript("HRE_3040M.xfdl","lib::common.xjs");
         this.registerScript("HRE_3040M.xfdl", function() {
         /**
-        *  시스템 모듈 관리
+        *  인사평가 관리
         *  MenuPath       -  -
         *  FileName
         *  Creator 	     parkkr
@@ -246,7 +248,7 @@
         this.form_onload = function(obj,e)
         {
         	this.gfnFormOnLoad(this);
-        	this.fnLoadCombo();
+        	this.fnSearch();
         };
 
         /************************************************************************************************
@@ -260,14 +262,124 @@
          ************************************************************************************************/
 
 
+        /**
+         * description 조회
+        */
+        this.fnSearch = function()
+        {
+        	var strSvcId    = "getEvalTypeList";
+        	var strSvcUrl   = "mis/getEvalTypeList.do";
+        	var inData      = "dsSearch";  // input1=dsSearch
+        	var outData     = "dsEvalType";  // dsModuleManage=output1
+        	var strArg      = "";
+        	var callBackFnc = "";
+        	var isAsync   	= true;
+
+
+        	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+
+        };
+
+        /**
+         * description 저장
+        */
+        this.fnSave = function()
+        {
+        	var strSvcId    = "setEvalTypeList";
+        	var strSvcUrl   = "mis/setEvalTypeList.do";
+        	var inData      = "dsEvalType";  // input1=dsSearch
+        	var outData     = "";  // dsModuleManage=output1
+        	var strArg      = "";
+        	var callBackFnc = "";
+        	var isAsync   	= true;
+
+        	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+        };
+
+
+
+
 
         /************************************************************************************************
          * 각 COMPONENT 별 EVENT 영역
-        ****************************************************
+        *************************************************************************************************/
+
+        //저장버튼 클릭
+
+        this.btnSave_onclick = function(obj,e)
+        {
+        	if(this.dsEvalType.rowcount == 0){
+        	this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.(변경된 내역이 없습니다.)
+        	return;
+        	}
+        	// 변경사항 체크
+        	if (!this.gfnDsIsUpdated(this.dsEvalType)) {
+        		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+        		return;
+        	}
+        	// msgId, args(치환), popupId, Confirm Callback Function({확인 trueFunc, 취소: falseFunc})
+        	// confirm 이후 스크립트가 실행되기때문에 return; 처리 or 가장 마지막 위치
+        	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+        	return;
+        };
+
+        //조회 버튼 클릭
+        this.btnSearch_onclick = function(obj,e)
+        {
+        	this.fnSearch();
+        };
+
+
+        //행추가 버튼 클릭
+        this.divResult_btnAddRow_onclick = function(obj,e)
+        {
+            this.gfnInsertRow(this.dsEvalType, "last");
+            var i = this.dsEvalType.rowposition;
+            this.dsEvalType.setColumn(i, "useYn", "Y");
+        };
+
+        //행삭제 버튼 클릭
+        this.divResult_btnDeleteRow_onclick = function(obj,e)
+        {
+        	this.gfnDeleteRow(this.dsEvalType);
+        };
+
+        /**
+         * description 그리드해드 클릭
+        */
+        this.divCode_grdCodeHeader_onheadclick = function(obj,e)
+        {
+        	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+        };
+
 
         /************************************************************************************************
         * 사용자 FUNCTION 영역
         ************************************************************************************************/
+
+
+        // 유효성 검사
+        this.fnValidate = function ()
+        {
+            if (this.dsEvalType.rowcount == 0 || !this.gfnDsIsUpdated(this.dsEvalType)) {
+                this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.
+                return false;
+            }
+
+        	if (!this.gfnDsIsUpdated(this.dsEvalType)) {
+        		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+        		return false;
+        	}
+
+            var args = [
+                ["evalId", "NULL|MAX_LEN:6", ""],
+                ["evalTypeCd", "NULL|MAX_LEN:20", ""]
+            ];
+
+            return this.gfnCheckGrid(this.divResult.form.grdEvalType, args, "");
+        };
+
+
 
         });
         
@@ -276,15 +388,11 @@
         {
             this.addEventHandler("onload",this.form_onload,this);
             this.btnSave.addEventHandler("onclick",this.btnSave_onclick,this);
-            this.sta00.addEventHandler("onclick",this.sta_01_onclick,this);
-            this.divSearch.form.staBg00.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
             this.divSearch.form.staBg.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
-            this.divSearch.form.sta001.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
-            this.divSearch.form.cbo01.addEventHandler("onitemchanged",this.divSearch_cbo01_onitemchanged,this);
-            this.divResult.form.btnDeleteRow.addEventHandler("onclick",this.btnDeleteRow_onclick,this);
-            this.divResult.form.btnAddRow.addEventHandler("onclick",this.btnAddRow_onclick,this);
-            this.divResult.form.grdEvaluationStageManage.addEventHandler("onheadclick",this.Div00_grdModuleManage_onheadclick,this);
-            this.divResult.form.sta004.addEventHandler("onclick",this.Static09_onclick,this);
+            this.divResult.form.btnDeleteRow.addEventHandler("onclick",this.divResult_btnDeleteRow_onclick,this);
+            this.divResult.form.btnAddRow.addEventHandler("onclick",this.divResult_btnAddRow_onclick,this);
+            this.divResult.form.grdEvalType.addEventHandler("onheadclick",this.divCode_grdCodeHeader_onheadclick,this);
+            this.btnSearch.addEventHandler("onclick",this.btnSearch_onclick,this);
         };
         this.loadIncludeScript("HRE_3040M.xfdl");
         this.loadPreloadList();

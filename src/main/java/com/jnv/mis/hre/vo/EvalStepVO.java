@@ -4,9 +4,12 @@ import com.jnv.jncore.vo.CommonVO;
 
 public class EvalStepVO extends CommonVO{
 	String evalYear;
-	String evalStepStepCd;
-	String evalStepStartDt;
+	String evalId;
+	String evalStepCd;
+	String evalStepStartDate;
+	String evalStepEndDate;
 	String evalStepEndtDt;
+	String useYn;
 	
 	public String getEvalYear() {
 		return evalYear;
@@ -14,17 +17,29 @@ public class EvalStepVO extends CommonVO{
 	public void setEvalYear(String evalYear) {
 		this.evalYear = evalYear;
 	}
-	public String getEvalStepStepCd() {
-		return evalStepStepCd;
+	public String getEvalId() {
+		return evalId;
 	}
-	public void setEvalStepStepCd(String evalStepStepCd) {
-		this.evalStepStepCd = evalStepStepCd;
+	public void setEvalId(String evalId) {
+		this.evalId = evalId;
 	}
-	public String getEvalStepStartDt() {
-		return evalStepStartDt;
+	public String getEvalStepCd() {
+		return evalStepCd;
 	}
-	public void setEvalStepStartDt(String evalStepStartDt) {
-		this.evalStepStartDt = evalStepStartDt;
+	public void setEvalStepCd(String evalStepCd) {
+		this.evalStepCd = evalStepCd;
+	}
+	public String getEvalStepStartDate() {
+		return evalStepStartDate;
+	}
+	public void setEvalStepStartDate(String evalStepStartDate) {
+		this.evalStepStartDate = evalStepStartDate;
+	}
+	public String getEvalStepEndDate() {
+		return evalStepEndDate;
+	}
+	public void setEvalStepEndDate(String evalStepEndDate) {
+		this.evalStepEndDate = evalStepEndDate;
 	}
 	public String getEvalStepEndtDt() {
 		return evalStepEndtDt;
@@ -32,4 +47,12 @@ public class EvalStepVO extends CommonVO{
 	public void setEvalStepEndtDt(String evalStepEndtDt) {
 		this.evalStepEndtDt = evalStepEndtDt;
 	}
+	public String getUseYn() {
+		return useYn;
+	}
+	public void setUseYn(String useYn) {
+		this.useYn = useYn;
+	}
+	
+	
 }

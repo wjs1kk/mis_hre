@@ -10,7 +10,7 @@
         this.on_create = function()
         {
             this.set_name("HRE_3030M");
-            this.set_titletext("시스템모듈관리");
+            this.set_titletext("진행단계 설정");
             this.set_cssclass("frm_WF_comp");
             if (Form == this.constructor)
             {
@@ -19,27 +19,27 @@
             
             // Object(Dataset, ExcelExportObject) Initialize
             obj = new Dataset("dsUseYn", this);
-            obj._setContents("<ColumnInfo><Column id=\"value\" type=\"STRING\" size=\"256\"/><Column id=\"text\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
-            this.addChild(obj.name, obj);
-
-
-            obj = new Dataset("dsSysIdComboSearch", this);
-            obj._setContents("<ColumnInfo><Column id=\"value\" type=\"STRING\" size=\"256\"/><Column id=\"text\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"value\" type=\"STRING\" size=\"256\"/><Column id=\"text\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("dsSearch", this);
-            obj._setContents("<ColumnInfo><Column id=\"evalYear\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"evalYear\" type=\"STRING\" size=\"256\"/><Column id=\"evalId\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row/></Rows>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("dsEvalStep", this);
-            obj._setContents("<ColumnInfo><Column id=\"evalYear\" type=\"STRING\" size=\"256\"/><Column id=\"evalStepCd\" type=\"STRING\" size=\"256\"/><Column id=\"startDt\" type=\"STRING\" size=\"256\"/><Column id=\"endDt\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"rowCheck\" type=\"STRING\" size=\"256\"/><Column id=\"roeStatus\" type=\"STRING\" size=\"256\"/><Column id=\"evalYear\" type=\"STRING\" size=\"256\"/><Column id=\"evalId\" type=\"STRING\" size=\"256\"/><Column id=\"evalDegree\" type=\"STRING\" size=\"256\"/><Column id=\"evalStepCd\" type=\"STRING\" size=\"256\"/><Column id=\"evalStepStartDate\" type=\"STRING\" size=\"256\"/><Column id=\"evalStepEndDate\" type=\"STRING\" size=\"256\"/><Column id=\"useYn\" type=\"STRING\" size=\"256\"/><Column id=\"evalStepDesc\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
             this.addChild(obj.name, obj);
 
 
             obj = new Dataset("dsEvalYear", this);
-            obj._setContents("<ColumnInfo><Column id=\"evalYear\" type=\"STRING\" size=\"256\"/></ColumnInfo>");
+            obj._setContents("<ColumnInfo><Column id=\"evalYear\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"evalYear\">2021</Col></Row><Row><Col id=\"evalYear\">2022</Col></Row><Row><Col id=\"evalYear\">2023</Col></Row><Row><Col id=\"evalYear\">2024</Col></Row><Row><Col id=\"evalYear\">2017</Col></Row><Row><Col id=\"evalYear\">2018</Col></Row><Row><Col id=\"evalYear\">2010</Col></Row><Row><Col id=\"evalYear\">2011</Col></Row></Rows>");
+            this.addChild(obj.name, obj);
+
+
+            obj = new Dataset("dsEvalId", this);
+            obj._setContents("<ColumnInfo><Column id=\"evalId\" type=\"STRING\" size=\"256\"/></ColumnInfo><Rows><Row><Col id=\"evalId\">202101</Col></Row><Row><Col id=\"evalId\">202102</Col></Row><Row><Col id=\"evalId\">202103</Col></Row><Row><Col id=\"evalId\">202104</Col></Row><Row><Col id=\"evalId\">202105</Col></Row><Row><Col id=\"evalId\">202106</Col></Row></Rows>");
             this.addChild(obj.name, obj);
             
             // UI Components Initialize
@@ -72,7 +72,7 @@
             obj.set_text("");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Static("sta_02","270","15","100","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Static("sta_02","280","15","100","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("0");
             obj.set_text("구분");
             obj.set_cssclass("sta_WF_condition01");
@@ -84,18 +84,18 @@
             obj.set_cssclass("sta_WF_condition01");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Combo("cbo01","sta001:10","15","110","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Combo("cbo01","sta001:10","15","120","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("1");
             obj.set_innerdataset("dsEvalYear");
             obj.set_codecolumn("evalYear");
             obj.set_datacolumn("evalYear");
             this.divSearch.addChild(obj.name, obj);
 
-            obj = new Combo("cbo02","315","15","110","26",null,null,null,null,null,null,this.divSearch.form);
+            obj = new Combo("cbo02","sta_02:10","15","120","26",null,null,null,null,null,null,this.divSearch.form);
             obj.set_taborder("5");
-            obj.set_innerdataset("dsSysIdComboSearch");
-            obj.set_codecolumn("value");
-            obj.set_datacolumn("text");
+            obj.set_innerdataset("dsEvalId");
+            obj.set_codecolumn("evalId");
+            obj.set_datacolumn("evalId");
             this.divSearch.addChild(obj.name, obj);
 
             obj = new Combo("cbo003","cbo02:5","15","110","26",null,null,null,null,null,null,this.divSearch.form);
@@ -129,7 +129,8 @@
             obj.set_autoenter("select");
             obj.set_autoupdatetype("itemselect");
             obj.set_binddataset("dsEvalStep");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/><Column size=\"120\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" text=\"기준연도\"/><Cell col=\"2\" text=\"구분\"/><Cell col=\"3\" text=\"차수\"/><Cell col=\"4\" text=\"단계\"/><Cell col=\"5\" text=\"시작\"/><Cell col=\"6\" text=\"종료\"/><Cell col=\"7\" text=\"사용\"/><Cell col=\"8\" text=\"비고\"/></Band><Band id=\"body\"><Cell textAlign=\"right\" expr=\"currow+1\"/><Cell col=\"1\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"dsEvalYear\" combocodecol=\"evalYear\" combodatacol=\"evalYear\" text=\"bind:evalYear\"/><Cell col=\"2\" displaytype=\"combocontrol\" textAlign=\"left\" text=\"bind:evalStepCd\"/><Cell col=\"3\" displaytype=\"editcontrol\" textAlign=\"left\"/><Cell col=\"4\" displaytype=\"editcontrol\" textAlign=\"left\"/><Cell col=\"5\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" calendardataset=\"dsEvalStep\" calendardatecol=\"startDt\" text=\"bind:startDt\"/><Cell col=\"6\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" calendardataset=\"dsEvalStep\" calendardatecol=\"endDt\" text=\"bind:endDt\"/><Cell col=\"7\" edittype=\"none\" textAlign=\"center\" displaytype=\"checkboxcontrol\"/><Cell col=\"8\" edittype=\"none\" textAlign=\"left\" displaytype=\"editcontrol\"/></Band></Format></Formats>");
+            obj.set_selectscrollmode("default");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"0\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/><Column size=\"120\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" text=\"rowCheck\" suppressalign=\"first\"/><Cell col=\"2\" text=\"기준연도\"/><Cell col=\"3\" text=\"구분\"/><Cell col=\"4\" text=\"차수\"/><Cell col=\"5\" text=\"단계\"/><Cell col=\"6\" text=\"시작\"/><Cell col=\"7\" text=\"종료\"/><Cell col=\"8\" text=\"사용\"/><Cell col=\"9\" text=\"비고\"/></Band><Band id=\"body\"><Cell textAlign=\"right\" expr=\"currow+1\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:rowCheck\"/><Cell col=\"2\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"dsEvalYear\" combocodecol=\"evalYear\" combodatacol=\"evalYear\" text=\"bind:evalYear\" edittype=\"combo\"/><Cell col=\"3\" displaytype=\"combotext\" textAlign=\"left\" edittype=\"combo\" text=\"bind:evalId\" combodataset=\"dsEvalId\" combocodecol=\"evalId\" combodatacol=\"evalId\"/><Cell col=\"4\" displaytype=\"editcontrol\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalCnt\"/><Cell col=\"5\" displaytype=\"text\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalStepCd\"/><Cell col=\"6\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" text=\"bind:evalStepStartDate\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" calendardataset=\"dsEvalStep\" calendardatecol=\"endDt\" text=\"bind:evalStepEndDate\"/><Cell col=\"8\" edittype=\"checkbox\" textAlign=\"center\" displaytype=\"checkboxcontrol\" checkboxfalsevalue=\"N\" checkboxtruevalue=\"Y\" text=\"bind:useYn\"/><Cell col=\"9\" edittype=\"text\" textAlign=\"left\" displaytype=\"editcontrol\" text=\"bind:evalStepDesc\"/></Band></Format></Formats>");
             this.divResult.addChild(obj.name, obj);
 
             obj = new Static("sta004","0","0","180","45",null,null,null,null,null,null,this.divResult.form);
@@ -169,6 +170,7 @@
                 p.grdEvalStep.set_autoenter("select");
                 p.grdEvalStep.set_autoupdatetype("itemselect");
                 p.grdEvalStep.set_binddataset("dsEvalStep");
+                p.grdEvalStep.set_selectscrollmode("default");
                 p.grdEvalStep.move("0","45",null,null,"0","0");
 
                 p.sta004.set_taborder("3");
@@ -197,7 +199,7 @@
             	{
                 var rootobj = p;
                 p = rootobj;
-                p.set_titletext("시스템모듈관리");
+                p.set_titletext("진행단계 설정");
                 p.set_cssclass("frm_WF_comp");
 
                 p.btnSave.set_taborder("0");
@@ -242,6 +244,10 @@
             obj = new BindItem("item0","divSearch.form.cbo01","value","dsSearch","evalYear");
             this.addChild(obj.name, obj);
             obj.bind();
+
+            obj = new BindItem("item2","divSearch.form.cbo02","text","dsSearch","evalId");
+            this.addChild(obj.name, obj);
+            obj.bind();
             
             // TriggerItem Information
 
@@ -256,7 +262,7 @@
         this.addIncludeScript("HRE_3030M.xfdl","lib::common.xjs");
         this.registerScript("HRE_3030M.xfdl", function() {
         /**
-        *  시스템 모듈 관리
+        *  인사평가 관리
         *  MenuPath       -  -
         *  FileName
         *  Creator 	     parkkr
@@ -278,19 +284,13 @@
         this.form_onload = function(obj,e)
         {
         	this.gfnFormOnLoad(this);
-        	this.fnLoadCombo();
+        	this.fnSearch();
         };
 
 
         /************************************************************************************************
         * TRANSACTION 서비스 호출 처리
         ************************************************************************************************/
-
-
-
-        /************************************************************************************************
-         * CALLBACK 콜백 처리부분(Transaction, Popup)
-         ************************************************************************************************/
 
         /**
          * description 조회
@@ -302,65 +302,82 @@
         	var inData      = "dsSearch";  // input1=dsSearch
         	var outData     = "dsEvalStep";  // dsModuleManage=output1
         	var strArg      = "";
-        	var callBackFnc = "fnCallback";
+        	var callBackFnc = "";
         	var isAsync   	= true;
 
 
         	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
         };
+
 
         /**
          * description 저장
         */
         this.fnSave = function()
         {
-        	var strSvcId    = "setModuleManageList";
-        	var strSvcUrl   = "sm/setModuleManageList.do";
-        	var inData      = "dsModuleManage";  // input1=dsSearch
+        	var strSvcId    = "setEvalStepList";
+        	var strSvcUrl   = "mis/setEvalStepList.do";
+        	var inData      = "dsEvalStep";  // input1=dsSearch
         	var outData     = "";  // dsModuleManage=output1
         	var strArg      = "";
-        	var callBackFnc = "fnCallback";
+        	var callBackFnc = "fnCallBack";
         	var isAsync   	= true;
 
-        	this.gfnTransaction(strSvcId,strSvcUrl, inData,outData, strArg, callBackFnc, isAsync);
+        	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
+        						strSvcUrl, 	    // transaction을 요청할 주소
+        						inData, 		// 입력값으로 보낼 dataset id , a=b형태로 실제이름과 입력이름을 매칭
+        						outData, 		// 처리결과값으로 받을 dataset id, a=b형태로 실제이름과 입력이름을 매칭
+        						strArg, 		// 입력값으로 보낼 arguments, strFormData="20120607"
+        						callBackFnc, 	// transaction의 결과를 받을 Function 이름
+        						isAsync); 		// 비동기통신 여부 [생략가능]
         };
 
 
-        /** 평가 단계를 찾는 코드일까..?
-         * Function Name	: fn_callBack
-         * Description		: svcId에 따른 분기처리
-         */
-        this.fn_callBack = function (sSvcId)
+
+
+        /************************************************************************************************
+         * CALLBACK 콜백 처리부분(Transaction, Popup)
+         ************************************************************************************************/
+
+        // 콜백
+        this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
         {
-            switch(sSvcId){
-        	    // 인사평가 공통코드 조회 callback
-        	    case "getHreCodeList":
-        		    this.fn_comboEvalId();
-        		    break;
-        	    // 평가ID
-        	    case "getEvalId":
-        		    this.div_Search.form.combo_EVAL_ID.set_index(0);
-        			this.fn_search();
-        			break;
-        	    // 조회
-        		case "getData":
-        			this.gfn_rowCount(this.ds_list, this.stc_gridRowCnt);
-        		    break;
-        		// 저장
-        	    case "setData":
-        			if (this.result == "Y") {
-        				this.gfn_showMsg("COM_CRUD_0002", "", "");
+        	switch (sSvcId) {
+        		case "getItemList":
+
+        		break;
+        		case "setItemList":
+        			if(this.callbackMsg == "success"){
+        				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
+        				this.fnSearch();
         			}
-        			this.fn_search();
-        		    break;
+        		break;
+        		default:
+        		break;
         	}
         };
-
 
         /************************************************************************************************
          * 각 COMPONENT 별 EVENT 영역
         ************************************************************************************************/
 
+        //저장버튼 클릭
+        this.btnSave_onclick = function(obj,e)
+        {
+        	if(this.dsEvalStep.rowcount == 0){
+        	this.gfnAlert("CM_MSG_SAVE_NODATA");  // 저장할 데이터가 없습니다.(변경된 내역이 없습니다.)
+        	return;
+        	}
+        	// 변경사항 체크
+        	if (!this.gfnDsIsUpdated(this.dsEvalStep)) {
+        		this.gfnAlert("CM_MSG_SAVE_NOCHANGE");  // 변경된 내역이 없습니다.
+        		return;
+        	}
+        	// msgId, args(치환), popupId, Confirm Callback Function({확인 trueFunc, 취소: falseFunc})
+        	// confirm 이후 스크립트가 실행되기때문에 return; 처리 or 가장 마지막 위치
+        	this.gfnAlert("CM_CFM_BEFORE_SAVE", "", "", {trueFunc: "fnSave", falseFunc: ""});  // 변경된 내역을 저장 하시겠습니까?
+        	return;
+        };
 
         //조회버튼 클릭
         this.btnSearch_onclick = function(obj,e)
@@ -371,16 +388,33 @@
         //행추가 버튼 클릭
         this.btnAddRow_onclick = function(obj,e)
         {
-        	const sysId = nexacro.getApplication().gdsUserInfo.getColumn(0, "sysId");
-        	this.gfnInsertRow(this.dsModuleManage, "last");
-            this.dsModuleManage.setColumn(this.dsEvaluationStageManage.rowposition, "sysId", sysId);
-        	this.dsModuleManage.setColumn(this.dsEvaluationStageManage.rowposition, "useYn", "Y");
+            this.gfnInsertRow(this.dsEvalStep, "last");
+            var i = this.dsEvalStep.rowposition;
+            this.dsEvalStep.setColumn(i, "useYn", "Y");
         };
 
         //행삭제 버튼 클릭
         this.btnDeleteRow_onclick = function(obj,e)
         {
-        	this.gfnDeleteRow(this.dsEvaluationStageManage);
+        	this.dsEvalStep.setColumn(0, "rowStatus", "deleted");
+        	this.fnSave();
+        // 	var delRowIndex = this.dsEvalStep.rowposition;
+        // 	this.ds_emp.deleteRow(this.ds_emp.rowposition);
+        //
+        //     if (delRowIndex >= 0) {
+        //         // 선택된 행이 있으면 삭제합니다.
+        // 		this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
+        //     }
+
+        // 	// 행 갯수 count
+        // 	var cnt = 0;
+        // 	for(var i = 0; i < this.dsEvalStep.rowcount; i++){
+        // 		if(this.dsList.getColumn(i, "rowCheck") == 1){
+        // 			cnt++;
+        // 		}
+        // 	}
+        // 	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
+
         };
 
 
@@ -388,6 +422,29 @@
         /************************************************************************************************
         * 사용자 FUNCTION 영역
         ************************************************************************************************/
+
+        // 차수 출력 함수
+        function cntYear() {
+            var groupMap = {};
+
+            for (var i = 0; i < dsEvalStep.getRowCount(); i++) {
+                var evalYearVal = dsEvalStep.getColumn(i, "evalYear");
+
+                if (!groupMap[evalYearVal]) {
+                    groupMap[evalYearVal] = 1;
+                } else {
+                    groupMap[evalYearVal]++;
+                }
+
+                dsEvalStep.setColumn(i, "evalDegree", groupMap[evalYearVal]);
+            }
+        	// 그리드에 변경된 데이터셋을 반영
+            this.grdResult.set_binddataset(dsEvalStep);
+
+        }
+
+
+
 
         });
         
@@ -397,15 +454,11 @@
             this.addEventHandler("onload",this.form_onload,this);
             this.btnSave.addEventHandler("onclick",this.btnSave_onclick,this);
             this.sta00.addEventHandler("onclick",this.sta_01_onclick,this);
-            this.divSearch.form.staBg00.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
             this.divSearch.form.staBg.addEventHandler("onclick",this.div_Search_Static00_onclick,this);
             this.divSearch.form.sta_02.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
             this.divSearch.form.sta001.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
-            this.divSearch.form.cbo01.addEventHandler("onitemchanged",this.divSearch_cbo01_onitemchanged,this);
             this.divResult.form.btnDeleteRow.addEventHandler("onclick",this.btnDeleteRow_onclick,this);
             this.divResult.form.btnAddRow.addEventHandler("onclick",this.btnAddRow_onclick,this);
-            this.divResult.form.grdEvalStep.addEventHandler("onheadclick",this.Div00_grdModuleManage_onheadclick,this);
-            this.divResult.form.sta004.addEventHandler("onclick",this.Static09_onclick,this);
             this.btnSearch.addEventHandler("onclick",this.btnSearch_onclick,this);
         };
         this.loadIncludeScript("HRE_3030M.xfdl");
