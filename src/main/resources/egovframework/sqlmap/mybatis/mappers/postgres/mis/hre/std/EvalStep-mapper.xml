@@ -5,19 +5,25 @@
 
     <select id="getEvalStepList" parameterType="map" resultType="evalStepVO">
         /*Hre3030-mapper.getEvalTypeList*/
-        SELECT EVAL_YEAR
-       		 , EVAL_ID
-       		 , EVAL_STEP_CD
-       		 , EVAL_STEP_START_DATE
-       		 , EVAL_STEP_END_DATE
-       		 , USE_YN
-          FROM HRE_EVAL_STEP
+        SELECT S.EVAL_YEAR
+       		 , S.EVAL_ID
+       		 , I.EVAL_NM
+       		 , S.EVAL_STEP_CD
+       		 , S.EVAL_STEP_START_DATE
+       		 , S.EVAL_STEP_END_DATE
+       		 , S.USE_YN
+          FROM HRE_EVAL_STEP S
+     LEFT JOIN HRE_EVAL_ID I
+     		ON S.EVAL_ID = I.EVAL_ID
        <where>
          <if test="evalYear != null and evalYear != ''">
-           AND EVAL_YEAR = #{evalYear}
+           AND S.EVAL_YEAR = #{evalYear}
+         </if>
+         <if test="evalNm != null and evalNm != ''">
+           AND I.EVAL_NM = #{evalNm}
          </if>
        </where>
-       ORDER BY EVAL_ID
+       ORDER BY S.EVAL_ID
 
     </select>
 

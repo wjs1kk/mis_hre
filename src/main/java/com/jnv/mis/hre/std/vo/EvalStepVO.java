@@ -5,6 +5,7 @@ import com.jnv.jncore.vo.CommonVO;
 public class EvalStepVO extends CommonVO{
 	String evalYear;
 	String evalId;
+	String evalNm;
 	String evalStepCd;
 	String evalStepStartDate;
 	String evalStepEndDate;
@@ -22,6 +23,12 @@ public class EvalStepVO extends CommonVO{
 	}
 	public void setEvalId(String evalId) {
 		this.evalId = evalId;
+	}
+	public String getEvalNm() {
+		return evalNm;
+	}
+	public void setEvalNm(String evalNm) {
+		this.evalNm = evalNm;
 	}
 	public String getEvalStepCd() {
 		return evalStepCd;

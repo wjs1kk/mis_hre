@@ -10,11 +10,10 @@
             <Layout>
               <Static id="staBg00" taborder="4" left="0" top="0" height="56" cssclass="sta_WF_bg" right="0" text=""/>
               <Static id="staBg" taborder="3" left="0" top="-254" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
-              <Static id="sta_02" taborder="0" text="구분" left="280" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
-              <Static id="sta001" taborder="2" text="기준 연도" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Static id="sta_02" taborder="0" text="평가명" left="280" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
+              <Static id="sta001" taborder="2" text="평가연도" left="20" top="15" width="100" height="26" onclick="divSearch_sta_01_onclick" cssclass="sta_WF_condition01"/>
               <Combo id="cbo01" taborder="1" left="sta001:10" top="15" width="120" height="26" innerdataset="dsEvalYear" codecolumn="evalYear" datacolumn="evalYear"/>
-              <Combo id="cbo02" taborder="5" left="sta_02:10" top="15" width="120" height="26" innerdataset="dsEvalId" codecolumn="evalId" datacolumn="evalId"/>
-              <Combo id="cbo003" taborder="6" left="cbo02:5" top="15" width="110" height="26" innerdataset="dsSysIdComboSearch" codecolumn="value" datacolumn="text"/>
+              <Combo id="cbo02" taborder="5" left="sta_02:10" top="15" width="120" height="26" innerdataset="dsEvalStepCombo" codecolumn="value" datacolumn="text"/>
             </Layout>
           </Layouts>
         </Div>
@@ -29,14 +28,13 @@
                     <Columns>
                       <Column size="48"/>
                       <Column size="48"/>
+                      <Column size="48"/>
                       <Column size="100"/>
-                      <Column size="120"/>
-                      <Column size="48"/>
                       <Column size="240"/>
-                      <Column size="120"/>
-                      <Column size="120"/>
-                      <Column size="48"/>
                       <Column size="240"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
+                      <Column size="100"/>
                     </Columns>
                     <Rows>
                       <Row size="30" band="head"/>
@@ -45,26 +43,24 @@
                     <Band id="head">
                       <Cell text="순번"/>
                       <Cell col="1" suppressalign="first" displaytype="checkboxcontrol" edittype="checkbox"/>
-                      <Cell col="2" text="기준연도"/>
-                      <Cell col="3" text="구분"/>
-                      <Cell col="4" text="차수"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="평가연도"/>
+                      <Cell col="4" text="평가명"/>
                       <Cell col="5" text="단계"/>
-                      <Cell col="6" text="시작"/>
-                      <Cell col="7" text="종료"/>
+                      <Cell col="6" text="시작일자"/>
+                      <Cell col="7" text="종료일자"/>
                       <Cell col="8" text="사용"/>
-                      <Cell col="9" text="비고"/>
                     </Band>
                     <Band id="body">
-                      <Cell textAlign="right" expr="currow+1"/>
+                      <Cell textAlign="center" expr="currow+1"/>
                       <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox" text="bind:rowCheck"/>
-                      <Cell col="2" displaytype="combocontrol" textAlign="left" combodataset="dsEvalYear" combocodecol="evalYear" combodatacol="evalYear" text="bind:evalYear" edittype="combo"/>
-                      <Cell col="3" displaytype="combocontrol" textAlign="left" edittype="none" text="bind:evalId" combodataset="dsEvalId" combocodecol="evalId" combodatacol="evalId"/>
-                      <Cell col="4" displaytype="editcontrol" textAlign="left" edittype="text" text="bind:evalCnt"/>
-                      <Cell col="5" displaytype="editcontrol" textAlign="left" edittype="none" text="bind:evalStepCd"/>
-                      <Cell col="6" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" text="bind:evalStepStartDate" calendareditformat="yyyy-MM-dd"/>
-                      <Cell col="7" edittype="date" displaytype="calendarcontrol" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" calendardataset="dsEvalStep" calendardatecol="endDt" text="bind:evalStepEndDate"/>
-                      <Cell col="8" edittype="checkbox" textAlign="center" displaytype="checkboxcontrol" checkboxfalsevalue="N" checkboxtruevalue="Y" text="bind:useYn"/>
-                      <Cell col="9" edittype="text" textAlign="left" displaytype="editcontrol" text="bind:evalStepDesc"/>
+                      <Cell col="2" text="bind:rowStatus"/>
+                      <Cell col="3" displaytype="text" textAlign="center" combodataset="dsEvalYear" combocodecol="evalYear" combodatacol="evalYear" text="bind:evalYear" edittype="expr:rowStatus == 'inserted' ? 'normal' : 'none'"/>
+                      <Cell col="4" displaytype="text" textAlign="left" edittype="none" combodataset="dsEvalId" combocodecol="evalId" combodatacol="evalId" text="bind:evalNm"/>
+                      <Cell col="5" displaytype="text" textAlign="left" edittype="expr:rowStatus == 'inserted' ? 'text' : 'none'" text="bind:evalStepCd" combodataset="dsEvalStepCombo" combocodecol="value" combodatacol="text" expr="evalStepCd =='E03-010' ? '개인업적/실적 등록' : (evalStepCd =='E03-020' ? '개인성과평가 수행':'')"/>
+                      <Cell col="6" edittype="date" displaytype="text" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" text="bind:evalStepStartDate" calendareditformat="yyyy-MM-dd"/>
+                      <Cell col="7" edittype="date" displaytype="text" calendardateformat="yyyy-MM-dd" calendardisplaynulltype="nullmask" calendarautoselect="true" textAlign="left" calendardataset="dsEvalStep" calendardatecol="endDt" text="bind:evalStepEndDate"/>
+                      <Cell col="8" edittype="combo" textAlign="center" displaytype="combocontrol" checkboxfalsevalue="N" checkboxtruevalue="Y" text="bind:useYn" combodataset="dsUseYn" combocodecol="value" combodatacol="text"/>
                     </Band>
                   </Format>
                 </Formats>
@@ -85,13 +81,20 @@
           <Column id="text" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
-          <Row/>
+          <Row>
+            <Col id="value">Y</Col>
+            <Col id="text">사용</Col>
+          </Row>
+          <Row>
+            <Col id="value">N</Col>
+            <Col id="text">미사용</Col>
+          </Row>
         </Rows>
       </Dataset>
       <Dataset id="dsSearch">
         <ColumnInfo>
           <Column id="evalYear" type="STRING" size="256"/>
-          <Column id="evalId" type="STRING" size="256"/>
+          <Column id="evalStepCd" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
@@ -100,10 +103,10 @@
       <Dataset id="dsEvalStep">
         <ColumnInfo>
           <Column id="rowCheck" type="STRING" size="256"/>
-          <Column id="roeStatus" type="STRING" size="256"/>
+          <Column id="rowStatus" type="STRING" size="256"/>
           <Column id="evalYear" type="STRING" size="256"/>
           <Column id="evalId" type="STRING" size="256"/>
-          <Column id="evalDegree" type="STRING" size="256"/>
+          <Column id="evalNm" type="STRING" size="256"/>
           <Column id="evalStepCd" type="STRING" size="256"/>
           <Column id="evalStepStartDate" type="STRING" size="256"/>
           <Column id="evalStepEndDate" type="STRING" size="256"/>
@@ -167,6 +170,12 @@
           </Row>
         </Rows>
       </Dataset>
+      <Dataset id="dsEvalStepCombo">
+        <ColumnInfo>
+          <Column id="text" type="STRING" size="256"/>
+          <Column id="value" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
     </Objects>
     <Script type="xscript5.1"><![CDATA[/**
 *  인사평가 관리
@@ -191,6 +200,7 @@ include "lib::common.xjs";
 this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {
 	this.gfnFormOnLoad(this);
+	this.fnLoadCombo();
 	this.fnSearch();
 };
 
@@ -198,6 +208,10 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 /************************************************************************************************
 * TRANSACTION 서비스 호출 처리
 ************************************************************************************************/
+this.fnLoadCombo = function ()
+{
+this.gfnLoadCombo("loadCombo", "dsEvalStepCombo=PMS:HRE:E03", "fnComboCallback");
+}
 
 /**
  * description 조회
@@ -261,6 +275,15 @@ this.fnStepCallBack = function (strSvcId, nErrorCode, sErrorMsg)
 	}
 };
 
+//콤보 콜백
+this.fnComboCallback = function (svcId, errorCode, errorMsg)
+{
+    this.loadCnt--;
+    if (this.loadCnt == 0) {
+        this.fnSearch();
+    }
+};
+
 /************************************************************************************************
  * 각 COMPONENT 별 EVENT 영역
 ************************************************************************************************/
@@ -294,6 +317,8 @@ this.btnAddRow_onclick = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
 {
     this.gfnInsertRow(this.dsEvalStep, "last");
     var i = this.dsEvalStep.rowposition;
+	this.divResult.form.grdEvalStep.set
+	/*this.dsEvalStep.setColumn(i, "evalNm", "").set_enable(false);*/
     this.dsEvalStep.setColumn(i, "useYn", "Y");
 };
 
@@ -314,31 +339,10 @@ this.divResult_grdEvalStep_onheadclick = function(obj:nexacro.Grid,e:nexacro.Gri
 * 사용자 FUNCTION 영역
 ************************************************************************************************/
 
-// 차수 출력 함수
-function cntYear() {
-    var groupMap = {};
-
-    for (var i = 0; i < dsEvalStep.getRowCount(); i++) {
-        var evalYearVal = dsEvalStep.getColumn(i, "evalYear");
-
-        if (!groupMap[evalYearVal]) {
-            groupMap[evalYearVal] = 1;
-        } else {
-            groupMap[evalYearVal]++;
-        }
-
-        dsEvalStep.setColumn(i, "evalDegree", groupMap[evalYearVal]);
-    }
-	// 그리드에 변경된 데이터셋을 반영
-    this.grdResult.set_binddataset(dsEvalStep);
-
-
-	
-};
 ]]></Script>
     <Bind>
       <BindItem id="item0" compid="divSearch.form.cbo01" propid="value" datasetid="dsSearch" columnid="evalYear"/>
-      <BindItem id="item2" compid="divSearch.form.cbo02" propid="text" datasetid="dsSearch" columnid="evalId"/>
+      <BindItem id="item2" compid="divSearch.form.cbo02" propid="text" datasetid="dsSearch" columnid="evalStepCd"/>
     </Bind>
   </Form>
 </FDL>
