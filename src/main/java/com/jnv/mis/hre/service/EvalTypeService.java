@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.jnv.mis.hre.vo.EvalTypeVO;
 
-public interface Hre3040Service {
+public interface EvalTypeService {
 
 	List<EvalTypeVO> getEvalTypeList(Map<String, Object> searchMap)throws Exception;
 

@@ -4,7 +4,7 @@ import com.jnv.jncore.vo.CommonVO;
 
 public class EvalTypeVO extends CommonVO{
 	String evalId;
-	String evalStepCd;
+	String evalTypeCd;
 	String evalMethodCd;
 	String evalAdjustMethod;
 	String evalAdjustProceduer;
@@ -18,11 +18,11 @@ public class EvalTypeVO extends CommonVO{
 	public void setEvalId(String evalId) {
 		this.evalId = evalId;
 	}
-	public String getEvalStepCd() {
-		return evalStepCd;
+	public String getEvalTypeCd() {
+		return evalTypeCd;
 	}
-	public void setEvalStepCd(String evalStepCd) {
-		this.evalStepCd = evalStepCd;
+	public void setEvalTypeCd(String evalTypeCd) {
+		this.evalTypeCd = evalTypeCd;
 	}
 	public String getEvalMethodCd() {
 		return evalMethodCd;

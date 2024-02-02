@@ -15,15 +15,15 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import com.jnv.mis.hre.service.Hre3040DAO;
-import com.jnv.mis.hre.service.Hre3040Service;
+import com.jnv.mis.hre.service.EvalTypeDAO;
+import com.jnv.mis.hre.service.EvalTypeService;
 import com.jnv.mis.hre.vo.EvalTypeVO;
 
-@Service("hre3040Service")
-public class Hre3040ServiceImpl implements Hre3040Service {
+@Service("evalTypeService")
+public class EvalTypeServiceImpl implements EvalTypeService {
 
-	@Resource(name = "hre3040DAO")
-    private Hre3040DAO dao;
+	@Resource(name = "evalTypeDAO")
+    private EvalTypeDAO dao;
 
     private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
 

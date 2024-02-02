@@ -130,7 +130,7 @@
             obj.set_autoupdatetype("itemselect");
             obj.set_binddataset("dsEvalStep");
             obj.set_selectscrollmode("default");
-            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"0\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/><Column size=\"120\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" text=\"rowCheck\" suppressalign=\"first\"/><Cell col=\"2\" text=\"기준연도\"/><Cell col=\"3\" text=\"구분\"/><Cell col=\"4\" text=\"차수\"/><Cell col=\"5\" text=\"단계\"/><Cell col=\"6\" text=\"시작\"/><Cell col=\"7\" text=\"종료\"/><Cell col=\"8\" text=\"사용\"/><Cell col=\"9\" text=\"비고\"/></Band><Band id=\"body\"><Cell textAlign=\"right\" expr=\"currow+1\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:rowCheck\"/><Cell col=\"2\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"dsEvalYear\" combocodecol=\"evalYear\" combodatacol=\"evalYear\" text=\"bind:evalYear\" edittype=\"combo\"/><Cell col=\"3\" displaytype=\"combotext\" textAlign=\"left\" edittype=\"combo\" text=\"bind:evalId\" combodataset=\"dsEvalId\" combocodecol=\"evalId\" combodatacol=\"evalId\"/><Cell col=\"4\" displaytype=\"editcontrol\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalCnt\"/><Cell col=\"5\" displaytype=\"text\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalStepCd\"/><Cell col=\"6\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" text=\"bind:evalStepStartDate\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" calendardataset=\"dsEvalStep\" calendardatecol=\"endDt\" text=\"bind:evalStepEndDate\"/><Cell col=\"8\" edittype=\"checkbox\" textAlign=\"center\" displaytype=\"checkboxcontrol\" checkboxfalsevalue=\"N\" checkboxtruevalue=\"Y\" text=\"bind:useYn\"/><Cell col=\"9\" edittype=\"text\" textAlign=\"left\" displaytype=\"editcontrol\" text=\"bind:evalStepDesc\"/></Band></Format></Formats>");
+            obj._setContents("<Formats><Format id=\"default\"><Columns><Column size=\"48\"/><Column size=\"48\"/><Column size=\"100\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/><Column size=\"120\"/><Column size=\"120\"/><Column size=\"48\"/><Column size=\"240\"/></Columns><Rows><Row size=\"30\" band=\"head\"/><Row size=\"34\"/></Rows><Band id=\"head\"><Cell text=\"순번\"/><Cell col=\"1\" text=\"rowCheck\" suppressalign=\"first\"/><Cell col=\"2\" text=\"기준연도\"/><Cell col=\"3\" text=\"구분\"/><Cell col=\"4\" text=\"차수\"/><Cell col=\"5\" text=\"단계\"/><Cell col=\"6\" text=\"시작\"/><Cell col=\"7\" text=\"종료\"/><Cell col=\"8\" text=\"사용\"/><Cell col=\"9\" text=\"비고\"/></Band><Band id=\"body\"><Cell textAlign=\"right\" expr=\"currow+1\"/><Cell col=\"1\" displaytype=\"checkboxcontrol\" edittype=\"checkbox\" text=\"bind:rowCheck\"/><Cell col=\"2\" displaytype=\"combocontrol\" textAlign=\"left\" combodataset=\"dsEvalYear\" combocodecol=\"evalYear\" combodatacol=\"evalYear\" text=\"bind:evalYear\" edittype=\"combo\"/><Cell col=\"3\" displaytype=\"combocontrol\" textAlign=\"left\" edittype=\"none\" text=\"bind:evalId\" combodataset=\"dsEvalId\" combocodecol=\"evalId\" combodatacol=\"evalId\"/><Cell col=\"4\" displaytype=\"editcontrol\" textAlign=\"left\" edittype=\"text\" text=\"bind:evalCnt\"/><Cell col=\"5\" displaytype=\"editcontrol\" textAlign=\"left\" edittype=\"none\" text=\"bind:evalStepCd\"/><Cell col=\"6\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" text=\"bind:evalStepStartDate\" calendareditformat=\"yyyy-MM-dd\"/><Cell col=\"7\" edittype=\"date\" displaytype=\"calendarcontrol\" calendardateformat=\"yyyy-MM-dd\" calendardisplaynulltype=\"nullmask\" calendarautoselect=\"true\" textAlign=\"left\" calendardataset=\"dsEvalStep\" calendardatecol=\"endDt\" text=\"bind:evalStepEndDate\"/><Cell col=\"8\" edittype=\"checkbox\" textAlign=\"center\" displaytype=\"checkboxcontrol\" checkboxfalsevalue=\"N\" checkboxtruevalue=\"Y\" text=\"bind:useYn\"/><Cell col=\"9\" edittype=\"text\" textAlign=\"left\" displaytype=\"editcontrol\" text=\"bind:evalStepDesc\"/></Band></Format></Formats>");
             this.divResult.addChild(obj.name, obj);
 
             obj = new Static("sta004","0","0","180","45",null,null,null,null,null,null,this.divResult.form);
@@ -320,7 +320,7 @@
         	var inData      = "dsEvalStep";  // input1=dsSearch
         	var outData     = "";  // dsModuleManage=output1
         	var strArg      = "";
-        	var callBackFnc = "fnCallBack";
+        	var callBackFnc = "fnStepCallBack";
         	var isAsync   	= true;
 
         	this.gfnTransaction(strSvcId, 		// transaction을 구분하기 위한 svc id값
@@ -340,13 +340,10 @@
          ************************************************************************************************/
 
         // 콜백
-        this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
+        this.fnStepCallBack = function (strSvcId, nErrorCode, sErrorMsg)
         {
-        	switch (sSvcId) {
-        		case "getItemList":
-
-        		break;
-        		case "setItemList":
+        	switch (strSvcId) {
+        		case "setEvalStepList":
         			if(this.callbackMsg == "success"){
         				this.gfnAlert("CM_MSG_SAVE_SUCCESS");  // 저장 되었습니다.
         				this.fnSearch();
@@ -396,27 +393,14 @@
         //행삭제 버튼 클릭
         this.btnDeleteRow_onclick = function(obj,e)
         {
-        	this.dsEvalStep.setColumn(0, "rowStatus", "deleted");
-        	this.fnSave();
-        // 	var delRowIndex = this.dsEvalStep.rowposition;
-        // 	this.ds_emp.deleteRow(this.ds_emp.rowposition);
-        //
-        //     if (delRowIndex >= 0) {
-        //         // 선택된 행이 있으면 삭제합니다.
-        // 		this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
-        //     }
-
-        // 	// 행 갯수 count
-        // 	var cnt = 0;
-        // 	for(var i = 0; i < this.dsEvalStep.rowcount; i++){
-        // 		if(this.dsList.getColumn(i, "rowCheck") == 1){
-        // 			cnt++;
-        // 		}
-        // 	}
-        // 	this.gfnAlert("CM_CFM_DELETE", "", "", {trueFunc: "fnDelete", falseFunc: ""}); // 삭제하시겠습니까?
-
+        	this.gfnDeleteRow(this.dsEvalStep);
         };
 
+        //그리드 해드클릭
+        this.divResult_grdEvalStep_onheadclick = function(obj,e)
+        {
+        	this.gfnSetGridCheckAll(obj, e, "rowCheck");
+        };
 
 
         /************************************************************************************************
@@ -441,10 +425,9 @@
         	// 그리드에 변경된 데이터셋을 반영
             this.grdResult.set_binddataset(dsEvalStep);
 
-        }
 
 
-
+        };
 
         });
         
@@ -459,6 +442,7 @@
             this.divSearch.form.sta001.addEventHandler("onclick",this.divSearch_sta_01_onclick,this);
             this.divResult.form.btnDeleteRow.addEventHandler("onclick",this.btnDeleteRow_onclick,this);
             this.divResult.form.btnAddRow.addEventHandler("onclick",this.btnAddRow_onclick,this);
+            this.divResult.form.grdEvalStep.addEventHandler("onheadclick",this.divResult_grdEvalStep_onheadclick,this);
             this.btnSearch.addEventHandler("onclick",this.btnSearch_onclick,this);
         };
         this.loadIncludeScript("HRE_3030M.xfdl");

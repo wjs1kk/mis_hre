@@ -5,7 +5,7 @@ import java.util.Map;
 
 import com.jnv.mis.hre.vo.EvalStepVO;
 
-public interface Hre3030Service {
+public interface EvalStepService {
 
 	List<EvalStepVO> getEvalStepList(Map<String, Object> paramMap) throws Exception;
 

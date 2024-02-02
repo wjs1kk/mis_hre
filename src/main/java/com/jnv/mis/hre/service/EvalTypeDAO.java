@@ -7,8 +7,8 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
 import com.jnv.mis.hre.vo.EvalTypeVO;
 
-@Mapper("hre3040DAO")
-public interface Hre3040DAO {
+@Mapper("evalTypeDAO")
+public interface EvalTypeDAO {
 
 	//리스트 조회
 	List<EvalTypeVO> getEvalTypeList(Map<String, Object> paramMap);
