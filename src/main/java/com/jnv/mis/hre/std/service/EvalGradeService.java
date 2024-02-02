@@ -7,5 +7,5 @@ import com.jnv.mis.hre.std.vo.EvalGradeVO;
 
 public interface EvalGradeService {
 	List<EvalGradeVO> getEvalGradeList(Map<String, Object> params);
-	String setEvalGradeList(List<EvalGradeVO> hre3060VO) throws Exception;
+	String setEvalGradeList(List<EvalGradeVO> evalGradeVO) throws Exception;
 }

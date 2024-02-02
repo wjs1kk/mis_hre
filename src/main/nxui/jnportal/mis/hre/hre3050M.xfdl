@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <FDL version="2.1">
-  <Form id="MOD_1010M" width="1920" height="670" onload="form_onload" cssclass="frm_WF_comp" titletext="평가등급기준관리">
+  <Form id="MOD_1010M" width="1920" height="670" cssclass="frm_WF_comp" titletext="평가비중 기준 관리" onload="form_onload">
     <Layouts>
       <Layout width="1920" height="670" screenid="Desktop_screen">
         <Button id="btnSave" taborder="1" text="저장" top="20" height="28" right="50" width="65" onclick="btnSave_onclick" cssclass="btn_WF_Save"/>
-        <Static id="sta00" taborder="2" text="평가등급기준 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
+        <Static id="sta00" taborder="2" text="평가비중 기준 관리" left="50" top="0" height="58" cssclass="sta_WF_compTitle01" width="500" onclick="sta_01_onclick"/>
         <Div id="divSearch" taborder="3" left="50" top="58" text="" right="50" height="71" onkeyup="divSearch_onkeyup">
           <Layouts>
             <Layout>
@@ -12,7 +12,7 @@
               <Static id="staBg" taborder="3" left="0" top="-254" height="56" cssclass="sta_WF_bg" right="0" onclick="div_Search_Static00_onclick" text=""/>
               <Edit id="edt002" taborder="0" left="330" top="16" width="395" height="26"/>
               <Static id="sta001" taborder="2" text="검색조건" left="20" top="15" width="100" height="26" cssclass="sta_WF_condition01"/>
-              <Combo id="cbo001" taborder="1" left="sta001:10" top="15" width="160" height="26" innerdataset="dsGrade" codecolumn="text" datacolumn="value" onitemchanged="divSearch_cbo001_onitemchanged" text="" index="-1" value=""/>
+              <Combo id="cbo001" taborder="1" left="sta001:10" top="15" width="160" height="26" innerdataset="dsEvalEmpTypeCombo" codecolumn="value" datacolumn="text" text="" index="-1" value=""/>
             </Layout>
           </Layouts>
         </Div>
@@ -21,13 +21,14 @@
             <Layout>
               <Button id="btnDeleteRow" taborder="1" text="행삭제" top="14" height="26" right="0" width="73" onclick="btnDeleteRow_onclick" cssclass="btn_WF_Row_Delete"/>
               <Button id="btnAddRow" taborder="0" text="행추가" top="14" height="26" right="btnDeleteRow:5" width="73" onclick="btnAddRow_onclick" cssclass="btn_WF_Row_Add"/>
-              <Grid id="grdModuleManage" taborder="2" left="0" top="45" binddataset="dsList" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect" onheadclick="divResult_grdModuleManage_onheadclick">
+              <Grid id="grdModuleManage" taborder="2" left="0" top="45" binddataset="dsList" right="0" bottom="0" autofittype="col" autoenter="select" autoupdatetype="itemselect">
                 <Formats>
                   <Format id="default">
                     <Columns>
                       <Column size="40"/>
                       <Column size="40"/>
                       <Column size="40"/>
+                      <Column size="100"/>
                       <Column size="100"/>
                       <Column size="100"/>
                       <Column size="100"/>
@@ -39,26 +40,28 @@
                     </Rows>
                     <Band id="head">
                       <Cell text="순번"/>
-                      <Cell col="1" text="상태"/>
-                      <Cell col="2" displaytype="checkboxcontrol" edittype="checkbox"/>
-                      <Cell col="3" text="평가 ID"/>
-                      <Cell col="4" text="평가등급"/>
-                      <Cell col="5" text="평가점수 범위"/>
-                      <Cell col="6" text="사용여부"/>
+                      <Cell col="1" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="상태"/>
+                      <Cell col="3" text="평가그룹"/>
+                      <Cell col="4" text="평가유형"/>
+                      <Cell col="5" text="평가비중"/>
+                      <Cell col="6" text="평가가점"/>
+                      <Cell col="7" text="사용여부"/>
                     </Band>
                     <Band id="body">
-                      <Cell text="expr: currow+1"/>
-                      <Cell col="1" text="bind:rowStatus"/>
-                      <Cell col="2" text="bind:rowCheck" displaytype="checkboxcontrol" edittype="checkbox"/>
-                      <Cell col="3" text="bind:evalId" displaytype="expr:rowStatus == 'inserted' ? 'editcontrol' : 'normal'" edittype="expr:rowStatus == 'inserted' ? 'text' : 'none'" editmaxlength="6"/>
-                      <Cell col="4" text="bind:evalGrade" displaytype="expr:rowStatus == 'inserted' ? 'editcontrol' : 'normal'" edittype="expr:rowStatus == 'inserted' ? 'text' : 'none'" editmaxlength="20" editinputtype="normal"/>
-                      <Cell col="5" text="bind:evalPointRange" displaytype="editcontrol" edittype="text" editinputfilter="none,dot,comma" editinputtype="number" textAlign="right"/>
-                      <Cell col="6" text="bind:useYn" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell text="expr:currow+1"/>
+                      <Cell col="1" text="bind:rowCheck" displaytype="checkboxcontrol" edittype="checkbox"/>
+                      <Cell col="2" text="bind:rowStatus"/>
+                      <Cell col="3" text="bind:evalEmpGrpCd"/>
+                      <Cell col="4" text="bind:evalTypeCd"/>
+                      <Cell col="5" text="bind:evalTypeWgt"/>
+                      <Cell col="6" text="bind:evalPlusPoint"/>
+                      <Cell col="7" text="bind:useYn" displaytype="combocontrol" edittype="combo" combodataset="dsUseYn" combodatacol="LINE_CODE_NM_KR" combocodecol="LINE_CODE"/>
                     </Band>
                   </Format>
                 </Formats>
               </Grid>
-              <Static id="sta004" taborder="4" text="평가등급 기준" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="137"/>
+              <Static id="sta004" taborder="4" text="평가 유형별 평가비중" cssclass="sta_WF_subTitle01" left="0" top="0" height="45" width="137"/>
               <Static id="staGridRowCnt" taborder="3" text="(총 0건)" cssclass="sta_WF_subTxt" left="sta004:10" top="0" width="149" height="45"/>
             </Layout>
             <Layout name="screen00"/>
@@ -72,51 +75,46 @@
       <Dataset id="dsList" useclientlayout="false">
         <ColumnInfo>
           <Column id="rowCheck" type="STRING" size="256"/>
-          <Column id="evalId" type="STRING" size="256"/>
-          <Column id="evalGrade" type="STRING" size="256"/>
-          <Column id="evalPointRange" type="FLOAT" size="256"/>
-          <Column id="useYn" type="STRING" size="256"/>
           <Column id="rowStatus" type="STRING" size="256"/>
+          <Column id="evalId" type="STRING" size="256"/>
+          <Column id="evalEmpGrpCd" type="STRING" size="256"/>
+          <Column id="evalTypeCd" type="STRING" size="256"/>
+          <Column id="evalTypeWgt" type="STRING" size="256"/>
+          <Column id="evalPlusPoint" type="STRING" size="256"/>
+          <Column id="useYn" type="STRING" size="256"/>
         </ColumnInfo>
       </Dataset>
       <Dataset id="dsSearch" updatecontrol="true">
         <ColumnInfo>
-          <Column id="evalId" type="STRING" size="256"/>
-          <Column id="evalGrade" type="STRING" size="256"/>
+          <Column id="evalTypeCd" type="STRING" size="256"/>
+          <Column id="evalEmpGrpCd" type="STRING" size="256"/>
         </ColumnInfo>
         <Rows>
           <Row/>
         </Rows>
       </Dataset>
-      <Dataset id="dsGrade">
+      <Dataset id="dsEvalEmpTypeCombo">
         <ColumnInfo>
           <Column id="text" type="STRING" size="256"/>
           <Column id="value" type="STRING" size="256"/>
         </ColumnInfo>
+      </Dataset>
+      <Dataset id="dsUseYn">
+        <ColumnInfo>
+          <Column id="LINE_CODE" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_KR" type="STRING" size="256"/>
+          <Column id="LINE_CODE_NM_EN" type="STRING" size="256"/>
+        </ColumnInfo>
         <Rows>
           <Row>
-            <Col id="value">평가등급</Col>
-            <Col id="text"/>
+            <Col id="LINE_CODE">y</Col>
+            <Col id="LINE_CODE_NM_KR">사용</Col>
+            <Col id="LINE_CODE_NM_EN">use</Col>
           </Row>
           <Row>
-            <Col id="text">S</Col>
-            <Col id="value">S</Col>
-          </Row>
-          <Row>
-            <Col id="text">A</Col>
-            <Col id="value">A</Col>
-          </Row>
-          <Row>
-            <Col id="text">B</Col>
-            <Col id="value">B</Col>
-          </Row>
-          <Row>
-            <Col id="text">C</Col>
-            <Col id="value">C</Col>
-          </Row>
-          <Row>
-            <Col id="text">D</Col>
-            <Col id="value">D</Col>
+            <Col id="LINE_CODE">n</Col>
+            <Col id="LINE_CODE_NM_KR">미사용</Col>
+            <Col id="LINE_CODE_NM_EN">unused</Col>
           </Row>
         </Rows>
       </Dataset>
@@ -143,9 +141,12 @@ include "lib::common.xjs";
 */
 this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 {	
-    this.divSearch.form.cbo001.set_index(0);
+	
 	this.gfnFormOnLoad(this);
 	this.fnSearch();
+//	this.gfnLoadCombo("loadCombo", "dList=HRE:E00:A", "fnCallBack");
+	this.gfnLoadCombo("loadCombo", "dsEvalEmpTypeCombo=HRE:E01:A", "fnCallBack");
+	
 };
 
 /************************************************************************************************
@@ -156,8 +157,8 @@ this.form_onload = function(obj:nexacro.Form,e:nexacro.LoadEventInfo)
 */
 this.fnSearch = function()
 {
-	var strSvcId    = "getEvalGradeList";
-	var strSvcUrl   = "mis/hre/hre3060/getEvalGrade.do";
+	var strSvcId    = "getEvalEmpTypeList";
+	var strSvcUrl   = "mis/hre/hre3050/getEvalEmpType.do";
 	var inData      = "dsSearch";
 	var outData     = "dsList";
 	var strArg      = "";
@@ -180,7 +181,7 @@ this.fnSearch = function()
 this.fnSave = function()
 {
 	var strSvcId    = "setEvalGradeList";
-	var strSvcUrl   = "mis/hre/hre3060/setEvalGrade.do";
+	var strSvcUrl   = "mis/hre/hre3050/getEvalEmpType.do";
 	var inData      = "dsList";  
 	var outData     = "";
 	var strArg      = "";
@@ -206,7 +207,7 @@ this.fnSave = function()
 this.fnCallBack = function (sSvcId, nErrorCode, sErrorMsg)
 {
 	switch (sSvcId) {
-		case "getEvalGradeList":
+		case "getEvalEmpTypeList":
 			//총 건수 계산
 			this.gfnRowCount(this.dsList, this.divResult.form.staGridRowCnt);
             break;
@@ -274,9 +275,10 @@ this.divSearch_onkeyup = function(obj:nexacro.Div,e:nexacro.KeyEventInfo)
 };
 ]]></Script>
     <Bind>
-      <BindItem id="item0" compid="divSearch.form.cbo001" propid="value" datasetid="dsSearch" columnid="evalGrade"/>
-      <BindItem id="item1" compid="divSearch.form.edt002" propid="value" datasetid="dsSearch" columnid="evalId"/>
-      <BindItem id="item2" compid="divSearch.form.cbo001" propid="text" datasetid="dsGrade" columnid="text"/>
+      <BindItem id="item3" compid="divSearch.form.cbo001" propid="acceptvaluetype" datasetid="dsSearch" columnid="evalTypeCd"/>
+      <BindItem id="item0" compid="divSearch.form.edt002" propid="value" datasetid="dsSearch" columnid="evalEmpGrpCd"/>
+      <BindItem id="item1" compid="divSearch.form.cbo001" propid="text" datasetid="dsSearch" columnid="evalTypeCd"/>
+      <BindItem id="item2" compid="divSearch.form.cbo001" propid="visible" datasetid="dsEvalEmpTypeCombo" columnid="evalTypeCd"/>
     </Bind>
   </Form>
 </FDL>

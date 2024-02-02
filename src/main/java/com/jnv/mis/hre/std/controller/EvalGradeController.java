@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.jnv.mis.hre.std.service.EvalGradeService;
 import com.jnv.mis.hre.std.vo.EvalGradeVO;
-import com.jnv.sam.vo.TypeTwoVO;
 import com.nexacro.uiadapter.spring.core.annotation.ParamDataSet;
 import com.nexacro.uiadapter.spring.core.data.NexacroResult;
 
 @Controller
 public class EvalGradeController {
 	
-	@Resource(name = "Hre3060Service")
+	@Resource(name = "EvalGradeService")
 	private EvalGradeService service;
 
     @RequestMapping("mis/hre/hre3060/getEvalGrade.do")

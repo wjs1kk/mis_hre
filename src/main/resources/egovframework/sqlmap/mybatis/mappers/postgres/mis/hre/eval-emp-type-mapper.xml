@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jnv.mis.hre.std.service.EvalEmpTypeDAO">
+
+	<select id="getEvalEmpType" parameterType="map" resultType="EvalEmpTypeVO">
+		SELECT EVAL_ID 
+			  , T2.LINE_CODE_NM_KR AS EVAL_EMP_GRP_CD
+			  , T3.LINE_CODE_NM_KR AS EVAL_TYPE_CD
+		      , EVAL_TYPE_WGT
+		      , EVAL_PLUS_POINT
+		      , T1.USE_YN
+		FROM  HRE_EVAL_EMP_TYPE  T1
+		JOIN CMN_CODE_LINE T2 
+			ON T1.EVAL_EMP_GRP_CD = T2.LINE_CODE
+		JOIN CMN_CODE_LINE T3 
+			ON T1.EVAL_TYPE_CD = T3.LINE_CODE
+		ORDER BY T2.LINE_CODE_NM_KR, T1.EVAL_TYPE_CD
+		<where>
+	         <if test="evalTypeCd != null and evalTypeCd != ''">
+	           AND EVAL_TYPE_CD = #{evalTypeCd}
+	         </if>
+	         <if test="evalEmpGrpCd != null and evalEmpGrpCd != ''">
+	           AND EVAL_EMP_GRP_CD = #{evalEmpGrpCd}
+	         </if>
+        </where>
+	</select>
+</mapper>

@@ -7,7 +7,7 @@ import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
 import com.jnv.mis.hre.std.vo.EvalGradeVO;
 
-@Mapper("Hre3060DAO")
+@Mapper("EvalGradeDAO")
 public interface EvalGradeDAO {
 	List<EvalGradeVO> getEvalGradeList(Map<String, Object> params);
 	void insertEvalGrade(EvalGradeVO hre3060VO);

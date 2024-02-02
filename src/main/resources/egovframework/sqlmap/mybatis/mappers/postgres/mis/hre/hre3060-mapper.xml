@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jnv.mis.hre.service.Hre3060DAO">
-	<select id="getEvalGradeList" parameterType="map" resultType="Hre3060VO">
+<mapper namespace="com.jnv.mis.hre.std.service.EvalGradeDAO">
+	<select id="getEvalGradeList" parameterType="map" resultType="EvalGradeVO">
 		SELECT EVAL_ID
 		     , EVAL_GRADE
 		     , EVAL_POINT_RANGE
@@ -17,7 +17,7 @@
 	         </if>
         </where>
 	</select>
-	<insert id="insertEvalGrade" parameterType="Hre3060VO">
+	<insert id="insertEvalGrade" parameterType="EvalGradeVO">
         insert into 
         	hre_eval_grade( EVAL_ID
                             , EVAL_GRADE
@@ -30,21 +30,21 @@
                             , #{useYn})
     </insert>
     
-     <update id="updateEvalGrade" parameterType="Hre3060VO">
+     <update id="updateEvalGrade" parameterType="EvalGradeVO">
         UPDATE HRE_EVAL_GRADE
            SET EVAL_POINT_RANGE	= #{evalPointRange}
              , USE_YN = #{useYn}
          WHERE EVAL_ID = #{evalId}
     </update>
 
-    <delete id="deleteEvalGrade" parameterType="Hre3060VO">
+    <delete id="deleteEvalGrade" parameterType="EvalGradeVO">
         DELETE
           FROM HRE_EVAL_GRADE
          WHERE EVAL_ID = #{evalId}
          AND	EVAL_GRADE = #{evalGrade}
     </delete>
 
-    <select id="getDuplicatedKeyCnt" parameterType="typeTwoVO" resultType="int">
+    <select id="getDuplicatedKeyCnt" parameterType="EvalGradeVO" resultType="int">
         SELECT COUNT(*)
           FROM HRE_EVAL_GRADE
          WHERE EVAL_ID = #{evalId}
