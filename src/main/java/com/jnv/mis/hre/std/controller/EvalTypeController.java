@@ -1,4 +1,4 @@
-package com.jnv.mis.hre.controller;
+package com.jnv.mis.hre.std.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -8,8 +8,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jnv.mis.hre.service.EvalTypeService;
-import com.jnv.mis.hre.vo.EvalTypeVO;
+import com.jnv.mis.hre.std.service.EvalTypeService;
+import com.jnv.mis.hre.std.vo.EvalTypeVO;
 import com.nexacro.uiadapter.spring.core.annotation.ParamDataSet;
 import com.nexacro.uiadapter.spring.core.data.NexacroResult;
 

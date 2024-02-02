@@ -1,4 +1,4 @@
-package com.jnv.mis.hre.service.impl;
+package com.jnv.mis.hre.std.service.impl;
 
 import static com.jnv.common.util.Constants.RESULT_FAILURE;
 import static com.jnv.common.util.Constants.RESULT_SUCCESS;
@@ -15,9 +15,10 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import com.jnv.mis.hre.service.EvalStepDAO;
-import com.jnv.mis.hre.service.EvalStepService;
-import com.jnv.mis.hre.vo.EvalStepVO;
+import com.jnv.mis.hre.std.service.EvalStepDAO;
+import com.jnv.mis.hre.std.service.EvalStepService;
+import com.jnv.mis.hre.std.vo.EvalStepVO;
+
 
 @Service("evalStepService")
 public class EvalStepServiceImpl implements EvalStepService {

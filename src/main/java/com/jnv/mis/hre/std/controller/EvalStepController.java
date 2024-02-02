@@ -1,4 +1,4 @@
-package com.jnv.mis.hre.controller;
+package com.jnv.mis.hre.std.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -8,14 +8,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.jnv.mis.hre.service.EvalStepService;
-import com.jnv.mis.hre.vo.EvalStepVO;
-import com.jnv.sam.vo.TypeTwoVO;
+import com.jnv.mis.hre.std.service.EvalStepService;
+import com.jnv.mis.hre.std.vo.EvalStepVO;
 import com.nexacro.uiadapter.spring.core.annotation.ParamDataSet;
 import com.nexacro.uiadapter.spring.core.data.NexacroResult;
 
 @Controller
-public class EvalStepcontroller {
+public class EvalStepController {
 
 	@Resource(name = "evalStepService")
     private EvalStepService service;

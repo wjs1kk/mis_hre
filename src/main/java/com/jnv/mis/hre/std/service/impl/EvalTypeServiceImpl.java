@@ -1,4 +1,4 @@
-package com.jnv.mis.hre.service.impl;
+package com.jnv.mis.hre.std.service.impl;
 
 import static com.jnv.common.util.Constants.RESULT_FAILURE;
 import static com.jnv.common.util.Constants.RESULT_SUCCESS;
@@ -15,9 +15,9 @@ import javax.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import com.jnv.mis.hre.service.EvalTypeDAO;
-import com.jnv.mis.hre.service.EvalTypeService;
-import com.jnv.mis.hre.vo.EvalTypeVO;
+import com.jnv.mis.hre.std.service.EvalTypeDAO;
+import com.jnv.mis.hre.std.service.EvalTypeService;
+import com.jnv.mis.hre.std.vo.EvalTypeVO;
 
 @Service("evalTypeService")
 public class EvalTypeServiceImpl implements EvalTypeService {

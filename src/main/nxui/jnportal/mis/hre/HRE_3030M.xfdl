@@ -44,7 +44,7 @@
                     </Rows>
                     <Band id="head">
                       <Cell text="순번"/>
-                      <Cell col="1" text="rowCheck" suppressalign="first"/>
+                      <Cell col="1" suppressalign="first" displaytype="checkboxcontrol" edittype="checkbox"/>
                       <Cell col="2" text="기준연도"/>
                       <Cell col="3" text="구분"/>
                       <Cell col="4" text="차수"/>

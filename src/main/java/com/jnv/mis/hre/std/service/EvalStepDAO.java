@@ -1,11 +1,12 @@
-package com.jnv.mis.hre.service;
+package com.jnv.mis.hre.std.service;
 
 import java.util.List;
 import java.util.Map;
 
 import org.egovframe.rte.psl.dataaccess.mapper.Mapper;
 
-import com.jnv.mis.hre.vo.EvalStepVO;
+import com.jnv.mis.hre.std.vo.EvalStepVO;
+
 
 @Mapper("evalStepDAO")
 public interface EvalStepDAO {
@@ -25,3 +26,4 @@ public interface EvalStepDAO {
 	void deleteEvalStep(EvalStepVO evalStepVO);
 
 }
+

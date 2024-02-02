@@ -1,4 +1,4 @@
-package com.jnv.mis.hre.vo;
+package com.jnv.mis.hre.std.vo;
 
 import com.jnv.jncore.vo.CommonVO;
 
